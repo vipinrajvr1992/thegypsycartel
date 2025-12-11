@@ -1,57 +1,205 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gypsy Cartel - Official Store</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Gypsy Cartel — Official Store</title>
+  <meta name="description" content="Gypsy Cartel — premium store for software, designs, 3D works and templates. MG Creations apps and tools." />
+  <style>
+    :root{
+      --black:#000000;
+      --bg-dark:#0b0b0b;
+      --panel:#0f1720;
+      --muted:#9aa3ad;
+      --white:#ffffff;
+      --orange:#ff7a00;
+      --gold:#f7d600;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --accent-glow: 0 16px 60px rgba(255,122,0,0.12), inset 0 -6px 24px rgba(255,122,0,0.02);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,var(--black) 0%, #070707 40%, #0b0b0b 100%);color:var(--white);}
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #0f0f0f;
-            color: white;
-            text-align: center;
-        }
-        header {
-            padding: 50px 20px;
-        }
-        h1 {
-            font-size: 42px;
-            letter-spacing: 2px;
-        }
-        p {
-            font-size: 18px;
-            opacity: 0.8;
-        }
-        .btn {
-            display: inline-block;
-            margin-top: 25px;
-            padding: 14px 28px;
-            background: #ff1744;
-            color: white;
-            text-decoration: none;
-            font-size: 18px;
-            border-radius: 6px;
-        }
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            opacity: 0.6;
-        }
-    </style>
+    /* energetic black + orange glow background */
+    .site-bg{
+      min-height:100vh;
+      display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;
+      background: radial-gradient(900px 400px at 85% 20%, rgba(255,122,0,0.06), transparent), radial-gradient(700px 300px at 10% 85%, rgba(255,122,0,0.03), transparent), linear-gradient(180deg,#080808,#0b0b0b);
+    }
+
+    /* container */
+    .container{width:min(1200px,94%);margin:48px auto;display:grid;grid-template-columns:1fr 420px;gap:36px;align-items:start}
+    @media (max-width:980px){.container{grid-template-columns:1fr;gap:20px;padding-bottom:64px}}
+
+    header{display:flex;align-items:center;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo-hero{width:78px;height:78px;border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.03), rgba(255,255,255,0.01));display:flex;align-items:center;justify-content:center;box-shadow:var(--accent-glow)}
+    .logo-hero img{width:68%;height:auto;display:block}
+
+    .brand-text{line-height:1}
+    .brand-text h1{margin:0;font-size:22px;letter-spacing:0.6px}
+    .brand-text p{margin:0;color:var(--muted);font-size:13px}
+
+    nav .mg-small{position:absolute;right:32px;top:28px;opacity:0.95}
+    .mg-small img{width:64px;height:auto;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.6))}
+
+    /* hero */
+    .hero{padding:28px 28px;border-radius:16px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));box-shadow: 0 8px 40px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.02)}
+    .title{font-size:40px;margin:8px 0 6px;font-weight:700}
+    .subtitle{color:var(--muted);margin:0 0 18px;font-size:15px}
+
+    .cta-row{display:flex;gap:12px;align-items:center}
+    .btn{padding:12px 18px;border-radius:12px;cursor:pointer;border:0;font-weight:600;display:inline-flex;gap:10px;align-items:center}
+    .btn-primary{background:linear-gradient(180deg,var(--orange), #e56400);color:var(--white);box-shadow:0 12px 36px rgba(255,122,0,0.12);}
+    .btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white)}
+    .badge{background:linear-gradient(90deg,#1b1f26,#0e1116);padding:8px 12px;border-radius:12px;border:1px solid rgba(255,255,255,0.02);color:var(--muted);font-weight:600}
+
+    /* right column product card */
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));padding:22px;border-radius:14px;border:1px solid rgba(255,255,255,0.02);box-shadow:var(--accent-glow)}
+    .product-icon{width:100%;height:160px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:linear-gradient(180deg, rgba(0,0,0,0.2), rgba(255,255,255,0.02));}
+    .product-icon img{max-width:86%;height:auto}
+    .product-title{font-size:20px;margin:14px 0 6px}
+    .product-meta{color:var(--muted);font-size:13px;margin-bottom:12px}
+
+    .specs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}
+    .spec{font-size:13px;color:var(--muted)}
+
+    .screenshot-row{display:flex;gap:10px;overflow:hidden;margin-top:12px}
+    .ss{height:88px;border-radius:8px;flex:0 0 120px;background:#0b0b0b;border:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center}
+    .ss img{max-width:100%;height:100%;object-fit:cover;border-radius:8px}
+
+    /* features */
+    .features{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+    .features h3{margin:0 0 10px}
+    .feature-list{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .feature{display:flex;gap:10px;align-items:flex-start}
+    .dot{width:12px;height:12px;border-radius:4px;background:var(--orange);margin-top:6px}
+    .feature p{margin:0;color:var(--muted);font-size:14px}
+
+    /* footer */
+    footer{margin-top:28px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* small screens tweaks */
+    @media (max-width:520px){.title{font-size:28px}.product-icon{height:120px}}
+
+    /* subtle enter animation */
+    .fade-in{animation:fadeIn .9s ease both}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  </style>
 </head>
-
 <body>
-    <header>
-        <h1>Gypsy Cartel</h1>
-        <p>Official store for software, designs, 3D works, and merchandise.</p>
+  <div class="site-bg">
+    <div class="container">
 
-        <a href="#" class="btn">Shop Coming Soon</a>
-    </header>
+      <main style="">
+        <nav style="position:relative">
+          <div class="brand fade-in">
+            <div class="logo-hero"><img src="assets/logo-gypsy.png" alt="Gypsy Cartel logo"></div>
+            <div class="brand-text">
+              <h1>Gypsy Cartel</h1>
+              <p>Official store for software, designs, 3D works and templates — MG Creations</p>
+            </div>
+          </div>
+          <div class="mg-small" style="position:absolute;right:0;top:-8px"><img src="assets/logo-mg.png" alt="MG Creations logo"></div>
+        </nav>
 
-    <footer>
-        © 2025 Gypsy Cartel. All Rights Reserved.
-    </footer>
+        <section class="hero fade-in" style="margin-top:18px">
+          <div style="display:flex;gap:22px;align-items:center;flex-wrap:wrap">
+            <div style="flex:1;min-width:280px">
+              <div class="title">Gypsy Optimizer — PC Beast <span style="color:var(--orange)">V3.1 PRO+</span></div>
+              <p class="subtitle">One‑click Windows optimizer. Cleans junk, repairs system files, optimizes RAM & GPU, updates apps and exports full PDF logs. Designed by MG Creations.</p>
+
+              <div class="cta-row">
+                <a class="btn btn-primary" href="/products/gypsy-optimizer/" title="Product Page">Download / Buy Now</a>
+                <a class="btn btn-outline" href="/products/gypsy-optimizer/">Product details</a>
+                <div class="badge">Windows 10 · 11 • Portable EXE</div>
+              </div>
+
+              <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+                <div style="color:var(--muted);font-size:13px">Developer: <strong style="color:var(--white)">Mallu Gypsy</strong></div>
+                <div style="color:var(--muted);font-size:13px">Brand: <strong style="color:var(--orange)">MG Creations</strong></div>
+              </div>
+            </div>
+
+            <div style="width:360px;min-width:240px">
+              <div class="card fade-in">
+                <div class="product-icon"><img src="assets/app-icon.png" alt="Gypsy Optimizer icon" /></div>
+                <div class="product-title">GYPSY OPTIMIZER — PC BEAST V3.1 PRO+</div>
+                <div class="product-meta">Advanced Windows optimizer • Python + CustomTkinter • PDF export</div>
+
+                <div class="specs">
+                  <div class="spec"><strong>Files</strong><br><span class="muted">EXE, ReadMe, Screenshots</span></div>
+                  <div class="spec"><strong>License</strong><br><span class="muted">Online activation (HWID)</span></div>
+                </div>
+
+                <div class="screenshot-row">
+                  <div class="ss"><img src="assets/screenshots/ss1.png" alt="ss"></div>
+                  <div class="ss"><img src="assets/screenshots/ss2.png" alt="ss"></div>
+                  <div class="ss"><img src="assets/screenshots/ss3.png" alt="ss"></div>
+                </div>
+
+                <div style="margin-top:14px;display:flex;gap:8px">
+                  <a class="btn btn-primary" href="/products/gypsy-optimizer/">Get it now</a>
+                  <a class="btn btn-outline" href="/activate/">Activate Key</a>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section style="margin-top:22px" class="features fade-in">
+          <h3>Key Features</h3>
+          <div class="feature-list">
+            <div class="feature"><div class="dot"></div><p><strong>Full system optimize</strong> — 15 automated tasks (one click).</p></div>
+            <div class="feature"><div class="dot"></div><p><strong>Live monitoring</strong> — CPU / RAM / Disk / Network live stats.</p></div>
+            <div class="feature"><div class="dot"></div><p><strong>Safe operations</strong> — Restore point & STOP button.</p></div>
+            <div class="feature"><div class="dot"></div><p><strong>GPU & RAM boost</strong> — shader & memory cleanup.</p></div>
+            <div class="feature"><div class="dot"></div><p><strong>Winget updates</strong> — auto-upgrade apps when available.</p></div>
+            <div class="feature"><div class="dot"></div><p><strong>PDF log export</strong> — full optimization report.</p></div>
+          </div>
+        </section>
+
+        <footer class="fade-in">© 2025 Gypsy Cartel — All Rights Reserved • Designed by MG Creations</footer>
+      </main>
+
+      <aside>
+        <div class="card fade-in">
+          <div style="display:flex;align-items:center;gap:12px">
+            <div style="width:68px;height:68px;border-radius:10px;background:linear-gradient(180deg,#111219,#0b0b0b);display:flex;align-items:center;justify-content:center"><img src="assets/logo-gypsy.png" style="width:56%;" alt="logo"></div>
+            <div>
+              <div style="font-weight:700">Gypsy Cartel — Store</div>
+              <div style="color:var(--muted);font-size:13px">MG Creations — Developer</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px">
+            <div style="font-size:13px;color:var(--muted)">Follow on Instagram</div>
+            <a href="https://www.instagram.com/mallugypsy.creations" style="display:inline-block;margin-top:8px;text-decoration:none;color:var(--orange);font-weight:700">@mallugypsy.creations</a>
+          </div>
+
+          <div style="margin-top:14px">
+            <div style="font-size:13px;color:var(--muted)">Quick Links</div>
+            <ul style="padding-left:18px;margin:8px 0 0;color:var(--muted)">
+              <li><a href="/products/gypsy-optimizer/" style="color:var(--white);text-decoration:none">Product page</a></li>
+              <li><a href="/activate/" style="color:var(--white);text-decoration:none">Activation portal</a></li>
+              <li><a href="/PLAN.md" style="color:var(--white);text-decoration:none">Project PLAN</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="height:18px"></div>
+
+        <div class="card fade-in">
+          <div style="font-weight:700;margin-bottom:8px">Why choose Gypsy?</div>
+          <p style="color:var(--muted);margin:0">Premium tools, transparent licensing, and an easy activation flow. We ship updates and help directly via our activation portal.</p>
+        </div>
+
+      </aside>
+
+    </div>
+  </div>
 </body>
 </html>
