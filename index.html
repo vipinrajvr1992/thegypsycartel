@@ -3,133 +3,220 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <title>Gypsy Cartel — Digital Products & Creative Studio</title>
 
-  <meta name="description" content="Gypsy Cartel builds premium software, digital products and creative experiences. Performance, design and innovation combined." />
+  <meta name="description" content="Gypsy Cartel is a creative digital brand offering Windows apps, design tools, 2D/3D plans, templates, graphics, and upcoming fashion products." />
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
-
-  <!-- Preload hero image for faster first paint -->
-  <link rel="preload" as="image" href="assets/screenshots/Shot 4.webp">
 </head>
+<body class="theme-dark">
 
-<body>
-
-  <!-- ================= HEADER ================= -->
-  <header class="header">
-    <div class="container header-inner">
-      <img src="assets/logos/GYPSY CARTEL LOGO.webp" alt="Gypsy Cartel Logo" class="brand-logo">
-
-      <nav class="nav">
-        <a href="#products">Products</a>
-        <a href="#about">About</a>
-        <a href="https://www.instagram.com/mallugypsy.creations" target="_blank">Instagram</a>
-      </nav>
+<!-- ================= HEADER ================= -->
+<header class="header">
+  <div class="container header-inner">
+    <div class="brand">
+      <img src="assets/logos/GYPSY CARTEL LOGO.webp" alt="Gypsy Cartel" class="brand-logo" />
+      <span class="brand-name">Gypsy Cartel</span>
     </div>
-  </header>
 
-  <!-- ================= HERO ================= -->
-  <section class="hero">
-    <div class="container hero-grid">
+    <nav class="nav">
+      <a href="#apps">Apps</a>
+      <a href="#designs">Designs</a>
+      <a href="#fashion">Fashion</a>
+      <a href="#about">About</a>
+      <a href="#contact" class="btn btn-outline">Contact</a>
+    </nav>
+  </div>
+</header>
 
-      <div class="hero-text">
-        <h1>Gypsy Cartel</h1>
-        <p class="tagline">
-          Digital Products. Software. Creative Studio.
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="container hero-grid">
+
+    <div class="hero-text">
+      <h1>
+        Digital Products.<br />
+        Creative Tools.<br />
+        <span class="accent">One Powerful Brand.</span>
+      </h1>
+
+      <p>
+        Gypsy Cartel is a modern digital brand delivering performance-focused Windows applications,
+        creative design solutions, and next-generation digital products — built for speed, style,
+        and real-world use.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#apps" class="btn btn-primary">Explore Apps</a>
+        <a href="#about" class="btn btn-ghost">Learn More</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <img src="assets/screenshots/Shot 4.webp" alt="Gypsy Optimizer PRO+" />
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= APPS ================= -->
+<section id="apps" class="section">
+  <div class="container">
+
+    <div class="section-header">
+      <h2>Windows Applications</h2>
+      <p>Powerful, lightweight, and performance-driven tools for Windows users.</p>
+    </div>
+
+    <div class="card product-card">
+      <div class="product-media">
+        <img src="assets/screenshots/Shot 1.webp" alt="Gypsy Optimizer PRO+" />
+      </div>
+
+      <div class="product-content">
+        <h3>Gypsy Optimizer PRO+</h3>
+        <p class="tagline">Make your PC faster in one click</p>
+
+        <p>
+          Gypsy Optimizer PRO+ is a Windows performance utility designed to clean junk files,
+          optimize system resources, improve startup speed, and keep your PC running smooth.
+          Built for simplicity, safety, and real results.
         </p>
 
-        <p class="hero-desc">
-          We build high-performance tools and premium digital experiences — designed for speed, style, and scalability.
+        <ul class="feature-list">
+          <li>One-click system optimization</li>
+          <li>Junk & cache cleanup</li>
+          <li>Startup & performance tuning</li>
+          <li>Safe restore & system protection</li>
+        </ul>
+
+        <div class="product-meta">
+          <span class="downloads">⬇ Downloads: <strong>347+</strong></span>
+          <span class="pricing">7 days free · One-time payment</span>
+        </div>
+
+        <div class="product-actions">
+          <a href="#" class="btn btn-primary">Download</a>
+          <a href="#" class="btn btn-outline">View Details</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= DESIGNS ================= -->
+<section id="designs" class="section section-alt">
+  <div class="container">
+
+    <div class="section-header">
+      <h2>Designs & Creative Services</h2>
+      <p>Professional design solutions for individuals, brands, and businesses.</p>
+    </div>
+
+    <div class="grid-3">
+      <div class="info-card">
+        <h4>2D & 3D Plans</h4>
+        <p>
+          High-quality 2D drawings and detailed 3D plans for residential, commercial,
+          and concept-based projects.
         </p>
-
-        <div class="hero-actions">
-          <a href="#products" class="btn primary">Explore Products</a>
-          <a href="https://www.instagram.com/mallugypsy.creations" target="_blank" class="btn ghost">
-            MG Creations
-          </a>
-        </div>
       </div>
 
-      <div class="hero-visual">
-        <img 
-          src="assets/screenshots/Shot 4.webp"
-          alt="Gypsy Optimizer Visual"
-          class="hero-image"
-        >
+      <div class="info-card">
+        <h4>Interior & Exterior Design</h4>
+        <p>
+          Modern interior and exterior visualizations with realistic lighting,
+          materials, and premium presentation.
+        </p>
       </div>
 
-    </div>
-  </section>
-
-  <!-- ================= PRODUCTS ================= -->
-  <section id="products" class="section dark">
-    <div class="container">
-
-      <h2 class="section-title">Products</h2>
-
-      <div class="product-grid">
-
-        <div class="product-card">
-          <img 
-            src="assets/screenshots/Shot 3.webp"
-            alt="Gypsy Optimizer PRO+"
-            loading="lazy"
-          >
-
-          <h3>Gypsy Optimizer PRO+</h3>
-          <p>
-            A powerful PC optimization tool built for performance, stability and control.
-          </p>
-
-          <a href="#" class="btn small">View Product</a>
-        </div>
-
-        <div class="product-card coming-soon">
-          <h3>More Coming</h3>
-          <p>
-            New software, digital tools and creative products are in development.
-          </p>
-        </div>
-
+      <div class="info-card">
+        <h4>Templates & Graphics</h4>
+        <p>
+          Ready-made templates, creative assets, digital designs, and brand-ready
+          graphic materials.
+        </p>
       </div>
     </div>
-  </section>
 
-  <!-- ================= ABOUT ================= -->
-  <section id="about" class="section light">
-    <div class="container narrow">
-      <h2 class="section-title">About Gypsy Cartel</h2>
+  </div>
+</section>
 
-      <p class="about-text">
-        Gypsy Cartel is a modern digital brand focused on building high-quality software,
-        creative tools and lifestyle products. We blend performance engineering with
-        premium design — no shortcuts, no compromises.
+<!-- ================= FASHION ================= -->
+<section id="fashion" class="section">
+  <div class="container">
+
+    <div class="section-header">
+      <h2>Online Fashion Store</h2>
+      <p>Streetwear, branded apparel, and exclusive Gypsy Cartel designs.</p>
+    </div>
+
+    <div class="coming-soon">
+      <h3>Coming Soon</h3>
+      <p>
+        Our fashion line is currently in development. Expect bold designs,
+        premium materials, and a strong identity — all under the Gypsy Cartel brand.
       </p>
     </div>
-  </section>
 
-  <!-- ================= FOOTER ================= -->
-  <footer class="footer">
-    <div class="container footer-inner">
+  </div>
+</section>
 
-      <div class="footer-brand">
-        <img src="assets/logos/mglogo.webp" alt="MG Creations Logo">
-        <p>Creative Studio</p>
-      </div>
+<!-- ================= ABOUT ================= -->
+<section id="about" class="section section-alt">
+  <div class="container">
 
-      <div class="footer-links">
-        <a href="https://www.instagram.com/mallugypsy.creations" target="_blank">
-          Instagram
-        </a>
-      </div>
-
-      <div class="footer-copy">
-        © 2025 Gypsy Cartel. All rights reserved.
-      </div>
-
+    <div class="section-header">
+      <h2>About Gypsy Cartel</h2>
     </div>
-  </footer>
+
+    <div class="about-content">
+      <p>
+        <strong>Gypsy Cartel</strong> is a creative digital brand focused on building
+        practical software, premium design solutions, and modern digital products.
+        The brand represents independence, creativity, and performance-driven work
+        across multiple digital domains.
+      </p>
+
+      <p>
+        <strong>MG Creations (MalluGypsy Creations)</strong> is the creative division
+        behind Gypsy Cartel, responsible for concept development, design execution,
+        testing, and visual identity. Together, we build products that are clean,
+        powerful, and made to last.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer id="contact" class="footer">
+  <div class="container footer-grid">
+
+    <div class="footer-brand">
+      <img src="assets/logos/GYPSY CARTEL LOGO.webp" alt="Gypsy Cartel" />
+      <p>Digital products · Creative tools · Modern design</p>
+    </div>
+
+    <div class="footer-links">
+      <h4>Contact</h4>
+      <p>Email: <a href="mailto:support@gypsycartel.shop">support@gypsycartel.shop</a></p>
+      <p>Instagram: <a href="https://www.instagram.com/mallugypsy.creations" target="_blank">@mallugypsy.creations</a></p>
+    </div>
+
+    <div class="footer-copy">
+      <p>© 2025 Gypsy Cartel. All rights reserved.</p>
+    </div>
+
+  </div>
+</footer>
 
 </body>
 </html>
