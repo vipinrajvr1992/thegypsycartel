@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Segoe UI", sans-serif;
 }
 
 body {
@@ -12,148 +12,153 @@ body {
 
 /* HEADER */
 .header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 20px 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
-  position: fixed;
-  width: 100%;
-  background: rgba(0,0,0,0.9);
-  z-index: 1000;
+  background: rgba(0,0,0,0.6);
+  z-index: 100;
 }
 
-.header img {
+.logo img {
   height: 40px;
 }
 
-.header nav a {
-  color: #fff;
+.nav a {
   margin-left: 30px;
   text-decoration: none;
-  font-weight: 500;
+  color: #fff;
+  font-size: 15px;
 }
 
-.header nav a:hover {
+.nav a:hover {
   color: #ff8c00;
 }
 
 /* HERO */
 .hero {
   height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+    url("assets/ads/ad-logs.webp");
+  background-size: cover;
+  background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .hero-logo {
-  max-width: 600px;
-  width: 90%;
+  max-width: 420px;
 }
 
-/* APP SECTION */
-.app-section {
-  display: flex;
-  align-items: center;
-  padding: 100px 10%;
+/* APPS SECTION */
+.apps-section {
+  padding: 120px 40px;
   background: #0a0a0a;
 }
 
-.app-left img {
-  width: 320px;
+.apps-container {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  gap: 60px;
 }
 
-.app-right {
-  margin-left: 60px;
-  max-width: 600px;
+.apps-left img {
+  width: 100%;
+  max-width: 500px;
 }
 
-.app-right h1 {
-  font-size: 42px;
-  margin-bottom: 10px;
+.apps-right h2 {
+  font-size: 36px;
 }
 
-.app-right h2 {
+.apps-right h3 {
   color: #ff8c00;
-  font-size: 22px;
-  margin-bottom: 20px;
+  margin: 10px 0 20px;
 }
 
-.app-right p {
+.apps-right p {
   color: #ccc;
-  line-height: 1.6;
+  line-height: 1.7;
   margin-bottom: 20px;
 }
 
 .download-count {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   font-size: 16px;
-  color: #fff;
 }
 
 .btn-primary {
+  display: inline-block;
+  padding: 14px 28px;
   background: #ff8c00;
   color: #000;
-  border: none;
-  padding: 15px 35px;
-  font-size: 16px;
-  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
   border-radius: 6px;
 }
 
-.btn-primary:hover {
-  background: #e67600;
+/* ADS */
+.ads-section {
+  display: flex;
+  flex-direction: column;
 }
 
-/* ADS */
-.ad {
-  padding: 80px 0;
+.ads-section img {
+  width: 100%;
+}
+
+/* ABOUT */
+.about-section {
+  padding: 120px 30px;
+  background: #0a0a0a;
   text-align: center;
 }
 
-.ad img {
-  max-width: 1200px;
-  width: 90%;
+.about-container {
+  max-width: 900px;
+  margin: auto;
 }
 
-.ad.light {
-  background: #fff;
+.about-section h2 {
+  font-size: 36px;
+  margin-bottom: 25px;
 }
 
-.ad.light img {
-  background: #fff;
+.about-section h3 {
+  color: #ff8c00;
+  margin: 35px 0 15px;
 }
 
-.ad.dark {
-  background: #000;
+.about-desc {
+  color: #ccc;
+  line-height: 1.8;
+  margin-bottom: 15px;
+}
+
+.vision-list {
+  list-style: none;
+}
+
+.vision-list li {
+  margin: 10px 0;
 }
 
 /* FOOTER */
-footer {
+.footer {
   background: #000;
   padding: 60px 20px;
   text-align: center;
 }
 
-.footer-logos img {
-  height: 60px;
-  margin: 10px 20px;
-}
-
-footer p {
-  margin-top: 10px;
-  color: #ccc;
-}
-
-footer a {
-  color: #ff8c00;
-  text-decoration: none;
-}
-
-footer a:hover {
-  text-decoration: underline;
-}
-
-copyright {
-  margin-top: 20px;
-  font-size: 14px;
-}
+.footer-logos {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  mar
