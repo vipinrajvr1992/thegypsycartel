@@ -2,10 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Gypsy Cartel</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gypsy Cartel</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/logos/gypsy-cartel-icon.webp" type="image/webp">
+
+  <!-- CSS -->
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
   <!-- HEADER -->
@@ -13,7 +19,7 @@
     <div class="logo">
       <img src="assets/logos/gypsy-cartel.webp" alt="Gypsy Cartel">
     </div>
-    <nav>
+    <nav class="nav">
       <a href="#apps">Apps</a>
       <a href="#designs">Designs</a>
       <a href="#about">About</a>
@@ -23,65 +29,98 @@
 
   <!-- HERO -->
   <section class="hero">
-    <img src="assets/logos/gypsy-cartel.webp" class="hero-logo" alt="Gypsy Cartel">
+    <div class="hero-content">
+      <img src="assets/logos/gypsy-cartel.webp" alt="Gypsy Cartel Logo" class="hero-logo">
+    </div>
   </section>
 
-  <!-- APP SECTION -->
-  <section id="apps" class="app-section">
-    <div class="app-left">
-      <img src="assets/logos/gypsy-app.webp" alt="Gypsy Optimizer">
+  <!-- APPS SECTION -->
+  <section id="apps" class="apps-section">
+    <div class="apps-container">
+
+      <div class="apps-left">
+        <img src="assets/apps/gypsy-optimizer-ui.webp" alt="Gypsy Optimizer UI">
+      </div>
+
+      <div class="apps-right">
+        <h2>Gypsy Optimizer PRO+</h2>
+        <h3>Make Your PC Faster in One Click</h3>
+
+        <p>
+          Boost performance, clean junk files, fix system errors, update apps,
+          reset network and optimize the full Windows system — automatically.
+        </p>
+
+        <div class="download-count">
+          🔥 <span contenteditable="true">347+</span> Downloads
+        </div>
+
+        <a href="#" class="btn-primary">Download Trial Now</a>
+      </div>
+
     </div>
+  </section>
 
-    <div class="app-right">
-      <h1>Gypsy Optimizer PRO+</h1>
-      <h2>Make Your PC Faster in One Click</h2>
+  <!-- ADS SECTION -->
+  <section class="ads-section" id="designs">
+    <img src="assets/ads/ad-slow-pc.webp" alt="Ad 1">
+    <img src="assets/ads/ad-solution.webp" alt="Ad 2">
+    <img src="assets/ads/ad-ui.webp" alt="Ad 3">
+  </section>
 
-      <p>
-        Boost performance, clean junk files, fix system errors,
-        update apps, reset network and optimize the full Windows
-        system — Automatically.
+  <!-- ABOUT SECTION -->
+  <section id="about" class="about-section">
+    <div class="about-container">
+
+      <h2>About Gypsy Cartel</h2>
+
+      <p class="about-desc">
+        Gypsy Cartel is a digital-first creative brand focused on building
+        powerful Windows applications, premium digital designs, and next-generation
+        tech solutions. We believe in simplicity, performance, and real-world usability.
       </p>
 
-      <div class="download-count">⭐ 347+ Downloads</div>
+      <p class="about-desc">
+        From system optimization tools like <strong>Gypsy Optimizer PRO+</strong> to
+        custom 3D designs, floor plans, templates, and digital assets,
+        Gypsy Cartel is built for creators, professionals, and businesses who demand results.
+      </p>
 
-      <button class="btn-primary">Download Trial Now</button>
+      <h3>MG Creations</h3>
+
+      <p class="about-desc">
+        MG Creations (MalluGypsy Creations) is the digital design division of Gypsy Cartel,
+        delivering high-quality creative works including 3D exterior & interior designs,
+        floor plans, templates, and custom digital solutions.
+      </p>
+
+      <h3>Our Vision</h3>
+
+      <ul class="vision-list">
+        <li>Build simple but powerful digital products</li>
+        <li>Deliver real performance, not fake promises</li>
+        <li>Empower users with one-click solutions</li>
+        <li>Create a trusted global digital brand</li>
+      </ul>
+
     </div>
-  </section>
-
-  <!-- AD 1 : SLOW PC -->
-  <section class="ad light">
-    <img src="assets/ads/ad-slow-pc.webp" alt="Slow PC">
-  </section>
-
-  <!-- AD 2 : SOLUTION -->
-  <section class="ad light">
-    <img src="assets/ads/ad-solution.webp" alt="Solution">
-  </section>
-
-  <!-- AD 3 : LOGS -->
-  <section class="ad dark">
-    <img src="assets/ads/ad-logs.webp" alt="Optimization Logs">
-  </section>
-
-  <!-- AD 4 : UI -->
-  <section class="ad dark">
-    <img src="assets/ads/ad-ui.webp" alt="App UI">
   </section>
 
   <!-- FOOTER -->
-  <footer id="contact">
+  <footer id="contact" class="footer">
+
     <div class="footer-logos">
       <img src="assets/logos/gypsy-cartel.webp" alt="Gypsy Cartel">
       <img src="assets/logos/mg-creations.webp" alt="MG Creations">
     </div>
 
-    <p>Email: <a href="mailto:support@gypsycartel.shop">support@gypsycartel.shop</a></p>
-    <p>Instagram: <a href="https://www.instagram.com/mallugypsy.creations" target="_blank">
-      mallugypsy.creations</a></p>
+    <p>Email: <span>support@gypsycartel.shop</span></p>
+    <p>Instagram: <span>mallugypsy.creations</span></p>
 
     <p class="copyright">
       © 2025 Gypsy Cartel. All Rights Reserved.
     </p>
+
   </footer>
 
 </body>
