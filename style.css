@@ -1,6 +1,6 @@
 /* =========================================
    GYPSY CARTEL | PREMIUM STUDIO THEME
-   DESIGNED BY VIPIN (Final Version - Clean)
+   DESIGNED BY VIPIN (Final Version - Binary Fix)
    ========================================= */
 
 /* --- 1. SETUP & VARIABLES --- */
@@ -12,6 +12,7 @@
     --primary-white: #FFFFFF;
     --primary-black: #050505;
     --secondary-black: #111111;
+    --pattern-grey: #222222; /* New variable for improved pattern contrast */
     --text-grey: #B0B0B0;
     
     /* Dimensions & Spacing */
@@ -144,11 +145,11 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* --- CRITICAL CHANGE: Applied CSS Binary Design Pattern --- */
+    /* --- FIXED: Increased contrast using --pattern-grey */
     background: repeating-linear-gradient(
         45deg,
-        var(--secondary-black),
-        var(--secondary-black) 2px,
+        var(--pattern-grey), /* Used slightly lighter grey for better visibility */
+        var(--pattern-grey) 2px,
         var(--primary-black) 2px,
         var(--primary-black) 10px 
     );
@@ -158,11 +159,11 @@ img {
 }
 
 .binary-header::after {
-    /* Slightly stronger overlay to subdue the pattern and focus on the logo */
+    /* --- FIXED: Reduced opacity from 0.75 to 0.4 to reveal the pattern more --- */
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.75); 
+    background: rgba(0,0,0,0.4); 
 }
 
 /* **Splash Logo Size: 500px (Unchanged)** */
