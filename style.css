@@ -1,599 +1,242 @@
-/* --- Global Reset & Strict Palette --- */
+/* =========================================
+   GYPSY CARTEL - PROFESSIONAL CORE STYLES
+   ========================================= */
+
+/* --- 1. FONTS & VARIABLES --- */
+/* Importing premium fonts: Space Grotesk for headers, Inter for body */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700;900&display=swap');
+
+:root {
+    /* Color Palette */
+    --primary-color: #FF5722;   /* Deep Orange */
+    --secondary-color: #FFFFFF; /* White */
+    --black-bg: #050505;        /* Deep Black */
+    --dark-bg: #111111;         /* Soft Black/Grey */
+    --grey-text: #AAAAAA;       /* Light Grey */
+    --white-text: #FFFFFF;
+    --black-text: #000000;
+    
+    /* Spacing & Layout */
+    --max-width: 1200px;
+    --border-radius: 4px;       /* Sharp, professional corners */
+    --header-height: 80px;
+}
+
+/* --- 2. GLOBAL RESET & TYPOGRAPHY --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-:root {
-    --primary-color: #FF5722; /* Orange - Main Accent */
-    --secondary-color: #ffffff; /* White - Key Text */
-    --black-bg: #000000; /* True Black for Deep Contrast */
-    --dark-bg: #1A1A1A; /* Dark Grey/Near Black for depth */
-    --grey-text: #B0B0B0; /* Light Grey for Muted Text */
-    --font-heading: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --border-radius: 8px;
-}
-
 body {
-    font-family: var(--font-body);
     background-color: var(--black-bg);
     color: var(--secondary-color);
+    font-family: 'Inter', sans-serif; /* Clean, modern body font */
     line-height: 1.6;
-    scroll-behavior: smooth;
+    overflow-x: hidden; /* Prevents horizontal scroll */
 }
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif; /* High-tech, bold heading font */
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
+img { max-width: 100%; display: block; }
 
 .container {
-    max-width: 1280px; 
+    max-width: var(--max-width);
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 20px;
 }
 
-/* Section Structure */
-.full-screen-section {
-    min-height: 100vh;
-    padding: 120px 0; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-}
-
-h1, h2, h3, h4 {
-    font-family: var(--font-heading);
-    color: var(--secondary-color);
-    font-weight: 700;
-}
-
-.section-title {
-    font-size: 3em;
-    text-align: center;
-    margin-bottom: 0.8em;
-    color: var(--secondary-color);
-    letter-spacing: 2px;
-    position: relative;
-    padding-bottom: 15px;
-}
-
-.section-title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background-color: var(--primary-color);
-    margin: 10px auto 0;
-}
-
-p {
-    margin-bottom: 1em;
-    color: var(--grey-text);
-}
-
-.orange-text { color: var(--primary-color); }
-.black-bg { background-color: var(--black-bg); }
-.dark-bg { background-color: var(--dark-bg); }
-.white-bg { background-color: var(--secondary-color); }
-
-/* --- Buttons (CTAs) --- */
-.cta-button {
-    display: inline-block;
-    padding: 16px 35px;
-    border-radius: 4px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-    cursor: pointer;
-    font-size: 0.9em;
-}
-
-.primary-cta {
-    background-color: var(--primary-color);
-    color: var(--black-bg);
-}
-
-.primary-cta:hover {
-    background-color: #ff7e5a;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(255, 87, 34, 0.5);
-}
-
-.secondary-cta {
-    background-color: transparent;
-    color: var(--primary-color);
-    border-color: var(--primary-color);
-}
-
-.secondary-cta:hover {
-    background-color: var(--primary-color);
-    color: var(--black-bg);
-}
-
-.tertiary-cta {
-    background-color: var(--dark-bg);
-    color: var(--grey-text);
-    border-color: var(--grey-text);
-}
-.tertiary-cta:hover {
-    background-color: var(--grey-text);
-    color: var(--black-bg);
-}
-
-/* --- Header & Navigation --- */
+/* --- 3. NAVIGATION (FIXED ALIGNMENT) --- */
 .main-header {
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(5, 5, 5, 0.95); /* Slight transparency */
+    backdrop-filter: blur(10px);
+    height: var(--header-height);
     position: sticky;
     top: 0;
     z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
 .header-logo {
-    height: 35px;
+    height: 40px; /* Small, professional size for header */
+    width: auto;
 }
 
 .main-nav ul {
-    list-style: none;
     display: flex;
-    gap: 30px;
+    align-items: center;
+    gap: 30px; /* Uniform spacing between links */
 }
 
 .main-nav a {
-    color: var(--grey-text);
-    font-weight: 500;
+    font-size: 0.9rem;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
+    color: var(--grey-text);
 }
 
-.main-nav a:hover {
+.main-nav a:hover, .main-nav a.active {
     color: var(--primary-color);
 }
 
-
-/* --- 1. VISUAL SPLASH / POSTER Section Styles --- */
-
-.visual-splash-section {
-    width: 100%;
+.nav-cta {
+    background-color: var(--primary-color);
+    color: var(--white-text) !important;
+    padding: 10px 24px;
+    border-radius: 2px;
+    font-size: 0.85rem !important;
 }
 
-/* Part 1: Binary Background and Logo */
-.binary-header {
-    /* Set the POSTER 1.jpg image as the background */
-    background-image: url('POSTER 1.jpg'); 
+.nav-cta:hover {
+    background-color: var(--secondary-color);
+    color: var(--black-text) !important;
+}
+
+/* --- 4. VISUAL SPLASH SECTION (HOME) --- */
+.visual-splash-section {
+    height: calc(100vh - var(--header-height));
+    display: flex;
+    flex-direction: column;
     background-color: var(--black-bg);
-    background-size: cover;
-    background-position: center top; /* Center top to ensure the logo is visible */
-    height: 60vh; 
+}
+
+.binary-header {
+    flex: 3; /* Takes up 75% of space */
+    position: relative;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: inset 0 -20px 30px rgba(0, 0, 0, 0.6);
+    
+    /* Background Image Setup */
+    background-image: url('POSTER 1.jpg'); 
+    background-size: cover;
+    background-position: center top;
+}
+
+.binary-header::before {
+    /* Dark overlay to make logo pop */
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.3); 
 }
 
 .binary-logo {
-    /* Hide the logo if POSTER 1.jpg contains the logo, or adjust positioning */
-    display: none; 
+    position: relative;
+    z-index: 2;
+    width: 150px; /* Moderate size, not too big */
+    filter: drop-shadow(0 0 20px rgba(0,0,0,0.8));
 }
 
-/* Part 2: Gypsy Cartel Text on White Strip */
 .brand-title-strip {
-    background-color: var(--secondary-color); 
-    text-align: center;
-    padding: 30px 0;
-    border-bottom: 5px solid var(--primary-color); 
+    flex: 1; /* Takes up 25% of space */
+    background-color: var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .giant-text {
-    font-size: 8vw; 
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: 15px;
+    font-size: 4rem; /* Adjusted to fit nicely */
     text-transform: uppercase;
+    letter-spacing: -2px;
     margin: 0;
 }
 
-.text-black { color: var(--black-bg); }
+.text-black { color: var(--black-text); }
 .text-orange { color: var(--primary-color); }
 
-/* --- 2. HERO CONTENT INTRO Section --- */
-.hero-content-intro {
-    min-height: 40vh; 
-    padding: 80px 0;
-}
+/* --- 5. SECTIONS & GRIDS --- */
+.section-padding { padding: 100px 0; }
+.black-bg { background-color: var(--black-bg); }
+.dark-bg { background-color: var(--dark-bg); }
 
-.intro-headline {
-    font-size: 3em;
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-}
-
-.intro-subheadline {
-    font-size: 1.2em;
-    max-width: 800px;
-    margin: 0 auto 40px;
-}
-
-.hero-ctas {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-
-/* --- 3. ABOUT Section --- */
-.about-section {
-    padding: 100px 0;
-}
-
-.about-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 80px;
-    align-items: start;
-}
-
-.premium-lead {
-    font-size: 1.2em;
-    font-weight: 600;
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
     color: var(--secondary-color);
-    margin-bottom: 25px;
-    border-left: 4px solid var(--primary-color);
-    padding-left: 20px;
-}
-
-.card-block {
-    padding: 30px;
-    background-color: var(--black-bg);
-    border-radius: var(--border-radius);
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
-}
-
-.card-block h3 {
-    color: var(--primary-color);
-    margin-bottom: 20px;
-}
-
-.check-list {
-    list-style: none;
-    margin-bottom: 30px;
-}
-
-.check-list li {
-    padding-left: 30px;
-    position: relative;
-    margin-bottom: 12px;
-    color: var(--grey-text);
-}
-
-.check-list li::before {
-    content: '★';
-    color: var(--primary-color);
-    font-weight: bold;
-    font-size: 1.1em;
-    position: absolute;
-    left: 0;
-}
-
-/* --- 4. APPS Section --- */
-.apps-section {
-    padding: 100px 0;
-}
-.app-feature-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    margin-top: 50px;
-    text-align: center;
-}
-
-.feature-block {
-    background-color: var(--dark-bg);
-    padding: 30px;
-    border-radius: var(--border-radius);
-    border: 1px solid rgba(255, 87, 34, 0.1);
-    transition: all 0.3s;
-}
-
-.feature-block:hover {
-    transform: translateY(-5px);
-    border-color: var(--primary-color);
-}
-
-.feature-block h3 {
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    color: var(--primary-color);
-}
-
-.padded-cta {
-    padding-top: 60px;
-}
-
-.large-cta {
-    padding: 20px 50px;
-    font-size: 1.1em;
-}
-
-/* --- 5. DESIGN Section --- */
-.design-section {
-    padding: 100px 0;
 }
 .section-subtitle {
-    text-align: center;
-    font-size: 1.1em;
-    margin-bottom: 50px;
-    color: var(--grey-text);
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-bottom: 60px;
+    font-family: 'Space Grotesk', sans-serif;
 }
 
-.portfolio-grid {
+.grid-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-bottom: 50px;
+    gap: 30px;
 }
 
-.portfolio-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--border-radius);
+.card-item {
+    background: var(--dark-bg);
+    border: 1px solid #222;
+    padding: 40px;
     transition: transform 0.3s;
 }
+.card-item:hover { transform: translateY(-5px); border-color: var(--primary-color); }
 
-.portfolio-item:hover {
-    transform: scale(1.03);
-}
-
-.portfolio-item.wide-item {
-    grid-column: span 3;
-}
-
-.portfolio-image {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    display: block;
-}
-
-.portfolio-item:hover .portfolio-image {
-    opacity: 0.8;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.portfolio-item:hover .overlay {
-    opacity: 1;
-}
-
-.overlay p {
-    color: var(--primary-color);
-    font-size: 1.5em;
-    font-weight: bold;
+/* --- 6. BUTTONS --- */
+.cta-button {
+    display: inline-block;
+    padding: 15px 35px;
+    font-weight: 700;
     text-transform: uppercase;
-}
-
-
-/* --- 6. FASHION Section --- */
-.fashion-section {
-    padding: 100px 0;
-}
-
-.fashion-teaser-block {
-    max-width: 600px;
-    margin: 40px auto;
-    padding: 40px;
-    background-color: var(--dark-bg);
-    border-radius: var(--border-radius);
-    border: 2px solid var(--primary-color);
-}
-
-.coming-soon {
-    color: var(--primary-color);
-    font-size: 2.5em;
-    margin-bottom: 25px;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-}
-
-.signup-form {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-
-.signup-form input[type="email"] {
-    padding: 15px 20px;
-    border-radius: 4px;
-    border: 1px solid var(--grey-text);
-    background-color: var(--black-bg);
-    color: var(--secondary-color);
-    width: 70%;
-    max-width: 350px;
-}
-
-.teaser-logo {
-    max-width: 120px;
-    opacity: 0.7;
-}
-
-/* --- Footer --- */
-.main-footer {
-    padding: 50px 0 20px;
-    border-top: 1px solid var(--dark-bg);
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 40px;
-    padding-bottom: 40px;
-}
-
-.brand-col p {
-    max-width: 80%;
-}
-
-.footer-col h4 {
-    color: var(--primary-color);
-    margin-bottom: 20px;
-    text-transform: uppercase;
-}
-
-.footer-col ul {
-    list-style: none;
-}
-
-.footer-col a {
-    color: var(--grey-text);
-}
-
-.footer-col a:hover {
-    color: var(--secondary-color);
-}
-
-.footer-bottom {
+    letter-spacing: 1px;
+    border-radius: 2px;
+    font-size: 0.9rem;
+    cursor: pointer;
     text-align: center;
-    padding-top: 20px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* --- Gallery Page Specific Styles (For gallery.html) --- */
+.primary-cta { background-color: var(--primary-color); color: white; }
+.primary-cta:hover { background-color: white; color: black; }
 
-.gallery-hero {
-    min-height: 40vh;
-    padding: 100px 0 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+.secondary-cta { border: 1px solid white; color: white; }
+.secondary-cta:hover { border-color: var(--primary-color); color: var(--primary-color); }
 
-.gallery-title {
-    font-size: 3.5em;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-}
-
-.gallery-subtitle {
-    font-size: 1.2em;
-    color: var(--grey-text);
-}
-
-.gallery-section {
-    padding: 100px 0;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 30px;
-    margin-top: 50px;
-}
-
-.gallery-grid-teaser {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    margin-top: 50px;
-    align-items: center;
-}
-
-.gallery-item {
-    background-color: var(--black-bg);
-    border-radius: var(--border-radius);
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s, box-shadow 0.3s;
-    border: 1px solid var(--dark-bg);
-}
-
-.gallery-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(255, 87, 34, 0.2);
-    border-color: var(--primary-color);
-}
-
-.gallery-image {
+/* --- 7. FORMS --- */
+.contact-form input, .contact-form textarea {
     width: 100%;
-    height: 300px;
-    object-fit: cover;
-    display: block;
-}
-
-.image-caption {
     padding: 15px;
-    text-align: center;
-    color: var(--secondary-color);
-    background-color: var(--dark-bg);
-    font-weight: 600;
-}
-
-.fashion-teaser-box {
-    padding: 40px;
-    text-align: center;
-}
-
-.teaser-text {
-    font-size: 1.1em;
+    background: #000;
+    border: 1px solid #333;
+    color: white;
     margin-bottom: 20px;
+    font-family: 'Inter', sans-serif;
+}
+.contact-form button { width: 100%; border: none; }
+
+/* --- 8. FOOTER --- */
+.main-footer {
+    padding: 60px 0 30px;
+    border-top: 1px solid #222;
 }
 
-.large-teaser-item .gallery-image {
-    height: 400px;
-}
-
-
-/* --- Media Queries (Responsiveness) --- */
-@media (max-width: 1100px) {
-    .about-grid, .footer-grid {
-        grid-template-columns: 1fr;
-    }
-    .about-text { order: 1; }
-    .about-details { order: 2; }
-    .app-feature-grid { grid-template-columns: 1fr; }
-    .portfolio-grid { grid-template-columns: 1fr; }
-    .portfolio-item.wide-item { grid-column: span 1; }
-    .portfolio-image { height: 250px; }
-    .section-title { font-size: 2.2em; }
-}
-
+/* --- 9. RESPONSIVE --- */
 @media (max-width: 768px) {
-    .binary-header { height: 40vh; }
-    .binary-logo { max-width: 150px; }
-    .giant-text {
-        font-size: 10vw;
-        letter-spacing: 8px;
-    }
-    .intro-headline { font-size: 2em; }
-    .hero-ctas { flex-direction: column; }
-    .cta-button { width: 100%; padding: 14px 20px; }
-    .container { padding: 0 20px; }
-    .main-header { flex-direction: column; }
-    .main-nav ul { flex-wrap: wrap; justify-content: center; margin-top: 15px; }
-    .signup-form { flex-direction: column; align-items: center; }
-    .signup-form input { width: 100%; }
-    /* Gallery adjustments */
-    .gallery-grid { grid-template-columns: 1fr; }
-    .gallery-grid-teaser { grid-template-columns: 1fr; }
-    .gallery-title { font-size: 2.5em; }
+    .giant-text { font-size: 2.5rem; }
+    .grid-3 { grid-template-columns: 1fr; }
+    .main-nav ul { display: none; } /* Standard Mobile Menu Hide */
+    
+    /* Fix for About Headline on Mobile */
+    .about-headline { font-size: 2.2rem !important; }
 }
