@@ -59,6 +59,12 @@ img {
     padding: 0 40px;
 }
 
+/* --- TEXT COLOR DEFINITIONS (CRITICAL HOME PAGE FIX) --- */
+.text-black { color: var(--primary-black) !important; }
+.text-orange { color: var(--primary-orange) !important; }
+.giant-text { font-size: 3.8rem; font-weight: 900; }
+
+
 /* --- 3. PREMIUM NAVIGATION (Correct) --- */
 .main-header {
     height: var(--header-height);
