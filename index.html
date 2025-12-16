@@ -10,160 +10,91 @@
 <body>
 
     <header class="main-header">
-        <div class="logo">
-            <img src="assets/logos/gypsy-cartel.webp" alt="Gypsy Cartel Logo" class="header-logo">
+        <div class="container">
+            <a href="index.html" class="logo-link">
+                <img src="assets/logos/gypsy-cartel.webp" alt="Gypsy Cartel" class="header-logo">
+            </a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="gallery.html">Gallery</a></li>
+                    <li><a href="apps.html">Apps</a></li>
+                    <li><a href="design.html">Design</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+                </ul>
+            </nav>
         </div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="#apps">Apps</a></li>
-                <li><a href="#design">Design</a></li>
-                <li><a href="#fashion">Fashion</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html" class="cta-button nav-cta">Contact</a></li>
-            </ul>
-        </nav>
     </header>
 
     <section class="visual-splash-section">
         <div class="binary-header">
-            <img src="assets/logos/gypsy-cartel-icon.webp" alt="Gypsy Cartel Icon" class="binary-logo">
+            <img src="assets/logos/gypsy-cartel-icon.webp" alt="Icon" class="binary-logo">
         </div>
-        
-        <div class="brand-title-strip white-bg">
+        <div class="brand-title-strip">
             <h1 class="giant-text">
                 <span class="text-black">GYPSY</span> <span class="text-orange">CARTEL</span>
             </h1>
         </div>
     </section>
 
-    <section class="hero-content-intro black-bg">
-        <div class="container text-center">
-            <h2 class="intro-headline">Digital Power. Modern Design. Future Fashion.</h2>
-            <p class="intro-subheadline">High-performance Windows applications, premium 3D design, and creative digital solutions by Mallu Gypsy.</p>
-            <div class="hero-ctas">
-                <a href="#apps" class="cta-button primary-cta">➡️ EXPLORE WINDOWS APPS</a>
-                <a href="#design" class="cta-button secondary-cta">💡 START A DESIGN PROJECT</a>
+    <section class="section-padding black-bg">
+        <div class="container" style="text-align: center; max-width: 800px;">
+            <h2 class="section-title">Digital Power. Modern Design.</h2>
+            <p class="section-subtitle">High-performance Windows applications & Premium 3D Visuals.</p>
+            <div style="display: flex; justify-content: center; gap: 20px;">
+                <a href="apps.html" class="cta-button primary-cta">Explore Apps</a>
+                <a href="design.html" class="cta-button secondary-cta">Design Studio</a>
             </div>
         </div>
     </section>
     
-    <section class="about-section full-screen-section dark-bg">
+    <section id="apps" class="section-padding dark-bg">
         <div class="container">
-            <h2 class="section-title">About Gypsy Cartel</h2>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p class="premium-lead">Gypsy Cartel is a creative digital brand focused on building powerful Windows applications, modern design solutions, and premium digital products.</p>
-                    <p>Founded and developed by **Mallu Gypsy**, Gypsy Cartel combines performance, simplicity, and visual excellence to deliver tools that actually make a difference. From system optimization software to creative design assets, every product is crafted with real-world usability in mind.</p>
-                    <p>Our flagship application, **Gypsy Optimizer – PC Beast PRO+**, is designed to improve Windows performance with one-click optimization, system cleanup, and advanced maintenance features — trusted by hundreds of users.</p>
+            <h2 class="section-title">PC Beast PRO+</h2>
+            <p class="section-subtitle">Engineered for maximum Windows performance.</p>
+            <div class="grid-3">
+                <div class="card-item">
+                    <h3 style="color:var(--primary-color)">01. Boost</h3>
+                    <p style="color:var(--grey-text)">One-click optimization algorithms.</p>
                 </div>
-                <div class="about-details card-block">
-                    <h3>What We Value:</h3>
-                    <ul class="check-list">
-                        <li>Clean and efficient performance</li>
-                        <li>Simple, user-friendly design</li>
-                        <li>Reliable and safe optimization</li>
-                        <li>Continuous improvement and innovation</li>
-                    </ul>
-                    <a href="https://www.instagram.com/mallugypsy.creations" target="_blank" class="cta-button secondary-cta full-width-cta">Follow Mallu Gypsy Creations</a>
+                <div class="card-item">
+                    <h3 style="color:var(--primary-color)">02. Clean</h3>
+                    <p style="color:var(--grey-text)">Deep system & registry cleanup.</p>
+                </div>
+                <div class="card-item">
+                    <h3 style="color:var(--primary-color)">03. Control</h3>
+                    <p style="color:var(--grey-text)">Modern CustomTkinter Interface.</p>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <section id="apps" class="apps-section full-screen-section black-bg">
-        <div class="container">
-            <h2 class="section-title">The Performance Engine: PC Beast PRO+</h2>
-            <div class="app-feature-grid">
-                <div class="feature-block">
-                    <h3 class="orange-text">01. One-Click Optimization</h3>
-                    <p>Instantly boost your system's speed and responsiveness with our Python-powered optimization algorithms.</p>
-                </div>
-                <div class="feature-block">
-                    <h3 class="orange-text">02. Advanced Cleanup</h3>
-                    <p>Deep scan and safe removal of junk files, temporary data, and unnecessary registry entries for maximum space and stability.</p>
-                </div>
-                <div class="feature-block">
-                    <h3 class="orange-text">03. Modern UI/UX</h3>
-                    <p>A user experience built on CustomTkinter, ensuring a sleek, fast, and simple interface that looks great in any dark environment.</p>
-                </div>
-            </div>
-            <div class="center-cta padded-cta">
-                <a href="apps.html" class="cta-button primary-cta large-cta">GET GYPSY OPTIMIZER – PC BEAST PRO+</a>
+            <div style="text-align: center; margin-top: 50px;">
+                 <a href="apps.html" class="cta-button primary-cta">VIEW APP DETAILS</a>
             </div>
         </div>
     </section>
 
-    <section id="design" class="design-section full-screen-section dark-bg">
+    <section id="design" class="section-padding black-bg">
         <div class="container">
-            <h2 class="section-title">Mallu Gypsy Creations: Design Solutions</h2>
-            <p class="section-subtitle">Photorealistic 3D Renders, Architectural Visualizations, and Modern UI/UX Content.</p>
-            
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <img src="assets/ads/tree-room.webp" alt="3D Interior Visualization (Tree Room)" class="portfolio-image">
-                    <div class="overlay"><p>3D Interior Design </p></div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="assets/ads/tree-house-exterior.webp" alt="Architectural Exterior Render (Tree House)" class="portfolio-image">
-                    <div class="overlay"><p>Architectural Exterior </p></div>
-                </div>
-                <div class="portfolio-item wide-item">
-                    <img src="assets/ads/ad-ui.webp" alt="Modern UI/UX Design" class="portfolio-image">
-                    <div class="overlay"><p>Modern UI/UX Design</p></div>
-                </div>
+            <h2 class="section-title">Mallu Gypsy Creations</h2>
+            <p class="section-subtitle">3D & Architectural Design</p>
+            <div class="grid-3">
+                <img src="assets/ads/tree-room.webp" alt="Interior" style="height: 250px; object-fit: cover; border-radius: 4px;">
+                <img src="assets/ads/tree-house-exterior.webp" alt="Exterior" style="height: 250px; object-fit: cover; border-radius: 4px;">
+                <img src="assets/ads/imc-222.webp" alt="Office" style="height: 250px; object-fit: cover; border-radius: 4px;">
             </div>
-            <div class="center-cta">
-                <a href="design.html" class="cta-button secondary-cta">VIEW FULL PORTFOLIO & SERVICES</a>
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="design.html" class="cta-button secondary-cta">View Portfolio</a>
             </div>
         </div>
     </section>
 
-    <section id="fashion" class="fashion-section black-bg">
-        <div class="container text-center">
-            <h2 class="section-title">The Next Chapter: Fashion Store</h2>
-            <p class="fashion-teaser-text">The ultimate expression of the Mallu Gypsy aesthetic. Sign up to be notified when the curated selection of apparel launches.</p>
-            
-            <div class="fashion-teaser-block">
-                <h3 class="coming-soon">Launching in 2026</h3>
-                <div class="signup-form">
-                    <form action="#" method="POST">
-                        <input type="email" placeholder="Enter your email for early access" required>
-                        <button type="submit" class="cta-button primary-cta">NOTIFY ME</button>
-                    </form>
-                </div>
-                <img src="assets/logos/mg-creations.webp" alt="MG Creations Fashion Teaser" class="teaser-logo">
-            </div>
-        </div>
-    </section>
-
-    <footer class="main-footer dark-bg">
-        <div class="container footer-grid">
-            <div class="footer-col brand-col">
-                <img src="assets/logos/gypsy-cartel.webp" alt="Gypsy Cartel Logo" class="footer-logo">
-                <p>Digital Excellence, Designed by Mallu Gypsy.</p>
-            </div>
-            <div class="footer-col">
-                <h4>QUICK LINKS</h4>
-                <ul>
-                    <li><a href="#apps">Windows Apps</a></li>
-                    <li><a href="#design">Design Studio</a></li>
-                    <li><a href="#fashion">Fashion Store</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>CONTACT & SUPPORT</h4>
-                <ul>
-                    <li>Email: <a href="mailto:support@gypsycartel.shop">support@gypsycartel.shop</a></li>
-                    <li>Instagram: <a href="https://www.instagram.com/mallugypsy.creations" target="_blank">@mallugypsy.creations</a></li>
-                    <li>Shop: <a href="www.gypsycartel.shop" target="_blank">www.gypsycartel.shop</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Gypsy Cartel. All rights reserved. Creative & Testing by Vipinraj VR.</p>
+    <footer class="main-footer dark-bg" style="text-align: center;">
+        <div class="container">
+            <img src="assets/logos/gypsy-cartel.webp" alt="Logo" style="height: 30px; margin: 0 auto 20px;">
+            <p style="color: var(--grey-text); margin-bottom: 20px;">
+                Support: <a href="mailto:support@gypsycartel.shop" style="color: white;">support@gypsycartel.shop</a>
+            </p>
+            <p style="color: #444; font-size: 0.8rem;">&copy; 2025 Gypsy Cartel. Designed by Mallu Gypsy.</p>
         </div>
     </footer>
-
 </body>
 </html>
