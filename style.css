@@ -157,7 +157,7 @@ img {
     background: rgba(0,0,0,0.6); 
 }
 
-/* **Splash Logo Size: UPDATED to 500px (5x bigger than 100px)** */
+/* **Splash Logo Size: CORRECTED to 500px (5x bigger than 100px)** */
 .binary-header-logo {
     position: relative;
     z-index: 2;
@@ -367,10 +367,10 @@ footer {
 
 .footer-grid {
     display: grid;
-    /* Updated grid: Only one column, taking 1fr, to enable full centering of the logo area */
+    /* Grid structure set to one column for full center alignment flexibility */
     grid-template-columns: 1fr; 
     gap: 40px;
-    text-align: center; /* Center all grid items globally */
+    text-align: center; 
 }
 
 /* Center the specific columns that need to be centered (i.e., the first one) */
@@ -382,7 +382,7 @@ footer {
     /* Important: Center the image within the block */
     margin: 0 auto 20px !important; 
 }
-/* Re-align the other columns to the left, but keep the grid items centered on the page */
+/* Re-align the other columns to the left (content, not position) */
 .footer-column:not(.footer-logo-area) {
     text-align: left;
 }
@@ -408,8 +408,8 @@ footer {
 .footer-logo-area p {
     color: var(--text-grey);
     font-size: 0.9rem;
-    max-width: 400px; /* Constrain text width for better readability */
-    margin: 0 auto 15px; /* Center text */
+    max-width: 400px; 
+    margin: 0 auto 15px; 
 }
 
 .footer-copyright {
@@ -427,7 +427,7 @@ footer {
 
 @media (max-width: 1024px) {
     .footer-grid { grid-template-columns: 1fr; }
-    /* Re-enabling the original three-column grid for other columns in this file */
+    /* Re-enabling the original three-column grid for other columns on tablets */
     .footer-grid { 
         display: grid;
         grid-template-columns: 1fr 1fr; 
