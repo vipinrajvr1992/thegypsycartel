@@ -15,7 +15,7 @@
     --text-grey: #B0B0B0;
     
     /* Corruption Effect Color */
-    --corruption-blue: #00FFC2; /* Bright Cyan/Green for Design */
+    --corruption-blue: #00FFC2; 
     
     /* Dimensions & Spacing */
     --header-height: 90px;
@@ -58,7 +58,7 @@ img {
     margin: 0 auto;
     padding: 0 40px;
 }
-.text-center { text-align: center; } /* Utility for centering text blocks */
+.text-center { text-align: center; } 
 .text-grey { color: var(--text-grey); }
 
 /* --- TEXT COLOR DEFINITIONS --- */
@@ -74,7 +74,7 @@ img {
     text-shadow: 0 0 10px rgba(0, 255, 194, 0.5); 
 }
 
-/* --- BUTTON STYLES (NEW PREMIUM CTAs) --- */
+/* --- BUTTON STYLES (PREMIUM CTAs) --- */
 .btn {
     padding: 15px 35px;
     font-size: 0.85rem;
@@ -220,13 +220,16 @@ img {
 }
 
 
-/* --- 5. DESIGN PAGE STYLES (NEW) --- */
+/* --- 5. DESIGN PAGE STYLES (NEW - ALIGNMENT FIXES) --- */
 .design-hero-section {
+    /* Critical: Center content vertically on the page */
     height: calc(100vh - var(--header-height));
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 40px;
+    /* Important: Center the text inside the container */
+    text-align: center; 
 }
 .design-logo-container {
     padding-top: 0; 
@@ -239,11 +242,11 @@ img {
 }
 .design-heading-brand {
     font-size: 2.5rem;
-    color: var(--primary-orange); /* Orange for Brand Name */
+    color: var(--primary-orange); 
     margin-bottom: 5px;
 }
 .design-heading-main {
-    font-size: 4rem; /* Larger for impact */
+    font-size: 4rem; 
     margin-bottom: 20px;
 }
 .design-subheading {
@@ -264,15 +267,20 @@ img {
 }
 
 
-/* --- CUSTOM REQUEST SECTION (NEW FORM) --- */
+/* --- CUSTOM REQUEST SECTION (NEW FORM - GRID FIX) --- */
 .custom-request-section {
     padding: 100px 0;
 }
+/* Critical Fix: Ensure grid display works */
 .form-grid {
     display: grid;
-    grid-template-columns: 1fr 1.5fr; /* Intro (narrow) and Form (wide) */
+    grid-template-columns: 1fr 1.5fr; 
     gap: 80px;
     align-items: start;
+}
+.form-intro {
+    /* Align text to the left in the intro column */
+    text-align: left; 
 }
 .form-intro h2 {
     font-size: 2.5rem;
@@ -292,9 +300,10 @@ img {
     color: var(--text-grey);
 }
 .form-intro i {
-    color: var(--corruption-blue); /* Checkmark icon color */
+    color: var(--corruption-blue); 
     margin-right: 10px;
 }
+/* Ensure form inputs are styled for clean appearance */
 .design-form input[type="text"],
 .design-form input[type="email"],
 .design-form textarea {
@@ -316,6 +325,7 @@ img {
 .design-form ::placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
+/* Critical Fix: Ensure two inputs sit side-by-side */
 .form-row {
     display: flex;
     gap: 20px;
@@ -324,7 +334,7 @@ img {
     flex: 1;
 }
 
-/* --- DOWNLOAD ZONE (NEW) --- */
+/* --- DOWNLOAD ZONE (NEW - GRID FIX) --- */
 .download-section {
     padding: 80px 0 120px 0;
 }
@@ -335,6 +345,7 @@ img {
 .download-section p {
     margin-bottom: 40px;
 }
+/* Critical Fix: Ensure download cards form a 3-column grid */
 .download-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -347,6 +358,7 @@ img {
     border-radius: var(--radius);
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center; /* Center content in card */
 }
 .download-card:hover {
     transform: translateY(-5px);
@@ -368,7 +380,6 @@ img {
     background-color: var(--secondary-black); 
     padding: 60px 0 20px 0;
 }
-/* ... (Footer styles remain correct from the last turn) ... */
 .footer-grid {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 2fr; 
