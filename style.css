@@ -1,5 +1,4 @@
-/* GYPSY CARTEL - CORE STYLES (REVISED)
-   Theme: Clean Code, Corrupted Design
+/* GYPSY CARTEL - CORE STYLES (V3: Strict Orange/White/Black/Gray)
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap');
@@ -8,7 +7,7 @@
     --bg-deep: #050505; /* Primary Color Deep Black */
     --bg-surface: #111111; /* Secondary Background */
     --primary-orange: #FF5722; /* Accent Color */
-    --corruption-cyan: #00FFC2; /* Secondary Accent */
+    --secondary-accent: #FFFFFF; /* Replaces Cyan for highlight/contrast */
     --text-main: #FFFFFF;
     --text-muted: #888888;
 }
@@ -22,7 +21,7 @@
 }
 
 body {
-    background-color: var(--bg-deep); /* ENSURE DEEP BLACK BACKGROUND */
+    background-color: var(--bg-deep);
     color: var(--text-main);
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
@@ -39,7 +38,7 @@ h1, h2, h3, h4 {
 a { text-decoration: none; color: inherit; transition: 0.3s; }
 ul { list-style: none; }
 
-/* --- CUSTOM CURSOR --- */
+/* --- CUSTOM CURSOR (Outline is now White) --- */
 .cursor-dot,
 .cursor-outline {
     position: fixed;
@@ -61,8 +60,8 @@ ul { list-style: none; }
 .cursor-outline {
     width: 40px;
     height: 40px;
-    border: 1px solid var(--corruption-cyan);
-    box-shadow: 0 0 10px rgba(0, 255, 194, 0.2);
+    border: 1px solid var(--secondary-accent); /* White Border */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
 /* --- NAVIGATION --- */
@@ -77,7 +76,7 @@ header {
     background: rgba(5, 5, 5, 0.9);
     backdrop-filter: blur(10px);
     z-index: 1000;
-    border-bottom: 1px solid var(--primary-orange); /* Orange Separator */
+    border-bottom: 1px solid var(--primary-orange);
 }
 
 .logo-icon {
@@ -99,7 +98,7 @@ nav a:hover, nav a.active {
     color: var(--primary-orange);
 }
 
-/* Orange bottom indicator for active link */
+/* Active link indicator remains Orange */
 nav a.active::after {
     content: '';
     position: absolute;
@@ -111,6 +110,40 @@ nav a.active::after {
     box-shadow: 0 0 5px var(--primary-orange);
 }
 
+/* --- BUTTONS --- */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+    cursor: none; /* Inherit custom cursor behavior */
+}
+
+.btn-primary {
+    background-color: var(--primary-orange);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    border-color: var(--primary-orange);
+    color: var(--primary-orange);
+    box-shadow: 0 0 15px rgba(255, 87, 34, 0.3);
+}
+
+.btn-outline {
+    border-color: var(--secondary-accent); /* White Outline */
+    color: var(--secondary-accent);
+}
+
+.btn-outline:hover {
+    background-color: var(--secondary-accent);
+    color: var(--bg-deep);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
 
 /* --- LAYOUT & UTILITIES --- */
 .container {
@@ -132,7 +165,7 @@ nav a.active::after {
     gap: 30px;
 }
 
-/* --- FORMS (Matches required dark inputs #111111) --- */
+/* --- FORMS --- */
 input, textarea, select {
     width: 100%;
     padding: 15px;
@@ -145,11 +178,11 @@ input, textarea, select {
 
 input:focus, textarea:focus {
     outline: none;
-    border-color: var(--corruption-cyan);
-    box-shadow: 0 0 10px rgba(0, 255, 194, 0.1);
+    border-color: var(--secondary-accent); /* White Focus */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-/* --- FOOTER (Matches required secondary background #111111) --- */
+/* --- FOOTER --- */
 footer {
     background: var(--bg-surface);
     padding: 40px 5%;
@@ -176,7 +209,39 @@ footer a:hover { color: var(--primary-orange); }
     font-size: 0.75rem;
 }
 
+/* --- HOME PAGE ABSTRACT DESIGN --- */
+.hero {
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-logo-container {
+    position: relative;
+    z-index: 10;
+}
+
+/* The Abstract Black Design */
+.abstract-design {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: repeating-linear-gradient(
+        45deg,
+        #0a0a0a,
+        #0a0a0a 10px,
+        #050505 10px,
+        #050505 20px
+    );
+    opacity: 0.1;
+    z-index: 5;
+    border: 2px solid #111;
+}
+
 @media(max-width: 768px) {
     .grid-2 { grid-template-columns: 1fr; }
     .footer-content { grid-template-columns: 1fr; }
+    .abstract-design { width: 400px; height: 400px; }
 }
