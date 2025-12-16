@@ -1,168 +1,599 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gypsy Cartel | Premium Digital Solutions</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/webp" href="assets/logos/gypsy-cartel-icon.webp"> 
-</head>
-<body>
+/* --- Global Reset & Strict Palette --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <header class="main-header">
-        <div class="logo">
-            <img src="assets/logos/gypsy-cartel.webp" alt="Gypsy Cartel Logo" class="header-logo">
-        </div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="#apps">Apps</a></li>
-                <li><a href="#design">Design</a></li>
-                <li><a href="#fashion">Fashion</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html" class="cta-button nav-cta">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+:root {
+    --primary-color: #FF5722; /* Orange - Main Accent */
+    --secondary-color: #ffffff; /* White - Key Text */
+    --black-bg: #000000; /* True Black for Deep Contrast */
+    --dark-bg: #1A1A1A; /* Dark Grey/Near Black for depth */
+    --grey-text: #B0B0B0; /* Light Grey for Muted Text */
+    --font-heading: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-body: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --border-radius: 8px;
+}
 
-    <section class="visual-splash-section">
-        <div class="binary-header">
-            <img src="assets/logos/gypsy-cartel-icon.webp" alt="Gypsy Cartel Icon" class="binary-logo">
-        </div>
-        
-        <div class="brand-title-strip white-bg">
-            <h1 class="giant-text">
-                <span class="text-black">GYPSY</span> <span class="text-orange">CARTEL</span>
-            </h1>
-        </div>
-    </section>
+body {
+    font-family: var(--font-body);
+    background-color: var(--black-bg);
+    color: var(--secondary-color);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
 
-    <section class="hero-content-intro black-bg">
-        <div class="container text-center">
-            <h2 class="intro-headline">Digital Power. Modern Design. Future Fashion.</h2>
-            <p class="intro-subheadline">High-performance Windows applications, premium 3D design, and creative digital solutions by Mallu Gypsy.</p>
-            <div class="hero-ctas">
-                <a href="#apps" class="cta-button primary-cta">➡️ EXPLORE WINDOWS APPS</a>
-                <a href="#design" class="cta-button secondary-cta">💡 START A DESIGN PROJECT</a>
-            </div>
-        </div>
-    </section>
-    
-    <section class="about-section full-screen-section dark-bg">
-        <div class="container">
-            <h2 class="section-title">About Gypsy Cartel</h2>
-            <div class="about-grid">
-                <div class="about-text">
-                    <p class="premium-lead">Gypsy Cartel is a creative digital brand focused on building powerful Windows applications, modern design solutions, and premium digital products.</p>
-                    <p>Founded and developed by **Mallu Gypsy**, Gypsy Cartel combines performance, simplicity, and visual excellence to deliver tools that actually make a difference. From system optimization software to creative design assets, every product is crafted with real-world usability in mind.</p>
-                    <p>Our flagship application, **Gypsy Optimizer – PC Beast PRO+**, is designed to improve Windows performance with one-click optimization, system cleanup, and advanced maintenance features — trusted by hundreds of users.</p>
-                </div>
-                <div class="about-details card-block">
-                    <h3>What We Value:</h3>
-                    <ul class="check-list">
-                        <li>Clean and efficient performance</li>
-                        <li>Simple, user-friendly design</li>
-                        <li>Reliable and safe optimization</li>
-                        <li>Continuous improvement and innovation</li>
-                    </ul>
-                    <a href="https://www.instagram.com/mallugypsy.creations" target="_blank" class="cta-button secondary-cta full-width-cta">Follow Mallu Gypsy Creations</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="apps" class="apps-section full-screen-section black-bg">
-        <div class="container">
-            <h2 class="section-title">The Performance Engine: PC Beast PRO+</h2>
-            <div class="app-feature-grid">
-                <div class="feature-block">
-                    <h3 class="orange-text">01. One-Click Optimization</h3>
-                    <p>Instantly boost your system's speed and responsiveness with our Python-powered optimization algorithms.</p>
-                </div>
-                <div class="feature-block">
-                    <h3 class="orange-text">02. Advanced Cleanup</h3>
-                    <p>Deep scan and safe removal of junk files, temporary data, and unnecessary registry entries for maximum space and stability.</p>
-                </div>
-                <div class="feature-block">
-                    <h3 class="orange-text">03. Modern UI/UX</h3>
-                    <p>A user experience built on CustomTkinter, ensuring a sleek, fast, and simple interface that looks great in any dark environment.</p>
-                </div>
-            </div>
-            <div class="center-cta padded-cta">
-                <a href="apps.html" class="cta-button primary-cta large-cta">GET GYPSY OPTIMIZER – PC BEAST PRO+</a>
-            </div>
-        </div>
-    </section>
+.container {
+    max-width: 1280px; 
+    margin: 0 auto;
+    padding: 0 40px;
+}
 
-    <section id="design" class="design-section full-screen-section dark-bg">
-        <div class="container">
-            <h2 class="section-title">Mallu Gypsy Creations: Design Solutions</h2>
-            <p class="section-subtitle">Photorealistic 3D Renders, Architectural Visualizations, and Modern UI/UX Content.</p>
-            
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <img src="assets/ads/ad-solution.webp" alt="3D Interior Visualization" class="portfolio-image">
-                    <div class="overlay"><p>3D Interior Design</p></div>
-                </div>
-                <div class="portfolio-item">
-                    <img src="assets/ads/ad-logs.webp" alt="Architectural Exterior Render" class="portfolio-image">
-                    <div class="overlay"><p>Architectural Exterior</p></div>
-                </div>
-                <div class="portfolio-item wide-item">
-                    <img src="assets/ads/ad-ui.webp" alt="Modern UI/UX Design" class="portfolio-image">
-                    <div class="overlay"><p>Modern UI/UX Design</p></div>
-                </div>
-            </div>
-            <div class="center-cta">
-                <a href="design.html" class="cta-button secondary-cta">VIEW FULL PORTFOLIO & SERVICES</a>
-            </div>
-        </div>
-    </section>
+/* Section Structure */
+.full-screen-section {
+    min-height: 100vh;
+    padding: 120px 0; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
-    <section id="fashion" class="fashion-section black-bg">
-        <div class="container text-center">
-            <h2 class="section-title">The Next Chapter: Fashion Store</h2>
-            <p class="fashion-teaser-text">The ultimate expression of the Mallu Gypsy aesthetic. Sign up to be notified when the curated selection of apparel launches.</p>
-            
-            <div class="fashion-teaser-block">
-                <h3 class="coming-soon">Launching in 2026</h3>
-                <div class="signup-form">
-                    <form action="#" method="POST">
-                        <input type="email" placeholder="Enter your email for early access" required>
-                        <button type="submit" class="cta-button primary-cta">NOTIFY ME</button>
-                    </form>
-                </div>
-                <img src="assets/logos/mg-creations.webp" alt="MG Creations Fashion Teaser" class="teaser-logo">
-            </div>
-        </div>
-    </section>
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--secondary-color);
+    font-weight: 700;
+}
 
-    <footer class="main-footer dark-bg">
-        <div class="container footer-grid">
-            <div class="footer-col brand-col">
-                <img src="assets/logos/gypsy-cartel.webp" alt="Gypsy Cartel Logo" class="footer-logo">
-                <p>Digital Excellence, Designed by Mallu Gypsy.</p>
-            </div>
-            <div class="footer-col">
-                <h4>QUICK LINKS</h4>
-                <ul>
-                    <li><a href="#apps">Windows Apps</a></li>
-                    <li><a href="#design">Design Studio</a></li>
-                    <li><a href="#fashion">Fashion Store</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>CONTACT & SUPPORT</h4>
-                <ul>
-                    <li>Email: <a href="mailto:support@gypsycartel.shop">support@gypsycartel.shop</a></li>
-                    <li>Instagram: <a href="https://www.instagram.com/mallugypsy.creations" target="_blank">@mallugypsy.creations</a></li>
-                    <li>Shop: <a href="www.gypsycartel.shop" target="_blank">www.gypsycartel.shop</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Gypsy Cartel. All rights reserved. Creative & Testing by Vipinraj VR.</p>
-        </div>
-    </footer>
+.section-title {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 0.8em;
+    color: var(--secondary-color);
+    letter-spacing: 2px;
+    position: relative;
+    padding-bottom: 15px;
+}
 
-</body>
-</html>
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--primary-color);
+    margin: 10px auto 0;
+}
+
+p {
+    margin-bottom: 1em;
+    color: var(--grey-text);
+}
+
+.orange-text { color: var(--primary-color); }
+.black-bg { background-color: var(--black-bg); }
+.dark-bg { background-color: var(--dark-bg); }
+.white-bg { background-color: var(--secondary-color); }
+
+/* --- Buttons (CTAs) --- */
+.cta-button {
+    display: inline-block;
+    padding: 16px 35px;
+    border-radius: 4px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-size: 0.9em;
+}
+
+.primary-cta {
+    background-color: var(--primary-color);
+    color: var(--black-bg);
+}
+
+.primary-cta:hover {
+    background-color: #ff7e5a;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 87, 34, 0.5);
+}
+
+.secondary-cta {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.secondary-cta:hover {
+    background-color: var(--primary-color);
+    color: var(--black-bg);
+}
+
+.tertiary-cta {
+    background-color: var(--dark-bg);
+    color: var(--grey-text);
+    border-color: var(--grey-text);
+}
+.tertiary-cta:hover {
+    background-color: var(--grey-text);
+    color: var(--black-bg);
+}
+
+/* --- Header & Navigation --- */
+.main-header {
+    background-color: rgba(0, 0, 0, 0.9);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-logo {
+    height: 35px;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav a {
+    color: var(--grey-text);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.main-nav a:hover {
+    color: var(--primary-color);
+}
+
+
+/* --- 1. VISUAL SPLASH / POSTER Section Styles --- */
+
+.visual-splash-section {
+    width: 100%;
+}
+
+/* Part 1: Binary Background and Logo */
+.binary-header {
+    /* Set the POSTER 1.jpg image as the background */
+    background-image: url('POSTER 1.jpg'); 
+    background-color: var(--black-bg);
+    background-size: cover;
+    background-position: center top; /* Center top to ensure the logo is visible */
+    height: 60vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 -20px 30px rgba(0, 0, 0, 0.6);
+}
+
+.binary-logo {
+    /* Hide the logo if POSTER 1.jpg contains the logo, or adjust positioning */
+    display: none; 
+}
+
+/* Part 2: Gypsy Cartel Text on White Strip */
+.brand-title-strip {
+    background-color: var(--secondary-color); 
+    text-align: center;
+    padding: 30px 0;
+    border-bottom: 5px solid var(--primary-color); 
+}
+
+.giant-text {
+    font-size: 8vw; 
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 15px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.text-black { color: var(--black-bg); }
+.text-orange { color: var(--primary-color); }
+
+/* --- 2. HERO CONTENT INTRO Section --- */
+.hero-content-intro {
+    min-height: 40vh; 
+    padding: 80px 0;
+}
+
+.intro-headline {
+    font-size: 3em;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.intro-subheadline {
+    font-size: 1.2em;
+    max-width: 800px;
+    margin: 0 auto 40px;
+}
+
+.hero-ctas {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+
+/* --- 3. ABOUT Section --- */
+.about-section {
+    padding: 100px 0;
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 80px;
+    align-items: start;
+}
+
+.premium-lead {
+    font-size: 1.2em;
+    font-weight: 600;
+    color: var(--secondary-color);
+    margin-bottom: 25px;
+    border-left: 4px solid var(--primary-color);
+    padding-left: 20px;
+}
+
+.card-block {
+    padding: 30px;
+    background-color: var(--black-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+}
+
+.card-block h3 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.check-list {
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.check-list li {
+    padding-left: 30px;
+    position: relative;
+    margin-bottom: 12px;
+    color: var(--grey-text);
+}
+
+.check-list li::before {
+    content: '★';
+    color: var(--primary-color);
+    font-weight: bold;
+    font-size: 1.1em;
+    position: absolute;
+    left: 0;
+}
+
+/* --- 4. APPS Section --- */
+.apps-section {
+    padding: 100px 0;
+}
+.app-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.feature-block {
+    background-color: var(--dark-bg);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    border: 1px solid rgba(255, 87, 34, 0.1);
+    transition: all 0.3s;
+}
+
+.feature-block:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+}
+
+.feature-block h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: var(--primary-color);
+}
+
+.padded-cta {
+    padding-top: 60px;
+}
+
+.large-cta {
+    padding: 20px 50px;
+    font-size: 1.1em;
+}
+
+/* --- 5. DESIGN Section --- */
+.design-section {
+    padding: 100px 0;
+}
+.section-subtitle {
+    text-align: center;
+    font-size: 1.1em;
+    margin-bottom: 50px;
+    color: var(--grey-text);
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.portfolio-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--border-radius);
+    transition: transform 0.3s;
+}
+
+.portfolio-item:hover {
+    transform: scale(1.03);
+}
+
+.portfolio-item.wide-item {
+    grid-column: span 3;
+}
+
+.portfolio-image {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    display: block;
+}
+
+.portfolio-item:hover .portfolio-image {
+    opacity: 0.8;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.portfolio-item:hover .overlay {
+    opacity: 1;
+}
+
+.overlay p {
+    color: var(--primary-color);
+    font-size: 1.5em;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
+/* --- 6. FASHION Section --- */
+.fashion-section {
+    padding: 100px 0;
+}
+
+.fashion-teaser-block {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: var(--dark-bg);
+    border-radius: var(--border-radius);
+    border: 2px solid var(--primary-color);
+}
+
+.coming-soon {
+    color: var(--primary-color);
+    font-size: 2.5em;
+    margin-bottom: 25px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.signup-form {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.signup-form input[type="email"] {
+    padding: 15px 20px;
+    border-radius: 4px;
+    border: 1px solid var(--grey-text);
+    background-color: var(--black-bg);
+    color: var(--secondary-color);
+    width: 70%;
+    max-width: 350px;
+}
+
+.teaser-logo {
+    max-width: 120px;
+    opacity: 0.7;
+}
+
+/* --- Footer --- */
+.main-footer {
+    padding: 50px 0 20px;
+    border-top: 1px solid var(--dark-bg);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 40px;
+}
+
+.brand-col p {
+    max-width: 80%;
+}
+
+.footer-col h4 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.footer-col ul {
+    list-style: none;
+}
+
+.footer-col a {
+    color: var(--grey-text);
+}
+
+.footer-col a:hover {
+    color: var(--secondary-color);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* --- Gallery Page Specific Styles (For gallery.html) --- */
+
+.gallery-hero {
+    min-height: 40vh;
+    padding: 100px 0 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-title {
+    font-size: 3.5em;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.gallery-subtitle {
+    font-size: 1.2em;
+    color: var(--grey-text);
+}
+
+.gallery-section {
+    padding: 100px 0;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.gallery-grid-teaser {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-top: 50px;
+    align-items: center;
+}
+
+.gallery-item {
+    background-color: var(--black-bg);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid var(--dark-bg);
+}
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(255, 87, 34, 0.2);
+    border-color: var(--primary-color);
+}
+
+.gallery-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.image-caption {
+    padding: 15px;
+    text-align: center;
+    color: var(--secondary-color);
+    background-color: var(--dark-bg);
+    font-weight: 600;
+}
+
+.fashion-teaser-box {
+    padding: 40px;
+    text-align: center;
+}
+
+.teaser-text {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.large-teaser-item .gallery-image {
+    height: 400px;
+}
+
+
+/* --- Media Queries (Responsiveness) --- */
+@media (max-width: 1100px) {
+    .about-grid, .footer-grid {
+        grid-template-columns: 1fr;
+    }
+    .about-text { order: 1; }
+    .about-details { order: 2; }
+    .app-feature-grid { grid-template-columns: 1fr; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+    .portfolio-item.wide-item { grid-column: span 1; }
+    .portfolio-image { height: 250px; }
+    .section-title { font-size: 2.2em; }
+}
+
+@media (max-width: 768px) {
+    .binary-header { height: 40vh; }
+    .binary-logo { max-width: 150px; }
+    .giant-text {
+        font-size: 10vw;
+        letter-spacing: 8px;
+    }
+    .intro-headline { font-size: 2em; }
+    .hero-ctas { flex-direction: column; }
+    .cta-button { width: 100%; padding: 14px 20px; }
+    .container { padding: 0 20px; }
+    .main-header { flex-direction: column; }
+    .main-nav ul { flex-wrap: wrap; justify-content: center; margin-top: 15px; }
+    .signup-form { flex-direction: column; align-items: center; }
+    .signup-form input { width: 100%; }
+    /* Gallery adjustments */
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-grid-teaser { grid-template-columns: 1fr; }
+    .gallery-title { font-size: 2.5em; }
+}
