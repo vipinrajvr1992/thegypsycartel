@@ -1,283 +1,183 @@
-/* =========================================
-   GYPSY CARTEL | PREMIUM STUDIO THEME
-   DESIGNED BY VIPIN (FINAL, CONSOLIDATED & ROBUST VERSION)
-   ========================================= */
+/* GYPSY CARTEL - CORE STYLES 
+   Theme: Clean Code, Corrupted Design
+*/
 
-/* --- 1. SETUP & VARIABLES --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;600;700;900;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap');
 
 :root {
-    /* Brand Colors */
+    --bg-deep: #050505;
+    --bg-surface: #111111;
     --primary-orange: #FF5722;
-    --primary-white: #FFFFFF;
-    --primary-black: #050505;
-    --secondary-black: #111111; /* Darker black for input fields/cards/footer */
-    --text-grey: #B0B0B0;
-    
-    /* Corruption Effect Color (Used only for list icons/subtle accents) */
-    --corruption-blue: #00FFC2; 
-    
-    /* Dimensions & Spacing */
-    --header-height: 90px;
-    --max-width: 1280px;
-    --radius: 4px; 
+    --corruption-cyan: #00FFC2;
+    --text-main: #FFFFFF;
+    --text-muted: #888888;
 }
 
-/* --- 2. GLOBAL RESET & BASE STYLES --- */
+/* --- RESET & BASE --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: none; /* Hiding default cursor for custom one */
 }
-html { scroll-behavior: smooth; }
+
 body {
-    background-color: var(--primary-black);
-    color: var(--primary-white);
+    background-color: var(--bg-deep);
+    color: var(--text-main);
     font-family: 'Inter', sans-serif;
-    line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
+
 h1, h2, h3, h4 {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-}
-a {
-    text-decoration: none;
-    color: var(--primary-white); 
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-img { display: block; max-width: 100%; height: auto; }
-.container { max-width: var(--max-width); margin: 0 auto; padding: 0 40px; }
-.text-center { text-align: center; } 
-.text-grey { color: var(--text-grey); }
-.section-divider { border: none; border-top: 1px solid rgba(255, 255, 255, 0.08); margin: 0 0 0 0; }
-.text-orange { color: var(--primary-orange) !important; }
-.text-white { color: var(--primary-white) !important; } 
-
-/* --- BUTTON STYLES --- */
-.btn {
-    padding: 15px 35px;
-    font-size: 0.85rem;
-    font-weight: 600;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    border: 2px solid transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: inline-block;
+    letter-spacing: -1px;
 }
-.btn-orange-fill { background: var(--primary-orange); color: var(--primary-white) !important; border-color: var(--primary-orange); }
-.btn-white-border { background: transparent; color: var(--primary-white) !important; border-color: var(--primary-white); }
-.btn-white-border:hover { background: var(--primary-white); color: var(--primary-black) !important; }
-.btn-full-width { width: 100%; text-align: center; }
-.btn-small { padding: 10px 20px; font-size: 0.8rem; }
 
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+ul { list-style: none; }
 
-/* --- 3. NAVIGATION & HEADER --- */
-.main-header {
-    height: var(--header-height);
-    background: rgba(5, 5, 5, 0.85);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    position: sticky;
+/* --- CUSTOM CURSOR --- */
+.cursor-dot,
+.cursor-outline {
+    position: fixed;
     top: 0;
-    z-index: 999;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
 }
-.main-header .container {
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary-orange);
+}
+
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--corruption-cyan);
+    transition: width 0.2s, height 0.2s;
+}
+
+/* --- NAVIGATION --- */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100%;
+    background: rgba(5, 5, 5, 0.9);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
-.header-logo { width: 35px; height: auto; }
-.main-nav ul { display: flex; align-items: center; gap: 40px; list-style: none; }
-.main-nav a { /* ... Nav link styles ... */ color: var(--text-grey); }
-/* Underline animation for nav links */
-.main-nav a:not(.nav-cta)::after {
-    content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px;
-    background: var(--primary-orange); transform: scaleX(0); transform-origin: bottom right;
-    transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-.main-nav a:not(.nav-cta):hover::after, .main-nav a:not(.nav-cta).active::after {
-    transform: scaleX(1); transform-origin: bottom left;
-}
-.main-nav a:not(.nav-cta):hover, .main-nav a:not(.nav-cta).active { color: var(--primary-white); }
-.nav-cta { /* ... CTA styles ... */ }
 
-
-/* --- 4. HOME PAGE STYLES (index.html) --- */
-.hero-section {
-    min-height: calc(100vh - var(--header-height));
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 100px 0;
+.logo-icon {
+    width: 40px;
+    height: auto;
 }
-.hero-logo-display { max-width: 800px; margin: 0 auto; overflow: hidden; }
-.main-hero-logo { 
-    width: 100%; 
-    max-height: 40vh; 
-    object-fit: contain; 
+
+nav ul { display: flex; gap: 30px; }
+
+nav a {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+nav a:hover, nav a.active {
+    color: var(--primary-orange);
+    text-shadow: 0 0 8px rgba(255, 87, 34, 0.4);
+}
+
+/* --- BUTTONS --- */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-orange);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: transparent;
+    border-color: var(--primary-orange);
+    color: var(--primary-orange);
+}
+
+.btn-outline {
+    border-color: var(--text-main);
+}
+
+.btn-outline:hover {
+    background-color: var(--text-main);
+    color: var(--bg-deep);
+}
+
+/* --- LAYOUT UTILITIES --- */
+.container {
+    max-width: 1200px;
     margin: 0 auto;
-    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+    padding: 120px 20px 80px; /* Top padding clears fixed header */
 }
-.giant-text { 
-    font-size: 8rem; 
-    font-weight: 900; 
-    letter-spacing: 0em; 
-    margin-top: -30px; 
-}
-.hero-subheading { color: var(--text-grey); max-width: 700px; margin: 20px auto 50px auto; font-size: 1.1rem; }
-.hero-cta-group .btn { margin: 0 10px; }
 
-
-/* --- 5. DESIGN PAGE STYLES (design.html) --- */
-.design-hero-section {
-    height: calc(100vh - var(--header-height));
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    justify-content: center;
-    padding: 0 40px;
-    text-align: center; 
-}
-/* FIX: Logo Centering and size (Resolves image_48aa33) */
-.design-logo-container { padding-bottom: 20px; margin-bottom: 20px; }
-.design-logo-container img { margin: 0 auto; width: 100px; height: auto; }
-.design-logo-container p { color: var(--text-grey); font-size: 0.9rem; margin-top: 5px; font-family: 'Space Grotesk', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
-
-/* FIX: Headings - Mallu Gypsy is Orange, Digital Design Studio is White (Resolves image_48c3a5, image_4a0ab3) */
-.design-heading-brand { color: var(--primary-orange); font-size: 2.5rem; margin-bottom: 5px; }
-.design-heading-main { color: var(--primary-white) !important; font-size: 4rem; margin-bottom: 20px; }
-
-/* FIX: Custom Request Section Grid and Input Alignment (Resolves image_492637, image_48b8fc) */
-.custom-request-section { padding: 100px 0; }
-.form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr; 
-    gap: 80px;
-    align-items: start;
-    padding-bottom: 80px; 
-}
-.form-intro h2 { color: var(--primary-orange); margin-bottom: 20px; }
-.form-intro i { color: var(--corruption-blue); margin-right: 10px; }
-
-.design-form input, .design-form textarea {
-    /* CRITICAL FIX: Ensures dark background and white text for visibility */
-    background: var(--secondary-black); 
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--primary-white);
-    padding: 15px 15px; font-size: 1rem; outline: none; border-radius: var(--radius);
-    transition: border-color 0.2s ease; width: 100%; 
-}
-.design-form input:focus, .design-form textarea:focus { border-color: var(--primary-orange); }
-.form-row {
+.grid-2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
+}
+
+/* --- FORMS --- */
+input, textarea, select {
+    width: 100%;
+    padding: 15px;
+    background: var(--bg-surface);
+    border: 1px solid #333;
+    color: white;
+    font-family: 'Inter', sans-serif;
     margin-bottom: 20px;
 }
-.design-form textarea { height: 150px; margin-bottom: 20px; display: block; }
-.design-form .btn-full-width { width: 100%; max-width: 300px; margin-left: auto; margin-right: 0; }
 
-
-/* --- 6. CONTACT PAGE STYLES (contact.html) --- */
-.contact-section {
-    padding: 100px 0;
-    min-height: calc(100vh - var(--header-height));
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; 
-    text-align: left;
-}
-.contact-section .container { max-width: 900px; width: 100%; }
-
-/* FIX: Contact info spacing and color (Resolves image_49b0fd) */
-.contact-info { font-size: 1.1rem; margin-bottom: 50px; width: 100%; }
-.contact-info strong {
-    color: var(--primary-white); 
-    display: block; margin-top: 25px; margin-bottom: 5px;
-    font-size: 1.4rem; font-weight: 700;
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--corruption-cyan);
+    box-shadow: 0 0 10px rgba(0, 255, 194, 0.1);
 }
 
-/* FIX: Contact Form Inputs Visibility and Alignment (Resolves image_4919d6, image_48a9d6) */
-.contact-form { width: 100%; max-width: 900px; }
-.contact-form .input-row-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 20px;
+/* --- FOOTER --- */
+footer {
+    background: var(--bg-surface);
+    padding: 40px 0;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    border-top: 2px solid var(--primary-orange);
 }
-/* Applies the dark background fix to Contact form inputs */
-.contact-form input, .contact-form textarea {
-    background: var(--secondary-black); 
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: var(--primary-white);
-    padding: 15px 15px; font-size: 1rem; outline: none; border-radius: var(--radius);
-    transition: border-color 0.2s ease; margin-bottom: 20px;
-}
-.contact-form textarea { grid-column: 1 / -1; height: 150px; }
-.contact-form button { width: 300px; }
 
-
-/* --- 7. ABOUT PAGE STYLES (about.html) --- */
-/* FIX: Heading Spacing and Content Grid (Resolves image_492998, image_48aa10) */
-.about-hero-section {
-    padding: calc(var(--header-height) + 50px) 0 80px 0; /* Add top padding to stop text cutting off */
+/* --- RESPONSIVE --- */
+@media(max-width: 768px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    nav ul { gap: 15px; font-size: 0.8rem; }
 }
-.about-hero-section h1 { font-size: 3.5rem; margin-bottom: 20px; }
-.about-content-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr; 
-    gap: 60px;
-    margin-top: 50px;
-}
-.vision-image-container img { margin-top: 20px; border-radius: var(--radius); }
-.philosophy-block { margin-bottom: 30px; }
-.philosophy-block strong { color: var(--primary-orange); display: block; font-size: 1.2rem; margin-top: 20px; margin-bottom: 5px; }
-
-
-/* --- 8. GALLERY PAGE STYLES (gallery.html) --- */
-.gallery-section { padding: 100px 0; text-align: center; }
-/* FIX: Heading Color (White base with Orange accent - Resolves image_4925f7) */
-.gallery-section h1 { color: var(--primary-white); font-size: 3.5rem; margin-bottom: 20px; }
-.gallery-section h1 span { color: var(--primary-orange) !important; }
-/* FIX: Gallery Grid structure (for aligned thumbnails) (Resolves image_48aa56) */
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-    margin-top: 50px;
-}
-.gallery-item img {
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: var(--radius);
-    transition: transform 0.3s ease;
-}
-.gallery-item img:hover { transform: scale(1.02); }
-.gallery-item p { margin-top: 10px; color: var(--text-grey); }
-
-
-/* --- 9. PROFESSIONAL FOOTER --- */
-.premium-footer {
-    background: var(--secondary-black); 
-    padding: 60px 0 20px 0;
-    /* CRITICAL FIX: Adds space above the footer to separate it from content/forms */
-    margin-top: 80px; 
-}
-.footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr;
-    gap: 30px;
-    padding-bottom: 40px;
-}
-.footer-heading { color: var(--primary-orange); font-size: 1.2rem; margin-bottom: 15px; }
-.footer-links { list-style: none; }
-.footer-links li { margin-bottom: 8px; }
-.footer-links a { color: var(--text-grey); font-size: 0.95rem; }
-.footer-links a:hover { color: var(--primary-orange); }
-.footer-divider { border-top: 1px solid rgba(255, 255, 255, 0.08); margin: 30px 0; }
-.footer-copyright { text-align: center; }
