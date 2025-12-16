@@ -1,4 +1,4 @@
-/* GYPSY CARTEL - CORE STYLES (V3: Strict Orange/White/Black/Gray)
+/* GYPSY CARTEL - CORE STYLES (V4: Finalized Strict Orange/White/Black/Gray)
 */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght@500;700&display=swap');
@@ -209,7 +209,7 @@ footer a:hover { color: var(--primary-orange); }
     font-size: 0.75rem;
 }
 
-/* --- HOME PAGE ABSTRACT DESIGN --- */
+/* --- HOME PAGE ABSTRACT DESIGN (FOR METALLIC LOGO) --- */
 .hero {
     position: relative;
     overflow: hidden;
@@ -220,7 +220,6 @@ footer a:hover { color: var(--primary-orange); }
     z-index: 10;
 }
 
-/* The Abstract Black Design */
 .abstract-design {
     position: absolute;
     top: 50%;
@@ -238,6 +237,18 @@ footer a:hover { color: var(--primary-orange); }
     opacity: 0.1;
     z-index: 5;
     border: 2px solid #111;
+}
+
+/* --- DESIGN PAGE SPECIFIC STYLES --- */
+.design-content {
+    text-align: center; /* To center the MG Creations logo */
+}
+
+.design-content .logo-large {
+    max-width: 150px; /* Adjust size as needed */
+    height: auto;
+    margin: 0 auto 30px; /* Center the image */
+    display: block;
 }
 
 @media(max-width: 768px) {
