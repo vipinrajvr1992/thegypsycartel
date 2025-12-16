@@ -62,11 +62,11 @@ img {
 /* --- TEXT COLOR DEFINITIONS (CRITICAL HOME PAGE FIX) --- */
 .text-black { color: var(--primary-black) !important; }
 .text-orange { color: var(--primary-orange) !important; }
-/* FINAL FIX: Increased size significantly for the 'giant' banner text */
+/* FINAL FIX: Increased size to 8rem for "4 times bigger" impact */
 .giant-text { 
-    font-size: 5.5rem; 
+    font-size: 8rem; 
     font-weight: 900; 
-    letter-spacing: 0.1em; /* Slight increase for visual impact */
+    letter-spacing: 0.1em; 
 }
 
 
