@@ -4,13 +4,116 @@
    ========================================= */
 
 /* --- 1. SETUP & VARIABLES --- */
-/* ... (Variables remain correct) ... */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;600;700;900&display=swap');
 
-/* --- 2. GLOBAL RESET (Correct) --- */
-/* ... (Global reset remains correct) ... */
+:root {
+    /* Brand Colors */
+    --primary-orange: #FF5722;
+    --primary-white: #FFFFFF;
+    --primary-black: #050505;
+    --secondary-black: #111111;
+    --text-grey: #B0B0B0;
+    
+    /* Corruption Effect Color */
+    --corruption-blue: #00FFC2; 
+    
+    /* Dimensions & Spacing */
+    --header-height: 90px;
+    --max-width: 1280px;
+    --radius: 4px; 
+}
+
+/* --- 2. GLOBAL RESET --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html { scroll-behavior: smooth; }
+body {
+    background-color: var(--primary-black);
+    color: var(--primary-white);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+}
+a {
+    text-decoration: none;
+    color: var(--primary-white); 
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+.container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 40px;
+}
 
 /* --- 3. PREMIUM NAVIGATION (Correct) --- */
-/* ... (Navigation remains correct) ... */
+.main-header {
+    height: var(--header-height);
+    background: rgba(5, 5, 5, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+.header-logo {
+    width: 35px; 
+    height: auto;
+    transition: opacity 0.3s;
+}
+.header-logo:hover { opacity: 0.8; }
+
+.main-nav ul {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+.main-nav a {
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--text-grey); 
+    position: relative;
+}
+.main-nav a:not(.nav-cta):hover,
+.main-nav a:not(.nav-cta).active {
+    color: var(--primary-white);
+}
+
+.nav-cta {
+    background: var(--primary-orange);
+    color: var(--primary-white) !important;
+    padding: 12px 28px;
+    font-size: 0.8rem !important;
+    font-weight: 700;
+    letter-spacing: 1px;
+    border: 1px solid var(--primary-orange);
+    transition: all 0.3s;
+}
+
 
 /* --- 4. VISUAL SPLASH (Final Binary Fix) --- */
 .visual-splash-section {
@@ -27,44 +130,124 @@
     align-items: center;
     background-color: var(--primary-black); 
     overflow: hidden;
-    filter: none; /* Ensure no conflicting filters */
+    filter: none; /* No inherited filter */
     
-    /* NEW: Apply the aggressive filter to the background image container itself */
-    /* This makes the dark pattern white, high contrast, and semi-transparent. */
-    filter: saturate(0) opacity(0.3) contrast(2); 
+    /* Set Background Image Here for Structure */
+    background-image: url('assets/ads/1923.jpg'); 
+    background-repeat: repeat; 
+    background-size: cover; 
+    background-position: center;
 }
 
 .binary-header::after {
-    /* Overlay removed permanently as filtering is handled on the element above */
-    content: none; 
+    /* CRITICAL FIX: Pseudo-element handles the filter/opacity, protecting the logo */
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1; 
+    background-color: rgba(0,0,0,0.6); /* Darkens the background slightly */
+    
+    /* FINAL BINARY FIX: The filter is applied here to force visibility of the binary data */
+    filter: saturate(0.5) contrast(1.1) brightness(1.2); 
 }
 
 .binary-header-logo {
     position: relative;
-    z-index: 2; 
+    z-index: 2; /* Logo MUST be above the pseudo-element */
     width: 500px; 
-    /* Counteract any potential filter issues and maintain drop shadow */
     filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.2)) brightness(1); 
     animation: fadeUp 1s ease-out;
 }
-/* ... (Rest of Section 4 remains correct) ... */
 
-/* --- 5. SECTIONS & GRIDS (MG Logo Centering Fix) --- */
+.brand-title-strip {
+    flex: 25; 
+    background-color: var(--primary-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #333;
+}
 
-/* --- FINAL FIX: Logo Centering on Design Page --- */
+/* --- 5. SECTIONS & GRIDS --- */
+
+/* --- FINAL FIX: MG Logo Centering on Design Page --- */
 .design-logo-container {
     text-align: center; 
     padding-top: 60px; 
     padding-bottom: 20px;
 }
-/* This is the missing piece: ensuring the image itself is treated as a block for 'margin: auto' to work */
 .design-logo-container img {
-    display: block; 
-    margin: 0 auto; 
+    display: block; /* Ensures the image behaves as a block element */
+    margin: 0 auto; /* Centers the block element perfectly */
     width: 150px; 
     height: auto;
 }
-/* ... (Corruption color remains correct) ... */
+/* --- Corruption Color Styling --- */
+.text-corruption {
+    color: var(--corruption-blue) !important;
+    text-shadow: 0 0 10px rgba(0, 255, 194, 0.5); 
+}
 
-/* --- 7. FORMS & CONTACT LAYOUT (Alignment is correct) --- */
-/* ... (Contact layout remains correct) ... */
+/* --- 7. FORMS & CONTACT LAYOUT (Cleaned Alignment) --- */
+.contact-section-inner {
+    display: flex;
+    min-height: 80vh; 
+}
+.contact-left {
+    flex: 1;
+    padding: 60px;
+    background-color: var(--primary-black);
+    color: var(--primary-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: left !important; 
+}
+
+.contact-left h2 { margin-bottom: 25px; }
+.contact-left h3 {
+    color: var(--primary-orange); 
+    margin-bottom: 5px;
+}
+.contact-right {
+    flex: 1;
+    background-color: var(--primary-orange);
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    color: var(--primary-white);
+    font-size: 1rem;
+    outline: none;
+    transition: border-bottom 0.3s;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-bottom: 2px solid var(--primary-white);
+}
+.contact-form ::placeholder {
+    color: rgba(255, 255, 255, 0.8);
+}
+.btn-submit {
+    background: var(--primary-black);
+    color: var(--primary-white);
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 15px 30px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+.btn-submit:hover {
+    background: #333333;
+}
