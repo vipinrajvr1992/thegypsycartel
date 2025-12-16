@@ -3,8 +3,7 @@
    DESIGNED BY VIPIN (FINAL, PERFECTED VERSION)
    ========================================= */
 
-/* ... (SECTION 1-4 REMAINS UNCHANGED) ... */
-
+/* ... (VARIABLES & GLOBAL STYLES UNCHANGED) ... */
 
 /* --- 5. DESIGN PAGE STYLES (ALIGNMENT FIXES) --- */
 .design-hero-section {
@@ -14,20 +13,19 @@
     align-items: center;
     justify-content: center;
     padding: 0 40px;
-    /* Important: Center the text inside the container */
     text-align: center; 
 }
 .design-logo-container {
     padding-top: 0; 
     padding-bottom: 20px;
 }
-/* FIX 1: Enhance Logo Visibility (Optional: Adjust filter/shadow if logo file is dark) */
+/* FIX 1: Ensure MG Creations Logo is visible against black background */
 .design-logo-container img {
     margin: 0 auto; 
     width: 150px; 
     height: auto;
-    /* Adding a subtle filter/shadow to ensure the logo is visible against black */
-    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.4)); 
+    /* Adding a noticeable drop shadow for contrast against black */
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6)); 
 }
 .design-heading-brand {
     font-size: 2.5rem;
@@ -38,10 +36,73 @@
     font-size: 4rem; 
     margin-bottom: 20px;
 }
-/* CRITICAL FIX 2: Change Digital Design Studio to WHITE */
-.design-heading-main.text-corruption {
+/* FIX 2: Set Digital Design Studio to WHITE color as per the previous explicit request */
+.design-heading-main.text-white {
     color: var(--primary-white) !important;
-    text-shadow: none; /* Remove corruption shadow for cleaner white text */
+    text-shadow: none; 
+}
+.design-subheading {
+    max-width: 800px;
+    margin: 0 auto 50px auto;
+    font-size: 1.1rem;
+    color: var(--text-grey);
+    line-height: 1.6;
+    letter-spacing: 0.5px;
+}
+.design-hero-cta a {
+    margin: 0 10px;
+}
+.section-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.08); 
+    margin: 0 0 0 0; 
 }
 
-/* ... (REST OF CSS REMAINS UNCHANGED) ... */
+
+/* --- CUSTOM REQUEST SECTION (UNCHANGED) --- */
+/* ... (form-grid and input styles remain the same) ... */
+
+
+/* --- DOWNLOAD ZONE (COLOR FIX) --- */
+.download-section {
+    padding: 80px 0 120px 0;
+}
+.download-heading {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+.download-section p {
+    margin-bottom: 40px;
+}
+.download-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 40px;
+}
+.download-card {
+    background: var(--secondary-black);
+    padding: 30px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-align: center; 
+}
+.download-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+/* CRITICAL FIX 3: Change Download Card Headings to ORANGE */
+.download-card h3 {
+    color: var(--primary-orange); /* Changed from var(--corruption-blue) */
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+.download-card p {
+    font-size: 0.9rem;
+    color: var(--text-grey);
+    margin-bottom: 25px;
+}
+
+/* --- 6. PROFESSIONAL FOOTER (UNCHANGED) --- */
+/* ... (Footer styles remain correct) ... */
