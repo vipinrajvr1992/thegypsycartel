@@ -24,9 +24,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const links = document.querySelectorAll('a, button, input, textarea');
     links.forEach(link => {
         link.addEventListener('mouseenter', () => {
-            // Use Cyan for the hover feedback
+            // Outline effect on hover is based on White/secondary-accent
             cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            cursorOutline.style.backgroundColor = 'rgba(0, 255, 194, 0.1)';
+            cursorOutline.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
         });
         link.addEventListener('mouseleave', () => {
             cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
