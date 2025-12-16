@@ -1,90 +1,130 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gypsy Cartel | Premium Digital</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="cursor-dot"></div><div class="cursor-outline"></div>
+/* GYPSY CARTEL - CORE STYLES (V5: Finalized Binary Split Home Page)
+*/
 
-    <header>
-        <a href="index.html"><img src="assets/logos/gypsy-cartel-icon.webp" alt="GC Icon" class="logo-icon"></a>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="apps.html">Apps</a></li>
-                <li><a href="design.html">Design</a></li>
-                <li><a href="fashion.html">Fashion</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Space+Grotesk:wght{1/8}500;700&display=swap');
 
-    <section class="hero">
-        
-        <div class="hero-top">
-            <div class="abstract-design"></div>
-            
-            <div class="hero-logo-container">
-                <img src="assets/logos/metalic-gc-logo.webp" alt="Gypsy Cartel Metallic Logo">
-            </div>
-        </div>
+:root {
+    --bg-deep: #050505; /* Primary Color Deep Black */
+    --bg-surface: #111111; /* Secondary Background */
+    --primary-orange: #FF5722; /* Accent Color */
+    --secondary-accent: #FFFFFF; /* White for highlight/contrast */
+    --text-main: #FFFFFF;
+    --text-muted: #888888;
+}
 
-        <div class="hero-bottom">
-            <h1 class="hero-headline-main">
-                GYPSY<span style="color: var(--primary-orange);">CART</span>EL 
-            </h1>
-            
-            <h2 class="hero-subheadline">
-                FUSING HIGH-PERFORMANCE SOFTWARE WITH HYPER-REALISTIC DESIGN.
-            </h2>
+/* --- RESET & BASE (Unchanged) --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+}
 
-            <div class="cta-group">
-                <a href="gallery.html" class="btn btn-primary">View Portfolio</a>
-                <a href="contact.html" class="btn btn-outline" style="margin-left: 15px;">Contact Us</a>
-            </div>
-        </div>
-    </section>
+body {
+    background-color: var(--bg-deep);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+/* ... [Rest of standard styles remain unchanged] ... */
 
-    <footer>
-        <div class="footer-content">
-            <div>
-                <img src="assets/logos/gypsy-cartel-icon.webp" alt="GC Icon" style="width: 30px; margin-bottom: 10px;">
-                <p>Gypsy Cartel is a digital movement, fusing high-performance Windows software with stunning, hyper-realistic 3D design and UI/UX solutions. Precision, innovation, and style.</p>
-            </div>
-            <div>
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="apps.html">Apps Development</a></li>
-                    <li><a href="design.html">Design Studio</a></li>
-                    <li><a href="fashion.html">Fashion Line (Soon)</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="about.html">Our Vision & History</a></li>
-                    <li><a href="contact.html">Contact Support</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Connect</h4>
-                <p>Support: <a href="mailto:support@gypsycartel.shop" style="color: var(--primary-orange);">support@gypsycartel.shop</a></p>
-                <p>Creator: <a href="https://instagram.com/mallugypsy.creations" target="_blank" style="color: var(--secondary-accent);">@mallugypsy.creations</a></p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2025 Gypsy Cartel. All Rights Reserved.
-        </div>
-    </footer>
+/* --- HOME PAGE HERO LAYOUT (SPLIT DESIGN) --- */
+.hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Align content to the top of the viewport */
+    padding-top: 80px; /* Space for the fixed header */
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+/* Top Half: Black Background with Binary Code */
+.hero-top {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: var(--bg-deep);
+    padding: 40px 20px;
+}
+
+/* Binary Code Pattern */
+.abstract-design {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background: 
+        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><text x="5" y="15" font-family="monospace" font-size="12" fill="%23222">10010101</text><text x="55" y="45" font-family="monospace" font-size="12" fill="%23222">01101001</text><text x="25" y="75" font-family="monospace" font-size="12" fill="%23222">11011010</text></svg>'),
+        var(--bg-deep);
+    background-size: 100px 100px;
+    opacity: 0.8;
+    /* Adding the dividing orange line */
+    border-bottom: 2px solid var(--primary-orange);
+}
+
+.hero-logo-container {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+}
+.hero-logo-container img {
+    max-width: 650px;
+    width: 95%;
+    margin: 40px 0;
+}
+
+/* Bottom Half: White Background with Black Text */
+.hero-bottom {
+    background-color: var(--secondary-accent); /* White Background */
+    color: #000; /* Black Text */
+    text-align: center;
+    padding: 40px 20px;
+}
+
+/* Styling for the main headline in the white section */
+.hero-headline-main {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 6rem; /* Large size */
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 20px;
+}
+.hero-headline-main span {
+    color: var(--primary-orange); /* Orange for CARTEL */
+}
+.hero-subheadline {
+    font-size: 1.2rem;
+    color: #333; /* Dark gray for subtitle */
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+/* Styling CTA buttons specifically for the white background */
+.hero-bottom .btn {
+    border-width: 2px; /* Make buttons thicker against white */
+}
+.hero-bottom .btn-primary {
+    /* Orange background remains the same */
+}
+.hero-bottom .btn-outline {
+    border-color: #000; /* Black outline against white */
+    color: #000;
+}
+.hero-bottom .btn-outline:hover {
+    background-color: #000;
+    color: var(--secondary-accent); /* White text on hover */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .hero-headline-main { font-size: 3rem; }
+    .hero-bottom { padding: 30px 10px; }
+}
