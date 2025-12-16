@@ -17,7 +17,7 @@
     /* Dimensions & Spacing */
     --header-height: 90px;
     --max-width: 1280px;
-    --radius: 4px; /* Sharp, tech-focused corners */
+    --radius: 4px; 
 }
 
 /* --- 2. GLOBAL RESET --- */
@@ -27,10 +27,7 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
-
+html { scroll-behavior: smooth; }
 body {
     background-color: var(--primary-black);
     color: var(--primary-white);
@@ -51,13 +48,11 @@ a {
     color: inherit;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-
 img {
     display: block;
     max-width: 100%;
     height: auto;
 }
-
 .container {
     max-width: var(--max-width);
     margin: 0 auto;
@@ -83,9 +78,10 @@ img {
     height: 100%;
 }
 
+/* **FIX: 3X LOGO SIZE IN HEADER** */
 .header-logo {
-    height: 35px;
-    width: auto;
+    width: 105px; 
+    height: auto;
     transition: opacity 0.3s;
 }
 .header-logo:hover { opacity: 0.8; }
@@ -95,7 +91,7 @@ img {
     align-items: center;
     gap: 40px;
 }
-
+/* (Navigation links and CTA styles follow here) */
 .main-nav a {
     font-size: 0.85rem;
     font-weight: 500;
@@ -104,13 +100,10 @@ img {
     color: var(--text-grey);
     position: relative;
 }
-
 .main-nav a:not(.nav-cta):hover,
 .main-nav a:not(.nav-cta).active {
     color: var(--primary-white);
 }
-
-/* Underline Animation */
 .main-nav a:not(.nav-cta)::after {
     content: '';
     position: absolute;
@@ -123,7 +116,6 @@ img {
 }
 .main-nav a:not(.nav-cta):hover::after { width: 100%; }
 
-/* CTA Button */
 .nav-cta {
     background: var(--primary-orange);
     color: var(--primary-white) !important;
@@ -134,7 +126,6 @@ img {
     border: 1px solid var(--primary-orange);
     transition: all 0.3s;
 }
-
 .nav-cta:hover {
     background: transparent;
     color: var(--primary-orange) !important;
@@ -149,12 +140,12 @@ img {
 }
 
 .binary-header {
-    flex: 75; /* 75% height */
+    flex: 75; 
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: url('POSTER 1.jpg'); /* Binary background */
+    background-image: url('POSTER 1.jpg'); 
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -164,19 +155,20 @@ img {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0,0,0,0.6); /* Darkens the binary pattern so logo pops */
+    background: rgba(0,0,0,0.6); 
 }
 
+/* **FIX: 3X LOGO SIZE IN SPLASH SECTION** */
 .binary-header-logo {
     position: relative;
     z-index: 2;
-    width: 220px;
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
+    width: 300px; 
+    filter: drop-shadow(0 0 50px rgba(255, 255, 255, 0.2)); 
     animation: fadeUp 1s ease-out;
 }
 
 .brand-title-strip {
-    flex: 25; /* 25% height */
+    flex: 25; 
     background-color: var(--primary-white);
     display: flex;
     justify-content: center;
@@ -185,16 +177,17 @@ img {
 }
 
 .giant-text {
-    font-size: 6vw; /* Responsive sizing */
+    font-size: 6vw; 
     line-height: 1;
     margin: 0;
     text-transform: uppercase;
 }
 
-.text-black { color: var(--primary-black); }
-.text-orange { color: var(--primary-orange); }
+/* **FIX: BRAND COLOR PATTERN** */
+.text-black { color: var(--primary-black); } 
+.text-orange { color: var(--primary-orange); } 
 
-/* --- 5. SECTIONS & GRIDS --- */
+/* --- 5. SECTIONS & GRIDS (Rest of styles remain consistent) --- */
 .section-padding { padding: 120px 0; }
 .black-bg { background-color: var(--primary-black); }
 .dark-bg { background-color: var(--secondary-black); }
@@ -230,14 +223,11 @@ img {
     transition: transform 0.4s, border-color 0.4s;
     border-radius: var(--radius);
 }
-
 .card-item:hover {
     transform: translateY(-10px);
     border-color: var(--primary-orange);
 }
-
 .card-content { padding: 40px; }
-
 .card-image {
     width: 100%;
     height: 350px;
@@ -304,7 +294,7 @@ img {
 
 .contact-right {
     flex: 1;
-    background-color: var(--primary-orange); /* Full Orange Form Block */
+    background-color: var(--primary-orange); 
     padding: 60px;
 }
 
@@ -313,13 +303,32 @@ img {
     line-height: 1.1;
     margin-bottom: 20px;
 }
+.contact-left h3 {
+    color: var(--primary-orange); /* Highlight for contact sections */
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+.contact-left p {
+    margin-bottom: 20px;
+    color: var(--text-grey);
+}
+.contact-left a {
+    color: var(--primary-white);
+    transition: color 0.3s;
+}
+.contact-left a:hover {
+    color: var(--text-grey);
+}
 
 .contact-form input, 
 .contact-form textarea {
     width: 100%;
     background: transparent;
     border: none;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.5); /* Thin line input */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.5); 
     padding: 15px 0;
     color: white;
     font-family: 'Inter', sans-serif;
@@ -354,12 +363,12 @@ img {
 footer {
     border-top: 1px solid #222;
     padding: 80px 0 40px;
-    background-color: var(--secondary-black); /* Use dark-bg for footer */
+    background-color: var(--secondary-black); 
 }
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 2fr; /* Four Column Layout */
+    grid-template-columns: 2fr 1fr 1fr 2fr; 
     gap: 40px;
     text-align: left;
 }
@@ -372,9 +381,7 @@ footer {
     text-transform: uppercase;
 }
 
-.footer-column ul {
-    list-style: none;
-}
+.footer-column ul { list-style: none; }
 
 .footer-column ul li a {
     color: var(--text-grey);
