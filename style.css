@@ -1,6 +1,6 @@
 /* =========================================
    GYPSY CARTEL | PREMIUM STUDIO THEME
-   DESIGNED BY GEMINI AI (Final Version)
+   DESIGNED BY VIPIN (Final Version - Clean)
    ========================================= */
 
 /* --- 1. SETUP & VARIABLES --- */
@@ -78,7 +78,7 @@ img {
     height: 100%;
 }
 
-/* **FIX: 3X LOGO SIZE IN HEADER** */
+/* **3X LOGO SIZE IN HEADER** */
 .header-logo {
     width: 105px; 
     height: auto;
@@ -91,7 +91,6 @@ img {
     align-items: center;
     gap: 40px;
 }
-/* (Navigation links and CTA styles follow here) */
 .main-nav a {
     font-size: 0.85rem;
     font-weight: 500;
@@ -158,7 +157,7 @@ img {
     background: rgba(0,0,0,0.6); 
 }
 
-/* **FIX: 3X LOGO SIZE IN SPLASH SECTION** */
+/* **3X LOGO SIZE IN SPLASH SECTION** */
 .binary-header-logo {
     position: relative;
     z-index: 2;
@@ -183,11 +182,11 @@ img {
     text-transform: uppercase;
 }
 
-/* **FIX: BRAND COLOR PATTERN** */
+/* **BRAND COLOR PATTERN** */
 .text-black { color: var(--primary-black); } 
 .text-orange { color: var(--primary-orange); } 
 
-/* --- 5. SECTIONS & GRIDS (Rest of styles remain consistent) --- */
+/* --- 5. SECTIONS & GRIDS --- */
 .section-padding { padding: 120px 0; }
 .black-bg { background-color: var(--primary-black); }
 .dark-bg { background-color: var(--secondary-black); }
@@ -273,7 +272,7 @@ img {
     color: var(--primary-black);
 }
 
-/* --- 7. FORMS & CONTACT LAYOUT (Premium Split Design) --- */
+/* --- 7. FORMS & CONTACT LAYOUT --- */
 .contact-section-inner {
     display: flex;
     max-width: 1000px;
@@ -304,7 +303,7 @@ img {
     margin-bottom: 20px;
 }
 .contact-left h3 {
-    color: var(--primary-orange); /* Highlight for contact sections */
+    color: var(--primary-orange); 
     font-family: 'Inter', sans-serif;
     text-transform: uppercase;
     font-size: 1rem;
@@ -359,7 +358,7 @@ img {
     color: var(--primary-white);
 }
 
-/* --- 8. FOOTER (Expanded Professional Footer) --- */
+/* --- 8. FOOTER --- */
 footer {
     border-top: 1px solid #222;
     padding: 80px 0 40px;
