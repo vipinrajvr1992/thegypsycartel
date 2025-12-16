@@ -4,26 +4,31 @@
     <title>Gypsy Cartel | Visual Archives</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        .gallery-item { position: relative; overflow: hidden; border-radius: 8px; border: 1px solid #222; }
         .gallery-item img {
             width: 100%;
             height: 300px;
             object-fit: cover;
             transition: 0.4s;
-            filter: grayscale(80%);
+            filter: grayscale(80%) contrast(1.1);
+            display: block;
         }
         .gallery-item:hover img {
-            filter: grayscale(0%);
-            transform: scale(1.02);
+            filter: grayscale(0%) contrast(1);
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
     <div class="cursor-dot"></div><div class="cursor-outline"></div>
     <header>
-        <img src="assets/logos/gypsy-cartel-icon.webp" alt="GC Icon" class="logo-icon">
+        <a href="index.html"><img src="assets/logos/gypsy-cartel-icon.webp" alt="GC Icon" class="logo-icon"></a>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="design.html">Design</a></li>
+                <li><a href="fashion.html">Fashion</a></li>
                 <li><a href="gallery.html" class="active">Gallery</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -31,21 +36,21 @@
     </header>
 
     <div class="container">
-        <h1 style="border-bottom: 1px solid #333; padding-bottom: 20px; margin-bottom: 40px;">
+        <h1 style="border-bottom: 1px solid #222; padding-bottom: 20px; margin-bottom: 40px;">
             Work <span style="color: var(--primary-orange)">Logs</span>
         </h1>
         
         <div class="grid-3">
             <div class="gallery-item">
-                <img src="assets/ads/tree-house-exterior.webp" alt="3D Exterior">
+                <img src="assets/ads/tree-house-exterior.webp" alt="3D Exterior Tree House">
             </div>
             <div class="gallery-item">
-                <img src="assets/ads/tree-room.webp" alt="3D Interior">
+                <img src="assets/ads/tree-room.webp" alt="3D Interior Room">
             </div>
             <div class="gallery-item">
                 <img src="assets/ads/imc-222.webp" alt="Office Visualization">
             </div>
-             <div class="gallery-item">
+            <div class="gallery-item">
                 <img src="assets/ads/ad-ui.webp" alt="UI Concept">
             </div>
              <div class="gallery-item">
