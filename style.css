@@ -3,7 +3,7 @@
    DESIGNED BY VIPIN (FINAL, PERFECTED VERSION)
    ========================================= */
 
-/* --- 1. SETUP & VARIABLES --- */
+/* --- 1. SETUP & VARIABLES (Correct) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;600;700;900&display=swap');
 
 :root {
@@ -23,7 +23,7 @@
     --radius: 4px; 
 }
 
-/* --- 2. GLOBAL RESET --- */
+/* --- 2. GLOBAL RESET (Correct) --- */
 * {
     margin: 0;
     padding: 0;
@@ -130,9 +130,9 @@ img {
     align-items: center;
     background-color: var(--primary-black); 
     overflow: hidden;
-    filter: none; /* No inherited filter */
+    filter: none; 
     
-    /* Set Background Image Here for Structure */
+    /* Background Image Set Here */
     background-image: url('assets/ads/1923.jpg'); 
     background-repeat: repeat; 
     background-size: cover; 
