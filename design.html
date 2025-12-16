@@ -3,257 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Design Services | Mallu Gypsy Creations</title>
+    <title>Design Studio | Gypsy Cartel</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/webp" href="assets/logos/gypsy-cartel-icon.webp"> 
+    
     <style>
-        /* --- DESIGN PAGE SPECIFIC STYLES (Added to internal <style> block for simplicity) --- */
-
-        .design-hero {
-            min-height: 80vh;
-            padding: 100px 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .design-hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .design-logo-large {
-            max-width: 250px;
-            margin-bottom: 20px;
-        }
-
-        .design-headline {
-            font-size: 3.5em;
-            color: var(--secondary-color);
-            margin-bottom: 10px;
-        }
-
-        .design-subhead {
-            font-size: 1.5em;
-            color: var(--primary-color);
-            margin-bottom: 40px;
-        }
-
-        .service-section {
-            padding: 100px 0;
-        }
-
-        /* Service Cards Grid */
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-top: 60px;
-        }
-
-        .service-card {
-            background-color: var(--dark-bg);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.4);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid var(--dark-bg);
-            text-align: center;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary-color);
-            box-shadow: 0 10px 30px rgba(255, 87, 34, 0.2);
-        }
-
-        .service-image {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-bottom: 3px solid var(--primary-color);
-        }
-
-        .card-content {
-            padding: 30px 20px;
-        }
-
-        .card-content h3 {
-            font-size: 1.5em;
-            color: var(--secondary-color);
-            margin-bottom: 10px;
-        }
-
-        .card-content p {
-            color: var(--grey-text);
-            margin-bottom: 0;
-        }
-
-        /* Featured Projects Section */
-        .featured-projects {
-            padding-bottom: 100px;
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-        }
-
-        .project-item {
-            background-color: var(--dark-bg);
-            border-radius: var(--border-radius);
-            overflow: hidden;
-        }
-
-        .project-item img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .project-details {
-            padding: 25px;
-        }
-
-        .project-details h4 {
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-
-        /* Responsive adjustments for Design Page */
-        @media (max-width: 1024px) {
-            .service-grid, .project-grid {
-                grid-template-columns: 1fr;
-            }
-            .design-headline {
-                font-size: 2.5em;
-            }
+        /* Specific corruption color application with glow effect */
+        .text-corruption {
+            color: var(--corruption-blue) !important;
+            text-shadow: 0 0 10px rgba(0, 255, 194, 0.5); 
         }
     </style>
 </head>
 <body>
 
-    <header class="main-header">
-        <div class="logo">
-            <img src="assets/logos/gypsy-cartel.webp" alt="Gypsy Cartel Logo" class="header-logo">
-        </div>
-        <nav class="main-nav">
-            <ul>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="apps.html">Apps</a></li>
-                <li><a href="design.html">Design</a></li>
-                <li><a href="index.html#fashion">Fashion</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html" class="cta-button nav-cta">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section class="design-hero black-bg">
-        <div class="container design-hero-content">
-            <img src="assets/logos/mg-creations.webp" alt="MG Creations Logo" class="design-logo-large">
-            <h1 class="design-headline">Mallu Gypsy Creations: Digital Design Studio</h1>
-            <p class="design-subhead">Visual solutions that transcend the ordinary—specializing in 3D rendering, architectural visualization, and modern UI/UX.</p>
-            
-            <a href="#services" class="cta-button secondary-cta large-cta">EXPLORE SERVICES</a>
-            <a href="contact.html" class="cta-button primary-cta large-cta">REQUEST A QUOTE</a>
-        </div>
-    </section>
-
-    <section id="services" class="service-section dark-bg">
-        <div class="container text-center">
-            <h2 class="section-title">Our Creative Capabilities</h2>
-            <p class="section-subtitle">Combining artistic vision with technical precision to bring your concepts to life.</p>
-            
-            <div class="service-grid">
-                
-                <div class="service-card">
-                    <img src="assets/ads/ad-solution.webp" alt="3D Interior Render" class="service-image">
-                    <div class="card-content">
-                        <h3>Photorealistic 3D Renders</h3>
-                        <p>High-fidelity product visualizations, detailed interior concepts, and artistic digital content suitable for marketing and presentation.</p>
-                    </div>
-                </div>
-
-                <div class="service-card">
-                    <img src="assets/ads/ad-logs.webp" alt="Architectural Render" class="service-image">
-                    <div class="card-content">
-                        <h3>Architectural Visualization (ArchViz)</h3>
-                        <p>Stunning exterior renders and detailed landscape visualizations for real estate developers and architects.</p>
-                    </div>
-                </div>
-
-                <div class="service-card">
-                    <img src="assets/ads/ad-ui.webp" alt="UI/UX Design Mockup" class="service-image">
-                    <div class="card-content">
-                        <h3>Modern UI/UX Design</h3>
-                        <p>Crafting intuitive and aesthetically pleasing user interfaces for web applications, desktop software, and mobile platforms.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section class="featured-projects black-bg">
+    <section class="section-padding black-bg" style="min-height: 80vh; padding-top: 120px;">
         <div class="container">
-            <h2 class="section-title">Case Studies & Featured Work</h2>
-            <p class="section-subtitle">Examples of recent projects that demonstrate our commitment to detail and quality.</p>
-
-            <div class="project-grid">
-                <div class="project-item">
-                    <img src="assets/ads/ad-solution.webp" alt="Luxury Living Room Render">
-                    <div class="project-details">
-                        <h4>Luxury Residential Interior</h4>
-                        <p>Developed a series of photorealistic renders showcasing various lighting and material options for a high-end residential complex.</p>
-                    </div>
-                </div>
-
-                <div class="project-item">
-                    <img src="assets/ads/ad-ui.webp" alt="Minimalist App Interface">
-                    <div class="project-details">
-                        <h4>Minimalist App Dashboard UI</h4>
-                        <p>Designed a clean, dark-mode user interface focused on data visualization and simple, efficient user flow for a new productivity app.</p>
-                    </div>
-                </div>
+            
+            <div class="design-logo-container">
+                <img src="assets/logos/mg-creations.webp" alt="MG Creations Logo" class="mg-logo">
             </div>
-
-            <div class="center-cta padded-cta">
-                <a href="gallery.html#design-gallery" class="cta-button primary-cta large-cta">VIEW THE FULL GALLERY</a>
+            
+            <div class="section-header">
+                <h1 class="section-title text-corruption" style="font-size: 3.5rem;">Mallu Gypsy Creations:<br>Digital Design Studio</h1>
+                <p class="section-subtitle" style="max-width: 800px; margin: 0 auto;">Visual solutions that transcend the ordinary—specializing in 3D rendering, architectural visualization, and modern UI/UX.</p>
             </div>
-        </div>
+            
+            </div>
     </section>
-
-
-    <footer class="main-footer dark-bg">
-        <div class="container footer-grid">
-            <div class="footer-col brand-col">
-                <img src="assets/logos/gypsy-cartel.webp" alt="Gypsy Cartel Logo" class="footer-logo">
-                <p>Digital Excellence, Designed by Mallu Gypsy.</p>
-            </div>
-            <div class="footer-col">
-                <h4>QUICK LINKS</h4>
-                <ul>
-                    <li><a href="apps.html">Windows Apps</a></li>
-                    <li><a href="design.html">Design Studio</a></li>
-                    <li><a href="index.html#fashion">Fashion Store</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>CONTACT & SUPPORT</h4>
-                <ul>
-                    <li>Email: <a href="mailto:support@gypsycartel.shop">support@gypsycartel.shop</a></li>
-                    <li>Instagram: <a href="https://www.instagram.com/mallugypsy.creations" target="_blank">@mallugypsy.creations</a></li>
-                    <li>Shop: <a href="www.gypsycartel.shop" target="_blank">www.gypsycartel.shop</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2025 Gypsy Cartel. All rights reserved. Creative & Testing by Vipinraj VR.</p>
-        </div>
-    </footer>
-
-</body>
+    
+    </body>
 </html>
