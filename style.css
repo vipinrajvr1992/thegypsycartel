@@ -306,3 +306,33 @@ footer a:hover { color: var(--primary-orange); }
 #gc-close {
   color: #fff;
 }
+#gc-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+.gc-popup-box {
+  background: #000;
+  padding: 24px;
+  border-radius: 14px;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+}
+
+#gc-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #fff;
+}
