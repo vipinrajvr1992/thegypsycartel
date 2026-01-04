@@ -319,3 +319,7 @@ footer a:hover { color: var(--primary-orange); }
   cursor: pointer;
   color: #fff;
 }
+/* === POLICY MODAL FIX === */
+.gc-hidden {
+    display: none !important;
+}
