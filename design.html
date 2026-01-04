@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Gypsy Cartel | Design Studio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Design Studio | Gypsy Cartel</title>
+    <meta name="description" content="Gypsy Cartel Design Studio delivers hyper-realistic 3D architectural visualization, floor plans, and high-impact digital graphics.">
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
+<!-- CUSTOM CURSOR -->
 <div class="cursor-dot"></div>
 <div class="cursor-outline"></div>
 
+<!-- HEADER -->
 <header>
     <a href="index.html">
-        <img src="assets/logos/gypsy-cartel-icon.webp" alt="GC Icon" class="logo-icon">
+        <img src="assets/logos/gypsy-cartel-icon.webp" alt="Gypsy Cartel Logo" class="logo-icon">
     </a>
     <nav>
         <ul>
@@ -26,94 +34,100 @@
     </nav>
 </header>
 
+<!-- CONTENT -->
 <div class="container">
     <div class="grid-2">
 
-        <!-- LEFT CONTENT -->
+        <!-- LEFT -->
         <div class="design-content">
-            <img src="assets/logos/mg-creations.webp" alt="MG Creations Logo" class="logo-large">
+            <img src="assets/logos/mg-creations.webp"
+                 alt="MG Creations Logo"
+                 class="logo-large">
 
-            <h2 style="font-size:2.5rem; margin-bottom:5px;">HYPER-REALISTIC</h2>
+            <h2 style="font-size:2.4rem; margin-bottom:5px;">
+                HYPER-REALISTIC
+            </h2>
 
             <h1 style="font-size:3rem; color:var(--primary-orange); margin-bottom:20px;">
                 ARCHITECTURE & GRAPHICS
             </h1>
 
-            <p style="color:#ccc; max-width:500px; margin:0 auto 40px;">
-                We blend technical precision with artistic corruption,
-                specializing in 3D architectural visualization and
-                high-impact digital graphics and media.
+            <p style="max-width:500px; margin:0 auto 40px;">
+                We blend technical precision with bold visual storytelling,
+                delivering high-quality 3D architectural visualization,
+                floor plans, and digital graphic design.
             </p>
 
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; max-width:500px; margin:0 auto;">
+
                 <div style="border:1px solid #333; padding:20px; background:var(--bg-surface);">
-                    <h3 style="color:var(--primary-orange); font-size:1.1rem;">3D VIZ</h3>
-                    <ul style="color:var(--text-muted); font-size:0.9rem; list-style-type:'— '; padding-left:10px;">
+                    <h3 style="color:var(--primary-orange); font-size:1.05rem;">
+                        3D VISUALIZATION
+                    </h3>
+                    <ul style="font-size:0.9rem; padding-left:10px; list-style-type:'— '; margin-top:10px;">
                         <li>Interior & Exterior Renders</li>
                         <li>2D Floor Plans</li>
+                        <li>Concept Visualization</li>
                     </ul>
                 </div>
 
                 <div style="border:1px solid #333; padding:20px; background:var(--bg-surface);">
-                    <h3 style="color:var(--primary-orange); font-size:1.1rem;">GRAPHIC MEDIA</h3>
-                    <ul style="color:var(--text-muted); font-size:0.9rem; list-style-type:'— '; padding-left:10px;">
-                        <li>Posters & Banner Graphics</li>
+                    <h3 style="color:var(--primary-orange); font-size:1.05rem;">
+                        GRAPHIC DESIGN
+                    </h3>
+                    <ul style="font-size:0.9rem; padding-left:10px; list-style-type:'— '; margin-top:10px;">
+                        <li>Posters & Banners</li>
+                        <li>Brand Visuals</li>
                         <li>Social Media Content</li>
                     </ul>
                 </div>
+
             </div>
         </div>
 
-        <!-- RIGHT FORM -->
+        <!-- RIGHT -->
         <div style="background:var(--bg-surface); padding:40px;">
-            <h3 style="margin-bottom:30px; color:var(--primary-orange);">
+
+            <h3 style="color:var(--primary-orange); margin-bottom:30px;">
                 START A PROJECT
             </h3>
 
-            <!-- FIX: removed action, handled via JS -->
-            <form id="designForm">
-
-                <input type="hidden" name="form_type" value="Design Project Request">
-                <input type="hidden" name="_subject" value="New Design Project Inquiry - Gypsy Cartel">
-
+            <form>
                 <div style="display:flex; gap:15px;">
-                    <input type="text" name="name" placeholder="Name" required>
-                    <input type="email" name="email" placeholder="Email" required>
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Email Address" required>
                 </div>
 
-                <select name="service" required>
-                    <option value="3D Architecture">3D Architecture (Interior/Exterior)</option>
-                    <option value="2D Floor Plans">2D Floor Plans</option>
-                    <option value="Graphics Posters">Graphics & Posters</option>
-                    <option value="Social Media">Social Media Content</option>
-                    <option value="Other">Other Design Request</option>
+                <select required>
+                    <option value="">Select Service</option>
+                    <option>3D Architecture (Interior / Exterior)</option>
+                    <option>2D Floor Plans</option>
+                    <option>Graphic Design</option>
+                    <option>Social Media Content</option>
+                    <option>Other Design Request</option>
                 </select>
 
-                <textarea name="project_details" rows="6" placeholder="Project Details..." required></textarea>
+                <textarea rows="6" placeholder="Project details..." required></textarea>
 
                 <button type="submit" class="btn btn-primary" style="width:100%;">
                     INITIALIZE REQUEST
                 </button>
-
-                <!-- FIX: success message -->
-                <p id="designSuccess"
-                   style="display:none; margin-top:15px; color:#00ff99;">
-                   ✔ Request sent successfully. We’ll contact you shortly.
-                </p>
-
             </form>
+
         </div>
 
     </div>
 </div>
 
+<!-- FOOTER -->
 <footer>
     <div class="footer-content">
+
         <div>
-            <img src="assets/logos/gypsy-cartel-icon.webp" alt="GC Icon" style="width:30px; margin-bottom:10px;">
+            <img src="assets/logos/gypsy-cartel-icon.webp" alt="Gypsy Cartel Logo" style="width:30px; margin-bottom:10px;">
             <p>
-                Gypsy Cartel is a digital movement fusing high-performance
-                software with bold visual design.
+                Gypsy Cartel is a premium digital studio delivering
+                high-performance software and hyper-realistic visual design.
             </p>
         </div>
 
@@ -132,17 +146,29 @@
             <ul>
                 <li><a href="about.html">Our Vision & History</a></li>
                 <li><a href="contact.html">Contact Support</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
             </ul>
         </div>
 
         <div>
             <h4>Connect</h4>
-            <p>Email:
+            <p>
+                Support:
                 <a href="mailto:support@gypsycartel.shop" style="color:var(--primary-orange);">
                     support@gypsycartel.shop
                 </a>
             </p>
+            <p>
+                Instagram:
+                <a href="https://instagram.com/mallugypsy.creations"
+                   target="_blank"
+                   style="color:var(--secondary-accent);">
+                    @mallugypsy.creations
+                </a>
+            </p>
         </div>
+
     </div>
 
     <div class="footer-bottom">
@@ -150,25 +176,8 @@
     </div>
 </footer>
 
+<!-- SCRIPT -->
 <script src="script.js"></script>
-
-<!-- FIX: Formspree AJAX -->
-<script>
-document.getElementById("designForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    fetch("https://formspree.io/f/xjgkezzp", {
-        method: "POST",
-        body: new FormData(this),
-        headers: { "Accept": "application/json" }
-    }).then(response => {
-        if (response.ok) {
-            document.getElementById("designSuccess").style.display = "block";
-            this.reset();
-        }
-    });
-});
-</script>
 
 </body>
 </html>
