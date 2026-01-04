@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // ===============================
     // Custom Cursor Logic
+    // ===============================
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorOutline = document.querySelector('.cursor-outline');
 
@@ -8,11 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const posX = e.clientX;
             const posY = e.clientY;
 
-            // Dot follows instantly
             cursorDot.style.left = `${posX}px`;
             cursorDot.style.top = `${posY}px`;
 
-            // Outline follows with slight delay for fluid feel
             cursorOutline.animate({
                 left: `${posX}px`,
                 top: `${posY}px`
@@ -20,11 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Add hover effect to links to expand cursor
     const links = document.querySelectorAll('a, button, input, textarea');
     links.forEach(link => {
         link.addEventListener('mouseenter', () => {
-            // Outline effect on hover is based on White/secondary-accent
             cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
             cursorOutline.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
         });
@@ -34,3 +32,42 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+/* ======================================================
+   PRIVACY POLICY & TERMS MODAL (HOME PAGE ONLY)
+   ====================================================== */
+
+function openPolicy(type) {
+    const modal = document.getElementById('policy-modal');
+    const contentBox = document.getElementById('policy-content');
+
+    if (!modal || !contentBox) return;
+
+    const file = type === 'privacy' ? 'privacy.html' : 'terms.html';
+
+    fetch(file)
+        .then(response => response.text())
+        .then(html => {
+            const tempDiv = document.createElement('div');
+            tempDiv.innerHTML = html;
+
+            // Extract only main content
+            const container = tempDiv.querySelector('.container');
+            contentBox.innerHTML = container ? container.innerHTML : html;
+
+            modal.classList.remove('gc-hidden');
+            document.body.style.overflow = 'hidden';
+        })
+        .catch(() => {
+            contentBox.innerHTML = '<p style="color:#fff">Unable to load content.</p>';
+            modal.classList.remove('gc-hidden');
+        });
+}
+
+function closePolicy() {
+    const modal = document.getElementById('policy-modal');
+    if (modal) {
+        modal.classList.add('gc-hidden');
+        document.body.style.overflow = '';
+    }
+}
