@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Gypsy Cartel | Visual Archives</title>
+    <meta charset="UTF-8">
+
+    <!-- SEO -->
+    <title>Visual Archives | Gypsy Cartel</title>
+    <meta name="description" content="Visual Archives by Gypsy Cartel showcasing hyper-realistic 3D renders, architectural visualizations, UI/UX concepts, and digital design experiments.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+
     <style>
         .gallery-item { 
             position: relative; 
@@ -16,7 +23,6 @@
             height: 250px;
             object-fit: cover;
             transition: 0.4s;
-            filter: none; /* NO FILTERS - SHOW ORIGINAL COLORS */
             display: block;
         }
         .gallery-item:hover img {
@@ -36,127 +42,145 @@
         }
     </style>
 </head>
+
 <body>
-    <div class="cursor-dot"></div><div class="cursor-outline"></div>
-    <header>
-        <a href="index.html"><img src="assets/logos/gypsy-cartel-icon.webp" alt="GC Icon" class="logo-icon"></a>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="apps.html">Apps</a></li>
-                <li><a href="design.html">Design</a></li>
-                <li><a href="fashion.html">Fashion</a></li>
-                <li><a href="gallery.html" class="active">Gallery</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <div class="container">
-        <h1 style="border-bottom: 1px solid #222; padding-bottom: 20px; margin-bottom: 40px;">
-            VISUAL <span style="color: var(--primary-orange)">ARCHIVES</span>
-        </h1>
-        
-        <div class="grid-3">
-            
-            <div class="gallery-item">
-                <img src="assets/ads/tree-house-exterior.webp" alt="3D Exterior Tree House">
-                <div class="gallery-caption">
-                    <h4>Tree House Exterior</h4>
-                    <p>Hyper-realistic 3D architectural visualization (Exterior).</p>
-                </div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="assets/ads/tree-room.webp" alt="3D Interior Room">
-                <div class="gallery-caption">
-                    <h4>Minimalist Interior</h4>
-                    <p>CGI rendering of a modern, warm bedroom space.</p>
-                </div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="assets/ads/imc-222.webp" alt="Open Office Visualization">
-                <div class="gallery-caption">
-                    <h4>Corporate Office Setup</h4>
-                    <p>Visualizing a modern, low-light, high-tech workspace.</p>
-                </div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="assets/ads/ad-ui.webp" alt="App UI Concept">
-                <div class="gallery-caption">
-                    <h4>Dashboard UI/UX</h4>
-                    <p>Dark-mode interface design for a performance monitoring application.</p>
-                </div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="assets/logos/Floor-Plan-1.webp" alt="3D Metallic GC Logo Render">
-                <div class="gallery-caption">
-                    <h4>Floor Plans</h4>
-                    <p>Clean floor plan layout highlighting practical space distribution and usability.</p>
-                </div>
-            </div>
-            
-            <div class="gallery-item">
-                <img src="assets/ads/ad-logs.webp" alt="System Logs">
-                <div class="gallery-caption">
-                    <h4>Code/Log Aesthetic</h4>
-                    <p>Abstract visualization of system log data and corruption themes.</p>
-                </div>
+<!-- CURSOR -->
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
+
+<!-- HEADER -->
+<header>
+    <a href="index.html">
+        <img src="assets/logos/gypsy-cartel-icon.webp" alt="Gypsy Cartel Logo" class="logo-icon">
+    </a>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="apps.html">Apps</a></li>
+            <li><a href="design.html">Design</a></li>
+            <li><a href="fashion.html">Fashion</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- CONTENT -->
+<div class="container">
+    <h1 style="border-bottom:1px solid #222; padding-bottom:20px; margin-bottom:40px;">
+        VISUAL <span style="color:var(--primary-orange)">ARCHIVES</span>
+    </h1>
+
+    <div class="grid-3">
+
+        <div class="gallery-item">
+            <img src="assets/ads/tree-house-exterior.webp" alt="Tree House Exterior 3D Visualization">
+            <div class="gallery-caption">
+                <h4>Tree House Exterior</h4>
+                <p>Hyper-realistic architectural visualization.</p>
             </div>
         </div>
+
+        <div class="gallery-item">
+            <img src="assets/ads/tree-room.webp" alt="Minimalist Interior 3D Room">
+            <div class="gallery-caption">
+                <h4>Minimalist Interior</h4>
+                <p>Warm modern bedroom CGI render.</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="assets/ads/imc-222.webp" alt="Corporate Office Visualization">
+            <div class="gallery-caption">
+                <h4>Corporate Office Setup</h4>
+                <p>Low-light high-tech workspace visualization.</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="assets/ads/ad-ui.webp" alt="Dashboard UI UX Design">
+            <div class="gallery-caption">
+                <h4>Dashboard UI/UX</h4>
+                <p>Dark-mode performance monitoring interface.</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="assets/logos/Floor-Plan-1.webp" alt="Floor Plan Design">
+            <div class="gallery-caption">
+                <h4>Floor Plans</h4>
+                <p>Clean architectural space planning layout.</p>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="assets/ads/ad-logs.webp" alt="Code Log Visual Aesthetic">
+            <div class="gallery-caption">
+                <h4>Code / Log Aesthetic</h4>
+                <p>Abstract system log & corruption visuals.</p>
+            </div>
+        </div>
+
     </div>
-    
-    <footer>
-        <div class="footer-content">
-            <div>
-                <img src="assets/logos/gypsy-cartel-icon.webp" alt="GC Icon" style="width: 30px; margin-bottom: 10px;">
-                <p>Gypsy Cartel is a digital movement, fusing high-performance Windows software with stunning, hyper-realistic 3D design and UI/UX solutions. Precision, innovation, and style.</p>
-            </div>
-            <div>
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="gallery.html">Gallery</a></li>
-                    <li><a href="apps.html">Apps Development</a></li>
-                    <li><a href="design.html">Design Studio</a></li>
-                    <li><a href="fashion.html">Fashion Line (Soon)</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Company</h4>
-                <ul>
-                    <li><a href="about.html">Our Vision & History</a></li>
-                    <li><a href="contact.html">Contact Support</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4>Connect</h4>
-                <p>Support: <a href="mailto:support@gypsycartel.shop" style="color: var(--primary-orange);">support@gypsycartel.shop</a></p>
-                <p>Creator: <a href="https://instagram.com/mallugypsy.creations" target="_blank" style="color: var(--secondary-accent);">@mallugypsy.creations</a></p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2025 Gypsy Cartel. All Rights Reserved.
-        </div>
-    </footer>
-    <script src="script.js"></script>
-    <!-- ADD-ON GALLERY MODULE (SAFE) -->
-<section id="gc-dynamic-gallery"></section>
-
-<div id="gc-popup" class="gc-hidden">
-  <div class="gc-popup-box">
-    <span id="gc-close">&times;</span>
-    <img id="gc-popup-img">
-    <h3 id="gc-popup-title"></h3>
-    <p id="gc-popup-desc"></p>
-  </div>
 </div>
 
+<!-- FOOTER -->
+<footer>
+    <div class="footer-content">
+
+        <div>
+            <img src="assets/logos/gypsy-cartel-icon.webp" alt="Gypsy Cartel Logo" style="width:30px; margin-bottom:10px;">
+            <p>
+                Gypsy Cartel is a digital movement, fusing high-performance software
+                with hyper-realistic 3D design and UI/UX solutions.
+            </p>
+        </div>
+
+        <div>
+            <h4>Services</h4>
+            <ul>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="apps.html">Apps Development</a></li>
+                <li><a href="design.html">Design Studio</a></li>
+                <li><a href="fashion.html">Fashion Line (Soon)</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4>Company</h4>
+            <ul>
+                <li><a href="about.html">Our Vision & History</a></li>
+                <li><a href="contact.html">Contact Support</a></li>
+                <li><a href="privacy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+        </div>
+
+        <div>
+            <h4>Connect</h4>
+            <p>Support:
+                <a href="mailto:support@gypsycartel.shop" style="color:var(--primary-orange);">
+                    support@gypsycartel.shop
+                </a>
+            </p>
+            <p>Creator:
+                <a href="https://instagram.com/mallugypsy.creations" target="_blank">
+                    @mallugypsy.creations
+                </a>
+            </p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2025 Gypsy Cartel. All Rights Reserved.
+    </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="script.js"></script>
 <script src="gallery/gc-gallery.js"></script>
 
 </body>
