@@ -1,73 +1,75 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // ===============================
-    // Custom Cursor Logic
-    // ===============================
+
+    /* ===============================
+       CUSTOM CURSOR
+    =============================== */
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorOutline = document.querySelector('.cursor-outline');
 
     if (cursorDot && cursorOutline) {
         window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
+            const x = e.clientX;
+            const y = e.clientY;
 
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
+            cursorDot.style.left = `${x}px`;
+            cursorDot.style.top = `${y}px`;
 
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
+            cursorOutline.animate(
+                { left: `${x}px`, top: `${y}px` },
+                { duration: 500, fill: "forwards" }
+            );
+        });
+
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+            });
         });
     }
 
-    const links = document.querySelectorAll('a, button, input, textarea');
-    links.forEach(link => {
-        link.addEventListener('mouseenter', () => {
-            cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            cursorOutline.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
-        });
-        link.addEventListener('mouseleave', () => {
-            cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-            cursorOutline.style.backgroundColor = 'transparent';
-        });
-    });
+    /* ===============================
+       POLICY MODAL (FIXED)
+    =============================== */
+    const modal = document.getElementById('policy-modal');
+    if (modal) {
+        modal.classList.add('gc-hidden'); // FORCE HIDE ON LOAD
+    }
 });
 
-/* ======================================================
-   PRIVACY POLICY & TERMS MODAL (HOME PAGE ONLY)
-   ====================================================== */
-
+/* ===============================
+   POLICY FUNCTIONS
+=============================== */
 function openPolicy(type) {
     const modal = document.getElementById('policy-modal');
-    const contentBox = document.getElementById('policy-content');
+    const content = document.getElementById('policy-content');
 
-    if (!modal || !contentBox) return;
+    if (!modal || !content) return;
 
-    const file = type === 'privacy' ? 'privacy.html' : 'terms.html';
+    if (type === 'privacy') {
+        content.innerHTML = `
+            <h2>Privacy Policy</h2>
+            <p>Gypsy Cartel respects your privacy. We only collect necessary
+            information submitted through forms to respond to inquiries.</p>
+            <p>We do not sell or share your data.</p>
+        `;
+    }
 
-    fetch(file)
-        .then(response => response.text())
-        .then(html => {
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = html;
+    if (type === 'terms') {
+        content.innerHTML = `
+            <h2>Terms of Service</h2>
+            <p>Using this website means you agree to our terms.
+            Submitting a project request does not guarantee acceptance.</p>
+            <p>All content belongs to Gypsy Cartel.</p>
+        `;
+    }
 
-            // Extract only main content
-            const container = tempDiv.querySelector('.container');
-            contentBox.innerHTML = container ? container.innerHTML : html;
-
-            modal.classList.remove('gc-hidden');
-            document.body.style.overflow = 'hidden';
-        })
-        .catch(() => {
-            contentBox.innerHTML = '<p style="color:#fff">Unable to load content.</p>';
-            modal.classList.remove('gc-hidden');
-        });
+    modal.classList.remove('gc-hidden');
 }
 
 function closePolicy() {
     const modal = document.getElementById('policy-modal');
-    if (modal) {
-        modal.classList.add('gc-hidden');
-        document.body.style.overflow = '';
-    }
+    if (modal) modal.classList.add('gc-hidden');
 }
