@@ -323,3 +323,40 @@ footer a:hover { color: var(--primary-orange); }
 .gc-hidden {
     display: none !important;
 }
+/* Legal Pages Fix */
+.legal-page {
+    padding: 140px 10% 80px;
+    min-height: 100vh;
+    background: #0b0b0b;
+    color: #ddd;
+}
+
+.legal-content {
+    max-width: 900px;
+    margin: auto;
+}
+
+.legal-content h1 {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.legal-content h3 {
+    margin-top: 30px;
+    color: var(--primary-orange);
+}
+
+.legal-content p {
+    line-height: 1.8;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+.legal-content a {
+    color: var(--primary-orange);
+    text-decoration: none;
+}
+
+.contact-note {
+    margin-top: 40px;
+}
