@@ -61,8 +61,8 @@
                 <ul>
                     <li><a href="about.html">Our Vision & History</a></li>
                     <li><a href="contact.html">Contact Support</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="javascript:void(0)" onclick="openPolicy('privacy')">Privacy Policy</a></li>
+                    <li><a href="javascript:void(0)" onclick="openPolicy('terms')">Terms of Service</a></li>
                 </ul>
             </div>
             <div>
@@ -75,6 +75,14 @@
             &copy; 2025 Gypsy Cartel. All Rights Reserved.
         </div>
     </footer>
+
+    <!-- POLICY MODAL -->
+    <div id="policy-modal" class="gc-hidden">
+        <div class="gc-popup-box">
+            <span id="gc-close" onclick="closePolicy()">×</span>
+            <div id="policy-content"></div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
