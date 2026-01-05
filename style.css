@@ -378,3 +378,24 @@ footer a:hover {
         height: 400px;
     }
 }
+/* =========================================================
+   HERO — LOGO SPACING FIX (SAFE, SCOPED)
+========================================================= */
+
+.hero .hero-logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Logo → ribbon gap */
+.hero .hero-logo-container .logo-icon,
+.hero .hero-logo-container img {
+    margin-bottom: 2rem;
+}
+
+/* Ribbon → text gap */
+.hero .hero-logo-container .hero-tagline,
+.hero .hero-logo-container p {
+    margin-top: 1rem;
+}
