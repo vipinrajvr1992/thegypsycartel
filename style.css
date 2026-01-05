@@ -237,13 +237,25 @@ textarea:focus {
 }
 
 /* =========================================================
-   DESIGN PAGE — MG CREATIONS LOGO FIX (NEW)
+   DESIGN PAGE — MG LOGO + CENTER ALIGN (FINAL)
 ========================================================= */
 .design-hero {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
     align-items: center;
+}
+
+/* CENTER LEFT CONTENT */
+.design-hero > div:first-child {
+    text-align: center;
+}
+
+.design-hero h1,
+.design-hero p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .mg-logo-wrap {
@@ -253,14 +265,14 @@ textarea:focus {
 }
 
 .mg-logo-wrap img {
-    width: 180px; /* Bigger & clean */
+    width: 180px;
     max-width: 100%;
     display: inline-block;
     filter: drop-shadow(0 10px 25px rgba(0,0,0,0.6));
 }
 
 /* =========================================================
-   PRIVACY & TERMS — BRAND STYLE FIX (NEW)
+   PRIVACY & TERMS — BRAND STYLE
 ========================================================= */
 .legal-page {
     max-width: 900px;
