@@ -378,3 +378,9 @@ footer a:hover {
         height: 400px;
     }
 }
+/* =========================================================
+   CONTACT PAGE — REDUCE TOP GAP (ONLY CONTACT)
+========================================================= */
+.contact-page .container {
+    padding-top: 80px; /* was 140px */
+}
