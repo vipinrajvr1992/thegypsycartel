@@ -277,6 +277,12 @@ textarea:focus {
     text-align: center;
 }
 
+/* DESIGN PAGE — spacing below heading (SAFE) */
+.design-page h1 {
+    margin-bottom: 2rem;
+}
+
+
 /* =========================================================
    PRIVACY & TERMS — BRAND STYLE
 ========================================================= */
