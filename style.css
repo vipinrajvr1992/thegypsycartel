@@ -391,7 +391,7 @@ footer a:hover {
 /* Logo → ribbon gap */
 .hero .hero-logo-container .logo-icon,
 .hero .hero-logo-container img {
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
 }
 
 /* Ribbon → text gap */
