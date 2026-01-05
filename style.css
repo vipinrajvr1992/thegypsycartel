@@ -56,7 +56,7 @@ a {
 ul { list-style: none; }
 
 /* =========================================================
-   CUSTOM CURSOR
+   CUSTOM CURSOR (CLICK SAFE)
 ========================================================= */
 .cursor-dot,
 .cursor-outline {
@@ -134,10 +134,12 @@ nav a.active::after {
    BUTTONS
 ========================================================= */
 .btn {
+    display: inline-block;
     padding: 12px 30px;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
     text-transform: uppercase;
+    border: 1px solid transparent;
     transition: 0.3s ease;
 }
 
@@ -148,12 +150,12 @@ nav a.active::after {
 
 .btn-primary:hover {
     background: transparent;
-    border: 1px solid var(--primary-orange);
+    border-color: var(--primary-orange);
     color: var(--primary-orange);
 }
 
 .btn-outline {
-    border: 1px solid var(--secondary-accent);
+    border-color: var(--secondary-accent);
     color: var(--secondary-accent);
 }
 
@@ -167,7 +169,7 @@ nav a.active::after {
 ========================================================= */
 .container {
     max-width: 1200px;
-    margin: auto;
+    margin: 0 auto;
     padding: 140px 20px 80px;
 }
 
@@ -177,60 +179,154 @@ nav a.active::after {
     gap: 60px;
 }
 
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
 /* =========================================================
-   HERO (HOME PAGE)
+   HERO
 ========================================================= */
 .hero {
+    position: relative;
     min-height: 100vh;
     padding-top: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    overflow: hidden;
 }
 
-/* 🔧 SINGLE SOURCE OF TRUTH — HOME HERO SPACING */
-.hero img {
-    margin-bottom: 1.5rem;
-}
+.hero-logo-container { z-index: 5; }
 
-.hero h1 {
-    margin: 0;
-}
-
-.hero p {
-    margin-top: 1rem;
+.abstract-design {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    background: repeating-linear-gradient(
+        45deg,
+        #0a0a0a,
+        #0a0a0a 10px,
+        #050505 10px,
+        #050505 20px
+    );
+    opacity: 0.08;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    pointer-events: none;
 }
 
 /* =========================================================
-   DESIGN PAGE ONLY — SAFE
+   FORMS
 ========================================================= */
-.design-page .grid-2 > div:first-child {
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 14px;
+    background: var(--bg-surface);
+    border: 1px solid #333;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 20px;
+}
+
+input:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+}
+
+/* =========================================================
+   DESIGN PAGE — FULL CENTER ALIGN (MG LOGO + TEXT)
+   SAFE FIX — NO THEME CHANGE
+========================================================= */
+
+/* Left content wrapper */
+.design-hero > div:first-child {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: center;     /* center logo + text */
     justify-content: center;
     text-align: center;
 }
 
-.design-page .mg-logo-wrap {
+/* MG CREATIONS LOGO — CENTERED ABOVE */
+.mg-logo-wrap {
+    width: 100%;
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: 28px;
 }
 
-.design-page .mg-logo-wrap img {
-    width: 200px;
+.mg-logo-wrap img {
+    width: 180px;
+    max-width: 100%;
+    display: block;
 }
 
-.design-page h1 {
+/* HEADINGS — PERFECT CENTER */
+.design-hero h1 {
+    text-align: center;
     line-height: 1.25;
-    margin-bottom: 2rem;
 }
 
-.design-page p {
+/* DESCRIPTION TEXT — CENTERED BLOCK */
+.design-hero p {
+    text-align: center;
     max-width: 520px;
+    margin: 18px auto 0;
+}
+
+/* OPTIONAL: cards stay clean */
+.design-hero .grid-2,
+.design-hero .grid-3 {
+    justify-items: center;
+}
+
+/* =========================================================
+   PRIVACY & TERMS — BRAND STYLE
+========================================================= */
+.legal-page {
+    max-width: 900px;
     margin: 0 auto;
+    padding: 160px 20px 100px;
+}
+
+.legal-page h1 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.legal-page h1 .accent {
+    color: var(--primary-orange);
+}
+
+.legal-page h3 {
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    margin-top: 50px;
+    margin-bottom: 12px;
+    color: var(--primary-orange);
+}
+
+.legal-page p {
+    font-size: 0.95rem;
+    line-height: 1.9;
+    color: var(--text-muted);
+    max-width: 760px;
+}
+
+.legal-page a {
+    color: var(--primary-orange);
+}
+
+.legal-page a:hover {
+    text-decoration: underline;
+}
+
+.contact-note {
+    margin-top: 40px;
+    font-size: 0.9rem;
 }
 
 /* =========================================================
@@ -240,6 +336,25 @@ footer {
     background: var(--bg-surface);
     padding: 50px 5% 30px;
     font-size: 0.9rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 30px;
+}
+
+footer h4 {
+    color: var(--text-main);
+    margin-bottom: 12px;
+}
+
+footer a:hover {
+    color: var(--primary-orange);
 }
 
 .footer-bottom {
@@ -253,7 +368,19 @@ footer {
    RESPONSIVE
 ========================================================= */
 @media (max-width: 900px) {
-    .grid-2 {
+    .grid-2,
+    .design-hero {
         grid-template-columns: 1fr;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .abstract-design {
+        width: 400px;
+        height: 400px;
     }
 }
