@@ -372,3 +372,40 @@ footer a:hover {
         height: 400px;
     }
 }
+/* =========================================================
+   DESIGN PAGE — CENTER ALIGN FIX (SAFE)
+========================================================= */
+
+/* Left column center alignment */
+.design-hero > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;     /* horizontal center */
+    text-align: center;      /* text center */
+}
+
+/* MG logo perfectly centered */
+.mg-logo-wrap {
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: center;
+}
+
+/* Headings spacing & balance */
+.design-hero h1 {
+    line-height: 1.25;
+}
+
+/* Paragraph center + width control */
+.design-hero p {
+    text-align: center;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Small cards alignment stays clean */
+.design-hero .grid-2,
+.design-hero .grid-3 {
+    justify-items: center;
+}
