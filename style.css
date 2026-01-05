@@ -237,12 +237,11 @@ textarea:focus {
 }
 
 /* =========================================================
-   DESIGN PAGE — FULL CENTER ALIGN (MG LOGO + TEXT)
-   SAFE FIX — NO THEME CHANGE
+   DESIGN PAGE ONLY — CENTER MG LOGO + TEXT
+   (MATCHES REAL HTML STRUCTURE)
 ========================================================= */
 
-/* Left content wrapper */
-.design-hero > div:first-child {
+.design-page .grid-2 > div:first-child {
     display: flex;
     flex-direction: column;
     align-items: center;     /* center logo + text */
@@ -250,37 +249,32 @@ textarea:focus {
     text-align: center;
 }
 
-/* MG CREATIONS LOGO — CENTERED ABOVE */
-.mg-logo-wrap {
+/* MG CREATIONS LOGO */
+.design-page .mg-logo-wrap {
     width: 100%;
     display: flex;
     justify-content: center;
     margin-bottom: 28px;
 }
 
-.mg-logo-wrap img {
+.design-page .mg-logo-wrap img {
     width: 180px;
     max-width: 100%;
     display: block;
 }
 
-/* HEADINGS — PERFECT CENTER */
-.design-hero h1 {
+/* HEADINGS */
+.design-page h1 {
     text-align: center;
     line-height: 1.25;
 }
 
-/* DESCRIPTION TEXT — CENTERED BLOCK */
-.design-hero p {
-    text-align: center;
+/* DESCRIPTION TEXT */
+.design-page p {
     max-width: 520px;
-    margin: 18px auto 0;
-}
-
-/* OPTIONAL: cards stay clean */
-.design-hero .grid-2,
-.design-hero .grid-3 {
-    justify-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 /* =========================================================
