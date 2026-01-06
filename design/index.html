@@ -8,6 +8,13 @@
     <meta name="description"
           content="Gypsy Cartel Design Studio delivers hyper-realistic architectural visualization, 3D graphics, and high-impact digital design solutions.">
 
+    <!-- SITE ICON / FAVICON -->
+    <link rel="icon" type="image/webp" href="../assets/logos/gypsy-cartel-icon.webp">
+    <link rel="apple-touch-icon" href="../assets/logos/gypsy-cartel-icon.webp">
+
+    <!-- STYLES -->
+    <link rel="stylesheet" href="../style.css">
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-92193J0YS6"></script>
     <script>
@@ -16,13 +23,6 @@
       gtag('js', new Date());
       gtag('config', 'G-92193J0YS6');
     </script>
-
-    <!-- SITE ICON / FAVICON -->
-    <link rel="icon" type="image/webp" href="../assets/logos/gypsy-cartel-icon.webp">
-    <link rel="apple-touch-icon" href="../assets/logos/gypsy-cartel-icon.webp">
-
-    <!-- STYLES -->
-    <link rel="stylesheet" href="../style.css">
 </head>
 
 <body>
@@ -60,7 +60,6 @@
         <!-- LEFT CONTENT -->
         <div>
 
-            <!-- MG CREATIONS LOGO -->
             <div class="mg-logo-wrap">
                 <img src="../assets/logos/mg-creations.webp"
                      alt="MG Creations Logo">
@@ -121,7 +120,6 @@
                     INITIALIZE REQUEST
                 </button>
 
-                <!-- SUCCESS MESSAGE -->
                 <p id="design-success"
                    style="display:none; margin-top:14px; color:#00ff8f;">
                     ✓ Message sent successfully. We’ll contact you shortly.
@@ -135,10 +133,8 @@
 
 </section>
 
-<!-- FOOTER -->
 <footer>
     <div class="footer-content">
-
         <div>
             <img src="../assets/logos/gypsy-cartel-icon.webp"
                  alt="GC Icon"
@@ -187,7 +183,6 @@
                 </a>
             </p>
         </div>
-
     </div>
 
     <div class="footer-bottom">
@@ -196,5 +191,16 @@
 </footer>
 
 <script src="../script.js"></script>
+
+<!-- GA Event for Design Form -->
+<script>
+document.getElementById('designForm').addEventListener('submit', function () {
+    gtag('event', 'design_form_submit', {
+        event_category: 'form',
+        event_label: 'design_page'
+    });
+});
+</script>
+
 </body>
 </html>
