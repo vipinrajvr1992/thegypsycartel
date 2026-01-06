@@ -78,28 +78,36 @@
                 START A PROJECT
             </h3>
 
-            <form action="https://formspree.io/f/xjgkezzp" method="POST">
+            <form id="designForm"
+      action="https://formspree.io/f/xjgkezzp"
+      method="POST">
 
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Email" required>
 
-                <select name="service" required>
-                    <option value="">Select Service</option>
-                    <option value="2d-floor-plans">2D Floor Plans</option>
-                    <option value="3d-visualization">3D Visualization</option>
-                    <option value="graphic-media">Graphic Media</option>
-                    <option value="social-media">Social Media Design</option>
-                </select>
+    <select name="service" required>
+        <option value="">Select Service</option>
+        <option value="2d-floor-plans">2D Floor Plans</option>
+        <option value="3d-visualization">3D Visualization</option>
+        <option value="graphic-media">Graphic Media</option>
+        <option value="social-media">Social Media Design</option>
+    </select>
 
-                <textarea name="message" rows="5" placeholder="I have a project"></textarea>
+    <textarea name="message" rows="5" placeholder="I have a project"></textarea>
 
-                <button type="submit"
-                        class="btn btn-primary"
-                        style="width:100%; margin-top:10px;">
-                    INITIALIZE REQUEST
-                </button>
+    <button type="submit"
+            class="btn btn-primary"
+            style="width:100%; margin-top:10px;">
+        INITIALIZE REQUEST
+    </button>
 
-            </form>
+    <!-- SUCCESS MESSAGE -->
+    <p id="design-success"
+       style="display:none; margin-top:14px; color:#00ff8f;">
+        ✓ Message sent successfully. We’ll contact you shortly.
+    </p>
+
+</form>
 
             <!-- SUCCESS MESSAGE -->
             <p class="form-success-message design-success" style="display:none;">
