@@ -461,6 +461,69 @@ footer a:hover { color: var(--primary-orange); }
     height: auto;
     margin-bottom: 1.2rem; /* reduce gap below logo */
 }
+/* =========================================================
+   CONTACT PAGE — FINAL ALIGNMENT FIX (SAFE)
+   No structure change
+========================================================= */
+
+.contact-page .container {
+    padding-top: calc(80px + 2rem); /* ribbon height + exact 2rem */
+}
+
+/* INITIALIZE CONTACT heading */
+.contact-page h1,
+.contact-page .page-title {
+    margin-top: 0;
+    margin-bottom: 2.5rem;
+}
+
+/* Support / Instagram / Location row */
+.contact-page .contact-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem; /* reduced gap */
+    margin-bottom: 2.5rem;
+}
+
+/* Individual info blocks */
+.contact-page .contact-info h4 {
+    margin-bottom: 0.4rem;
+}
+
+.contact-page .contact-info p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* SEND TRANSMISSION label */
+.contact-page .contact-form-title {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* Form spacing tightening */
+.contact-page form {
+    margin-top: 0;
+}
+
+.contact-page input,
+.contact-page textarea {
+    margin-bottom: 1.2rem;
+}
+
+/* Submit button spacing */
+.contact-page .btn-primary {
+    margin-top: 1.5rem;
+}
+
+/* Mobile safety */
+@media (max-width: 900px) {
+    .contact-page .contact-info {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+    }
+}
 
 /* Reduce gap between logo and heading text */
 .design-page h1,
