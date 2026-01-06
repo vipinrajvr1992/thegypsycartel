@@ -1,61 +1,378 @@
 /* =========================================================
-   GLOBAL FIX — HEADER OFFSET SAFETY
-   (Required for fixed header layout)
+   GYPSY CARTEL — CORE STYLES (FINAL MERGED & STABLE)
+   Theme, UI, Colors PRESERVED
 ========================================================= */
+
+/* GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap');
+
+/* ROOT VARIABLES */
+:root {
+    --bg-deep: #050505;
+    --bg-surface: #111111;
+    --primary-orange: #ff5722;
+    --secondary-accent: #ffffff;
+    --text-main: #ffffff;
+    --text-muted: #8a8a8a;
+}
+
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+}
+
+html { scroll-behavior: smooth; }
+
 body {
-    padding-top: 80px; /* matches header height */
+    background: var(--bg-deep);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
 }
 
 /* =========================================================
-   PAGE CONTENT SAFETY (ALL PAGES)
+   TYPOGRAPHY
+========================================================= */
+h1, h2, h3, h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+ul { list-style: none; }
+
+/* =========================================================
+   CUSTOM CURSOR
+========================================================= */
+.cursor-dot,
+.cursor-outline {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--primary-orange);
+}
+
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--secondary-accent);
+    transition: transform 0.15s ease;
+}
+
+/* =========================================================
+   HEADER & NAV
+========================================================= */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    padding: 0 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--primary-orange);
+    z-index: 1000;
+}
+
+.logo-icon { width: 40px; }
+
+nav ul {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    position: relative;
+}
+
+nav a:hover,
+nav a.active {
+    color: var(--primary-orange);
+}
+
+nav a.active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 2px;
+    background: var(--primary-orange);
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    transition: 0.3s ease;
+}
+
+.btn-primary {
+    background: var(--primary-orange);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: transparent;
+    border-color: var(--primary-orange);
+    color: var(--primary-orange);
+}
+
+.btn-outline {
+    border-color: var(--secondary-accent);
+    color: var(--secondary-accent);
+}
+
+.btn-outline:hover {
+    background: var(--secondary-accent);
+    color: var(--bg-deep);
+}
+
+/* =========================================================
+   LAYOUT
 ========================================================= */
 .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 140px 20px 80px;
     position: relative;
     z-index: 2;
 }
 
+.grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
 /* =========================================================
-   LEGAL PAGES — PRIVACY & TERMS (FINAL FIX)
+   HERO
 ========================================================= */
-.legal-page .container {
-    max-width: 900px;
-    margin: 0 auto;
-    padding-top: 60px;
-    padding-bottom: 80px;
+.hero {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 80px;
+    overflow: hidden;
 }
 
-.legal-page h1,
-.legal-page h2 {
-    margin-top: 48px;
-}
-
-.legal-page p {
-    margin-top: 14px;
-    line-height: 1.85;
+.abstract-design {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    background: repeating-linear-gradient(
+        45deg,
+        #0a0a0a,
+        #0a0a0a 10px,
+        #050505 10px,
+        #050505 20px
+    );
+    opacity: 0.08;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    pointer-events: none;
 }
 
 /* =========================================================
-   DESIGN PAGE — HERO BLEED & OVERFLOW FIX
+   FORMS — GLOBAL DARK
+========================================================= */
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 14px;
+    background: var(--bg-surface);
+    border: 1px solid #333;
+    color: #fff;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 20px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-muted);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+}
+
+/* =========================================================
+   APPS PAGE — GYPSY OPTIMIZER
+========================================================= */
+.apps-page h1 { line-height: 1.2; }
+
+.apps-page ul li {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    color: var(--text-main);
+}
+
+.apps-page img {
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    transition: transform 0.4s ease;
+}
+
+.apps-page img:hover {
+    transform: scale(1.02);
+}
+
+/* =========================================================
+   DESIGN PAGE — STABLE & CONTAINED
 ========================================================= */
 .design-page {
     overflow-x: hidden;
 }
 
-.design-page .hero {
-    overflow: hidden;
+.design-page .grid-2 > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
-.design-page img,
-.design-page svg {
-    max-width: 100%;
-    height: auto;
+.design-page h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.design-page p {
+    text-align: center;
+    max-width: 520px;
+    margin: 0 auto;
 }
 
 /* =========================================================
-   ABSOLUTE ELEMENT CONTAINMENT (SAFETY NET)
+   PRIVACY & TERMS — LEGAL PAGES (RESTORED)
 ========================================================= */
-.hero *,
-.section *,
-.container * {
-    max-width: 100%;
+.legal-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 160px 20px 100px;
+}
+
+.legal-page h1 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.legal-page h3 {
+    font-size: 0.9rem;
+    letter-spacing: 1.5px;
+    margin-top: 50px;
+    margin-bottom: 12px;
+    color: var(--primary-orange);
+}
+
+.legal-page p {
+    line-height: 1.9;
+    max-width: 760px;
+}
+
+/* =========================================================
+   CONTACT PAGE
+========================================================= */
+.contact-page .container {
+    padding-top: 60px;
+}
+
+/* =========================================================
+   FASHION PAGE
+========================================================= */
+.fashion-page input {
+    max-width: 320px;
+    text-align: center;
+}
+
+/* =========================================================
+   FOOTER
+========================================================= */
+footer {
+    background: var(--bg-surface);
+    padding: 50px 5% 30px;
+    font-size: 0.9rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    border-bottom: 1px solid #222;
+    padding-bottom: 30px;
+}
+
+footer h4 { margin-bottom: 12px; }
+
+footer a:hover { color: var(--primary-orange); }
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 900px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    .footer-content { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+    .abstract-design {
+        width: 400px;
+        height: 400px;
+    }
 }
