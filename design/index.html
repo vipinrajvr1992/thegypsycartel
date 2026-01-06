@@ -8,6 +8,15 @@
     <meta name="description"
           content="Gypsy Cartel Design Studio delivers hyper-realistic architectural visualization, 3D graphics, and high-impact digital design solutions.">
 
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-92193J0YS6"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-92193J0YS6');
+    </script>
+
     <!-- SITE ICON / FAVICON -->
     <link rel="icon" type="image/webp" href="../assets/logos/gypsy-cartel-icon.webp">
     <link rel="apple-touch-icon" href="../assets/logos/gypsy-cartel-icon.webp">
@@ -79,40 +88,46 @@
             </h3>
 
             <form id="designForm"
-      action="https://formspree.io/f/xjgkezzp"
-      method="POST">
+                  action="https://formspree.io/f/xjgkezzp"
+                  method="POST">
 
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Email" required>
+                <input type="text"
+                       name="name"
+                       placeholder="Your Name"
+                       autocomplete="name"
+                       required>
 
-    <select name="service" required>
-        <option value="">Select Service</option>
-        <option value="2d-floor-plans">2D Floor Plans</option>
-        <option value="3d-visualization">3D Visualization</option>
-        <option value="graphic-media">Graphic Media</option>
-        <option value="social-media">Social Media Design</option>
-    </select>
+                <input type="email"
+                       name="email"
+                       placeholder="Email"
+                       autocomplete="email"
+                       required>
 
-    <textarea name="message" rows="5" placeholder="I have a project"></textarea>
+                <select name="service" required>
+                    <option value="">Select Service</option>
+                    <option value="2d-floor-plans">2D Floor Plans</option>
+                    <option value="3d-visualization">3D Visualization</option>
+                    <option value="graphic-media">Graphic Media</option>
+                    <option value="social-media">Social Media Design</option>
+                </select>
 
-    <button type="submit"
-            class="btn btn-primary"
-            style="width:100%; margin-top:10px;">
-        INITIALIZE REQUEST
-    </button>
+                <textarea name="message"
+                          rows="5"
+                          placeholder="I have a project"></textarea>
 
-    <!-- SUCCESS MESSAGE -->
-    <p id="design-success"
-       style="display:none; margin-top:14px; color:#00ff8f;">
-        ✓ Message sent successfully. We’ll contact you shortly.
-    </p>
+                <button type="submit"
+                        class="btn btn-primary"
+                        style="width:100%; margin-top:10px;">
+                    INITIALIZE REQUEST
+                </button>
 
-</form>
+                <!-- SUCCESS MESSAGE -->
+                <p id="design-success"
+                   style="display:none; margin-top:14px; color:#00ff8f;">
+                    ✓ Message sent successfully. We’ll contact you shortly.
+                </p>
 
-            <!-- SUCCESS MESSAGE -->
-            <p class="form-success-message design-success" style="display:none;">
-                ✓ Message sent successfully. We’ll contact you shortly.
-            </p>
+            </form>
 
         </div>
 
