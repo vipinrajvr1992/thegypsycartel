@@ -125,3 +125,35 @@ function closePolicy() {
         modal.classList.add('gc-hidden');
     }
 }
+/* ===============================
+   DESIGN FORM — AJAX SUBMIT (NO REDIRECT)
+=============================== */
+const designForm = document.getElementById('designForm');
+
+if (designForm) {
+    designForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const successMsg = document.getElementById('design-success');
+        const formData = new FormData(designForm);
+
+        try {
+            const response = await fetch(designForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                designForm.reset();
+                successMsg.style.display = 'block';
+            } else {
+                alert('Submission failed. Please try again.');
+            }
+        } catch (error) {
+            alert('Network error. Please try again.');
+        }
+    });
+}
