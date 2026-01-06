@@ -6,26 +6,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorOutline = document.querySelector('.cursor-outline');
 
+    let mouseX = 0;
+    let mouseY = 0;
+
     if (cursorDot && cursorOutline) {
+
         window.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
+            mouseX = e.clientX;
+            mouseY = e.clientY;
 
-            cursorDot.style.left = `${x}px`;
-            cursorDot.style.top = `${y}px`;
-
-            cursorOutline.animate(
-                { left: `${x}px`, top: `${y}px` },
-                { duration: 500, fill: "forwards" }
-            );
+            cursorDot.style.left = `${mouseX}px`;
+            cursorDot.style.top = `${mouseY}px`;
         });
+
+        /* smooth follow using requestAnimationFrame (NO animation stacking) */
+        const followCursor = () => {
+            cursorOutline.style.left = `${mouseX}px`;
+            cursorOutline.style.top = `${mouseY}px`;
+            requestAnimationFrame(followCursor);
+        };
+        followCursor();
 
         document.querySelectorAll('a, button, input, textarea').forEach(el => {
             el.addEventListener('mouseenter', () => {
-                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+                cursorOutline.style.transform =
+                    'translate(-50%, -50%) scale(1.5)';
             });
             el.addEventListener('mouseleave', () => {
-                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+                cursorOutline.style.transform =
+                    'translate(-50%, -50%) scale(1)';
             });
         });
     }
@@ -35,13 +44,12 @@ document.addEventListener('DOMContentLoaded', () => {
     =============================== */
     const modal = document.getElementById('policy-modal');
     if (modal) {
-        modal.classList.add('gc-hidden'); // ALWAYS hidden on load
+        modal.classList.add('gc-hidden'); // always hidden on load
     }
 });
 
 /* ===============================
    POLICY OPEN / CLOSE FUNCTIONS
-   (USED BY index.html FOOTER)
 =============================== */
 function openPolicy(type) {
     const modal = document.getElementById('policy-modal');
@@ -101,6 +109,7 @@ function openPolicy(type) {
         `;
     }
 
+    modal.scrollTop = 0;   // prevent half-open scroll bug
     modal.classList.remove('gc-hidden');
 }
 
