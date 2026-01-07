@@ -439,3 +439,27 @@ a[href^="mailto:support@gypsycartel.shop"]:hover {
 .design-page .mg-logo-wrap {
     margin-bottom: 2rem;
 }
+/* =========================================================
+   HOME — CONTACT US BUTTON (FINAL FIX)
+========================================================= */
+
+/* Target ONLY Contact Us button (2nd CTA) */
+.hero-buttons a:nth-child(2) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    border: 1px solid rgba(255,255,255,0.5);
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.25s ease;
+}
+
+/* Hover / focus highlight */
+.hero-buttons a:nth-child(2):hover {
+    border-color: var(--primary-orange);
+    color: var(--primary-orange);
+    box-shadow: 0 0 18px rgba(255,106,26,0.45);
+    transform: translateY(-1px);
+}
