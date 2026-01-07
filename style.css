@@ -542,3 +542,19 @@ a[href^="mailto:support@gypsycartel.shop"]:hover {
     width: 100%;
     height: auto;
 }
+/* =========================================================
+   DESIGN PAGE — FIX LOGO → TEXT GAP (REAL FIX)
+========================================================= */
+
+/* Remove extra margins from headings on design page */
+.design-page h1,
+.design-page h2,
+.design-page h3 {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Reduce gap between logo and first heading */
+.design-page .grid-2 > div:first-child img {
+    margin-bottom: 2rem; /* exact requested gap */
+}
