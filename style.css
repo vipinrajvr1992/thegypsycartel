@@ -1,4 +1,4 @@
-/* =========================================================
+HIGHLITE DIDNT WORKS . PLS CHECK AND FIXX IT CAREFULLY . DONT MAKE ANY OTHER CHANGES AND ERRORS /* ========================================================= 
    GYPSY CARTEL — FUTURISTIC MINIMAL THEME (FINAL)
    SAFE UPGRADE • NO STRUCTURE / JS BREAKS
 ========================================================= */
@@ -7,7 +7,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap');
 
 /* =========================================================
-   ROOT VARIABLES
+   ROOT VARIABLES — BRAND CONTROL
 ========================================================= */
 :root {
     --bg-deep: #050505;
@@ -36,7 +36,7 @@
 html { scroll-behavior: smooth; }
 
 /* =========================================================
-   BODY
+   BODY — CLEAN FUTURISTIC DEPTH
 ========================================================= */
 body {
     background:
@@ -108,10 +108,11 @@ ul { list-style: none; }
     width: 40px;
     height: 40px;
     border: 1px solid rgba(255,255,255,0.6);
+    transition: transform 0.15s ease;
 }
 
 /* =========================================================
-   HEADER
+   HEADER — MINIMAL GLASS (FIXED SCOPE)
 ========================================================= */
 header {
     position: fixed;
@@ -142,6 +143,7 @@ header nav a {
     position: relative;
 }
 
+/* ✅ NAV HIGHLIGHT — FIXED */
 header nav a:hover,
 header nav a.active {
     color: var(--primary-orange);
@@ -155,6 +157,32 @@ header nav a.active::after {
     width: 100%;
     height: 2px;
     background: var(--primary-orange);
+}
+
+/* =========================================================
+   BUTTONS — GLOBAL
+========================================================= */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    transition: 0.35s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #ff6a1a, #ff3c00);
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(255,106,26,0.25);
+}
+
+.btn-primary:hover {
+    background: transparent;
+    border-color: var(--primary-orange);
+    color: var(--primary-orange);
+    box-shadow: none;
 }
 
 /* =========================================================
@@ -172,6 +200,12 @@ header nav a.active::after {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 60px;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
 }
 
 /* =========================================================
@@ -194,10 +228,11 @@ header nav a.active::after {
     background:
         linear-gradient(120deg, transparent 60%, rgba(255,106,26,0.08)),
         radial-gradient(circle at center, rgba(255,106,26,0.12), transparent 60%);
+    pointer-events: none;
 }
 
 /* =========================================================
-   HERO BUTTONS
+   HERO BUTTONS — FINAL (ISOLATED)
 ========================================================= */
 .hero-buttons {
     display: flex;
@@ -205,12 +240,26 @@ header nav a.active::after {
     justify-content: center;
 }
 
-.hero-btn.primary {
+.hero-btn {
     padding: 14px 28px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
+}
+
+/* prevent nav underline bleed */
+.hero-btn::after {
+    content: none !important;
+}
+
+.hero-btn.primary {
     background: #ff6a1a;
     color: #000;
     border: 1px solid #ff6a1a;
-    text-transform: uppercase;
 }
 
 .hero-btn.primary:hover {
@@ -219,28 +268,19 @@ header nav a.active::after {
     box-shadow: 0 0 18px rgba(255,106,26,0.45);
 }
 
-/* =========================================================
-   ✅ HOME — CONTACT US CTA (REAL FIX)
-========================================================= */
-.hero a[href="/contact"],
-.hero a[href="/contact/"] {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 14px 28px;
-    margin-left: 16px;
+.hero-btn.secondary {
+    background: transparent;
+    color: #fff;
     border: 1px solid rgba(255,255,255,0.5);
-    color: #ffffff;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.25s ease;
 }
 
-.hero a[href="/contact"]:hover,
-.hero a[href="/contact/"]:hover {
-    border-color: var(--primary-orange);
-    color: var(--primary-orange);
+.hero-btn.secondary:hover {
+    border-color: #ff6a1a;
+    color: #ff6a1a;
     box-shadow: 0 0 18px rgba(255,106,26,0.45);
+}
+
+.hero-btn:hover {
     transform: translateY(-1px);
 }
 
@@ -294,8 +334,132 @@ footer a:hover { color: var(--primary-orange); }
 }
 
 /* =========================================================
-   SUPPORT EMAIL
+   SUPPORT EMAIL ALWAYS ORANGE
 ========================================================= */
 a[href^="mailto:support@gypsycartel.shop"] {
     color: var(--primary-orange) !important;
+}
+a[href^="mailto:support@gypsycartel.shop"]:hover {
+    color: var(--primary-orange) !important;
+    text-decoration: underline;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 900px) {
+    .grid-2 { grid-template-columns: 1fr; }
+    .footer-content { grid-template-columns: 1fr; }
+}
+/* =========================================================
+   HOME PAGE FIX — SPACE BETWEEN HERO BUTTONS & FOOTER
+========================================================= */
+
+/* Create clear separation before footer */
+.hero {
+    padding-bottom: 2rem;
+}
+
+/* Extra safety: ensure buttons don’t touch footer visually */
+.hero-buttons {
+    margin-bottom: 2rem;
+}
+/* =========================================================
+   DESIGN PAGE FIX — PREVENT BIG LOGO OVERFLOW
+========================================================= */
+
+/* Ensure design page hero does not overflow */
+.design-page {
+    overflow-x: hidden;
+}
+
+/* Constrain large design visuals */
+.design-page img,
+.design-page .hero img,
+.design-page .grid-2 img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Optional: slightly reduce visual dominance on large screens */
+@media (min-width: 1200px) {
+    .design-page .grid-2 img {
+        max-width: 90%;
+    }
+}
+/* =========================================================
+   HOME — FORCE CONTACT US BUTTON BOX & HOVER
+========================================================= */
+
+/* Ensure Contact Us link behaves like button */
+.hero-buttons a:last-child {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    border: 1px solid rgba(255,255,255,0.5);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.25s ease;
+}
+
+/* Hover effect */
+.hero-buttons a:last-child:hover {
+    border-color: var(--primary-orange);
+    color: var(--primary-orange);
+    box-shadow: 0 0 18px rgba(255,106,26,0.45);
+    transform: translateY(-1px);
+}
+/* =========================================================
+   DESIGN PAGE — PROPER CENTER ALIGNMENT (FIXED)
+========================================================= */
+
+/* Vertically center both columns */
+.design-page .grid-2 {
+    align-items: center;
+}
+
+/* LEFT column alignment (logo + text) */
+.design-page .grid-2 > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Logo sizing + spacing */
+.design-page .mg-logo-wrap img {
+    max-width: 120px;
+    height: auto;
+}
+
+/* EXACT 2rem gap between logo and text */
+.design-page .mg-logo-wrap {
+    margin-bottom: 2rem;
+}
+/* =========================================================
+   HOME — CONTACT US BUTTON (FINAL FIX)
+========================================================= */
+
+/* Target ONLY Contact Us button (2nd CTA) */
+.hero-buttons a:nth-child(2) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    border: 1px solid rgba(255,255,255,0.5);
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.25s ease;
+}
+
+/* Hover / focus highlight */
+.hero-buttons a:nth-child(2):hover {
+    border-color: var(--primary-orange);
+    color: var(--primary-orange);
+    box-shadow: 0 0 18px rgba(255,106,26,0.45);
+    transform: translateY(-1px);
 }
