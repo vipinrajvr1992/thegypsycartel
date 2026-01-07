@@ -514,35 +514,31 @@ a[href^="mailto:support@gypsycartel.shop"]:hover {
     background: var(--primary-orange);
 }
 /* =========================================================
-   DESIGN PAGE — LOGO SIZE + CENTER ALIGN (SAFE & SCOPED)
+   DESIGN PAGE — FORCE 2REM GAP (FINAL FIX)
 ========================================================= */
 
-/* Center left section content */
 .design-page .grid-2 {
     align-items: center;
 }
 
-/* Left content wrapper (logo + text) */
+/* Left column container */
 .design-page .grid-2 > div:first-child {
     display: flex;
     flex-direction: column;
-    align-items: center;          /* center horizontally */
-    text-align: center;           /* center text */
-    gap: 2rem;                    /* requested gap */
+    align-items: center;
+    text-align: center;
+    gap: 2rem; /* FINAL required gap */
 }
 
-/* MG LOGO SIZE REDUCTION */
+/* REMOVE hidden margins that break gap */
+.design-page .grid-2 > div:first-child * {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+/* MG logo size */
 .design-page .grid-2 > div:first-child img {
-    max-width: 260px;             /* reduced logo size */
+    max-width: 260px;
     width: 100%;
     height: auto;
-}
-
-/* Reduce big text dominance slightly */
-.design-page h1,
-.design-page h2,
-.design-page h3 {
-    max-width: 520px;
-    margin-left: auto;
-    margin-right: auto;
 }
