@@ -50,7 +50,6 @@ body {
     position: relative;
 }
 
-/* subtle noise texture (premium, no grid) */
 body::before {
     content: "";
     position: fixed;
@@ -113,7 +112,7 @@ ul { list-style: none; }
 }
 
 /* =========================================================
-   HEADER — MINIMAL GLASS
+   HEADER — MINIMAL GLASS (FIXED SCOPE)
 ========================================================= */
 header {
     position: fixed;
@@ -132,24 +131,25 @@ header {
 
 .logo-icon { width: 38px; }
 
-nav ul {
+header nav ul {
     display: flex;
     gap: 28px;
 }
 
-nav a {
+header nav a {
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--text-muted);
     position: relative;
 }
 
-nav a:hover,
-nav a.active {
+/* ✅ NAV HIGHLIGHT — FIXED */
+header nav a:hover,
+header nav a.active {
     color: var(--primary-orange);
 }
 
-nav a.active::after {
+header nav a.active::after {
     content: "";
     position: absolute;
     left: 0;
@@ -160,7 +160,7 @@ nav a.active::after {
 }
 
 /* =========================================================
-   BUTTONS — PREMIUM
+   BUTTONS — GLOBAL
 ========================================================= */
 .btn {
     display: inline-block;
@@ -209,13 +209,12 @@ nav a.active::after {
 }
 
 /* =========================================================
-   HERO — FUTURISTIC LIGHTING
+   HERO
 ========================================================= */
 .hero {
     position: relative;
     min-height: 100vh;
     padding-top: 80px;
-    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -233,41 +232,60 @@ nav a.active::after {
 }
 
 /* =========================================================
-   DESIGN PAGE — FIXED & CENTERED
+   HERO BUTTONS — FINAL (ISOLATED)
 ========================================================= */
-.design-page .container {
-    padding-top: calc(80px + 2rem);
-}
-
-.design-page .grid-2 > div:first-child {
+.hero-buttons {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    gap: 16px;
     justify-content: center;
-    text-align: center;
 }
 
-.design-page .mg-logo-wrap {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 20px;
+.hero-btn {
+    padding: 14px 28px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    position: relative;
 }
 
-.design-page .mg-logo-wrap img {
-    max-width: 160px;
-    height: auto;
-    display: block;
-    filter: drop-shadow(0 20px 40px rgba(255,106,26,0.25));
+/* prevent nav underline bleed */
+.hero-btn::after {
+    content: none !important;
 }
 
-.design-page p {
-    max-width: 520px;
-    margin: 0 auto;
+.hero-btn.primary {
+    background: #ff6a1a;
+    color: #000;
+    border: 1px solid #ff6a1a;
+}
+
+.hero-btn.primary:hover {
+    background: transparent;
+    color: #ff6a1a;
+    box-shadow: 0 0 18px rgba(255,106,26,0.45);
+}
+
+.hero-btn.secondary {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.5);
+}
+
+.hero-btn.secondary:hover {
+    border-color: #ff6a1a;
+    color: #ff6a1a;
+    box-shadow: 0 0 18px rgba(255,106,26,0.45);
+}
+
+.hero-btn:hover {
+    transform: translateY(-1px);
 }
 
 /* =========================================================
-   FORMS — CLEAN DARK
+   FORMS
 ========================================================= */
 input,
 textarea,
@@ -277,7 +295,6 @@ select {
     background: var(--bg-elevated);
     border: 1px solid var(--border-soft);
     color: #fff;
-    font-family: 'Inter', sans-serif;
     margin-bottom: 20px;
 }
 
@@ -290,24 +307,11 @@ select:focus {
 }
 
 /* =========================================================
-   APPS / IMAGES
-========================================================= */
-.apps-page img {
-    box-shadow: 0 30px 80px rgba(0,0,0,0.75);
-    transition: transform 0.4s ease;
-}
-
-.apps-page img:hover {
-    transform: scale(1.03);
-}
-
-/* =========================================================
-   FOOTER — PREMIUM + SOCIAL FIX
+   FOOTER
 ========================================================= */
 footer {
     background: linear-gradient(180deg, #0a0a0a, #050505);
     padding: 50px 5% 30px;
-    font-size: 0.9rem;
 }
 
 .footer-content {
@@ -320,8 +324,6 @@ footer {
     padding-bottom: 30px;
 }
 
-footer h4 { margin-bottom: 12px; }
-
 footer a:hover { color: var(--primary-orange); }
 
 .footer-bottom {
@@ -331,14 +333,14 @@ footer a:hover { color: var(--primary-orange); }
     color: var(--text-muted);
 }
 
-/* Instagram link orange */
-.insta-link {
-    color: var(--primary-orange);
-    font-weight: 500;
+/* =========================================================
+   SUPPORT EMAIL ALWAYS ORANGE
+========================================================= */
+a[href^="mailto:support@gypsycartel.shop"] {
+    color: var(--primary-orange) !important;
 }
-
-.insta-link:hover {
-    opacity: 0.85;
+a[href^="mailto:support@gypsycartel.shop"]:hover {
+    color: var(--primary-orange) !important;
     text-decoration: underline;
 }
 
@@ -348,98 +350,4 @@ footer a:hover { color: var(--primary-orange); }
 @media (max-width: 900px) {
     .grid-2 { grid-template-columns: 1fr; }
     .footer-content { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 600px) {
-    .hero::after { opacity: 0.6; }
-}
-/* =========================================================
-   GLOBAL FIX — SUPPORT EMAIL ALWAYS ORANGE
-========================================================= */
-
-/* Force support email color everywhere */
-a[href^="mailto:support@gypsycartel.shop"] {
-    color: var(--primary-orange) !important;
-}
-
-/* Keep it orange on hover as well */
-a[href^="mailto:support@gypsycartel.shop"]:hover {
-    color: var(--primary-orange) !important;
-    text-decoration: underline;
-}
-/* =========================
-   LEGAL PAGES (PRIVACY / TERMS)
-========================= */
-
-.legal-page {
-    max-width: 900px;
-    margin: 0 auto;
-    padding-top: 80px;
-    padding-bottom: 120px;
-}
-
-.legal-title {
-    font-size: 3rem;
-    font-weight: 800;
-    letter-spacing: 1px;
-    margin-bottom: 15px;
-}
-
-.legal-title span {
-    color: var(--primary-orange);
-}
-
-.legal-subtitle {
-    color: var(--text-muted);
-    max-width: 700px;
-    margin-bottom: 60px;
-    line-height: 1.7;
-}
-
-.legal-section {
-    margin-bottom: 50px;
-}
-
-.legal-section h3 {
-    color: var(--primary-orange);
-    letter-spacing: 1px;
-    margin-bottom: 12px;
-    font-size: 1.1rem;
-}
-
-.legal-section p {
-    color: #ccc;
-    line-height: 1.8;
-    max-width: 800px;
-}
-/* =========================================================
-   HERO ACTION BUTTONS
-========================================================= */
-.hero-actions {
-    display: flex;
-    gap: 18px;
-    justify-content: center;
-    align-items: center;
-    margin-top: 25px;
-}
-
-/* Contact Us boxed button */
-.contact-btn {
-    background: transparent;
-    border: 1px solid rgba(255,255,255,0.5);
-    color: #ffffff;
-    padding: 12px 32px;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.35s ease;
-}
-
-/* Hover effect */
-.contact-btn:hover {
-    border-color: var(--primary-orange);
-    color: var(--primary-orange);
-    box-shadow: 0 0 0 2px var(--orange-glow);
-    background: rgba(255,106,26,0.05);
 }
