@@ -420,3 +420,50 @@ a[href^="mailto:support@gypsycartel.shop"]:hover {
 .hero-actions .contact-btn:hover ~ .cursor-outline {
     transform: scale(1.3);
 }
+/* =========================================================
+   CONTACT PAGE — ISOLATED FIXES ONLY
+========================================================= */
+
+/* Scope everything safely */
+.contact-page {}
+
+/* 1️⃣ GAP FIXES */
+.contact-page .contact-header {
+    margin-bottom: 2rem; /* INITIALIZE CONTACT → ribbon */
+}
+
+.contact-page .contact-info {
+    margin-top: 1rem; /* INITIALIZE CONTACT → info blocks */
+}
+
+.contact-page .contact-info > div {
+    margin-bottom: 1rem; /* Support / Instagram / Location spacing */
+}
+
+/* 2️⃣ COLOR FIXES — OVERRIDE GLOBAL MAIL RULE */
+.contact-page .contact-info h4 {
+    color: var(--primary-orange); /* SUPPORT & BUSINESS */
+}
+
+.contact-page .contact-info a[href^="mailto:"] {
+    color: #ffffff !important; /* force white */
+    text-decoration: none;
+}
+
+.contact-page .contact-info a[href^="mailto:"]:hover {
+    color: #ffffff !important;
+    text-decoration: underline;
+}
+
+/* 3️⃣ FOOTER — RESET TO GLOBAL LOOK */
+.contact-page footer {
+    background: linear-gradient(180deg, #0a0a0a, #050505);
+}
+
+.contact-page .footer-content {
+    border-bottom: 1px solid var(--border-soft);
+}
+
+.contact-page .footer-bottom {
+    color: var(--text-muted);
+}
