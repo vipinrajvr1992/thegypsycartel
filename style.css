@@ -364,3 +364,27 @@ a[href^="mailto:support@gypsycartel.shop"]:hover {
 .hero-buttons {
     margin-bottom: 2rem;
 }
+/* =========================================================
+   DESIGN PAGE FIX — PREVENT BIG LOGO OVERFLOW
+========================================================= */
+
+/* Ensure design page hero does not overflow */
+.design-page {
+    overflow-x: hidden;
+}
+
+/* Constrain large design visuals */
+.design-page img,
+.design-page .hero img,
+.design-page .grid-2 img {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Optional: slightly reduce visual dominance on large screens */
+@media (min-width: 1200px) {
+    .design-page .grid-2 img {
+        max-width: 90%;
+    }
+}
