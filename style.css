@@ -412,3 +412,34 @@ a[href^="mailto:support@gypsycartel.shop"]:hover {
     line-height: 1.8;
     max-width: 800px;
 }
+/* =========================================================
+   HERO ACTION BUTTONS
+========================================================= */
+.hero-actions {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+}
+
+/* Contact Us boxed button */
+.contact-btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.5);
+    color: #ffffff;
+    padding: 12px 32px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.35s ease;
+}
+
+/* Hover effect */
+.contact-btn:hover {
+    border-color: var(--primary-orange);
+    color: var(--primary-orange);
+    box-shadow: 0 0 0 2px var(--orange-glow);
+    background: rgba(255,106,26,0.05);
+}
