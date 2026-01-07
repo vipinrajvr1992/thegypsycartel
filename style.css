@@ -388,3 +388,54 @@ a[href^="mailto:support@gypsycartel.shop"]:hover {
         max-width: 90%;
     }
 }
+/* =========================================================
+   HOME — FORCE CONTACT US BUTTON BOX & HOVER
+========================================================= */
+
+/* Ensure Contact Us link behaves like button */
+.hero-buttons a:last-child {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    border: 1px solid rgba(255,255,255,0.5);
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.25s ease;
+}
+
+/* Hover effect */
+.hero-buttons a:last-child:hover {
+    border-color: var(--primary-orange);
+    color: var(--primary-orange);
+    box-shadow: 0 0 18px rgba(255,106,26,0.45);
+    transform: translateY(-1px);
+}
+/* =========================================================
+   DESIGN PAGE — PROPER CENTER ALIGNMENT (FIXED)
+========================================================= */
+
+/* Vertically center both columns */
+.design-page .grid-2 {
+    align-items: center;
+}
+
+/* LEFT column alignment (logo + text) */
+.design-page .grid-2 > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Logo sizing + spacing */
+.design-page .mg-logo-wrap img {
+    max-width: 120px;
+    height: auto;
+}
+
+/* EXACT 2rem gap between logo and text */
+.design-page .mg-logo-wrap {
+    margin-bottom: 2rem;
+}
