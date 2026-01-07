@@ -440,3 +440,51 @@ a[href^="mailto:support@gypsycartel.shop"] {
     margin: 0;
     padding: 0;
 }
+/* =========================================================
+   CONTACT PAGE — FINAL PRECISION FIX (SAFE)
+   Affects ONLY /contact/
+========================================================= */
+
+/* 1️⃣ Ribbon (header) → title gap = 2rem */
+.contact-page .container {
+    padding-top: calc(80px + 2rem);
+}
+
+/* 2️⃣ Center & control INITIALIZE CONTACT spacing */
+.contact-page .container > h1 {
+    text-align: center;
+    margin-bottom: 1rem; /* title → info gap */
+}
+
+/* 3️⃣ Info row spacing = 1rem */
+.contact-page .grid-3 {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    gap: 1rem;
+}
+
+/* 4️⃣ Headings stay ORANGE */
+.contact-page .grid-3 h4 {
+    color: var(--primary-orange);
+}
+
+/* 5️⃣ VALUES must be WHITE (override global orange rule) */
+.contact-page .grid-3 p,
+.contact-page .grid-3 a {
+    color: #ffffff !important;
+}
+
+/* =========================================================
+   FOOTER — EMAIL COLOR BEHAVIOR (SAFE GLOBAL)
+========================================================= */
+
+/* Footer email default WHITE */
+footer a[href^="mailto:support@gypsycartel.shop"] {
+    color: #ffffff !important;
+    transition: color 0.3s ease;
+}
+
+/* Footer email hover → ORANGE */
+footer a[href^="mailto:support@gypsycartel.shop"]:hover {
+    color: var(--primary-orange) !important;
+}
