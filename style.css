@@ -472,3 +472,11 @@ footer a:hover {
     justify-content: center;
     flex-wrap: wrap;
 }
+/* =========================================
+   DESIGN PAGE — RIBBON → MG LOGO GAP FIX
+========================================= */
+
+.design-page .mg-logo-wrap {
+    margin-top: 3rem;     /* ✅ ribbon → logo gap */
+    margin-bottom: 2rem;  /* logo → heading gap (unchanged) */
+}
