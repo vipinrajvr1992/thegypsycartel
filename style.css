@@ -379,3 +379,50 @@ footer a:hover {
 .design-page h1 {
     margin-top: 0 !important;
 }
+/* ================================
+   HERO — CLEAN CENTERED LOGO
+================================ */
+
+.hero-center {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* Logo container */
+.hero-logo-container {
+    position: relative;
+    width: 420px;
+    max-width: 90vw;
+    aspect-ratio: 1 / 1;
+    margin-bottom: 1.5rem;
+}
+
+/* Lottie dots */
+.hero-logo-container lottie-player {
+    position: absolute;
+    inset: -10%;
+    width: 120%;
+    height: 120%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Logo */
+.hero-logo {
+    position: relative;
+    width: 100%;
+    height: auto;
+    z-index: 2;
+}
+
+/* Tagline */
+.hero-tagline {
+    font-size: 1.3rem;
+    color: var(--text-muted);
+    margin-bottom: 1.8rem;
+    max-width: 720px;
+}
