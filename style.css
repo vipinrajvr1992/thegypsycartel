@@ -662,3 +662,34 @@ footer a:hover {
 .design-page h1 {
     margin-top: 0 !important;
 }
+/* =========================================
+   HOME PAGE — HERO SMOOTH LOADING
+========================================= */
+
+/* Page fade */
+body:not(.about-page):not(.design-page):not(.contact-page):not(.fashion-page):not(.legal-page) {
+    animation: pageFade 0.6s ease forwards;
+}
+
+/* Hero tagline reveal */
+.hero-tagline {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: heroTextReveal 0.7s ease forwards;
+    animation-delay: 0.15s;
+}
+
+/* Services row reveal (if present) */
+.hero-services {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: heroTextReveal 0.7s ease forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes heroTextReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
