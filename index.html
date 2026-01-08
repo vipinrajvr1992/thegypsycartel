@@ -43,9 +43,8 @@
             overflow: hidden;
         }
 
-        /* 🔑 HERO LOTTIE SIZE CONTROL (1× SCALE) */
         .hero-lottie {
-            width: min(700px, 85vw); /* ✅ PERFECT HERO SIZE */
+            width: min(700px, 85vw);
             height: auto;
             margin-bottom: 3rem;
         }
@@ -76,7 +75,13 @@
 
 <body>
 
-<!-- HEADER (LOADED VIA JS / PARTIAL) -->
+<!-- =========================
+     CUSTOM CURSOR (FIX)
+========================= -->
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
+
+<!-- HEADER (PARTIAL) -->
 <div id="site-header"></div>
 
 <!-- =======================
@@ -84,7 +89,6 @@
 ======================== -->
 <section class="hero">
 
-    <!-- ✅ ONLY LOTTIE ANIMATION (LOGO INSIDE JSON) -->
     <lottie-player
         class="hero-lottie"
         src="/assets/animations/hero-dots.json"
@@ -110,7 +114,7 @@
 
 </section>
 
-<!-- FOOTER (LOADED VIA JS / PARTIAL) -->
+<!-- FOOTER (PARTIAL) -->
 <div id="site-footer"></div>
 
 <!-- GLOBAL SCRIPT -->
