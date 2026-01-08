@@ -718,3 +718,13 @@ body:not(.about-page):not(.design-page):not(.contact-page):not(.fashion-page):no
 .apps-page .apps-image:hover {
     transform: translateY(0) scale(1.06) !important;
 }
+/* =========================================
+   HOME PAGE — ORANGE GLOW BOOST (SUBTLE)
+========================================= */
+
+.hero {
+    background:
+        radial-gradient(circle at 30% 20%, rgba(255,106,26,0.12), transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(255,106,26,0.10), transparent 55%),
+        #000;
+}
