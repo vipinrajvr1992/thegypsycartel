@@ -1,6 +1,6 @@
 /* =========================================================
-   GYPSY CARTEL — FUTURISTIC MINIMAL THEME (FINAL • STABLE)
-   SAFE • CLEAN • NO CONFLICTS • NO STRUCTURE BREAKS
+   GYPSY CARTEL — FUTURISTIC MINIMAL THEME
+   FINAL • STABLE • CLEAN • NO CONFLICTS
 ========================================================= */
 
 /* =========================================================
@@ -38,7 +38,7 @@
 html { scroll-behavior: smooth; }
 
 /* =========================================================
-   BODY — GLOBAL BACKGROUND
+   BODY
 ========================================================= */
 body {
     background:
@@ -114,7 +114,7 @@ ul { list-style: none; }
 }
 
 /* =========================================================
-   HEADER — NAV BAR
+   HEADER
 ========================================================= */
 header {
     position: fixed;
@@ -161,7 +161,7 @@ header nav a.active::after {
 }
 
 /* =========================================================
-   GLOBAL BUTTONS
+   BUTTONS
 ========================================================= */
 .btn {
     display: inline-block;
@@ -199,7 +199,7 @@ header nav a.active::after {
 }
 
 /* =========================================================
-   LAYOUT SYSTEM
+   LAYOUT
 ========================================================= */
 .container {
     max-width: 1200px;
@@ -222,52 +222,15 @@ header nav a.active::after {
 }
 
 /* =========================================================
-   HERO — HOME
+   HERO
 ========================================================= */
 .hero {
-    position: relative;
     min-height: 100vh;
     padding-top: 80px;
-    padding-bottom: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-}
-
-.hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(120deg, transparent 60%, rgba(255,106,26,0.08)),
-        radial-gradient(circle at center, rgba(255,106,26,0.12), transparent 60%);
-    pointer-events: none;
-}
-
-/* =========================================================
-   HERO ACTION BUTTONS
-========================================================= */
-.hero-actions {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-bottom: 2rem;
-}
-
-.hero-actions .contact-btn {
-    background: transparent;
-    color: #fff;
-    border: 1px solid rgba(255,255,255,0.6);
-    padding: 14px 34px;
-    font-weight: 700;
-    transition: 0.3s ease;
-}
-
-.hero-actions .contact-btn:hover {
-    color: var(--primary-orange);
-    border-color: var(--primary-orange);
-    box-shadow: 0 0 18px rgba(255,106,26,0.45);
 }
 
 /* =========================================================
@@ -293,7 +256,71 @@ select:focus {
 }
 
 /* =========================================================
-   FOOTER — GLOBAL
+   DESIGN PAGE — FINAL FIX (THIS IS THE IMPORTANT PART)
+========================================================= */
+.design-page .grid-2 {
+    align-items: center;
+}
+
+.design-page .grid-2 > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2rem; /* ✅ EXACT GAP CONTROL */
+}
+
+.design-page .grid-2 > div:first-child img {
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+    margin: 0; /* 🔒 NO INTERFERENCE */
+}
+
+.design-page h1 {
+    margin: 0; /* 🔒 NO HIDDEN SPACING */
+}
+
+/* =========================================================
+   CONTACT PAGE
+========================================================= */
+.contact-page .container {
+    padding-top: calc(80px + 2rem);
+}
+
+.contact-page .grid-3 {
+    gap: 1rem;
+    margin: 1rem 0 2rem;
+}
+
+.contact-page h4 {
+    color: var(--primary-orange);
+}
+
+.contact-page .grid-3 p,
+.contact-page .grid-3 a {
+    color: #ffffff !important;
+}
+
+/* =========================================================
+   LEGAL PAGES
+========================================================= */
+.legal-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 160px 20px 80px;
+}
+
+.legal-page h1 span {
+    color: var(--primary-orange);
+}
+
+.legal-page p {
+    margin-bottom: 1.2rem;
+}
+
+/* =========================================================
+   FOOTER
 ========================================================= */
 footer {
     background: linear-gradient(180deg, #0a0a0a, #050505);
@@ -310,8 +337,6 @@ footer {
     padding-bottom: 30px;
 }
 
-footer a:hover { color: var(--primary-orange); }
-
 .footer-bottom {
     text-align: center;
     margin-top: 20px;
@@ -319,92 +344,14 @@ footer a:hover { color: var(--primary-orange); }
     color: var(--text-muted);
 }
 
-/* =========================================================
-   SUPPORT EMAIL — GLOBAL ORANGE
-========================================================= */
-a[href^="mailto:support@gypsycartel.shop"] {
+/* Footer links default WHITE */
+footer a {
+    color: #ffffff;
+}
+
+/* Hover ORANGE */
+footer a:hover {
     color: var(--primary-orange);
-}
-
-/* =========================================================
-   CONTACT PAGE — SAFE SCOPED FIXES
-========================================================= */
-.contact-page .container > h1 {
-    text-align: center;
-    margin: 2rem 0;
-}
-
-.contact-page .grid-3 {
-    gap: 1rem;
-    margin-bottom: 2rem;
-}
-
-.contact-page h4 {
-    color: var(--primary-orange);
-}
-
-/* override email color ONLY on contact page */
-.contact-page a[href^="mailto:support@gypsycartel.shop"] {
-    color: #fff !important;
-}
-
-/* =========================================================
-   DESIGN PAGE — FINAL LOCKED FIX
-========================================================= */
-.design-page .grid-2 {
-    align-items: center;
-}
-
-/* Left column */
-.design-page .grid-2 > div:first-child {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-}
-
-/* Logo size + exact spacing */
-.design-page .grid-2 > div:first-child img {
-    max-width: 260px;
-    width: 100%;
-    height: auto;
-    margin-bottom: 2rem; /* EXACT GAP */
-}
-
-/* Remove heading margins */
-.design-page h1,
-.design-page h2,
-.design-page h3 {
-    margin: 0;
-}
-
-/* =========================================================
-   TERMS & PRIVACY — LEGAL PAGES
-========================================================= */
-.legal-page {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 160px 20px 80px;
-}
-
-.legal-page h1 {
-    font-size: 2.4rem;
-    margin-bottom: 1.5rem;
-}
-
-.legal-page h1 span {
-    color: var(--primary-orange);
-}
-
-.legal-page h2 {
-    margin-top: 3rem;
-    margin-bottom: 0.8rem;
-    color: var(--primary-orange);
-}
-
-.legal-page p {
-    margin-bottom: 1.2rem;
-    max-width: 720px;
 }
 
 /* =========================================================
@@ -413,120 +360,4 @@ a[href^="mailto:support@gypsycartel.shop"] {
 @media (max-width: 900px) {
     .grid-2 { grid-template-columns: 1fr; }
     .footer-content { grid-template-columns: 1fr; }
-}
-/* =========================================================
-   CONTACT PAGE — FINAL GAP FIX (SAFE & SCOPED)
-========================================================= */
-
-/* 1️⃣ Gap between HEADER RIBBON and TITLE */
-.contact-page .container {
-    padding-top: calc(80px + 2rem); /* header height + required gap */
-}
-
-/* 2️⃣ Center title properly */
-.contact-page .container > h1 {
-    text-align: center;
-    margin-bottom: 1rem; /* gap to info blocks */
-}
-
-/* 3️⃣ Gap between TITLE and SUPPORT / INSTA / LOCATION */
-.contact-page .grid-3 {
-    margin-top: 1rem;    /* requested 1rem */
-    margin-bottom: 2rem;
-}
-
-/* 4️⃣ Remove accidental extra spacing inside grid */
-.contact-page .grid-3 > div {
-    margin: 0;
-    padding: 0;
-}
-/* =========================================================
-   CONTACT PAGE — FINAL PRECISION FIX (SAFE)
-   Affects ONLY /contact/
-========================================================= */
-
-/* 1️⃣ Ribbon (header) → title gap = 2rem */
-.contact-page .container {
-    padding-top: calc(80px + 2rem);
-}
-
-/* 2️⃣ Center & control INITIALIZE CONTACT spacing */
-.contact-page .container > h1 {
-    text-align: center;
-    margin-bottom: 1rem; /* title → info gap */
-}
-
-/* 3️⃣ Info row spacing = 1rem */
-.contact-page .grid-3 {
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    gap: 1rem;
-}
-
-/* 4️⃣ Headings stay ORANGE */
-.contact-page .grid-3 h4 {
-    color: var(--primary-orange);
-}
-
-/* 5️⃣ VALUES must be WHITE (override global orange rule) */
-.contact-page .grid-3 p,
-.contact-page .grid-3 a {
-    color: #ffffff !important;
-}
-
-/* =========================================================
-   FOOTER — EMAIL COLOR BEHAVIOR (SAFE GLOBAL)
-========================================================= */
-
-/* Footer email default WHITE */
-footer a[href^="mailto:support@gypsycartel.shop"] {
-    color: #ffffff !important;
-    transition: color 0.3s ease;
-}
-
-/* Footer email hover → ORANGE */
-footer a[href^="mailto:support@gypsycartel.shop"]:hover {
-    color: var(--primary-orange) !important;
-}
-/* =========================================================
-   CONTACT PAGE — RIBBON → TITLE GAP (FINAL LOCKED FIX)
-   EXACT GAP: 2rem
-========================================================= */
-
-/* Override default container padding ONLY for contact page */
-.contact-page .container {
-    padding-top: calc(80px + 2rem) !important; /* header height + 2rem */
-}
-
-/* Remove any extra top margins from title */
-.contact-page .container > h1 {
-    margin-top: 0 !important;
-    margin-bottom: 1rem; /* title → info */
-}
-/* =========================================================
-   FOOTER — CREATOR LINK COLOR FIX (SAFE)
-========================================================= */
-
-/* Default WHITE */
-footer a[href*="instagram.com"] {
-    color: #ffffff !important;
-    transition: color 0.3s ease;
-}
-
-/* Hover → ORANGE */
-footer a[href*="instagram.com"]:hover {
-    color: var(--primary-orange) !important;
-}
-/* =========================================================
-   DESIGN PAGE — LOGO → TEXT GAP FIX (2rem EXACT)
-========================================================= */
-
-/* Control logo spacing */
-.design-page .mg-logo-wrap {
-    margin-bottom: 2rem;
-}
-
-/* Remove extra top margin from heading */
-.design-page h1 {
-    margin-top: 0;
 }
