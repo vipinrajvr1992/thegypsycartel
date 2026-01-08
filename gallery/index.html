@@ -6,16 +6,59 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-          content="A curated gallery of architectural, interior, and workspace visualizations by Gypsy Cartel.">
+          content="Explore Gypsy Cartel’s premium gallery featuring hyper-realistic architectural visualization, luxury interiors, and modern workspace designs.">
 
-    <!-- FAVICON -->
-    <link rel="icon" href="/assets/logos/gypsy-cartel-icon.webp">
+    <!-- SITE ICON -->
+    <link rel="icon" type="image/webp" href="/assets/logos/gypsy-cartel-icon.webp">
+    <link rel="apple-touch-icon" href="/assets/logos/gypsy-cartel-icon.webp">
 
-    <!-- MAIN CSS -->
+    <!-- MAIN STYLES -->
     <link rel="stylesheet" href="/style.css">
+
+    <!-- GALLERY HOVER EFFECT (LOCAL ONLY) -->
+    <style>
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
+        }
+
+        .gallery-card {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 14px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(0.95);
+        }
+
+        .gallery-card h3 {
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .gallery-card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+    </style>
 </head>
 
-<body class="gallery-page">
+<body>
 
 <!-- CUSTOM CURSOR -->
 <div class="cursor-dot"></div>
@@ -24,27 +67,27 @@
 <!-- HEADER -->
 <div id="site-header"></div>
 
-<!-- PAGE CONTENT -->
+<!-- GALLERY SECTION -->
 <section class="container">
 
-    <div class="grid-3">
+    <div class="gallery-grid">
 
         <!-- BEDROOM -->
-        <div>
-            <img src="/assets/photos/BED-017.webp"
-                 alt="Luxury Master Bedroom"
-                 style="width:100%; border-radius:12px; margin-bottom:14px;">
+        <div class="gallery-card">
+            <div class="gallery-item">
+                <img src="/assets/photos/BED-017.webp" alt="Luxury Master Bedroom">
+            </div>
             <h3>LUXURY MASTER BEDROOM</h3>
             <p>
                 A calm and spacious bedroom interior with warm wood tones and soft ambient lighting.
             </p>
         </div>
 
-        <!-- CORPORATE WORKSPACE -->
-        <div>
-            <img src="/assets/photos/OFFICE-SPACE-023.webp"
-                 alt="Corporate Open Workspace"
-                 style="width:100%; border-radius:12px; margin-bottom:14px;">
+        <!-- OPEN OFFICE -->
+        <div class="gallery-card">
+            <div class="gallery-item">
+                <img src="/assets/photos/OFFICE-SPACE-023.webp" alt="Corporate Open Workspace">
+            </div>
             <h3>CORPORATE OPEN WORKSPACE</h3>
             <p>
                 High-efficiency open office layout designed for collaboration and modern workflow.
@@ -52,10 +95,10 @@
         </div>
 
         <!-- EXECUTIVE CABIN -->
-        <div>
-            <img src="/assets/photos/OFFICE-CABIN-012.webp"
-                 alt="Executive Office Cabin"
-                 style="width:100%; border-radius:12px; margin-bottom:14px;">
+        <div class="gallery-card">
+            <div class="gallery-item">
+                <img src="/assets/photos/OFFICE-CABIN-012.webp" alt="Executive Office Cabin">
+            </div>
             <h3>EXECUTIVE OFFICE CABIN</h3>
             <p>
                 Minimal executive workspace with premium finishes and professional ambience.
@@ -63,35 +106,46 @@
         </div>
 
         <!-- DIRECTOR CABIN -->
-        <div>
-            <img src="/assets/photos/OFFICE-CABIN-013.webp"
-                 alt="Modern Director Cabin"
-                 style="width:100%; border-radius:12px; margin-bottom:14px;">
+        <div class="gallery-card">
+            <div class="gallery-item">
+                <img src="/assets/photos/OFFICE-CABIN-013.webp" alt="Modern Director’s Cabin">
+            </div>
             <h3>MODERN DIRECTOR’S CABIN</h3>
             <p>
-                A refined office interior blending wood textures, lighting, and functional elegance.
+                A refined office interior blending wood textures, ambient lighting, and elegance.
             </p>
         </div>
 
-        <!-- TROPICAL COURTYARD HOUSE -->
-        <div>
-            <img src="/assets/photos/HOUSE-015.webp"
-                 alt="Tropical Courtyard Residence"
-                 style="width:100%; border-radius:12px; margin-bottom:14px;">
+        <!-- TROPICAL COURTYARD -->
+        <div class="gallery-card">
+            <div class="gallery-item">
+                <img src="/assets/photos/HOUSE-015.webp" alt="Tropical Courtyard Residence">
+            </div>
             <h3>TROPICAL COURTYARD RESIDENCE</h3>
             <p>
-                Kerala-inspired luxury home with open verandas, water elements, and greenery.
+                Kerala-inspired luxury home with open verandas, water elements, and lush landscaping.
             </p>
         </div>
 
         <!-- HERITAGE VILLA -->
-        <div>
-            <img src="/assets/photos/HOUSE-022.webp"
-                 alt="Heritage Style Villa"
-                 style="width:100%; border-radius:12px; margin-bottom:14px;">
+        <div class="gallery-card">
+            <div class="gallery-item">
+                <img src="/assets/photos/HOUSE-022.webp" alt="Heritage Style Villa">
+            </div>
             <h3>HERITAGE STYLE VILLA</h3>
             <p>
                 Classic sloped-roof villa architecture with elegant arches and traditional aesthetics.
+            </p>
+        </div>
+
+        <!-- CONTEMPORARY VILLA -->
+        <div class="gallery-card">
+            <div class="gallery-item">
+                <img src="/assets/photos/HOUSE-020.webp" alt="Contemporary Luxury Villa">
+            </div>
+            <h3>CONTEMPORARY LUXURY VILLA</h3>
+            <p>
+                A modern flat-roof villa designed with clean geometry, glass facades, and outdoor living.
             </p>
         </div>
 
