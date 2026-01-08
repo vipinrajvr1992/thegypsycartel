@@ -472,3 +472,27 @@ footer a:hover {
     justify-content: center;
     flex-wrap: wrap;
 }
+/* =========================================
+   DESIGN PAGE — MG LOGO → TEXT GAP FIX
+   EXACT: 2rem (LOCKED)
+========================================= */
+
+/* Left column layout */
+.design-page .grid-2 > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0 !important; /* kill flex gap */
+}
+
+/* MG logo */
+.design-page .grid-2 > div:first-child img {
+    margin-bottom: 2rem !important; /* ✅ EXACT GAP */
+    display: block;
+}
+
+/* Heading below logo */
+.design-page .grid-2 > div:first-child h1,
+.design-page .grid-2 > div:first-child h2 {
+    margin-top: 0 !important;  /* remove browser default */
+}
