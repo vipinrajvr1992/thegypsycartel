@@ -12,7 +12,7 @@
     <link rel="icon" href="/assets/logos/gypsy-cartel-icon.png" sizes="32x32">
     <link rel="apple-touch-icon" href="/assets/logos/gypsy-cartel-icon.png">
 
-    <!-- SCHEMA -->
+    <!-- ORGANIZATION SCHEMA -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -29,7 +29,7 @@
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="/style.css">
 
-    <!-- HERO FIX CSS -->
+    <!-- HERO OVERRIDES (SAFE & ISOLATED) -->
     <style>
         .hero {
             position: relative;
@@ -43,18 +43,17 @@
             overflow: hidden;
         }
 
+        /* 🔑 HERO LOTTIE SIZE CONTROL (1× SCALE) */
         .hero-lottie {
-            width: min(900px, 90vw);
+            width: min(700px, 85vw); /* ✅ PERFECT HERO SIZE */
             height: auto;
-            transform: scale(2); /* 🔥 2x SCALE */
-            transform-origin: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
         }
 
         @media (max-width: 768px) {
             .hero-lottie {
-                transform: scale(1.4);
-                margin-bottom: 2.5rem;
+                width: min(520px, 90vw);
+                margin-bottom: 2rem;
             }
         }
 
@@ -77,13 +76,15 @@
 
 <body>
 
-<!-- HEADER -->
+<!-- HEADER (LOADED VIA JS / PARTIAL) -->
 <div id="site-header"></div>
 
-<!-- HERO SECTION -->
+<!-- =======================
+     HERO SECTION
+======================== -->
 <section class="hero">
 
-    <!-- ✅ ONLY LOTTIE (NO STATIC LOGO) -->
+    <!-- ✅ ONLY LOTTIE ANIMATION (LOGO INSIDE JSON) -->
     <lottie-player
         class="hero-lottie"
         src="/assets/animations/hero-dots.json"
@@ -109,7 +110,7 @@
 
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER (LOADED VIA JS / PARTIAL) -->
 <div id="site-footer"></div>
 
 <!-- GLOBAL SCRIPT -->
