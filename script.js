@@ -1,7 +1,12 @@
+/* =========================================================
+   GYPSY CARTEL — GLOBAL SCRIPT (FINAL & STABLE)
+   Cursor always visible • Modal safe • No conflicts
+========================================================= */
+
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ===============================
-       CUSTOM CURSOR
+       CUSTOM CURSOR (ALWAYS ON)
     =============================== */
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorOutline = document.querySelector('.cursor-outline');
@@ -11,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (cursorDot && cursorOutline) {
 
-        /* 🔒 Activate custom cursor ONLY when ready */
         document.body.classList.add('gc-cursor-active');
 
         window.addEventListener('mousemove', (e) => {
@@ -22,7 +26,6 @@ document.addEventListener('DOMContentLoaded', () => {
             cursorDot.style.top = `${mouseY}px`;
         });
 
-        /* smooth follow using requestAnimationFrame (NO animation stacking) */
         const followCursor = () => {
             cursorOutline.style.left = `${mouseX}px`;
             cursorOutline.style.top = `${mouseY}px`;
@@ -30,103 +33,130 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         followCursor();
 
-        document.querySelectorAll('a, button, input, textarea').forEach(el => {
-            el.addEventListener('mouseenter', () => {
+        /* Elements that trigger cursor highlight */
+        const cursorTargets = `
+            a, button, input, textarea, select,
+            .apps-gallery-img,
+            .apps-gallery-arrow,
+            .apps-modal-close,
+            .apps-modal-arrow
+        `;
+
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.matches(cursorTargets)) {
                 cursorOutline.style.transform =
                     'translate(-50%, -50%) scale(1.5)';
-            });
-            el.addEventListener('mouseleave', () => {
+            }
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.matches(cursorTargets)) {
                 cursorOutline.style.transform =
                     'translate(-50%, -50%) scale(1)';
-            });
+            }
         });
     }
 
     /* ===============================
-       POLICY MODAL – FORCE SAFE STATE
+       POLICY MODAL – SAFE DEFAULT
     =============================== */
-    const modal = document.getElementById('policy-modal');
-    if (modal) {
-        modal.classList.add('gc-hidden'); // always hidden on load
+    const policyModal = document.getElementById('policy-modal');
+    if (policyModal) {
+        policyModal.classList.add('gc-hidden');
+    }
+
+    /* ===============================
+       APPS GALLERY MODAL (SCROLL + ARROWS)
+    =============================== */
+    const modal = document.getElementById('appsModal');
+    const modalImg = document.getElementById('appsModalImg');
+    const closeBtn = document.querySelector('.apps-modal-close');
+    const galleryImages = document.querySelectorAll('.apps-gallery-img');
+
+    let currentIndex = 0;
+
+    if (modal && modalImg && galleryImages.length) {
+
+        const showImage = (index) => {
+            currentIndex = index;
+            modalImg.src = galleryImages[currentIndex].src;
+            modal.style.display = 'flex';
+        };
+
+        galleryImages.forEach((img, index) => {
+            img.addEventListener('click', () => {
+                showImage(index);
+            });
+        });
+
+        /* Close modal */
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) modal.style.display = 'none';
+        });
+
+        /* Keyboard navigation */
+        document.addEventListener('keydown', (e) => {
+            if (modal.style.display !== 'flex') return;
+
+            if (e.key === 'ArrowRight') {
+                currentIndex = (currentIndex + 1) % galleryImages.length;
+                modalImg.src = galleryImages[currentIndex].src;
+            }
+
+            if (e.key === 'ArrowLeft') {
+                currentIndex =
+                    (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+                modalImg.src = galleryImages[currentIndex].src;
+            }
+
+            if (e.key === 'Escape') {
+                modal.style.display = 'none';
+            }
+        });
     }
 });
 
+
 /* ===============================
-   POLICY OPEN / CLOSE FUNCTIONS
+   POLICY OPEN / CLOSE
 =============================== */
 function openPolicy(type) {
     const modal = document.getElementById('policy-modal');
     const content = document.getElementById('policy-content');
-
     if (!modal || !content) return;
 
     if (type === 'privacy') {
         content.innerHTML = `
-            <h2 style="color:var(--primary-orange); margin-bottom:15px;">
-                Privacy Policy
-            </h2>
-            <p>
-                Gypsy Cartel respects your privacy. We collect only the
-                information you voluntarily provide through our website
-                forms to respond to inquiries and project requests.
-            </p>
-            <p>
-                We do not sell, rent, or share your personal data.
-                Form submissions may be securely processed using
-                trusted third-party services such as Formspree.
-            </p>
-            <p>
-                Reasonable security measures are taken, but no
-                online transmission is 100% secure.
-            </p>
-            <p>
-                For questions, contact
-                <strong>support@gypsycartel.shop</strong>
-            </p>
+            <h2 style="color:var(--primary-orange)">Privacy Policy</h2>
+            <p>We respect your privacy. No data is sold or shared.</p>
         `;
     }
 
     if (type === 'terms') {
         content.innerHTML = `
-            <h2 style="color:var(--primary-orange); margin-bottom:15px;">
-                Terms of Service
-            </h2>
-            <p>
-                By accessing or using the Gypsy Cartel website,
-                you agree to comply with these terms.
-            </p>
-            <p>
-                Submitting a project request does not guarantee
-                acceptance or delivery. All pricing, timelines,
-                and deliverables are discussed separately.
-            </p>
-            <p>
-                All designs, graphics, software, logos, and content
-                are the intellectual property of Gypsy Cartel.
-                Unauthorized use is prohibited.
-            </p>
-            <p>
-                Gypsy Cartel is not liable for damages arising
-                from use or inability to use this website.
-            </p>
+            <h2 style="color:var(--primary-orange)">Terms of Service</h2>
+            <p>All content belongs to Gypsy Cartel.</p>
         `;
     }
 
-    modal.scrollTop = 0;   // prevent half-open scroll bug
+    modal.scrollTop = 0;
     modal.classList.remove('gc-hidden');
 }
 
-/* ===============================
-   CLOSE POLICY MODAL
-=============================== */
 function closePolicy() {
     const modal = document.getElementById('policy-modal');
-    if (modal) {
-        modal.classList.add('gc-hidden');
-    }
+    if (modal) modal.classList.add('gc-hidden');
 }
+
+
 /* ===============================
-   DESIGN FORM — AJAX SUBMIT (NO REDIRECT)
+   DESIGN FORM — AJAX SUBMIT
 =============================== */
 const designForm = document.getElementById('designForm');
 
@@ -141,36 +171,33 @@ if (designForm) {
             const response = await fetch(designForm.action, {
                 method: 'POST',
                 body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
+                headers: { Accept: 'application/json' }
             });
 
             if (response.ok) {
                 designForm.reset();
-                successMsg.style.display = 'block';
+                if (successMsg) successMsg.style.display = 'block';
             } else {
                 alert('Submission failed. Please try again.');
             }
-        } catch (error) {
+        } catch {
             alert('Network error. Please try again.');
         }
     });
 }
+
+
 /* ===============================
-   LOAD HEADER & FOOTER PARTIALS
-   (STATIC SAFE — GITHUB PAGES)
+   LOAD HEADER & FOOTER
 =============================== */
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Load Header
     fetch('/partials/header.html')
         .then(res => res.text())
         .then(html => {
             const headerMount = document.getElementById('site-header');
             if (headerMount) headerMount.innerHTML = html;
 
-            // Activate current nav
             const path = window.location.pathname;
             document.querySelectorAll('nav a[data-nav]').forEach(link => {
                 if (path === '/' && link.dataset.nav === 'home') {
@@ -181,16 +208,13 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-    // Load Footer
     fetch('/partials/footer.html')
         .then(res => res.text())
         .then(html => {
             const footerMount = document.getElementById('site-footer');
             if (footerMount) footerMount.innerHTML = html;
 
-            // Dynamic Year
             const y = document.getElementById('year');
             if (y) y.textContent = new Date().getFullYear();
         });
-
 });
