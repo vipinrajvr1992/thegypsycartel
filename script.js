@@ -1,12 +1,20 @@
 /* =========================================================
    GYPSY CARTEL — GLOBAL SCRIPT (FINAL & STABLE)
-   Cursor always visible • Modal safe • No conflicts
+   Desktop cursor ON • Mobile cursor OFF • Gallery premium
 ========================================================= */
 
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ===============================
-       CUSTOM CURSOR (ALWAYS ON)
+       DEVICE DETECTION
+    =============================== */
+    const isTouchDevice =
+        'ontouchstart' in window ||
+        navigator.maxTouchPoints > 0 ||
+        navigator.msMaxTouchPoints > 0;
+
+    /* ===============================
+       CUSTOM CURSOR (DESKTOP ONLY)
     =============================== */
     const cursorDot = document.querySelector('.cursor-dot');
     const cursorOutline = document.querySelector('.cursor-outline');
@@ -14,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let mouseX = 0;
     let mouseY = 0;
 
-    if (cursorDot && cursorOutline) {
+    if (!isTouchDevice && cursorDot && cursorOutline) {
 
         document.body.classList.add('gc-cursor-active');
 
@@ -33,7 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
         };
         followCursor();
 
-        /* Elements that trigger cursor highlight */
         const cursorTargets = `
             a, button, input, textarea, select,
             .apps-gallery-img,
@@ -55,18 +62,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     'translate(-50%, -50%) scale(1)';
             }
         });
+
+    } else {
+        /* Mobile — disable cursor */
+        if (cursorDot) cursorDot.style.display = 'none';
+        if (cursorOutline) cursorOutline.style.display = 'none';
+        document.body.style.cursor = 'auto';
     }
 
     /* ===============================
-       POLICY MODAL – SAFE DEFAULT
+       POLICY MODAL SAFE DEFAULT
     =============================== */
     const policyModal = document.getElementById('policy-modal');
-    if (policyModal) {
-        policyModal.classList.add('gc-hidden');
-    }
+    if (policyModal) policyModal.classList.add('gc-hidden');
 
     /* ===============================
-       APPS GALLERY MODAL (SCROLL + ARROWS)
+       APPS GALLERY MODAL (ADVANCED)
     =============================== */
     const modal = document.getElementById('appsModal');
     const modalImg = document.getElementById('appsModalImg');
@@ -74,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const galleryImages = document.querySelectorAll('.apps-gallery-img');
 
     let currentIndex = 0;
+    let touchStartX = 0;
 
     if (modal && modalImg && galleryImages.length) {
 
@@ -84,9 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         galleryImages.forEach((img, index) => {
-            img.addEventListener('click', () => {
-                showImage(index);
-            });
+            img.addEventListener('click', () => showImage(index));
         });
 
         /* Close modal */
@@ -104,21 +114,38 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('keydown', (e) => {
             if (modal.style.display !== 'flex') return;
 
-            if (e.key === 'ArrowRight') {
-                currentIndex = (currentIndex + 1) % galleryImages.length;
-                modalImg.src = galleryImages[currentIndex].src;
-            }
-
-            if (e.key === 'ArrowLeft') {
-                currentIndex =
-                    (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-                modalImg.src = galleryImages[currentIndex].src;
-            }
-
-            if (e.key === 'Escape') {
-                modal.style.display = 'none';
-            }
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'Escape') modal.style.display = 'none';
         });
+
+        /* Mouse wheel scroll */
+        modal.addEventListener('wheel', (e) => {
+            e.preventDefault();
+            e.deltaY > 0 ? nextImage() : prevImage();
+        }, { passive: false });
+
+        /* Touch swipe support */
+        modal.addEventListener('touchstart', (e) => {
+            touchStartX = e.touches[0].clientX;
+        });
+
+        modal.addEventListener('touchend', (e) => {
+            const touchEndX = e.changedTouches[0].clientX;
+            if (touchStartX - touchEndX > 50) nextImage();
+            if (touchEndX - touchStartX > 50) prevImage();
+        });
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % galleryImages.length;
+            modalImg.src = galleryImages[currentIndex].src;
+        }
+
+        function prevImage() {
+            currentIndex =
+                (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            modalImg.src = galleryImages[currentIndex].src;
+        }
     }
 });
 
