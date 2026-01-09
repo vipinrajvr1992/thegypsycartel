@@ -728,3 +728,16 @@ body:not(.about-page):not(.design-page):not(.contact-page):not(.fashion-page):no
         radial-gradient(circle at 70% 80%, rgba(255,106,26,0.10), transparent 55%),
         #000;
 }
+/* =========================================
+   CONTACT PAGE — WHATSAPP HOVER ZOOM (FIXED)
+========================================= */
+
+.contact-page .contact-whatsapp {
+    display: inline-block;              /* 🔑 REQUIRED */
+    transition: transform 0.35s ease;
+    will-change: transform;
+}
+
+.contact-page .contact-whatsapp:hover {
+    transform: scale(1.15);
+}
