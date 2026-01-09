@@ -729,18 +729,43 @@ body:not(.about-page):not(.design-page):not(.contact-page):not(.fashion-page):no
         #000;
 }
 /* =========================================
-   CONTACT PAGE — WHATSAPP TEXT EMPHASIS
+   CONTACT PAGE — WHATSAPP HIGHLIGHT (MINIMAL)
    No zoom • No underline • No overlap
 ========================================= */
 
-.contact-page .contact-whatsapp {
-    font-weight: 600; /* slightly bold */
-    letter-spacing: 0.3px;
-    transition: color 0.25s ease, text-shadow 0.25s ease;
+.contact-page a[href*="wa.me"] {
+    font-weight: 600;
+    color: var(--primary-orange);
+    position: relative;
+    transition: opacity 0.3s ease;
 }
 
-/* Subtle premium highlight on hover */
-.contact-page .contact-whatsapp:hover {
-    color: var(--primary-orange);
-    text-shadow: 0 0 10px rgba(255,106,26,0.35);
+/* Subtle breathing glow */
+.contact-page a[href*="wa.me"]::after {
+    content: "";
+    position: absolute;
+    left: -6px;
+    right: -6px;
+    bottom: -2px;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255,106,26,0.6),
+        transparent
+    );
+    opacity: 0.6;
+    animation: whatsappPulse 2.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* Hover — slightly stronger, still clean */
+.contact-page a[href*="wa.me"]:hover {
+    opacity: 1;
+}
+
+/* Animation */
+@keyframes whatsappPulse {
+    0%, 100% { opacity: 0.35; }
+    50% { opacity: 0.85; }
 }
