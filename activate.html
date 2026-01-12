@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>Gypsy Optimizer – License Activation</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 body {
     margin: 0;
@@ -12,6 +12,7 @@ body {
     color: white;
     font-family: Arial, Helvetica, sans-serif;
 }
+
 .container {
     max-width: 500px;
     margin: 80px auto;
@@ -20,10 +21,17 @@ body {
     border-radius: 12px;
     box-shadow: 0 0 40px rgba(0,255,255,0.1);
 }
+
 h1 {
     text-align: center;
     color: #00f6ff;
 }
+
+p {
+    text-align: center;
+    color: #ccc;
+}
+
 input, button {
     width: 100%;
     padding: 14px;
@@ -32,30 +40,38 @@ input, button {
     border: none;
     font-size: 16px;
 }
+
 input {
     background: #0b0f14;
     color: white;
     border: 1px solid #00f6ff44;
 }
+
 button {
     background: #00f6ff;
     color: black;
     cursor: pointer;
     font-weight: bold;
 }
+
 button:hover {
     background: #00d9e0;
 }
+
 .status {
     margin-top: 15px;
     text-align: center;
+    min-height: 24px;
 }
+
 .success {
     color: #00ff9c;
 }
+
 .error {
     color: #ff4d4d;
 }
+
 .footer {
     margin-top: 25px;
     text-align: center;
@@ -66,52 +82,65 @@ button:hover {
 </head>
 
 <body>
+
 <div class="container">
-<h1>Gypsy Optimizer</h1>
-<p>Enter your license key and device ID to activate your software.</p>
+    <h1>Gypsy Optimizer</h1>
+    <p>Enter your license key and device ID to activate your software.</p>
 
-<input id="license" placeholder="Enter License Key">
-<input id="hwid" placeholder="Enter Device ID (HWID)">
-<button onclick="activate()">Activate</button>
+    <input id="license" placeholder="Enter License Key">
+    <input id="hwid" placeholder="Enter Device ID (HWID)">
 
-<div id="status" class="status"></div>
+    <button onclick="activate()">Activate</button>
 
-<div class="footer">
-support@gypsycartel.shop
-</div>
+    <div id="status" class="status"></div>
+
+    <div class="footer">
+        support@gypsycartel.shop
+    </div>
 </div>
 
 <script>
-async function activate(){
-    const license = document.getElementById("license").value.trim();
+async function activate() {
+    const key = document.getElementById("license").value.trim();
     const hwid = document.getElementById("hwid").value.trim();
     const status = document.getElementById("status");
 
     status.innerHTML = "Checking license...";
 
-    if(!license || !hwid){
-        status.innerHTML = "<span class='error'>Missing license or HWID</span>";
+    if (!key || !hwid) {
+        status.innerHTML = "<span class='error'>Please enter license key and HWID.</span>";
         return;
     }
 
     try {
         const res = await fetch("https://web-production-eed1e8.up.railway.app/activate", {
             method: "POST",
-            headers: {"Content-Type":"application/json"},
-            body: JSON.stringify({license: license, hwid: hwid})
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                key: key,
+                hwid: hwid
+            })
         });
 
         const data = await res.json();
 
-        if(data.status === "ok"){
-            status.innerHTML = "<span class='success'>Activated! You can open the app now.</span>";
-        } else {
-            status.innerHTML = "<span class='error'>" + data.message + "</span>";
+        if (data.status === "activated" || data.status === "valid") {
+            status.innerHTML = "<span class='success'>Activation successful! You can open the app.</span>";
         }
-    } catch(err){
-        status.innerHTML = "<span class='error'>Server unreachable</span>";
+        else if (data.status === "blocked") {
+            status.innerHTML = "<span class='error'>This license is already used on another PC.</span>";
+        }
+        else {
+            status.innerHTML = "<span class='error'>Invalid license key.</span>";
+        }
+
+    } catch (e) {
+        status.innerHTML = "<span class='error'>Cannot connect to license server.</span>";
     }
 }
 </script>
+
 </body>
 </html>
