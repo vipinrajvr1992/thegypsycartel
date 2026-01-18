@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Gypsy Optimizer – License Activation</title>
+<title>Gypsy Cartel – Software Activation</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
@@ -14,22 +14,23 @@ body {
 }
 
 .container {
-    max-width: 500px;
+    max-width: 480px;
     margin: 80px auto;
     padding: 30px;
     background: #121821;
     border-radius: 12px;
-    box-shadow: 0 0 40px rgba(0,255,255,0.1);
+    box-shadow: 0 0 40px rgba(255,122,24,0.15);
 }
 
 h1 {
     text-align: center;
-    color: #00f6ff;
+    color: #ff7a18;
 }
 
 p {
     text-align: center;
     color: #ccc;
+    font-size: 14px;
 }
 
 input, button {
@@ -38,30 +39,30 @@ input, button {
     margin-top: 12px;
     border-radius: 6px;
     border: none;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 input {
     background: #0b0f14;
     color: white;
-    border: 1px solid #00f6ff44;
+    border: 1px solid #ff7a1844;
 }
 
 button {
-    background: #00f6ff;
+    background: #ff7a18;
     color: black;
     cursor: pointer;
     font-weight: bold;
 }
 
 button:hover {
-    background: #00d9e0;
+    background: #e66a10;
 }
 
 .status {
     margin-top: 15px;
     text-align: center;
-    min-height: 24px;
+    min-height: 22px;
 }
 
 .success {
@@ -84,13 +85,12 @@ button:hover {
 <body>
 
 <div class="container">
-    <h1>Gypsy Optimizer</h1>
-    <p>Enter your license key and device ID to activate your software.</p>
+    <h1>Gypsy Cartel</h1>
+    <p>Enter your license key to activate Gypsy Optimizer.</p>
 
     <input id="license" placeholder="Enter License Key">
-    <input id="hwid" placeholder="Enter Device ID (HWID)">
 
-    <button onclick="activate()">Activate</button>
+    <button onclick="activate()">Activate License</button>
 
     <div id="status" class="status"></div>
 
@@ -102,42 +102,51 @@ button:hover {
 <script>
 async function activate() {
     const key = document.getElementById("license").value.trim();
-    const hwid = document.getElementById("hwid").value.trim();
     const status = document.getElementById("status");
 
-    status.innerHTML = "Checking license...";
-
-    if (!key || !hwid) {
-        status.innerHTML = "<span class='error'>Please enter license key and HWID.</span>";
+    if (!key) {
+        status.innerHTML = "<span class='error'>Please enter your license key.</span>";
         return;
     }
 
+    status.innerHTML = "Activating license...";
+
+    // Temporary browser HWID (launcher will override this)
+    const hwid = navigator.userAgent + "-" + screen.width + "x" + screen.height;
+
     try {
-        const res = await fetch("https://web-production-eed1e8.up.railway.app/activate", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                key: key,
-                hwid: hwid
-            })
-        });
+        const res = await fetch(
+            "https://web-production-eed1e8.up.railway.app/start_session",
+            {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ key, hwid })
+            }
+        );
 
         const data = await res.json();
 
-        if (data.status === "activated" || data.status === "valid") {
-            status.innerHTML = "<span class='success'>Activation successful! You can open the app.</span>";
+        if (data.status === "ok") {
+            localStorage.setItem("gypsy_session_token", data.token);
+            status.innerHTML =
+                "<span class='success'>License activated successfully. You may now open the app.</span>";
+        }
+        else if (data.status === "limit") {
+            status.innerHTML =
+                "<span class='error'>Device limit reached for this license.</span>";
         }
         else if (data.status === "blocked") {
-            status.innerHTML = "<span class='error'>This license is already used on another PC.</span>";
+            status.innerHTML =
+                "<span class='error'>This license has been blocked.</span>";
         }
         else {
-            status.innerHTML = "<span class='error'>Invalid license key.</span>";
+            status.innerHTML =
+                "<span class='error'>Invalid license key.</span>";
         }
 
-    } catch (e) {
-        status.innerHTML = "<span class='error'>Cannot connect to license server.</span>";
+    } catch (err) {
+        status.innerHTML =
+            "<span class='error'>Unable to connect to license server.</span>";
     }
 }
 </script>
