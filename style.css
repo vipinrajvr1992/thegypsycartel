@@ -1035,3 +1035,30 @@ body:not(.about-page):not(.design-page):not(.contact-page):not(.fashion-page):no
     color: var(--text-muted);
     line-height: 1.7;
 }
+/* =========================================================
+   HOME PAGE — SUBTLE SECTION FADE-IN (SAFE)
+   Matches About/Design/Fashion animation style
+========================================================= */
+
+/* Fade + Slide effect for homepage sections */
+.home-section,
+.home-cta {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: homeReveal 0.8s ease forwards;
+}
+
+/* Stagger timing (smooth premium flow) */
+.home-section:nth-of-type(1) { animation-delay: 0.15s; }
+.home-section:nth-of-type(2) { animation-delay: 0.30s; }
+.home-section:nth-of-type(3) { animation-delay: 0.45s; }
+.home-section:nth-of-type(4) { animation-delay: 0.60s; }
+.home-cta                 { animation-delay: 0.75s; }
+
+/* Keyframes */
+@keyframes homeReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
