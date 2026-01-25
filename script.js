@@ -287,3 +287,32 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
 });
+/* =========================================
+   STUDIO — CUSTOM DROPDOWN FINAL (ONLY ONE)
+========================================= */
+
+document.querySelectorAll(".gc-dropdown").forEach(drop => {
+
+    const selected = drop.querySelector(".gc-dropdown-selected");
+    const hiddenInput = drop.querySelector("input[type='hidden']");
+    const items = drop.querySelectorAll("li");
+
+    selected.addEventListener("click", () => {
+        drop.classList.toggle("open");
+    });
+
+    items.forEach(item => {
+        item.addEventListener("click", () => {
+            selected.textContent = item.textContent;
+            hiddenInput.value = item.dataset.value;
+            drop.classList.remove("open");
+        });
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!drop.contains(e.target)) {
+            drop.classList.remove("open");
+        }
+    });
+
+});
