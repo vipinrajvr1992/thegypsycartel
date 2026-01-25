@@ -935,12 +935,13 @@ body:not(.about-page):not(.design-page):not(.contact-page):not(.fashion-page):no
     box-shadow: 0 0 0 rgba(255,140,0,0);
 }
 
+/* Hover Lift + Glow */
 .career-apply-btn:hover {
     transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 0 25px rgba(255,140,0,0.45);
+    box-shadow: 0 0 22px rgba(255,140,0,0.35);
 }
 
-/* Shine Sweep */
+/* Shine Sweep (Fixed: Less Opacity + Behind Text) */
 .career-apply-btn::before {
     content: "";
     position: absolute;
@@ -948,13 +949,25 @@ body:not(.about-page):not(.design-page):not(.contact-page):not(.fashion-page):no
     left: -120%;
     width: 120%;
     height: 100%;
-    background: rgba(255,255,255,0.25);
+
+    /* ✅ Reduced shine brightness */
+    background: rgba(255,255,255,0.15);
+
     transform: skewX(-25deg);
+
+    /* ✅ Keep shine behind text */
+    z-index: 0;
 }
 
 .career-apply-btn:hover::before {
     left: 120%;
-    transition: 0.7s ease;
+    transition: 0.75s ease;
+}
+
+/* ✅ Force Text Above Shine */
+.career-apply-btn span {
+    position: relative;
+    z-index: 2;
 }
 
 /* Open Roles Link */
