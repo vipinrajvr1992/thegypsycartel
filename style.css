@@ -1205,3 +1205,46 @@ body.select-open option {
     transform: translateY(-6px);
     box-shadow: 0 25px 60px rgba(0,0,0,0.45);
 }
+/* =========================================================
+   CAREERS PAGE — PREMIUM LOAD ANIMATION (SAFE)
+   Only content animates • Header/Footer untouched
+========================================================= */
+
+/* Fade-in ONLY main careers content */
+.legal-page {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: careersFade 0.7s ease forwards;
+}
+
+/* Keyframe */
+@keyframes careersFade {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Text reveal stagger (premium feel) */
+.legal-page h1,
+.legal-page h3,
+.legal-page p,
+.legal-page ul {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: careersText 0.8s ease forwards;
+}
+
+/* Stagger timing */
+.legal-page h1 { animation-delay: 0.10s; }
+.legal-page p  { animation-delay: 0.20s; }
+.legal-page h3 { animation-delay: 0.30s; }
+.legal-page ul { animation-delay: 0.40s; }
+
+/* Keyframe */
+@keyframes careersText {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
