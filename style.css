@@ -471,3 +471,49 @@ footer a:hover {
         display: none !important;
     }
 }
+/* =========================================================
+   PREMIUM CUSTOM DROPDOWN — CURSOR PERFECT FIX
+========================================================= */
+
+.gc-dropdown {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.gc-dropdown-selected {
+    padding: 14px;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-soft);
+    color: #fff;
+    transition: 0.25s ease;
+}
+
+.gc-dropdown-selected:hover {
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 0 2px var(--orange-glow);
+}
+
+.gc-dropdown-list {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+    z-index: 999;
+}
+
+.gc-dropdown-list li {
+    padding: 14px;
+    color: #fff;
+    transition: 0.25s ease;
+}
+
+.gc-dropdown-list li:hover {
+    background: rgba(255,106,26,0.12);
+    color: var(--primary-orange);
+}
