@@ -26,32 +26,6 @@
 
     <!-- Cloudflare Turnstile -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-
-    <!-- ✅ STUDIO FIX (ONLY ALIGNMENT + HEADING) -->
-    <style>
-        /* Center left content properly */
-        .design-page .grid-2 > div:first-child {
-            align-items: center;
-            text-align: center;
-        }
-
-        /* Logo spacing */
-        .design-page .mg-logo-wrap {
-            margin-bottom: 2rem;
-        }
-
-        /* Heading fix */
-        .design-page h1 {
-            margin-top: 0;
-            line-height: 1.2;
-        }
-
-        /* Keep ARCHITECTURE & GRAPHICS in one line */
-        .design-page h1 span {
-            white-space: nowrap;
-            display: inline-block;
-        }
-    </style>
 </head>
 
 <body class="design-page">
@@ -60,33 +34,32 @@
 <div class="cursor-dot"></div>
 <div class="cursor-outline"></div>
 
-<!-- HEADER (DO NOT TOUCH) -->
+<!-- HEADER -->
 <div id="site-header"></div>
 
 <!-- ======================
      STUDIO PAGE CONTENT
 ====================== -->
-<section class="container">
+<section class="container studio-section">
 
-    <div class="grid-2">
+    <div class="grid-2 studio-grid">
 
-        <!-- LEFT CONTENT -->
-        <div>
+        <!-- ======================
+             LEFT CONTENT
+        ====================== -->
+        <div class="studio-left">
 
             <!-- Logo -->
             <div class="mg-logo-wrap">
                 <img
                     src="/assets/logos/mg-creations.webp"
-                    alt="MG Creations Logo"
-                    style="max-width:260px;width:100%;height:auto;">
+                    alt="MG Creations Logo">
             </div>
 
-            <!-- ✅ FIXED HEADING -->
+            <!-- Heading -->
             <h1>
                 HYPER-REALISTIC<br>
-                <span style="color:var(--primary-orange)">
-                    ARCHITECTURE & GRAPHICS
-                </span>
+                <span>ARCHITECTURE & GRAPHICS</span>
             </h1>
 
             <!-- Description -->
@@ -98,12 +71,12 @@
 
         </div>
 
-        <!-- RIGHT FORM -->
-        <div style="background:var(--bg-surface); padding:40px; border-radius:12px;">
+        <!-- ======================
+             RIGHT FORM CARD
+        ====================== -->
+        <div class="studio-form-card">
 
-            <h3 style="color:var(--primary-orange); margin-bottom:25px;">
-                START A PROJECT
-            </h3>
+            <h3>START A PROJECT</h3>
 
             <form
                 id="designForm"
@@ -117,7 +90,6 @@
                     type="text"
                     name="name"
                     placeholder="Your Name"
-                    autocomplete="name"
                     required>
 
                 <!-- Email -->
@@ -126,7 +98,6 @@
                     type="email"
                     name="email"
                     placeholder="Email"
-                    autocomplete="email"
                     required>
 
                 <!-- Phone -->
@@ -135,10 +106,9 @@
                     type="tel"
                     name="tel"
                     placeholder="Phone Number"
-                    autocomplete="tel"
                     required>
 
-                <!-- ✅ PREMIUM CUSTOM DROPDOWN -->
+                <!-- PREMIUM CUSTOM DROPDOWN -->
                 <div class="gc-dropdown" data-name="service">
 
                     <div class="gc-dropdown-selected cursor-fix">
@@ -146,12 +116,24 @@
                     </div>
 
                     <ul class="gc-dropdown-list">
-                        <li data-value="architecture-interior">Architecture & Interiors</li>
-                        <li data-value="3d-visualization">3D Visualization</li>
-                        <li data-value="branding-design">Branding & Digital Design</li>
-                        <li data-value="floor-plans">2D / 3D Floor Plans</li>
-                        <li data-value="web-branding">Website & Brand Identity</li>
-                        <li data-value="other">Other / Custom Project</li>
+                        <li data-value="architecture-interior">
+                            Architecture & Interiors
+                        </li>
+                        <li data-value="3d-visualization">
+                            3D Visualization
+                        </li>
+                        <li data-value="branding-design">
+                            Branding & Digital Design
+                        </li>
+                        <li data-value="floor-plans">
+                            2D / 3D Floor Plans
+                        </li>
+                        <li data-value="web-branding">
+                            Website & Brand Identity
+                        </li>
+                        <li data-value="other">
+                            Other / Custom Project
+                        </li>
                     </ul>
 
                     <!-- Hidden Input -->
@@ -169,22 +151,16 @@
                 <!-- Turnstile -->
                 <div class="cf-turnstile"
                      data-sitekey="0x4AAAAAACK2g8v3gHryb9Aq"
-                     data-theme="dark"
-                     style="margin:18px 0;">
+                     data-theme="dark">
                 </div>
 
-                <!-- Submit -->
-                <button
-                    type="submit"
-                    class="btn btn-primary cursor-fix"
-                    style="width:100%; margin-top:10px;">
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary cursor-fix">
                     INITIALIZE REQUEST
                 </button>
 
                 <!-- Success Message -->
-                <p
-                    id="design-success"
-                    style="display:none; margin-top:14px; color:#00ff8f;">
+                <p id="design-success">
                     ✓ Message sent successfully. We’ll contact you shortly.
                 </p>
 
@@ -196,7 +172,7 @@
 
 </section>
 
-<!-- FOOTER (DO NOT TOUCH) -->
+<!-- FOOTER -->
 <div id="site-footer"></div>
 
 <!-- GLOBAL SCRIPT -->
