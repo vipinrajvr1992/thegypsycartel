@@ -1026,8 +1026,11 @@ footer a:hover {
     }
 }
 
-/* NAV HOVER + ACTIVE UNDERLINE — STABLE ORANGE */
+/* =========================================================
+   NAV ACTIVE TEXT + HOVER UNDERLINE — FINAL PERFECT
+========================================================= */
 
+/* Underline hidden by default */
 header nav a::after {
     content: "";
     position: absolute;
@@ -1040,14 +1043,22 @@ header nav a::after {
     transition: width 0.3s ease;
 }
 
+/* Hover underline only */
 header nav a:hover::after {
     width: 100%;
 }
 
-header nav a.active::after {
-    width: 100% !important;
-}
-
+/* Active page = ORANGE TEXT ONLY (NO underline by default) */
 header nav a.active {
     color: var(--primary-orange) !important;
+}
+
+/* Active underline removed unless hovered */
+header nav a.active::after {
+    width: 0% !important;
+}
+
+/* Active underline appears only when cursor is there */
+header nav a.active:hover::after {
+    width: 100% !important;
 }
