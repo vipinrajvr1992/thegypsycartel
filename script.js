@@ -71,17 +71,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Attach hover to all clickable elements
-        attachCursorHover(`
-            a,
-            button,
-            .btn,
-            .apps-gallery-img,
-            .gc-dropdown-selected,
-            .gc-dropdown-list li,
-            .apps-gallery-arrow,
-            .apps-modal-arrow,
-            .apps-modal-close
-        `);
+       attachCursorHover(`
+a, button, .btn,
+.apps-gallery-img,
+input, textarea, select,
+.gc-dropdown-selected,
+.gc-dropdown-list li
+`);
 
         // NOTE: Input hiding removed completely (no flicker)
     }
