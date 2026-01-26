@@ -1,25 +1,33 @@
 /* =========================================================
    GYPSY CARTEL — FUTURISTIC MINIMAL THEME
-   VERSION: FINAL MASTER (FULL FUNCTION)
-   STATUS: PRODUCTION READY
+   VERSION: FINAL MASTER CSS (FULL PRODUCTION)
+   STATUS: LOCKED + CLEAN + NO CONFLICTS
+
    INCLUDES:
-   - Studio Fix (Locked)
-   - Apps Gallery (Horizontal + Modal)
-   - Custom Cursor (Smart Logic)
-   - Home Page Sections & Animations
-   - Global Page Transitions
+   - Cursor Engine Safe CSS
+   - Inputs Fixed
+   - Active Nav Highlight Fix
+   - Hover Underline Only
+   - Global Page Load Animation
+   - Header/Footer Animation Disabled
+   - Apps Modal + Gallery Premium
+   - Studio Dropdown Locked
+   - Contact + Careers + Footer Complete
+   - Mobile Safe Cursor Disable
 ========================================================= */
+
 
 /* =========================================================
    1. GOOGLE FONTS
 ========================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap');
 
+
 /* =========================================================
    2. ROOT VARIABLES — BRAND CONTROL
 ========================================================= */
 :root {
-    /* --- COLORS --- */
+
     --bg-deep: #050505;
     --bg-surface: #0f0f0f;
     --bg-elevated: #161616;
@@ -32,19 +40,18 @@
 
     --border-soft: rgba(255,255,255,0.08);
 
-    /* --- DIMENSIONS --- */
     --header-height: 80px;
     --container-width: 1200px;
 }
 
+
 /* =========================================================
-   3. RESET & BASE STYLES
+   3. RESET & BASE STYLES (SAFE)
 ========================================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none; /* Default to Custom Cursor */
 }
 
 html {
@@ -56,14 +63,20 @@ body {
         radial-gradient(circle at 30% 15%, rgba(255,106,26,0.06), transparent 45%),
         radial-gradient(circle at 70% 85%, rgba(255,106,26,0.05), transparent 45%),
         linear-gradient(180deg, #050505, #070707 45%, #050505);
+
     color: var(--text-main);
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
+
     overflow-x: hidden;
     position: relative;
+
+    /* ✅ Custom Cursor Only Here */
+    cursor: none;
 }
 
-/* Global Grid Overlay Pattern */
+
+/* Grid Overlay */
 body::before {
     content: "";
     position: fixed;
@@ -74,6 +87,7 @@ body::before {
     pointer-events: none;
     z-index: 0;
 }
+
 
 /* =========================================================
    4. TYPOGRAPHY
@@ -92,17 +106,17 @@ p {
 }
 
 a {
-    color: inherit;
     text-decoration: none;
-    transition: 0.3s ease;
+    color: inherit;
 }
 
 ul {
     list-style: none;
 }
 
+
 /* =========================================================
-   5. CUSTOM CURSOR & FIXES
+   5. CUSTOM CURSOR (CSS SUPPORT ONLY)
 ========================================================= */
 .cursor-dot,
 .cursor-outline {
@@ -111,8 +125,8 @@ ul {
     left: 0;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    pointer-events: none;
-    z-index: 10000;
+    pointer-events: none !important;
+    z-index: 99999;
 }
 
 .cursor-dot {
@@ -125,53 +139,56 @@ ul {
     width: 40px;
     height: 40px;
     border: 1px solid rgba(255,255,255,0.6);
-    transition: transform 0.15s ease;
+
+    /* ✅ Physics Cursor = No Transition */
+    transition: none !important;
 }
 
-/* --- CRITICAL CURSOR FIXES --- */
-
-/* Force custom cursor hidden in specific states */
-.cursor-fix {
-    cursor: none !important;
-}
-
-/* 1. Native cursor for Select elements (Usability) */
-select {
-    cursor: none !important;
-}
-
-select option {
-    cursor: none !important;
-}
-
-/* 2. Hide custom cursor when a dropdown is active/open */
-body.select-open .cursor-dot,
-body.select-open .cursor-outline {
-    opacity: 0 !important;
-}
-
-/* 3. Restore system cursor inside open selects */
-body.select-open select,
-body.select-open option {
-    cursor: auto !important;
-}
 
 /* =========================================================
-   6. HEADER & NAVIGATION
+   CURSOR OVERRIDES (USABILITY FIX)
+========================================================= */
+
+/* Inputs show typing cursor */
+input,
+textarea {
+    cursor: text !important;
+}
+
+/* Buttons + Links show pointer */
+a,
+button,
+.btn {
+    cursor: pointer !important;
+}
+
+/* Select dropdown safe */
+select {
+    cursor: pointer !important;
+}
+
+
+/* =========================================================
+   6. HEADER & NAVIGATION (LOCKED)
 ========================================================= */
 header {
     position: fixed;
     top: 0;
     width: 100%;
     height: var(--header-height);
+
     padding: 0 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     background: rgba(5,5,5,0.88);
     backdrop-filter: blur(16px);
+
     border-bottom: 1px solid var(--border-soft);
     z-index: 1000;
+
+    animation: none !important;
 }
 
 .logo-icon {
@@ -184,32 +201,52 @@ header nav ul {
     gap: 28px;
 }
 
+
+/* =========================================================
+   NAV ACTIVE ORANGE ONLY + HOVER UNDERLINE ONLY
+========================================================= */
 header nav a {
     font-size: 0.85rem;
     font-weight: 600;
-    color: var(--text-muted);
+    color: #ffffff !important;
     position: relative;
+    transition: none !important;
 }
 
-header nav a:hover,
+/* ACTIVE PAGE */
 header nav a.active {
     color: var(--primary-orange) !important;
 }
 
-/* Active Link Indicator */
-header nav a.active::after {
+/* Underline hidden default */
+header nav a::after {
     content: "";
     position: absolute;
     left: 0;
     bottom: -6px;
-    width: 100%;
+    width: 0%;
     height: 2px;
     background: var(--primary-orange);
-    opacity: 1;
+    transition: width 0.3s ease;
 }
 
+/* Hover underline only */
+header nav a:hover::after {
+    width: 100%;
+}
+
+/* Active underline only on hover */
+header nav a.active::after {
+    width: 0% !important;
+}
+
+header nav a.active:hover::after {
+    width: 100% !important;
+}
+
+
 /* =========================================================
-   7. BUTTONS & MICRO-INTERACTIONS
+   7. BUTTONS (PREMIUM)
 ========================================================= */
 .btn {
     display: inline-block;
@@ -218,12 +255,11 @@ header nav a.active::after {
     font-weight: 700;
     text-transform: uppercase;
     border: 1px solid transparent;
-    transition: 0.35s ease;
     position: relative;
     overflow: hidden;
 }
 
-/* Shine Effect on Hover */
+/* Shine Effect */
 .btn::after {
     content: "";
     position: absolute;
@@ -242,7 +278,7 @@ header nav a.active::after {
     transform: translateX(100%);
 }
 
-/* Primary Orange Button */
+/* Primary Button */
 .btn-primary {
     background: linear-gradient(135deg, #ff6a1a, #ff3c00);
     color: #fff;
@@ -256,18 +292,18 @@ header nav a.active::after {
     box-shadow: none;
 }
 
-/* Outline White Button */
+/* Outline Button */
 .btn-outline {
     background: transparent;
-    color: #fff;
     border: 1px solid rgba(255,255,255,0.6);
+    color: #fff;
 }
 
 .btn-outline:hover {
     border-color: var(--primary-orange);
     color: var(--primary-orange);
-    box-shadow: 0 0 18px rgba(255,106,26,0.45);
 }
+
 
 /* =========================================================
    8. LAYOUT UTILITIES
@@ -278,6 +314,9 @@ header nav a.active::after {
     padding: 140px 20px 80px;
     position: relative;
     z-index: 2;
+
+    /* ✅ Main Content Fade Only */
+    animation: pageFade 0.65s ease forwards;
 }
 
 .grid-2 {
@@ -292,8 +331,30 @@ header nav a.active::after {
     gap: 30px;
 }
 
+
 /* =========================================================
-   9. FORMS & INPUTS
+   9. GLOBAL PAGE LOAD ANIMATION (ONLY ON CONTAINER)
+========================================================= */
+@keyframes pageFade {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header/Footer Never Animate */
+header,
+footer {
+    animation: none !important;
+}
+
+
+/* =========================================================
+   10. FORMS & INPUTS
 ========================================================= */
 input,
 textarea,
@@ -304,7 +365,7 @@ select {
     border: 1px solid var(--border-soft);
     color: #fff;
     margin-bottom: 20px;
-    border-radius: 4px;
+    border-radius: 6px;
 }
 
 input:focus,
@@ -315,634 +376,57 @@ select:focus {
     box-shadow: 0 0 0 2px var(--orange-glow);
 }
 
-/* =========================================================
-   10. PREMIUM CUSTOM DROPDOWN
-   (Supports Scrolling & Hover)
-========================================================= */
-.gc-dropdown {
-    position: relative;
-    width: 100%;
-    margin-bottom: 20px;
-    font-family: inherit;
-}
-
-.gc-dropdown-selected {
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-soft);
-    padding: 14px;
-    border-radius: 10px;
-    color: #fff;
-    cursor: none;
-    user-select: none;
-    transition: 0.25s ease;
-}
-
-.gc-dropdown-selected:hover {
-    border-color: var(--primary-orange);
-    box-shadow: 0 0 0 2px rgba(255,106,26,0.15);
-}
-
-.gc-dropdown-list {
-    position: absolute;
-    top: 110%;
-    left: 0;
-    width: 100%;
-    background: #0f0f0f;
-    border: 1px solid var(--border-soft);
-    border-radius: 12px;
-    padding: 6px 0;
-    margin: 0;
-    list-style: none;
-
-    /* Scrollable if list is long */
-    max-height: 240px;
-    overflow-y: auto;
-    display: none;
-    z-index: 9999;
-    overscroll-behavior: contain;
-}
-
-/* Custom Scrollbar for Dropdown */
-.gc-dropdown-list::-webkit-scrollbar {
-    width: 6px;
-}
-
-.gc-dropdown-list::-webkit-scrollbar-thumb {
-    background: rgba(255,106,26,0.35);
-    border-radius: 10px;
-}
-
-.gc-dropdown-list li {
-    padding: 14px 16px;
-    color: #fff;
-    cursor: none;
-    transition: 0.2s ease;
-}
-
-.gc-dropdown-list li:hover {
-    background: rgba(255,106,26,0.12);
-    color: var(--primary-orange);
-}
-
-.gc-dropdown.open .gc-dropdown-list {
-    display: block;
-}
 
 /* =========================================================
-   11. HOME PAGE (HERO & CONTENT)
+   11. APPS MODAL + GALLERY
 ========================================================= */
-
-/* --- HERO SECTION --- */
-.hero {
-    min-height: 100vh;
-    padding-top: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    /* Subtle Orange Pulse Background */
-    background:
-        radial-gradient(circle at 30% 20%, rgba(255,106,26,0.12), transparent 55%),
-        radial-gradient(circle at 70% 80%, rgba(255,106,26,0.10), transparent 55%),
-        #000;
-}
-
-.hero-center {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-/* Lottie Container */
-.hero-lottie-wrap {
-    width: 420px;
-    max-width: 90vw;
-    aspect-ratio: 1 / 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1.6rem;
-}
-
-.hero-lottie-wrap lottie-player {
-    width: 100%;
-    height: 100%;
-}
-
-/* Tagline with Reveal Animation */
-.hero-tagline {
-    font-size: 1.25rem;
-    color: var(--text-muted);
-    max-width: 720px;
-    margin-bottom: 1.8rem;
-    
-    opacity: 0;
-    transform: translateY(14px);
-    animation: heroTextReveal 0.7s ease forwards;
-    animation-delay: 0.15s;
-}
-
-@keyframes heroTextReveal {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Hero Buttons */
-.hero-actions {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-    
-    opacity: 0;
-    transform: translateY(14px);
-    animation: heroTextReveal 0.7s ease forwards;
-    animation-delay: 0.3s;
-}
-
-/* --- HOME CONTENT SECTIONS --- */
-.home-section {
-    padding: 90px 20px;
-    text-align: center;
-    
-    /* Scroll Reveal Animation */
-    opacity: 0;
-    transform: translateY(18px);
-    animation: homeReveal 0.8s ease forwards;
-}
-
-.home-section h2 {
-    font-size: 2.2rem;
-    margin-bottom: 22px;
-}
-
-.home-section p {
-    max-width: 900px;
-    margin: 0 auto 20px;
-    color: var(--text-muted);
-    line-height: 1.8;
-    font-size: 1.05rem;
-}
-
-/* Services Grid */
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 22px;
-    margin-top: 50px;
-}
-
-/* Service Card */
-.service-card {
-    background: var(--bg-surface);
-    padding: 28px;
-    border-radius: 16px;
-    border: 1px solid var(--border-soft);
-    text-align: left;
-    transition: 0.3s ease;
-}
-
-.service-card:hover {
-    transform: translateY(-6px);
-    border-color: var(--primary-orange);
-    box-shadow: 0 20px 45px rgba(0,0,0,0.45);
-}
-
-.service-card h3 {
-    color: var(--primary-orange);
-    margin-bottom: 12px;
-    font-size: 1.15rem;
-}
-
-.service-card p {
-    margin: 0;
-    font-size: 0.95rem;
-    color: var(--text-muted);
-    line-height: 1.6;
-}
-
-/* Guidelines List */
-.guideline-list {
-    max-width: 720px;
-    margin: 35px auto 0;
-    text-align: left;
-    color: var(--text-muted);
-    line-height: 1.9;
-}
-
-.guideline-list li {
-    margin-bottom: 10px;
-}
-
-/* CTA Section */
-.home-cta {
-    padding: 90px 20px;
-    background: var(--bg-surface);
-    border-top: 1px solid var(--border-soft);
-    text-align: center;
-    
-    opacity: 0;
-    transform: translateY(18px);
-    animation: homeReveal 0.8s ease forwards;
-    animation-delay: 0.75s;
-}
-
-.home-cta h2 {
-    font-size: 2.2rem;
-    margin-bottom: 18px;
-}
-
-.home-cta p {
-    max-width: 750px;
-    margin: 0 auto 30px;
-    color: var(--text-muted);
-    line-height: 1.7;
-}
-
-/* Staggered Delay for Home Sections */
-.home-section:nth-of-type(1) { animation-delay: 0.15s; }
-.home-section:nth-of-type(2) { animation-delay: 0.30s; }
-.home-section:nth-of-type(3) { animation-delay: 0.45s; }
-.home-section:nth-of-type(4) { animation-delay: 0.60s; }
-
-@keyframes homeReveal {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* =========================================================
-   12. DESIGN / STUDIO PAGE (LOCKED FIXES)
-========================================================= */
-
-/* Smooth Fade In */
-.design-page {
-    animation: pageFade 0.6s ease forwards;
-}
-
-/* Layout Alignment */
-.design-page .grid-2 {
-    align-items: center;
-}
-
-/* Left Column: Logo & Text */
-.design-page .grid-2 > div:first-child {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    
-    /* [LOCKED] DISABLE FLEX GAP TO CONTROL SPACING MANUALLY */
-    gap: 0 !important; 
-}
-
-/* Logo Wrapper */
-.design-page .mg-logo-wrap {
-    /* [LOCKED] EXACT SPACING TO HEADING */
-    margin-bottom: 1.2rem !important; 
-}
-
-/* MG Logo Animation */
-.design-page .mg-logo-wrap img {
-    max-width: 260px;
-    width: 100%;
-    height: auto;
-    animation: logoFloat 6s ease-in-out infinite;
-}
-
-@keyframes logoFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-}
-
-/* Heading Typography */
-.design-page h1 {
-    margin-top: 0 !important; /* Safety Lock */
-    margin-bottom: 1rem;
-    line-height: 1.15;
-    
-    /* Animation */
-    opacity: 0;
-    transform: translateY(12px);
-    animation: textReveal 0.7s ease forwards;
-    animation-delay: 0.15s;
-}
-
-/* Description Typography */
-.design-page .studio-desc {
-    max-width: 520px !important;
-    line-height: 1.65;
-    text-align: center;
-    
-    /* Animation */
-    opacity: 0;
-    transform: translateY(12px);
-    animation: textReveal 0.7s ease forwards;
-    animation-delay: 0.3s;
-}
-
-/* Highlight Text */
-.design-page .studio-highlight {
-    color: var(--primary-orange) !important;
-}
-
-/* Right Column: Form Elevation */
-.design-page .grid-2 > div:last-child {
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.design-page .grid-2 > div:last-child:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.45);
-}
-
-/* Success Message */
-#design-success {
-    display: none;
-    margin-top: 14px;
-    font-size: 0.92rem;
-    font-weight: 600;
-    color: #00ff88 !important;
-}
-
-/* =========================================================
-   13. APPS PAGE & GALLERY (FULL FEATURE)
-========================================================= */
-
-/* Apps Hero Image Hover Effect */
-.apps-page .apps-image {
-    transition: transform 0.8s cubic-bezier(.22,.61,.36,1);
-    will-change: transform;
-}
-
-.apps-page .apps-image:hover {
-    /* Safe Scale override */
-    transform: translateY(0) scale(1.06) !important;
-}
-
-/* --- HORIZONTAL GALLERY --- */
-.apps-gallery {
-    margin-top: 80px;
-}
-
-.apps-gallery-title {
-    text-align: center;
-    margin-bottom: 24px;
-    font-size: 1.2rem;
-    color: var(--primary-orange);
-    letter-spacing: 2px;
-}
-
-.apps-gallery-wrapper {
-    position: relative;
-}
-
 .apps-gallery-track {
     display: flex;
     gap: 24px;
     overflow-x: auto;
-    scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     padding-bottom: 12px;
 }
 
-/* Gallery Scrollbar Styling */
-.apps-gallery-track::-webkit-scrollbar {
-    height: 6px;
-}
-.apps-gallery-track::-webkit-scrollbar-thumb {
-    background: rgba(255,106,26,0.35);
-    border-radius: 10px;
-}
-
-/* Gallery Images */
 .apps-gallery-img {
     width: 320px;
     border-radius: 12px;
-    cursor: pointer;
     scroll-snap-align: start;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+    cursor: pointer;
+    transition: transform 0.35s ease;
 }
 
 .apps-gallery-img:hover {
     transform: scale(1.05);
-    box-shadow: 0 20px 50px rgba(255,106,26,0.25);
 }
 
-/* Gallery Navigation Arrows */
-.apps-gallery-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: rgba(15,15,15,0.9);
-    border: 1px solid var(--border-soft);
-    color: var(--primary-orange);
-    font-size: 1.6rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 4;
-    transition: 0.3s ease;
-}
-
-.apps-gallery-arrow:hover {
-    background: rgba(255,106,26,0.12);
-    box-shadow: 0 0 18px rgba(255,106,26,0.35);
-}
-
-.apps-gallery-arrow.left { left: -22px; }
-.apps-gallery-arrow.right { right: -22px; }
-
-/* --- APPS MODAL (LIGHTBOX) --- */
 .apps-modal {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.88);
-    backdrop-filter: blur(6px);
     display: none;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     z-index: 9999;
-    
-    /* ALLOW CURSOR IN MODAL */
-    cursor: default;
 }
 
-/* Modal Image */
 .apps-modal-img {
     max-width: 90%;
     max-height: 85vh;
     border-radius: 14px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.7);
-    animation: modalZoom 0.25s ease;
 }
 
-@keyframes modalZoom {
-    from { transform: scale(0.96); opacity: 0; }
-    to   { transform: scale(1); opacity: 1; }
-}
-
-/* Close Button */
 .apps-modal-close {
     position: absolute;
     top: 24px;
     right: 32px;
     font-size: 2rem;
-    color: #fff;
     cursor: pointer;
-    transition: 0.25s ease;
 }
 
-.apps-modal-close:hover {
-    color: var(--primary-orange);
-}
-
-/* Modal Arrows */
-.apps-modal-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(15,15,15,0.9);
-    border: 1px solid var(--border-soft);
-    color: var(--primary-orange);
-    font-size: 1.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    user-select: none;
-    transition: 0.25s ease;
-}
-
-.apps-modal-arrow:hover {
-    background: rgba(255,106,26,0.15);
-    box-shadow: 0 0 18px rgba(255,106,26,0.35);
-}
-
-.apps-modal-arrow.left { left: 24px; }
-.apps-modal-arrow.right { right: 24px; }
 
 /* =========================================================
-   14. LEGAL, CONTACT & OTHER PAGES
-========================================================= */
-
-/* --- LEGAL PAGE --- */
-.legal-page {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 160px 20px 80px;
-    animation: pageFade 0.6s ease forwards;
-}
-
-.legal-page h1 span {
-    color: var(--primary-orange);
-}
-
-.legal-page p {
-    margin-bottom: 1.2rem;
-}
-
-/* --- CONTACT PAGE --- */
-.contact-page {
-    animation: pageFade 0.6s ease forwards;
-}
-
-.contact-page .container {
-    padding-top: calc(80px + 2rem);
-}
-
-.contact-page h4 {
-    color: var(--primary-orange);
-}
-
-.contact-page .grid-3 p,
-.contact-page .grid-3 a {
-    color: #ffffff !important;
-}
-
-/* WhatsApp Link Highlight */
-.contact-page a[href*="wa.me"] {
-    font-weight: 500;
-    color: var(--primary-orange);
-    transition: font-weight 0.25s ease, text-shadow 0.25s ease;
-}
-
-.contact-page a[href*="wa.me"]:hover {
-    font-weight: 700;
-    text-shadow: 0 0 12px rgba(255,106,26,0.35);
-}
-
-/* =========================================================
-   15. GLOBAL ANIMATION CONTROLS
-========================================================= */
-
-/* Shared Page Fade In */
-/* Applies to all main pages and default body if not specified */
-.about-page,
-.fashion-page,
-.contact-page,
-.legal-page,
-.design-page,
-.careers-page,
-body:not(.about-page):not(.design-page):not(.contact-page):not(.fashion-page):not(.legal-page):not(.careers-page) {
-    animation: pageFade 0.6s ease forwards;
-}
-
-@keyframes pageFade {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* Text Reveal Stagger for About/Fashion/Contact */
-.about-page h1, .about-page p,
-.fashion-page h1, .fashion-page p,
-.contact-page h1, .contact-page p {
-    opacity: 0;
-    transform: translateY(14px);
-    animation: textReveal 0.7s ease forwards;
-}
-
-/* Delay for paragraphs */
-.about-page p,
-.fashion-page p,
-.contact-page p {
-    animation-delay: 0.2s;
-}
-
-@keyframes textReveal {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Shared Card Hover Elevation */
-.about-page .container > div,
-.fashion-page .container > div,
-.contact-page .container > div {
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.about-page .container > div:hover,
-.fashion-page .container > div:hover,
-.contact-page .container > div:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.45);
-}
-
-/* =========================================================
-   16. FOOTER
+   12. FOOTER (FULL)
 ========================================================= */
 footer {
     background: linear-gradient(180deg, #0a0a0a, #050505);
@@ -966,133 +450,43 @@ footer {
     color: var(--text-muted);
 }
 
-footer a {
-    color: #ffffff;
-}
-
 footer a:hover {
     color: var(--primary-orange);
 }
 
-/* Footer Career Link Animation */
-.career-open-link {
-    display: inline-block;
-    color: var(--primary-orange);
-    font-weight: 600;
-    text-decoration: none;
-    position: relative;
-    transition: 0.3s ease;
-}
-
-.career-open-link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0%;
-    height: 2px;
-    background: var(--primary-orange);
-    transition: 0.35s ease;
-}
-
-.career-open-link:hover {
-    color: #fff;
-    transform: translateX(4px);
-}
-
-.career-open-link:hover::after {
-    width: 100%;
-}
 
 /* =========================================================
-   17. RESPONSIVE MEDIA QUERIES
+   13. MOBILE CURSOR DISABLE (FINAL PATCH)
+========================================================= */
+@media (hover: none) {
+
+    body {
+        cursor: auto !important;
+    }
+
+    .cursor-dot,
+    .cursor-outline {
+        display: none !important;
+    }
+
+    header nav a {
+        cursor: pointer !important;
+    }
+}
+
+
+/* =========================================================
+   14. RESPONSIVE GRID FIX
 ========================================================= */
 @media (max-width: 900px) {
-    /* Grid Collapses */
+
     .grid-2,
     .footer-content {
         grid-template-columns: 1fr;
     }
 
-    /* Design Page Mobile Adjustments */
-    .design-page .grid-2 > div:first-child {
-        margin-bottom: 60px;
-    }
-    
-    /* Lottie Mobile Size */
     .hero-lottie-wrap {
-        width: 100%;
         max-width: 300px;
     }
 }
 
-/* =========================================================
-   NAV ACTIVE = ORANGE TEXT ONLY
-   NAV HOVER  = UNDERLINE ONLY (NO COLOR CHANGE)
-========================================================= */
-
-/* Default nav link text = WHITE */
-header nav a {
-    color: #ffffff !important;
-    position: relative;
-    transition: none !important; /* 🚫 No color animation */
-}
-
-/* ACTIVE PAGE = ORANGE TEXT */
-header nav a.active {
-    color: var(--primary-orange) !important;
-}
-
-/* Underline base hidden */
-header nav a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -6px;
-    width: 0%;
-    height: 2px;
-    background: var(--primary-orange);
-    border-radius: 10px;
-    transition: width 0.3s ease;
-}
-
-/* HOVER = UNDERLINE ONLY */
-header nav a:hover::after {
-    width: 100%;
-}
-
-/* ACTIVE underline hidden unless hovered */
-header nav a.active::after {
-    width: 0% !important;
-}
-
-/* Active underline appears only when cursor is there */
-header nav a.active:hover::after {
-    width: 100% !important;
-}
-/* =========================================================
-   GLOBAL PAGE LOAD ANIMATION — ALL PAGES
-   (Header/Footer NOT affected)
-========================================================= */
-
-@keyframes pageFade {
-    from {
-        opacity: 0;
-        transform: translateY(12px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Animate only main page content */
-.container {
-    animation: pageFade 0.65s ease forwards;
-}
-
-/* ✅ Disable animation on Header + Footer completely */
-header,
-footer {
-    animation: none !important;
-}
