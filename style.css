@@ -1200,3 +1200,35 @@ body.select-open option {
     line-height: 1.6;
     color: #ffffff !important;
 }
+/* =========================================================
+   FOOTER — PREMIUM SWIPE UNDERLINE (CAREERS LINK ONLY)
+   View Open Roles → Hover Animation
+========================================================= */
+
+.footer-careers a {
+    position: relative;
+    display: inline-block;
+    font-weight: 500;
+    transition: color 0.25s ease;
+}
+
+/* White underline swipe effect */
+.footer-careers a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0%;
+    height: 2px;
+    background: #ffffff;
+    transition: width 0.35s ease;
+}
+
+/* Hover = Orange text + underline swipe */
+.footer-careers a:hover {
+    color: var(--primary-orange);
+}
+
+.footer-careers a:hover::after {
+    width: 100%;
+}
