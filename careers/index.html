@@ -63,6 +63,33 @@
       backdrop-filter: blur(12px);
       position: relative;
       z-index: 2;
+
+      /* PAGE FADE */
+      opacity: 0;
+      animation: pageFade 0.9s ease forwards;
+    }
+
+    @keyframes pageFade {
+      to { opacity: 1; }
+    }
+
+    /* REVEAL ANIMATION */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: textReveal 0.8s ease forwards;
+    }
+
+    .reveal.delay-1 { animation-delay: 0.15s; }
+    .reveal.delay-2 { animation-delay: 0.3s; }
+    .reveal.delay-3 { animation-delay: 0.45s; }
+    .reveal.delay-4 { animation-delay: 0.6s; }
+
+    @keyframes textReveal {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* TITLE */
@@ -146,7 +173,7 @@
       margin-bottom: 25px;
     }
 
-    /* BUTTONS */
+    /* APPLY BUTTONS (GYPSY CARTEL STYLE) */
     .apply-buttons {
       display: flex;
       justify-content: center;
@@ -155,30 +182,41 @@
     }
 
     .apply-buttons a {
-      padding: 14px 30px;
+      min-width: 220px;
+      text-align: center;
       border-radius: 50px;
+      padding: 14px 26px;
       font-weight: 700;
+      letter-spacing: 0.5px;
       text-decoration: none;
-      transition: 0.3s ease;
+      transition: 0.35s ease;
       font-size: 0.95rem;
     }
 
+    /* WhatsApp Button = Orange Primary */
     .btn-whatsapp {
-      background: #00c26a;
-      color: white;
+      background: var(--primary-orange);
+      color: #fff;
+      box-shadow: 0 0 18px rgba(255,106,26,0.35);
     }
 
     .btn-whatsapp:hover {
-      opacity: 0.85;
+      transform: translateY(-4px);
+      box-shadow: 0 0 28px rgba(255,106,26,0.6);
     }
 
+    /* Instagram Button = Dark Outline */
     .btn-instagram {
-      background: var(--primary-orange);
-      color: white;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.25);
+      color: #fff;
     }
 
     .btn-instagram:hover {
-      opacity: 0.85;
+      border-color: var(--primary-orange);
+      color: var(--primary-orange);
+      transform: translateY(-4px);
+      box-shadow: 0 0 20px rgba(255,106,26,0.25);
     }
 
     /* FOOT NOTE */
@@ -215,16 +253,19 @@
 
   <div class="careers-panel">
 
-    <h1>WE ARE <span>HIRING</span></h1>
+    <!-- HERO -->
+    <h1 class="reveal delay-1">
+      WE ARE <span>HIRING</span>
+    </h1>
 
-    <p>
+    <p class="reveal delay-2">
       Gypsy Cartel is expanding our premium freelance network.
       We collaborate with skilled designers, developers, and creators
       for high-impact remote projects across India & UAE.
     </p>
 
     <!-- POSITIONS -->
-    <div class="career-grid">
+    <div class="career-grid reveal delay-3">
 
       <div class="career-card">
         <h3>Floor Plan Designer</h3>
@@ -265,7 +306,7 @@
     </div>
 
     <!-- APPLY -->
-    <div class="apply-box">
+    <div class="apply-box reveal delay-4">
       <h2>Apply for Collaboration</h2>
       <p>
         Send your portfolio directly through WhatsApp or Instagram DM.
