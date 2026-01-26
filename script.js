@@ -145,13 +145,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* ===============================
-       LOAD HEADER
+       LOAD HEADER + ACTIVE NAV FIX
     =============================== */
     fetch("/partials/header.html")
         .then(res => res.text())
         .then(html => {
+
             const mount = document.getElementById("site-header");
             if (mount) mount.innerHTML = html;
+
+            /* ✅ AUTO ACTIVE NAV HIGHLIGHT (STABLE) */
+            let path = window.location.pathname;
+
+            if (path === "/") path = "home";
+            else path = path.split("/")[1];
+
+            document.querySelectorAll("header nav a").forEach(link => {
+                if (link.dataset.nav === path) {
+                    link.classList.add("active");
+                }
+            });
+
         });
 
 
@@ -201,19 +215,3 @@ if (designForm) {
         }
     });
 }
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-
-  let path = window.location.pathname;
-
-  if (path === "/") path = "home";
-  else path = path.split("/")[1];
-
-  document.querySelectorAll("header nav a").forEach(link => {
-    if (link.dataset.nav === path) {
-      link.classList.add("active");
-    }
-  });
-
-});
-</script>
