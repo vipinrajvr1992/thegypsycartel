@@ -1,13 +1,12 @@
 /* =========================================================
    GYPSY CARTEL — GLOBAL SCRIPT (FINAL MASTER)
    ✅ Cinematic Page Load Trigger
-   ✅ Physics Cursor Engine (Old Premium Feel)
-   ✅ Cursor Zoom via .active Class
-   ✅ Apps Modal + Scroll Lock + Arrows
-   ✅ Studio Dropdown Locked
-   ✅ Auto Nav Highlight Folder Safe
-   ✅ Header/Footer Loader Universal
-   ✅ Design Form Success Message FIXED
+   ✅ Cursor Engine (Physics + CSS Class Zoom)
+   ✅ Apps Modal + Scroll Lock
+   ✅ Studio Dropdown (Active Grey)
+   ✅ Header/Footer Loader (Absolute Path Fix)
+   ✅ Auto Nav Highlight (Folder Safe)
+   ✅ Design Form AJAX Submit
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -15,9 +14,10 @@ document.addEventListener("DOMContentLoaded", () => {
     /* =========================================================
        1. PREMIUM PAGE LOAD TRIGGER
     ========================================================= */
+    // Add class after short delay to trigger CSS fade-in
     setTimeout(() => {
         document.body.classList.add("page-loaded");
-    }, 60);
+    }, 50);
 
 
     /* =========================================================
@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================================
-       3. CUSTOM CURSOR ENGINE (DESKTOP ONLY)
+       3. CUSTOM CURSOR ENGINE (Desktop Only)
     ========================================================= */
     const cursorDot = document.querySelector(".cursor-dot");
     const cursorOutline = document.querySelector(".cursor-outline");
@@ -40,19 +40,22 @@ document.addEventListener("DOMContentLoaded", () => {
         let mouseX = 0, mouseY = 0;
         let outlineX = 0, outlineY = 0;
 
-        /* Instant Dot */
+        // Instant Dot Movement
         window.addEventListener("mousemove", (e) => {
             mouseX = e.clientX;
             mouseY = e.clientY;
 
             cursorDot.style.left = `${mouseX}px`;
             cursorDot.style.top = `${mouseY}px`;
+
+            cursorDot.style.opacity = "1";
+            cursorOutline.style.opacity = "1";
         });
 
-        /* Smooth Physics Outline */
+        // Smooth Physics Loop
         function animateCursor() {
-            outlineX += (mouseX - outlineX) * 0.14;
-            outlineY += (mouseY - outlineY) * 0.14;
+            outlineX += (mouseX - outlineX) * 0.15;
+            outlineY += (mouseY - outlineY) * 0.15;
 
             cursorOutline.style.left = `${outlineX}px`;
             cursorOutline.style.top = `${outlineY}px`;
@@ -61,46 +64,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         animateCursor();
 
-
-        /* =========================================================
-           CURSOR PREMIUM ZOOM ONLY ON CLICKABLES
-        ========================================================= */
-        const clickables = document.querySelectorAll(
-            "a, button, .btn, .apps-gallery-img, footer a"
-        );
-
-        clickables.forEach(el => {
-            el.addEventListener("mouseenter", () => {
-                cursorOutline.classList.add("active");
-            });
-
-            el.addEventListener("mouseleave", () => {
-                cursorOutline.classList.remove("active");
-            });
-        });
-
-
-        /* =========================================================
-           HIDE CURSOR INSIDE INPUTS (Typing Comfort)
-        ========================================================= */
-        const formFields = document.querySelectorAll(
-            "input, textarea, select"
-        );
-
-        formFields.forEach(el => {
+        /* ✅ FIX 1: Hide cursor ONLY for typing (Inputs) — NOT Buttons */
+        document.querySelectorAll("input, textarea, select").forEach(el => {
             el.addEventListener("mouseenter", () => {
                 cursorDot.style.opacity = "0";
                 cursorOutline.style.opacity = "0";
             });
-
             el.addEventListener("mouseleave", () => {
                 cursorDot.style.opacity = "1";
                 cursorOutline.style.opacity = "1";
             });
         });
 
+        /* ✅ FIX 2: Premium CSS Class Zoom (Links, Buttons, Images) */
+        document.querySelectorAll("a, button, .btn, .apps-gallery-img").forEach(el => {
+            el.addEventListener("mouseenter", () => {
+                cursorOutline.classList.add("active"); // Triggers CSS transition
+            });
+            el.addEventListener("mouseleave", () => {
+                cursorOutline.classList.remove("active");
+            });
+        });
+
     } else {
-        /* Mobile Cursor Disable */
+        /* Mobile: Disable custom cursor */
         if (cursorDot) cursorDot.style.display = "none";
         if (cursorOutline) cursorOutline.style.display = "none";
         document.body.style.cursor = "auto";
@@ -108,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================================
-       4. APPS MODAL + ARROWS + SCROLL LOCK
+       4. APPS GALLERY MODAL + SCROLL LOCK
     ========================================================= */
     const modal = document.getElementById("appsModal");
     const modalImg = document.getElementById("appsModalImg");
@@ -141,43 +128,37 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function prevImage() {
-            currentIndex =
-                (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
             modalImg.src = galleryImages[currentIndex].src;
         }
 
-        /* Open */
+        // Open
         galleryImages.forEach((img, index) => {
             img.addEventListener("click", () => showImage(index));
         });
 
-        /* Close */
+        // Close Button
         if (closeBtn) closeBtn.addEventListener("click", closeModal);
 
+        // Background Click
         modal.addEventListener("click", (e) => {
             if (e.target === modal) closeModal();
         });
 
-        /* Modal Arrows */
-        const leftArrow = document.querySelector(".apps-modal-arrow.left");
-        const rightArrow = document.querySelector(".apps-modal-arrow.right");
+        // Arrow Buttons (Desktop)
+        const leftArrow = document.querySelector('.apps-modal-arrow.left');
+        const rightArrow = document.querySelector('.apps-modal-arrow.right');
+        
+        if (leftArrow) leftArrow.addEventListener('click', (e) => {
+            e.stopPropagation(); prevImage();
+        });
+        if (rightArrow) rightArrow.addEventListener('click', (e) => {
+            e.stopPropagation(); nextImage();
+        });
 
-        if (leftArrow)
-            leftArrow.addEventListener("click", (e) => {
-                e.stopPropagation();
-                prevImage();
-            });
-
-        if (rightArrow)
-            rightArrow.addEventListener("click", (e) => {
-                e.stopPropagation();
-                nextImage();
-            });
-
-        /* Keyboard */
+        // Keyboard Nav
         document.addEventListener("keydown", (e) => {
             if (modal.style.display !== "flex") return;
-
             if (e.key === "Escape") closeModal();
             if (e.key === "ArrowRight") nextImage();
             if (e.key === "ArrowLeft") prevImage();
@@ -186,10 +167,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================================
-       5. STUDIO CUSTOM DROPDOWN
+       5. STUDIO CUSTOM DROPDOWN (Grey Active)
     ========================================================= */
     document.querySelectorAll(".gc-dropdown").forEach(dropdown => {
-
         const selectedBox = dropdown.querySelector(".gc-dropdown-selected");
         const items = dropdown.querySelectorAll("li");
         const hiddenInput = dropdown.querySelector("input[type='hidden']");
@@ -205,14 +185,13 @@ document.addEventListener("DOMContentLoaded", () => {
             item.addEventListener("click", () => {
                 selectedBox.textContent = item.textContent;
                 hiddenInput.value = item.dataset.value;
-
                 items.forEach(li => li.classList.remove("active"));
                 item.classList.add("active");
-
                 dropdown.classList.remove("open");
             });
         });
 
+        // Close on click outside
         document.addEventListener("click", (e) => {
             if (!dropdown.contains(e.target)) {
                 dropdown.classList.remove("open");
@@ -222,79 +201,86 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================================
-       6. HEADER + FOOTER LOADER + ACTIVE NAV
+       6. HEADER + FOOTER LOADER (ABSOLUTE PATH FIX)
     ========================================================= */
-    const partialsPath = "partials/";
+    
+    /* ✅ FIX 4: Use Absolute Path for Production Domain */
+    const partialsPath = "/partials/";
 
+    /* LOAD HEADER */
     fetch(partialsPath + "header.html")
         .then(res => res.text())
         .then(html => {
             const mount = document.getElementById("site-header");
             if (mount) mount.innerHTML = html;
 
-            let current = window.location.pathname.split("/").filter(Boolean).pop();
-            if (!current) current = "home";
+            /* ✅ FIX 3: Folder Safe Nav Highlight */
+            let currentPath = window.location.pathname
+                .replace(/\/$/, "") // remove trailing slash
+                .split("/")
+                .pop();
+            
+            if (currentPath === "" || currentPath === "index") currentPath = "home";
 
             document.querySelectorAll("header nav a").forEach(link => {
-                if (link.dataset.nav === current.replace(".html", "")) {
+                if (link.dataset.nav === currentPath) {
                     link.classList.add("active");
                 }
             });
         });
 
+    /* LOAD FOOTER */
     fetch(partialsPath + "footer.html")
         .then(res => res.text())
         .then(html => {
             const mount = document.getElementById("site-footer");
             if (mount) mount.innerHTML = html;
-
             const year = document.getElementById("year");
             if (year) year.textContent = new Date().getFullYear();
         });
 
 
     /* =========================================================
-       7. DESIGN FORM AJAX SUBMIT + SUCCESS MESSAGE
+       7. DESIGN FORM AJAX SUBMIT
     ========================================================= */
     const designForm = document.getElementById("designForm");
 
     if (designForm) {
-
         designForm.addEventListener("submit", async (e) => {
             e.preventDefault();
 
             const successMsg = document.getElementById("design-success");
             const submitBtn = designForm.querySelector("button");
             const originalText = submitBtn.innerText;
+            const formData = new FormData(designForm);
 
             submitBtn.innerText = "SENDING...";
 
             try {
                 const response = await fetch(designForm.action, {
                     method: "POST",
-                    body: new FormData(designForm),
+                    body: formData,
                     headers: { Accept: "application/json" }
                 });
 
                 if (response.ok) {
-
                     designForm.reset();
                     submitBtn.innerText = "SENT ✅";
-
+                    
+                    /* Show Success Message */
                     if (successMsg) {
                         successMsg.style.display = "block";
+                        successMsg.style.color = "#00ff88";
                     }
 
                     setTimeout(() => {
                         submitBtn.innerText = originalText;
                         if (successMsg) successMsg.style.display = "none";
                     }, 4000);
-
                 } else {
                     alert("Submission failed. Try again.");
                     submitBtn.innerText = originalText;
                 }
-
             } catch {
                 alert("Network error. Please try again.");
                 submitBtn.innerText = originalText;
