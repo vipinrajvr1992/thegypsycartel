@@ -8,9 +8,9 @@
     <meta name="description"
           content="Gypsy Cartel is a premium digital design and software studio delivering high-performance applications, hyper-realistic design, and modern UI/UX solutions.">
 
-    <!-- FAVICON -->
-    <link rel="icon" href="/assets/logos/gypsy-cartel-icon.png" sizes="32x32">
-    <link rel="apple-touch-icon" href="/assets/logos/gypsy-cartel-icon.png">
+    <!-- ✅ FAVICON FIXED (MATCH ALL OTHER PAGES) -->
+    <link rel="icon" type="image/webp" href="/assets/logos/gypsy-cartel-icon.webp">
+    <link rel="apple-touch-icon" href="/assets/logos/gypsy-cartel-icon.webp">
 
     <!-- ORGANIZATION SCHEMA -->
     <script type="application/ld+json">
@@ -19,7 +19,7 @@
       "@type": "Organization",
       "name": "Gypsy Cartel",
       "url": "https://www.gypsycartel.shop",
-      "logo": "https://www.gypsycartel.shop/assets/logos/gypsy-cartel-icon.png"
+      "logo": "https://www.gypsycartel.shop/assets/logos/gypsy-cartel-icon.webp"
     }
     </script>
 
@@ -73,11 +73,14 @@
             text-align: center;
         }
 
+        /* ✅ EXTRA +2REM GAP BELOW BUTTONS */
         .hero-actions {
             display: flex;
             gap: 18px;
             justify-content: center;
             flex-wrap: wrap;
+
+            margin-bottom: 4rem; /* ✅ Added extra spacing */
         }
 
         /* SAFE HOME SECTION SPACING ONLY */
@@ -188,10 +191,10 @@
 <div class="cursor-dot"></div>
 <div class="cursor-outline"></div>
 
-<!-- HEADER (PARTIAL) -->
+<!-- HEADER -->
 <div id="site-header"></div>
 
-<!-- HERO SECTION (UNCHANGED) -->
+<!-- HERO SECTION -->
 <section class="hero">
 
     <lottie-player
@@ -226,9 +229,7 @@
 
 </section>
 
-<!-- ===============================
-     PREMIUM HOMEPAGE CONTENT ADDED
-================================ -->
+<!-- HOMEPAGE CONTENT -->
 
 <section class="home-section">
     <h2>
@@ -237,84 +238,17 @@
 
     <p>
         Gypsy Cartel is a multidisciplinary creative studio working across
-        technology, design, architecture, and fashion. We focus on building
-        modern solutions that help brands present themselves better, function
-        smarter, and grow with clarity.
+        technology, design, architecture, and fashion.
     </p>
 
     <p>
         Operating as a creative direction and execution hub, Gypsy Cartel manages
-        projects, strategy, and delivery through a flexible studio model that
-        combines in-house planning with trusted professionals.
+        projects, strategy, and delivery through a flexible studio model.
     </p>
 
     <p>
         Our mission is simple: clean design, reliable execution, and long-term
-        premium value — built for individuals, startups, and businesses that
-        expect more than generic work.
-    </p>
-</section>
-
-<section class="home-section">
-    <h2>
-        Our <span class="accent">Services</span>
-    </h2>
-
-    <p>
-        Digital and creative solutions delivered with luxury-level clarity,
-        performance, and professional execution.
-    </p>
-
-    <div class="services-grid">
-
-        <div class="service-card">
-            <h3>Software & App Development</h3>
-            <p>
-                High-performance Windows applications, licensed tools, business systems,
-                and premium digital products built for real-world productivity.
-            </p>
-        </div>
-
-        <div class="service-card">
-            <h3>Web Design & Brand Identity</h3>
-            <p>
-                Premium websites, UI/UX layouts, brochures, posters, and complete
-                brand identity systems that feel global and professional.
-            </p>
-        </div>
-
-        <div class="service-card">
-            <h3>Architecture & Visualization</h3>
-            <p>
-                Interior and exterior design concepts, floor plans, layout development,
-                and cinematic-level 3D visualization for studios and real estate.
-            </p>
-        </div>
-
-        <div class="service-card">
-            <h3>Fashion & Creative Direction</h3>
-            <p>
-                Supporting fashion and lifestyle brands with visual styling,
-                campaign design, and premium creative assistance.
-            </p>
-        </div>
-
-    </div>
-</section>
-
-<section class="home-section">
-    <h2>
-        Operating Across <span class="accent">India & UAE</span>
-    </h2>
-
-    <p>
-        Gypsy Cartel is growing as a next-generation studio connecting creative
-        professionals and clients across India, UAE, and beyond.
-    </p>
-
-    <p>
-        Our workflow is built on structured collaboration, transparent coordination,
-        and execution through verified creative specialists.
+        premium value.
     </p>
 </section>
 
@@ -342,8 +276,7 @@
     <h2>Ready to Build Something Premium?</h2>
 
     <p>
-        Explore our work, start your next project, or collaborate with Gypsy Cartel
-        through our creative studio network.
+        Explore our work, start your next project, or collaborate with Gypsy Cartel.
     </p>
 
     <a href="/contact/" class="btn btn-primary">
@@ -351,10 +284,10 @@
     </a>
 </section>
 
-<!-- FOOTER (PARTIAL) -->
+<!-- FOOTER -->
 <div id="site-footer"></div>
 
-<!-- GLOBAL SCRIPT -->
+<!-- SCRIPT -->
 <script src="/script.js"></script>
 
 </body>
