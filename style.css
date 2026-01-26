@@ -642,3 +642,127 @@ footer p a:hover,
 
     box-shadow: 0 0 18px rgba(0, 255, 136, 0.15);
 }
+/* =========================================================
+   FORM SUCCESS MESSAGE — PREMIUM GREEN
+========================================================= */
+
+#design-success {
+    display: none;
+    margin-top: 18px;
+    padding: 14px 18px;
+    border-radius: 10px;
+
+    background: rgba(0,255,120,0.08);
+    border: 1px solid rgba(0,255,120,0.35);
+
+    color: #00ff88 !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+
+    animation: gcPageLoad 0.5s ease;
+}
+/* =========================================================
+   LEGAL PAGES — TERMS + PRIVACY PREMIUM THEME
+========================================================= */
+
+.legal-page {
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 160px 25px 90px;
+}
+
+/* Main Title */
+.legal-page h1 {
+    font-size: 2.4rem;
+    margin-bottom: 25px;
+    text-align: left;
+}
+
+.legal-page h1 .accent {
+    color: var(--primary-orange);
+}
+
+/* Section Headings */
+.legal-page h3 {
+    margin-top: 45px;
+    margin-bottom: 14px;
+    font-size: 1.15rem;
+    color: #fff;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+/* Orange underline */
+.legal-page h3::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 2px;
+    margin-top: 8px;
+    background: var(--primary-orange);
+    opacity: 0.7;
+}
+
+/* Paragraphs */
+.legal-page p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.85;
+    margin-bottom: 18px;
+}
+
+/* Contact Note */
+.legal-page .contact-note {
+    margin-top: 50px;
+    padding: 18px 20px;
+    border-left: 3px solid var(--primary-orange);
+    background: rgba(255,106,26,0.06);
+    border-radius: 10px;
+}
+
+/* Email Link */
+.legal-page .contact-note a {
+    color: #fff !important;
+    font-weight: 600;
+}
+
+.legal-page .contact-note a:hover {
+    color: var(--primary-orange) !important;
+}
+/* =========================================================
+   GLOBAL PREMIUM PAGE LOAD — ALL PAGES
+   Smooth Fade + Lift (Professional)
+   Header/Footer NOT affected
+========================================================= */
+
+@keyframes gcPageLoad {
+    from {
+        opacity: 0;
+        transform: translateY(14px);
+        filter: blur(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+/* Apply animation to ALL page main blocks */
+main,
+.container,
+.legal-page,
+.contact-page,
+.design-page,
+.apps-page,
+.about-page,
+.fashion-page,
+.careers-page {
+    animation: gcPageLoad 0.75s ease forwards;
+}
+
+/* Header/Footer never animate */
+header,
+footer {
+    animation: none !important;
+}
