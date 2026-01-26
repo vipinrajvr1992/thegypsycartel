@@ -6,91 +6,302 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description"
-        content="Careers at Gypsy Cartel — Freelance opportunities for designers, developers, and creative professionals across India & UAE.">
+        content="Join Gypsy Cartel as a freelancer. Premium remote collaborations across India & UAE.">
 
-  <!-- SITE ICON -->
+  <!-- ICON -->
   <link rel="icon" type="image/webp" href="/assets/logos/gypsy-cartel-icon.webp">
-  <link rel="apple-touch-icon" href="/assets/logos/gypsy-cartel-icon.webp">
 
-  <!-- MAIN CSS -->
+  <!-- MAIN THEME -->
   <link rel="stylesheet" href="/style.css">
+
+  <!-- PREMIUM CAREERS PAGE STYLE -->
+  <style>
+    body {
+      background: linear-gradient(120deg, #000 60%, #1a1a1a 100%);
+    }
+
+    /* HERO WRAP */
+    .careers-wrap {
+      position: relative;
+      padding: 90px 20px;
+      overflow: hidden;
+    }
+
+    /* DIAGONAL ORANGE SHAPE */
+    .careers-wrap::before {
+      content: "";
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 320px;
+      height: 320px;
+      background: var(--primary-orange);
+      transform: rotate(45deg);
+      opacity: 0.9;
+    }
+
+    /* DIAGONAL DARK SHAPE */
+    .careers-wrap::after {
+      content: "";
+      position: absolute;
+      bottom: -160px;
+      left: -160px;
+      width: 420px;
+      height: 420px;
+      background: rgba(255,255,255,0.04);
+      transform: rotate(45deg);
+    }
+
+    /* HERO PANEL */
+    .careers-panel {
+      max-width: 1100px;
+      margin: auto;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 70px 55px;
+      backdrop-filter: blur(12px);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* TITLE */
+    .careers-panel h1 {
+      font-size: 4rem;
+      font-weight: 900;
+      margin-bottom: 10px;
+      letter-spacing: 2px;
+    }
+
+    .careers-panel h1 span {
+      color: var(--primary-orange);
+    }
+
+    .careers-panel p {
+      max-width: 750px;
+      color: var(--text-muted);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 50px;
+    }
+
+    /* POSITIONS GRID */
+    .career-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 25px;
+    }
+
+    /* CARD */
+    .career-card {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+      padding: 28px;
+      border-radius: 16px;
+      transition: 0.35s ease;
+    }
+
+    .career-card:hover {
+      border-color: var(--primary-orange);
+      transform: translateY(-7px);
+      box-shadow: 0 0 30px rgba(255,106,26,0.15);
+    }
+
+    .career-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .career-card p {
+      font-size: 0.9rem;
+      color: #aaa;
+      line-height: 1.6;
+      margin-bottom: 15px;
+    }
+
+    .career-tag {
+      font-size: 0.75rem;
+      letter-spacing: 1px;
+      color: var(--primary-orange);
+      font-weight: 600;
+    }
+
+    /* APPLY BOX */
+    .apply-box {
+      margin-top: 70px;
+      padding: 45px;
+      border-radius: 18px;
+      background: rgba(255,106,26,0.07);
+      border: 1px solid rgba(255,106,26,0.3);
+      text-align: center;
+    }
+
+    .apply-box h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .apply-box p {
+      color: #bbb;
+      margin-bottom: 25px;
+    }
+
+    /* BUTTONS */
+    .apply-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .apply-buttons a {
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    .btn-whatsapp {
+      background: #00c26a;
+      color: white;
+    }
+
+    .btn-whatsapp:hover {
+      opacity: 0.85;
+    }
+
+    .btn-instagram {
+      background: var(--primary-orange);
+      color: white;
+    }
+
+    .btn-instagram:hover {
+      opacity: 0.85;
+    }
+
+    /* FOOT NOTE */
+    .apply-note {
+      margin-top: 18px;
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:768px) {
+      .careers-panel {
+        padding: 50px 25px;
+      }
+
+      .careers-panel h1 {
+        font-size: 2.8rem;
+      }
+    }
+  </style>
 </head>
 
-<body class="career-page">
+<body>
 
-  <!-- CUSTOM CURSOR -->
-  <div class="cursor-dot"></div>
-  <div class="cursor-outline"></div>
+<!-- CURSOR -->
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
 
-  <!-- HEADER -->
-  <div id="site-header"></div>
+<!-- HEADER -->
+<div id="site-header"></div>
 
-  <!-- ✅ PAGE CONTENT (MATCHES ALL OTHER PAGES) -->
-  <section class="container">
+<!-- CAREERS CONTENT -->
+<section class="careers-wrap">
 
-    <!-- PAGE TITLE -->
-    <h1 style="margin-bottom:18px;">
-      CAREERS
-      <span style="color:var(--primary-orange)">AT GYPSY CARTEL</span>
-    </h1>
+  <div class="careers-panel">
 
-    <!-- INTRO -->
-    <p style="margin-bottom:14px;">
-      Gypsy Cartel is building a premium freelance network across
-      <b>India</b> and the <b>UAE</b> for remote creative collaboration.
+    <h1>WE ARE <span>HIRING</span></h1>
+
+    <p>
+      Gypsy Cartel is expanding our premium freelance network.
+      We collaborate with skilled designers, developers, and creators
+      for high-impact remote projects across India & UAE.
     </p>
 
-    <!-- OPEN ROLES -->
-    <h4 style="color:var(--primary-orange); margin-top:22px;">
-      Open Freelance Roles
-    </h4>
+    <!-- POSITIONS -->
+    <div class="career-grid">
 
-    <ul class="career-roles" style="margin-top:12px; margin-bottom:18px;">
+      <div class="career-card">
+        <h3>Floor Plan Designer</h3>
+        <p>Architectural planning, clean layouts, precision drafting.</p>
+        <div class="career-tag">AUTOCAD • SPACE DESIGN</div>
+      </div>
 
-      <li>Floor Plan Designers — AutoCAD drafting</li>
-      <li>3D Visualization Artists — Rendering</li>
-      <li>Graphic Designers — Posters, brochures</li>
-      <li>Brand Designers — Identity systems</li>
-      <li>Developers — Websites & Apps</li>
-      <li>Support Freelancers — Maintenance</li>
+      <div class="career-card">
+        <h3>3D Visualization Artist</h3>
+        <p>Hyper-realistic interiors, exteriors, walkthrough renders.</p>
+        <div class="career-tag">SKETCHUP • 3DS MAX</div>
+      </div>
 
-    </ul>
+      <div class="career-card">
+        <h3>Graphic Designer</h3>
+        <p>Posters, branding systems, premium digital creatives.</p>
+        <div class="career-tag">PHOTOSHOP • CANVA</div>
+      </div>
 
-    <!-- APPLY -->
-    <h4 style="color:var(--primary-orange); margin-top:18px;">
-      Apply / Connect
-    </h4>
+      <div class="career-card">
+        <h3>UI / UX Designer</h3>
+        <p>Modern user interfaces for apps, dashboards, websites.</p>
+        <div class="career-tag">FIGMA • DESIGN SYSTEMS</div>
+      </div>
 
-    <p style="margin-bottom:16px;">
-      Send your portfolio directly via WhatsApp or Instagram.
-    </p>
+      <div class="career-card">
+        <h3>Website Developer</h3>
+        <p>Production-ready websites with premium performance builds.</p>
+        <div class="career-tag">WORDPRESS • CUSTOM CODE</div>
+      </div>
 
-    <!-- BUTTONS -->
-    <div style="display:flex; gap:12px; flex-wrap:wrap;">
-
-      <a href="https://wa.me/918086604808"
-         target="_blank"
-         class="btn btn-primary"
-         style="padding:10px 22px;">
-        WhatsApp
-      </a>
-
-      <a href="https://instagram.com/mallugypsy.creations"
-         target="_blank"
-         class="btn btn-outline"
-         style="padding:10px 22px;">
-        Instagram
-      </a>
+      <div class="career-card">
+        <h3>Support & Maintenance</h3>
+        <p>Bug fixes, optimization, updates & technical assistance.</p>
+        <div class="career-tag">FIXES • UPGRADES</div>
+      </div>
 
     </div>
 
-  </section>
+    <!-- APPLY -->
+    <div class="apply-box">
+      <h2>Apply for Collaboration</h2>
+      <p>
+        Send your portfolio directly through WhatsApp or Instagram DM.
+      </p>
 
-  <!-- FOOTER (SAME AS ALL PAGES NOW) -->
-  <div id="site-footer"></div>
+      <div class="apply-buttons">
 
-  <!-- GLOBAL SCRIPT -->
-  <script src="/script.js"></script>
+        <!-- WHATSAPP -->
+        <a class="btn-whatsapp"
+           href="https://wa.me/918086604808?text=Hello%20Gypsy%20Cartel,%20I%20want%20to%20apply%20for%20freelance%20collaboration."
+           target="_blank">
+          Apply via WhatsApp
+        </a>
+
+        <!-- INSTAGRAM -->
+        <a class="btn-instagram"
+           href="https://instagram.com/mallugypsy.creations"
+           target="_blank">
+          Apply via Instagram
+        </a>
+
+      </div>
+
+      <div class="apply-note">
+        Remote • Project-Based • India & UAE Collaborations Only
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div id="site-footer"></div>
+
+<!-- GLOBAL SCRIPT -->
+<script src="/script.js"></script>
 
 </body>
 </html>
