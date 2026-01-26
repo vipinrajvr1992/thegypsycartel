@@ -1250,6 +1250,7 @@ body.select-open option {
    TYPOGRAPHY + SPACING (PREMIUM READABILITY)
 ========================================================= */
 
+/* Main Page Title */
 .career-page h1 {
     margin-bottom: 26px;
     line-height: 1.25;
@@ -1264,7 +1265,7 @@ body.select-open option {
     color: var(--text-muted);
 }
 
-/* Section headings in ORANGE */
+/* Section Headings in Orange */
 .career-page h4 {
     margin-top: 34px;
     margin-bottom: 12px;
@@ -1285,9 +1286,11 @@ body.select-open option {
     list-style: none;
 }
 
+/* All roles always white */
 .career-page .career-roles li {
     margin-bottom: 14px;
     font-size: 1rem;
     line-height: 1.75;
-    color: #ffffff; /* Roles White */
+    color: #ffffff !important;
 }
+
