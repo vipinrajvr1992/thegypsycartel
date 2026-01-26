@@ -8,7 +8,7 @@
     <meta name="description"
           content="Gypsy Cartel is a premium digital design and software studio delivering high-performance applications, hyper-realistic design, and modern UI/UX solutions.">
 
-    <!-- FAVICON -->
+    <!-- ✅ FAVICON FIXED -->
     <link rel="icon" href="/assets/logos/gypsy-cartel-icon.webp" sizes="32x32">
     <link rel="apple-touch-icon" href="/assets/logos/gypsy-cartel-icon.webp">
 
@@ -29,7 +29,7 @@
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="/style.css">
 
-    <!-- HERO OVERRIDES (SAFE & ISOLATED) -->
+    <!-- HERO OVERRIDES -->
     <style>
         .hero {
             position: relative;
@@ -78,9 +78,12 @@
             gap: 18px;
             justify-content: center;
             flex-wrap: wrap;
+
+            /* ✅ EXTRA 2REM GAP ADDED (TOTAL = 6REM LOOK) */
+            margin-bottom: 2rem;
         }
 
-        /* SAFE HOME SECTION SPACING ONLY */
+        /* HOME SECTION */
         .home-section {
             padding: 90px 20px;
             background: #000;
@@ -143,7 +146,6 @@
             line-height: 1.9;
         }
 
-        /* ✅ ORANGE BULLETS ADDED */
         .guideline-list li {
             position: relative;
             padding-left: 22px;
@@ -184,14 +186,14 @@
 
 <body>
 
-<!-- CUSTOM CURSOR -->
+<!-- CURSOR -->
 <div class="cursor-dot"></div>
 <div class="cursor-outline"></div>
 
-<!-- HEADER (PARTIAL) -->
+<!-- HEADER -->
 <div id="site-header"></div>
 
-<!-- HERO SECTION (UNCHANGED) -->
+<!-- HERO -->
 <section class="hero">
 
     <lottie-player
@@ -215,25 +217,18 @@
     </p>
 
     <div class="hero-actions">
-        <a href="/gallery/" class="btn btn-primary">
-            VIEW WORK
-        </a>
-
-        <a href="/contact/" class="btn btn-outline contact-btn">
-            START A PROJECT
-        </a>
+        <a href="/gallery/" class="btn btn-primary">VIEW WORK</a>
+        <a href="/contact/" class="btn btn-outline contact-btn">START A PROJECT</a>
     </div>
 
 </section>
 
 <!-- ===============================
-     PREMIUM HOMEPAGE CONTENT ADDED
+     PREMIUM HOMEPAGE CONTENT
 ================================ -->
 
 <section class="home-section">
-    <h2>
-        Creativity Backed by <span class="accent">Execution.</span>
-    </h2>
+    <h2>Creativity Backed by <span class="accent">Execution.</span></h2>
 
     <p>
         Gypsy Cartel is a multidisciplinary creative studio working across
@@ -256,9 +251,7 @@
 </section>
 
 <section class="home-section">
-    <h2>
-        Our <span class="accent">Services</span>
-    </h2>
+    <h2>Our <span class="accent">Services</span></h2>
 
     <p>
         Digital and creative solutions delivered with luxury-level clarity,
@@ -303,9 +296,7 @@
 </section>
 
 <section class="home-section">
-    <h2>
-        Operating Across <span class="accent">India & UAE</span>
-    </h2>
+    <h2>Operating Across <span class="accent">India & UAE</span></h2>
 
     <p>
         Gypsy Cartel is growing as a next-generation studio connecting creative
@@ -319,9 +310,7 @@
 </section>
 
 <section class="home-section">
-    <h2>
-        Studio <span class="accent">Guidelines</span>
-    </h2>
+    <h2>Studio <span class="accent">Guidelines</span></h2>
 
     <p>
         We maintain a premium standard through clear workflow, confidentiality,
@@ -346,15 +335,12 @@
         through our creative studio network.
     </p>
 
-    <a href="/contact/" class="btn btn-primary">
-        Start a Project
-    </a>
+    <a href="/contact/" class="btn btn-primary">Start a Project</a>
 </section>
 
-<!-- FOOTER (PARTIAL) -->
+<!-- FOOTER -->
 <div id="site-footer"></div>
 
-<!-- GLOBAL SCRIPT -->
 <script src="/script.js"></script>
 
 </body>
