@@ -1070,3 +1070,29 @@ header nav a.active::after {
 header nav a.active:hover::after {
     width: 100% !important;
 }
+/* =========================================================
+   GLOBAL PAGE LOAD ANIMATION — ALL PAGES
+   (Header/Footer NOT affected)
+========================================================= */
+
+@keyframes pageFade {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animate only main page content */
+.container {
+    animation: pageFade 0.65s ease forwards;
+}
+
+/* ✅ Disable animation on Header + Footer completely */
+header,
+footer {
+    animation: none !important;
+}
