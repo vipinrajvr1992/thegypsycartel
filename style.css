@@ -926,141 +926,7 @@ body.select-open select,
 body.select-open option {
     cursor: auto !important;
 }
-/* =========================================
-   GYPSY CARTEL — CUSTOM DROPDOWN (STUDIO)
-   Cursor works perfectly inside
-========================================= */
 
-.gc-dropdown {
-    position: relative;
-    width: 100%;
-    margin-bottom: 20px;
-    font-family: inherit;
-}
-
-/* Selected Box */
-.gc-dropdown-selected {
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-soft);
-    padding: 14px;
-    color: #fff;
-    cursor: none;
-    user-select: none;
-}
-
-/* Dropdown List */
-.gc-dropdown-list {
-    position: absolute;
-    top: 105%;
-    left: 0;
-    width: 100%;
-    background: #111;
-    border: 1px solid var(--border-soft);
-    border-radius: 8px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    max-height: 220px;
-    overflow-y: auto;
-    display: none;
-    z-index: 9999;
-}
-
-/* Items */
-.gc-dropdown-list li {
-    padding: 14px;
-    color: #fff;
-    cursor: none;
-    transition: 0.2s ease;
-}
-
-/* Hover */
-.gc-dropdown-list li:hover {
-    background: rgba(255,106,26,0.15);
-    color: var(--primary-orange);
-}
-
-/* Active Open */
-.gc-dropdown.open .gc-dropdown-list {
-    display: block;
-}
-/* =========================================
-   STUDIO — PREMIUM CUSTOM DROPDOWN (SAFE)
-   No theme change • Cursor works perfectly
-========================================= */
-
-.gc-dropdown {
-    position: relative;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.gc-dropdown-selected {
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-soft);
-    padding: 14px;
-    border-radius: 10px;
-    color: #fff;
-    cursor: none;
-    user-select: none;
-    transition: 0.25s ease;
-}
-
-.gc-dropdown-selected:hover {
-    border-color: var(--primary-orange);
-    box-shadow: 0 0 0 2px rgba(255,106,26,0.15);
-}
-
-.gc-dropdown-list {
-    position: absolute;
-    top: 110%;
-    left: 0;
-    width: 100%;
-    background: #0f0f0f;
-    border: 1px solid var(--border-soft);
-    border-radius: 12px;
-    padding: 6px 0;
-    margin: 0;
-    list-style: none;
-
-    max-height: 240px;
-    overflow-y: auto;
-
-    display: none;
-    z-index: 9999;
-
-    overscroll-behavior: contain;
-}
-
-.gc-dropdown-list::-webkit-scrollbar {
-    width: 6px;
-}
-
-.gc-dropdown-list::-webkit-scrollbar-thumb {
-    background: rgba(255,106,26,0.35);
-    border-radius: 10px;
-}
-
-.gc-dropdown-list li {
-    padding: 14px 16px;
-    color: #fff;
-    cursor: none;
-    transition: 0.2s ease;
-}
-
-.gc-dropdown-list li:hover {
-    background: rgba(255,106,26,0.12);
-    color: var(--primary-orange);
-}
-
-.gc-dropdown.open .gc-dropdown-list {
-    display: block;
-}
-
-    font-size: 1rem;
-    line-height: 1.6;
-    color: #ffffff !important;
-}
 /* =========================================================
    FOOTER — PREMIUM SWIPE UNDERLINE (GLOBAL FIX)
    View Open Roles → Hover Animation
@@ -1096,107 +962,77 @@ body.select-open option {
     width: 100%;
 }
 /* =========================================================
-   STUDIO DROPDOWN — PREMIUM FINAL VERSION
-   ✔ White text
-   ✔ Grey hover + grey selected
-   ✔ No orange highlight
-   ✔ No scrollbar
-   ✔ Clean premium look
+   STUDIO PAGE — FINAL SAFE ALIGNMENT OVERRIDE
+   Does NOT affect other pages
 ========================================================= */
 
-.gc-dropdown {
-    position: relative;
-    width: 100%;
-    margin-bottom: 18px;
-    font-family: inherit;
+.design-page .grid-2 > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
 }
 
-/* ================================
-   Selected Box (Closed State)
-================================ */
-
-.gc-dropdown-selected {
-    background: rgba(22, 22, 22, 0.96);
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    padding: 14px 16px;
-    border-radius: 12px;
-
-    color: #ffffff;
-    font-size: 0.95rem;
-    font-weight: 500;
-
-    cursor: none;
-    user-select: none;
-
-    transition: 0.25s ease;
+/* Ribbon → Logo gap */
+.design-page .studio-ribbon {
+    margin-bottom: 4rem !important;
 }
 
-/* Hover effect (subtle border only) */
-.gc-dropdown-selected:hover {
-    border-color: rgba(255, 255, 255, 0.22);
+/* Logo → Heading gap */
+.design-page .mg-logo-wrap {
+    margin-bottom: 2rem !important;
 }
 
-/* ================================
-   Dropdown List (Open State)
-================================ */
+/* Heading → Paragraph gap */
+.design-page h1 {
+    margin-bottom: 1rem !important;
+    line-height: 1.2;
+}
 
-.gc-dropdown-list {
-    position: absolute;
-    top: 110%;
-    left: 0;
-    width: 100%;
+/* Paragraph alignment (3 clean lines) */
+.design-page p {
+    max-width: 440px;
+    line-height: 1.6;
+    text-wrap: balance;
+}
 
-    background: rgba(15, 15, 15, 0.98);
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    border-radius: 14px;
 
-    padding: 6px 0;
-    margin: 0;
-    list-style: none;
+/* =========================================================
+   STUDIO DROPDOWN — FINAL PREMIUM GREY OVERRIDE
+   Overrides old orange dropdown styles safely
+========================================================= */
 
-    /* ✅ No scrollbar */
+.design-page .gc-dropdown-selected {
+    background: rgba(22,22,22,0.96) !important;
+    border: 1px solid rgba(255,255,255,0.10) !important;
+    border-radius: 12px !important;
+    color: #ffffff !important;
+}
+
+.design-page .gc-dropdown-selected:hover {
+    border-color: rgba(255,255,255,0.25) !important;
+    box-shadow: 0 0 18px rgba(255,255,255,0.08) !important;
+}
+
+/* Dropdown List */
+.design-page .gc-dropdown-list {
+    background: rgba(15,15,15,0.98) !important;
+    border-radius: 14px !important;
+
+    /* No scroll */
     max-height: none !important;
     overflow: hidden !important;
 
-    display: none;
-    z-index: 9999;
-
-    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.70);
+    box-shadow: 0 18px 55px rgba(0,0,0,0.75) !important;
 }
 
-/* ================================
-   Dropdown Items
-================================ */
-
-.gc-dropdown-list li {
-    padding: 14px 18px;
-
-    font-size: 0.95rem;
-    font-weight: 500;
-
-    /* ✅ Always white */
-    color: #ffffff !important;
-
-    cursor: none;
-    transition: background 0.22s ease;
-}
-
-/* Hover = Premium Grey */
-.gc-dropdown-list li:hover {
-    background: rgba(255, 255, 255, 0.08);
+/* Items */
+.design-page .gc-dropdown-list li {
     color: #ffffff !important;
 }
 
-/* Selected Active Item = Grey Highlight */
-.gc-dropdown-list li.active {
-    background: rgba(255, 255, 255, 0.14);
-    font-weight: 600;
-}
-
-/* ================================
-   Open Dropdown Toggle
-================================ */
-
-.gc-dropdown.open .gc-dropdown-list {
-    display: block;
+/* Hover Grey */
+.design-page .gc-dropdown-list li:hover {
+    background: rgba(255,255,255,0.08) !important;
+    color: #ffffff !important;
 }
