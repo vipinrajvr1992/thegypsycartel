@@ -1026,9 +1026,7 @@ footer a:hover {
     }
 }
 
-/* =========================================================
-   NAV HOVER + ACTIVE UNDERLINE — STABLE ORANGE
-========================================================= */
+/* NAV HOVER + ACTIVE UNDERLINE — STABLE ORANGE */
 
 header nav a::after {
     content: "";
