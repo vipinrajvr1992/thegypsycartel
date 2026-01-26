@@ -1,267 +1,183 @@
 /* =========================================================
-   GYPSY CARTEL — PRODUCTION MASTER JS v1.2
-   STATUS: LOCKED (Old Cursor Logic + New Features)
+   GYPSY CARTEL — MASTER SCRIPT v1.0 (FINAL STABLE)
+   Includes:
+   - Page Load Reveal
+   - Premium Physics Cursor (Old Stable Version)
+   - Hover Zoom via Class
+   - Apps Slider + Modal Lightbox
+   - Dropdown Safe System
 ========================================================= */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
 
-    /* =========================================================
-       1. GLOBAL PAGE LOAD (Cinematic Lift)
-    ========================================================= */
-    // Wait for everything to load, then trigger the lift
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            document.body.classList.add('page-loaded');
-        }, 100);
+  /* =========================================================
+     1. PREMIUM PAGE LOAD REVEAL
+  ========================================================= */
+  window.addEventListener("load", () => {
+    document.body.classList.add("page-loaded");
+  });
+
+
+  /* =========================================================
+     2. CUSTOM CURSOR (OLD PREMIUM PHYSICS)
+  ========================================================= */
+  const dot = document.querySelector(".cursor-dot");
+  const outline = document.querySelector(".cursor-outline");
+
+  if (dot && outline && window.matchMedia("(hover: hover)").matches) {
+
+    let mouseX = 0, mouseY = 0;
+    let outlineX = 0, outlineY = 0;
+
+    /* Dot = Instant */
+    window.addEventListener("mousemove", (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      dot.style.left = mouseX + "px";
+      dot.style.top = mouseY + "px";
     });
 
+    /* Outline = Smooth Follow */
+    function animateCursor() {
+      outlineX += (mouseX - outlineX) * 0.15;
+      outlineY += (mouseY - outlineY) * 0.15;
 
-    /* =========================================================
-       2. YOUR EXACT OLD CURSOR LOGIC (RESTORED)
-    ========================================================= */
-    const cursorDot = document.querySelector('.cursor-dot');
-    const cursorOutline = document.querySelector('.cursor-outline');
+      outline.style.left = outlineX + "px";
+      outline.style.top = outlineY + "px";
 
-    let mouseX = 0;
-    let mouseY = 0;
-
-    // Only run if cursor elements exist
-    if (cursorDot && cursorOutline) {
-
-        // 🔒 Activate custom cursor class
-        document.body.classList.add('gc-cursor-active');
-
-        // 1. Track Mouse Position
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-
-            // Instant follow for Dot
-            cursorDot.style.left = `${mouseX}px`;
-            cursorDot.style.top = `${mouseY}px`;
-        });
-
-        // 2. Smooth Follow for Outline (Your RequestAnimationFrame Logic)
-        const followCursor = () => {
-            cursorOutline.style.left = `${mouseX}px`;
-            cursorOutline.style.top = `${mouseY}px`;
-            requestAnimationFrame(followCursor);
-        };
-        followCursor();
-
-        // 3. Hover Zoom Logic (Extended to include new elements)
-        const interactiveSelectors = 'a, button, input, textarea, .btn, .apps-gallery-img, .apps-gallery-arrow, .gc-dropdown-selected, .logo-icon';
-        
-        document.querySelectorAll(interactiveSelectors).forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                // Your specific scale transform
-                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
-            });
-            el.addEventListener('mouseleave', () => {
-                cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
-            });
-        });
+      requestAnimationFrame(animateCursor);
     }
+    animateCursor();
 
 
     /* =========================================================
-       3. PREMIUM DROPDOWN (Studio Selector)
+       3. HOVER ZOOM SYSTEM (CLASS BASED)
     ========================================================= */
-    const dropdowns = document.querySelectorAll('.gc-dropdown');
+    const hoverTargets = document.querySelectorAll(
+      "a, button, .btn, .apps-gallery-img, .gc-dropdown-selected, .gc-dropdown-list li"
+    );
 
-    dropdowns.forEach(dropdown => {
-        const selected = dropdown.querySelector('.gc-dropdown-selected');
-        const list = dropdown.querySelector('.gc-dropdown-list');
-        const items = dropdown.querySelectorAll('.gc-dropdown-list li');
-        const input = dropdown.querySelector('input[type="hidden"]'); // If you use one
+    hoverTargets.forEach((el) => {
+      el.addEventListener("mouseenter", () => {
+        outline.classList.add("active");
+      });
 
-        // Toggle Open/Close
-        selected.addEventListener('click', (e) => {
-            e.stopPropagation();
-            dropdown.classList.toggle('open');
-        });
-
-        // Select Item
-        items.forEach(item => {
-            item.addEventListener('click', () => {
-                selected.textContent = item.textContent;
-                dropdown.classList.remove('open');
-                
-                // Update hidden input if it exists
-                if(input) input.value = item.getAttribute('data-value');
-
-                // Visual Active State
-                items.forEach(i => i.classList.remove('active'));
-                item.classList.add('active');
-            });
-        });
+      el.addEventListener("mouseleave", () => {
+        outline.classList.remove("active");
+      });
     });
 
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', () => {
-        dropdowns.forEach(d => d.classList.remove('open'));
+  }
+
+
+  /* =========================================================
+     4. PREMIUM DROPDOWN SYSTEM (LOCKED SAFE)
+  ========================================================= */
+  const dropdowns = document.querySelectorAll(".gc-dropdown");
+
+  dropdowns.forEach((dropdown) => {
+    const selected = dropdown.querySelector(".gc-dropdown-selected");
+    const list = dropdown.querySelector(".gc-dropdown-list");
+    const items = dropdown.querySelectorAll("li");
+
+    if (!selected || !list) return;
+
+    selected.addEventListener("click", () => {
+      dropdown.classList.toggle("open");
     });
 
+    items.forEach((item) => {
+      item.addEventListener("click", () => {
+        selected.textContent = item.textContent;
+        dropdown.classList.remove("open");
+      });
+    });
 
-    /* =========================================================
-       4. APPS GALLERY SLIDER (Scroll & Arrows)
-    ========================================================= */
-    const track = document.querySelector('.apps-gallery-track');
-    const btnLeft = document.querySelector('.apps-gallery-arrow.left');
-    const btnRight = document.querySelector('.apps-gallery-arrow.right');
+    document.addEventListener("click", (e) => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove("open");
+      }
+    });
+  });
 
-    if (track && btnLeft && btnRight) {
-        btnLeft.addEventListener('click', () => {
-            track.scrollBy({ left: -340, behavior: 'smooth' });
-        });
 
-        btnRight.addEventListener('click', () => {
-            track.scrollBy({ left: 340, behavior: 'smooth' });
-        });
+  /* =========================================================
+     5. APPS SLIDER ARROWS SCROLL
+  ========================================================= */
+  const track = document.querySelector(".apps-gallery-track");
+  const leftArrow = document.querySelector(".apps-gallery-arrow.left");
+  const rightArrow = document.querySelector(".apps-gallery-arrow.right");
+
+  if (track && leftArrow && rightArrow) {
+
+    leftArrow.addEventListener("click", () => {
+      track.scrollBy({ left: -340, behavior: "smooth" });
+    });
+
+    rightArrow.addEventListener("click", () => {
+      track.scrollBy({ left: 340, behavior: "smooth" });
+    });
+
+  }
+
+
+  /* =========================================================
+     6. MODAL LIGHTBOX SYSTEM (FULL SAFE)
+  ========================================================= */
+  const modal = document.querySelector(".apps-modal");
+  const modalImg = document.querySelector(".apps-modal-img");
+  const closeBtn = document.querySelector(".apps-modal-close");
+  const modalLeft = document.querySelector(".apps-modal-arrow.left");
+  const modalRight = document.querySelector(".apps-modal-arrow.right");
+
+  const galleryImages = document.querySelectorAll(".apps-gallery-img");
+
+  if (modal && modalImg && galleryImages.length > 0) {
+
+    let currentIndex = 0;
+
+    function openModal(index) {
+      currentIndex = index;
+      modal.style.display = "flex";
+      modalImg.src = galleryImages[currentIndex].src;
     }
 
-
-    /* =========================================================
-       5. APPS MODAL (Lightbox)
-    ========================================================= */
-    const modal = document.querySelector('.apps-modal');
-    const modalImg = document.querySelector('.apps-modal-img');
-    const modalClose = document.querySelector('.apps-modal-close');
-    const galleryImages = document.querySelectorAll('.apps-gallery-img');
-    
-    // Modal Navigation Arrows
-    const modalArrowLeft = document.querySelector('.apps-modal-arrow.left');
-    const modalArrowRight = document.querySelector('.apps-modal-arrow.right');
-    
-    let currentImageIndex = 0;
-
-    if (modal && galleryImages.length > 0) {
-
-        // Open Modal
-        galleryImages.forEach((img, index) => {
-            img.addEventListener('click', () => {
-                currentImageIndex = index;
-                updateModalImage();
-                modal.style.display = 'flex';
-                // Trigger animation
-                requestAnimationFrame(() => {
-                    modalImg.style.opacity = "1";
-                    modalImg.style.transform = "scale(1)";
-                });
-            });
-        });
-
-        // Update Image Helper
-        const updateModalImage = () => {
-            const src = galleryImages[currentImageIndex].src;
-            modalImg.src = src;
-        };
-
-        // Close Modal
-        const closeModal = () => {
-            modal.style.display = 'none';
-        };
-
-        if(modalClose) modalClose.addEventListener('click', closeModal);
-        
-        // Close on background click
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        // Navigate Left
-        if(modalArrowLeft) {
-            modalArrowLeft.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (currentImageIndex > 0) {
-                    currentImageIndex--;
-                    updateModalImage();
-                }
-            });
-        }
-
-        // Navigate Right
-        if(modalArrowRight) {
-            modalArrowRight.addEventListener('click', (e) => {
-                e.stopPropagation();
-                if (currentImageIndex < galleryImages.length - 1) {
-                    currentImageIndex++;
-                    updateModalImage();
-                }
-            });
-        }
+    function closeModal() {
+      modal.style.display = "none";
     }
 
-
-    /* =========================================================
-       6. AJAX CONTACT FORM (From Your Original Script)
-    ========================================================= */
-    const designForm = document.getElementById('designForm');
-
-    if (designForm) {
-        designForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-
-            const successMsg = document.getElementById('design-success');
-            const formData = new FormData(designForm);
-
-            try {
-                const response = await fetch(designForm.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    designForm.reset();
-                    if(successMsg) successMsg.style.display = 'block';
-                } else {
-                    alert('Submission failed. Please try again.');
-                }
-            } catch (error) {
-                alert('Network error. Please try again.');
-            }
-        });
+    function showNext() {
+      currentIndex = (currentIndex + 1) % galleryImages.length;
+      modalImg.src = galleryImages[currentIndex].src;
     }
 
-}); // End DOMContentLoaded
-
-
-/* =========================================================
-   7. LEGAL PAGES (Global Functions)
-   Keep these outside DOMContentLoaded so HTML onclick works
-========================================================= */
-function openPolicy(type) {
-    const modal = document.getElementById('policy-modal');
-    const content = document.getElementById('policy-content');
-
-    if (!modal || !content) return;
-
-    if (type === 'privacy') {
-        content.innerHTML = `
-            <h2 style="color:var(--primary-orange); margin-bottom:15px;">Privacy Policy</h2>
-            <p>Gypsy Cartel respects your privacy. We collect only the information you voluntarily provide through our website forms.</p>
-            <p>We do not sell, rent, or share your personal data. Form submissions may be securely processed using trusted third-party services.</p>
-            <p>For questions, contact <strong>support@gypsycartel.shop</strong></p>
-        `;
+    function showPrev() {
+      currentIndex =
+        (currentIndex - 1 + galleryImages.length) % galleryImages.length;
+      modalImg.src = galleryImages[currentIndex].src;
     }
 
-    if (type === 'terms') {
-        content.innerHTML = `
-            <h2 style="color:var(--primary-orange); margin-bottom:15px;">Terms of Service</h2>
-            <p>By accessing or using the Gypsy Cartel website, you agree to comply with these terms.</p>
-            <p>Submitting a project request does not guarantee acceptance or delivery. All pricing is discussed separately.</p>
-            <p>All designs and content are the intellectual property of Gypsy Cartel.</p>
-        `;
-    }
+    galleryImages.forEach((img, i) => {
+      img.addEventListener("click", () => openModal(i));
+    });
 
-    modal.classList.remove('gc-hidden');
-    modal.scrollTop = 0;
-}
+    if (closeBtn) closeBtn.addEventListener("click", closeModal);
 
-function closePolicy() {
-    const modal = document.getElementById('policy-modal');
-    if (modal) {
-        modal.classList.add('gc-hidden');
-    }
-}
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    if (modalRight) modalRight.addEventListener("click", showNext);
+    if (modalLeft) modalLeft.addEventListener("click", showPrev);
+
+    document.addEventListener("keydown", (e) => {
+      if (modal.style.display !== "flex") return;
+
+      if (e.key === "Escape") closeModal();
+      if (e.key === "ArrowRight") showNext();
+      if (e.key === "ArrowLeft") showPrev();
+    });
+  }
+
+});
