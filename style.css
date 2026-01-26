@@ -1,11 +1,11 @@
 /* =========================================================
    GYPSY CARTEL — FUTURISTIC MINIMAL THEME
-   VERSION: PRODUCTION MASTER v1.1 (FINAL)
+   VERSION: PRODUCTION MASTER v1.2 (OLD CURSOR RESTORED)
    STATUS: LOCKED + CLEAN
    
    INCLUDES:
    - Cinematic Global Page Load (Fade + Lift)
-   - Physics Cursor (Smart Hide on Typing)
+   - ORIGINAL CUSTOM CURSOR (From your uploaded file)
    - Premium Apps Slider (Glow Arrows + Smooth Scroll)
    - Modal Lightbox (With Navigation Arrows)
    - Studio Dropdown Locked
@@ -135,7 +135,7 @@ select, label, button, .btn, .apps-gallery-img {
 
 
 /* =========================================================
-   5. CUSTOM CURSOR (PREMIUM STABLE + SMART HIDE)
+   5. CUSTOM CURSOR (RESTORED FROM YOUR FILE)
 ========================================================= */
 
 .cursor-dot,
@@ -145,33 +145,27 @@ select, label, button, .btn, .apps-gallery-img {
     left: 0;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    pointer-events: none !important;
-    z-index: 999999;
+    pointer-events: none;
+    z-index: 9999;
 }
 
-/* Dot */
 .cursor-dot {
     width: 8px;
     height: 8px;
     background: var(--primary-orange);
-    transition: opacity 0.2s ease; /* Fade out smooth */
+    transition: opacity 0.2s ease; /* Added for Smart Hide smooth fade */
 }
 
-/* Outline */
 .cursor-outline {
     width: 40px;
     height: 40px;
     border: 1px solid rgba(255,255,255,0.6);
-    transition: transform 0.15s ease, opacity 0.2s ease; /* Fade out smooth */
-}
-
-/* Hover Zoom */
-.cursor-outline.active {
-    transform: translate(-50%, -50%) scale(1.6);
+    /* KEPT EXACTLY AS YOU HAD IT */
+    transition: transform 0.15s ease, opacity 0.2s ease; 
 }
 
 /* ✅ SMART HIDE: Hides custom cursor when user is typing (Modern CSS) */
-/* This detects if ANY input/textarea on the page is focused */
+/* This works with your Old Cursor Style */
 body:has(input:focus) .cursor-dot,
 body:has(textarea:focus) .cursor-dot,
 body:has(input:focus) .cursor-outline,
