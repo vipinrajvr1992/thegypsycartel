@@ -1,17 +1,25 @@
 /* =========================================================
    GYPSY CARTEL — FUTURISTIC MINIMAL THEME
-   FINAL • STABLE • CLEAN • NO CONFLICTS
+   VERSION: FINAL MASTER (FULL FUNCTION)
+   STATUS: PRODUCTION READY
+   INCLUDES:
+   - Studio Fix (Locked)
+   - Apps Gallery (Horizontal + Modal)
+   - Custom Cursor (Smart Logic)
+   - Home Page Sections & Animations
+   - Global Page Transitions
 ========================================================= */
 
 /* =========================================================
-   GOOGLE FONTS
+   1. GOOGLE FONTS
 ========================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap');
 
 /* =========================================================
-   ROOT VARIABLES — BRAND CONTROL
+   2. ROOT VARIABLES — BRAND CONTROL
 ========================================================= */
 :root {
+    /* --- COLORS --- */
     --bg-deep: #050505;
     --bg-surface: #0f0f0f;
     --bg-elevated: #161616;
@@ -23,23 +31,26 @@
     --text-muted: #8c8c8c;
 
     --border-soft: rgba(255,255,255,0.08);
+
+    /* --- DIMENSIONS --- */
+    --header-height: 80px;
+    --container-width: 1200px;
 }
 
 /* =========================================================
-   RESET
+   3. RESET & BASE STYLES
 ========================================================= */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none;
+    cursor: none; /* Default to Custom Cursor */
 }
 
-html { scroll-behavior: smooth; }
+html {
+    scroll-behavior: smooth;
+}
 
-/* =========================================================
-   BODY
-========================================================= */
 body {
     background:
         radial-gradient(circle at 30% 15%, rgba(255,106,26,0.06), transparent 45%),
@@ -52,6 +63,7 @@ body {
     position: relative;
 }
 
+/* Global Grid Overlay Pattern */
 body::before {
     content: "";
     position: fixed;
@@ -64,13 +76,14 @@ body::before {
 }
 
 /* =========================================================
-   TYPOGRAPHY
+   4. TYPOGRAPHY
 ========================================================= */
 h1, h2, h3, h4 {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
+    color: #fff;
 }
 
 p {
@@ -84,10 +97,12 @@ a {
     transition: 0.3s ease;
 }
 
-ul { list-style: none; }
+ul {
+    list-style: none;
+}
 
 /* =========================================================
-   CUSTOM CURSOR
+   5. CUSTOM CURSOR & FIXES
 ========================================================= */
 .cursor-dot,
 .cursor-outline {
@@ -97,7 +112,7 @@ ul { list-style: none; }
     transform: translate(-50%, -50%);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 10000;
 }
 
 .cursor-dot {
@@ -113,14 +128,42 @@ ul { list-style: none; }
     transition: transform 0.15s ease;
 }
 
+/* --- CRITICAL CURSOR FIXES --- */
+
+/* Force custom cursor hidden in specific states */
+.cursor-fix {
+    cursor: none !important;
+}
+
+/* 1. Native cursor for Select elements (Usability) */
+select {
+    cursor: none !important;
+}
+
+select option {
+    cursor: none !important;
+}
+
+/* 2. Hide custom cursor when a dropdown is active/open */
+body.select-open .cursor-dot,
+body.select-open .cursor-outline {
+    opacity: 0 !important;
+}
+
+/* 3. Restore system cursor inside open selects */
+body.select-open select,
+body.select-open option {
+    cursor: auto !important;
+}
+
 /* =========================================================
-   HEADER
+   6. HEADER & NAVIGATION
 ========================================================= */
 header {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 80px;
+    height: var(--header-height);
     padding: 0 5%;
     display: flex;
     justify-content: space-between;
@@ -131,7 +174,10 @@ header {
     z-index: 1000;
 }
 
-.logo-icon { width: 38px; }
+.logo-icon {
+    width: 38px;
+    height: auto;
+}
 
 header nav ul {
     display: flex;
@@ -147,9 +193,10 @@ header nav a {
 
 header nav a:hover,
 header nav a.active {
-    color: var(--primary-orange);
+    color: var(--primary-orange) !important;
 }
 
+/* Active Link Indicator */
 header nav a.active::after {
     content: "";
     position: absolute;
@@ -158,10 +205,11 @@ header nav a.active::after {
     width: 100%;
     height: 2px;
     background: var(--primary-orange);
+    opacity: 1;
 }
 
 /* =========================================================
-   BUTTONS
+   7. BUTTONS & MICRO-INTERACTIONS
 ========================================================= */
 .btn {
     display: inline-block;
@@ -171,8 +219,30 @@ header nav a.active::after {
     text-transform: uppercase;
     border: 1px solid transparent;
     transition: 0.35s ease;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Shine Effect on Hover */
+.btn::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,0.25),
+        transparent
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.btn:hover::after {
+    transform: translateX(100%);
+}
+
+/* Primary Orange Button */
 .btn-primary {
     background: linear-gradient(135deg, #ff6a1a, #ff3c00);
     color: #fff;
@@ -186,6 +256,7 @@ header nav a.active::after {
     box-shadow: none;
 }
 
+/* Outline White Button */
 .btn-outline {
     background: transparent;
     color: #fff;
@@ -199,10 +270,10 @@ header nav a.active::after {
 }
 
 /* =========================================================
-   LAYOUT
+   8. LAYOUT UTILITIES
 ========================================================= */
 .container {
-    max-width: 1200px;
+    max-width: var(--container-width);
     margin: 0 auto;
     padding: 140px 20px 80px;
     position: relative;
@@ -222,19 +293,7 @@ header nav a.active::after {
 }
 
 /* =========================================================
-   HERO
-========================================================= */
-.hero {
-    min-height: 100vh;
-    padding-top: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-/* =========================================================
-   FORMS
+   9. FORMS & INPUTS
 ========================================================= */
 input,
 textarea,
@@ -245,6 +304,7 @@ select {
     border: 1px solid var(--border-soft);
     color: #fff;
     margin-bottom: 20px;
+    border-radius: 4px;
 }
 
 input:focus,
@@ -256,191 +316,107 @@ select:focus {
 }
 
 /* =========================================================
-   DESIGN PAGE — FINAL FIX (THIS IS THE IMPORTANT PART)
+   10. PREMIUM CUSTOM DROPDOWN
+   (Supports Scrolling & Hover)
 ========================================================= */
-.design-page .grid-2 {
-    align-items: center;
-}
-
-.design-page .grid-2 > div:first-child {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 2rem; /* ✅ EXACT GAP CONTROL */
-}
-
-.design-page .grid-2 > div:first-child img {
-    max-width: 260px;
-    width: 100%;
-    height: auto;
-    margin: 0; /* 🔒 NO INTERFERENCE */
-}
-
-.design-page h1 {
-    margin: 0; /* 🔒 NO HIDDEN SPACING */
-}
-
-/* =========================================================
-   CONTACT PAGE
-========================================================= */
-.contact-page .container {
-    padding-top: calc(80px + 2rem);
-}
-
-.contact-page .grid-3 {
-    gap: 1rem;
-    margin: 1rem 0 2rem;
-}
-
-.contact-page h4 {
-    color: var(--primary-orange);
-}
-
-.contact-page .grid-3 p,
-.contact-page .grid-3 a {
-    color: #ffffff !important;
-}
-
-/* =========================================================
-   LEGAL PAGES
-========================================================= */
-.legal-page {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 160px 20px 80px;
-}
-
-.legal-page h1 span {
-    color: var(--primary-orange);
-}
-
-.legal-page p {
-    margin-bottom: 1.2rem;
-}
-
-/* =========================================================
-   FOOTER
-========================================================= */
-footer {
-    background: linear-gradient(180deg, #0a0a0a, #050505);
-    padding: 50px 5% 30px;
-}
-
-.footer-content {
-    max-width: 1200px;
-    margin: auto;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 40px;
-    border-bottom: 1px solid var(--border-soft);
-    padding-bottom: 30px;
-}
-
-.footer-bottom {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-}
-
-/* Footer links default WHITE */
-footer a {
-    color: #ffffff;
-}
-
-/* Hover ORANGE */
-footer a:hover {
-    color: var(--primary-orange);
-}
-
-/* =========================================================
-   RESPONSIVE
-========================================================= */
-@media (max-width: 900px) {
-    .grid-2 { grid-template-columns: 1fr; }
-    .footer-content { grid-template-columns: 1fr; }
-}
-/* =========================================================
-   DESIGN PAGE — LOGO → HEADING GAP (EXACT 2rem)
-========================================================= */
-
-/* Kill all unexpected spacing first */
-.design-page .grid-2 > div:first-child {
-    gap: 0; /* disable flex gap completely */
-}
-
-/* Control ONLY logo → heading */
-.design-page .mg-logo-wrap {
-    margin-bottom: 2rem !important;
-}
-
-/* Ensure heading has no extra top margin */
-.design-page h1 {
-    margin-top: 0 !important;
-}
-/* ================================
-   HERO — CLEAN CENTERED LOGO
-================================ */
-
-.hero-center {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-/* Logo container */
-.hero-logo-container {
+.gc-dropdown {
     position: relative;
-    width: 420px;
-    max-width: 90vw;
-    aspect-ratio: 1 / 1;
-    margin-bottom: 1.5rem;
+    width: 100%;
+    margin-bottom: 20px;
+    font-family: inherit;
 }
 
-/* Lottie dots */
-.hero-logo-container lottie-player {
+.gc-dropdown-selected {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-soft);
+    padding: 14px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: none;
+    user-select: none;
+    transition: 0.25s ease;
+}
+
+.gc-dropdown-selected:hover {
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 0 2px rgba(255,106,26,0.15);
+}
+
+.gc-dropdown-list {
     position: absolute;
-    inset: -10%;
-    width: 120%;
-    height: 120%;
-    pointer-events: none;
-    z-index: 1;
-}
-
-/* Logo */
-.hero-logo {
-    position: relative;
+    top: 110%;
+    left: 0;
     width: 100%;
-    height: auto;
-    z-index: 2;
+    background: #0f0f0f;
+    border: 1px solid var(--border-soft);
+    border-radius: 12px;
+    padding: 6px 0;
+    margin: 0;
+    list-style: none;
+
+    /* Scrollable if list is long */
+    max-height: 240px;
+    overflow-y: auto;
+    display: none;
+    z-index: 9999;
+    overscroll-behavior: contain;
 }
 
-/* Tagline */
-.hero-tagline {
-    font-size: 1.3rem;
-    color: var(--text-muted);
-    margin-bottom: 1.8rem;
-    max-width: 720px;
+/* Custom Scrollbar for Dropdown */
+.gc-dropdown-list::-webkit-scrollbar {
+    width: 6px;
 }
-/* =====================================
-   HERO — LOTTIE LOGO PERFECT FIT
-===================================== */
 
-.hero-center {
+.gc-dropdown-list::-webkit-scrollbar-thumb {
+    background: rgba(255,106,26,0.35);
+    border-radius: 10px;
+}
+
+.gc-dropdown-list li {
+    padding: 14px 16px;
+    color: #fff;
+    cursor: none;
+    transition: 0.2s ease;
+}
+
+.gc-dropdown-list li:hover {
+    background: rgba(255,106,26,0.12);
+    color: var(--primary-orange);
+}
+
+.gc-dropdown.open .gc-dropdown-list {
+    display: block;
+}
+
+/* =========================================================
+   11. HOME PAGE (HERO & CONTENT)
+========================================================= */
+
+/* --- HERO SECTION --- */
+.hero {
     min-height: 100vh;
     padding-top: 80px;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* Subtle Orange Pulse Background */
+    background:
+        radial-gradient(circle at 30% 20%, rgba(255,106,26,0.12), transparent 55%),
+        radial-gradient(circle at 70% 80%, rgba(255,106,26,0.10), transparent 55%),
+        #000;
+}
+
+.hero-center {
+    width: 100%;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-/* Lottie container */
+/* Lottie Container */
 .hero-lottie-wrap {
     width: 420px;
     max-width: 90vw;
@@ -451,240 +427,22 @@ footer a:hover {
     margin-bottom: 1.6rem;
 }
 
-/* Lottie itself */
 .hero-lottie-wrap lottie-player {
     width: 100%;
     height: 100%;
 }
 
-/* Tagline */
+/* Tagline with Reveal Animation */
 .hero-tagline {
     font-size: 1.25rem;
     color: var(--text-muted);
     max-width: 720px;
     margin-bottom: 1.8rem;
-}
-
-/* Buttons spacing */
-.hero-actions {
-    display: flex;
-    gap: 16px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-/* =========================================================
-   DESIGN PAGE — PREMIUM MOTION POLISH (SAFE)
-   No layout changes • No JS • No conflicts
-========================================================= */
-
-/* Smooth page load */
-.design-page {
-    animation: pageFade 0.6s ease forwards;
-}
-
-@keyframes pageFade {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* MG Logo — subtle float */
-.design-page .mg-logo-wrap img {
-    animation: logoFloat 6s ease-in-out infinite;
-}
-
-@keyframes logoFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-}
-
-/* Heading reveal */
-.design-page h1 {
-    opacity: 0;
-    transform: translateY(12px);
-    animation: textReveal 0.7s ease forwards;
-    animation-delay: 0.15s;
-}
-
-.design-page p {
-    opacity: 0;
-    transform: translateY(12px);
-    animation: textReveal 0.7s ease forwards;
-    animation-delay: 0.3s;
-}
-
-@keyframes textReveal {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Form card elevation */
-.design-page .grid-2 > div:last-child {
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.design-page .grid-2 > div:last-child:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.45);
-}
-
-/* Button micro interaction */
-.design-page .btn-primary {
-    position: relative;
-    overflow: hidden;
-}
-
-.design-page .btn-primary::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.25),
-        transparent
-    );
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-}
-
-.design-page .btn-primary:hover::after {
-    transform: translateX(100%);
-}
-/* =========================================================
-   GLOBAL PAGE LOAD SMOOTHNESS
-   (About, Fashion, Contact, Legal)
-========================================================= */
-
-/* Pages that fade in */
-.about-page,
-.fashion-page,
-.contact-page,
-.legal-page {
-    animation: pageFade 0.6s ease forwards;
-}
-
-@keyframes pageFade {
-    from { opacity: 0; }
-    to   { opacity: 1; }
-}
-
-/* =========================================================
-   TEXT REVEAL — HEADINGS & PARAGRAPHS
-   (About, Fashion, Contact only)
-========================================================= */
-
-.about-page h1,
-.about-page p,
-.fashion-page h1,
-.fashion-page p,
-.contact-page h1,
-.contact-page p {
-    opacity: 0;
-    transform: translateY(14px);
-    animation: textReveal 0.7s ease forwards;
-}
-
-/* Stagger effect */
-.about-page p,
-.fashion-page p,
-.contact-page p {
-    animation-delay: 0.2s;
-}
-
-@keyframes textReveal {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* =========================================================
-   CARD / SECTION ELEVATION
-   (Contact forms, Fashion blocks, About sections)
-========================================================= */
-
-.about-page .container > div,
-.fashion-page .container > div,
-.contact-page .container > div {
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-}
-
-.about-page .container > div:hover,
-.fashion-page .container > div:hover,
-.contact-page .container > div:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 25px 60px rgba(0,0,0,0.45);
-}
-
-/* =========================================================
-   BUTTON MICRO-INTERACTION (GLOBAL SAFE)
-========================================================= */
-
-.btn {
-    position: relative;
-    overflow: hidden;
-}
-
-.btn::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        120deg,
-        transparent,
-        rgba(255,255,255,0.25),
-        transparent
-    );
-    transform: translateX(-100%);
-    transition: transform 0.6s ease;
-}
-
-.btn:hover::after {
-    transform: translateX(100%);
-}
-/* =========================================
-   DESIGN PAGE — FINAL LOGO GAP FIX (LOCKED)
-========================================= */
-
-/* Remove flex gap completely */
-.design-page .grid-2 > div:first-child {
-    gap: 0 !important;
-}
-
-/* Control logo → text gap ONLY here */
-.design-page .mg-logo-wrap {
-    margin-bottom: 1.2rem !important; /* 👈 adjust this value */
-}
-
-/* Kill heading top margin */
-.design-page h1 {
-    margin-top: 0 !important;
-}
-/* =========================================
-   HOME PAGE — HERO SMOOTH LOADING
-========================================= */
-
-/* Page fade */
-body:not(.about-page):not(.design-page):not(.contact-page):not(.fashion-page):not(.legal-page) {
-    animation: pageFade 0.6s ease forwards;
-}
-
-/* Hero tagline reveal */
-.hero-tagline {
+    
     opacity: 0;
     transform: translateY(14px);
     animation: heroTextReveal 0.7s ease forwards;
     animation-delay: 0.15s;
-}
-
-/* Services row reveal (if present) */
-.hero-services {
-    opacity: 0;
-    transform: translateY(14px);
-    animation: heroTextReveal 0.7s ease forwards;
-    animation-delay: 0.3s;
 }
 
 @keyframes heroTextReveal {
@@ -693,264 +451,29 @@ body:not(.about-page):not(.design-page):not(.contact-page):not(.fashion-page):no
         transform: translateY(0);
     }
 }
-/* =========================================
-   APPS PAGE — IMAGE HOVER ZOOM (SAFE)
-   No layout shift • No conflicts
-========================================= */
 
-.apps-page img.apps-image {
-    transition: transform 0.6s cubic-bezier(.22,.61,.36,1);
-    will-change: transform;
-}
-
-.apps-page img.apps-image:hover {
-    transform: scale(1.06);
-}
-/* =========================================
-   APPS PAGE — IMAGE HOVER ZOOM FIX
-   Overrides animation transform safely
-========================================= */
-
-.apps-page .apps-image {
-    transition: transform 0.8s cubic-bezier(.22,.61,.36,1);
-}
-
-.apps-page .apps-image:hover {
-    transform: translateY(0) scale(1.06) !important;
-}
-/* =========================================
-   HOME PAGE — ORANGE GLOW BOOST (SUBTLE)
-========================================= */
-
-.hero {
-    background:
-        radial-gradient(circle at 30% 20%, rgba(255,106,26,0.12), transparent 55%),
-        radial-gradient(circle at 70% 80%, rgba(255,106,26,0.10), transparent 55%),
-        #000;
-}
-/* =========================================
-   CONTACT PAGE — WHATSAPP CTA (CLEAN & CLEAR)
-   Normal → Bold on hover
-========================================= */
-
-.contact-page a[href*="wa.me"] {
-    font-weight: 500; /* normal */
-    color: var(--primary-orange);
-    transition: font-weight 0.25s ease, text-shadow 0.25s ease;
-}
-
-/* Hover state — clear but classy */
-.contact-page a[href*="wa.me"]:hover {
-    font-weight: 700; /* bold */
-    text-shadow: 0 0 12px rgba(255,106,26,0.35);
-}
-/* =========================================================
-   APPS PAGE — PREMIUM SCREENSHOT GALLERY (FINAL)
-   Horizontal scroll • Hover zoom • Modal navigation
-========================================================= */
-
-.apps-gallery {
-    margin-top: 80px;
-}
-
-.apps-gallery-title {
-    text-align: center;
-    margin-bottom: 24px;
-    font-size: 1.2rem;
-    color: var(--primary-orange);
-    letter-spacing: 2px;
-}
-
-/* ===== Horizontal gallery ===== */
-.apps-gallery-wrapper {
-    position: relative;
-}
-
-.apps-gallery-track {
+/* Hero Buttons */
+.hero-actions {
     display: flex;
-    gap: 24px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 12px;
-}
-
-.apps-gallery-track::-webkit-scrollbar {
-    height: 6px;
-}
-.apps-gallery-track::-webkit-scrollbar-thumb {
-    background: rgba(255,106,26,0.35);
-    border-radius: 10px;
-}
-
-.apps-gallery-img {
-    width: 320px;
-    border-radius: 12px;
-    cursor: pointer;
-    scroll-snap-align: start;
-    transition: transform 0.35s ease, box-shadow 0.35s ease;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
-}
-
-.apps-gallery-img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 20px 50px rgba(255,106,26,0.25);
-}
-
-/* Gallery arrows */
-.apps-gallery-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: rgba(15,15,15,0.9);
-    border: 1px solid var(--border-soft);
-    color: var(--primary-orange);
-    font-size: 1.6rem;
-    display: flex;
-    align-items: center;
+    gap: 16px;
     justify-content: center;
-    cursor: pointer;
-    z-index: 4;
-    transition: 0.3s ease;
+    flex-wrap: wrap;
+    
+    opacity: 0;
+    transform: translateY(14px);
+    animation: heroTextReveal 0.7s ease forwards;
+    animation-delay: 0.3s;
 }
 
-.apps-gallery-arrow:hover {
-    background: rgba(255,106,26,0.12);
-    box-shadow: 0 0 18px rgba(255,106,26,0.35);
-}
-
-.apps-gallery-arrow.left { left: -22px; }
-.apps-gallery-arrow.right { right: -22px; }
-
-/* =========================================
-   APPS MODAL — CURSOR SAFE + NAVIGATION
-========================================= */
-
-.apps-modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.88);
-    backdrop-filter: blur(6px);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-
-    /* IMPORTANT — DO NOT HIDE CURSOR */
-    cursor: default;
-}
-
-/* Keep custom cursor ABOVE modal */
-.cursor-dot,
-.cursor-outline {
-    z-index: 10000;
-}
-
-/* Modal image */
-.apps-modal-img {
-    max-width: 90%;
-    max-height: 85vh;
-    border-radius: 14px;
-    box-shadow: 0 30px 80px rgba(0,0,0,0.7);
-    animation: modalZoom 0.25s ease;
-}
-
-@keyframes modalZoom {
-    from { transform: scale(0.96); opacity: 0; }
-    to   { transform: scale(1); opacity: 1; }
-}
-
-/* Close button */
-.apps-modal-close {
-    position: absolute;
-    top: 24px;
-    right: 32px;
-    font-size: 2rem;
-    color: #fff;
-    cursor: pointer;
-    transition: 0.25s ease;
-}
-
-.apps-modal-close:hover {
-    color: var(--primary-orange);
-}
-
-/* Modal arrows */
-.apps-modal-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: rgba(15,15,15,0.9);
-    border: 1px solid var(--border-soft);
-    color: var(--primary-orange);
-    font-size: 1.8rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    user-select: none;
-    transition: 0.25s ease;
-}
-
-.apps-modal-arrow:hover {
-    background: rgba(255,106,26,0.15);
-    box-shadow: 0 0 18px rgba(255,106,26,0.35);
-}
-
-.apps-modal-arrow.left {
-    left: 24px;
-}
-
-.apps-modal-arrow.right {
-    right: 24px;
-}
-/* ===============================
-   PREMIUM CAREER FOOTER ANIMATION
-================================ */
-
-/* Open Roles Link (FINAL ACTIVE) */
-.career-open-link {
-    display: inline-block;
-    color: var(--primary-orange);
-    font-weight: 600;
-    text-decoration: none;
-    position: relative;
-    transition: 0.3s ease;
-}
-
-.career-open-link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0%;
-    height: 2px;
-    background: var(--primary-orange);
-    transition: 0.35s ease;
-}
-
-.career-open-link:hover {
-    color: #fff;
-    transform: translateX(4px);
-}
-
-.career-open-link:hover::after {
-    width: 100%;
-}
-/* =========================================================
-   HOME PAGE — PREMIUM CONTENT SECTIONS (SAFE ADD)
-   Only used in index.html • No theme conflicts
-========================================================= */
-
+/* --- HOME CONTENT SECTIONS --- */
 .home-section {
     padding: 90px 20px;
     text-align: center;
+    
+    /* Scroll Reveal Animation */
+    opacity: 0;
+    transform: translateY(18px);
+    animation: homeReveal 0.8s ease forwards;
 }
 
 .home-section h2 {
@@ -974,7 +497,7 @@ body:not(.about-page):not(.design-page):not(.contact-page):not(.fashion-page):no
     margin-top: 50px;
 }
 
-/* Service Cards */
+/* Service Card */
 .service-card {
     background: var(--bg-surface);
     padding: 28px;
@@ -1022,6 +545,11 @@ body:not(.about-page):not(.design-page):not(.contact-page):not(.fashion-page):no
     background: var(--bg-surface);
     border-top: 1px solid var(--border-soft);
     text-align: center;
+    
+    opacity: 0;
+    transform: translateY(18px);
+    animation: homeReveal 0.8s ease forwards;
+    animation-delay: 0.75s;
 }
 
 .home-cta h2 {
@@ -1035,195 +563,465 @@ body:not(.about-page):not(.design-page):not(.contact-page):not(.fashion-page):no
     color: var(--text-muted);
     line-height: 1.7;
 }
-/* =========================================================
-   HOME PAGE — SUBTLE SECTION FADE-IN (SAFE)
-   Matches About/Design/Fashion animation style
-========================================================= */
 
-/* Fade + Slide effect for homepage sections */
-.home-section,
-.home-cta {
-    opacity: 0;
-    transform: translateY(18px);
-    animation: homeReveal 0.8s ease forwards;
-}
-
-/* Stagger timing (smooth premium flow) */
+/* Staggered Delay for Home Sections */
 .home-section:nth-of-type(1) { animation-delay: 0.15s; }
 .home-section:nth-of-type(2) { animation-delay: 0.30s; }
 .home-section:nth-of-type(3) { animation-delay: 0.45s; }
 .home-section:nth-of-type(4) { animation-delay: 0.60s; }
-.home-cta                 { animation-delay: 0.75s; }
 
-/* Keyframes */
 @keyframes homeReveal {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================================
+   12. DESIGN / STUDIO PAGE (LOCKED FIXES)
+========================================================= */
+
+/* Smooth Fade In */
+.design-page {
+    animation: pageFade 0.6s ease forwards;
+}
+
+/* Layout Alignment */
+.design-page .grid-2 {
+    align-items: center;
+}
+
+/* Left Column: Logo & Text */
+.design-page .grid-2 > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+    /* [LOCKED] DISABLE FLEX GAP TO CONTROL SPACING MANUALLY */
+    gap: 0 !important; 
+}
+
+/* Logo Wrapper */
+.design-page .mg-logo-wrap {
+    /* [LOCKED] EXACT SPACING TO HEADING */
+    margin-bottom: 1.2rem !important; 
+}
+
+/* MG Logo Animation */
+.design-page .mg-logo-wrap img {
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+    animation: logoFloat 6s ease-in-out infinite;
+}
+
+@keyframes logoFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+}
+
+/* Heading Typography */
+.design-page h1 {
+    margin-top: 0 !important; /* Safety Lock */
+    margin-bottom: 1rem;
+    line-height: 1.15;
+    
+    /* Animation */
+    opacity: 0;
+    transform: translateY(12px);
+    animation: textReveal 0.7s ease forwards;
+    animation-delay: 0.15s;
+}
+
+/* Description Typography */
+.design-page .studio-desc {
+    max-width: 520px !important;
+    line-height: 1.65;
+    text-align: center;
+    
+    /* Animation */
+    opacity: 0;
+    transform: translateY(12px);
+    animation: textReveal 0.7s ease forwards;
+    animation-delay: 0.3s;
+}
+
+/* Highlight Text */
+.design-page .studio-highlight {
+    color: var(--primary-orange) !important;
+}
+
+/* Right Column: Form Elevation */
+.design-page .grid-2 > div:last-child {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.design-page .grid-2 > div:last-child:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.45);
+}
+
+/* Success Message */
+#design-success {
+    display: none;
+    margin-top: 14px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    color: #00ff88 !important;
+}
+
+/* =========================================================
+   13. APPS PAGE & GALLERY (FULL FEATURE)
+========================================================= */
+
+/* Apps Hero Image Hover Effect */
+.apps-page .apps-image {
+    transition: transform 0.8s cubic-bezier(.22,.61,.36,1);
+    will-change: transform;
+}
+
+.apps-page .apps-image:hover {
+    /* Safe Scale override */
+    transform: translateY(0) scale(1.06) !important;
+}
+
+/* --- HORIZONTAL GALLERY --- */
+.apps-gallery {
+    margin-top: 80px;
+}
+
+.apps-gallery-title {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 1.2rem;
+    color: var(--primary-orange);
+    letter-spacing: 2px;
+}
+
+.apps-gallery-wrapper {
+    position: relative;
+}
+
+.apps-gallery-track {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 12px;
+}
+
+/* Gallery Scrollbar Styling */
+.apps-gallery-track::-webkit-scrollbar {
+    height: 6px;
+}
+.apps-gallery-track::-webkit-scrollbar-thumb {
+    background: rgba(255,106,26,0.35);
+    border-radius: 10px;
+}
+
+/* Gallery Images */
+.apps-gallery-img {
+    width: 320px;
+    border-radius: 12px;
+    cursor: pointer;
+    scroll-snap-align: start;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.45);
+}
+
+.apps-gallery-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 20px 50px rgba(255,106,26,0.25);
+}
+
+/* Gallery Navigation Arrows */
+.apps-gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(15,15,15,0.9);
+    border: 1px solid var(--border-soft);
+    color: var(--primary-orange);
+    font-size: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 4;
+    transition: 0.3s ease;
+}
+
+.apps-gallery-arrow:hover {
+    background: rgba(255,106,26,0.12);
+    box-shadow: 0 0 18px rgba(255,106,26,0.35);
+}
+
+.apps-gallery-arrow.left { left: -22px; }
+.apps-gallery-arrow.right { right: -22px; }
+
+/* --- APPS MODAL (LIGHTBOX) --- */
+.apps-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.88);
+    backdrop-filter: blur(6px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    
+    /* ALLOW CURSOR IN MODAL */
+    cursor: default;
+}
+
+/* Modal Image */
+.apps-modal-img {
+    max-width: 90%;
+    max-height: 85vh;
+    border-radius: 14px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+    animation: modalZoom 0.25s ease;
+}
+
+@keyframes modalZoom {
+    from { transform: scale(0.96); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+/* Close Button */
+.apps-modal-close {
+    position: absolute;
+    top: 24px;
+    right: 32px;
+    font-size: 2rem;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.apps-modal-close:hover {
+    color: var(--primary-orange);
+}
+
+/* Modal Arrows */
+.apps-modal-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(15,15,15,0.9);
+    border: 1px solid var(--border-soft);
+    color: var(--primary-orange);
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.25s ease;
+}
+
+.apps-modal-arrow:hover {
+    background: rgba(255,106,26,0.15);
+    box-shadow: 0 0 18px rgba(255,106,26,0.35);
+}
+
+.apps-modal-arrow.left { left: 24px; }
+.apps-modal-arrow.right { right: 24px; }
+
+/* =========================================================
+   14. LEGAL, CONTACT & OTHER PAGES
+========================================================= */
+
+/* --- LEGAL PAGE --- */
+.legal-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 160px 20px 80px;
+    animation: pageFade 0.6s ease forwards;
+}
+
+.legal-page h1 span {
+    color: var(--primary-orange);
+}
+
+.legal-page p {
+    margin-bottom: 1.2rem;
+}
+
+/* --- CONTACT PAGE --- */
+.contact-page {
+    animation: pageFade 0.6s ease forwards;
+}
+
+.contact-page .container {
+    padding-top: calc(80px + 2rem);
+}
+
+.contact-page h4 {
+    color: var(--primary-orange);
+}
+
+.contact-page .grid-3 p,
+.contact-page .grid-3 a {
+    color: #ffffff !important;
+}
+
+/* WhatsApp Link Highlight */
+.contact-page a[href*="wa.me"] {
+    font-weight: 500;
+    color: var(--primary-orange);
+    transition: font-weight 0.25s ease, text-shadow 0.25s ease;
+}
+
+.contact-page a[href*="wa.me"]:hover {
+    font-weight: 700;
+    text-shadow: 0 0 12px rgba(255,106,26,0.35);
+}
+
+/* =========================================================
+   15. GLOBAL ANIMATION CONTROLS
+========================================================= */
+
+/* Shared Page Fade In */
+/* Applies to all main pages and default body if not specified */
+.about-page,
+.fashion-page,
+.contact-page,
+.legal-page,
+.design-page,
+.careers-page,
+body:not(.about-page):not(.design-page):not(.contact-page):not(.fashion-page):not(.legal-page):not(.careers-page) {
+    animation: pageFade 0.6s ease forwards;
+}
+
+@keyframes pageFade {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Text Reveal Stagger for About/Fashion/Contact */
+.about-page h1, .about-page p,
+.fashion-page h1, .fashion-page p,
+.contact-page h1, .contact-page p {
+    opacity: 0;
+    transform: translateY(14px);
+    animation: textReveal 0.7s ease forwards;
+}
+
+/* Delay for paragraphs */
+.about-page p,
+.fashion-page p,
+.contact-page p {
+    animation-delay: 0.2s;
+}
+
+@keyframes textReveal {
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
-/* =========================================
-   CURSOR FIX — FORM ELEMENTS ONLY (SAFE)
-   Keeps custom cursor consistent in forms
-========================================= */
 
-.cursor-fix {
-    cursor: none !important;
-}
-/* =========================================
-   CURSOR FIX — SELECT DROPDOWN (FINAL)
-   Keeps cursor hidden on select box only
-========================================= */
-
-select {
-    cursor: none !important;
+/* Shared Card Hover Elevation */
+.about-page .container > div,
+.fashion-page .container > div,
+.contact-page .container > div {
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-select option {
-    cursor: none !important;
-}
-/* =========================================
-   CURSOR FIX — DISABLE CUSTOM CURSOR INSIDE SELECT OPEN
-========================================= */
-
-/* When dropdown is active, hide custom cursor */
-body.select-open .cursor-dot,
-body.select-open .cursor-outline {
-    opacity: 0 !important;
+.about-page .container > div:hover,
+.fashion-page .container > div:hover,
+.contact-page .container > div:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.45);
 }
 
-/* Restore normal cursor ONLY inside select dropdown */
-body.select-open select,
-body.select-open option {
-    cursor: auto !important;
-}
-/* =========================================
-   GYPSY CARTEL — CUSTOM DROPDOWN (STUDIO)
-   Cursor works perfectly inside
-========================================= */
-
-.gc-dropdown {
-    position: relative;
-    width: 100%;
-    margin-bottom: 20px;
-    font-family: inherit;
+/* =========================================================
+   16. FOOTER
+========================================================= */
+footer {
+    background: linear-gradient(180deg, #0a0a0a, #050505);
+    padding: 50px 5% 30px;
 }
 
-/* Selected Box */
-.gc-dropdown-selected {
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-soft);
-    padding: 14px;
-    color: #fff;
-    cursor: none;
-    user-select: none;
+.footer-content {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
+    border-bottom: 1px solid var(--border-soft);
+    padding-bottom: 30px;
 }
 
-/* Dropdown List */
-.gc-dropdown-list {
-    position: absolute;
-    top: 105%;
-    left: 0;
-    width: 100%;
-    background: #111;
-    border: 1px solid var(--border-soft);
-    border-radius: 8px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    max-height: 220px;
-    overflow-y: auto;
-    display: none;
-    z-index: 9999;
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
 }
 
-/* Items */
-.gc-dropdown-list li {
-    padding: 14px;
-    color: #fff;
-    cursor: none;
-    transition: 0.2s ease;
+footer a {
+    color: #ffffff;
 }
 
-/* Hover */
-.gc-dropdown-list li:hover {
-    background: rgba(255,106,26,0.15);
+footer a:hover {
     color: var(--primary-orange);
 }
 
-/* Active Open */
-.gc-dropdown.open .gc-dropdown-list {
-    display: block;
-}
-/* =========================================
-   STUDIO — PREMIUM CUSTOM DROPDOWN (SAFE)
-   No theme change • Cursor works perfectly
-========================================= */
-
-.gc-dropdown {
-    position: relative;
-    width: 100%;
-    margin-bottom: 20px;
-}
-
-.gc-dropdown-selected {
-    background: var(--bg-elevated);
-    border: 1px solid var(--border-soft);
-    padding: 14px;
-    border-radius: 10px;
-    color: #fff;
-    cursor: none;
-    user-select: none;
-    transition: 0.25s ease;
-}
-
-.gc-dropdown-selected:hover {
-    border-color: var(--primary-orange);
-    box-shadow: 0 0 0 2px rgba(255,106,26,0.15);
-}
-
-.gc-dropdown-list {
-    position: absolute;
-    top: 110%;
-    left: 0;
-    width: 100%;
-    background: #0f0f0f;
-    border: 1px solid var(--border-soft);
-    border-radius: 12px;
-    padding: 6px 0;
-    margin: 0;
-    list-style: none;
-
-    max-height: 240px;
-    overflow-y: auto;
-
-    display: none;
-    z-index: 9999;
-
-    overscroll-behavior: contain;
-}
-
-.gc-dropdown-list::-webkit-scrollbar {
-    width: 6px;
-}
-
-.gc-dropdown-list::-webkit-scrollbar-thumb {
-    background: rgba(255,106,26,0.35);
-    border-radius: 10px;
-}
-
-.gc-dropdown-list li {
-    padding: 14px 16px;
-    color: #fff;
-    cursor: none;
-    transition: 0.2s ease;
-}
-
-.gc-dropdown-list li:hover {
-    background: rgba(255,106,26,0.12);
+/* Footer Career Link Animation */
+.career-open-link {
+    display: inline-block;
     color: var(--primary-orange);
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    transition: 0.3s ease;
 }
 
-.gc-dropdown.open .gc-dropdown-list {
-    display: block;
+.career-open-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: var(--primary-orange);
+    transition: 0.35s ease;
+}
+
+.career-open-link:hover {
+    color: #fff;
+    transform: translateX(4px);
+}
+
+.career-open-link:hover::after {
+    width: 100%;
+}
+
+/* =========================================================
+   17. RESPONSIVE MEDIA QUERIES
+========================================================= */
+@media (max-width: 900px) {
+    /* Grid Collapses */
+    .grid-2,
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    /* Design Page Mobile Adjustments */
+    .design-page .grid-2 > div:first-child {
+        margin-bottom: 60px;
+    }
+    
+    /* Lottie Mobile Size */
+    .hero-lottie-wrap {
+        width: 100%;
+        max-width: 300px;
+    }
 }
