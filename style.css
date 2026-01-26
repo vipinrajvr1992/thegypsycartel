@@ -766,3 +766,25 @@ header,
 footer {
     animation: none !important;
 }
+/* =========================================================
+   CONTACT PAGE — CURSOR FIX (FINAL)
+   Restore proper mouse behavior
+========================================================= */
+
+/* Inputs should show typing cursor */
+.contact-page input,
+.contact-page textarea {
+    cursor: text !important;
+}
+
+/* Button + Links should show pointer */
+.contact-page button,
+.contact-page a {
+    cursor: pointer !important;
+}
+
+/* Disable custom cursor hiding on Contact inputs */
+.contact-page input:hover ~ .cursor-dot,
+.contact-page textarea:hover ~ .cursor-dot {
+    opacity: 0 !important;
+}
