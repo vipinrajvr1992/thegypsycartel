@@ -1,18 +1,19 @@
 /* =========================================================
    GYPSY CARTEL — GLOBAL SCRIPT (FINAL MASTER)
-   ✅ Zero-Lag Cursor Physics (Old Style)
-   ✅ No Input Flickering
-   ✅ No Modal Issues
+   ✅ Fixed: Zero-Lag Cursor (Old Physics)
+   ✅ Fixed: No Input Flicker
+   ✅ Fixed: Global Page Animation
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================================================
-       1. PAGE LOAD TRIGGER
+       1. GLOBAL PAGE LOAD TRIGGER (Cinematic Lift)
     ========================================================= */
     setTimeout(() => {
         document.body.classList.add("page-loaded");
     }, 50);
+
 
     /* =========================================================
        2. DEVICE DETECTION
@@ -22,8 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
         navigator.maxTouchPoints > 0 ||
         window.matchMedia("(hover: none)").matches;
 
+
     /* =========================================================
-       3. PREMIUM CURSOR ENGINE (CLEAN PHYSICS)
+       3. PREMIUM CURSOR ENGINE (CLEAN PHYSICS RESTORED)
     ========================================================= */
     const dot = document.querySelector(".cursor-dot");
     const outline = document.querySelector(".cursor-outline");
@@ -44,9 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
             dot.style.top = mouseY + "px";
         });
 
-        // 2. Smooth Outline Physics Loop
+        // 2. Smooth Outline Physics Loop (Friction 0.15)
         function animateCursor() {
-            // Standard smooth lerp physics (0.15 = premium weight)
             outlineX += (mouseX - outlineX) * 0.15;
             outlineY += (mouseY - outlineY) * 0.15;
 
@@ -58,7 +59,6 @@ document.addEventListener("DOMContentLoaded", () => {
         animateCursor();
 
         // 3. Hover Zoom Logic (ADD CLASS ONLY - NO INLINE STYLES)
-        // This makes the ring bigger on buttons, links, etc.
         const interactives = document.querySelectorAll('a, button, .btn, .apps-gallery-img, .gc-dropdown-selected, .gc-dropdown-list li, .apps-gallery-arrow, .apps-modal-arrow, .apps-modal-close');
 
         interactives.forEach(el => {
@@ -70,10 +70,9 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
         
-        // NOTE: We do NOT hide the cursor on inputs anymore to prevent flickering.
-        // The system I-Beam will show up because of CSS (cursor:text), 
-        // and the custom dot will float above it.
+        // NOTE: Input hiding removed to prevent flicker.
     }
+
 
     /* =========================================================
        4. APPS GALLERY MODAL + SCROLL LOCK
@@ -139,6 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
     /* =========================================================
        5. STUDIO DROPDOWN
     ========================================================= */
@@ -168,6 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!dropdown.contains(e.target)) dropdown.classList.remove("open");
         });
     });
+
 
     /* =========================================================
        6. HEADER + FOOTER LOADER
@@ -211,6 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
         });
+
 
     /* =========================================================
        7. DESIGN FORM AJAX SUBMIT
