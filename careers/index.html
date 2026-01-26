@@ -14,7 +14,7 @@
   <!-- MAIN THEME -->
   <link rel="stylesheet" href="/style.css">
 
-  <!-- PREMIUM CAREERS PAGE -->
+  <!-- CAREERS PAGE STYLE -->
   <style>
 
     /* ===============================
@@ -25,47 +25,11 @@
     }
 
     /* ===============================
-       MAIN PANEL (MATCH OTHER PAGES)
+       MAIN CONTAINER
     =============================== */
     .careers-panel {
       max-width: 1100px;
       margin: auto;
-      background: rgba(255,255,255,0.02);
-      border: 1px solid var(--border-soft);
-      border-radius: 18px;
-      padding: 70px 55px;
-      backdrop-filter: blur(14px);
-
-      /* Neutral shadow (NO ORANGE) */
-      box-shadow: 0 25px 70px rgba(0,0,0,0.55);
-
-      opacity: 0;
-      animation: pageFade 0.8s ease forwards;
-    }
-
-    @keyframes pageFade {
-      to { opacity: 1; }
-    }
-
-    /* ===============================
-       TEXT REVEAL
-    =============================== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(16px);
-      animation: textReveal 0.75s ease forwards;
-    }
-
-    .delay-1 { animation-delay: 0.15s; }
-    .delay-2 { animation-delay: 0.30s; }
-    .delay-3 { animation-delay: 0.45s; }
-    .delay-4 { animation-delay: 0.60s; }
-
-    @keyframes textReveal {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
     }
 
     /* ===============================
@@ -83,7 +47,7 @@
 
     .careers-panel p {
       max-width: 760px;
-      margin: 0 auto 55px;
+      margin: 0 auto 70px;
       font-size: 1rem;
       line-height: 1.7;
       text-align: center;
@@ -96,52 +60,74 @@
     .career-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 25px;
+      gap: 28px;
     }
 
+    /* ===============================
+       CAREER CARD — PERFECT CENTER ALIGN
+    =============================== */
     .career-card {
       background: rgba(255,255,255,0.02);
       border: 1px solid var(--border-soft);
-      padding: 28px;
       border-radius: 16px;
+
+      padding: 34px 26px;
+      text-align: center;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      min-height: 230px;
       transition: 0.35s ease;
     }
 
     .career-card:hover {
       border-color: var(--primary-orange);
       transform: translateY(-7px);
-      box-shadow: 0 20px 55px rgba(0,0,0,0.55);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.50);
     }
 
+    /* Title */
     .career-card h3 {
       font-size: 1.15rem;
-      margin-bottom: 10px;
+      margin-bottom: 14px;
+      letter-spacing: 1px;
     }
 
+    /* Description */
     .career-card p {
       font-size: 0.92rem;
       color: var(--text-muted);
-      margin-bottom: 14px;
-      line-height: 1.6;
+      line-height: 1.7;
+
+      max-width: 240px;
+      margin: 0 auto 18px;
     }
 
+    /* Tag pinned bottom */
     .career-tag {
+      margin-top: auto;
       font-size: 0.75rem;
-      letter-spacing: 1px;
-      color: var(--primary-orange);
       font-weight: 600;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
+      color: var(--primary-orange);
+    }
+
+    /* Hover accent */
+    .career-card:hover h3 {
+      color: var(--primary-orange);
     }
 
     /* ===============================
-       APPLY BOX (FIXED PREMIUM STYLE)
+       APPLY BOX
     =============================== */
     .apply-box {
-      margin-top: 75px;
-      padding: 55px 35px;
+      margin-top: 90px;
+      padding: 60px 35px;
       border-radius: 18px;
 
-      /* SAME GLASS STYLE AS OTHER PAGES */
       background: rgba(255,255,255,0.02);
       border: 1px solid var(--border-soft);
 
@@ -150,11 +136,11 @@
 
     .apply-box h2 {
       font-size: 2rem;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .apply-box p {
-      margin: 0 auto 28px;
+      margin: 0 auto 30px;
       text-align: center;
       color: var(--text-muted);
       font-size: 1rem;
@@ -178,12 +164,12 @@
     =============================== */
     @media(max-width:768px) {
 
-      .careers-panel {
-        padding: 55px 22px;
-      }
-
       .careers-panel h1 {
         font-size: 2.7rem;
+      }
+
+      .career-card {
+        min-height: auto;
       }
 
       .apply-box {
@@ -210,18 +196,19 @@
 
   <div class="careers-panel">
 
-    <h1 class="reveal delay-1">
+    <!-- HERO -->
+    <h1>
       WE ARE <span>HIRING</span>
     </h1>
 
-    <p class="reveal delay-2">
+    <p>
       Gypsy Cartel is expanding our premium freelance network.
       We collaborate with skilled designers, developers, and creators
       for high-impact remote projects across India & UAE.
     </p>
 
-    <!-- POSITIONS -->
-    <div class="career-grid reveal delay-3">
+    <!-- POSITIONS GRID -->
+    <div class="career-grid">
 
       <div class="career-card">
         <h3>Floor Plan Designer</h3>
@@ -261,8 +248,8 @@
 
     </div>
 
-    <!-- APPLY -->
-    <div class="apply-box reveal delay-4">
+    <!-- APPLY SECTION -->
+    <div class="apply-box">
 
       <h2>Apply for Collaboration</h2>
 
