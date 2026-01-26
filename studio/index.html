@@ -15,15 +15,6 @@
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="/style.css">
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-92193J0YS6"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-92193J0YS6');
-    </script>
-
     <!-- Cloudflare Turnstile -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
@@ -51,19 +42,18 @@
             <div class="mg-logo-wrap">
                 <img
                     src="/assets/logos/mg-creations.webp"
-                    alt="MG Creations Logo"
-                    style="max-width:260px;width:100%;height:auto;">
+                    alt="MG Creations Logo">
             </div>
 
             <!-- Heading -->
             <h1>
-                <span class="studio-highlight">HYPER-REALISTIC</span><br>
-                <span style="color:var(--text-main)">
+                <span class="studio-orange">HYPER-REALISTIC</span><br>
+                <span class="studio-title">
                     ARCHITECTURE & GRAPHICS
                 </span>
             </h1>
 
-            <!-- Paragraph -->
+            <!-- Description -->
             <p class="studio-desc">
                 Our studio blends technical precision with artistic execution,
                 delivering architectural visualization, interiors, exteriors,
@@ -73,31 +63,22 @@
         </div>
 
         <!-- RIGHT FORM -->
-        <div class="studio-form-box">
+        <div class="studio-form">
 
-            <h3 class="studio-form-title">
-                START A PROJECT
-            </h3>
+            <h3>START A PROJECT</h3>
 
             <form
                 id="designForm"
                 action="https://formspree.io/f/xjgkezzp"
-                method="POST"
-                autocomplete="on">
+                method="POST">
 
-                <input class="cursor-fix" type="text" name="name"
-                       placeholder="Your Name" required>
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="tel" name="tel" placeholder="Phone Number" required>
 
-                <input class="cursor-fix" type="email" name="email"
-                       placeholder="Email" required>
-
-                <input class="cursor-fix" type="tel" name="tel"
-                       placeholder="Phone Number" required>
-
-                <!-- PREMIUM DROPDOWN -->
+                <!-- Dropdown -->
                 <div class="gc-dropdown" data-name="service">
-
-                    <div class="gc-dropdown-selected cursor-fix">
+                    <div class="gc-dropdown-selected">
                         Select Service
                     </div>
 
@@ -113,25 +94,19 @@
                     <input type="hidden" name="service" required>
                 </div>
 
-                <textarea class="cursor-fix" name="message"
-                          rows="5"
-                          placeholder="I have a project"
-                          required></textarea>
+                <textarea name="message" rows="5" placeholder="I have a project" required></textarea>
 
                 <!-- Turnstile -->
                 <div class="cf-turnstile"
                      data-sitekey="0x4AAAAAACK2g8v3gHryb9Aq"
-                     data-theme="dark"
-                     style="margin:18px 0;">
+                     data-theme="dark">
                 </div>
 
-                <button type="submit"
-                        class="btn btn-primary cursor-fix"
-                        style="width:100%; margin-top:10px;">
+                <button type="submit" class="btn btn-primary" style="width:100%;">
                     INITIALIZE REQUEST
                 </button>
 
-                <!-- ✅ SUCCESS MESSAGE (Hidden Default) -->
+                <!-- Success Message -->
                 <p id="design-success">
                     ✓ Message sent successfully. We’ll contact you shortly.
                 </p>
@@ -147,31 +122,13 @@
 <!-- FOOTER -->
 <div id="site-footer"></div>
 
-<!-- GLOBAL SCRIPT -->
 <script src="/script.js"></script>
 
-<!-- ✅ STUDIO SUCCESS FIX -->
+<!-- ✅ Success Message Show Only After Submit -->
 <script>
-const designForm = document.getElementById("designForm");
-
-if (designForm) {
-    designForm.addEventListener("submit", async function(e) {
-        e.preventDefault();
-
-        const formData = new FormData(designForm);
-
-        const response = await fetch(designForm.action, {
-            method: "POST",
-            body: formData,
-            headers: { Accept: "application/json" }
-        });
-
-        if (response.ok) {
-            document.getElementById("design-success").style.display = "block";
-            designForm.reset();
-        }
-    });
-}
+document.getElementById("designForm").addEventListener("submit", function () {
+    document.getElementById("design-success").style.display = "block";
+});
 </script>
 
 </body>
