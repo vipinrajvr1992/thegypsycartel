@@ -1227,3 +1227,54 @@ body.select-open option {
 .gc-dropdown.open .gc-dropdown-list {
     display: block;
 }
+/* =========================================================
+   CAREERS PAGE — PREMIUM LOAD + SPACING (FINAL)
+   Only content area animates (NOT header/footer)
+========================================================= */
+
+.career-page .container {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: careerReveal 0.85s ease forwards;
+    animation-delay: 0.12s;
+}
+
+@keyframes careerReveal {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Typography spacing fix */
+.career-page h1 {
+    margin-bottom: 26px;
+    line-height: 1.25;
+}
+
+.career-page p {
+    line-height: 1.8;
+    margin-bottom: 18px;
+    max-width: 880px;
+    font-size: 1rem;
+    color: #cfcfcf;
+}
+
+.career-page h4 {
+    margin-top: 34px;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
+}
+
+.career-page ul {
+    margin-top: 14px;
+    margin-bottom: 26px;
+    padding-left: 22px;
+}
+
+.career-page ul li {
+    margin-bottom: 12px;
+    line-height: 1.65;
+    font-size: 1rem;
+}
