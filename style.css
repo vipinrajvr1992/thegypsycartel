@@ -173,13 +173,6 @@ select, label, button, .btn, .apps-gallery-img {
     cursor: pointer !important;
 }
 
-/* 3. Hide Custom Cursor Inside Modal Only */
-.apps-modal .cursor-dot,
-.apps-modal .cursor-outline {
-    opacity: 0 !important;
-}
-
-
 /* =========================================================
    6. HEADER & NAVIGATION (LOCKED)
 ========================================================= */
