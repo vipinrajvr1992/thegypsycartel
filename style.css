@@ -512,3 +512,123 @@ footer .career-open-link:hover,
 footer .footer-content a:hover {
     color: var(--primary-orange) !important;
 }
+/* =========================================================
+   APPS PAGE — PREMIUM SLIDER + ARROWS (FINAL MASTER)
+   Paste at BOTTOM of CSS
+   Cinematic Style • Orange Glow • Smooth Scroll
+========================================================= */
+
+/* ===== Premium Horizontal Track ===== */
+.apps-gallery-wrapper {
+    position: relative;
+    margin-top: 60px;
+}
+
+.apps-gallery-track {
+    display: flex;
+    gap: 26px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding: 18px 8px 18px;
+
+    /* Premium feel */
+    border-radius: 18px;
+}
+
+/* ===== Premium Thin Scrollbar (Not Ugly Bar) ===== */
+.apps-gallery-track::-webkit-scrollbar {
+    height: 6px;
+}
+
+.apps-gallery-track::-webkit-scrollbar-thumb {
+    background: rgba(255,106,26,0.35);
+    border-radius: 10px;
+}
+
+.apps-gallery-track::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.04);
+}
+
+/* ===== Gallery Images Premium Cards ===== */
+.apps-gallery-img {
+    width: 320px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    scroll-snap-align: start;
+    cursor: pointer !important;
+
+    box-shadow: 0 18px 45px rgba(0,0,0,0.55);
+    border: 1px solid rgba(255,255,255,0.08);
+
+    transition: transform 0.35s ease,
+                box-shadow 0.35s ease,
+                border-color 0.35s ease;
+}
+
+.apps-gallery-img:hover {
+    transform: scale(1.06);
+    border-color: rgba(255,106,26,0.55);
+
+    box-shadow:
+        0 25px 65px rgba(0,0,0,0.7),
+        0 0 30px rgba(255,106,26,0.18);
+}
+
+/* =========================================================
+   PREMIUM ARROWS — Gypsy Cartel Style
+========================================================= */
+
+.apps-gallery-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+
+    background: rgba(15,15,15,0.92);
+    border: 1px solid rgba(255,255,255,0.12);
+
+    color: var(--primary-orange);
+    font-size: 1.8rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer !important;
+    user-select: none;
+
+    z-index: 20;
+
+    transition: 0.3s ease;
+}
+
+/* Hover Glow */
+.apps-gallery-arrow:hover {
+    background: rgba(255,106,26,0.12);
+
+    box-shadow:
+        0 0 18px rgba(255,106,26,0.35),
+        0 0 35px rgba(255,106,26,0.18);
+
+    transform: translateY(-50%) scale(1.08);
+}
+
+/* Left + Right Placement */
+.apps-gallery-arrow.left {
+    left: -18px;
+}
+
+.apps-gallery-arrow.right {
+    right: -18px;
+}
+
+/* Hide arrows on mobile (Swipe instead) */
+@media (max-width: 900px) {
+    .apps-gallery-arrow {
+        display: none;
+    }
+}
