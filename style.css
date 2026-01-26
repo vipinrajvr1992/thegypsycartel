@@ -121,39 +121,6 @@ ul {
     list-style: none;
 }
 
-
-/* =========================================================
-   5. CUSTOM CURSOR (PHYSICS + CLASS ZOOM)
-========================================================= */
-/* High Z-Index to sit above everything */
-.cursor-dot,
-.cursor-outline {
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    pointer-events: none !important;
-    z-index: 999999;
-    will-change: transform;
-}
-
-.cursor-dot {
-    width: 8px;
-    height: 8px;
-    background: var(--primary-orange);
-}
-
-.cursor-outline {
-    width: 40px;
-    height: 40px;
-    border: 1px solid rgba(255,255,255,0.6);
-    
-    /* ✅ FIX 2: Transition ONLY transform/colors. 
-       NEVER transition left/top (Physics handles that) */
-    transition: transform 0.15s ease;
-}
-
 /* ✅ FIX 2: Premium Active State (Toggled by JS) */
 .cursor-outline.active {
     transform: translate(-50%, -50%) scale(1.6);
