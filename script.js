@@ -224,3 +224,107 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+/* =========================================================
+   GYPSY CARTEL — GLOBAL PREMIUM ANIMATION ENGINE
+   Paste this at the BOTTOM of script.js
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* =========================================
+       1. PREMIUM PAGE LOAD FADE (Already Exists)
+    ========================================= */
+
+    setTimeout(() => {
+        document.body.classList.add("page-loaded");
+    }, 60);
+
+
+    /* =========================================
+       2. GLOBAL SCROLL REVEAL SYSTEM
+       Works for Text, Cards, Sections, Forms, Images
+    ========================================= */
+
+    const revealElements = document.querySelectorAll(
+        ".reveal, .reveal-img, .reveal-form"
+    );
+
+    const revealObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                }
+            });
+        },
+        {
+            threshold: 0.15,
+        }
+    );
+
+    revealElements.forEach((el) => {
+        revealObserver.observe(el);
+    });
+
+
+    /* =========================================
+       3. PREMIUM STAGGER SUPPORT (delay-1, delay-2...)
+    ========================================= */
+
+    document.querySelectorAll(".delay-1").forEach(el => {
+        el.style.transitionDelay = "0.15s";
+    });
+
+    document.querySelectorAll(".delay-2").forEach(el => {
+        el.style.transitionDelay = "0.3s";
+    });
+
+    document.querySelectorAll(".delay-3").forEach(el => {
+        el.style.transitionDelay = "0.45s";
+    });
+
+    document.querySelectorAll(".delay-4").forEach(el => {
+        el.style.transitionDelay = "0.6s";
+    });
+
+
+    /* =========================================
+       4. PREMIUM IMAGE LOAD FADE-IN
+       (Images appear smoothly after loading)
+    ========================================= */
+
+    document.querySelectorAll("img").forEach((img) => {
+        img.style.opacity = "0";
+        img.style.transition = "opacity 0.8s ease";
+
+        img.addEventListener("load", () => {
+            img.style.opacity = "1";
+        });
+
+        /* If already cached */
+        if (img.complete) {
+            img.style.opacity = "1";
+        }
+    });
+
+
+    /* =========================================
+       5. PREMIUM BUTTON MICRO INTERACTION
+       Slight press effect
+    ========================================= */
+
+    document.querySelectorAll(".btn").forEach((btn) => {
+        btn.addEventListener("mousedown", () => {
+            btn.style.transform = "scale(0.96)";
+        });
+
+        btn.addEventListener("mouseup", () => {
+            btn.style.transform = "";
+        });
+
+        btn.addEventListener("mouseleave", () => {
+            btn.style.transform = "";
+        });
+    });
+
+});
