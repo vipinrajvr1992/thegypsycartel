@@ -132,11 +132,14 @@
 <!-- GLOBAL SCRIPT -->
 <script src="/script.js"></script>
 
-<!-- GALLERY SCRIPT -->
+<!-- GALLERY SCRIPT (UPDATED PREMIUM CONTROLS) -->
 <script>
 const gallery = document.getElementById("appsGallery");
 const modal = document.getElementById("appsModal");
 const modalImg = document.getElementById("appsModalImg");
+
+let currentIndex = 0;
+const images = Array.from(document.querySelectorAll(".apps-gallery-img"));
 
 /* Arrow scrolling */
 function scrollGallery(dir) {
@@ -144,21 +147,58 @@ function scrollGallery(dir) {
 }
 
 /* Open modal */
-document.querySelectorAll(".apps-gallery-img").forEach(img => {
-    img.addEventListener("click", () => {
-        modal.style.display = "flex";
-        modalImg.src = img.src;
-    });
-});
+function openModal(index) {
+    currentIndex = index;
+    modal.style.display = "flex";
+    modalImg.src = images[currentIndex].src;
+
+    /* Lock background scroll */
+    document.body.style.overflow = "hidden";
+}
 
 /* Close modal */
 function closeModal() {
     modal.style.display = "none";
+    document.body.style.overflow = "auto";
 }
 
+/* Next image */
+function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    modalImg.src = images[currentIndex].src;
+}
+
+/* Previous image */
+function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    modalImg.src = images[currentIndex].src;
+}
+
+/* Click image → open modal */
+images.forEach((img, index) => {
+    img.addEventListener("click", () => openModal(index));
+});
+
+/* Click outside → close */
 modal.addEventListener("click", (e) => {
     if (e.target === modal) closeModal();
 });
+
+/* Keyboard Controls */
+document.addEventListener("keydown", (e) => {
+    if (modal.style.display !== "flex") return;
+
+    if (e.key === "ArrowRight") nextImage();
+    if (e.key === "ArrowLeft") prevImage();
+    if (e.key === "Escape") closeModal();
+});
+
+/* Disable Mouse Wheel Scroll Inside Modal */
+modal.addEventListener("wheel", (e) => {
+    if (modal.style.display === "flex") {
+        e.preventDefault();
+    }
+}, { passive: false });
 </script>
 
 </body>
