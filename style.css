@@ -19,15 +19,6 @@
 ========================================================= */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap');
 
-/* ✅ GLOBAL CURSOR MODULE */
-@import url("/assets/cursor.css");
-
-/* ✅ GLOBAL FORCE — NO DEFAULT CURSOR ANYWHERE */
-*,
-*::before,
-*::after {
-    cursor: none !important;
-}
 
 /* =========================================================
    2. ROOT VARIABLES — BRAND CONTROL
@@ -77,7 +68,7 @@ body {
     position: relative;
 
     /* ✅ Custom Cursor Active */
-    cursor: none;
+    cursor: auto;
 
     /* ✅ PREMIUM PAGE LOAD: Initial Invisible State */
     opacity: 0;
@@ -123,7 +114,7 @@ p {
 a {
     text-decoration: none;
     color: inherit;
-    cursor: none !important;
+    cursor: pointer !important;
 }
 
 ul {
@@ -358,7 +349,7 @@ input, textarea, select, button {
     padding: 14px;
     border-radius: 10px;
     color: #fff;
-    cursor: none !important;
+    cursor: pointer !important;
     user-select: none;
     transition: 0.25s ease;
 }
@@ -392,7 +383,7 @@ input, textarea, select, button {
 .gc-dropdown-list li {
     padding: 14px 16px;
     color: #fff;
-    cursor: none !important;
+    cursor: pointer !important;
     transition: 0.2s ease;
 }
 
@@ -464,7 +455,7 @@ input, textarea, select, button {
     flex-shrink: 0;
     border-radius: 16px;
     scroll-snap-align: start;
-    cursor: none !important;
+    cursor: pointer !important;
     box-shadow: 0 18px 45px rgba(0,0,0,0.55);
     border: 1px solid rgba(255,255,255,0.08);
     transition: 0.35s ease;
@@ -491,7 +482,7 @@ input, textarea, select, button {
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: none !important;
+    cursor: pointer !important;
     z-index: 20;
     transition: 0.3s ease;
 }
@@ -517,7 +508,7 @@ input, textarea, select, button {
     z-index: 9999;
 }
 .apps-modal-img { max-width: 90%; max-height: 85vh; border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,0.8); }
-.apps-modal-close { position: absolute; top: 24px; right: 32px; font-size: 2rem; cursor: none !important; color: #fff; }
+.apps-modal-close { position: absolute; top: 24px; right: 32px; font-size: 2rem; cursor: pointer !important; color: #fff; }
 .apps-modal-close:hover { color: var(--primary-orange); }
 
 /* Modal Navigation Arrows */
@@ -535,7 +526,7 @@ input, textarea, select, button {
     display: flex;
     align-items: center;
     justify-content: center;
-    cursor: none;
+    cursor: pointer;
     z-index: 99999;
     transition: 0.3s ease;
 }
@@ -617,6 +608,13 @@ footer p a,
     text-decoration: none;
 }
 
+footer a:hover, 
+footer p a:hover, 
+.career-open-link:hover {
+    color: var(--primary-orange) !important;
+}
+
+
 /* =========================================================
    15. MOBILE ADJUSTMENTS & CURSOR DISABLE
 ========================================================= */
@@ -636,26 +634,28 @@ footer p a,
     .cursor-outline {
         display: none !important;
     }
-}
 
+    /* Ensure Nav is touchable */
+    header nav a {
+        cursor: pointer !important;
+    }
+}
 /* =========================================================
    GYPSY CARTEL — GLOBAL PREMIUM HOVER ANIMATIONS
    Paste this at the BOTTOM of style.css
 ========================================================= */
 
+
 /* =========================================
-   1. PREMIUM SMOOTH TRANSITIONS (NO LAG)
+   1. GLOBAL SMOOTH TRANSITIONS
 ========================================= */
 
-a,
-button,
-img,
-.btn,
-.service-card,
-.role-item,
-.gallery-card {
-    transition: all 0.35s ease;
+* {
+    transition: background-color 0.35s ease,
+                border-color 0.35s ease,
+                color 0.35s ease;
 }
+
 
 /* =========================================
    2. PREMIUM IMAGE HOVER (ALL IMAGES)
@@ -834,30 +834,4 @@ footer h4,
 /* STUDIO ORANGE HEADING */
 .studio-orange {
     color: var(--primary-orange) !important;
-}
-
-/* =========================================
-   FINAL CURSOR + TRANSITION PATCH
-========================================= */
-
-/* Forms usable */
-input,
-textarea {
-    cursor: text !important;
-}
-
-button,
-select {
-    cursor: pointer !important;
-}
-
-/* Smooth hover only on key elements */
-a,
-button,
-img,
-.btn,
-.service-card,
-.role-item,
-.gallery-card {
-    transition: all 0.35s ease;
 }
