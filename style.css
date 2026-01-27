@@ -799,3 +799,20 @@ html {
 body {
     -webkit-font-smoothing: antialiased;
 }
+/* =========================================
+   APPS PAGE — ICON PREMIUM HOVER ZOOM
+========================================= */
+
+.apps-image {
+    transition: transform 0.6s ease,
+                box-shadow 0.6s ease,
+                filter 0.6s ease;
+    transform: scale(1);
+}
+
+/* Hover Zoom + Glow */
+.apps-image:hover {
+    transform: scale(1.08);
+    box-shadow: 0 35px 90px rgba(255,106,26,0.25);
+    filter: brightness(1.08);
+}
