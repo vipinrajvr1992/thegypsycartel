@@ -615,7 +615,13 @@ footer p a:hover,
 .career-open-link:hover {
     color: var(--primary-orange) !important;
 }
+    <!-- Footer Content Here -->
 
+    <!-- ✅ Premium Cursor Engine -->
+    <script src="/assets/cursor.js" defer></script>
+
+</body>
+</html>
 
 /* =========================================================
    15. MOBILE ADJUSTMENTS & CURSOR DISABLE
@@ -629,7 +635,7 @@ footer p a:hover,
 /* ✅ CRITICAL: Full Mobile Cursor Disable */
 @media (hover: none) {
     body {
-        cursor: auto !important;
+        cursor: none !important;
     }
 
     .cursor-dot,
