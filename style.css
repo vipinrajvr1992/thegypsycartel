@@ -801,7 +801,7 @@ body {
 }
 /* ========================================= 
    APPS PAGE — ICON PREMIUM HOVER ZOOM (CLEAN)
-   Zoom Only — No Glow / No Brightness
+   Smooth + Slow Zoom Only — No Glow / No Brightness
 ========================================= */
 
 .apps-image {
@@ -809,12 +809,12 @@ body {
     width: 100%;
     border-radius: 12px;
 
-    /* Smooth Premium Zoom Feel */
+    /* Premium Slow Zoom */
     transform: scale(1);
-    transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 1.15s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* Hover Zoom Only */
 .apps-image:hover {
-    transform: scale(1.08);
+    transform: scale(1.06);
 }
