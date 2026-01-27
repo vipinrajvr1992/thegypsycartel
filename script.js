@@ -1,7 +1,7 @@
 /* =========================================================
    GYPSY CARTEL — GLOBAL SCRIPT (FINAL MASTER)
    ✅ Cinematic Page Load Trigger
-   ✅ Cursor Engine (Physics + CSS Class Zoom)
+   ✅ Cursor Engine (Physics + CSS Class Zoom + Input Logic + Window Safety)
    ✅ Apps Modal + Scroll Lock
    ✅ Studio Dropdown (Active Grey)
    ✅ Header/Footer Loader (Absolute Path Fix)
@@ -48,6 +48,8 @@ document.addEventListener("DOMContentLoaded", () => {
             cursorDot.style.left = `${mouseX}px`;
             cursorDot.style.top = `${mouseY}px`;
 
+            // ✅ WAKE UP: Makes cursor visible instantly on first move
+            // (Works with the CSS opacity:0 start)
             cursorDot.style.opacity = "1";
             cursorOutline.style.opacity = "1";
         });
@@ -64,15 +66,24 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         animateCursor();
 
-        /* ✅ FIX 1: Hide cursor ONLY for typing (Inputs) — NOT Buttons */
+        /* ✅ FIX 1: INPUT HANDLING (The "Text Cursor" Patch) */
         document.querySelectorAll("input, textarea, select").forEach(el => {
             el.addEventListener("mouseenter", () => {
-                cursorDot.style.opacity = "0";
-                cursorOutline.style.opacity = "0";
+                // 1. Remove custom cursor completely
+                cursorDot.style.display = "none";
+                cursorOutline.style.display = "none";
+                
+                // 2. Show system text cursor
+                document.body.style.cursor = "text";
             });
+
             el.addEventListener("mouseleave", () => {
-                cursorDot.style.opacity = "1";
-                cursorOutline.style.opacity = "1";
+                // 1. Bring back custom cursor
+                cursorDot.style.display = "block";
+                cursorOutline.style.display = "block";
+                
+                // 2. Hide system cursor again
+                document.body.style.cursor = "none";
             });
         });
 
@@ -84,6 +95,18 @@ document.addEventListener("DOMContentLoaded", () => {
             el.addEventListener("mouseleave", () => {
                 cursorOutline.classList.remove("active");
             });
+        });
+        
+        /* ✅ FIX 3: Safety Fallback (Hide when leaving window) */
+        document.addEventListener("mouseleave", () => {
+            cursorDot.style.opacity = "0";
+            cursorOutline.style.opacity = "0";
+        });
+        
+        document.addEventListener("mouseenter", () => {
+            // It will reappear on 'mousemove', but this helps wake it up
+            cursorDot.style.opacity = "1";
+            cursorOutline.style.opacity = "1";
         });
 
     } else {
