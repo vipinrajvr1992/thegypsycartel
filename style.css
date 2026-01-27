@@ -1,18 +1,8 @@
 /* =========================================================
    GYPSY CARTEL — FUTURISTIC MINIMAL THEME
-   VERSION: PRODUCTION MASTER v1.0
+   VERSION: PRODUCTION MASTER v1.0 (FINAL)
    STATUS: LOCKED + CLEAN
-   
-   INCLUDES:
-   - Cinematic Global Page Load (Fade + Lift)
-   - Physics Cursor (Safe Mode + Class-based Zoom)
-   - Premium Apps Slider (Glow Arrows + Smooth Scroll)
-   - Modal Lightbox (With Navigation Arrows)
-   - Studio Dropdown Locked
-   - Legal Pages Styling
-   - Mobile Optimization (Cursor Disabled)
 ========================================================= */
-
 
 /* =========================================================
    1. GOOGLE FONTS
@@ -136,6 +126,10 @@ ul {
     pointer-events: none !important;
     z-index: 999999;
     will-change: transform;
+
+    /* ✅ CURSOR PATCH: Start invisible to prevent top-left flash */
+    opacity: 0;
+    transition: opacity 0.25s ease;
 }
 
 .cursor-dot {
