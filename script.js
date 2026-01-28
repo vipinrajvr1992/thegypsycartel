@@ -322,7 +322,7 @@ document.addEventListener("DOMContentLoaded", () => {
 /* =========================================================
    ✅ GYPSY CARTEL — FINAL MOBILE NAVBAR ENGINE (CLEAN)
    Auto Center + Indicator + Hamburger Drawer
-   Works After Header Inject
+   Works After Header Inject (Production Safe)
 ========================================================= */
 
 function initMobileNavbar() {
@@ -336,13 +336,13 @@ function initMobileNavbar() {
   if (!headerNav || !menu || !links.length) return;
 
   /* =========================================
-     ✅ MOVE INDICATOR
+     ✅ MOVE INDICATOR PERFECTLY
   ========================================= */
   function moveIndicator(activeLink) {
     if (!indicator || !activeLink) return;
 
     const rect = activeLink.getBoundingClientRect();
-    const navRect = headerNav.getBoundingClientRect();
+    const navRect = menu.getBoundingClientRect();
 
     indicator.style.width = rect.width + "px";
     indicator.style.left = rect.left - navRect.left + "px";
@@ -362,7 +362,7 @@ function initMobileNavbar() {
   }
 
   /* =========================================
-     ✅ INITIAL ACTIVE LINK
+     ✅ INITIAL ACTIVE LINK ON LOAD
   ========================================= */
   const active = document.querySelector("header nav a.active");
   if (active) {
@@ -371,7 +371,7 @@ function initMobileNavbar() {
   }
 
   /* =========================================
-     ✅ CLICK UPDATE
+     ✅ CLICK UPDATE ACTIVE LINK
   ========================================= */
   links.forEach(link => {
     link.addEventListener("click", () => {
@@ -382,6 +382,7 @@ function initMobileNavbar() {
       moveIndicator(link);
       centerActive(link);
 
+      /* Close Drawer After Click */
       menu.classList.remove("open");
     });
   });
@@ -396,14 +397,18 @@ function initMobileNavbar() {
     });
   }
 
-  /* Close Drawer Outside Click */
+  /* =========================================
+     ✅ CLOSE DRAWER ON OUTSIDE CLICK
+  ========================================= */
   document.addEventListener("click", (e) => {
     if (!headerNav.contains(e.target)) {
       menu.classList.remove("open");
     }
   });
 
-  /* Update Indicator on Resize */
+  /* =========================================
+     ✅ UPDATE INDICATOR ON RESIZE
+  ========================================= */
   window.addEventListener("resize", () => {
     const activeNow = document.querySelector("header nav a.active");
     if (activeNow) moveIndicator(activeNow);
@@ -412,7 +417,7 @@ function initMobileNavbar() {
 
 
 /* =========================================================
-   ✅ RUN NAVBAR AFTER HEADER LOADS
+   ✅ RUN NAVBAR AFTER HEADER LOADS (INJECT SAFE)
 ========================================================= */
 document.addEventListener("DOMContentLoaded", () => {
 
@@ -420,12 +425,18 @@ document.addEventListener("DOMContentLoaded", () => {
   if (!headerMount) return;
 
   const observer = new MutationObserver(() => {
+
+    /* Run only after nav exists */
     if (headerMount.querySelector("nav")) {
       initMobileNavbar();
       observer.disconnect();
     }
+
   });
 
-  observer.observe(headerMount, { childList: true, subtree: true });
+  observer.observe(headerMount, {
+    childList: true,
+    subtree: true
+  });
 
 });
