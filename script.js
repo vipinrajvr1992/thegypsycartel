@@ -319,3 +319,112 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+/* =========================================================
+   ✅ FINAL MOBILE NAVBAR ENGINE (GYPSY CARTEL)
+   Auto Center + Indicator + Hamburger Drawer
+   Paste at BOTTOM of script.js
+========================================================= */
+
+function initMobileNavbar() {
+
+    const headerNav = document.querySelector("header nav");
+    const menu = document.querySelector("header nav ul");
+    const links = document.querySelectorAll("header nav a");
+    const indicator = document.querySelector(".nav-indicator");
+    const menuBtn = document.querySelector(".mobile-menu-btn");
+
+    if (!headerNav || !menu || !links.length) return;
+
+    /* =========================================
+       ✅ INDICATOR MOVE FUNCTION
+    ========================================= */
+    function moveIndicator(activeLink) {
+        if (!indicator || !activeLink) return;
+
+        const rect = activeLink.getBoundingClientRect();
+        const navRect = headerNav.getBoundingClientRect();
+
+        indicator.style.width = rect.width + "px";
+        indicator.style.left = rect.left - navRect.left + "px";
+    }
+
+    /* =========================================
+       ✅ AUTO CENTER ACTIVE TAB
+    ========================================= */
+    function centerActive(activeLink) {
+        if (!activeLink) return;
+
+        activeLink.scrollIntoView({
+            behavior: "smooth",
+            inline: "center",
+            block: "nearest"
+        });
+    }
+
+    /* =========================================
+       ✅ ON PAGE LOAD (ACTIVE LINK)
+    ========================================= */
+    const active = document.querySelector("header nav a.active");
+    if (active) {
+        moveIndicator(active);
+        centerActive(active);
+    }
+
+    /* =========================================
+       ✅ CLICK EVENTS (Update Active)
+    ========================================= */
+    links.forEach(link => {
+        link.addEventListener("click", () => {
+
+            links.forEach(l => l.classList.remove("active"));
+            link.classList.add("active");
+
+            moveIndicator(link);
+            centerActive(link);
+
+            /* Close Hamburger After Click */
+            if (menu.classList.contains("open")) {
+                menu.classList.remove("open");
+            }
+        });
+    });
+
+    /* =========================================
+       ✅ HAMBURGER TOGGLE
+    ========================================= */
+    if (menuBtn) {
+        menuBtn.addEventListener("click", () => {
+            menu.classList.toggle("open");
+        });
+    }
+
+    /* =========================================
+       ✅ CLOSE MENU IF USER CLICKS OUTSIDE
+    ========================================= */
+    document.addEventListener("click", (e) => {
+        if (!headerNav.contains(e.target)) {
+            menu.classList.remove("open");
+        }
+    });
+
+    /* =========================================
+       ✅ UPDATE INDICATOR ON RESIZE
+    ========================================= */
+    window.addEventListener("resize", () => {
+        const activeNow = document.querySelector("header nav a.active");
+        if (activeNow) moveIndicator(activeNow);
+    });
+}
+
+/* =========================================================
+   ✅ RUN NAV INIT AFTER HEADER LOADS
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    /* Wait for header fetch injection */
+    setTimeout(() => {
+        initMobileNavbar();
+    }, 300);
+
+});
