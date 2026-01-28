@@ -320,12 +320,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 /* =========================================================
-   ✅ GYPSY CARTEL — FINAL MOBILE NAVBAR ENGINE (CLEAN)
+   ✅ GYPSY CARTEL — FINAL MOBILE NAVBAR ENGINE (PURE)
    Auto Center + Indicator + Hamburger Drawer
    Works After Header Inject (Production Safe)
 ========================================================= */
 
 function initMobileNavbar() {
+
+  /* ✅ Run ONLY on Mobile */
+  if (window.innerWidth > 768) return;
 
   const headerNav = document.querySelector("header nav");
   const menu = document.querySelector("header nav ul");
@@ -336,13 +339,13 @@ function initMobileNavbar() {
   if (!headerNav || !menu || !links.length) return;
 
   /* =========================================
-     ✅ MOVE INDICATOR PERFECTLY
+     ✅ MOVE INDICATOR PERFECT POSITION
   ========================================= */
   function moveIndicator(activeLink) {
     if (!indicator || !activeLink) return;
 
     const rect = activeLink.getBoundingClientRect();
-    const navRect = menu.getBoundingClientRect();
+    const navRect = headerNav.getBoundingClientRect();
 
     indicator.style.width = rect.width + "px";
     indicator.style.left = rect.left - navRect.left + "px";
@@ -365,9 +368,12 @@ function initMobileNavbar() {
      ✅ INITIAL ACTIVE LINK ON LOAD
   ========================================= */
   const active = document.querySelector("header nav a.active");
+
   if (active) {
-    moveIndicator(active);
-    centerActive(active);
+    setTimeout(() => {
+      moveIndicator(active);
+      centerActive(active);
+    }, 150);
   }
 
   /* =========================================
@@ -398,7 +404,7 @@ function initMobileNavbar() {
   }
 
   /* =========================================
-     ✅ CLOSE DRAWER ON OUTSIDE CLICK
+     ✅ CLOSE DRAWER OUTSIDE CLICK
   ========================================= */
   document.addEventListener("click", (e) => {
     if (!headerNav.contains(e.target)) {
@@ -426,7 +432,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const observer = new MutationObserver(() => {
 
-    /* Run only after nav exists */
     if (headerMount.querySelector("nav")) {
       initMobileNavbar();
       observer.disconnect();
