@@ -1106,3 +1106,73 @@ footer h4,
     transform: translateY(0);
   }
 }
+/* =========================================================
+   ✅ STUDIO PAGE MOBILE FIX (ONLY)
+   Fix Overflow + Perfect Fit + Form Full Width
+   No HTML Change Needed
+========================================================= */
+
+@media (max-width: 768px) {
+
+  /* ✅ Studio Grid Stack Properly */
+  .design-page .grid-2 {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 35px !important;
+    align-items: center !important;
+  }
+
+  /* ✅ Left Content Full Width */
+  .design-page .studio-left {
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  /* ✅ MG Logo Perfect Center */
+  .design-page .mg-logo-wrap img {
+    max-width: 180px !important;
+    margin: 0 auto !important;
+    display: block !important;
+  }
+
+  /* ✅ Fix Heading Wrap Issue */
+  .design-page h1 span.studio-orange {
+    white-space: normal !important; /* REMOVE nowrap */
+    display: block !important;
+    text-align: center !important;
+  }
+
+  /* ✅ Description Fit Without Breaking Screen */
+  .design-page .studio-desc {
+    max-width: 100% !important;
+    padding: 0 10px !important;
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+  }
+
+  /* ✅ Remove Forced <br> Overflow Effect */
+  .design-page .studio-desc br {
+    display: none !important;
+  }
+
+  /* ✅ Form Box Full Mobile Fit */
+  .design-page form,
+  .design-page form input,
+  .design-page form textarea,
+  .design-page .gc-dropdown {
+    width: 100% !important;
+  }
+
+  /* ✅ Reduce Form Padding on Mobile */
+  .design-page .grid-2 > div:last-child {
+    padding: 22px !important;
+  }
+
+  /* ✅ Button Full Width Premium */
+  .design-page button.btn {
+    width: 100% !important;
+    font-size: 1rem !important;
+    padding: 15px !important;
+    border-radius: 14px !important;
+  }
+}
