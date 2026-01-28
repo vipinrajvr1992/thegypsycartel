@@ -1305,11 +1305,11 @@ img:hover {
 }
 
 /* =========================================
-   Tooltip: Chat With Us
+   Tooltip: Connect Now
 ========================================= */
 
 .whatsapp-float::before {
-  content: "Chat with us";
+  content: "Connect Now";
   position: absolute;
 
   right: 72px;
