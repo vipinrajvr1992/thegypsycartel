@@ -445,3 +445,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+/* =========================================
+   ✅ WHATSAPP WIDGET LOAD (GLOBAL)
+========================================= */
+
+fetch("/partials/whatsapp.html")
+  .then(res => res.text())
+  .then(html => {
+    document.body.insertAdjacentHTML("beforeend", html);
+  });
