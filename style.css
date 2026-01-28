@@ -1115,3 +1115,130 @@ footer h4,
     padding: 20px !important;
   }
 }
+/* =========================================================
+   ✅ APPS MODAL — PREMIUM NAV + SCROLL CONTROL (FINAL)
+   Mouse Wheel Next/Prev + Touch Swipe + Keyboard + Arrows
+========================================================= */
+
+/* Modal Overlay */
+.apps-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(10px);
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999999;
+}
+
+/* Modal Image */
+.apps-modal-img {
+  max-width: 92%;
+  max-height: 85vh;
+  border-radius: 16px;
+
+  box-shadow: 0 35px 90px rgba(0, 0, 0, 0.85);
+
+  animation: modalZoom 0.35s ease;
+}
+
+/* Zoom Animation */
+@keyframes modalZoom {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Close Button */
+.apps-modal-close {
+  position: absolute;
+  top: 22px;
+  right: 28px;
+
+  font-size: 2.3rem;
+  font-weight: 600;
+
+  color: white;
+  cursor: pointer !important;
+
+  z-index: 9999999;
+  transition: 0.25s ease;
+}
+
+.apps-modal-close:hover {
+  color: var(--primary-orange);
+  transform: scale(1.15);
+}
+
+/* =========================================================
+   ✅ MODAL NAVIGATION ARROWS (LEFT + RIGHT)
+========================================================= */
+
+.apps-modal-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+
+  background: rgba(15, 15, 15, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  color: var(--primary-orange);
+  font-size: 2.4rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer !important;
+  user-select: none;
+
+  z-index: 9999999;
+  transition: 0.3s ease;
+}
+
+/* Hover Glow */
+.apps-modal-nav:hover {
+  background: rgba(255, 106, 26, 0.12);
+  box-shadow: 0 0 28px rgba(255, 106, 26, 0.35);
+  transform: translateY(-50%) scale(1.08);
+}
+
+/* Left + Right Position */
+.apps-modal-nav.left {
+  left: 22px;
+}
+
+.apps-modal-nav.right {
+  right: 22px;
+}
+
+/* =========================================================
+   ✅ MOBILE OPTIMIZATION (NO HUGE ARROWS)
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .apps-modal-nav {
+    width: 48px;
+    height: 48px;
+    font-size: 1.8rem;
+  }
+
+  .apps-modal-close {
+    font-size: 2rem;
+    top: 16px;
+    right: 18px;
+  }
+}
