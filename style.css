@@ -836,11 +836,25 @@ footer h4,
     color: var(--primary-orange) !important;
 }
 /* =========================================================
-   ✅ GYPSY CARTEL — FINAL MOBILE MASTER FIX (UPDATED)
-   PREMIUM iPHONE NAVBAR + NO OVERLAP + ALWAYS VISIBLE
+   ✅ GYPSY CARTEL — FINAL MOBILE MASTER FIX (UPDATED v3)
+   PREMIUM iPHONE NAVBAR + NO OVERLAP + DESKTOP SAFE
    Works on ALL Pages
 ========================================================= */
 
+
+/* =========================================
+   ✅ DESKTOP SAFETY (IMPORTANT)
+   Hide Mobile Elements on Desktop Always
+========================================= */
+.mobile-menu-btn,
+.nav-indicator {
+  display: none !important;
+}
+
+
+/* =========================================================
+   ✅ MOBILE NAVBAR SYSTEM (TABLETS + PHONES)
+========================================================= */
 @media (max-width: 768px) {
 
   /* =========================================
@@ -933,15 +947,15 @@ footer h4,
   }
 
   /* =========================================
-     ✅ FINAL PREMIUM MOBILE HEADER FIX (VISIBLE ALWAYS)
+     ✅ FINAL PREMIUM FIXED HEADER (ALWAYS VISIBLE)
   ========================================= */
   header {
-    position: fixed !important;   /* ✅ FIXED ALWAYS */
+    position: fixed !important;
     top: 0 !important;
     left: 0 !important;
 
     width: 100% !important;
-    height: 75px !important;      /* ✅ FORCE HEIGHT */
+    height: 75px !important;
 
     padding: 0 14px !important;
 
@@ -958,18 +972,28 @@ footer h4,
   header nav {
     width: 100% !important;
     position: relative !important;
+
     display: flex !important;
     align-items: center !important;
+    gap: 12px !important;
   }
 
   /* =========================================
-     ✅ HORIZONTAL SWIPE MENU (ALL PAGES)
+     ✅ SHOW INDICATOR ONLY ON MOBILE
+  ========================================= */
+  .nav-indicator {
+    display: block !important;
+  }
+
+  /* =========================================
+     ✅ HORIZONTAL SWIPE MENU (NIKE STYLE)
   ========================================= */
   header nav ul {
     display: flex !important;
     flex-direction: row !important;
 
     gap: 14px !important;
+
     overflow-x: auto !important;
     overflow-y: hidden !important;
 
@@ -1014,7 +1038,7 @@ footer h4,
   }
 
   /* =========================================
-     ✅ SWIPE INDICATOR LINE
+     ✅ ORANGE SWIPE INDICATOR LINE
   ========================================= */
   .nav-indicator {
     position: absolute !important;
@@ -1041,24 +1065,25 @@ footer h4,
 
 }
 
+
 /* =========================================================
    ✅ HAMBURGER MENU MODE (SMALL PHONES ONLY)
 ========================================================= */
-
 @media (max-width: 480px) {
 
-  /* Hamburger Button */
+  /* ✅ Show Hamburger ONLY Below 480px */
   .mobile-menu-btn {
     display: block !important;
     font-size: 1.7rem !important;
+
     background: none !important;
     border: none !important;
     color: white !important;
-    margin-right: 10px !important;
+
     cursor: pointer !important;
   }
 
-  /* Hide Horizontal Menu */
+  /* Hide Swipe Menu Default */
   header nav ul {
     display: none !important;
   }
@@ -1088,5 +1113,9 @@ footer h4,
     padding: 14px 18px !important;
   }
 
-}
+  /* Hide Indicator in Drawer Mode */
+  .nav-indicator {
+    display: none !important;
+  }
 
+}
