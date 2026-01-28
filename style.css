@@ -835,100 +835,64 @@ footer h4,
 .studio-orange {
     color: var(--primary-orange) !important;
 }
-/* =========================================
-   ✅ FINAL MOBILE NAVBAR FIX — NO OVERLAP ANYWHERE
-========================================= */
+/* =========================================================
+   ✅ ULTRA PREMIUM MOBILE NAV SYSTEM
+========================================================= */
 
-@media (max-width: 768px) {
+document.addEventListener("DOMContentLoaded", () => {
 
-  /* Navbar Wrapper */
-  nav {
-    width: 100% !important;
-    padding: 14px 12px !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    position: sticky !important;
-    top: 0 !important;
-    background: rgba(0,0,0,0.92) !important;
-    backdrop-filter: blur(14px) !important;
-    z-index: 99999 !important;
+  const nav = document.querySelector("nav");
+  const links = document.querySelectorAll("nav a");
+  const indicator = document.querySelector(".nav-indicator");
+  const menuBtn = document.querySelector(".mobile-menu-btn");
+  const menu = document.querySelector("nav ul");
+
+  /* ✅ Move Indicator */
+  function moveIndicator(activeLink) {
+    if (!activeLink) return;
+
+    const rect = activeLink.getBoundingClientRect();
+    const navRect = nav.getBoundingClientRect();
+
+    indicator.style.width = rect.width + "px";
+    indicator.style.left = rect.left - navRect.left + "px";
   }
 
-  /* Force ALL Menus Horizontal */
-  nav ul,
-  nav .menu,
-  nav .nav-links {
-    display: flex !important;
-    flex-direction: row !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
+  /* ✅ Auto Center Active Tab */
+  function centerActive(activeLink) {
+    if (!activeLink) return;
 
-    width: 100% !important;
-    gap: 16px !important;
-
-    overflow-x: auto !important;
-    overflow-y: hidden !important;
-
-    white-space: nowrap !important;
-    padding: 8px 10px !important;
-
-    scrollbar-width: none !important;
+    activeLink.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest"
+    });
   }
 
-  /* Hide Scrollbar */
-  nav ul::-webkit-scrollbar,
-  nav .menu::-webkit-scrollbar,
-  nav .nav-links::-webkit-scrollbar {
-    display: none !important;
-  }
+  /* On Load */
+  const active = document.querySelector("nav a.active");
+  moveIndicator(active);
+  centerActive(active);
 
-  /* Remove Vertical Overlay Menu Completely */
-  nav ul.open,
-  nav .menu.open,
-  nav .nav-links.open {
-    flex-direction: row !important;
-    position: relative !important;
-    height: auto !important;
-    background: none !important;
-  }
+  /* Click Events */
+  links.forEach(link => {
+    link.addEventListener("click", () => {
+      links.forEach(l => l.classList.remove("active"));
+      link.classList.add("active");
 
-  /* Nav Items */
-  nav ul li {
-    flex: 0 0 auto !important;
-    list-style: none !important;
-  }
+      moveIndicator(link);
+      centerActive(link);
 
-  /* Nav Links */
-  nav ul li a,
-  nav a {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
+      /* Close Hamburger Menu After Click */
+      if (menu.classList.contains("open")) {
+        menu.classList.remove("open");
+      }
+    });
+  });
 
-    font-size: 0.95rem !important;
-    font-weight: 500 !important;
+  /* Hamburger Toggle */
+  menuBtn.addEventListener("click", () => {
+    menu.classList.toggle("open");
+  });
 
-    padding: 10px 16px !important;
-    border-radius: 14px !important;
-
-    color: white !important;
-    text-decoration: none !important;
-
-    transition: all 0.25s ease !important;
-  }
-
-  /* Active Page Highlight */
-  nav a.active,
-  nav ul li a.active {
-    background: rgba(255,255,255,0.08) !important;
-    color: var(--primary-orange) !important;
-  }
-
-  /* Prevent Menu Text Overlap */
-  nav * {
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-  }
-
-}
+});
