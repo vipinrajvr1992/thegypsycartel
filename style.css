@@ -1260,10 +1260,28 @@ img:hover {
   filter: brightness(1.04);
 }
 /* ============================================
-   ✅ GYPSY CARTEL — FLOATING BUTTONS SYSTEM (FINAL MASTER LOCK)
-   WhatsApp + Zoho Premium Stack
-   SAME SIZE • PERFECT SPACING • MOBILE SAFE
+   ✅ GYPSY CARTEL — FLOATING BUTTONS SYSTEM
+   FINAL MASTER LOCK (PRODUCTION READY)
+
+   FIXED:
+   ✅ WhatsApp Icon No Crack
+   ✅ Same Size Mobile/Desktop
+   ✅ Perfect Spacing
+   ✅ No Mobile Render Bugs
 ============================================ */
+
+
+/* ============================================
+   ✅ GLOBAL GPU FIX (SVG + MOBILE SAFE)
+============================================ */
+
+#zsiq_float,
+.whatsapp-float {
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
+  -webkit-font-smoothing: antialiased !important;
+  will-change: transform !important;
+}
 
 
 /* ============================================
@@ -1297,7 +1315,7 @@ img:hover {
 
 /* Hover Premium */
 #zsiq_float:hover {
-  transform: scale(1.12) !important;
+  transform: scale(1.10) !important;
   opacity: 0.96 !important;
 }
 
@@ -1342,7 +1360,7 @@ img:hover {
 
 
 /* ============================================
-   ✅ ZOHO PULSE GLOW (SOFT)
+   ✅ ZOHO SOFT PULSE GLOW
 ============================================ */
 
 #zsiq_float::after {
@@ -1391,13 +1409,13 @@ img:hover {
 }
 
 .whatsapp-float:hover {
-  transform: scale(1.12) !important;
+  transform: scale(1.10) !important;
   opacity: 0.96 !important;
 }
 
 
 /* ============================================
-   ✅ WHATSAPP ICON FIX (NO CRACK + PERFECT CENTER)
+   ✅ WHATSAPP ICON FIX (NO CRACK EVER)
 ============================================ */
 
 .whatsapp-float svg {
@@ -1405,13 +1423,13 @@ img:hover {
   height: 28px !important;
 
   fill: #fff !important;
-
   display: block !important;
 
-  /* ✅ FIX CRACK */
-  transform: translateZ(0) !important;
-  backface-visibility: hidden !important;
-  shape-rendering: crispEdges !important;
+  transform: none !important;
+  animation: none !important;
+
+  shape-rendering: geometricPrecision !important;
+  vector-effect: non-scaling-stroke !important;
 }
 
 
@@ -1456,7 +1474,7 @@ img:hover {
 
 
 /* ============================================
-   ✅ WHATSAPP PULSE GLOW
+   ✅ WHATSAPP SOFT PULSE
 ============================================ */
 
 .whatsapp-float::after {
@@ -1476,7 +1494,7 @@ img:hover {
 
 
 /* ============================================
-   ✅ SHARED PREMIUM ANIMATIONS
+   ✅ SHARED ANIMATION
 ============================================ */
 
 @keyframes pulse-ring {
@@ -1487,39 +1505,39 @@ img:hover {
 
 
 /* ============================================
-   ✅ MOBILE SAFE MODE (PERFECT SIZE + SPACING)
+   ✅ MOBILE SAFE MODE (LOCKED PERFECT)
 ============================================ */
 
 @media (max-width: 768px) {
 
-  /* ✅ SAME SIZE BOTH BUTTONS */
+  /* SAME SIZE BOTH */
   #zsiq_float,
   .whatsapp-float {
     width: 54px !important;
     height: 54px !important;
   }
 
-  /* Zoho Bottom Safe */
+  /* Zoho Bottom */
   #zsiq_float {
     bottom: 16px !important;
     right: 16px !important;
   }
 
-  /* WhatsApp Above Zoho */
+  /* WhatsApp Above */
   .whatsapp-float {
     bottom: 88px !important;
     right: 16px !important;
   }
 
-  /* Hide Tooltips Mobile */
-  .whatsapp-float::before,
-  #zsiq_float::before {
+  /* Tooltips OFF */
+  #zsiq_float::before,
+  .whatsapp-float::before {
     display: none !important;
   }
 
-  /* Remove Pulse Mobile (Better Tap UX) */
-  .whatsapp-float::after,
-  #zsiq_float::after {
+  /* Pulse OFF Mobile */
+  #zsiq_float::after,
+  .whatsapp-float::after {
     animation: none !important;
   }
 }
