@@ -746,17 +746,18 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* =========================================================
-   ✅ GYPSY CARTEL — FLOATING CHAT ENGINE (FINAL MASTER)
+   ✅ GYPSY CARTEL — FLOATING CHAT ENGINE (FINAL MASTER LOCK)
+   FIXED:
    • WhatsApp + Zoho Same Size
-   • NO LOOP / NO INTERVAL
-   • Mobile Close Button Safe TOP
-   • Chat Box Reduced Perfectly
+   • No Loop / No Interval
+   • Mobile Close Button Never Blocks Input
+   • Chat Window Reduced Perfectly
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================
-     ✅ 1. WHATSAPP FLOAT BUTTON (MATCH SIZE)
+     ✅ 1. WHATSAPP FLOAT BUTTON (PERFECT ICON)
   ========================================= */
 
   if (!document.querySelector(".whatsapp-float")) {
@@ -764,7 +765,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const phoneNumber = "918086604808";
     const message = "Hi Gypsy Cartel Support 👋";
 
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    const isMobile =
+      /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 
     const waLink = isMobile
       ? `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`
@@ -776,14 +778,17 @@ document.addEventListener("DOMContentLoaded", () => {
     waBtn.target = "_blank";
     waBtn.rel = "noopener noreferrer";
 
-    /* ✅ FIX ICON (NO CRACK) */
+    /* ✅ Official WhatsApp SVG (No Crack Ever) */
     waBtn.innerHTML = `
-      <svg viewBox="0 0 32 32" aria-hidden="true">
-        <path d="M16.02 3C9.39 3 4 8.39 4 15.02c0 2.34.67 4.52 1.83 6.36L4 29l7.84-1.8a12 12 0 0 0 4.18.75C22.61 27.95 28 22.56 28 15.93 28 9.39 22.61 3 16.02 3zm0 22.05c-1.34 0-2.66-.27-3.87-.8l-.28-.12-4.65 1.07 1.02-4.53-.14-.3a9.93 9.93 0 0 1-1.55-5.35c0-5.52 4.49-10 10-10 5.52 0 10 4.48 10 10 0 5.51-4.48 9.96-10 9.96z"/>
+      <svg xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 32 32"
+           aria-hidden="true">
+        <path fill="white"
+          d="M16 2C8.27 2 2 8.27 2 16c0 2.48.65 4.8 1.8 6.85L2 30l7.35-1.93A13.9 13.9 0 0 0 16 30c7.73 0 14-6.27 14-14S23.73 2 16 2zm0 25.5c-2.2 0-4.25-.63-6-1.72l-.43-.26-4.36 1.14 1.16-4.25-.28-.44A11.4 11.4 0 0 1 4.5 16C4.5 9.65 9.65 4.5 16 4.5S27.5 9.65 27.5 16 22.35 27.5 16 27.5z"/>
       </svg>
     `;
 
-    /* Premium Fade Entrance */
+    /* Smooth Fade Entrance */
     waBtn.style.opacity = "0";
     waBtn.style.transform = "scale(0.85)";
     document.body.appendChild(waBtn);
@@ -797,19 +802,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     ✅ 2. ZOHO PREMIUM ACTIVATOR (NO LOOP)
+     ✅ 2. ZOHO FINAL SETUP ENGINE
   ========================================= */
 
-  function setupZoho() {
+  function setupZohoFinal() {
 
     const zohoBtn = document.getElementById("zsiq_float");
     if (!zohoBtn) return;
 
-    /* Prevent Double Setup */
+    /* Prevent Duplicate Setup */
     if (zohoBtn.classList.contains("zoho-ready")) return;
     zohoBtn.classList.add("zoho-ready");
 
-    /* Premium Fade */
+    /* Premium Fade Entrance */
     zohoBtn.style.opacity = "0";
     zohoBtn.style.transform = "scale(0.85)";
 
@@ -823,21 +828,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       ✅ 3. CHAT BOX SIZE FIX (SMALL)
+       ✅ 3. CHAT WINDOW SIZE FIX (NOT HUGE)
     ========================================= */
 
     const iframe = document.getElementById("siqiframe");
 
     if (iframe) {
 
-      /* Desktop Smaller */
+      /* Desktop Compact Size */
       iframe.style.setProperty("width", "340px", "important");
       iframe.style.setProperty("height", "460px", "important");
       iframe.style.setProperty("max-height", "460px", "important");
 
-      /* Mobile Smaller */
+      /* Mobile Safe Size */
       if (window.innerWidth <= 768) {
-        iframe.style.setProperty("width", "92vw", "important");
+        iframe.style.setProperty("width", "94vw", "important");
         iframe.style.setProperty("height", "420px", "important");
         iframe.style.setProperty("max-height", "420px", "important");
       }
@@ -845,7 +850,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       ✅ 4. MOBILE CLOSE BUTTON FIX (NEVER BLOCK)
+       ✅ 4. MOBILE CLOSE BUTTON FIX (TOP SAFE)
+       Never Blocks Keyboard or Send Button
     ========================================= */
 
     setTimeout(() => {
@@ -853,37 +859,51 @@ document.addEventListener("DOMContentLoaded", () => {
       const closeBtn =
         document.querySelector(".win_close") ||
         document.querySelector(".siqico-close") ||
-        document.querySelector(".close_btn");
+        document.querySelector(".zsiq_float_close");
 
       if (closeBtn && window.innerWidth <= 768) {
 
-        /* Move Close Button TOP */
-        closeBtn.style.setProperty("position", "absolute", "important");
-        closeBtn.style.setProperty("top", "12px", "important");
-        closeBtn.style.setProperty("right", "12px", "important");
+        /* Move Close Button TOP RIGHT */
+        closeBtn.style.setProperty("position", "fixed", "important");
+        closeBtn.style.setProperty("top", "70px", "important");
+        closeBtn.style.setProperty("right", "18px", "important");
+
         closeBtn.style.setProperty("bottom", "auto", "important");
+        closeBtn.style.setProperty("left", "auto", "important");
 
         closeBtn.style.setProperty("z-index", "99999999", "important");
-        closeBtn.style.setProperty("transform", "scale(0.75)", "important");
+        closeBtn.style.setProperty("transform", "scale(0.7)", "important");
 
-        console.log("Mobile Close Fixed ✅");
+        closeBtn.style.setProperty(
+          "background",
+          "rgba(0,0,0,0.55)",
+          "important"
+        );
+
+        closeBtn.style.setProperty(
+          "border-radius",
+          "50%",
+          "important"
+        );
+
+        console.log("Mobile Close Button Fixed ✅");
       }
 
-    }, 1200);
+    }, 1500);
 
   }
 
 
   /* =========================================
-     ✅ 5. OBSERVE DOM ONCE (NO LOOP)
+     ✅ 5. OBSERVER (RUNS ONCE ONLY)
   ========================================= */
 
-  setupZoho();
+  setupZohoFinal();
 
   const observer = new MutationObserver(() => {
     if (document.getElementById("zsiq_float")) {
-      setupZoho();
-      observer.disconnect(); // ✅ Stops Forever
+      setupZohoFinal();
+      observer.disconnect(); // ✅ STOP FOREVER
     }
   });
 
