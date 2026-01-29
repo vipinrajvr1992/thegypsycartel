@@ -1260,13 +1260,14 @@ img:hover {
   filter: brightness(1.04);
 }
 /* ============================================
-   ✅ GYPSY CARTEL — FLOATING BUTTONS SYSTEM
-   WhatsApp + Zoho Premium Stack (FINAL LOCK)
+   ✅ GYPSY CARTEL — FLOATING BUTTONS SYSTEM (FINAL MASTER)
+   WhatsApp + Zoho Premium Stack
+   NO CLASH • PERFECT SPACING • MOBILE SAFE
 ============================================ */
 
 
 /* ============================================
-   ✅ ZOHO SALESIQ BUTTON (BOTTOM)
+   ✅ ZOHO SALESIQ FLOAT BUTTON (BOTTOM)
 ============================================ */
 
 #zsiq_float {
@@ -1279,7 +1280,11 @@ img:hover {
   height: 58px !important;
   border-radius: 50% !important;
 
-  background: var(--primary-orange) !important;
+  background: linear-gradient(
+    145deg,
+    #ff6600,
+    #ff4500
+  ) !important;
 
   display: flex !important;
   align-items: center !important;
@@ -1287,7 +1292,9 @@ img:hover {
 
   z-index: 999998 !important;
 
-  box-shadow: 0 0 22px rgba(255, 102, 0, 0.45) !important;
+  border: 2px solid rgba(255, 255, 255, 0.12) !important;
+
+  box-shadow: 0 0 26px rgba(255, 102, 0, 0.55) !important;
 
   cursor: pointer !important;
 
@@ -1301,7 +1308,10 @@ img:hover {
 }
 
 
-/* Tooltip */
+/* ============================================
+   ✅ ZOHO TOOLTIP
+============================================ */
+
 #zsiq_float::before {
   content: "Live Support";
 
@@ -1310,16 +1320,16 @@ img:hover {
   top: 50%;
   transform: translateY(-50%);
 
-  background: rgba(20, 20, 20, 0.92);
-  backdrop-filter: blur(12px);
+  background: rgba(15, 15, 15, 0.94);
+  backdrop-filter: blur(14px);
 
   font-family: "Space Grotesk", "Inter", sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.6px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
   text-transform: uppercase;
 
-  color: white;
+  color: #fff;
 
   padding: 10px 16px;
   border-radius: 14px;
@@ -1339,7 +1349,10 @@ img:hover {
 }
 
 
-/* Pulse Glow */
+/* ============================================
+   ✅ ZOHO PULSE GLOW
+============================================ */
+
 #zsiq_float::after {
   content: "";
   position: absolute;
@@ -1351,7 +1364,7 @@ img:hover {
   background: rgba(255, 102, 0, 0.22);
   z-index: -1;
 
-  animation: pulse-ring 2.3s infinite;
+  animation: pulse-ring 2.4s infinite;
 }
 
 
@@ -1370,7 +1383,11 @@ img:hover {
   height: 58px !important;
   border-radius: 50% !important;
 
-  background: #25D366 !important;
+  background: linear-gradient(
+    145deg,
+    #25d366,
+    #128c7e
+  ) !important;
 
   display: flex !important;
   align-items: center !important;
@@ -1378,7 +1395,9 @@ img:hover {
 
   z-index: 999999 !important;
 
-  box-shadow: 0 0 22px rgba(37, 211, 102, 0.38) !important;
+  border: 2px solid rgba(255, 255, 255, 0.10) !important;
+
+  box-shadow: 0 0 24px rgba(37, 211, 102, 0.45) !important;
 
   cursor: pointer !important;
 
@@ -1394,11 +1413,14 @@ img:hover {
 .whatsapp-float svg {
   width: 28px !important;
   height: 28px !important;
-  fill: white !important;
+  fill: #fff !important;
 }
 
 
-/* Tooltip */
+/* ============================================
+   ✅ WHATSAPP TOOLTIP
+============================================ */
+
 .whatsapp-float::before {
   content: "Connect Now";
 
@@ -1407,16 +1429,16 @@ img:hover {
   top: 50%;
   transform: translateY(-50%);
 
-  background: rgba(20, 20, 20, 0.92);
-  backdrop-filter: blur(12px);
+  background: rgba(15, 15, 15, 0.94);
+  backdrop-filter: blur(14px);
 
   font-family: "Space Grotesk", "Inter", sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.6px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
   text-transform: uppercase;
 
-  color: white;
+  color: #fff;
 
   padding: 10px 16px;
   border-radius: 14px;
@@ -1436,7 +1458,10 @@ img:hover {
 }
 
 
-/* Pulse Ring */
+/* ============================================
+   ✅ WHATSAPP PULSE
+============================================ */
+
 .whatsapp-float::after {
   content: "";
   position: absolute;
@@ -1445,16 +1470,16 @@ img:hover {
   height: 100%;
   border-radius: 50%;
 
-  background: rgba(37, 211, 102, 0.25);
+  background: rgba(37, 211, 102, 0.22);
   z-index: -1;
 
-  animation: pulse-ring 2.3s infinite;
+  animation: pulse-ring 2.4s infinite;
 }
 
 
 
 /* ============================================
-   ✅ SHARED PREMIUM ANIMATIONS
+   ✅ PREMIUM SHARED ANIMATIONS
 ============================================ */
 
 @keyframes float-motion {
@@ -1470,28 +1495,38 @@ img:hover {
 
 
 /* ============================================
-   ✅ MOBILE SAFE MODE (STACK STILL WORKS)
+   ✅ MOBILE SAFE MODE (NO SEND BLOCKING)
 ============================================ */
 
 @media (max-width: 768px) {
 
+  /* Zoho Button Lower */
   #zsiq_float {
-    bottom: 18px !important;
-    right: 18px !important;
+    bottom: 16px !important;
+    right: 16px !important;
+
     width: 54px !important;
     height: 54px !important;
   }
 
+  /* WhatsApp Above */
   .whatsapp-float {
-    bottom: 95px !important;
-    right: 18px !important;
+    bottom: 88px !important;
+    right: 16px !important;
+
     width: 54px !important;
     height: 54px !important;
   }
 
-  /* Hide Tooltips on Mobile */
+  /* Hide Tooltips Mobile */
   .whatsapp-float::before,
   #zsiq_float::before {
     display: none !important;
+  }
+
+  /* Stop Floating Motion Mobile (Stable Tap) */
+  #zsiq_float,
+  .whatsapp-float {
+    animation: none !important;
   }
 }
