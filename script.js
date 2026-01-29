@@ -749,12 +749,12 @@ document.addEventListener("DOMContentLoaded", () => {
    ✅ GYPSY CARTEL — FLOATING CHAT ENGINE (FINAL MASTER LOCK)
 
    FIXED:
-   ✅ WhatsApp Full Official Icon (Bubble + Phone)
-   ✅ Zoho + WhatsApp Same Size
-   ✅ Mobile Send Button Never Blocked (Guaranteed)
-   ✅ Zoho Close Button Removed on Mobile
-   ✅ Tap Outside Overlay Close (Premium UX)
-   ✅ Observer Runs Once Only
+   ✅ WhatsApp Perfect Official Icon
+   ✅ Zoho Mobile Send Never Blocked
+   ✅ Zoho Default Close Hidden
+   ✅ Custom Premium X Button (Top Corner)
+   ✅ Tap X → Close Chat Smooth
+   ✅ No Loop / Observer Runs Once
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -783,15 +783,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     waBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg"
-           viewBox="0 0 32 32"
-           aria-hidden="true">
-
+           viewBox="0 0 32 32">
         <path fill="white"
           d="M16 2C8.27 2 2 8.27 2 16c0 2.82.74 5.47 2.02 7.77L2 30l6.4-1.68A13.93 13.93 0 0 0 16 30c7.73 0 14-6.27 14-14S23.73 2 16 2z"/>
-
         <path fill="#25d366"
           d="M16 5.2c-5.96 0-10.8 4.84-10.8 10.8 0 2.2.66 4.24 1.8 5.95l-1.18 4.3 4.4-1.15c1.64 1.06 3.6 1.68 5.78 1.68 5.96 0 10.8-4.84 10.8-10.8S21.96 5.2 16 5.2z"/>
-
         <path fill="white"
           d="M20.5 18.8c-.25-.13-1.5-.74-1.73-.82-.23-.08-.4-.13-.58.13-.17.25-.66.82-.8 1-.15.17-.3.2-.55.07-.25-.13-1.06-.39-2.02-1.25-.75-.66-1.25-1.48-1.4-1.73-.15-.25-.02-.39.1-.52.12-.12.25-.3.38-.44.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.44-.07-.13-.58-1.4-.8-1.92-.2-.5-.4-.43-.58-.44h-.5c-.17 0-.44.07-.67.32-.23.25-.88.88-.88 2.15s.9 2.5 1.03 2.67c.13.17 1.8 2.74 4.35 3.85.6.26 1.07.43 1.45.55.6.18 1.15.16 1.6.1.48-.08 1.5-.62 1.72-1.2.22-.58.22-1.08.15-1.2-.06-.12-.23-.2-.48-.32z"/>
       </svg>
@@ -802,7 +798,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     ✅ 2. ZOHO FINAL FIX ENGINE
+     ✅ 2. ZOHO FINAL ENGINE + CUSTOM X CLOSE
   ========================================= */
 
   function setupZohoFinal() {
@@ -811,31 +807,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const iframe = document.getElementById("siqiframe");
 
     if (!zohoBtn || !iframe) return;
-
     if (zohoBtn.classList.contains("zoho-ready")) return;
-    zohoBtn.classList.add("zoho-ready");
 
+    zohoBtn.classList.add("zoho-ready");
     console.log("Zoho Ready ✅");
 
 
     /* =========================================
-       ✅ CHAT SIZE FIX
+       ✅ CHAT SIZE + MOBILE SAFE POSITION
     ========================================= */
 
     iframe.style.setProperty("width", "340px", "important");
     iframe.style.setProperty("height", "460px", "important");
-
-
-    /* =========================================
-       ✅ MOBILE FIX (SEND BUTTON SAFE)
-    ========================================= */
 
     if (window.innerWidth <= 768) {
 
       iframe.style.setProperty("width", "94vw", "important");
       iframe.style.setProperty("height", "420px", "important");
 
-      /* ✅ LIFT UP = GUARANTEED SEND FIX */
+      /* ✅ Lift Up = Send Button Safe */
       iframe.style.setProperty("position", "fixed", "important");
       iframe.style.setProperty("bottom", "120px", "important");
       iframe.style.setProperty("right", "16px", "important");
@@ -843,15 +833,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       ✅ MOBILE: REMOVE ZOHO CLOSE BUTTON
+       ✅ HIDE ZOHO DEFAULT CLOSE BUTTON
     ========================================= */
 
     if (window.innerWidth <= 768) {
       setTimeout(() => {
         const closeBtn =
           document.querySelector(".win_close") ||
-          document.querySelector(".siqico-close") ||
-          document.querySelector(".zsiq_float_close");
+          document.querySelector(".siqico-close");
 
         if (closeBtn) closeBtn.style.display = "none";
       }, 1200);
@@ -859,51 +848,64 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       ✅ MOBILE OVERLAY CLOSE SYSTEM
+       ✅ CREATE CUSTOM X BUTTON (TOP CORNER)
     ========================================= */
 
-    if (window.innerWidth <= 768) {
+    if (!document.querySelector(".zoho-custom-close")) {
 
-      let overlay = document.querySelector(".zoho-overlay");
+      const xBtn = document.createElement("div");
+      xBtn.className = "zoho-custom-close";
+      xBtn.innerHTML = "✕";
 
-      if (!overlay) {
+      xBtn.style.cssText = `
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(0,0,0,0.65);
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999999;
+        cursor: pointer;
+        backdrop-filter: blur(10px);
+        transition: transform 0.25s ease;
+      `;
 
-        overlay = document.createElement("div");
-        overlay.className = "zoho-overlay";
+      document.body.appendChild(xBtn);
 
-        overlay.style.cssText = `
-          position: fixed;
-          inset: 0;
-          background: rgba(0,0,0,0.55);
-          backdrop-filter: blur(6px);
-          z-index: 999998;
-          opacity: 0;
-          pointer-events: none;
-          transition: opacity 0.3s ease;
-        `;
+      /* Hover Effect */
+      xBtn.addEventListener("mouseenter", () => {
+        xBtn.style.transform = "scale(1.08)";
+      });
 
-        document.body.appendChild(overlay);
+      xBtn.addEventListener("mouseleave", () => {
+        xBtn.style.transform = "scale(1)";
+      });
 
-        /* Tap Outside → Close */
-        overlay.addEventListener("click", () => {
-          iframe.style.display = "none";
-          overlay.style.opacity = "0";
-          overlay.style.pointerEvents = "none";
-        });
-      }
+      /* Tap X → Close Chat */
+      xBtn.addEventListener("click", () => {
+        iframe.style.display = "none";
+        xBtn.style.display = "none";
+        console.log("Zoho Closed By Custom X ✅");
+      });
 
-      /* Zoho Button Click → Show Overlay */
+      /* Zoho Button Click → Show Chat + X */
       zohoBtn.addEventListener("click", () => {
         iframe.style.display = "block";
-        overlay.style.opacity = "1";
-        overlay.style.pointerEvents = "auto";
+        xBtn.style.display = "flex";
       });
     }
   }
 
 
   /* =========================================
-     ✅ RUN ONCE OBSERVER (NO LOOP)
+     ✅ OBSERVER RUNS ONCE (NO LOOP)
   ========================================= */
 
   const observer = new MutationObserver(() => {
