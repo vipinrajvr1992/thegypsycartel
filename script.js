@@ -750,18 +750,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
    FIXED:
    ✅ WhatsApp Full Official Icon (Bubble + Phone)
-   ✅ No Crack / No Broken Circle
    ✅ Zoho + WhatsApp Same Size
-   ✅ No Loop / No Interval
    ✅ Mobile Send Button Never Blocked (Guaranteed)
-   ✅ Close Button Removed on Mobile
+   ✅ Zoho Close Button Removed on Mobile
    ✅ Tap Outside Overlay Close (Premium UX)
+   ✅ Observer Runs Once Only
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================
-     ✅ 1. WHATSAPP FLOAT BUTTON (PERFECT)
+     ✅ 1. WHATSAPP FLOAT BUTTON
   ========================================= */
 
   if (!document.querySelector(".whatsapp-float")) {
@@ -782,7 +781,6 @@ document.addEventListener("DOMContentLoaded", () => {
     waBtn.target = "_blank";
     waBtn.rel = "noopener noreferrer";
 
-    /* ✅ Official WhatsApp Bubble + Phone */
     waBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg"
            viewBox="0 0 32 32"
@@ -804,74 +802,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     ✅ 2. ZOHO FINAL ENGINE (PERMANENT FIX)
+     ✅ 2. ZOHO FINAL FIX ENGINE
   ========================================= */
 
   function setupZohoFinal() {
 
     const zohoBtn = document.getElementById("zsiq_float");
-    if (!zohoBtn) return;
+    const iframe = document.getElementById("siqiframe");
+
+    if (!zohoBtn || !iframe) return;
 
     if (zohoBtn.classList.contains("zoho-ready")) return;
     zohoBtn.classList.add("zoho-ready");
 
-    console.log("Zoho Button Ready ✅");
-
-    const iframe = document.getElementById("siqiframe");
-    if (!iframe) return;
+    console.log("Zoho Ready ✅");
 
 
     /* =========================================
-       ✅ 3. CHAT SIZE FIX
+       ✅ CHAT SIZE FIX
     ========================================= */
 
     iframe.style.setProperty("width", "340px", "important");
     iframe.style.setProperty("height", "460px", "important");
+
+
+    /* =========================================
+       ✅ MOBILE FIX (SEND BUTTON SAFE)
+    ========================================= */
 
     if (window.innerWidth <= 768) {
 
       iframe.style.setProperty("width", "94vw", "important");
       iframe.style.setProperty("height", "420px", "important");
 
-      /* ✅ GUARANTEED FIX: LIFT CHAT UP */
-      iframe.style.setProperty("bottom", "120px", "important");
+      /* ✅ LIFT UP = GUARANTEED SEND FIX */
       iframe.style.setProperty("position", "fixed", "important");
+      iframe.style.setProperty("bottom", "120px", "important");
+      iframe.style.setProperty("right", "16px", "important");
     }
 
 
     /* =========================================
-       ✅ 4. MOBILE: REMOVE CLOSE BUTTON COMPLETELY
-       Zoho Close Button Cannot Be Controlled Safely
+       ✅ MOBILE: REMOVE ZOHO CLOSE BUTTON
     ========================================= */
 
     if (window.innerWidth <= 768) {
-
       setTimeout(() => {
-
         const closeBtn =
           document.querySelector(".win_close") ||
           document.querySelector(".siqico-close") ||
           document.querySelector(".zsiq_float_close");
 
-        if (closeBtn) {
-          closeBtn.style.setProperty("display", "none", "important");
-          console.log("Zoho Close Hidden ✅");
-        }
-
+        if (closeBtn) closeBtn.style.display = "none";
       }, 1200);
     }
 
 
     /* =========================================
-       ✅ 5. PREMIUM MOBILE CLOSE METHOD
-       Tap Outside Overlay = Close Chat
+       ✅ MOBILE OVERLAY CLOSE SYSTEM
     ========================================= */
 
     if (window.innerWidth <= 768) {
 
-      if (!document.querySelector(".zoho-overlay")) {
+      let overlay = document.querySelector(".zoho-overlay");
 
-        const overlay = document.createElement("div");
+      if (!overlay) {
+
+        overlay = document.createElement("div");
         overlay.className = "zoho-overlay";
 
         overlay.style.cssText = `
@@ -889,34 +886,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
         /* Tap Outside → Close */
         overlay.addEventListener("click", () => {
-          iframe.style.setProperty("display", "none", "important");
+          iframe.style.display = "none";
           overlay.style.opacity = "0";
           overlay.style.pointerEvents = "none";
-          console.log("Zoho Closed By Tap Outside ✅");
-        });
-
-        /* When Zoho Opens → Show Overlay */
-        zohoBtn.addEventListener("click", () => {
-          iframe.style.setProperty("display", "block", "important");
-          overlay.style.opacity = "1";
-          overlay.style.pointerEvents = "auto";
         });
       }
+
+      /* Zoho Button Click → Show Overlay */
+      zohoBtn.addEventListener("click", () => {
+        iframe.style.display = "block";
+        overlay.style.opacity = "1";
+        overlay.style.pointerEvents = "auto";
+      });
     }
   }
 
 
   /* =========================================
-     ✅ 6. RUN ONCE OBSERVER
+     ✅ RUN ONCE OBSERVER (NO LOOP)
   ========================================= */
 
-  setupZohoFinal();
-
   const observer = new MutationObserver(() => {
-    if (document.getElementById("zsiq_float")) {
-      setupZohoFinal();
-      observer.disconnect();
-    }
+    setupZohoFinal();
   });
 
   observer.observe(document.body, {
