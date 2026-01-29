@@ -1265,14 +1265,15 @@ img:hover {
 
    FIXED:
    ✅ WhatsApp Icon No Crack
+   ✅ Perfect Circle Always
    ✅ Same Size Mobile/Desktop
-   ✅ Perfect Spacing
-   ✅ No Mobile Render Bugs
+   ✅ Premium Glow + Pulse
+   ✅ Tooltip Desktop Only
 ============================================ */
 
 
 /* ============================================
-   ✅ GLOBAL GPU FIX (SVG + MOBILE SAFE)
+   ✅ GLOBAL GPU FIX (MOBILE SAFE)
 ============================================ */
 
 #zsiq_float,
@@ -1309,7 +1310,6 @@ img:hover {
   box-shadow: 0 0 26px rgba(255, 102, 0, 0.55) !important;
 
   cursor: pointer !important;
-
   transition: transform 0.25s ease, opacity 0.25s ease !important;
 }
 
@@ -1378,7 +1378,6 @@ img:hover {
 }
 
 
-
 /* ============================================
    ✅ WHATSAPP BUTTON (STACKED ABOVE ZOHO)
 ============================================ */
@@ -1406,8 +1405,12 @@ img:hover {
   cursor: pointer !important;
 
   transition: transform 0.25s ease, opacity 0.25s ease !important;
+
+  /* ✅ FIX: Prevent Edge Cut + Icon Crack */
+  overflow: hidden !important;
 }
 
+/* Hover Premium */
 .whatsapp-float:hover {
   transform: scale(1.10) !important;
   opacity: 0.96 !important;
@@ -1419,19 +1422,24 @@ img:hover {
 ============================================ */
 
 .whatsapp-float svg {
-  width: 28px !important;
-  height: 28px !important;
+  width: 30px !important;
+  height: 30px !important;
 
   fill: #fff !important;
   display: block !important;
 
-  transform: none !important;
-  animation: none !important;
+  /* ✅ Real Crack Fix */
+  transform: translateZ(0) !important;
+  backface-visibility: hidden !important;
 
-  shape-rendering: geometricPrecision !important;
-  vector-effect: non-scaling-stroke !important;
+  /* ✅ Prevent Pixel Splitting */
+  shape-rendering: auto !important;
+
+  /* ✅ Chrome Mobile Fix */
+  filter: drop-shadow(0 0 0 transparent) !important;
+
+  -webkit-font-smoothing: antialiased !important;
 }
-
 
 
 /* ============================================
@@ -1492,16 +1500,14 @@ img:hover {
 }
 
 
-
 /* ============================================
-   ✅ SHARED ANIMATION
+   ✅ SHARED PULSE ANIMATION
 ============================================ */
 
 @keyframes pulse-ring {
   0%   { transform: scale(1); opacity: 0.55; }
   100% { transform: scale(1.75); opacity: 0; }
 }
-
 
 
 /* ============================================
@@ -1529,7 +1535,7 @@ img:hover {
     right: 16px !important;
   }
 
-  /* Tooltips OFF */
+  /* Tooltips OFF Mobile */
   #zsiq_float::before,
   .whatsapp-float::before {
     display: none !important;
