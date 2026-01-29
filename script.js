@@ -547,3 +547,68 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
+/* ============================================
+   ✅ GYPSY CARTEL — FLOATING WIDGETS ENGINE
+   WhatsApp + Zoho Premium Stack (LOCKED)
+============================================ */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* =========================================
+     ✅ WHATSAPP BUTTON (TOP)
+  ========================================= */
+
+  if (!document.querySelector(".whatsapp-float")) {
+
+    const phoneNumber = "918086604808";
+    const message = "Hi Gypsy Cartel Support 👋";
+
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    const whatsappLink = isMobile
+      ? `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`
+      : `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+    const waBtn = document.createElement("a");
+    waBtn.className = "whatsapp-float";
+    waBtn.href = whatsappLink;
+    waBtn.target = "_blank";
+
+    waBtn.innerHTML = `
+      <svg viewBox="0 0 32 32">
+        <path d="M16.02 3C9.39 3 4 8.39 4 15.02c0 2.34.67 4.52 1.83 6.36L4 29l7.84-1.8a12 12 0 0 0 4.18.75C22.61 27.95 28 22.56 28 15.93 28 9.39 22.61 3 16.02 3z"/>
+      </svg>
+    `;
+
+    document.body.appendChild(waBtn);
+  }
+
+  /* =========================================
+     ✅ ZOHO STACK FIX (NO LOOP)
+  ========================================= */
+
+  function fixZohoPosition() {
+
+    const zohoBtn = document.getElementById("zsiq_float");
+    if (!zohoBtn) return;
+
+    zohoBtn.style.bottom = "22px";
+    zohoBtn.style.right = "22px";
+
+    console.log("Zoho Positioned ✅");
+  }
+
+  /* Observer detects Zoho load */
+  const observer = new MutationObserver(() => {
+    if (document.getElementById("zsiq_float")) {
+      fixZohoPosition();
+      observer.disconnect();
+    }
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+});
