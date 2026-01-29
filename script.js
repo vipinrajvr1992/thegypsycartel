@@ -747,17 +747,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 /* =========================================================
    ✅ GYPSY CARTEL — FLOATING CHAT ENGINE (FINAL MASTER LOCK)
+
    FIXED:
-   • WhatsApp + Zoho Same Size
-   • No Loop / No Interval
-   • Mobile Close Button Never Blocks Input
-   • Chat Window Reduced Perfectly
+   ✅ WhatsApp Full Official Icon (Bubble + Phone)
+   ✅ No Crack / No Broken Circle
+   ✅ Zoho + WhatsApp Same Size
+   ✅ No Loop / No Interval
+   ✅ Mobile Close Button Never Blocks Input
+   ✅ Chat Window Reduced Perfectly
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================
-     ✅ 1. WHATSAPP FLOAT BUTTON (PERFECT ICON)
+     ✅ 1. WHATSAPP FLOAT BUTTON (FULL PERFECT ICON)
   ========================================= */
 
   if (!document.querySelector(".whatsapp-float")) {
@@ -778,17 +781,27 @@ document.addEventListener("DOMContentLoaded", () => {
     waBtn.target = "_blank";
     waBtn.rel = "noopener noreferrer";
 
-    /* ✅ Official WhatsApp SVG (No Crack Ever) */
+    /* ✅ OFFICIAL WHATSAPP LOGO SVG (BUBBLE + PHONE INSIDE) */
     waBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg"
            viewBox="0 0 32 32"
            aria-hidden="true">
+
+        <!-- Bubble -->
         <path fill="white"
-          d="M16 2C8.27 2 2 8.27 2 16c0 2.48.65 4.8 1.8 6.85L2 30l7.35-1.93A13.9 13.9 0 0 0 16 30c7.73 0 14-6.27 14-14S23.73 2 16 2zm0 25.5c-2.2 0-4.25-.63-6-1.72l-.43-.26-4.36 1.14 1.16-4.25-.28-.44A11.4 11.4 0 0 1 4.5 16C4.5 9.65 9.65 4.5 16 4.5S27.5 9.65 27.5 16 22.35 27.5 16 27.5z"/>
+          d="M16 2C8.27 2 2 8.27 2 16c0 2.82.74 5.47 2.02 7.77L2 30l6.4-1.68A13.93 13.93 0 0 0 16 30c7.73 0 14-6.27 14-14S23.73 2 16 2z"/>
+
+        <!-- Phone Symbol -->
+        <path fill="#25d366"
+          d="M16 5.2c-5.96 0-10.8 4.84-10.8 10.8 0 2.2.66 4.24 1.8 5.95l-1.18 4.3 4.4-1.15c1.64 1.06 3.6 1.68 5.78 1.68 5.96 0 10.8-4.84 10.8-10.8S21.96 5.2 16 5.2z"/>
+
+        <path fill="white"
+          d="M20.5 18.8c-.25-.13-1.5-.74-1.73-.82-.23-.08-.4-.13-.58.13-.17.25-.66.82-.8 1-.15.17-.3.2-.55.07-.25-.13-1.06-.39-2.02-1.25-.75-.66-1.25-1.48-1.4-1.73-.15-.25-.02-.39.1-.52.12-.12.25-.3.38-.44.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.44-.07-.13-.58-1.4-.8-1.92-.2-.5-.4-.43-.58-.44h-.5c-.17 0-.44.07-.67.32-.23.25-.88.88-.88 2.15s.9 2.5 1.03 2.67c.13.17 1.8 2.74 4.35 3.85.6.26 1.07.43 1.45.55.6.18 1.15.16 1.6.1.48-.08 1.5-.62 1.72-1.2.22-.58.22-1.08.15-1.2-.06-.12-.23-.2-.48-.32z"/>
+
       </svg>
     `;
 
-    /* Smooth Fade Entrance */
+    /* ✅ Smooth Fade Entrance */
     waBtn.style.opacity = "0";
     waBtn.style.transform = "scale(0.85)";
     document.body.appendChild(waBtn);
@@ -828,19 +841,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       ✅ 3. CHAT WINDOW SIZE FIX (NOT HUGE)
+       ✅ 3. CHAT WINDOW SIZE FIX (COMPACT)
     ========================================= */
 
     const iframe = document.getElementById("siqiframe");
 
     if (iframe) {
 
-      /* Desktop Compact Size */
+      /* Desktop Compact */
       iframe.style.setProperty("width", "340px", "important");
       iframe.style.setProperty("height", "460px", "important");
       iframe.style.setProperty("max-height", "460px", "important");
 
-      /* Mobile Safe Size */
+      /* Mobile Safe */
       if (window.innerWidth <= 768) {
         iframe.style.setProperty("width", "94vw", "important");
         iframe.style.setProperty("height", "420px", "important");
@@ -850,8 +863,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       ✅ 4. MOBILE CLOSE BUTTON FIX (TOP SAFE)
-       Never Blocks Keyboard or Send Button
+       ✅ 4. MOBILE CLOSE BUTTON FIX
+       Never Blocks Keyboard / Send Button
     ========================================= */
 
     setTimeout(() => {
@@ -863,7 +876,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (closeBtn && window.innerWidth <= 768) {
 
-        /* Move Close Button TOP RIGHT */
         closeBtn.style.setProperty("position", "fixed", "important");
         closeBtn.style.setProperty("top", "70px", "important");
         closeBtn.style.setProperty("right", "18px", "important");
