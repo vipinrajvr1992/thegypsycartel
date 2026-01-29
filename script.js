@@ -445,22 +445,16 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-/* =========================================
-   FLOATING WIDGET ENGINE — MASTER PREMIUM
-   WhatsApp + Zoho SalesIQ (Gypsy Cartel)
-   Works on Every Page
-========================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
 /* ============================================
-   ✅ GYPSY CARTEL — FLOATING WIDGET ENGINE
-   WhatsApp + Zoho Premium (NO LOOP VERSION)
+   ✅ GYPSY CARTEL — FLOATING WIDGET ENGINE (FINAL)
+   WhatsApp + Zoho SalesIQ Premium Stack
+   NO DUPLICATES • NO LOOP • NO CRASH
 ============================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================
-     ✅ 1. WHATSAPP FLOATING BUTTON
+     ✅ 1. WHATSAPP FLOATING BUTTON (TOP)
   ========================================= */
 
   if (!document.querySelector(".whatsapp-float")) {
@@ -501,16 +495,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 400);
   }
 
+
   /* =========================================
-     ✅ 2. ZOHO SALESIQ PREMIUM FADE-IN
-     (MutationObserver — NO LOOP)
+     ✅ 2. ZOHO SALESIQ PREMIUM FADE-IN (BOTTOM)
+     Uses MutationObserver (NO INTERVAL LOOP)
   ========================================= */
 
-  function styleZohoButton() {
+  function activateZohoPremium() {
 
     const zohoBtn = document.getElementById("zsiq_float");
     if (!zohoBtn) return;
 
+    /* Prevent double run */
     if (zohoBtn.classList.contains("zoho-ready")) return;
     zohoBtn.classList.add("zoho-ready");
 
@@ -524,85 +520,17 @@ document.addEventListener("DOMContentLoaded", () => {
       zohoBtn.style.transition = "all 0.45s ease";
     }, 500);
 
-    console.log("Zoho Premium Button Ready ✅");
+    console.log("Zoho Premium Ready ✅");
   }
 
-  /* Run once if already loaded */
-  styleZohoButton();
+  /* Run immediately if Zoho already loaded */
+  activateZohoPremium();
 
-  /* =========================================
-     ✅ Observe DOM for Zoho Injection
-  ========================================= */
-
+  /* Observe DOM until Zoho appears */
   const observer = new MutationObserver(() => {
     if (document.getElementById("zsiq_float")) {
-      styleZohoButton();
-      observer.disconnect(); // ✅ Stops forever (NO LOOP)
-    }
-  });
-
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
-
-});
-/* ============================================
-   ✅ GYPSY CARTEL — FLOATING WIDGETS ENGINE
-   WhatsApp + Zoho Premium Stack (LOCKED)
-============================================ */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  /* =========================================
-     ✅ WHATSAPP BUTTON (TOP)
-  ========================================= */
-
-  if (!document.querySelector(".whatsapp-float")) {
-
-    const phoneNumber = "918086604808";
-    const message = "Hi Gypsy Cartel Support 👋";
-
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-    const whatsappLink = isMobile
-      ? `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`
-      : `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-    const waBtn = document.createElement("a");
-    waBtn.className = "whatsapp-float";
-    waBtn.href = whatsappLink;
-    waBtn.target = "_blank";
-
-    waBtn.innerHTML = `
-      <svg viewBox="0 0 32 32">
-        <path d="M16.02 3C9.39 3 4 8.39 4 15.02c0 2.34.67 4.52 1.83 6.36L4 29l7.84-1.8a12 12 0 0 0 4.18.75C22.61 27.95 28 22.56 28 15.93 28 9.39 22.61 3 16.02 3z"/>
-      </svg>
-    `;
-
-    document.body.appendChild(waBtn);
-  }
-
-  /* =========================================
-     ✅ ZOHO STACK FIX (NO LOOP)
-  ========================================= */
-
-  function fixZohoPosition() {
-
-    const zohoBtn = document.getElementById("zsiq_float");
-    if (!zohoBtn) return;
-
-    zohoBtn.style.bottom = "22px";
-    zohoBtn.style.right = "22px";
-
-    console.log("Zoho Positioned ✅");
-  }
-
-  /* Observer detects Zoho load */
-  const observer = new MutationObserver(() => {
-    if (document.getElementById("zsiq_float")) {
-      fixZohoPosition();
-      observer.disconnect();
+      activateZohoPremium();
+      observer.disconnect(); // ✅ Stops forever
     }
   });
 
