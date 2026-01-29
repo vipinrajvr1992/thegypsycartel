@@ -1261,8 +1261,9 @@ img:hover {
 }
 /* ============================================
    ✅ GYPSY CARTEL — FLOATING BUTTONS SYSTEM
-   WhatsApp + Zoho Premium Stack (FINAL FIX)
+   WhatsApp + Zoho Premium Stack (FINAL LOCK)
 ============================================ */
+
 
 /* ============================================
    ✅ ZOHO SALESIQ BUTTON (BOTTOM)
@@ -1298,6 +1299,7 @@ img:hover {
   transform: scale(1.12) !important;
   opacity: 0.96 !important;
 }
+
 
 /* Tooltip */
 #zsiq_float::before {
@@ -1336,6 +1338,7 @@ img:hover {
   transform: translateY(-50%) translateX(-6px);
 }
 
+
 /* Pulse Glow */
 #zsiq_float::after {
   content: "";
@@ -1351,46 +1354,49 @@ img:hover {
   animation: pulse-ring 2.3s infinite;
 }
 
+
+
 /* ============================================
    ✅ WHATSAPP BUTTON (STACKED ABOVE ZOHO)
 ============================================ */
 
 .whatsapp-float {
-  position: fixed;
+  position: fixed !important;
 
-  bottom: 105px; /* ✅ Always Above Zoho */
-  right: 22px;
+  bottom: 105px !important; /* ✅ Always Above Zoho */
+  right: 22px !important;
 
-  width: 58px;
-  height: 58px;
-  border-radius: 50%;
+  width: 58px !important;
+  height: 58px !important;
+  border-radius: 50% !important;
 
-  background: #25D366;
+  background: #25D366 !important;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 
-  z-index: 999999;
+  z-index: 999999 !important;
 
-  box-shadow: 0 0 22px rgba(37, 211, 102, 0.38);
+  box-shadow: 0 0 22px rgba(37, 211, 102, 0.38) !important;
 
-  cursor: pointer;
+  cursor: pointer !important;
 
-  animation: float-motion 3s ease-in-out infinite;
-  transition: transform 0.25s ease, opacity 0.25s ease;
+  animation: float-motion 3s ease-in-out infinite !important;
+  transition: transform 0.25s ease, opacity 0.25s ease !important;
 }
 
 .whatsapp-float:hover {
-  transform: scale(1.12);
-  opacity: 0.96;
+  transform: scale(1.12) !important;
+  opacity: 0.96 !important;
 }
 
 .whatsapp-float svg {
-  width: 28px;
-  height: 28px;
-  fill: white;
+  width: 28px !important;
+  height: 28px !important;
+  fill: white !important;
 }
+
 
 /* Tooltip */
 .whatsapp-float::before {
@@ -1429,6 +1435,7 @@ img:hover {
   transform: translateY(-50%) translateX(-6px);
 }
 
+
 /* Pulse Ring */
 .whatsapp-float::after {
   content: "";
@@ -1444,8 +1451,10 @@ img:hover {
   animation: pulse-ring 2.3s infinite;
 }
 
+
+
 /* ============================================
-   ✅ SHARED ANIMATIONS
+   ✅ SHARED PREMIUM ANIMATIONS
 ============================================ */
 
 @keyframes float-motion {
@@ -1457,6 +1466,8 @@ img:hover {
   0%   { transform: scale(1); opacity: 0.55; }
   100% { transform: scale(1.75); opacity: 0; }
 }
+
+
 
 /* ============================================
    ✅ MOBILE SAFE MODE (STACK STILL WORKS)
@@ -1472,7 +1483,7 @@ img:hover {
   }
 
   .whatsapp-float {
-    bottom: 95px !important; /* ✅ Still Above Zoho */
+    bottom: 95px !important;
     right: 18px !important;
     width: 54px !important;
     height: 54px !important;
@@ -1483,15 +1494,4 @@ img:hover {
   #zsiq_float::before {
     display: none !important;
   }
-}
-/* Zoho stays bottom */
-#zsiq_float {
-  bottom: 22px !important;
-  right: 22px !important;
-}
-
-/* WhatsApp above Zoho */
-.whatsapp-float {
-  bottom: 105px !important;
-  right: 22px !important;
 }
