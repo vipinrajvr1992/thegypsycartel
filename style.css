@@ -1484,3 +1484,14 @@ img:hover {
     display: none !important;
   }
 }
+/* Zoho stays bottom */
+#zsiq_float {
+  bottom: 22px !important;
+  right: 22px !important;
+}
+
+/* WhatsApp above Zoho */
+.whatsapp-float {
+  bottom: 105px !important;
+  right: 22px !important;
+}
