@@ -1260,8 +1260,7 @@ img:hover {
   filter: brightness(1.04);
 }
 /* =========================================
-   FLOATING WHATSAPP WIDGET — GLOBAL
-   Gypsy Cartel Premium Button + Tooltip
+   FLOATING WHATSAPP BUTTON — PREMIUM
 ========================================= */
 
 .whatsapp-float {
@@ -1279,148 +1278,41 @@ img:hover {
   align-items: center;
   justify-content: center;
 
-  z-index: 99999;
+  z-index: 999999;
 
   box-shadow: 0 0 22px rgba(37, 211, 102, 0.38);
 
   cursor: pointer;
 
-  /* Premium Floating Motion */
-  animation: wa-float 3s ease-in-out infinite;
-
+  animation: float-motion 3s ease-in-out infinite;
   transition: transform 0.25s ease, opacity 0.25s ease;
 }
 
-/* Hover Premium Zoom */
 .whatsapp-float:hover {
   transform: scale(1.12);
   opacity: 0.96;
 }
 
-/* WhatsApp Icon */
 .whatsapp-float svg {
   width: 28px;
   height: 28px;
   fill: white;
 }
 
-/* =========================================
-   Tooltip: Connect Now
-========================================= */
-
+/* Tooltip */
 .whatsapp-float::before {
   content: "Connect Now";
+
   position: absolute;
-
-  right: 72px;
-  top: 50%;
-  transform: translateY(-50%);
-
-  background: rgba(15, 15, 15, 0.92);
-  color: #fff;
-
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: 0.4px;
-
-  padding: 9px 14px;
-  border-radius: 12px;
-
-  white-space: nowrap;
-
-  opacity: 0;
-  pointer-events: none;
-
-  box-shadow: 0 0 18px rgba(0,0,0,0.45);
-
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-/* Tooltip Show on Hover */
-.whatsapp-float:hover::before {
-  opacity: 1;
-  transform: translateY(-50%) translateX(-4px);
-}
-
-/* =========================================
-   Premium Floating Animation
-========================================= */
-
-@keyframes wa-float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-7px);
-  }
-}
-
-/* =========================================
-   Soft Pulse Glow Ring
-========================================= */
-
-.whatsapp-float::after {
-  content: "";
-  position: absolute;
-
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-
-  background: rgba(37, 211, 102, 0.25);
-
-  z-index: -1;
-
-  animation: wa-pulse 2.3s infinite;
-}
-
-@keyframes wa-pulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.55;
-  }
-  100% {
-    transform: scale(1.75);
-    opacity: 0;
-  }
-}
-
-/* =========================================
-   Mobile Safe Mode
-========================================= */
-
-@media (max-width: 768px) {
-  .whatsapp-float {
-    bottom: 18px;
-    right: 18px;
-    width: 54px;
-    height: 54px;
-  }
-
-  /* Hide Tooltip on Mobile */
-  .whatsapp-float::before {
-    display: none;
-  }
-}
-/* =========================================
-   Premium Tooltip Text — Gypsy Cartel Style
-========================================= */
-
-.whatsapp-float::before {
-  content: "Connect Now";
-  position: absolute;
-
   right: 74px;
   top: 50%;
   transform: translateY(-50%);
 
-  /* Premium Glass Tooltip */
   background: rgba(20, 20, 20, 0.92);
   backdrop-filter: blur(12px);
 
-  /* Premium Font Look */
   font-family: "Space Grotesk", "Inter", sans-serif;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.6px;
   text-transform: uppercase;
@@ -1435,23 +1327,35 @@ img:hover {
   opacity: 0;
   pointer-events: none;
 
-  /* Soft Premium Shadow */
   box-shadow: 0 0 20px rgba(0,0,0,0.55);
-
   transition: all 0.25s ease;
 }
 
-/* Tooltip Smooth Reveal */
 .whatsapp-float:hover::before {
   opacity: 1;
   transform: translateY(-50%) translateX(-6px);
 }
+
+/* Pulse Ring */
+.whatsapp-float::after {
+  content: "";
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+
+  background: rgba(37, 211, 102, 0.25);
+  z-index: -1;
+
+  animation: pulse-ring 2.3s infinite;
+}
+
 /* =========================================
-   ✅ ZOHO SALESIQ — PREMIUM FLOATING WIDGET
-   Gypsy Cartel Style Button + Tooltip
+   ZOHO SALESIQ BUTTON — PREMIUM ORANGE
 ========================================= */
 
-/* Hide Zoho Default Square Styles */
+/* Main Zoho Floating Circle */
 #zsiq_float {
   position: fixed !important;
 
@@ -1475,24 +1379,25 @@ img:hover {
 
   cursor: pointer !important;
 
-  /* Premium Floating Motion */
-  animation: zoho-float 3s ease-in-out infinite !important;
-
+  animation: float-motion 3s ease-in-out infinite !important;
   transition: transform 0.25s ease, opacity 0.25s ease !important;
 }
 
-/* Hover Premium Zoom */
 #zsiq_float:hover {
   transform: scale(1.12) !important;
   opacity: 0.96 !important;
 }
 
-/* =========================================
-   Tooltip — Connect Now
-========================================= */
+/* Remove Zoho Default Background Inside */
+#zsiq_float * {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
 
+/* Tooltip for Zoho */
 #zsiq_float::before {
-  content: "Connect Now";
+  content: "Live Support";
 
   position: absolute;
   right: 74px;
@@ -1503,7 +1408,7 @@ img:hover {
   backdrop-filter: blur(12px);
 
   font-family: "Space Grotesk", "Inter", sans-serif;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.6px;
   text-transform: uppercase;
@@ -1518,74 +1423,59 @@ img:hover {
   opacity: 0;
   pointer-events: none;
 
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
-
+  box-shadow: 0 0 20px rgba(0,0,0,0.55);
   transition: all 0.25s ease;
 }
 
-/* Tooltip Reveal */
 #zsiq_float:hover::before {
   opacity: 1;
   transform: translateY(-50%) translateX(-6px);
 }
 
-/* =========================================
-   Premium Floating Animation
-========================================= */
-
-@keyframes zoho-float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-7px);
-  }
-}
-
-/* =========================================
-   Soft Pulse Glow Ring
-========================================= */
-
+/* Zoho Pulse Glow */
 #zsiq_float::after {
   content: "";
   position: absolute;
 
   width: 100%;
   height: 100%;
-
   border-radius: 50%;
 
   background: rgba(255, 102, 0, 0.22);
-
   z-index: -1;
 
-  animation: zoho-pulse 2.3s infinite;
-}
-
-@keyframes zoho-pulse {
-  0% {
-    transform: scale(1);
-    opacity: 0.55;
-  }
-  100% {
-    transform: scale(1.75);
-    opacity: 0;
-  }
+  animation: pulse-ring 2.3s infinite;
 }
 
 /* =========================================
-   Mobile Safe Mode
+   SHARED ANIMATIONS
+========================================= */
+
+@keyframes float-motion {
+  0%, 100% { transform: translateY(0px); }
+  50%      { transform: translateY(-7px); }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(1); opacity: 0.55; }
+  100% { transform: scale(1.75); opacity: 0; }
+}
+
+/* =========================================
+   MOBILE SAFE MODE
 ========================================= */
 
 @media (max-width: 768px) {
+
+  .whatsapp-float,
   #zsiq_float {
-    bottom: 18px !important;
-    right: 18px !important;
     width: 54px !important;
     height: 54px !important;
+    bottom: 18px !important;
+    right: 18px !important;
   }
 
-  /* Hide Tooltip on Mobile */
+  .whatsapp-float::before,
   #zsiq_float::before {
     display: none !important;
   }
