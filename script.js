@@ -746,103 +746,150 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* =========================================================
-   ✅ GYPSY CARTEL — CHAT ENGINE (FIXED MASTER)
-   • Official WhatsApp SVG
-   • Mobile Close Button TOP RIGHT (Safe)
-   • Desktop Size Enforced
+   ✅ GYPSY CARTEL — FLOATING CHAT ENGINE (FINAL MASTER)
+   • WhatsApp + Zoho Same Size
+   • NO LOOP / NO INTERVAL
+   • Mobile Close Button Safe TOP
+   • Chat Box Reduced Perfectly
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  // 1. WHATSAPP FLOATING BUTTON (Top Right Float)
+  /* =========================================
+     ✅ 1. WHATSAPP FLOAT BUTTON (MATCH SIZE)
+  ========================================= */
+
   if (!document.querySelector(".whatsapp-float")) {
-    const waBtn = document.createElement("a");
-    waBtn.className = "whatsapp-float";
-    
-    const phoneNumber = "918086604808"; 
+
+    const phoneNumber = "918086604808";
     const message = "Hi Gypsy Cartel Support 👋";
+
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    
-    waBtn.href = isMobile 
+
+    const waLink = isMobile
       ? `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`
       : `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-      
+
+    const waBtn = document.createElement("a");
+    waBtn.className = "whatsapp-float";
+    waBtn.href = waLink;
     waBtn.target = "_blank";
     waBtn.rel = "noopener noreferrer";
-    waBtn.setAttribute("aria-label", "Chat on WhatsApp");
-    
-    // ✅ OFFICIAL WHATSAPP SVG
+
+    /* ✅ FIX ICON (NO CRACK) */
     waBtn.innerHTML = `
-      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" style="width: 32px; height: 32px; fill: white;">
-        <path d="M16 2C8.269 2 2 8.269 2 16c0 2.476.649 4.808 1.787 6.84L2.012 29.35l6.696-1.756C10.662 28.647 13.257 29.5 16 29.5c7.731 0 14-6.269 14-14S23.731 2 16 2zm0 25.122c-2.269 0-4.434-.694-6.25-1.905l-.448-.298-3.968 1.04.88-3.868-.293-.466C4.646 20.096 3.878 18.118 3.878 16c0-6.685 5.438-12.122 12.122-12.122S28.122 9.315 28.122 16 22.685 27.122 16 27.122zm6.652-9.065c-.364-.182-2.155-1.063-2.489-1.185-.333-.121-.576-.182-.818.182-.242.364-.939 1.185-1.151 1.428-.212.242-.424.273-.788.091-1.87-.946-3.136-1.986-4.383-4.133-.157-.27-.017-.417.165-.599.163-.163.364-.424.545-.636.182-.212.242-.364.364-.606.121-.242.061-.455-.03-.636-.091-.182-.818-1.97-1.121-2.7-.294-.708-.595-.612-.818-.624-.211-.012-.454-.012-.697-.012-.242 0-.636.091-.97.455-.333.364-1.272 1.242-1.272 3.03s1.303 3.515 1.485 3.757c.182.242 2.565 3.918 6.215 5.494 2.167.936 3.012.936 4.045.727 1.033-.209 2.155-.879 2.458-1.727.303-.848.303-1.576.212-1.727-.091-.152-.333-.242-.697-.424z"/>
-      </svg>`;
-      
-    // Premium Entrance
+      <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M16.02 3C9.39 3 4 8.39 4 15.02c0 2.34.67 4.52 1.83 6.36L4 29l7.84-1.8a12 12 0 0 0 4.18.75C22.61 27.95 28 22.56 28 15.93 28 9.39 22.61 3 16.02 3zm0 22.05c-1.34 0-2.66-.27-3.87-.8l-.28-.12-4.65 1.07 1.02-4.53-.14-.3a9.93 9.93 0 0 1-1.55-5.35c0-5.52 4.49-10 10-10 5.52 0 10 4.48 10 10 0 5.51-4.48 9.96-10 9.96z"/>
+      </svg>
+    `;
+
+    /* Premium Fade Entrance */
     waBtn.style.opacity = "0";
     waBtn.style.transform = "scale(0.85)";
-    waBtn.style.transition = "none";
     document.body.appendChild(waBtn);
-    setTimeout(() => {
-        waBtn.style.opacity = "1";
-        waBtn.style.transform = "scale(1)";
-        waBtn.style.transition = "all 0.45s ease";
-    }, 400);
+
+    requestAnimationFrame(() => {
+      waBtn.style.transition = "all 0.45s ease";
+      waBtn.style.opacity = "1";
+      waBtn.style.transform = "scale(1)";
+    });
   }
 
-  // 2. PREMIUM ANIMATION ENTRANCE HELPER
-  function premiumEntrance(el) {
-    if (!el) return;
-    el.style.opacity = "0";
-    el.style.transform = "scale(0.85)";
-    el.style.transition = "none";
-    setTimeout(() => {
-      el.style.opacity = "1";
-      el.style.transform = "scale(1)";
-      el.style.transition = "all 0.45s ease";
-    }, 400);
-  }
 
-  // 3. ACTIVATE ZOHO PREMIUM + FIXES
-  function activateZohoPremium() {
+  /* =========================================
+     ✅ 2. ZOHO PREMIUM ACTIVATOR (NO LOOP)
+  ========================================= */
+
+  function setupZoho() {
+
     const zohoBtn = document.getElementById("zsiq_float");
-    
-    // Only animate if not already ready
-    if (zohoBtn && !zohoBtn.classList.contains("zoho-ready")) {
-        zohoBtn.classList.add("zoho-ready");
-        premiumEntrance(zohoBtn);
+    if (!zohoBtn) return;
+
+    /* Prevent Double Setup */
+    if (zohoBtn.classList.contains("zoho-ready")) return;
+    zohoBtn.classList.add("zoho-ready");
+
+    /* Premium Fade */
+    zohoBtn.style.opacity = "0";
+    zohoBtn.style.transform = "scale(0.85)";
+
+    requestAnimationFrame(() => {
+      zohoBtn.style.transition = "all 0.45s ease";
+      zohoBtn.style.opacity = "1";
+      zohoBtn.style.transform = "scale(1)";
+    });
+
+    console.log("Zoho Button Ready ✅");
+
+
+    /* =========================================
+       ✅ 3. CHAT BOX SIZE FIX (SMALL)
+    ========================================= */
+
+    const iframe = document.getElementById("siqiframe");
+
+    if (iframe) {
+
+      /* Desktop Smaller */
+      iframe.style.setProperty("width", "340px", "important");
+      iframe.style.setProperty("height", "460px", "important");
+      iframe.style.setProperty("max-height", "460px", "important");
+
+      /* Mobile Smaller */
+      if (window.innerWidth <= 768) {
+        iframe.style.setProperty("width", "92vw", "important");
+        iframe.style.setProperty("height", "420px", "important");
+        iframe.style.setProperty("max-height", "420px", "important");
+      }
     }
 
-    // ✅ FIX: MOVE CLOSE BUTTON TO TOP RIGHT (Mobile Only)
-    if (window.innerWidth <= 768) {
-        const closeBtn = document.querySelector(".win_close") || 
-                         document.querySelector(".siqico-close") || 
-                         document.querySelector('[data-id="zsiq_float_close"]');
 
-        if (closeBtn) {
-            closeBtn.style.setProperty("position", "fixed", "important");
-            closeBtn.style.setProperty("top", "20px", "important");       // SAFE TOP
-            closeBtn.style.setProperty("right", "20px", "important");     // SAFE RIGHT
-            closeBtn.style.setProperty("bottom", "auto", "important");    // NO BOTTOM
-            closeBtn.style.setProperty("z-index", "99999999", "important");
-            closeBtn.style.setProperty("background", "rgba(0,0,0,0.6)", "important");
-            closeBtn.style.setProperty("border-radius", "50%", "important");
-            closeBtn.style.setProperty("padding", "8px", "important");
-        }
-    }
+    /* =========================================
+       ✅ 4. MOBILE CLOSE BUTTON FIX (NEVER BLOCK)
+    ========================================= */
 
-    // ✅ FIX: DESKTOP SIZE
-    if (window.innerWidth > 1024) {
-        const iframe = document.getElementById("siqiframe");
-        if (iframe) {
-            iframe.style.setProperty("width", "350px", "important");
-            iframe.style.setProperty("height", "500px", "important");
-            iframe.style.setProperty("max-height", "500px", "important");
-            iframe.style.setProperty("border-radius", "22px", "important");
-        }
-    }
+    setTimeout(() => {
+
+      const closeBtn =
+        document.querySelector(".win_close") ||
+        document.querySelector(".siqico-close") ||
+        document.querySelector(".close_btn");
+
+      if (closeBtn && window.innerWidth <= 768) {
+
+        /* Move Close Button TOP */
+        closeBtn.style.setProperty("position", "absolute", "important");
+        closeBtn.style.setProperty("top", "12px", "important");
+        closeBtn.style.setProperty("right", "12px", "important");
+        closeBtn.style.setProperty("bottom", "auto", "important");
+
+        closeBtn.style.setProperty("z-index", "99999999", "important");
+        closeBtn.style.setProperty("transform", "scale(0.75)", "important");
+
+        console.log("Mobile Close Fixed ✅");
+      }
+
+    }, 1200);
+
   }
 
-  // 4. ENGINE RUNNER (Checks every 0.5s)
-  const engineInterval = setInterval(activateZohoPremium, 500);
-  setTimeout(() => clearInterval(engineInterval), 30000); // Stop after 30s
+
+  /* =========================================
+     ✅ 5. OBSERVE DOM ONCE (NO LOOP)
+  ========================================= */
+
+  setupZoho();
+
+  const observer = new MutationObserver(() => {
+    if (document.getElementById("zsiq_float")) {
+      setupZoho();
+      observer.disconnect(); // ✅ Stops Forever
+    }
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
 });
