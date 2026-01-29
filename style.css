@@ -1259,13 +1259,106 @@ img:hover {
   transform: scale(1.035);
   filter: brightness(1.04);
 }
-/* =========================================
-   FLOATING WHATSAPP BUTTON — PREMIUM
-========================================= */
+/* ============================================
+   ✅ GYPSY CARTEL — FLOATING BUTTONS SYSTEM
+   WhatsApp + Zoho Premium Stack (FINAL FIX)
+============================================ */
+
+/* ============================================
+   ✅ ZOHO SALESIQ BUTTON (BOTTOM)
+============================================ */
+
+#zsiq_float {
+  position: fixed !important;
+
+  bottom: 22px !important;
+  right: 22px !important;
+
+  width: 58px !important;
+  height: 58px !important;
+  border-radius: 50% !important;
+
+  background: var(--primary-orange) !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  z-index: 999998 !important;
+
+  box-shadow: 0 0 22px rgba(255, 102, 0, 0.45) !important;
+
+  cursor: pointer !important;
+
+  animation: float-motion 3s ease-in-out infinite !important;
+  transition: transform 0.25s ease, opacity 0.25s ease !important;
+}
+
+#zsiq_float:hover {
+  transform: scale(1.12) !important;
+  opacity: 0.96 !important;
+}
+
+/* Tooltip */
+#zsiq_float::before {
+  content: "Live Support";
+
+  position: absolute;
+  right: 74px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background: rgba(20, 20, 20, 0.92);
+  backdrop-filter: blur(12px);
+
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+
+  color: white;
+
+  padding: 10px 16px;
+  border-radius: 14px;
+
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+
+  box-shadow: 0 0 20px rgba(0,0,0,0.55);
+  transition: all 0.25s ease;
+}
+
+#zsiq_float:hover::before {
+  opacity: 1;
+  transform: translateY(-50%) translateX(-6px);
+}
+
+/* Pulse Glow */
+#zsiq_float::after {
+  content: "";
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+
+  background: rgba(255, 102, 0, 0.22);
+  z-index: -1;
+
+  animation: pulse-ring 2.3s infinite;
+}
+
+/* ============================================
+   ✅ WHATSAPP BUTTON (STACKED ABOVE ZOHO)
+============================================ */
 
 .whatsapp-float {
   position: fixed;
-  bottom: 22px;
+
+  bottom: 105px; /* ✅ Always Above Zoho */
   right: 22px;
 
   width: 58px;
@@ -1317,7 +1410,7 @@ img:hover {
   letter-spacing: 0.6px;
   text-transform: uppercase;
 
-  color: rgba(255, 255, 255, 0.95);
+  color: white;
 
   padding: 10px 16px;
   border-radius: 14px;
@@ -1351,105 +1444,9 @@ img:hover {
   animation: pulse-ring 2.3s infinite;
 }
 
-/* =========================================
-   ZOHO SALESIQ BUTTON — PREMIUM ORANGE
-========================================= */
-
-/* Main Zoho Floating Circle */
-#zsiq_float {
-  position: fixed !important;
-
-  bottom: 22px !important;
-  right: 22px !important;
-
-  width: 58px !important;
-  height: 58px !important;
-
-  border-radius: 50% !important;
-
-  background: var(--primary-orange) !important;
-
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  z-index: 999999 !important;
-
-  box-shadow: 0 0 22px rgba(255, 102, 0, 0.45) !important;
-
-  cursor: pointer !important;
-
-  animation: float-motion 3s ease-in-out infinite !important;
-  transition: transform 0.25s ease, opacity 0.25s ease !important;
-}
-
-#zsiq_float:hover {
-  transform: scale(1.12) !important;
-  opacity: 0.96 !important;
-}
-
-/* Remove Zoho Default Background Inside */
-#zsiq_float * {
-  background: transparent !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-/* Tooltip for Zoho */
-#zsiq_float::before {
-  content: "Live Support";
-
-  position: absolute;
-  right: 74px;
-  top: 50%;
-  transform: translateY(-50%);
-
-  background: rgba(20, 20, 20, 0.92);
-  backdrop-filter: blur(12px);
-
-  font-family: "Space Grotesk", "Inter", sans-serif;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-
-  color: rgba(255, 255, 255, 0.95);
-
-  padding: 10px 16px;
-  border-radius: 14px;
-
-  white-space: nowrap;
-
-  opacity: 0;
-  pointer-events: none;
-
-  box-shadow: 0 0 20px rgba(0,0,0,0.55);
-  transition: all 0.25s ease;
-}
-
-#zsiq_float:hover::before {
-  opacity: 1;
-  transform: translateY(-50%) translateX(-6px);
-}
-
-/* Zoho Pulse Glow */
-#zsiq_float::after {
-  content: "";
-  position: absolute;
-
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-
-  background: rgba(255, 102, 0, 0.22);
-  z-index: -1;
-
-  animation: pulse-ring 2.3s infinite;
-}
-
-/* =========================================
-   SHARED ANIMATIONS
-========================================= */
+/* ============================================
+   ✅ SHARED ANIMATIONS
+============================================ */
 
 @keyframes float-motion {
   0%, 100% { transform: translateY(0px); }
@@ -1461,20 +1458,27 @@ img:hover {
   100% { transform: scale(1.75); opacity: 0; }
 }
 
-/* =========================================
-   MOBILE SAFE MODE
-========================================= */
+/* ============================================
+   ✅ MOBILE SAFE MODE (STACK STILL WORKS)
+============================================ */
 
 @media (max-width: 768px) {
 
-  .whatsapp-float,
   #zsiq_float {
-    width: 54px !important;
-    height: 54px !important;
     bottom: 18px !important;
     right: 18px !important;
+    width: 54px !important;
+    height: 54px !important;
   }
 
+  .whatsapp-float {
+    bottom: 95px !important; /* ✅ Still Above Zoho */
+    right: 18px !important;
+    width: 54px !important;
+    height: 54px !important;
+  }
+
+  /* Hide Tooltips on Mobile */
   .whatsapp-float::before,
   #zsiq_float::before {
     display: none !important;
