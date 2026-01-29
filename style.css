@@ -1446,3 +1446,147 @@ img:hover {
   opacity: 1;
   transform: translateY(-50%) translateX(-6px);
 }
+/* =========================================
+   ✅ ZOHO SALESIQ — PREMIUM FLOATING WIDGET
+   Gypsy Cartel Style Button + Tooltip
+========================================= */
+
+/* Hide Zoho Default Square Styles */
+#zsiq_float {
+  position: fixed !important;
+
+  bottom: 22px !important;
+  right: 22px !important;
+
+  width: 58px !important;
+  height: 58px !important;
+
+  border-radius: 50% !important;
+
+  background: var(--primary-orange) !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  z-index: 999999 !important;
+
+  box-shadow: 0 0 22px rgba(255, 102, 0, 0.45) !important;
+
+  cursor: pointer !important;
+
+  /* Premium Floating Motion */
+  animation: zoho-float 3s ease-in-out infinite !important;
+
+  transition: transform 0.25s ease, opacity 0.25s ease !important;
+}
+
+/* Hover Premium Zoom */
+#zsiq_float:hover {
+  transform: scale(1.12) !important;
+  opacity: 0.96 !important;
+}
+
+/* =========================================
+   Tooltip — Connect Now
+========================================= */
+
+#zsiq_float::before {
+  content: "Connect Now";
+
+  position: absolute;
+  right: 74px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background: rgba(20, 20, 20, 0.92);
+  backdrop-filter: blur(12px);
+
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+
+  color: rgba(255, 255, 255, 0.95);
+
+  padding: 10px 16px;
+  border-radius: 14px;
+
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.55);
+
+  transition: all 0.25s ease;
+}
+
+/* Tooltip Reveal */
+#zsiq_float:hover::before {
+  opacity: 1;
+  transform: translateY(-50%) translateX(-6px);
+}
+
+/* =========================================
+   Premium Floating Animation
+========================================= */
+
+@keyframes zoho-float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+/* =========================================
+   Soft Pulse Glow Ring
+========================================= */
+
+#zsiq_float::after {
+  content: "";
+  position: absolute;
+
+  width: 100%;
+  height: 100%;
+
+  border-radius: 50%;
+
+  background: rgba(255, 102, 0, 0.22);
+
+  z-index: -1;
+
+  animation: zoho-pulse 2.3s infinite;
+}
+
+@keyframes zoho-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.75);
+    opacity: 0;
+  }
+}
+
+/* =========================================
+   Mobile Safe Mode
+========================================= */
+
+@media (max-width: 768px) {
+  #zsiq_float {
+    bottom: 18px !important;
+    right: 18px !important;
+    width: 54px !important;
+    height: 54px !important;
+  }
+
+  /* Hide Tooltip on Mobile */
+  #zsiq_float::before {
+    display: none !important;
+  }
+}
