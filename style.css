@@ -1272,7 +1272,6 @@ img:hover {
 
 #zsiq_float {
   position: fixed !important;
-
   bottom: 22px !important;
   right: 22px !important;
 
@@ -1280,11 +1279,7 @@ img:hover {
   height: 58px !important;
   border-radius: 50% !important;
 
-  background: linear-gradient(
-    145deg,
-    #ff6600,
-    #ff4500
-  ) !important;
+  background: linear-gradient(145deg, #ff6600, #ff4500) !important;
 
   display: flex !important;
   align-items: center !important;
@@ -1292,8 +1287,7 @@ img:hover {
 
   z-index: 999998 !important;
 
-  border: 2px solid rgba(255, 255, 255, 0.12) !important;
-
+  border: 2px solid rgba(255, 255, 255, 0.14) !important;
   box-shadow: 0 0 26px rgba(255, 102, 0, 0.55) !important;
 
   cursor: pointer !important;
@@ -1308,10 +1302,7 @@ img:hover {
 }
 
 
-/* ============================================
-   ✅ ZOHO TOOLTIP
-============================================ */
-
+/* Tooltip */
 #zsiq_float::before {
   content: "Live Support";
 
@@ -1330,12 +1321,10 @@ img:hover {
   text-transform: uppercase;
 
   color: #fff;
-
   padding: 10px 16px;
   border-radius: 14px;
 
   white-space: nowrap;
-
   opacity: 0;
   pointer-events: none;
 
@@ -1349,10 +1338,7 @@ img:hover {
 }
 
 
-/* ============================================
-   ✅ ZOHO PULSE GLOW
-============================================ */
-
+/* Pulse Glow */
 #zsiq_float::after {
   content: "";
   position: absolute;
@@ -1375,19 +1361,14 @@ img:hover {
 
 .whatsapp-float {
   position: fixed !important;
-
-  bottom: 105px !important; /* ✅ Always Above Zoho */
+  bottom: 105px !important;
   right: 22px !important;
 
   width: 58px !important;
   height: 58px !important;
   border-radius: 50% !important;
 
-  background: linear-gradient(
-    145deg,
-    #25d366,
-    #128c7e
-  ) !important;
+  background: linear-gradient(145deg, #25d366, #128c7e) !important;
 
   display: flex !important;
   align-items: center !important;
@@ -1395,8 +1376,7 @@ img:hover {
 
   z-index: 999999 !important;
 
-  border: 2px solid rgba(255, 255, 255, 0.10) !important;
-
+  border: 2px solid rgba(255, 255, 255, 0.14) !important;
   box-shadow: 0 0 24px rgba(37, 211, 102, 0.45) !important;
 
   cursor: pointer !important;
@@ -1410,17 +1390,22 @@ img:hover {
   opacity: 0.96 !important;
 }
 
+
+/* ✅ WhatsApp Icon Fix (NO CRACK) */
 .whatsapp-float svg {
-  width: 28px !important;
-  height: 28px !important;
+  width: 30px !important;
+  height: 30px !important;
+
   fill: #fff !important;
+
+  display: block !important;
+  shape-rendering: geometricPrecision !important;
+  text-rendering: geometricPrecision !important;
 }
 
 
-/* ============================================
-   ✅ WHATSAPP TOOLTIP
-============================================ */
 
+/* Tooltip */
 .whatsapp-float::before {
   content: "Connect Now";
 
@@ -1439,12 +1424,10 @@ img:hover {
   text-transform: uppercase;
 
   color: #fff;
-
   padding: 10px 16px;
   border-radius: 14px;
 
   white-space: nowrap;
-
   opacity: 0;
   pointer-events: none;
 
@@ -1458,10 +1441,7 @@ img:hover {
 }
 
 
-/* ============================================
-   ✅ WHATSAPP PULSE
-============================================ */
-
+/* Pulse Ring */
 .whatsapp-float::after {
   content: "";
   position: absolute;
@@ -1495,36 +1475,36 @@ img:hover {
 
 
 /* ============================================
-   ✅ MOBILE SAFE MODE (NO SEND BLOCKING)
+   ✅ MOBILE SAFE MODE (NO KEYBOARD BLOCK)
 ============================================ */
 
 @media (max-width: 768px) {
 
-  /* Zoho Button Lower */
+  /* Zoho Button Bottom Safe */
   #zsiq_float {
-    bottom: 16px !important;
-    right: 16px !important;
+    bottom: 14px !important;
+    right: 14px !important;
 
     width: 54px !important;
     height: 54px !important;
   }
 
-  /* WhatsApp Above */
+  /* WhatsApp Above Zoho */
   .whatsapp-float {
-    bottom: 88px !important;
-    right: 16px !important;
+    bottom: 82px !important;
+    right: 14px !important;
 
     width: 54px !important;
     height: 54px !important;
   }
 
-  /* Hide Tooltips Mobile */
+  /* Hide Tooltips */
   .whatsapp-float::before,
   #zsiq_float::before {
     display: none !important;
   }
 
-  /* Stop Floating Motion Mobile (Stable Tap) */
+  /* Stable Mobile Tap */
   #zsiq_float,
   .whatsapp-float {
     animation: none !important;
