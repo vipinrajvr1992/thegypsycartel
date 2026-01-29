@@ -497,3 +497,43 @@ document.addEventListener("DOMContentLoaded", () => {
   }, 400);
 
 });
+/* =========================================
+   ✅ ZOHO SALESIQ — PREMIUM FLOAT ENGINE
+   Works on Every Page (Gypsy Cartel)
+========================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  function initZohoPremium() {
+
+    const zohoBtn = document.getElementById("zsiq_float");
+    if (!zohoBtn) return;
+
+    /* ✅ Prevent Running Twice */
+    if (zohoBtn.classList.contains("zoho-ready")) return;
+    zohoBtn.classList.add("zoho-ready");
+
+    /* ✅ Premium Entrance Default State */
+    zohoBtn.style.opacity = "0";
+    zohoBtn.style.transform = "scale(0.85)";
+
+    /* ✅ Smooth Premium Fade In */
+    setTimeout(() => {
+      zohoBtn.style.opacity = "1";
+      zohoBtn.style.transform = "scale(1)";
+      zohoBtn.style.transition = "all 0.4s ease";
+    }, 500);
+
+  }
+
+  /* =========================================
+     ✅ Zoho Loads Late → Keep Checking
+  ========================================= */
+  const zohoInterval = setInterval(() => {
+    if (document.getElementById("zsiq_float")) {
+      initZohoPremium();
+      clearInterval(zohoInterval);
+    }
+  }, 300);
+
+});
