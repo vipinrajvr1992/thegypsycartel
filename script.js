@@ -747,9 +747,6 @@ document.addEventListener("DOMContentLoaded", () => {
 /* =========================================================
    ✅ GYPSY CARTEL — FLOATING CHAT ENGINE (FINAL MASTER LOCK)
 
-/* =========================================================
-   ✅ GYPSY CARTEL — FLOATING CHAT ENGINE (FINAL MASTER LOCK)
-
    FIXED FOREVER:
    ✅ WhatsApp Official Icon PERFECT (Real Logo)
    ✅ No Green Bug / No Wrong Shape
@@ -790,35 +787,41 @@ document.addEventListener("DOMContentLoaded", () => {
     waBtn.style.width = "58px";
     waBtn.style.height = "58px";
 
-/* ✅ REAL OFFICIAL WHATSAPP ICON (ORIGINAL PERFECT) */
-waBtn.innerHTML = `
-  <svg xmlns="http://www.w3.org/2000/svg"
-       viewBox="0 0 32 32"
-       width="30"
-       height="30"
-       style="display:block;">
+    /* ✅ OFFICIAL WHATSAPP LOGO (100% WHITE LIKE ORIGINAL) */
+    waBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 32 32"
+           width="30"
+           height="30"
+           style="display:block;">
 
-    <!-- OUTER WHATSAPP BUBBLE -->
-    <path fill="white"
-      d="M16 2C8.27 2 2 8.27 2 16c0 2.82.74 5.47
-      2.02 7.77L2 30l6.4-1.68A13.93 13.93 0 0 0
-      16 30c7.73 0 14-6.27 14-14S23.73 2 16 2z"/>
+        <!-- OUTER WHATSAPP BUBBLE -->
+        <path fill="white"
+          d="M16 2C8.27 2 2 8.27 2 16c0 2.82.74 5.47
+          2.02 7.77L2 30l6.4-1.68A13.93 13.93 0 0 0
+          16 30c7.73 0 14-6.27 14-14S23.73 2 16 2z"/>
 
-    <!-- INNER PHONE SYMBOL -->
-    <path fill="#25d366"
-      d="M12.1 9.4c-.2-.5-.4-.43-.6-.44h-.5c-.2 0-.5.1-.7.4
-      -.3.3-.9 1-.9 2.3 0 1.3 1 2.6 1.1 2.8.1.2 2 3.1 4.8 4.3
-      .7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4
-      .2-.7.2-1.3.1-1.4-.1-.1-.3-.2-.6-.3
-      -.3-.2-1.7-.8-2-.9-.3-.1-.5-.2-.7.2
-      -.2.3-.8 1-.9 1.2-.2.2-.3.2-.6.1
-      -.3-.2-1.2-.5-2.3-1.5-.8-.7-1.4-1.7-1.6-2
-      -.2-.3 0-.4.1-.6.1-.1.3-.3.4-.5.1-.2.2-.3.3-.5
-      .1-.2 0-.4 0-.5-.1-.2-.6-1.6-.9-2.2z"/>
-  </svg>
-`;
+        <!-- INNER PHONE SYMBOL (WHITE ONLY FIXED) -->
+        <path fill="white"
+          d="M20.5 18.8c-.25-.13-1.5-.74-1.73-.82-.23-.08-.4-.13-.58.13
+          -.17.25-.66.82-.8 1-.15.17-.3.2-.55.07-.25-.13-1.06-.39
+          -2.02-1.25-.75-.66-1.25-1.48-1.4-1.73-.15-.25-.02-.39.1-.52
+          .12-.12.25-.3.38-.44.13-.15.17-.25.25-.42.08-.17.04-.32
+          -.02-.44-.07-.13-.58-1.4-.8-1.92-.2-.5-.4-.43-.58-.44h-.5
+          c-.17 0-.44.07-.67.32-.23.25-.88.88-.88 2.15s.9 2.5
+          1.03 2.67c.13.17 1.8 2.74 4.35 3.85.6.26 1.07.43
+          1.45.55.6.18 1.15.16 1.6.1.48-.08 1.5-.62
+          1.72-1.2.22-.58.22-1.08.15-1.2-.06-.12
+          -.23-.2-.48-.32z"/>
+      </svg>
+    `;
+
+    document.body.appendChild(waBtn);
+  }
+
+
   /* =========================================
-     ✅ 2. ZOHO FINAL ENGINE (LOCKED)
+     ✅ 2. ZOHO FINAL ENGINE (LOCKED FOREVER)
   ========================================= */
 
   function setupZohoFinal() {
@@ -834,7 +837,6 @@ waBtn.innerHTML = `
 
     console.log("Zoho Fully Locked ✅");
 
-
     /* ✅ Compact Chat Box */
     iframe.style.setProperty("width", "340px", "important");
     iframe.style.setProperty("height", "480px", "important");
@@ -842,26 +844,19 @@ waBtn.innerHTML = `
     iframe.style.setProperty("overflow", "hidden", "important");
     iframe.style.setProperty("z-index", "999999", "important");
 
-
     /* ✅ Mobile Safe Position */
     if (window.innerWidth <= 768) {
-
       iframe.style.setProperty("width", "92vw", "important");
       iframe.style.setProperty("max-width", "380px", "important");
-
-      iframe.style.setProperty("position", "fixed", "important");
       iframe.style.setProperty("bottom", "110px", "important");
       iframe.style.setProperty("right", "14px", "important");
     }
 
-
-    /* ✅ Hide Default Close */
+    /* ✅ Hide Default Zoho Close */
     setTimeout(() => {
-      document.querySelectorAll(".win_close, .siqico-close").forEach(btn => {
-        btn.style.display = "none";
-      });
-    }, 1400);
-
+      document.querySelectorAll(".win_close, .siqico-close")
+        .forEach(btn => btn.style.display = "none");
+    }, 1200);
 
     /* ✅ Custom Premium Close Button */
     let xBtn = document.querySelector(".zoho-custom-close");
@@ -873,10 +868,8 @@ waBtn.innerHTML = `
       document.body.appendChild(xBtn);
     }
 
-
     /* ✅ Open Chat */
     zohoBtn.addEventListener("click", () => {
-
       iframe.style.display = "block";
       iframe.style.opacity = "1";
 
@@ -885,35 +878,29 @@ waBtn.innerHTML = `
       document.body.classList.add("siq-open");
     });
 
-
     /* ✅ Close Chat */
     xBtn.addEventListener("click", () => {
-
       iframe.style.opacity = "0";
 
       setTimeout(() => {
-
         iframe.style.display = "none";
         xBtn.style.display = "none";
 
         document.body.classList.remove("siq-open");
-
       }, 220);
     });
   }
 
 
   /* =========================================
-     ✅ 3. OBSERVER (RUN ONCE THEN STOP)
+     ✅ 3. OBSERVER (RUN UNTIL READY → STOP)
   ========================================= */
 
   const observer = new MutationObserver(() => {
 
     setupZohoFinal();
 
-    const zohoBtn = document.getElementById("zsiq_float");
-
-    if (zohoBtn?.dataset.locked === "true") {
+    if (document.getElementById("zsiq_float")?.dataset.locked === "true") {
       observer.disconnect();
       console.log("Observer Stopped Forever ✅");
     }
