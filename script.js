@@ -749,7 +749,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
    FIXED FOREVER:
    ✅ WhatsApp Size Never Breaks (Hard Lock)
-   ✅ WhatsApp Official Icon Perfect Center
+   ✅ WhatsApp Official Icon Perfect Center (NO GREEN BUG)
    ✅ Zoho Compact Small Box Always
    ✅ Mobile Send Button Never Blocked
    ✅ Zoho Default Close Hidden Fully
@@ -783,16 +783,15 @@ document.addEventListener("DOMContentLoaded", () => {
     waBtn.target = "_blank";
     waBtn.rel = "noopener noreferrer";
 
-    /* ✅ Only Size Lock (CSS Handles Position + Style) */
+    /* ✅ ONLY Size Lock (CSS Handles Everything Else) */
     waBtn.style.width = "58px";
     waBtn.style.height = "58px";
 
-    /* ✅ Official WhatsApp SVG */
+    /* ✅ OFFICIAL WHATSAPP ICON (NO GREEN BACKGROUND PATH) */
     waBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg"
-           viewBox="0 0 32 32">
-        <path fill="#25d366"
-          d="M16 2C8.27 2 2 8.27 2 16c0 2.82.74 5.47 2.02 7.77L2 30l6.4-1.68A13.93 13.93 0 0 0 16 30c7.73 0 14-6.27 14-14S23.73 2 16 2z"/>
+           viewBox="0 0 32 32"
+           style="width:30px;height:30px;display:block;">
         <path fill="white"
           d="M20.5 18.8c-.25-.13-1.5-.74-1.73-.82-.23-.08-.4-.13-.58.13-.17.25-.66.82-.8 1-.15.17-.3.2-.55.07-.25-.13-1.06-.39-2.02-1.25-.75-.66-1.25-1.48-1.4-1.73-.15-.25-.02-.39.1-.52.12-.12.25-.3.38-.44.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.44-.07-.13-.58-1.4-.8-1.92-.2-.5-.4-.43-.58-.44h-.5c-.17 0-.44.07-.67.32-.23.25-.88.88-.88 2.15s.9 2.5 1.03 2.67c.13.17 1.8 2.74 4.35 3.85.6.26 1.07.43 1.45.55.6.18 1.15.16 1.6.1.48-.08 1.5-.62 1.72-1.2.22-.58.22-1.08.15-1.2-.06-.12-.23-.2-.48-.32z"/>
       </svg>
@@ -836,6 +835,7 @@ document.addEventListener("DOMContentLoaded", () => {
     ========================================= */
 
     if (window.innerWidth <= 768) {
+
       iframe.style.setProperty("width", "92vw", "important");
       iframe.style.setProperty("max-width", "380px", "important");
 
@@ -850,11 +850,13 @@ document.addEventListener("DOMContentLoaded", () => {
     ========================================= */
 
     setTimeout(() => {
+
       const closeBtn =
         document.querySelector(".win_close") ||
         document.querySelector(".siqico-close");
 
       if (closeBtn) closeBtn.style.display = "none";
+
     }, 1200);
 
 
@@ -874,6 +876,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       /* ✅ OPEN CHAT */
       zohoBtn.addEventListener("click", () => {
+
         iframe.style.display = "block";
         iframe.style.opacity = "1";
 
@@ -886,13 +889,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       /* ✅ CLOSE CHAT */
       xBtn.addEventListener("click", () => {
+
         iframe.style.opacity = "0";
 
         setTimeout(() => {
+
           iframe.style.display = "none";
           xBtn.style.display = "none";
 
           document.body.classList.remove("siq-open");
+
         }, 220);
       });
     }
@@ -908,6 +914,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupZohoFinal();
 
     const zohoBtn = document.getElementById("zsiq_float");
+
     if (zohoBtn?.dataset.locked === "true") {
       observer.disconnect();
       console.log("Observer Stopped Forever ✅");
