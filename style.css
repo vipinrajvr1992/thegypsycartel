@@ -1275,6 +1275,20 @@ img:hover {
 
 
 /* =========================================
+   ✅ 0. REMOVE ANY DEFAULT WHATSAPP WIDGETS
+   (Stops Left Side Green Bubble Bug)
+========================================= */
+
+iframe[src*="whatsapp"],
+.wa-chat-widget,
+.wa-widget,
+.whatsapp-left,
+.whatsapp-float-left {
+  display: none !important;
+}
+
+
+/* =========================================
    ✅ 1. FLOATING BUTTON BASE (NO RESET)
 ========================================= */
 
@@ -1379,7 +1393,7 @@ img:hover {
     top: 50%;
     transform: translateY(-50%);
 
-    background: rgba(15,15,15,0.95);
+    background: rgba(15,15,15,0.92);
     backdrop-filter: blur(14px);
 
     font-family: "Space Grotesk", sans-serif;
@@ -1456,17 +1470,15 @@ body.siq-open .whatsapp-float {
 
 
 /* =========================================================
-   ✅ 9. ZOHO CUSTOM CLOSE BUTTON (PERFECT CORNER LOCK)
+   ✅ 9. ZOHO CUSTOM CLOSE BUTTON (REAL CORNER FIX)
 ========================================================= */
 
 .zoho-custom-close {
   position: fixed !important;
 
-  top: auto !important;
-  right: 26px !important;
-
-  /* Always sits inside chat top-right */
-  bottom: calc(480px + 42px) !important;
+  /* ✅ Always Top Right Corner */
+  top: 22px !important;
+  right: 22px !important;
 
   width: 38px !important;
   height: 38px !important;
@@ -1500,9 +1512,7 @@ body.siq-open .whatsapp-float {
 @media (max-width: 768px) {
 
   .zoho-custom-close {
-    bottom: auto !important;
-    top: 95px !important;
-
+    top: 90px !important;
     right: 18px !important;
 
     width: 36px !important;
