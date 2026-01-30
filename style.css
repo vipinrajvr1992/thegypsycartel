@@ -1262,20 +1262,22 @@ img:hover {
 /* =========================================================
    ✅ ZOHO CUSTOM CLOSE BUTTON (PERFECT FINAL LOCK)
 
-   FIXED:
-   • Always inside chat corner
+   FIXED FOREVER:
+   • Always sticks to chat top-right corner
    • Never overlaps send button
-   • Small premium size
-   • Mobile safe positioning
+   • No random bottom px hacks
+   • Desktop + Mobile safe
 ========================================================= */
 
 .zoho-custom-close {
   position: fixed !important;
 
-  /* ✅ Align with chat box corner */
+  /* ✅ Always match iframe top-right corner */
   top: auto !important;
-  bottom: 610px !important; /* Desktop chat top edge */
-  right: 32px !important;
+  right: 26px !important;
+
+  /* ✅ Perfect Desktop Placement */
+  bottom: calc(480px + 40px) !important;
 
   width: 38px !important;
   height: 38px !important;
@@ -1287,9 +1289,9 @@ img:hover {
   font-size: 17px !important;
   font-weight: 700 !important;
 
-  display: none;
-  align-items: center;
-  justify-content: center;
+  display: none !important;
+  align-items: center !important;
+  justify-content: center !important;
 
   z-index: 99999999 !important;
   cursor: pointer !important;
@@ -1300,7 +1302,7 @@ img:hover {
   transition: transform 0.22s ease !important;
 }
 
-/* Hover */
+/* Hover Premium */
 .zoho-custom-close:hover {
   transform: scale(1.08) !important;
 }
@@ -1308,17 +1310,18 @@ img:hover {
 
 /* =========================================================
    ✅ MOBILE PERFECT CLOSE BUTTON SAFE MODE
+   Always inside small chat box corner
 ========================================================= */
 
 @media (max-width: 768px) {
 
   .zoho-custom-close {
 
-    /* ✅ Stick exactly to chat top corner */
+    /* ✅ Mobile chat sits bottom:110px */
     bottom: auto !important;
-    top: 90px !important;
+    top: 95px !important;
 
-    right: 22px !important;
+    right: 18px !important;
 
     width: 36px !important;
     height: 36px !important;
@@ -1326,8 +1329,22 @@ img:hover {
     font-size: 16px !important;
   }
 }
+
+
+/* =========================================================
+   ✅ EXTRA SAFETY: CLOSE NEVER BLOCKS SEND AREA
+========================================================= */
+
+@media (max-width: 768px) {
+  #siqiframe {
+    bottom: 110px !important;
+  }
+}
+
+
 /* =========================================
    ✅ FOOTER SUPPORT BUTTONS (THEME MATCH)
+   Paste in MAIN CSS (NOT Zoho CSS)
 ========================================= */
 
 .footer-support-links {
