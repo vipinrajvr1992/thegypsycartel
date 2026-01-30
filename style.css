@@ -1263,14 +1263,15 @@ img:hover {
    ✅ GYPSY CARTEL — FINAL FLOATING SUPPORT SYSTEM (LOCKED)
 
    FIXED FOREVER:
-   • WhatsApp + Zoho same size always
-   • Both bottom-right only
-   • WhatsApp stacked above Zoho
-   • Same hover + premium animation
-   • Tooltip text only on desktop hover
-   • NO left-side random buttons
-   • Custom Close button always inside chat corner
-   • Mobile send button never blocked
+   ✅ WhatsApp + Zoho same size always
+   ✅ Both bottom-right only
+   ✅ WhatsApp stacked above Zoho
+   ✅ Same hover + premium animation
+   ✅ Tooltip text only on desktop hover
+   ✅ NO left-side random buttons
+   ✅ Mobile send button never blocked
+   
+   ⚠️ NOTE: Close/Minimize buttons are now handled by JS Control Dock
 ========================================================= */
 
 
@@ -1462,70 +1463,11 @@ iframe[src*="whatsapp"],
 
 
 /* =========================================
-   ✅ 8. AUTO HIDE WHEN CHAT OPENS
+   ✅ 8. AUTO HIDE BUTTONS WHEN CHAT OPENS
 ========================================= */
 
 body.siq-open #zsiq_float,
 body.siq-open .whatsapp-float {
   opacity: 0 !important;
   pointer-events: none !important;
-}
-
-
-/* =========================================================
-   ✅ 9. ZOHO CUSTOM CLOSE BUTTON (PERFECT CORNER)
-========================================================= */
-
-.zoho-custom-close {
-  position: fixed !important;
-
-  top: 22px !important;
-  right: 22px !important;
-
-  width: 38px !important;
-  height: 38px !important;
-
-  border-radius: 50% !important;
-
-  background: rgba(15,15,15,0.78) !important;
-  color: #fff !important;
-
-  font-size: 17px !important;
-  font-weight: 700 !important;
-
-  display: none !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  z-index: 99999999 !important;
-
-  cursor: pointer !important;
-
-  backdrop-filter: blur(12px) !important;
-  box-shadow: 0 0 18px rgba(0,0,0,0.55) !important;
-
-  transition: transform 0.22s ease !important;
-}
-
-.zoho-custom-close:hover {
-  transform: scale(1.08) !important;
-}
-
-
-/* ✅ MOBILE CLOSE BUTTON PERFECT */
-@media (max-width: 768px) {
-
-  .zoho-custom-close {
-    top: 90px !important;
-    right: 18px !important;
-
-    width: 36px !important;
-    height: 36px !important;
-
-    font-size: 16px !important;
-  }
-
-  #siqiframe {
-    bottom: 110px !important;
-  }
 }
