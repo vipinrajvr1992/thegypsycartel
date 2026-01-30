@@ -748,14 +748,13 @@ document.addEventListener("DOMContentLoaded", () => {
    ✅ GYPSY CARTEL — FLOATING CHAT ENGINE (FINAL MASTER LOCK)
 
    FIXED FOREVER:
-   ✅ WhatsApp Official Icon PERFECT (Real Logo)
-   ✅ No Green Bug / No Wrong Shape
+   ✅ WhatsApp Official Icon = REAL ORIGINAL LOGO
+   ✅ Tooltip Works Properly
    ✅ Zoho Compact Box Always
    ✅ Mobile Send Button Never Blocked
    ✅ Default Close Hidden Fully
-   ✅ Custom Premium X Button (CSS Controlled)
+   ✅ Custom Premium X Button Perfect
    ✅ Floating Icons Hide When Chat Opens
-   ✅ Tap X → Closes Smooth + Proper
    ✅ Observer Stops After Setup (No Loop)
 ========================================================= */
 
@@ -783,36 +782,45 @@ document.addEventListener("DOMContentLoaded", () => {
     waBtn.target = "_blank";
     waBtn.rel = "noopener noreferrer";
 
+    /* ✅ Tooltip Text */
+    waBtn.setAttribute("aria-label", "Connect Now");
+
     /* ✅ Hard Size Lock */
     waBtn.style.width = "58px";
     waBtn.style.height = "58px";
 
-    /* ✅ OFFICIAL WHATSAPP LOGO (100% WHITE LIKE ORIGINAL) */
+    /* ✅ REAL OFFICIAL WHATSAPP LOGO (ORIGINAL) */
     waBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg"
-           viewBox="0 0 32 32"
+           viewBox="0 0 512 512"
            width="30"
            height="30"
            style="display:block;">
 
-        <!-- OUTER WHATSAPP BUBBLE -->
+        <!-- Official WhatsApp White Icon -->
         <path fill="white"
-          d="M16 2C8.27 2 2 8.27 2 16c0 2.82.74 5.47
-          2.02 7.77L2 30l6.4-1.68A13.93 13.93 0 0 0
-          16 30c7.73 0 14-6.27 14-14S23.73 2 16 2z"/>
-
-        <!-- INNER PHONE SYMBOL (WHITE ONLY FIXED) -->
-        <path fill="white"
-          d="M20.5 18.8c-.25-.13-1.5-.74-1.73-.82-.23-.08-.4-.13-.58.13
-          -.17.25-.66.82-.8 1-.15.17-.3.2-.55.07-.25-.13-1.06-.39
-          -2.02-1.25-.75-.66-1.25-1.48-1.4-1.73-.15-.25-.02-.39.1-.52
-          .12-.12.25-.3.38-.44.13-.15.17-.25.25-.42.08-.17.04-.32
-          -.02-.44-.07-.13-.58-1.4-.8-1.92-.2-.5-.4-.43-.58-.44h-.5
-          c-.17 0-.44.07-.67.32-.23.25-.88.88-.88 2.15s.9 2.5
-          1.03 2.67c.13.17 1.8 2.74 4.35 3.85.6.26 1.07.43
-          1.45.55.6.18 1.15.16 1.6.1.48-.08 1.5-.62
-          1.72-1.2.22-.58.22-1.08.15-1.2-.06-.12
-          -.23-.2-.48-.32z"/>
+          d="M256.06 32C132.29 32 32 132.29 32 256c0 45.11 13.18
+          87.18 35.85 122.57L32 480l104.93-34.51C172.69 467.1
+          213.42 480 256.06 480 379.71 480 480 379.71 480 256
+          480 132.29 379.71 32 256.06 32zm123.28 334.49
+          c-5.12 14.4-25.6 26.37-35.2 27.84-9.12 1.44-20.48
+          2.05-33.02-1.47-7.68-2.05-17.41-5.63-29.82-10.88
+          -52.22-22.4-86.27-77.06-88.96-80.77-2.69-3.71
+          -21.25-28.29-21.25-53.82 0-25.6 13.44-38.14
+          18.24-43.39 4.8-5.25 10.5-6.53 14.02-6.53
+          3.52 0 7.17.06 10.3.19 3.33.13 7.81-1.28
+          12.22 9.28 5.12 12.29 17.41 42.5 18.94 45.57
+          1.54 3.07 2.56 6.66.51 10.75-2.05 4.1-3.07
+          6.66-6.14 10.24-3.07 3.58-6.4 8.06-9.15
+          10.82-3.07 3.07-6.27 6.4-.96 12.54
+          5.31 6.14 23.55 38.78 50.56 62.85
+          34.69 30.91 63.94 40.51 73.22 45.06
+          9.28 4.61 14.72 3.84 20.1-2.3
+          5.38-6.14 23.04-26.88 29.18-36.16
+          6.14-9.28 12.29-7.68 20.48-4.61
+          8.19 3.07 52.22 24.58 61.18 29.06
+          8.96 4.48 14.91 6.66 17.09 10.3
+          2.18 3.65 2.18 21.12-2.94 35.52z"/>
       </svg>
     `;
 
@@ -821,7 +829,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     ✅ 2. ZOHO FINAL ENGINE (LOCKED FOREVER)
+     ✅ 2. ZOHO FINAL ENGINE (LOCKED)
   ========================================= */
 
   function setupZohoFinal() {
@@ -831,20 +839,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!zohoBtn || !iframe) return;
 
-    /* ✅ Run Only Once */
     if (zohoBtn.dataset.locked === "true") return;
     zohoBtn.dataset.locked = "true";
 
     console.log("Zoho Fully Locked ✅");
 
-    /* ✅ Compact Chat Box */
+    /* ✅ Compact Box */
     iframe.style.setProperty("width", "340px", "important");
     iframe.style.setProperty("height", "480px", "important");
     iframe.style.setProperty("border-radius", "18px", "important");
     iframe.style.setProperty("overflow", "hidden", "important");
-    iframe.style.setProperty("z-index", "999999", "important");
 
-    /* ✅ Mobile Safe Position */
+    /* ✅ Mobile Safe */
     if (window.innerWidth <= 768) {
       iframe.style.setProperty("width", "92vw", "important");
       iframe.style.setProperty("max-width", "380px", "important");
@@ -852,13 +858,13 @@ document.addEventListener("DOMContentLoaded", () => {
       iframe.style.setProperty("right", "14px", "important");
     }
 
-    /* ✅ Hide Default Zoho Close */
+    /* ✅ Hide Default Close */
     setTimeout(() => {
       document.querySelectorAll(".win_close, .siqico-close")
         .forEach(btn => btn.style.display = "none");
     }, 1200);
 
-    /* ✅ Custom Premium Close Button */
+    /* ✅ Custom Close Button */
     let xBtn = document.querySelector(".zoho-custom-close");
 
     if (!xBtn) {
@@ -871,29 +877,21 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ✅ Open Chat */
     zohoBtn.addEventListener("click", () => {
       iframe.style.display = "block";
-      iframe.style.opacity = "1";
-
       xBtn.style.display = "flex";
-
       document.body.classList.add("siq-open");
     });
 
     /* ✅ Close Chat */
     xBtn.addEventListener("click", () => {
-      iframe.style.opacity = "0";
-
-      setTimeout(() => {
-        iframe.style.display = "none";
-        xBtn.style.display = "none";
-
-        document.body.classList.remove("siq-open");
-      }, 220);
+      iframe.style.display = "none";
+      xBtn.style.display = "none";
+      document.body.classList.remove("siq-open");
     });
   }
 
 
   /* =========================================
-     ✅ 3. OBSERVER (RUN UNTIL READY → STOP)
+     ✅ 3. OBSERVER (STOPS FOREVER)
   ========================================= */
 
   const observer = new MutationObserver(() => {
