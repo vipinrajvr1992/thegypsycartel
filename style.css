@@ -1260,30 +1260,219 @@ img:hover {
   filter: brightness(1.04);
 }
 /* =========================================================
-   ✅ ZOHO CUSTOM CLOSE BUTTON (PERFECT FINAL LOCK)
+   ✅ GYPSY CARTEL — FINAL FLOATING SUPPORT SYSTEM (LOCKED)
 
    FIXED FOREVER:
-   • Always sticks to chat top-right corner
-   • Never overlaps send button
-   • No random bottom px hacks
-   • Desktop + Mobile safe
+   • WhatsApp + Zoho same size always
+   • Both bottom-right only
+   • WhatsApp stacked above Zoho
+   • Same hover + premium animation
+   • Tooltip text only on desktop hover
+   • NO left-side random buttons
+   • Custom Close button always inside chat corner
+   • Mobile send button never blocked
+========================================================= */
+
+
+/* =========================================
+   ✅ 1. FLOATING BUTTON BASE (NO RESET)
+========================================= */
+
+#zsiq_float,
+.whatsapp-float {
+  position: fixed !important;
+  right: 18px !important;
+  left: auto !important;
+
+  width: 58px !important;
+  height: 58px !important;
+
+  min-width: 58px !important;
+  min-height: 58px !important;
+
+  max-width: 58px !important;
+  max-height: 58px !important;
+
+  border-radius: 50% !important;
+  overflow: hidden !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  cursor: pointer !important;
+  flex-shrink: 0 !important;
+
+  z-index: 999999 !important;
+
+  transition: transform 0.25s ease, opacity 0.25s ease !important;
+}
+
+
+/* =========================================
+   ✅ 2. PERFECT STACK POSITION
+========================================= */
+
+/* Zoho Always Bottom */
+#zsiq_float {
+  bottom: 18px !important;
+}
+
+/* WhatsApp Always Above */
+.whatsapp-float {
+  bottom: 92px !important;
+}
+
+
+/* =========================================
+   ✅ 3. OFFICIAL PREMIUM COLORS
+========================================= */
+
+#zsiq_float {
+  background: linear-gradient(145deg, #ff6600, #ff3d00) !important;
+  box-shadow: 0 0 22px rgba(255,102,0,0.55) !important;
+}
+
+.whatsapp-float {
+  background: linear-gradient(145deg, #25d366, #128c7e) !important;
+  box-shadow: 0 0 22px rgba(37,211,102,0.50) !important;
+}
+
+
+/* =========================================
+   ✅ 4. ICON CENTER LOCK (NO GIANT BUG)
+========================================= */
+
+.whatsapp-float svg {
+  width: 30px !important;
+  height: 30px !important;
+  display: block !important;
+}
+
+#zsiq_float svg {
+  width: 26px !important;
+  height: 26px !important;
+}
+
+
+/* =========================================
+   ✅ 5. SAME HOVER EFFECT (PRO)
+========================================= */
+
+#zsiq_float:hover,
+.whatsapp-float:hover {
+  transform: scale(1.10) !important;
+  opacity: 0.96 !important;
+}
+
+
+/* =========================================
+   ✅ 6. TOOLTIP TEXT (DESKTOP ONLY)
+========================================= */
+
+@media (min-width: 769px) {
+
+  #zsiq_float::before,
+  .whatsapp-float::before {
+    position: absolute;
+    right: 74px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background: rgba(15,15,15,0.95);
+    backdrop-filter: blur(14px);
+
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+
+    color: #fff;
+    padding: 9px 15px;
+    border-radius: 14px;
+
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+
+    transition: all 0.25s ease;
+  }
+
+  .whatsapp-float::before {
+    content: "Connect Now";
+  }
+
+  #zsiq_float::before {
+    content: "Support Team Here";
+  }
+
+  #zsiq_float:hover::before,
+  .whatsapp-float:hover::before {
+    opacity: 1;
+    transform: translateY(-50%) translateX(-6px);
+  }
+}
+
+
+/* =========================================
+   ✅ 7. MOBILE SAFE LOCK
+========================================= */
+
+@media (max-width: 768px) {
+
+  #zsiq_float,
+  .whatsapp-float {
+    width: 54px !important;
+    height: 54px !important;
+    right: 16px !important;
+  }
+
+  #zsiq_float {
+    bottom: 16px !important;
+  }
+
+  .whatsapp-float {
+    bottom: 84px !important;
+  }
+
+  /* Tooltips OFF */
+  #zsiq_float::before,
+  .whatsapp-float::before {
+    display: none !important;
+  }
+}
+
+
+/* =========================================
+   ✅ 8. AUTO HIDE WHEN CHAT OPENS
+========================================= */
+
+body.siq-open #zsiq_float,
+body.siq-open .whatsapp-float {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+
+/* =========================================================
+   ✅ 9. ZOHO CUSTOM CLOSE BUTTON (PERFECT CORNER LOCK)
 ========================================================= */
 
 .zoho-custom-close {
   position: fixed !important;
 
-  /* ✅ Always match iframe top-right corner */
   top: auto !important;
   right: 26px !important;
 
-  /* ✅ Perfect Desktop Placement */
-  bottom: calc(480px + 40px) !important;
+  /* Always sits inside chat top-right */
+  bottom: calc(480px + 42px) !important;
 
   width: 38px !important;
   height: 38px !important;
 
   border-radius: 50% !important;
-  background: rgba(15, 15, 15, 0.78) !important;
+  background: rgba(15,15,15,0.78) !important;
 
   color: #fff !important;
   font-size: 17px !important;
@@ -1302,22 +1491,15 @@ img:hover {
   transition: transform 0.22s ease !important;
 }
 
-/* Hover Premium */
 .zoho-custom-close:hover {
   transform: scale(1.08) !important;
 }
 
 
-/* =========================================================
-   ✅ MOBILE PERFECT CLOSE BUTTON SAFE MODE
-   Always inside small chat box corner
-========================================================= */
-
+/* ✅ MOBILE CLOSE BUTTON PERFECT */
 @media (max-width: 768px) {
 
   .zoho-custom-close {
-
-    /* ✅ Mobile chat sits bottom:110px */
     bottom: auto !important;
     top: 95px !important;
 
@@ -1325,74 +1507,11 @@ img:hover {
 
     width: 36px !important;
     height: 36px !important;
-
     font-size: 16px !important;
   }
-}
 
-
-/* =========================================================
-   ✅ EXTRA SAFETY: CLOSE NEVER BLOCKS SEND AREA
-========================================================= */
-
-@media (max-width: 768px) {
+  /* Chat never blocks send */
   #siqiframe {
     bottom: 110px !important;
   }
-}
-
-
-/* =========================================
-   ✅ FOOTER SUPPORT BUTTONS (THEME MATCH)
-   Paste in MAIN CSS (NOT Zoho CSS)
-========================================= */
-
-.footer-support-links {
-  margin-top: 14px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.footer-support-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  width: fit-content;
-  padding: 10px 16px;
-
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.6px;
-  text-transform: uppercase;
-
-  border-radius: 14px;
-  text-decoration: none;
-
-  transition: all 0.25s ease;
-}
-
-/* WhatsApp Footer Button */
-.footer-support-btn.whatsapp {
-  background: rgba(37, 211, 102, 0.12);
-  border: 1px solid rgba(37, 211, 102, 0.35);
-  color: #25d366;
-}
-
-.footer-support-btn.whatsapp:hover {
-  background: rgba(37, 211, 102, 0.22);
-  transform: translateY(-2px);
-}
-
-/* Zoho Footer Button */
-.footer-support-btn.zoho {
-  background: rgba(255, 102, 0, 0.12);
-  border: 1px solid rgba(255, 102, 0, 0.45);
-  color: #ff6600;
-}
-
-.footer-support-btn.zoho:hover {
-  background: rgba(255, 102, 0, 0.22);
-  transform: translateY(-2px);
 }
