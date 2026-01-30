@@ -1289,12 +1289,13 @@ iframe[src*="whatsapp"],
 
 
 /* =========================================
-   ✅ 1. FLOATING BUTTON BASE (NO RESET)
+   ✅ 1. FLOATING BUTTON BASE (PERFECT LOCK)
 ========================================= */
 
 #zsiq_float,
 .whatsapp-float {
   position: fixed !important;
+
   right: 18px !important;
   left: auto !important;
 
@@ -1308,7 +1309,6 @@ iframe[src*="whatsapp"],
   max-height: 58px !important;
 
   border-radius: 50% !important;
-  overflow: hidden !important;
 
   display: flex !important;
   align-items: center !important;
@@ -1319,7 +1319,11 @@ iframe[src*="whatsapp"],
 
   z-index: 999999 !important;
 
-  transition: transform 0.25s ease, opacity 0.25s ease !important;
+  transition: transform 0.25s ease,
+              opacity 0.25s ease !important;
+
+  /* ✅ Tooltip must not clip */
+  overflow: visible !important;
 }
 
 
@@ -1354,7 +1358,7 @@ iframe[src*="whatsapp"],
 
 
 /* =========================================
-   ✅ 4. ICON CENTER LOCK (NO GIANT BUG)
+   ✅ 4. ICON CENTER LOCK (NO BUG)
 ========================================= */
 
 .whatsapp-float svg {
@@ -1366,11 +1370,12 @@ iframe[src*="whatsapp"],
 #zsiq_float svg {
   width: 26px !important;
   height: 26px !important;
+  display: block !important;
 }
 
 
 /* =========================================
-   ✅ 5. SAME HOVER EFFECT (PRO)
+   ✅ 5. SAME PREMIUM HOVER EFFECT
 ========================================= */
 
 #zsiq_float:hover,
@@ -1388,9 +1393,13 @@ iframe[src*="whatsapp"],
 
   #zsiq_float::before,
   .whatsapp-float::before {
+
+    content: "";
+
     position: absolute;
     right: 74px;
     top: 50%;
+
     transform: translateY(-50%);
 
     background: rgba(15,15,15,0.92);
@@ -1403,16 +1412,19 @@ iframe[src*="whatsapp"],
     text-transform: uppercase;
 
     color: #fff;
+
     padding: 9px 15px;
     border-radius: 14px;
 
     white-space: nowrap;
+
     opacity: 0;
     pointer-events: none;
 
     transition: all 0.25s ease;
   }
 
+  /* Tooltip Text */
   .whatsapp-float::before {
     content: "Connect Now";
   }
@@ -1421,6 +1433,7 @@ iframe[src*="whatsapp"],
     content: "Support Team Here";
   }
 
+  /* Show Tooltip on Hover */
   #zsiq_float:hover::before,
   .whatsapp-float:hover::before {
     opacity: 1;
@@ -1430,7 +1443,7 @@ iframe[src*="whatsapp"],
 
 
 /* =========================================
-   ✅ 7. MOBILE SAFE LOCK
+   ✅ 7. MOBILE SAFE LOCK (SMALLER)
 ========================================= */
 
 @media (max-width: 768px) {
@@ -1470,13 +1483,13 @@ body.siq-open .whatsapp-float {
 
 
 /* =========================================================
-   ✅ 9. ZOHO CUSTOM CLOSE BUTTON (REAL CORNER FIX)
+   ✅ 9. ZOHO CUSTOM CLOSE BUTTON (PERFECT CORNER)
 ========================================================= */
 
 .zoho-custom-close {
   position: fixed !important;
 
-  /* ✅ Always Top Right Corner */
+  /* Always top-right */
   top: 22px !important;
   right: 22px !important;
 
@@ -1484,9 +1497,10 @@ body.siq-open .whatsapp-float {
   height: 38px !important;
 
   border-radius: 50% !important;
-  background: rgba(15,15,15,0.78) !important;
 
+  background: rgba(15,15,15,0.78) !important;
   color: #fff !important;
+
   font-size: 17px !important;
   font-weight: 700 !important;
 
@@ -1495,6 +1509,7 @@ body.siq-open .whatsapp-float {
   justify-content: center !important;
 
   z-index: 99999999 !important;
+
   cursor: pointer !important;
 
   backdrop-filter: blur(12px) !important;
@@ -1517,6 +1532,7 @@ body.siq-open .whatsapp-float {
 
     width: 36px !important;
     height: 36px !important;
+
     font-size: 16px !important;
   }
 
