@@ -744,17 +744,17 @@ document.addEventListener("DOMContentLoaded", () => {
             if (year) year.textContent = new Date().getFullYear();
         });
 });
-
 /* =========================================================
    ✅ GYPSY CARTEL — FLOATING CHAT ENGINE (FINAL MASTER LOCK)
 
    FIXED:
    ✅ WhatsApp Perfect Official Icon
-   ✅ Zoho Mobile Send Never Blocked
+   ✅ Zoho Compact Small Box Always
+   ✅ Mobile Send Button Never Blocked
    ✅ Zoho Default Close Hidden
-   ✅ Custom Premium X Button (Top Corner)
-   ✅ Tap X → Close Chat Smooth
-   ✅ No Loop / Observer Runs Once
+   ✅ Custom Premium X Button (Inside Chat Corner)
+   ✅ Tap X → Closes Smooth + Proper
+   ✅ Observer Stops After Setup (No Loop)
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -784,10 +784,8 @@ document.addEventListener("DOMContentLoaded", () => {
     waBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg"
            viewBox="0 0 32 32">
-        <path fill="white"
-          d="M16 2C8.27 2 2 8.27 2 16c0 2.82.74 5.47 2.02 7.77L2 30l6.4-1.68A13.93 13.93 0 0 0 16 30c7.73 0 14-6.27 14-14S23.73 2 16 2z"/>
         <path fill="#25d366"
-          d="M16 5.2c-5.96 0-10.8 4.84-10.8 10.8 0 2.2.66 4.24 1.8 5.95l-1.18 4.3 4.4-1.15c1.64 1.06 3.6 1.68 5.78 1.68 5.96 0 10.8-4.84 10.8-10.8S21.96 5.2 16 5.2z"/>
+          d="M16 2C8.27 2 2 8.27 2 16c0 2.82.74 5.47 2.02 7.77L2 30l6.4-1.68A13.93 13.93 0 0 0 16 30c7.73 0 14-6.27 14-14S23.73 2 16 2z"/>
         <path fill="white"
           d="M20.5 18.8c-.25-.13-1.5-.74-1.73-.82-.23-.08-.4-.13-.58.13-.17.25-.66.82-.8 1-.15.17-.3.2-.55.07-.25-.13-1.06-.39-2.02-1.25-.75-.66-1.25-1.48-1.4-1.73-.15-.25-.02-.39.1-.52.12-.12.25-.3.38-.44.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.44-.07-.13-.58-1.4-.8-1.92-.2-.5-.4-.43-.58-.44h-.5c-.17 0-.44.07-.67.32-.23.25-.88.88-.88 2.15s.9 2.5 1.03 2.67c.13.17 1.8 2.74 4.35 3.85.6.26 1.07.43 1.45.55.6.18 1.15.16 1.6.1.48-.08 1.5-.62 1.72-1.2.22-.58.22-1.08.15-1.2-.06-.12-.23-.2-.48-.32z"/>
       </svg>
@@ -798,7 +796,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     ✅ 2. ZOHO FINAL ENGINE + CUSTOM X CLOSE
+     ✅ 2. ZOHO FINAL ENGINE (COMPACT + SAFE)
   ========================================= */
 
   function setupZohoFinal() {
@@ -807,48 +805,55 @@ document.addEventListener("DOMContentLoaded", () => {
     const iframe = document.getElementById("siqiframe");
 
     if (!zohoBtn || !iframe) return;
-    if (zohoBtn.classList.contains("zoho-ready")) return;
 
-    zohoBtn.classList.add("zoho-ready");
-    console.log("Zoho Ready ✅");
+    /* ✅ Run Only Once */
+    if (zohoBtn.dataset.ready === "true") return;
+    zohoBtn.dataset.ready = "true";
+
+    console.log("Zoho Locked Setup ✅");
 
 
     /* =========================================
-       ✅ CHAT SIZE + MOBILE SAFE POSITION
+       ✅ FORCE COMPACT CHAT SIZE (ALL DEVICES)
     ========================================= */
 
     iframe.style.setProperty("width", "340px", "important");
-    iframe.style.setProperty("height", "460px", "important");
+    iframe.style.setProperty("height", "480px", "important");
+    iframe.style.setProperty("border-radius", "18px", "important");
+    iframe.style.setProperty("overflow", "hidden", "important");
+
+
+    /* =========================================
+       ✅ MOBILE SAFE POSITION (SEND NEVER BLOCK)
+    ========================================= */
 
     if (window.innerWidth <= 768) {
 
       iframe.style.setProperty("width", "94vw", "important");
-      iframe.style.setProperty("height", "420px", "important");
+      iframe.style.setProperty("max-width", "380px", "important");
 
-      /* ✅ Lift Up = Send Button Safe */
       iframe.style.setProperty("position", "fixed", "important");
-      iframe.style.setProperty("bottom", "120px", "important");
-      iframe.style.setProperty("right", "16px", "important");
+      iframe.style.setProperty("bottom", "110px", "important");
+      iframe.style.setProperty("right", "14px", "important");
+      iframe.style.setProperty("z-index", "999999", "important");
     }
 
 
     /* =========================================
-       ✅ HIDE ZOHO DEFAULT CLOSE BUTTON
+       ✅ HIDE DEFAULT ZOHO CLOSE BUTTON
     ========================================= */
 
-    if (window.innerWidth <= 768) {
-      setTimeout(() => {
-        const closeBtn =
-          document.querySelector(".win_close") ||
-          document.querySelector(".siqico-close");
+    setTimeout(() => {
+      const closeBtn =
+        iframe.contentWindow?.document.querySelector(".win_close") ||
+        document.querySelector(".win_close");
 
-        if (closeBtn) closeBtn.style.display = "none";
-      }, 1200);
-    }
+      if (closeBtn) closeBtn.style.display = "none";
+    }, 1500);
 
 
     /* =========================================
-       ✅ CREATE CUSTOM X BUTTON (TOP CORNER)
+       ✅ CUSTOM PREMIUM X (INSIDE CHAT CORNER)
     ========================================= */
 
     if (!document.querySelector(".zoho-custom-close")) {
@@ -857,47 +862,40 @@ document.addEventListener("DOMContentLoaded", () => {
       xBtn.className = "zoho-custom-close";
       xBtn.innerHTML = "✕";
 
+      document.body.appendChild(xBtn);
+
       xBtn.style.cssText = `
         position: fixed;
-        top: 18px;
-        right: 18px;
-        width: 44px;
-        height: 44px;
+        bottom: 560px;
+        right: 24px;
+        width: 42px;
+        height: 42px;
         border-radius: 50%;
-        background: rgba(0,0,0,0.65);
+        background: rgba(20,20,20,0.85);
         color: white;
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 700;
         display: none;
         align-items: center;
         justify-content: center;
         z-index: 9999999;
         cursor: pointer;
-        backdrop-filter: blur(10px);
-        transition: transform 0.25s ease;
+        backdrop-filter: blur(12px);
       `;
 
-      document.body.appendChild(xBtn);
-
-      /* Hover Effect */
-      xBtn.addEventListener("mouseenter", () => {
-        xBtn.style.transform = "scale(1.08)";
-      });
-
-      xBtn.addEventListener("mouseleave", () => {
-        xBtn.style.transform = "scale(1)";
-      });
-
-      /* Tap X → Close Chat */
+      /* ✅ Click X → Proper Close */
       xBtn.addEventListener("click", () => {
-        iframe.style.display = "none";
-        xBtn.style.display = "none";
-        console.log("Zoho Closed By Custom X ✅");
+        iframe.style.opacity = "0";
+        setTimeout(() => {
+          iframe.style.display = "none";
+          xBtn.style.display = "none";
+        }, 200);
       });
 
-      /* Zoho Button Click → Show Chat + X */
+      /* ✅ Zoho Button → Open Chat */
       zohoBtn.addEventListener("click", () => {
         iframe.style.display = "block";
+        iframe.style.opacity = "1";
         xBtn.style.display = "flex";
       });
     }
@@ -905,11 +903,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     ✅ OBSERVER RUNS ONCE (NO LOOP)
+     ✅ OBSERVER STOPS AFTER SUCCESS
   ========================================= */
 
   const observer = new MutationObserver(() => {
+
     setupZohoFinal();
+
+    /* ✅ Stop Observer After Setup */
+    const zohoBtn = document.getElementById("zsiq_float");
+    if (zohoBtn?.dataset.ready === "true") {
+      observer.disconnect();
+      console.log("Observer Stopped ✅");
+    }
   });
 
   observer.observe(document.body, {
