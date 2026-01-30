@@ -787,13 +787,27 @@ document.addEventListener("DOMContentLoaded", () => {
     waBtn.style.width = "58px";
     waBtn.style.height = "58px";
 
-    /* ✅ OFFICIAL WHATSAPP ICON (WHITE ONLY) */
+    /* ✅ OFFICIAL WHATSAPP ICON (FULL WHITE LOGO FIXED) */
     waBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg"
            viewBox="0 0 32 32"
            style="width:30px;height:30px;display:block;">
+
+        <!-- WhatsApp Bubble -->
         <path fill="white"
-          d="M20.5 18.8c-.25-.13-1.5-.74-1.73-.82-.23-.08-.4-.13-.58.13-.17.25-.66.82-.8 1-.15.17-.3.2-.55.07-.25-.13-1.06-.39-2.02-1.25-.75-.66-1.25-1.48-1.4-1.73-.15-.25-.02-.39.1-.52.12-.12.25-.3.38-.44.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.44-.07-.13-.58-1.4-.8-1.92-.2-.5-.4-.43-.58-.44h-.5c-.17 0-.44.07-.67.32-.23.25-.88.88-.88 2.15s.9 2.5 1.03 2.67c.13.17 1.8 2.74 4.35 3.85.6.26 1.07.43 1.45.55.6.18 1.15.16 1.6.1.48-.08 1.5-.62 1.72-1.2.22-.58.22-1.08.15-1.2-.06-.12-.23-.2-.48-.32z"/>
+          d="M16 3C9.37 3 4 8.37 4 15c0 2.4.7 4.7 1.9 6.7L4 29l7.5-1.9c1.9 1 4.1 1.6 6.5 1.6
+          6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-2.2 0-4.2-.6-5.9-1.7l-.4-.2-4.4 1.1
+          1.2-4.3-.2-.4C5.6 18.9 5 17 5 15 5 9.9 9.9 5 16 5s11 4.9 11 10-4.9 10-11 10z"/>
+
+        <!-- WhatsApp Phone Symbol -->
+        <path fill="white"
+          d="M19.11 17.19c-.27-.14-1.6-.79-1.85-.88-.25-.09-.44-.14-.62.14-.18.27-.71.88-.87
+          1.06-.16.18-.32.2-.59.07-.27-.14-1.14-.42-2.18-1.35-.81-.72-1.35-1.6-1.51-1.87
+          -.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.46.09-.18.04-.35
+          -.02-.48-.07-.14-.62-1.51-.85-2.07-.22-.53-.44-.46-.62-.46h-.53c-.18 0-.48.07-.73.35
+          -.25.27-.95.95-.95 2.32s.97 2.7 1.11 2.88c.14.18 1.95 2.97 4.71 4.16.65.28 1.16.46
+          1.56.6.65.2 1.25.18 1.74.11.52-.09 1.62-.67 1.85-1.3.23-.62.23-1.16.16-1.3
+          -.07-.14-.25-.21-.53-.35z"/>
       </svg>
     `;
 
@@ -850,11 +864,9 @@ document.addEventListener("DOMContentLoaded", () => {
     ========================================= */
 
     setTimeout(() => {
-
       document.querySelectorAll(".win_close, .siqico-close").forEach(btn => {
         btn.style.display = "none";
       });
-
     }, 1400);
 
 
@@ -865,11 +877,9 @@ document.addEventListener("DOMContentLoaded", () => {
     let xBtn = document.querySelector(".zoho-custom-close");
 
     if (!xBtn) {
-
       xBtn = document.createElement("div");
       xBtn.className = "zoho-custom-close";
       xBtn.innerHTML = "✕";
-
       document.body.appendChild(xBtn);
     }
 
@@ -907,7 +917,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       }, 220);
     });
-
   }
 
 
