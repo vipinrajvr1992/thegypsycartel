@@ -745,146 +745,192 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 });
 /* =========================================================
-   ✅ GYPSY CARTEL — FLOATING CHAT ENGINE (FINAL MASTER LOCK)
+   ✅ GYPSY CARTEL — FLOATING CHAT ENGINE (CONTROL DOCK V1)
 
-   FIXED FOREVER:
-   ✅ WhatsApp Official Icon = REAL ORIGINAL LOGO
-   ✅ Tooltip Works Properly
-   ✅ Zoho Compact Box Always
-   ✅ Mobile Send Button Never Blocked
-   ✅ Default Close Hidden Fully
-   ✅ Custom Premium X Button Perfect
-   ✅ Floating Icons Hide When Chat Opens
-   ✅ Observer Stops After Setup (No Loop)
+   UPDATES:
+   ✅ NEW "Control Dock" at TOP of screen (Safe from keyboard)
+   ✅ 3 Buttons: Minimize (-), Full Screen (⛶), Close (X)
+   ✅ Mobile & Desktop Compatible
+   ✅ WhatsApp Icon: Official SVG
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* =========================================
-     ✅ 1. WHATSAPP FLOAT BUTTON (ONLY ONCE)
-  ========================================= */
+    /* =========================================
+       ✅ 1. WHATSAPP FLOAT BUTTON
+    ========================================= */
+    if (!document.querySelector(".whatsapp-float")) {
+        const phoneNumber = "918086604808";
+        const message = "Hi Gypsy Cartel Support 👋";
+        const isDeviceMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        
+        const waLink = isDeviceMobile
+            ? `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`
+            : `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
-  if (!document.querySelector(".whatsapp-float")) {
+        const waBtn = document.createElement("a");
+        waBtn.className = "whatsapp-float";
+        waBtn.href = waLink;
+        waBtn.target = "_blank";
+        waBtn.rel = "noopener noreferrer";
+        waBtn.setAttribute("aria-label", "Connect Now");
 
-    const phoneNumber = "918086604808";
-    const message = "Hi Gypsy Cartel Support 👋";
-
-    const isMobile =
-      /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-
-    const waLink = isMobile
-      ? `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`
-      : `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
-
-    const waBtn = document.createElement("a");
-    waBtn.className = "whatsapp-float";
-    waBtn.href = waLink;
-    waBtn.target = "_blank";
-    waBtn.rel = "noopener noreferrer";
-
-    /* ✅ Tooltip */
-    waBtn.setAttribute("aria-label", "Connect Now");
-
-    /* ✅ Hard Size Lock */
-    waBtn.style.width = "58px";
-    waBtn.style.height = "58px";
-
-    /* ✅ REAL OFFICIAL WHATSAPP LOGO — PERFECT */
-    /* Updated to the clean official vector (viewBox 0 0 16 16) */
-    waBtn.innerHTML = `
-      <svg xmlns="http://www.w3.org/2000/svg"
-           viewBox="0 0 16 16"
-           width="35"
-           height="35"
-           fill="white"
-           style="display:block; margin: auto; padding-top: 0px;">
-        <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
-      </svg>
-    `;
-
-    /* ✅ IMPORTANT: ADD BUTTON TO PAGE */
-    document.body.appendChild(waBtn);
-  }
-
-
-  /* =========================================
-     ✅ 2. ZOHO FINAL ENGINE (LOCKED)
-  ========================================= */
-
-  function setupZohoFinal() {
-
-    const zohoBtn = document.getElementById("zsiq_float");
-    const iframe = document.getElementById("siqiframe");
-
-    if (!zohoBtn || !iframe) return;
-    if (zohoBtn.dataset.locked === "true") return;
-
-    zohoBtn.dataset.locked = "true";
-
-    console.log("Zoho Fully Locked ✅");
-
-    /* ✅ Compact Box */
-    iframe.style.setProperty("width", "340px", "important");
-    iframe.style.setProperty("height", "480px", "important");
-    iframe.style.setProperty("border-radius", "18px", "important");
-    iframe.style.setProperty("overflow", "hidden", "important");
-
-    /* ✅ Mobile Safe */
-    if (window.innerWidth <= 768) {
-      iframe.style.setProperty("width", "92vw", "important");
-      iframe.style.setProperty("max-width", "380px", "important");
-      iframe.style.setProperty("bottom", "110px", "important");
-      iframe.style.setProperty("right", "14px", "important");
+        /* Hard Size Lock */
+        waBtn.style.width = "58px";
+        waBtn.style.height = "58px";
+        
+        /* Official WhatsApp Icon */
+        waBtn.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="35" height="35" fill="white" style="display:block; margin: auto; padding-top: 0px;">
+          <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+        </svg>`;
+        document.body.appendChild(waBtn);
     }
 
-    /* ✅ Hide Default Close */
-    setTimeout(() => {
-      document.querySelectorAll(".win_close, .siqico-close")
-        .forEach(btn => btn.style.display = "none");
-    }, 1200);
+    /* =========================================
+       ✅ 2. ZOHO CHAT ENGINE & CONTROL DOCK
+    ========================================= */
+    function setupZohoFinal() {
+        const zohoBtn = document.getElementById("zsiq_float");
+        const iframe = document.getElementById("siqiframe");
 
-    /* ✅ Custom Close Button */
-    let xBtn = document.querySelector(".zoho-custom-close");
+        if (!zohoBtn || !iframe) return;
+        if (zohoBtn.dataset.locked === "true") return;
 
-    if (!xBtn) {
-      xBtn = document.createElement("div");
-      xBtn.className = "zoho-custom-close";
-      xBtn.innerHTML = "✕";
-      document.body.appendChild(xBtn);
+        zohoBtn.dataset.locked = "true";
+        console.log("Zoho Fully Locked with Control Dock ✅");
+
+        /* --- IFRAME SETUP --- */
+        iframe.style.setProperty("border-radius", "18px", "important");
+        iframe.style.setProperty("overflow", "hidden", "important");
+
+        // Inject Styles for Dock (So you don't need CSS file)
+        const style = document.createElement('style');
+        style.innerHTML = `
+          .win_close, .siqico-close { display: none !important; }
+          .zoho-control-dock {
+              position: fixed;
+              top: 15px; 
+              right: 15px;
+              z-index: 2147483647; /* Maximum Layer */
+              background: #000;
+              border-radius: 50px;
+              display: none; /* Hidden by default */
+              align-items: center;
+              padding: 8px 18px;
+              gap: 20px;
+              box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+          }
+          .zoho-control-btn {
+              color: white;
+              font-size: 20px;
+              cursor: pointer;
+              font-family: sans-serif;
+              font-weight: bold;
+              line-height: 1;
+              user-select: none;
+              transition: opacity 0.2s;
+          }
+          .zoho-control-btn:hover { opacity: 0.7; }
+        `;
+        document.head.appendChild(style);
+
+
+        /* --- CREATE CONTROL DOCK (3 BUTTONS) --- */
+        let dock = document.createElement("div");
+        dock.className = "zoho-control-dock";
+        dock.innerHTML = `
+          <div class="zoho-control-btn" id="zoho-min" title="Minimize">−</div>
+          <div class="zoho-control-btn" id="zoho-full" title="Full Screen">⛶</div>
+          <div class="zoho-control-btn" id="zoho-close" title="Close">✕</div>
+        `;
+        document.body.appendChild(dock);
+
+        /* --- BUTTON LOGIC --- */
+        const btnMin = document.getElementById("zoho-min");
+        const btnFull = document.getElementById("zoho-full");
+        const btnClose = document.getElementById("zoho-close");
+
+        // Helper: Close Chat
+        const closeChat = () => {
+            iframe.style.display = "none";
+            dock.style.display = "none";
+            document.body.classList.remove("siq-open");
+        };
+
+        // 1. MINIMIZE
+        btnMin.onclick = closeChat;
+
+        // 2. CLOSE
+        btnClose.onclick = closeChat;
+
+        // 3. FULL SCREEN (Toggle)
+        let isFull = false;
+        btnFull.onclick = () => {
+            isFull = !isFull;
+            if (isFull) {
+                iframe.style.setProperty("width", "100%", "important");
+                iframe.style.setProperty("height", "100%", "important");
+                iframe.style.setProperty("top", "0", "important");
+                iframe.style.setProperty("left", "0", "important");
+                iframe.style.setProperty("right", "0", "important");
+                iframe.style.setProperty("bottom", "0", "important");
+                iframe.style.setProperty("border-radius", "0", "important");
+            } else {
+                // Reset to default
+                applyResponsiveStyles();
+            }
+        };
+
+        /* --- RESPONSIVE STYLES --- */
+        function applyResponsiveStyles() {
+            if (window.innerWidth <= 768) {
+                // Mobile: Default to full screen but leave top space for dock
+                iframe.style.setProperty("width", "100%", "important");
+                iframe.style.setProperty("height", "100%", "important");
+                iframe.style.setProperty("top", "0px", "important");
+                iframe.style.setProperty("left", "0px", "important");
+                iframe.style.setProperty("right", "0px", "important");
+                iframe.style.setProperty("bottom", "0px", "important");
+                iframe.style.setProperty("border-radius", "0px", "important");
+            } else {
+                // Desktop: Compact Box
+                iframe.style.setProperty("width", "340px", "important");
+                iframe.style.setProperty("height", "480px", "important");
+                iframe.style.setProperty("bottom", "100px", "important");
+                iframe.style.setProperty("right", "20px", "important");
+                iframe.style.setProperty("top", "auto", "important");
+                iframe.style.setProperty("left", "auto", "important");
+                iframe.style.setProperty("border-radius", "18px", "important");
+            }
+        }
+
+        applyResponsiveStyles(); // Apply on load
+
+        /* --- OPEN EVENTS --- */
+        zohoBtn.addEventListener("click", () => {
+            iframe.style.display = "block";
+            dock.style.display = "flex"; // Show Control Dock
+            document.body.classList.add("siq-open");
+            applyResponsiveStyles();
+        });
+
     }
 
-    /* ✅ Open Chat */
-    zohoBtn.addEventListener("click", () => {
-      iframe.style.display = "block";
-      xBtn.style.display = "flex";
-      document.body.classList.add("siq-open");
+    /* =========================================
+       ✅ 3. OBSERVER
+    ========================================= */
+    const observer = new MutationObserver(() => {
+        setupZohoFinal();
+        if (document.getElementById("zsiq_float")?.dataset.locked === "true") {
+            observer.disconnect();
+            console.log("Observer Stopped Forever ✅");
+        }
     });
 
-    /* ✅ Close Chat */
-    xBtn.addEventListener("click", () => {
-      iframe.style.display = "none";
-      xBtn.style.display = "none";
-      document.body.classList.remove("siq-open");
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
     });
-  }
-
-
-  /* =========================================
-     ✅ 3. OBSERVER (STOPS FOREVER)
-  ========================================= */
-
-  const observer = new MutationObserver(() => {
-    setupZohoFinal();
-
-    if (document.getElementById("zsiq_float")?.dataset.locked === "true") {
-      observer.disconnect();
-      console.log("Observer Stopped Forever ✅");
-    }
-  });
-
-  observer.observe(document.body, {
-    childList: true,
-    subtree: true
-  });
 
 });
