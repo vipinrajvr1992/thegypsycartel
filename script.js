@@ -783,11 +783,11 @@ document.addEventListener("DOMContentLoaded", () => {
     waBtn.target = "_blank";
     waBtn.rel = "noopener noreferrer";
 
-    /* ✅ ONLY Size Lock (CSS Handles Everything Else) */
+    /* ✅ HARD SIZE LOCK (CSS DOES REST) */
     waBtn.style.width = "58px";
     waBtn.style.height = "58px";
 
-    /* ✅ OFFICIAL WHATSAPP ICON (NO GREEN BACKGROUND PATH) */
+    /* ✅ OFFICIAL WHATSAPP ICON (WHITE ONLY) */
     waBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg"
            viewBox="0 0 32 32"
@@ -802,7 +802,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     ✅ 2. ZOHO FINAL ENGINE (LOCKED)
+     ✅ 2. ZOHO FINAL ENGINE (LOCKED FOREVER)
   ========================================= */
 
   function setupZohoFinal() {
@@ -812,7 +812,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!zohoBtn || !iframe) return;
 
-    /* ✅ Setup Only Once */
+    /* ✅ Run Only Once */
     if (zohoBtn.dataset.locked === "true") return;
     zohoBtn.dataset.locked = "true";
 
@@ -846,67 +846,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       ✅ HIDE DEFAULT ZOHO CLOSE BUTTON
+       ✅ HIDE DEFAULT ZOHO CLOSE FULLY
     ========================================= */
 
     setTimeout(() => {
 
-      const closeBtn =
-        document.querySelector(".win_close") ||
-        document.querySelector(".siqico-close");
+      document.querySelectorAll(".win_close, .siqico-close").forEach(btn => {
+        btn.style.display = "none";
+      });
 
-      if (closeBtn) closeBtn.style.display = "none";
-
-    }, 1200);
+    }, 1400);
 
 
     /* =========================================
-       ✅ CUSTOM PREMIUM CLOSE BUTTON (CSS CONTROLLED)
+       ✅ CUSTOM PREMIUM CLOSE BUTTON
     ========================================= */
 
-    if (!document.querySelector(".zoho-custom-close")) {
+    let xBtn = document.querySelector(".zoho-custom-close");
 
-      const xBtn = document.createElement("div");
+    if (!xBtn) {
+
+      xBtn = document.createElement("div");
       xBtn.className = "zoho-custom-close";
       xBtn.innerHTML = "✕";
 
-      /* ✅ NO POSITION HERE → CSS HANDLES PERFECT ALIGNMENT */
       document.body.appendChild(xBtn);
-
-
-      /* ✅ OPEN CHAT */
-      zohoBtn.addEventListener("click", () => {
-
-        iframe.style.display = "block";
-        iframe.style.opacity = "1";
-
-        xBtn.style.display = "flex";
-
-        /* Hide floating icons */
-        document.body.classList.add("siq-open");
-      });
-
-
-      /* ✅ CLOSE CHAT */
-      xBtn.addEventListener("click", () => {
-
-        iframe.style.opacity = "0";
-
-        setTimeout(() => {
-
-          iframe.style.display = "none";
-          xBtn.style.display = "none";
-
-          document.body.classList.remove("siq-open");
-
-        }, 220);
-      });
     }
+
+
+    /* =========================================
+       ✅ OPEN CHAT (SHOW X + HIDE FLOATS)
+    ========================================= */
+
+    zohoBtn.addEventListener("click", () => {
+
+      iframe.style.display = "block";
+      iframe.style.opacity = "1";
+
+      xBtn.style.display = "flex";
+
+      /* Hide floating icons */
+      document.body.classList.add("siq-open");
+    });
+
+
+    /* =========================================
+       ✅ CLOSE CHAT (HIDE X + SHOW FLOATS)
+    ========================================= */
+
+    xBtn.addEventListener("click", () => {
+
+      iframe.style.opacity = "0";
+
+      setTimeout(() => {
+
+        iframe.style.display = "none";
+        xBtn.style.display = "none";
+
+        document.body.classList.remove("siq-open");
+
+      }, 220);
+    });
+
   }
 
 
   /* =========================================
-     ✅ OBSERVER (RUNS ONCE THEN STOPS)
+     ✅ 3. OBSERVER (RUN UNTIL READY → STOP)
   ========================================= */
 
   const observer = new MutationObserver(() => {
@@ -915,6 +921,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const zohoBtn = document.getElementById("zsiq_float");
 
+    /* ✅ Stop Observer Forever After Lock */
     if (zohoBtn?.dataset.locked === "true") {
       observer.disconnect();
       console.log("Observer Stopped Forever ✅");
