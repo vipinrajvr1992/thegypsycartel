@@ -782,54 +782,56 @@ document.addEventListener("DOMContentLoaded", () => {
     waBtn.target = "_blank";
     waBtn.rel = "noopener noreferrer";
 
-    /* ✅ Tooltip Text */
+    /* ✅ Tooltip */
     waBtn.setAttribute("aria-label", "Connect Now");
 
     /* ✅ Hard Size Lock */
     waBtn.style.width = "58px";
     waBtn.style.height = "58px";
 
-/* ✅ REAL OFFICIAL WHATSAPP LOGO — 100% MATCH */
-waBtn.innerHTML = `
-  <svg xmlns="http://www.w3.org/2000/svg"
-       viewBox="0 0 448 512"
-       width="30"
-       height="30"
-       aria-hidden="true"
-       style="display:block;">
+    /* ✅ REAL OFFICIAL WHATSAPP LOGO — PERFECT */
+    waBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 448 512"
+           width="30"
+           height="30"
+           style="display:block;">
+        <path fill="white"
+          d="M380.9 97.1C339-6.1 215.6-36.6 121.4 5.3
+          27.1 47.3-6.5 168.6 35.4 262.9c14.5 32.6
+          38.5 60.6 69.2 80.5L32 480l142.2-37.4
+          c96.4 33.4 201.4-15.3 236.7-108.9
+          17.2-45.3 16.4-95.5-2.2-140.9zM224 438.6
+          c-31.3 0-62-8.4-88.8-24.3l-6.4-3.8-84.4
+          22.2 22.5-82.1-4.1-6.7c-54.4-88.6-26.7
+          -203.6 61.9-258 88.6-54.4 203.6-26.7
+          258 61.9 26.2 42.7 33.6 93.6 20.6
+          142.1-23.4 87.6-102.8 148.7-197.3
+          148.7zm101.1-138.6c-5.5-2.7-32.7-16.1
+          -37.8-17.9-5.1-1.9-8.8-2.7-12.5
+          2.7-3.7 5.5-14.4 17.9-17.7 21.6
+          -3.3 3.7-6.6 4.1-12.1 1.4-32.7
+          -16.4-54.1-29.4-75.6-66.5-5.7
+          -9.8 5.7-9.1 16.4-30.3 1.8-3.7
+          .9-6.8-.5-9.5-1.4-2.7-12.5-30.2
+          -17.1-41.3-4.6-11.1-9.3-9.6-12.5
+          -9.8h-10.7c-3.7 0-9.5 1.4-14.4
+          6.8-5 5.5-19 18.6-19 45.3
+          0 26.7 19.5 52.4 22.2 56
+          2.7 3.7 38.3 58.5 92.9 82
+          13 5.6 23.1 8.9 31 11.4
+          13 4.1 24.8 3.5 34.1 2.1
+          10.4-1.6 32.7-13.4 37.3-26.3
+          4.6-12.9 4.6-24 3.2-26.3
+          -1.4-2.3-5.1-3.7-10.6-6.4z"/>
+      </svg>
+    `;
 
-    <!-- Official WhatsApp White Glyph -->
-    <path fill="white"
-      d="M380.9 97.1C339-6.1 215.6-36.6 121.4 5.3
-      27.1 47.3-6.5 168.6 35.4 262.9c14.5 32.6
-      38.5 60.6 69.2 80.5L32 480l142.2-37.4
-      c96.4 33.4 201.4-15.3 236.7-108.9
-      17.2-45.3 16.4-95.5-2.2-140.9zM224 438.6
-      c-31.3 0-62-8.4-88.8-24.3l-6.4-3.8-84.4
-      22.2 22.5-82.1-4.1-6.7c-54.4-88.6-26.7
-      -203.6 61.9-258 88.6-54.4 203.6-26.7
-      258 61.9 26.2 42.7 33.6 93.6 20.6
-      142.1-23.4 87.6-102.8 148.7-197.3
-      148.7zm101.1-138.6c-5.5-2.7-32.7-16.1
-      -37.8-17.9-5.1-1.9-8.8-2.7-12.5
-      2.7-3.7 5.5-14.4 17.9-17.7 21.6
-      -3.3 3.7-6.6 4.1-12.1 1.4-32.7
-      -16.4-54.1-29.4-75.6-66.5-5.7
-      -9.8 5.7-9.1 16.4-30.3 1.8-3.7
-      .9-6.8-.5-9.5-1.4-2.7-12.5-30.2
-      -17.1-41.3-4.6-11.1-9.3-9.6-12.5
-      -9.8h-10.7c-3.7 0-9.5 1.4-14.4
-      6.8-5 5.5-19 18.6-19 45.3
-      0 26.7 19.5 52.4 22.2 56
-      2.7 3.7 38.3 58.5 92.9 82
-      13 5.6 23.1 8.9 31 11.4
-      13 4.1 24.8 3.5 34.1 2.1
-      10.4-1.6 32.7-13.4 37.3-26.3
-      4.6-12.9 4.6-24 3.2-26.3
-      -1.4-2.3-5.1-3.7-10.6-6.4z"/>
-  </svg>
-`;
-     
+    /* ✅ IMPORTANT: ADD BUTTON TO PAGE */
+    document.body.appendChild(waBtn);
+  }
+
+
   /* =========================================
      ✅ 2. ZOHO FINAL ENGINE (LOCKED)
   ========================================= */
@@ -840,8 +842,8 @@ waBtn.innerHTML = `
     const iframe = document.getElementById("siqiframe");
 
     if (!zohoBtn || !iframe) return;
-
     if (zohoBtn.dataset.locked === "true") return;
+
     zohoBtn.dataset.locked = "true";
 
     console.log("Zoho Fully Locked ✅");
@@ -897,14 +899,12 @@ waBtn.innerHTML = `
   ========================================= */
 
   const observer = new MutationObserver(() => {
-
     setupZohoFinal();
 
     if (document.getElementById("zsiq_float")?.dataset.locked === "true") {
       observer.disconnect();
       console.log("Observer Stopped Forever ✅");
     }
-
   });
 
   observer.observe(document.body, {
