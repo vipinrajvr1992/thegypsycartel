@@ -1259,291 +1259,200 @@ img:hover {
   transform: scale(1.035);
   filter: brightness(1.04);
 }
-/* ============================================
-   ✅ GYPSY CARTEL — FLOATING BUTTONS SYSTEM
-   FINAL MASTER LOCK (PRODUCTION READY)
+/* =========================================================
+   ✅ GYPSY CARTEL — FLOATING CHAT ENGINE (FINAL MASTER LOCK)
 
    FIXED:
-   ✅ WhatsApp Icon No Crack
-   ✅ Perfect Circle Always
-   ✅ Same Size Mobile/Desktop
-   ✅ Premium Glow + Pulse
-   ✅ Tooltip Desktop Only
-============================================ */
-
-
-/* ============================================
-   ✅ GLOBAL GPU FIX (MOBILE SAFE)
-============================================ */
-
-#zsiq_float,
-.whatsapp-float {
-  transform: translateZ(0) !important;
-  backface-visibility: hidden !important;
-  -webkit-font-smoothing: antialiased !important;
-  will-change: transform !important;
-}
-
-
-/* ============================================
-   ✅ ZOHO SALESIQ FLOAT BUTTON (BOTTOM)
-============================================ */
-
-#zsiq_float {
-  position: fixed !important;
-  bottom: 22px !important;
-  right: 22px !important;
-
-  width: 58px !important;
-  height: 58px !important;
-  border-radius: 50% !important;
-
-  background: linear-gradient(145deg, #ff6600, #ff3d00) !important;
-
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  z-index: 999998 !important;
-
-  border: 2px solid rgba(255, 255, 255, 0.14) !important;
-  box-shadow: 0 0 26px rgba(255, 102, 0, 0.55) !important;
-
-  cursor: pointer !important;
-  transition: transform 0.25s ease, opacity 0.25s ease !important;
-}
-
-/* Hover Premium */
-#zsiq_float:hover {
-  transform: scale(1.10) !important;
-  opacity: 0.96 !important;
-}
-
-
-/* ============================================
-   ✅ ZOHO TOOLTIP
-============================================ */
-
-#zsiq_float::before {
-  content: "Live Support";
-
-  position: absolute;
-  right: 74px;
-  top: 50%;
-  transform: translateY(-50%);
-
-  background: rgba(15, 15, 15, 0.94);
-  backdrop-filter: blur(14px);
-
-  font-family: "Space Grotesk", "Inter", sans-serif;
-  font-size: 12.5px;
-  font-weight: 700;
-  letter-spacing: 0.7px;
-  text-transform: uppercase;
-
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: 14px;
-
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-
-  box-shadow: 0 0 20px rgba(0,0,0,0.55);
-  transition: all 0.25s ease;
-}
-
-#zsiq_float:hover::before {
-  opacity: 1;
-  transform: translateY(-50%) translateX(-6px);
-}
-
-
-/* ============================================
-   ✅ ZOHO SOFT PULSE GLOW
-============================================ */
-
-#zsiq_float::after {
-  content: "";
-  position: absolute;
-
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-
-  background: rgba(255, 102, 0, 0.22);
-  z-index: -1;
-
-  animation: pulse-ring 2.4s infinite;
-}
-
-
-/* ============================================
-   ✅ WHATSAPP BUTTON (STACKED ABOVE ZOHO)
-============================================ */
-
-.whatsapp-float {
-  position: fixed !important;
-  bottom: 105px !important;
-  right: 22px !important;
-
-  width: 58px !important;
-  height: 58px !important;
-  border-radius: 50% !important;
-
-  background: linear-gradient(145deg, #25d366, #128c7e) !important;
-
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-
-  z-index: 999999 !important;
-
-  border: 2px solid rgba(255, 255, 255, 0.14) !important;
-  box-shadow: 0 0 24px rgba(37, 211, 102, 0.45) !important;
-
-  cursor: pointer !important;
-
-  transition: transform 0.25s ease, opacity 0.25s ease !important;
-
-  /* ✅ FIX: Prevent Edge Cut + Icon Crack */
-  overflow: hidden !important;
-}
-
-/* Hover Premium */
-.whatsapp-float:hover {
-  transform: scale(1.10) !important;
-  opacity: 0.96 !important;
-}
-
-
-/* ============================================
-   ✅ WHATSAPP ICON FIX (NO CRACK EVER)
-============================================ */
-
-.whatsapp-float svg {
-  width: 30px !important;
-  height: 30px !important;
-
-  fill: #fff !important;
-  display: block !important;
-
-  /* ✅ Real Crack Fix */
-  transform: translateZ(0) !important;
-  backface-visibility: hidden !important;
-
-  /* ✅ Prevent Pixel Splitting */
-  shape-rendering: auto !important;
-
-  /* ✅ Chrome Mobile Fix */
-  filter: drop-shadow(0 0 0 transparent) !important;
-
-  -webkit-font-smoothing: antialiased !important;
-}
-
-
-/* ============================================
-   ✅ WHATSAPP TOOLTIP
-============================================ */
-
-.whatsapp-float::before {
-  content: "Connect Now";
-
-  position: absolute;
-  right: 74px;
-  top: 50%;
-  transform: translateY(-50%);
-
-  background: rgba(15, 15, 15, 0.94);
-  backdrop-filter: blur(14px);
-
-  font-family: "Space Grotesk", "Inter", sans-serif;
-  font-size: 12.5px;
-  font-weight: 700;
-  letter-spacing: 0.7px;
-  text-transform: uppercase;
-
-  color: #fff;
-  padding: 10px 16px;
-  border-radius: 14px;
-
-  white-space: nowrap;
-  opacity: 0;
-  pointer-events: none;
-
-  box-shadow: 0 0 20px rgba(0,0,0,0.55);
-  transition: all 0.25s ease;
-}
-
-.whatsapp-float:hover::before {
-  opacity: 1;
-  transform: translateY(-50%) translateX(-6px);
-}
-
-
-/* ============================================
-   ✅ WHATSAPP SOFT PULSE
-============================================ */
-
-.whatsapp-float::after {
-  content: "";
-  position: absolute;
-
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-
-  background: rgba(37, 211, 102, 0.22);
-  z-index: -1;
-
-  animation: pulse-ring 2.4s infinite;
-}
-
-
-/* ============================================
-   ✅ SHARED PULSE ANIMATION
-============================================ */
-
-@keyframes pulse-ring {
-  0%   { transform: scale(1); opacity: 0.55; }
-  100% { transform: scale(1.75); opacity: 0; }
-}
-
-
-/* ============================================
-   ✅ MOBILE SAFE MODE (LOCKED PERFECT)
-============================================ */
-
-@media (max-width: 768px) {
-
-  /* SAME SIZE BOTH */
-  #zsiq_float,
-  .whatsapp-float {
-    width: 54px !important;
-    height: 54px !important;
+   ✅ WhatsApp Perfect Official Icon
+   ✅ Zoho Chat Compact Box Always
+   ✅ Mobile Send Button Never Blocked
+   ✅ Default Zoho Close Hidden
+   ✅ Custom Premium X Button (Top Corner)
+   ✅ Tap X → Close Smooth Properly
+   ✅ Tooltip Desktop Only (CSS Controlled)
+   ✅ Observer Stops After Setup (No Loop)
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* =========================================
+     ✅ 1. WHATSAPP FLOAT BUTTON (ONLY ONCE)
+  ========================================= */
+
+  if (!document.querySelector(".whatsapp-float")) {
+
+    const phoneNumber = "918086604808";
+    const message = "Hi Gypsy Cartel Support 👋";
+
+    const isMobile =
+      /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    const waLink = isMobile
+      ? `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`
+      : `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+    const waBtn = document.createElement("a");
+    waBtn.className = "whatsapp-float";
+    waBtn.href = waLink;
+    waBtn.target = "_blank";
+    waBtn.rel = "noopener noreferrer";
+
+    /* Official WhatsApp SVG */
+    waBtn.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg"
+           viewBox="0 0 32 32">
+        <path fill="white"
+          d="M20.5 18.8c-.25-.13-1.5-.74-1.73-.82-.23-.08-.4-.13-.58.13-.17.25-.66.82-.8 1-.15.17-.3.2-.55.07-.25-.13-1.06-.39-2.02-1.25-.75-.66-1.25-1.48-1.4-1.73-.15-.25-.02-.39.1-.52.12-.12.25-.3.38-.44.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.44-.07-.13-.58-1.4-.8-1.92-.2-.5-.4-.43-.58-.44h-.5c-.17 0-.44.07-.67.32-.23.25-.88.88-.88 2.15s.9 2.5 1.03 2.67c.13.17 1.8 2.74 4.35 3.85.6.26 1.07.43 1.45.55.6.18 1.15.16 1.6.1.48-.08 1.5-.62 1.72-1.2.22-.58.22-1.08.15-1.2-.06-.12-.23-.2-.48-.32z"/>
+      </svg>
+    `;
+
+    document.body.appendChild(waBtn);
   }
 
-  /* Zoho Bottom */
-  #zsiq_float {
-    bottom: 16px !important;
-    right: 16px !important;
+
+  /* =========================================
+     ✅ 2. ZOHO SALESIQ FINAL COMPACT ENGINE
+  ========================================= */
+
+  function setupZohoFinal() {
+
+    const zohoBtn = document.getElementById("zsiq_float");
+    const iframe = document.getElementById("siqiframe");
+
+    if (!zohoBtn || !iframe) return;
+
+    /* ✅ Setup Only Once */
+    if (zohoBtn.dataset.locked === "true") return;
+    zohoBtn.dataset.locked = "true";
+
+    console.log("Zoho Setup Locked ✅");
+
+
+    /* =========================================
+       ✅ FORCE COMPACT CHAT SIZE (ALL DEVICES)
+    ========================================= */
+
+    iframe.style.setProperty("width", "340px", "important");
+    iframe.style.setProperty("height", "480px", "important");
+    iframe.style.setProperty("border-radius", "18px", "important");
+    iframe.style.setProperty("overflow", "hidden", "important");
+    iframe.style.setProperty("z-index", "999999", "important");
+
+
+    /* =========================================
+       ✅ MOBILE SAFE POSITION (SEND BUTTON SAFE)
+    ========================================= */
+
+    if (window.innerWidth <= 768) {
+
+      iframe.style.setProperty("width", "94vw", "important");
+      iframe.style.setProperty("max-width", "380px", "important");
+
+      iframe.style.setProperty("position", "fixed", "important");
+      iframe.style.setProperty("bottom", "110px", "important");
+      iframe.style.setProperty("right", "14px", "important");
+    }
+
+
+    /* =========================================
+       ✅ HIDE DEFAULT ZOHO CLOSE BUTTON
+    ========================================= */
+
+    setTimeout(() => {
+
+      const closeBtn =
+        document.querySelector(".win_close") ||
+        document.querySelector(".siqico-close");
+
+      if (closeBtn) closeBtn.style.display = "none";
+
+    }, 1400);
+
+
+    /* =========================================
+       ✅ CUSTOM PREMIUM CLOSE X BUTTON
+    ========================================= */
+
+    if (!document.querySelector(".zoho-custom-close")) {
+
+      const xBtn = document.createElement("div");
+      xBtn.className = "zoho-custom-close";
+      xBtn.innerHTML = "✕";
+
+      xBtn.style.cssText = `
+        position: fixed;
+        top: 18px;
+        right: 18px;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(15,15,15,0.72);
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999999;
+        cursor: pointer;
+        backdrop-filter: blur(12px);
+        transition: transform 0.25s ease;
+      `;
+
+      document.body.appendChild(xBtn);
+
+
+      /* Hover Effect */
+      xBtn.addEventListener("mouseenter", () => {
+        xBtn.style.transform = "scale(1.08)";
+      });
+
+      xBtn.addEventListener("mouseleave", () => {
+        xBtn.style.transform = "scale(1)";
+      });
+
+
+      /* ✅ Tap X → Close Chat Smooth */
+      xBtn.addEventListener("click", () => {
+        iframe.style.opacity = "0";
+
+        setTimeout(() => {
+          iframe.style.display = "none";
+          xBtn.style.display = "none";
+        }, 200);
+      });
+
+
+      /* ✅ Zoho Button Click → Open Chat + Show X */
+      zohoBtn.addEventListener("click", () => {
+        iframe.style.display = "block";
+        iframe.style.opacity = "1";
+        xBtn.style.display = "flex";
+      });
+    }
   }
 
-  /* WhatsApp Above */
-  .whatsapp-float {
-    bottom: 88px !important;
-    right: 16px !important;
-  }
 
-  /* Tooltips OFF Mobile */
-  #zsiq_float::before,
-  .whatsapp-float::before {
-    display: none !important;
-  }
+  /* =========================================
+     ✅ OBSERVER RUNS ONLY UNTIL READY
+  ========================================= */
 
-  /* Pulse OFF Mobile */
-  #zsiq_float::after,
-  .whatsapp-float::after {
-    animation: none !important;
-  }
-}
+  const observer = new MutationObserver(() => {
+
+    setupZohoFinal();
+
+    /* ✅ Stop Observer After Lock */
+    const zohoBtn = document.getElementById("zsiq_float");
+    if (zohoBtn?.dataset.locked === "true") {
+      observer.disconnect();
+      console.log("Observer Fully Stopped ✅");
+    }
+
+  });
+
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true
+  });
+
+});
