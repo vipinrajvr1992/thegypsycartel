@@ -747,13 +747,16 @@ document.addEventListener("DOMContentLoaded", () => {
 /* =========================================================
    ✅ GYPSY CARTEL — FLOATING CHAT ENGINE (FINAL MASTER LOCK)
 
+/* =========================================================
+   ✅ GYPSY CARTEL — FLOATING CHAT ENGINE (FINAL MASTER LOCK)
+
    FIXED FOREVER:
-   ✅ WhatsApp Size Never Breaks (Hard Lock)
-   ✅ WhatsApp Official Icon Perfect Center (NO GREEN BUG)
-   ✅ Zoho Compact Small Box Always
+   ✅ WhatsApp Official Icon PERFECT (Real Logo)
+   ✅ No Green Bug / No Wrong Shape
+   ✅ Zoho Compact Box Always
    ✅ Mobile Send Button Never Blocked
-   ✅ Zoho Default Close Hidden Fully
-   ✅ Custom Premium X Button (CSS Controlled Position)
+   ✅ Default Close Hidden Fully
+   ✅ Custom Premium X Button (CSS Controlled)
    ✅ Floating Icons Hide When Chat Opens
    ✅ Tap X → Closes Smooth + Proper
    ✅ Observer Stops After Setup (No Loop)
@@ -783,31 +786,30 @@ document.addEventListener("DOMContentLoaded", () => {
     waBtn.target = "_blank";
     waBtn.rel = "noopener noreferrer";
 
-    /* ✅ HARD SIZE LOCK (CSS DOES REST) */
+    /* ✅ Hard Size Lock */
     waBtn.style.width = "58px";
     waBtn.style.height = "58px";
 
-    /* ✅ OFFICIAL WHATSAPP ICON (FULL WHITE LOGO FIXED) */
+    /* ✅ REAL OFFICIAL WHATSAPP ICON (PERFECT) */
     waBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg"
            viewBox="0 0 32 32"
            style="width:30px;height:30px;display:block;">
-
-        <!-- WhatsApp Bubble -->
         <path fill="white"
-          d="M16 3C9.37 3 4 8.37 4 15c0 2.4.7 4.7 1.9 6.7L4 29l7.5-1.9c1.9 1 4.1 1.6 6.5 1.6
-          6.63 0 12-5.37 12-12S22.63 3 16 3zm0 22c-2.2 0-4.2-.6-5.9-1.7l-.4-.2-4.4 1.1
-          1.2-4.3-.2-.4C5.6 18.9 5 17 5 15 5 9.9 9.9 5 16 5s11 4.9 11 10-4.9 10-11 10z"/>
-
-        <!-- WhatsApp Phone Symbol -->
-        <path fill="white"
-          d="M19.11 17.19c-.27-.14-1.6-.79-1.85-.88-.25-.09-.44-.14-.62.14-.18.27-.71.88-.87
-          1.06-.16.18-.32.2-.59.07-.27-.14-1.14-.42-2.18-1.35-.81-.72-1.35-1.6-1.51-1.87
-          -.16-.27-.02-.42.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.46.09-.18.04-.35
-          -.02-.48-.07-.14-.62-1.51-.85-2.07-.22-.53-.44-.46-.62-.46h-.53c-.18 0-.48.07-.73.35
-          -.25.27-.95.95-.95 2.32s.97 2.7 1.11 2.88c.14.18 1.95 2.97 4.71 4.16.65.28 1.16.46
-          1.56.6.65.2 1.25.18 1.74.11.52-.09 1.62-.67 1.85-1.3.23-.62.23-1.16.16-1.3
-          -.07-.14-.25-.21-.53-.35z"/>
+          d="M16.04 2C8.84 2 3 7.82 3 15.02c0 2.65.7 5.13 1.92 7.3L3 30l7.9-2.07
+          c2.1 1.15 4.5 1.8 7.14 1.8C25.2 29.73 31 23.9 31 16.7
+          31 9.5 25.2 2 16.04 2zm7.5 20.35c-.32.9-1.58 1.67-2.18 1.77
+          -.56.1-1.27.14-2.05-.13-.48-.16-1.1-.36-1.9-.7
+          -3.35-1.44-5.54-4.96-5.71-5.18-.17-.22-1.36-1.82-1.36-3.47
+          0-1.65.87-2.46 1.18-2.8.31-.34.67-.42.9-.42
+          .22 0 .45 0 .64.01.2.01.46-.08.72.55
+          .27.65.9 2.25.98 2.41.08.16.13.34.03.56
+          -.1.22-.15.34-.3.52-.15.18-.31.4-.45.54
+          -.15.15-.3.32-.13.62.17.3.75 1.23 1.6 2
+          1.1 1 2.03 1.3 2.33 1.45.3.15.48.13.66-.08
+          .18-.2.75-.88.95-1.18.2-.3.4-.25.67-.15
+          .27.1 1.7.8 2 1 .3.2.5.3.57.47
+          .07.17.07.98-.25 1.88z"/>
       </svg>
     `;
 
@@ -816,7 +818,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     ✅ 2. ZOHO FINAL ENGINE (LOCKED FOREVER)
+     ✅ 2. ZOHO FINAL ENGINE (LOCKED)
   ========================================= */
 
   function setupZohoFinal() {
@@ -833,10 +835,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Zoho Fully Locked ✅");
 
 
-    /* =========================================
-       ✅ COMPACT CHAT BOX ALWAYS
-    ========================================= */
-
+    /* ✅ Compact Chat Box */
     iframe.style.setProperty("width", "340px", "important");
     iframe.style.setProperty("height", "480px", "important");
     iframe.style.setProperty("border-radius", "18px", "important");
@@ -844,10 +843,7 @@ document.addEventListener("DOMContentLoaded", () => {
     iframe.style.setProperty("z-index", "999999", "important");
 
 
-    /* =========================================
-       ✅ MOBILE SAFE POSITION (SEND SAFE)
-    ========================================= */
-
+    /* ✅ Mobile Safe Position */
     if (window.innerWidth <= 768) {
 
       iframe.style.setProperty("width", "92vw", "important");
@@ -859,10 +855,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       ✅ HIDE DEFAULT ZOHO CLOSE FULLY
-    ========================================= */
-
+    /* ✅ Hide Default Close */
     setTimeout(() => {
       document.querySelectorAll(".win_close, .siqico-close").forEach(btn => {
         btn.style.display = "none";
@@ -870,10 +863,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1400);
 
 
-    /* =========================================
-       ✅ CUSTOM PREMIUM CLOSE BUTTON
-    ========================================= */
-
+    /* ✅ Custom Premium Close Button */
     let xBtn = document.querySelector(".zoho-custom-close");
 
     if (!xBtn) {
@@ -884,10 +874,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       ✅ OPEN CHAT (SHOW X + HIDE FLOATS)
-    ========================================= */
-
+    /* ✅ Open Chat */
     zohoBtn.addEventListener("click", () => {
 
       iframe.style.display = "block";
@@ -895,15 +882,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       xBtn.style.display = "flex";
 
-      /* Hide floating icons */
       document.body.classList.add("siq-open");
     });
 
 
-    /* =========================================
-       ✅ CLOSE CHAT (HIDE X + SHOW FLOATS)
-    ========================================= */
-
+    /* ✅ Close Chat */
     xBtn.addEventListener("click", () => {
 
       iframe.style.opacity = "0";
@@ -921,7 +904,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
   /* =========================================
-     ✅ 3. OBSERVER (RUN UNTIL READY → STOP)
+     ✅ 3. OBSERVER (RUN ONCE THEN STOP)
   ========================================= */
 
   const observer = new MutationObserver(() => {
@@ -930,7 +913,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const zohoBtn = document.getElementById("zsiq_float");
 
-    /* ✅ Stop Observer Forever After Lock */
     if (zohoBtn?.dataset.locked === "true") {
       observer.disconnect();
       console.log("Observer Stopped Forever ✅");
