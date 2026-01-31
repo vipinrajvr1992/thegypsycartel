@@ -748,21 +748,23 @@ document.addEventListener("DOMContentLoaded", () => {
    ✅ GYPSY CARTEL — FLOATING CHAT ENGINE (SMART POSITIONING)
 
    FIXES:
+   ✅ MOBILE: Zoho Chat & Control Dock COMPLETELY REMOVED
+   ✅ MOBILE: WhatsApp remains as the only support option
    ✅ Desktop: Chat Box = Mobile Size (340px x 480px)
    ✅ Desktop: Close Button = Attached to Top-Right of Chat Box
-   ✅ Mobile: Close Button = Safe at Top-Right of Screen
    ✅ Click Events: 100% Fixed (Delegation)
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
 
+    const isDeviceMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
     /* =========================================
-       ✅ 1. WHATSAPP FLOAT BUTTON
+        ✅ 1. WHATSAPP FLOAT BUTTON
     ========================================= */
     if (!document.querySelector(".whatsapp-float")) {
         const phoneNumber = "918086604808";
         const message = "Hi Gypsy Cartel Support 👋";
-        const isDeviceMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
         
         const waLink = isDeviceMobile
             ? `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`
@@ -786,9 +788,9 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* =========================================
-       ✅ 2. CREATE CONTROL DOCK (Top Right)
+        ✅ 2. CREATE CONTROL DOCK (DESKTOP ONLY)
     ========================================= */
-    if (!document.querySelector(".zoho-control-dock")) {
+    if (!isDeviceMobile && !document.querySelector(".zoho-control-dock")) {
         const style = document.createElement('style');
         style.innerHTML = `
           .zoho-control-dock {
@@ -831,54 +833,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* =========================================
-       ✅ 3. RESPONSIVE POSITIONING (The Magic)
+        ✅ 3. RESPONSIVE POSITIONING (PC ONLY)
     ========================================= */
     function applyResponsiveStyles(iframe, dock) {
-        if (!iframe) return;
+        if (!iframe || isDeviceMobile) return;
         if (!dock) dock = document.querySelector(".zoho-control-dock");
 
-        if (window.innerWidth <= 768) {
-            /* --- MOBILE (Safe Top Right) --- */
-            iframe.style.setProperty("width", "100%", "important");
-            iframe.style.setProperty("height", "100%", "important");
-            iframe.style.setProperty("top", "0px", "important");
-            iframe.style.setProperty("left", "0px", "important");
-            iframe.style.setProperty("right", "0px", "important");
-            iframe.style.setProperty("bottom", "0px", "important");
-            iframe.style.setProperty("border-radius", "0px", "important");
+        /* --- DESKTOP (Phone Size Box) --- */
+        iframe.style.setProperty("width", "340px", "important");
+        iframe.style.setProperty("height", "480px", "important");
+        iframe.style.setProperty("bottom", "110px", "important");
+        iframe.style.setProperty("right", "18px", "important");
+        iframe.style.setProperty("top", "auto", "important");
+        iframe.style.setProperty("left", "auto", "important");
+        iframe.style.setProperty("border-radius", "18px", "important");
 
-            // Dock goes to TOP RIGHT of SCREEN
-            if(dock) {
-                dock.style.top = "15px";
-                dock.style.right = "15px";
-                dock.style.bottom = "auto";
-            }
-        } else {
-            /* --- DESKTOP (Phone Size Box) --- */
-            // Box is 340px Width x 480px Height
-            iframe.style.setProperty("width", "340px", "important");
-            iframe.style.setProperty("height", "480px", "important");
-            iframe.style.setProperty("bottom", "110px", "important");
-            iframe.style.setProperty("right", "18px", "important");
-            iframe.style.setProperty("top", "auto", "important");
-            iframe.style.setProperty("left", "auto", "important");
-            iframe.style.setProperty("border-radius", "18px", "important");
-
-            // Dock sticks to TOP RIGHT of CHAT WINDOW
-            // Math: Bottom Gap (110) + Height (480) - Offset (45) = ~545px from bottom
-            if(dock) {
-                dock.style.top = "auto";
-                dock.style.bottom = "545px"; 
-                dock.style.right = "25px"; // Slightly inside the box
-            }
+        if(dock) {
+            dock.style.top = "auto";
+            dock.style.bottom = "545px"; 
+            dock.style.right = "25px";
         }
     }
 
     /* =========================================
-       ✅ 4. CLICK HANDLER (Event Delegation)
+        ✅ 4. CLICK HANDLER (Event Delegation)
     ========================================= */
     let isFull = false;
     document.body.addEventListener("click", function(e) {
+        if (isDeviceMobile) return; // Ignore for mobile
+
         if (e.target.classList.contains("zoho-control-btn")) {
             const action = e.target.getAttribute("data-action");
             const iframe = document.getElementById("siqiframe");
@@ -896,7 +879,6 @@ document.addEventListener("DOMContentLoaded", () => {
             else if (action === "full") {
                 isFull = !isFull;
                 if (isFull) {
-                    // Force Full Screen
                     iframe.style.setProperty("width", "100%", "important");
                     iframe.style.setProperty("height", "100%", "important");
                     iframe.style.setProperty("top", "0", "important");
@@ -905,7 +887,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     iframe.style.setProperty("bottom", "0", "important");
                     iframe.style.setProperty("border-radius", "0", "important");
                     
-                    // Move Dock to Top Corner
                     dock.style.top = "15px";
                     dock.style.right = "15px";
                     dock.style.bottom = "auto";
@@ -917,9 +898,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     /* =========================================
-       ✅ 5. ZOHO INIT
+        ✅ 5. ZOHO INIT (KILL IF MOBILE)
     ========================================= */
     function setupZohoFinal() {
+        if (isDeviceMobile) {
+            // Force hide Zoho elements on mobile if they try to spawn
+            const zohoBtn = document.getElementById("zsiq_float");
+            const iframe = document.getElementById("siqiframe");
+            if (zohoBtn) zohoBtn.style.display = "none";
+            if (iframe) iframe.style.display = "none";
+            return; 
+        }
+
         const zohoBtn = document.getElementById("zsiq_float");
         const iframe = document.getElementById("siqiframe");
 
@@ -927,7 +917,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (zohoBtn.dataset.locked === "true") return;
 
         zohoBtn.dataset.locked = "true";
-        console.log("Zoho Fully Locked ✅");
 
         const hideStyle = document.createElement('style');
         hideStyle.innerHTML = `.win_close, .siqico-close { display: none !important; }`;
@@ -946,8 +935,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const observer = new MutationObserver(() => {
         setupZohoFinal();
-        if (document.getElementById("zsiq_float")?.dataset.locked === "true") {
-            observer.disconnect();
+        if (isDeviceMobile || document.getElementById("zsiq_float")?.dataset.locked === "true") {
+            // Keep observing on mobile to catch Zoho if it loads late, then hide it
+            if(!isDeviceMobile) observer.disconnect();
         }
     });
 
