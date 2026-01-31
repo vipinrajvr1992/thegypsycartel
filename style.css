@@ -1261,23 +1261,16 @@ img:hover {
 }
 /* =========================================================
    ✅ GYPSY CARTEL — FINAL FLOATING SUPPORT SYSTEM (LOCKED)
-
-   FIXED FOREVER:
-   ✅ WhatsApp + Zoho same size always
-   ✅ Both bottom-right only
-   ✅ WhatsApp stacked above Zoho
-   ✅ Same hover + premium animation
-   ✅ Tooltip text only on desktop hover
-   ✅ NO left-side random buttons
-   ✅ Mobile send button never blocked
    
-   ⚠️ NOTE: Close/Minimize buttons are now handled by JS Control Dock
+   FIXED FOR MOBILE:
+   ✅ Zoho REMOVED from Mobile (Fixes close button issue)
+   ✅ WhatsApp moved to bottom position on Mobile
+   ✅ Zoho + WhatsApp active on Desktop (PC)
 ========================================================= */
 
 
 /* =========================================
    ✅ 0. REMOVE ANY DEFAULT WHATSAPP WIDGETS
-   (Stops Left Side Green Bubble Bug)
 ========================================= */
 
 iframe[src*="whatsapp"],
@@ -1316,29 +1309,26 @@ iframe[src*="whatsapp"],
   justify-content: center !important;
 
   cursor: pointer !important;
-
   z-index: 999999 !important;
 
-  transition: transform 0.25s ease,
-              opacity 0.25s ease !important;
-
+  transition: transform 0.25s ease, opacity 0.25s ease !important;
   overflow: visible !important;
-
-  /* ✅ Tooltip Fix */
-  position: fixed !important;
 }
 
 
 /* =========================================
-   ✅ 2. PERFECT STACK POSITION
+   ✅ 2. DESKTOP STACK POSITION (PC)
 ========================================= */
 
-#zsiq_float {
-  bottom: 18px !important;
-}
+@media (min-width: 769px) {
+  #zsiq_float {
+    bottom: 18px !important;
+    display: flex !important; /* Ensure visible on PC */
+  }
 
-.whatsapp-float {
-  bottom: 92px !important;
+  .whatsapp-float {
+    bottom: 92px !important; /* Stacked above Zoho */
+  }
 }
 
 
@@ -1381,50 +1371,35 @@ iframe[src*="whatsapp"],
 
 
 /* =========================================
-   ✅ 6. TOOLTIP TEXT (DESKTOP ONLY FIXED)
+   ✅ 6. TOOLTIP TEXT (DESKTOP ONLY)
 ========================================= */
 
 @media (min-width: 769px) {
-
   #zsiq_float::after,
   .whatsapp-float::after {
-
     position: absolute;
     right: 74px;
     top: 50%;
     transform: translateY(-50%);
-
     background: rgba(15,15,15,0.92);
     backdrop-filter: blur(14px);
-
     font-family: "Space Grotesk", sans-serif;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.7px;
     text-transform: uppercase;
-
     color: #fff;
     padding: 9px 15px;
     border-radius: 14px;
-
     white-space: nowrap;
-
     opacity: 0;
     pointer-events: none;
-
     transition: all 0.25s ease;
   }
 
-  /* Tooltip Text */
-  .whatsapp-float::after {
-    content: "Connect Now";
-  }
+  .whatsapp-float::after { content: "Connect Now"; }
+  #zsiq_float::after { content: "Support Team Here"; }
 
-  #zsiq_float::after {
-    content: "Support Team Here";
-  }
-
-  /* Show Tooltip */
   #zsiq_float:hover::after,
   .whatsapp-float:hover::after {
     opacity: 1;
@@ -1434,28 +1409,28 @@ iframe[src*="whatsapp"],
 
 
 /* =========================================
-   ✅ 7. MOBILE SAFE LOCK
+   ✅ 7. MOBILE LOGIC (ZOHO REMOVAL)
 ========================================= */
 
 @media (max-width: 768px) {
+  /* ❌ TOTALLY REMOVE ZOHO ON MOBILE */
+  #zsiq_float, 
+  .zsiq_floatmain,
+  #zsiq_agtpic {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
 
-  #zsiq_float,
+  /* ✅ MOVE WHATSAPP TO THE BOTTOM CORNER ON MOBILE */
   .whatsapp-float {
     width: 54px !important;
     height: 54px !important;
     right: 16px !important;
-  }
-
-  #zsiq_float {
-    bottom: 16px !important;
-  }
-
-  .whatsapp-float {
-    bottom: 84px !important;
+    bottom: 16px !important; /* Lowered because Zoho is gone */
   }
 
   /* Tooltips OFF */
-  #zsiq_float::after,
   .whatsapp-float::after {
     display: none !important;
   }
