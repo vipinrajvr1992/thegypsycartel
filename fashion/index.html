@@ -69,8 +69,36 @@
     </form>
 </div>
 
-<!-- FOOTER (PARTIAL) -->
+<!-- FOOTER -->
 <div id="site-footer"></div>
+
+<script src="/script.js"></script>
+<!-- ========================================= -->
+<!-- ✅ ZOHO SALESIQ LIVE CHAT (GLOBAL WIDGET) -->
+<!-- MUST BE IN MAIN PAGE, NOT FOOTER PARTIAL -->
+<!-- MUST BE JUST BEFORE </body> -->
+<!-- ========================================= -->
+
+<script>
+  window.$zoho = window.$zoho || {};
+  window.$zoho.salesiq = window.$zoho.salesiq || {
+    ready: function () {
+      console.log("Zoho SalesIQ Loaded ✅");
+    }
+  };
+</script>
+
+<script
+  id="zsiqscript"
+  src="https://salesiq.zohopublic.in/widget?wc=siq4eeed742bf6206b825f62fd2636a33aaf45f7afa471f2e973240f1e459d9034e">
+</script>
+
+<!-- ========================================= -->
+<!-- ✅ END ZOHO LIVE CHAT -->
+<!-- ========================================= -->
+
+</body>
+</html>
 
 <!-- GLOBAL SCRIPT -->
 <script src="/script.js"></script>
