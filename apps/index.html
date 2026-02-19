@@ -28,36 +28,47 @@
 
         <!-- LEFT CONTENT -->
         <div>
-
-            <h3 style="color: var(--primary-orange); margin-bottom: 10px; font-size: 1rem;">
+            <h3 class="reveal delay-1"
+                style="color: var(--primary-orange); margin-bottom: 10px; font-size: 1rem;">
                 WINDOWS OPTIMIZATION
             </h3>
 
-            <h1 style="font-size: 2rem; margin-bottom: 25px;">
+            <h1 class="reveal delay-2" style="font-size: 2rem; margin-bottom: 25px;">
                 GYPSY OPTIMIZER: PC BEAST <br>V3.1 PRO+
             </h1>
 
-            <p style="color: #ccc; margin-bottom: 25px;">
+            <p class="reveal delay-3" style="color: #ccc; margin-bottom: 25px;">
                 GYPSY OPTIMIZER V3.1 PRO+ is a professional Windows optimization and system
-                maintenance tool designed to improve speed, stability, and overall PC performance.
+                maintenance tool designed to improve speed, stability, and overall PC
+                performance.
             </p>
 
-            <ul style="margin-left: 20px; margin-bottom: 25px; list-style-type:'⚡ ';">
+            <ul class="reveal delay-3"
+                style="margin-left: 20px; margin-bottom: 25px; list-style-type:'⚡ '; ">
                 <li>One-Click Full System Optimization</li>
                 <li>Junk, Cache & Temporary File Cleanup</li>
                 <li>CPU, RAM & Network Performance Boost</li>
                 <li>Windows System Repair Tools</li>
             </ul>
 
-            <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:18px;">
+            <p class="reveal delay-3"
+               style="font-size:0.9rem; color:var(--text-muted); margin-bottom:18px;">
                 ✔ One-time purchase<br>
                 ✔ No subscriptions<br>
                 ✔ Instant download after payment
             </p>
 
-            <div style="margin-bottom:18px; display:flex; align-items:center; gap:15px;">
-                <span style="color:#777; text-decoration:line-through; font-size: 1.2rem;">₹1999</span>
-                <span style="color:var(--primary-orange); font-size:1.4rem; font-weight:700;">₹999</span>
+            <div class="reveal delay-3"
+                 style="margin-bottom:18px; display:flex; align-items:center; gap:15px;">
+
+                <span style="color:#777; text-decoration:line-through; font-size: 1.2rem;">
+                    ₹1999
+                </span>
+
+                <span style="color:var(--primary-orange); font-size:1.4rem; font-weight:700;">
+                    ₹999
+                </span>
+
                 <span style="border:1px solid var(--primary-orange);
                     padding:4px 12px; border-radius:20px; font-size:0.75rem;
                     color:var(--primary-orange); background:rgba(255,106,26,0.15);">
@@ -65,47 +76,34 @@
                 </span>
             </div>
 
-            <!-- ✅ SERVICES DROPDOWN (STUDIO SERVICES) -->
-            <div class="gc-dropdown" id="serviceDropdown">
-                <div class="gc-dropdown-selected">Select Service</div>
-                <ul class="gc-dropdown-list">
-                    <li>Architecture Visualization</li>
-                    <li>Interior Design</li>
-                    <li>Exterior Design</li>
-                    <li>3D Walkthrough</li>
-                    <li>Graphic Design</li>
-                    <li>UI / UX Design</li>
-                    <li>Web Development</li>
-                    <li>App Development</li>
-                </ul>
-            </div>
-
-            <a class="btn btn-primary"
+            <a class="btn btn-primary reveal delay-3"
                href="https://gypsycartel.gumroad.com/l/gypsy-optimizer-pc-beast-v3-1-pro"
                target="_blank" rel="noopener">
                 BUY NOW
             </a>
-
         </div>
 
         <!-- RIGHT IMAGE -->
-        <div>
+        <div class="reveal-img delay-2">
             <img src="/assets/logos/gypsy-app.webp"
                  alt="PC Beast Pro+ Software Icon"
-                 class="apps-image">
+                 class="apps-image"
+                 style="width:100%; border-radius:12px;">
         </div>
 
     </div>
 
     <!-- APP GALLERY -->
-    <section class="apps-gallery">
+    <section class="apps-gallery reveal delay-3">
 
         <h3 class="apps-gallery-title">APPLICATION PREVIEW</h3>
 
         <div class="apps-gallery-wrapper">
 
+            <!-- LEFT ARROW -->
             <div class="apps-gallery-arrow left" onclick="scrollGallery(-1)">‹</div>
 
+            <!-- TRACK -->
             <div class="apps-gallery-track" id="appsGallery">
                 <img src="/assets/apps/screen-1.webp" class="apps-gallery-img">
                 <img src="/assets/apps/screen-2.webp" class="apps-gallery-img">
@@ -114,6 +112,7 @@
                 <img src="/assets/apps/screen-5.webp" class="apps-gallery-img">
             </div>
 
+            <!-- RIGHT ARROW -->
             <div class="apps-gallery-arrow right" onclick="scrollGallery(1)">›</div>
 
         </div>
@@ -121,52 +120,145 @@
 
 </div>
 
-<!-- MODAL -->
+<!-- ✅ PREMIUM IMAGE MODAL -->
 <div class="apps-modal" id="appsModal">
-    <span class="apps-modal-close" onclick="closeModal()">×</span>
-    <div class="apps-modal-nav left" onclick="prevImage()">‹</div>
-    <img class="apps-modal-img" id="appsModalImg">
-    <div class="apps-modal-nav right" onclick="nextImage()">›</div>
-</div>
 
-<!-- FOOTER -->
+    <!-- Close Button -->
+    <span class="apps-modal-close" onclick="closeModal()">×</span>
+
+    <!-- Prev Button -->
+    <div class="apps-modal-nav left" onclick="prevImage()">‹</div>
+
+    <!-- Image -->
+    <img class="apps-modal-img" id="appsModalImg">
+
+    <!-- Next Button -->
+    <div class="apps-modal-nav right" onclick="nextImage()">›</div>
+
+</div>
+    
+    <!-- FOOTER -->
 <div id="site-footer"></div>
 
-<!-- MAIN SCRIPT -->
+<script src="/script.js"></script>
+<!-- ========================================= -->
+<!-- ✅ ZOHO SALESIQ LIVE CHAT (GLOBAL WIDGET) -->
+<!-- MUST BE IN MAIN PAGE, NOT FOOTER PARTIAL -->
+<!-- MUST BE JUST BEFORE </body> -->
+<!-- ========================================= -->
+
+<script>
+  window.$zoho = window.$zoho || {};
+  window.$zoho.salesiq = window.$zoho.salesiq || {
+    ready: function () {
+      console.log("Zoho SalesIQ Loaded ✅");
+    }
+  };
+</script>
+
+<script
+  id="zsiqscript"
+  src="https://salesiq.zohopublic.in/widget?wc=siq4eeed742bf6206b825f62fd2636a33aaf45f7afa471f2e973240f1e459d9034e">
+</script>
+
+<!-- ========================================= -->
+<!-- ✅ END ZOHO LIVE CHAT -->
+<!-- ========================================= -->
+
+</body>
+</html>
+
+
+<!-- GLOBAL SCRIPT -->
 <script src="/script.js"></script>
 
-<!-- SERVICES DROPDOWN SCRIPT -->
+<!-- ✅ PREMIUM MODAL ENGINE -->
 <script>
-document.querySelectorAll(".gc-dropdown").forEach(dropdown => {
-    const selected = dropdown.querySelector(".gc-dropdown-selected");
-    const list = dropdown.querySelector(".gc-dropdown-list");
+const gallery = document.getElementById("appsGallery");
+const modal = document.getElementById("appsModal");
+const modalImg = document.getElementById("appsModalImg");
 
-    selected.addEventListener("click", e => {
-        e.stopPropagation();
-        dropdown.classList.toggle("open");
-    });
+let currentIndex = 0;
+const images = Array.from(document.querySelectorAll(".apps-gallery-img"));
 
-    list.querySelectorAll("li").forEach(item => {
-        item.addEventListener("click", () => {
-            selected.textContent = item.textContent;
-            dropdown.classList.remove("open");
-        });
-    });
+/* Scroll Gallery */
+function scrollGallery(dir) {
+    gallery.scrollBy({ left: dir * 360, behavior: "smooth" });
+}
+
+/* Open Modal */
+function openModal(index) {
+    currentIndex = index;
+    modal.style.display = "flex";
+    modalImg.src = images[currentIndex].src;
+
+    document.body.style.overflow = "hidden";
+}
+
+/* Close Modal */
+function closeModal() {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+}
+
+/* Next */
+function nextImage() {
+    currentIndex = (currentIndex + 1) % images.length;
+    modalImg.src = images[currentIndex].src;
+}
+
+/* Prev */
+function prevImage() {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    modalImg.src = images[currentIndex].src;
+}
+
+/* Click image → Open */
+images.forEach((img, index) => {
+    img.addEventListener("click", () => openModal(index));
 });
 
-document.addEventListener("click", () => {
-    document.querySelectorAll(".gc-dropdown").forEach(d => d.classList.remove("open"));
+/* Click outside → Close */
+modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
 });
-</script>
 
-<!-- ZOHO SALESIQ -->
-<script>
-window.$zoho = window.$zoho || {};
-window.$zoho.salesiq = window.$zoho.salesiq || {};
-</script>
+/* Keyboard Controls */
+document.addEventListener("keydown", (e) => {
+    if (modal.style.display !== "flex") return;
 
-<script id="zsiqscript"
-src="https://salesiq.zohopublic.in/widget?wc=siq4eeed742bf6206b825f62fd2636a33aaf45f7afa471f2e973240f1e459d9034e">
+    if (e.key === "ArrowRight") nextImage();
+    if (e.key === "ArrowLeft") prevImage();
+    if (e.key === "Escape") closeModal();
+});
+
+/* ✅ Mouse Wheel = Next/Prev */
+modal.addEventListener("wheel", (e) => {
+    if (modal.style.display !== "flex") return;
+
+    e.preventDefault();
+
+    if (e.deltaY > 0) {
+        nextImage();
+    } else {
+        prevImage();
+    }
+}, { passive: false });
+
+/* ✅ Touch Swipe Support */
+let startX = 0;
+
+modal.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+});
+
+modal.addEventListener("touchend", (e) => {
+    let endX = e.changedTouches[0].clientX;
+    let diff = startX - endX;
+
+    if (diff > 60) nextImage();   // swipe left
+    if (diff < -60) prevImage();  // swipe right
+});
 </script>
 
 </body>
