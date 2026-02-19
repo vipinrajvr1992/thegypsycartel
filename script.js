@@ -100,64 +100,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
-    /* =========================================================
-       5. STUDIO CUSTOM DROPDOWN (Grey Active)
-    =========================================================
-    
-    document.addEventListener("click", function (e) {
-
-  /* ==============================
-     OPEN / CLOSE DROPDOWN
-  ============================== */
-  const selected = e.target.closest(".gc-dropdown-selected");
-
-  if (selected) {
-    e.stopPropagation();
-
-    const dropdown = selected.closest(".gc-dropdown");
-
-    // Close others
-    document.querySelectorAll(".gc-dropdown.open").forEach(d => {
-      if (d !== dropdown) d.classList.remove("open");
-    });
-
-    dropdown.classList.toggle("open");
-    return;
-  }
-
-  /* ==============================
-     SELECT ITEM
-  ============================== */
-  const item = e.target.closest(".gc-dropdown-list li");
-
-  if (item) {
-    const dropdown = item.closest(".gc-dropdown");
-    const selectedBox = dropdown.querySelector(".gc-dropdown-selected");
-    const hiddenInput = dropdown.querySelector("input[type='hidden']");
-
-    selectedBox.textContent = item.textContent;
-
-    if (hiddenInput) {
-      hiddenInput.value = item.dataset.value || item.textContent;
-    }
-
-    dropdown.querySelectorAll("li").forEach(li => li.classList.remove("active"));
-    item.classList.add("active");
-
-    dropdown.classList.remove("open");
-    return;
-  }
-
-  /* ==============================
-     CLICK OUTSIDE → CLOSE
-  ============================== */
-  document.querySelectorAll(".gc-dropdown.open").forEach(d => {
-    d.classList.remove("open");
-  });
-
-});
-
     /* =========================================================
        6. HEADER + FOOTER LOADER (ABSOLUTE PATH FIX)
     ========================================================= */
@@ -965,4 +907,66 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     observer.observe(document.body, { childList: true, subtree: true });
+});
+
+  /* =========================================================
+   ✅ GYPSY CARTEL — FINAL DROPDOWN ENGINE (DELEGATED)
+   FIXES:
+   ✔ Works with injected content
+   ✔ Works with animations
+   ✔ No DOMContentLoaded dependency
+   ✔ No duplicate listeners
+========================================================= */
+
+document.addEventListener("click", function (e) {
+
+  /* ==============================
+     OPEN / CLOSE DROPDOWN
+  ============================== */
+  const selected = e.target.closest(".gc-dropdown-selected");
+
+  if (selected) {
+    e.stopPropagation();
+
+    const dropdown = selected.closest(".gc-dropdown");
+
+    // Close others
+    document.querySelectorAll(".gc-dropdown.open").forEach(d => {
+      if (d !== dropdown) d.classList.remove("open");
+    });
+
+    dropdown.classList.toggle("open");
+    return;
+  }
+
+  /* ==============================
+     SELECT ITEM
+  ============================== */
+  const item = e.target.closest(".gc-dropdown-list li");
+
+  if (item) {
+    const dropdown = item.closest(".gc-dropdown");
+    const selectedBox = dropdown.querySelector(".gc-dropdown-selected");
+    const hiddenInput = dropdown.querySelector("input[type='hidden']");
+
+    selectedBox.textContent = item.textContent;
+
+    if (hiddenInput) {
+      hiddenInput.value = item.dataset.value || item.textContent;
+    }
+
+    dropdown.querySelectorAll("li").forEach(li => li.classList.remove("active"));
+    item.classList.add("active");
+
+    dropdown.classList.remove("open");
+    return;
+  }
+
+  /* ==============================
+     CLICK OUTSIDE → CLOSE
+  ============================== */
+  document.querySelectorAll(".gc-dropdown.open").forEach(d => {
+    d.classList.remove("open");
+  });
+
 });
