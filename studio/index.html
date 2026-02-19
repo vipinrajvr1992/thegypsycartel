@@ -30,7 +30,7 @@
 
 <body class="design-page">
 
-<!-- HEADER (DO NOT TOUCH) -->
+<!-- HEADER -->
 <div id="site-header"></div>
 
 <!-- ======================
@@ -43,32 +43,19 @@
         <!-- LEFT CONTENT -->
         <div class="studio-left">
 
-            <!-- Logo -->
             <div class="mg-logo-wrap">
-                <img
-                    src="/assets/logos/mg-creations.webp"
-                    alt="MG Creations Logo"
-                    style="max-width:260px;width:100%;height:auto;">
+                <img src="/assets/logos/mg-creations.webp"
+                     alt="MG Creations Logo"
+                     style="max-width:260px;width:100%;height:auto;">
             </div>
 
-            <!-- Heading -->
             <h1>
                 <span class="studio-highlight">HYPER-REALISTIC</span><br>
-
-                <!-- ✅ ARCHITECTURE & GRAPHICS IN ORANGE -->
-                <span class="studio-orange" style="white-space:nowrap;">
-                    ARCHITECTURE & GRAPHICS
-                </span>
+                <span class="studio-orange">ARCHITECTURE & GRAPHICS</span>
             </h1>
 
-            <!-- ✅ Description (Fixed Exact 3 Lines) -->
             <p class="studio-desc"
-               style="
-                  max-width:520px;
-                  margin: 0 auto;
-                  text-align:center;
-                  line-height:1.65;
-               ">
+               style="max-width:520px;margin:0 auto;text-align:center;line-height:1.65;">
                 Our studio blends technical precision with artistic execution,<br>
                 delivering architectural visualization, interiors, exteriors,<br>
                 and high-impact digital graphics worldwide.
@@ -89,31 +76,11 @@
                 method="POST"
                 autocomplete="on">
 
-                <!-- Name -->
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Your Name"
-                    autocomplete="name"
-                    required>
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="tel" name="tel" placeholder="Phone Number" required>
 
-                <!-- Email -->
-                <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    autocomplete="email"
-                    required>
-
-                <!-- Phone -->
-                <input
-                    type="tel"
-                    name="tel"
-                    placeholder="Phone Number"
-                    autocomplete="tel"
-                    required>
-
-                <!-- ✅ PREMIUM CUSTOM DROPDOWN -->
+                <!-- ✅ FIXED SERVICES DROPDOWN -->
                 <div class="gc-dropdown" data-name="service">
 
                     <div class="gc-dropdown-selected">
@@ -121,41 +88,32 @@
                     </div>
 
                     <ul class="gc-dropdown-list">
-                        <li data-value="architecture-interior">Architecture & Interiors</li>
-                        <li data-value="3d-visualization">3D Visualization</li>
-                        <li data-value="branding-design">Branding & Digital Design</li>
-                        <li data-value="floor-plans">2D / 3D Floor Plans</li>
-                        <li data-value="web-branding">Website & Brand Identity</li>
-                        <li data-value="other">Other / Custom Project</li>
+                        <li data-value="architecture-visualization">Architecture Visualization</li>
+                        <li data-value="interior-design">Interior Design</li>
+                        <li data-value="exterior-design">Exterior Design</li>
+                        <li data-value="3d-walkthrough">3D Walkthrough</li>
+                        <li data-value="graphic-design">Graphic Design</li>
+                        <li data-value="ui-ux-design">UI / UX Design</li>
+                        <li data-value="web-development">Web Development</li>
+                        <li data-value="app-development">App Development</li>
                     </ul>
 
-                    <!-- Hidden Input -->
+                    <!-- Hidden Input (Formspree) -->
                     <input type="hidden" name="service" required>
                 </div>
 
-                <!-- Message -->
-                <textarea
-                    name="message"
-                    rows="5"
-                    placeholder="I have a project"
-                    required></textarea>
+                <textarea name="message" rows="5" placeholder="I have a project" required></textarea>
 
-                <!-- Turnstile -->
                 <div class="cf-turnstile"
                      data-sitekey="0x4AAAAAACK2g8v3gHryb9Aq"
                      data-theme="dark"
                      style="margin:18px 0;">
                 </div>
 
-                <!-- Submit -->
-                <button
-                    type="submit"
-                    class="btn btn-primary"
-                    style="width:100%; margin-top:10px;">
+                <button type="submit" class="btn btn-primary" style="width:100%;">
                     INITIALIZE REQUEST
                 </button>
 
-                <!-- ✅ Success Message -->
                 <p id="design-success">
                     ✓ Message sent successfully. We’ll contact you shortly.
                 </p>
@@ -171,36 +129,19 @@
 <!-- FOOTER -->
 <div id="site-footer"></div>
 
+<!-- MAIN SCRIPT (ONLY ONCE) -->
 <script src="/script.js"></script>
-<!-- ========================================= -->
-<!-- ✅ ZOHO SALESIQ LIVE CHAT (GLOBAL WIDGET) -->
-<!-- MUST BE IN MAIN PAGE, NOT FOOTER PARTIAL -->
-<!-- MUST BE JUST BEFORE </body> -->
-<!-- ========================================= -->
 
+<!-- ZOHO SALESIQ -->
 <script>
   window.$zoho = window.$zoho || {};
-  window.$zoho.salesiq = window.$zoho.salesiq || {
-    ready: function () {
-      console.log("Zoho SalesIQ Loaded ✅");
-    }
-  };
+  window.$zoho.salesiq = window.$zoho.salesiq || {};
 </script>
 
 <script
   id="zsiqscript"
   src="https://salesiq.zohopublic.in/widget?wc=siq4eeed742bf6206b825f62fd2636a33aaf45f7afa471f2e973240f1e459d9034e">
 </script>
-
-<!-- ========================================= -->
-<!-- ✅ END ZOHO LIVE CHAT -->
-<!-- ========================================= -->
-
-</body>
-</html>
-
-<!-- GLOBAL SCRIPT -->
-<script src="/script.js"></script>
 
 </body>
 </html>
