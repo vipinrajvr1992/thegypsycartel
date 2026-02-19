@@ -103,37 +103,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================================================
        5. STUDIO CUSTOM DROPDOWN (Grey Active)
-    ========================================================= */
-    document.querySelectorAll(".gc-dropdown").forEach(dropdown => {
-        const selectedBox = dropdown.querySelector(".gc-dropdown-selected");
-        const items = dropdown.querySelectorAll("li");
-        const hiddenInput = dropdown.querySelector("input[type='hidden']");
+    =========================================================
+    
+    document.addEventListener("click", function (e) {
 
-        if (!selectedBox || !hiddenInput) return;
+  /* ==============================
+     OPEN / CLOSE DROPDOWN
+  ============================== */
+  const selected = e.target.closest(".gc-dropdown-selected");
 
-        selectedBox.addEventListener("click", (e) => {
-            e.stopPropagation();
-            dropdown.classList.toggle("open");
-        });
+  if (selected) {
+    e.stopPropagation();
 
-        items.forEach(item => {
-            item.addEventListener("click", () => {
-                selectedBox.textContent = item.textContent;
-                hiddenInput.value = item.dataset.value;
-                items.forEach(li => li.classList.remove("active"));
-                item.classList.add("active");
-                dropdown.classList.remove("open");
-            });
-        });
+    const dropdown = selected.closest(".gc-dropdown");
 
-        // Close on click outside
-        document.addEventListener("click", (e) => {
-            if (!dropdown.contains(e.target)) {
-                dropdown.classList.remove("open");
-            }
-        });
+    // Close others
+    document.querySelectorAll(".gc-dropdown.open").forEach(d => {
+      if (d !== dropdown) d.classList.remove("open");
     });
 
+    dropdown.classList.toggle("open");
+    return;
+  }
+
+  /* ==============================
+     SELECT ITEM
+  ============================== */
+  const item = e.target.closest(".gc-dropdown-list li");
+
+  if (item) {
+    const dropdown = item.closest(".gc-dropdown");
+    const selectedBox = dropdown.querySelector(".gc-dropdown-selected");
+    const hiddenInput = dropdown.querySelector("input[type='hidden']");
+
+    selectedBox.textContent = item.textContent;
+
+    if (hiddenInput) {
+      hiddenInput.value = item.dataset.value || item.textContent;
+    }
+
+    dropdown.querySelectorAll("li").forEach(li => li.classList.remove("active"));
+    item.classList.add("active");
+
+    dropdown.classList.remove("open");
+    return;
+  }
+
+  /* ==============================
+     CLICK OUTSIDE → CLOSE
+  ============================== */
+  document.querySelectorAll(".gc-dropdown.open").forEach(d => {
+    d.classList.remove("open");
+  });
+
+});
 
     /* =========================================================
        6. HEADER + FOOTER LOADER (ABSOLUTE PATH FIX)
