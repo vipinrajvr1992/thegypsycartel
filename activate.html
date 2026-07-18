@@ -29,20 +29,32 @@ input, button {
     border-radius:6px;
     border:none;
     font-size:15px;
+    box-sizing: border-box; /* ഇന്റർഫേസ് അലൈൻമെന്റ് കൃത്യമാക്കാൻ */
 }
 input {
     background:#0b0f14;
     color:white;
     border:1px solid #ff7a1844;
 }
+input:focus {
+    outline: none;
+    border-color: #ff7a18;
+}
+input:disabled {
+    background: #171e29;
+    color: #888;
+    border-color: #333;
+    cursor: not-allowed;
+}
 button {
     background:#ff7a18;
     color:black;
     font-weight:bold;
     cursor:pointer;
+    transition: background 0.2s ease;
 }
 button:hover { background:#e66a10; }
-.status { margin-top:15px; text-align:center; min-height:24px; }
+.status { margin-top:15px; text-align:center; min-height:24px; font-size:14px; }
 .success { color:#00ff9c; }
 .error { color:#ff4d4d; }
 .footer { margin-top:25px; text-align:center; font-size:12px; color:#888; }
@@ -53,6 +65,7 @@ button:hover { background:#e66a10; }
     margin-top:10px;
     font-weight:bold;
     color:#00ff9c;
+    word-break: break-all;
 }
 </style>
 </head>
@@ -61,12 +74,12 @@ button:hover { background:#e66a10; }
 
 <div class="container">
     <h1>Gypsy Cartel</h1>
-    <p>Enter your email to generate and activate your license.</p>
+    <p>Enter your Email and License Key to activate your software.</p>
 
+    <!-- ഇമെയിൽ വഴി നേരിട്ട് കീ ജനറേറ്റ് ചെയ്യാൻ ബാക്കെൻഡിൽ ഓട്ടോ-ക്രിയേറ്റ് ഉള്ളതുകൊണ്ട്, കീ നൽകാനുള്ള ബോക്സ് എനേബിൾഡ് ആക്കി -->
     <input id="email" placeholder="Enter Email Address">
-    <input id="license" placeholder="License Key" disabled>
+    <input id="license" placeholder="Enter License Key (e.g. GYPSY-XXXX-...)">
 
-    <button onclick="generate()">Generate License</button>
     <button onclick="activate()">Activate License</button>
 
     <div id="status" class="status"></div>
@@ -75,84 +88,61 @@ button:hover { background:#e66a10; }
 </div>
 
 <script>
+// റെയിൽവേയിൽ റൺ ചെയ്യുന്ന നിങ്ങളുടെ ലൈവ് ബാക്കെൻഡ് URL
 const API = "https://web-production-eed1e8.up.railway.app";
 
-async function generate() {
-    const email = document.getElementById("email").value.trim();
-    const status = document.getElementById("status");
-
-    if (!email) {
-        status.innerHTML = "<span class='error'>Please enter email.</span>";
-        return;
-    }
-
-    status.innerHTML = "Generating license...";
-
-    try {
-        const res = await fetch(API + "/download", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email })
-        });
-
-        const data = await res.json();
-
-        if (data.key) {
-            document.getElementById("license").value = data.key;
-            status.innerHTML =
-                "<div class='success'>License generated successfully</div>" +
-                "<div class='code'>" + data.key + "</div>";
-        } else {
-            status.innerHTML = "<span class='error'>Failed to generate license</span>";
-        }
-    } catch {
-        status.innerHTML = "<span class='error'>Server not reachable</span>";
-    }
-}
-
 async function activate() {
+    const email = document.getElementById("email").value.trim();
     const key = document.getElementById("license").value.trim();
     const status = document.getElementById("status");
 
-    if (!key) {
-        status.innerHTML = "<span class='error'>Generate license first.</span>";
+    if (!email || !key) {
+        status.innerHTML = "<span class='error'>Please enter both Email and License Key.</span>";
         return;
     }
 
     status.innerHTML = "Activating license...";
 
+    // സിസ്റ്റം തിരിച്ചറിയാൻ തനതായ ഒരു HWID ജനറേറ്റ് ചെയ്യുന്നു
     const hwid = navigator.userAgent + "-" + screen.width + "x" + screen.height;
 
     try {
-        const res = await fetch(API + "/start_session", {
+        // ബാക്കെൻഡിലെ കൃത്യമായ എൻഡ്പോയിന്റായ /activate ലേക്ക് റിക്വസ്റ്റ് അയക്കുന്നു
+        const res = await fetch(API + "/activate", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ key, hwid })
+            body: JSON.stringify({ key: key, hwid: hwid })
         });
+
+        if (!res.ok) {
+            throw new Error("Network response was not ok");
+        }
 
         const data = await res.json();
 
+        // ബാക്കെൻഡ് നൽകുന്ന സ്റ്റാറ്റസ് അനുസരിച്ച് മെസ്സേജുകൾ കാണിക്കുന്നു
         if (data.status === "ok") {
-            localStorage.setItem("gypsy_session_token", data.token);
-            status.innerHTML =
-                "<span class='success'>License activated successfully.</span>";
+            // ഭാവിയിലെ ചെക്കിംഗിനായി കീയും HWID-യും ലോക്കൽ സ്റ്റോറേജിൽ സൂക്ഷിക്കാം
+            localStorage.setItem("gypsy_license_key", key);
+            localStorage.setItem("gypsy_hwid", hwid);
+            
+            status.innerHTML = 
+                "<div class='success'>License activated successfully!</div>" +
+                "<div class='code'>Key: " + key + "</div>";
         }
         else if (data.status === "limit") {
-            status.innerHTML =
-                "<span class='error'>Device limit reached (2 systems only).</span>";
+            status.innerHTML = "<span class='error'>Device limit reached (2 systems only).</span>";
         }
         else if (data.status === "blocked") {
-            status.innerHTML =
-                "<span class='error'>License is blocked.</span>";
+            status.innerHTML = "<span class='error'>This license has been blocked.</span>";
         }
         else {
-            status.innerHTML =
-                "<span class='error'>Invalid license.</span>";
+            status.innerHTML = "<span class='error'>Invalid license key.</span>";
         }
 
-    } catch {
-        status.innerHTML =
-            "<span class='error'>Unable to connect to server.</span>";
+    } catch (error) {
+        console.error("Error:", error);
+        status.innerHTML = "<span class='error'>Unable to connect to activation server.</span>";
     }
 }
 </script>
