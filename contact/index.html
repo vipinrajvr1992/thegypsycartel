@@ -15,31 +15,19 @@
     <!-- STYLES -->
     <link rel="stylesheet" href="/style.css">
 
-    <!-- WhatsApp Clean Subtle Zoom Animation -->
+    <!-- WhatsApp Clean Hover Zoom & Spacing -->
     <style>
         .contact-whatsapp {
             color: var(--primary-orange) !important;
             text-decoration: none;
             display: inline-block;
-            transition: transform 0.3s ease;
-            animation: waCleanZoom 2.2s infinite ease-in-out;
+            margin-left: 6px; /* Overlap ഒഴിവാക്കാൻ നൽകിയ കൃത്യമായ സ്പേസ് */
+            transition: transform 0.2s ease-in-out;
         }
 
+        /* മാൗസ് കൊണ്ടുവരുമ്പോൾ മാത്രം ലൈറ്റ് Zoom */
         .contact-whatsapp:hover {
-            transform: scale(1.12);
-        }
-
-        /* Clean Zoom Pulse without Glow or Color Changes */
-        @keyframes waCleanZoom {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.08);
-            }
-            100% {
-                transform: scale(1);
-            }
+            transform: scale(1.08);
         }
     </style>
 </head>
