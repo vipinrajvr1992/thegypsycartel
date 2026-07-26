@@ -15,32 +15,31 @@
     <!-- STYLES -->
     <link rel="stylesheet" href="/style.css">
 
-    <!-- WhatsApp Link Animation & Hover Effect -->
+    <!-- WhatsApp Clean Subtle Zoom Animation -->
     <style>
         .contact-whatsapp {
-            color: var(--primary-orange);
+            color: var(--primary-orange) !important;
             text-decoration: none;
-            font-weight: 600;
             display: inline-block;
-            transition: all 0.3s ease;
-            position: relative;
+            transition: transform 0.3s ease;
+            animation: waCleanZoom 2.2s infinite ease-in-out;
         }
 
         .contact-whatsapp:hover {
-            color: #25D366 !important; /* WhatsApp Green on Hover */
-            transform: translateY(-2px);
-            text-shadow: 0 0 10px rgba(37, 211, 102, 0.6);
+            transform: scale(1.12);
         }
 
-        /* Subtle Pulse Animation */
-        @keyframes waPulse {
-            0% { opacity: 0.85; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.03); }
-            100% { opacity: 0.85; transform: scale(1); }
-        }
-
-        .contact-whatsapp {
-            animation: waPulse 2s infinite ease-in-out;
+        /* Clean Zoom Pulse without Glow or Color Changes */
+        @keyframes waCleanZoom {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.08);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
     </style>
 </head>
