@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- ===================================================
-         UPDATED HIGH-RANKING SEO, AEO & GEO INTEGRATED HEAD
+         HIGH-RANKING SEO, AEO, GEO & VEO INTEGRATED HEAD
     ==================================================== -->
 
-    <!-- Primary High-Intent Meta Tags -->
+    <!-- Primary Meta Tags -->
     <title>The Gypsy Cartel | Top UI/UX Design Agency & Digital Product Studio</title>
     <meta name="title" content="The Gypsy Cartel | Top UI/UX Design Agency & Digital Product Studio">
     <meta name="description" content="Hire top UI/UX designers and full-stack web developers at The Gypsy Cartel. We build high-converting SaaS products, custom web applications, brand identities, and performance optimization software.">
@@ -33,7 +33,7 @@
     <meta name="twitter:description" content="We design and build high-performance web applications, SaaS interfaces, and minimal brand identities.">
     <meta name="twitter:image" content="https://thegypsycartel.com/assets/banner.png">
 
-    <!-- ✅ FAVICON FIXED -->
+    <!-- FAVICON -->
     <link rel="icon" href="/assets/logos/gypsy-cartel-icon.webp" sizes="32x32">
     <link rel="apple-touch-icon" href="/assets/logos/gypsy-cartel-icon.webp">
 
@@ -43,7 +43,7 @@
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="/style.css">
 
-    <!-- HERO OVERRIDES -->
+    <!-- HERO OVERRIDES & CUSTOM STYLES -->
     <style>
         .hero {
             position: relative;
@@ -150,7 +150,7 @@
             line-height: 1.6;
         }
 
-        /* ✅ ONLY GUIDELINE BULLET ALIGNMENT FIX (Professional) */
+        /* GUIDELINE BULLET ALIGNMENT FIX */
         .guideline-list {
             max-width: 720px;
             margin: 45px auto 0;
@@ -199,36 +199,71 @@
     </style>
 
     <!-- ===================================================
-         GEO & AEO SCHEMA (JSON-LD for Search & AI Engines)
+         GEO, AEO & VEO (VOICE ASSISTANT OPTIMIZED SCHEMA)
     ==================================================== -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@graph": [
         {
-          "@type": "Organization",
+          "@type": ["Organization", "ProfessionalService"],
           "@id": "https://thegypsycartel.com/#organization",
           "name": "The Gypsy Cartel",
-          "url": "https://thegypsycartel.com",
+          "alternateName": ["Gypsy Cartel", "Gypsy Cartel Studio"],
+          "url": "https://thegypsycartel.com/",
           "logo": "https://thegypsycartel.com/assets/logos/gypsy-cartel-icon.webp",
           "image": "https://thegypsycartel.com/assets/banner.png",
-          "description": "The Gypsy Cartel is a premium UI/UX design agency, digital product studio, and full-stack software development firm specializing in SaaS applications, modern web design, and system utility tools.",
+          "description": "The Gypsy Cartel is a premium UI/UX design agency, digital product studio, and custom software development firm operating across India, UAE, and globally.",
           "foundingDate": "2026",
+          "areaServed": [
+            {
+              "@type": "Country",
+              "name": "India"
+            },
+            {
+              "@type": "Country",
+              "name": "United Arab Emirates"
+            },
+            {
+              "@type": "AdministrativeArea",
+              "name": "Worldwide"
+            }
+          ],
           "knowsAbout": [
             "UI/UX Design",
             "Web Application Development",
             "SaaS Product Redesign",
             "Brand Identity Engineering",
-            "System Utility & Optimization Software"
-          ]
+            "System Utility & Optimization Software",
+            "3D Architectural Visualization"
+          ],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "url": "https://thegypsycartel.com/contact/",
+            "availableLanguage": ["English"]
+          }
         },
         {
           "@type": "WebSite",
           "@id": "https://thegypsycartel.com/#website",
-          "url": "https://thegypsycartel.com",
+          "url": "https://thegypsycartel.com/",
           "name": "The Gypsy Cartel",
           "publisher": {
             "@id": "https://thegypsycartel.com/#organization"
+          }
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://thegypsycartel.com/#webpage",
+          "url": "https://thegypsycartel.com/",
+          "name": "The Gypsy Cartel | Top UI/UX Design Agency & Digital Product Studio",
+          "isPartOf": {
+            "@id": "https://thegypsycartel.com/#website"
+          },
+          "speakable": {
+            "@type": "SpeakableSpecification",
+            "cssSelector": [".hero-tagline", ".hero-services"]
           }
         },
         {
@@ -249,7 +284,7 @@
               "name": "What services does The Gypsy Cartel agency offer?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "The Gypsy Cartel offers custom UI/UX design, SaaS interface engineering, full-stack web development, system optimization software, and minimal brand strategy."
+                "text": "The Gypsy Cartel offers custom UI/UX design, SaaS interface engineering, full-stack web development, architectural 3D visualization, and minimal brand strategy across India and the UAE."
               }
             },
             {
@@ -258,6 +293,14 @@
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "The Gypsy Cartel combines minimal aesthetics with technical performance engineering to build fast, intuitive, and high-converting web apps and digital products."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Where is The Gypsy Cartel located?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The Gypsy Cartel operates across India and the UAE, delivering digital design and software solutions globally."
               }
             }
           ]
@@ -306,10 +349,7 @@
 
 </section>
 
-<!-- ===============================
-     PREMIUM HOMEPAGE CONTENT
-================================ -->
-
+<!-- PREMIUM HOMEPAGE CONTENT -->
 <section class="home-section">
     <h2>Creativity Backed by <span class="accent">Execution.</span></h2>
 
@@ -426,12 +466,7 @@
 
 <script src="/script.js"></script>
 
-<!-- ========================================= -->
-<!-- ✅ ZOHO SALESIQ LIVE CHAT (GLOBAL WIDGET) -->
-<!-- MUST BE IN MAIN PAGE, NOT FOOTER PARTIAL -->
-<!-- MUST BE JUST BEFORE </body> -->
-<!-- ========================================= -->
-
+<!-- ZOHO SALESIQ LIVE CHAT (GLOBAL WIDGET) -->
 <script>
   window.$zoho = window.$zoho || {};
   window.$zoho.salesiq = window.$zoho.salesiq || {
@@ -445,10 +480,6 @@
   id="zsiqscript"
   src="https://salesiq.zohopublic.in/widget?wc=siq4eeed742bf6206b825f62fd2636a33aaf45f7afa471f2e973240f1e459d9034e">
 </script>
-
-<!-- ========================================= -->
-<!-- ✅ END ZOHO LIVE CHAT -->
-<!-- ========================================= -->
 
 </body>
 </html>
