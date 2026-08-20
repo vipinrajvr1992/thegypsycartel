@@ -17,6 +17,25 @@
 
     <!-- STYLES -->
     <link rel="stylesheet" href="/style.css">
+
+    <style>
+        /* Keep both section headings perfectly aligned */
+        .about-page .grid-2 {
+            align-items: start;
+        }
+
+        .about-page .about-creator-panel {
+            background: var(--bg-surface);
+            padding: 40px;
+            border-left: 4px solid var(--primary-orange);
+            box-sizing: border-box;
+        }
+
+        .about-page .about-creator-panel > h3 {
+            color: var(--primary-orange);
+            margin: 0 0 28px;
+        }
+    </style>
 </head>
 
 <body class="about-page">
@@ -61,10 +80,13 @@
         </div>
 
         <!-- RIGHT PANEL -->
-        <div style="background: var(--bg-surface); padding: 40px; border-left: 4px solid var(--primary-orange);">
-            <h3>Our Creator</h3>
+        <div class="about-creator-panel">
 
-            <h4 class="creator-name" style="color: var(--primary-orange); margin: 28px 0 6px;">
+            <h3>
+                Our Creator
+            </h3>
+
+            <h4 class="creator-name" style="color: var(--primary-orange); margin: 0 0 6px;">
                 Vipinraj V R
             </h4>
 
@@ -93,6 +115,7 @@
 <div id="site-footer"></div>
 
 <script src="/script.js"></script>
+
 <!-- ========================================= -->
 <!-- ✅ ZOHO SALESIQ LIVE CHAT (GLOBAL WIDGET) -->
 <!-- MUST BE IN MAIN PAGE, NOT FOOTER PARTIAL -->
