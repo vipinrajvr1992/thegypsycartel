@@ -1446,3 +1446,72 @@ body.siq-open .whatsapp-float {
   opacity: 0 !important;
   pointer-events: none !important;
 }
+/* =========================================================
+   GYPSY CARTEL — SAFE CLIENT-SIDE SECURITY HARDENING
+   Added without changing existing visual/design behaviour
+========================================================= */
+
+/* Prevent accidental dragging of site images */
+img {
+    -webkit-user-drag: none;
+    user-drag: none;
+}
+
+/* Prevent accidental dragging of linked UI elements */
+a,
+button {
+    -webkit-user-drag: none;
+}
+
+/* Prevent text caret from appearing on non-editable UI */
+a,
+button,
+.apps-gallery-arrow,
+.apps-modal-close,
+.apps-modal-nav,
+.gc-dropdown-selected,
+.gc-dropdown-list li {
+    caret-color: transparent;
+}
+
+/* Keep form controls editable */
+input,
+textarea,
+select {
+    caret-color: auto;
+}
+
+/* Prevent accidental selection of decorative interface elements */
+.cursor-dot,
+.cursor-outline,
+.apps-gallery-arrow,
+.apps-modal-close,
+.apps-modal-nav,
+.mobile-menu-btn,
+.gc-dropdown-selected,
+.gc-dropdown-list li {
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Prevent touch callout on protected decorative images */
+img {
+    -webkit-touch-callout: none;
+}
+
+/* Prevent accidental highlighting of the site logo */
+.logo-icon {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+}
+
+/* Keep interactive controls keyboard accessible */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 2px solid var(--primary-orange);
+    outline-offset: 3px;
+}
