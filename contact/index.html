@@ -8,6 +8,9 @@
     <meta name="description"
           content="Gypsy Cartel is a premium digital design and software studio delivering high-performance applications, hyper-realistic 3D design, and modern UI/UX solutions.">
 
+    <!-- SECURITY: Limit referrer information sent to other origins -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
     <!-- SITE ICON -->
     <link rel="icon" type="image/webp" href="/assets/logos/gypsy-cartel-icon.webp">
     <link rel="apple-touch-icon" href="/assets/logos/gypsy-cartel-icon.webp">
@@ -106,7 +109,6 @@
             text-decoration: underline;
         }
 
-
         /* =====================================================
            DEFAULT BROWSER CURSOR
            No custom cursor on this page.
@@ -151,7 +153,9 @@
         <div>
             <h4>INSTAGRAM (CREATOR)</h4>
             <p>
-                <a href="https://instagram.com/mallugypsy.creations" target="_blank">
+                <a href="https://instagram.com/mallugypsy.creations"
+                   target="_blank"
+                   rel="noopener noreferrer">
                     @mallugypsy.creations
                 </a>
             </p>
@@ -271,6 +275,7 @@
             <a
                 href="https://wa.me/918086604808?text=Hello%20Gypsy%20Cartel,%20I%20sent%20an%20inquiry%20via%20your%20website."
                 target="_blank"
+                rel="noopener noreferrer"
                 class="contact-whatsapp"
             >
                 Contact via WhatsApp
