@@ -33,8 +33,8 @@
         /* Privacy consent — same site theme */
         .privacy-consent {
             display: flex;
-            align-items: flex-start;
-            gap: 10px;
+            align-items: center;
+            gap: 8px;
             margin: 18px 0 20px;
             color: var(--text-muted);
             font-size: 0.9rem;
@@ -44,15 +44,22 @@
         .privacy-consent input[type="checkbox"] {
             appearance: none;
             -webkit-appearance: none;
-            width: 17px;
-            height: 17px;
-            min-width: 17px;
-            margin: 2px 0 0;
+            width: 14px;
+            height: 14px;
+            min-width: 14px;
+            padding: 0;
+            margin: 0;
             border: 1px solid var(--primary-orange);
-            border-radius: 3px;
+            border-radius: 2px;
             background: transparent;
-            cursor: none;
+            cursor: none !important;
             position: relative;
+            flex: 0 0 14px;
+        }
+
+        .privacy-consent input[type="checkbox"]:hover,
+        .privacy-consent input[type="checkbox"]:focus {
+            cursor: none !important;
         }
 
         .privacy-consent input[type="checkbox"]:checked {
@@ -62,29 +69,30 @@
         .privacy-consent input[type="checkbox"]:checked::after {
             content: "";
             position: absolute;
-            left: 5px;
+            left: 4px;
             top: 1px;
             width: 4px;
-            height: 9px;
+            height: 8px;
             border: solid #111;
-            border-width: 0 2px 2px 0;
+            border-width: 0 1.5px 1.5px 0;
             transform: rotate(45deg);
         }
 
         .privacy-consent label {
-            cursor: none;
+            margin: 0;
+            cursor: none !important;
         }
 
         .privacy-consent a {
             color: var(--primary-orange);
             text-decoration: none;
             font-weight: 600;
+            cursor: none !important;
         }
 
         .privacy-consent a:hover {
             text-decoration: underline;
         }
-
     </style>
 </head>
 
@@ -203,9 +211,15 @@
 <script>
 const form = document.getElementById("contactForm");
 const successMsg = document.getElementById("successMsg");
+const privacyConsent = document.getElementById("privacyConsent");
 
 form.addEventListener("submit", async (e) => {
     e.preventDefault();
+
+    if (!privacyConsent.checked) {
+        privacyConsent.reportValidity();
+        return;
+    }
 
     const formData = new FormData(form);
     const response = await fetch(form.action, {
