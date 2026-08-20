@@ -5,304 +5,797 @@
     <title>Gallery | Gypsy Cartel</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <meta name="description"
           content="Explore Gypsy Cartel’s creative gallery featuring software, website design, UI/UX, floor plans, architecture, interiors, and branding projects.">
+
+    <!-- SECURITY: Limit referrer information sent to other origins -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <!-- SITE ICON -->
-    <link rel="icon" type="image/webp" href="/assets/logos/gypsy-cartel-icon.webp">
-    <link rel="apple-touch-icon" href="/assets/logos/gypsy-cartel-icon.webp">
+    <link rel="icon"
+          type="image/webp"
+          href="/assets/logos/gypsy-cartel-icon.webp">
+
+    <link rel="apple-touch-icon"
+          href="/assets/logos/gypsy-cartel-icon.webp">
 
     <!-- MAIN STYLES -->
     <link rel="stylesheet" href="/style.css">
 
-    <!-- GALLERY STYLES — LOCAL TO THIS PAGE ONLY -->
+
+    <!-- ========================================= -->
+    <!-- PREMIUM EDITORIAL GALLERY -->
+    <!-- LOCAL GALLERY STYLES ONLY -->
+    <!-- ========================================= -->
+
     <style>
+
         /* =========================================
-           GALLERY GRID
+           GALLERY WRAPPER
            ========================================= */
 
-        .gallery-page {
-            padding-top: 64px;
+        .gallery-showcase {
+            width: 100%;
+            padding-top: 30px;
             padding-bottom: 100px;
         }
 
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 44px 40px;
-            width: 100%;
-        }
 
         /* =========================================
-           GALLERY CARD
+           GALLERY INTRO
            ========================================= */
 
-        .gallery-card {
-            min-width: 0;
-            display: flex;
-            flex-direction: column;
+        .gallery-intro {
+            max-width: 760px;
+            margin: 0 auto 100px;
+            text-align: center;
         }
 
-        /* Uniform image frame for every category */
-        .gallery-item {
+        .gallery-intro .gallery-kicker {
+            display: inline-block;
+            margin-bottom: 16px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        .gallery-intro h1 {
+            margin: 0 0 18px;
+            font-size: clamp(2rem, 5vw, 4rem);
+            line-height: 1.05;
+            letter-spacing: -1px;
+        }
+
+        .gallery-intro p {
+            max-width: 620px;
+            margin: 0 auto;
+            font-size: 0.92rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+        }
+
+
+        /* =========================================
+           SHOWCASE LIST
+           ========================================= */
+
+        .gallery-showcase-list {
+            display: flex;
+            flex-direction: column;
+            gap: 130px;
+        }
+
+
+        /* =========================================
+           INDIVIDUAL GALLERY SECTION
+           ========================================= */
+
+        .gallery-showcase-item {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(280px, 0.75fr);
+            align-items: center;
+            gap: clamp(50px, 8vw, 120px);
+
+            width: 100%;
+        }
+
+
+        /* Alternate direction */
+
+        .gallery-showcase-item:nth-child(even) {
+            grid-template-columns: minmax(280px, 0.75fr) minmax(0, 1.25fr);
+        }
+
+        .gallery-showcase-item:nth-child(even) .gallery-showcase-image {
+            order: 2;
+        }
+
+        .gallery-showcase-item:nth-child(even) .gallery-showcase-content {
+            order: 1;
+        }
+
+
+        /* =========================================
+           IMAGE
+           ========================================= */
+
+        .gallery-showcase-image {
             position: relative;
+
             width: 100%;
             aspect-ratio: 16 / 10;
+
             overflow: hidden;
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+
+            background: rgba(128, 128, 128, 0.08);
+
             isolation: isolate;
         }
 
-        .gallery-item::after {
+
+        .gallery-showcase-image::after {
             content: "";
             position: absolute;
             inset: 0;
+
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: inherit;
+
             pointer-events: none;
             z-index: 2;
         }
 
-        .gallery-item img {
+
+        .gallery-showcase-image img {
             width: 100%;
             height: 100%;
+
             display: block;
+
             object-fit: cover;
             object-position: center;
-            transform: scale(1);
-            transition: transform 0.65s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+            transform: scale(1.001);
+
+            transition:
+                transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1),
+                filter 0.8s ease;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.06);
+
+        /* Premium image hover */
+
+        .gallery-showcase-image:hover img {
+            transform: scale(1.055);
         }
+
 
         /* =========================================
-           TEXT
+           CATEGORY NUMBER
            ========================================= */
 
-        .gallery-card h3 {
-            margin: 18px 0 9px;
-            min-height: 1.3em;
-            font-size: 1rem;
-            line-height: 1.3;
+        .gallery-number {
+            display: block;
+
+            margin-bottom: 22px;
+
+            font-size: 0.7rem;
             font-weight: 600;
-            letter-spacing: 1.2px;
+            letter-spacing: 3px;
+
+            color: var(--text-muted);
+
             text-transform: uppercase;
         }
 
-        .gallery-card p {
+
+        /* =========================================
+           CONTENT
+           ========================================= */
+
+        .gallery-showcase-content {
+            max-width: 470px;
+
+            min-height: 230px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+
+        /* Small accent line */
+
+        .gallery-accent {
+            width: 48px;
+            height: 1px;
+
+            margin-bottom: 24px;
+
+            background: currentColor;
+
+            opacity: 0.65;
+        }
+
+
+        .gallery-showcase-content h2 {
+            margin: 0 0 18px;
+
+            font-size: clamp(1.35rem, 2.5vw, 2rem);
+            line-height: 1.15;
+
+            letter-spacing: 1px;
+        }
+
+
+        .gallery-showcase-content p {
             margin: 0;
-            min-height: 3em;
-            max-width: 100%;
-            font-size: 0.84rem;
-            line-height: 1.65;
+
+            max-width: 430px;
+
+            font-size: 0.88rem;
+            line-height: 1.8;
+
             color: var(--text-muted);
         }
 
+
         /* =========================================
-           TABLET
+           SCROLL REVEAL
            ========================================= */
 
-        @media (max-width: 950px) {
-            .gallery-page {
-                padding-top: 48px;
-                padding-bottom: 80px;
+        .gallery-showcase-item {
+            opacity: 0;
+            transform: translateY(45px);
+
+            transition:
+                opacity 0.8s ease,
+                transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+
+        .gallery-showcase-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+           ========================================= */
+
+        @media (max-width: 900px) {
+
+            .gallery-showcase {
+                padding-top: 20px;
+                padding-bottom: 70px;
             }
 
-            .gallery-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 38px 28px;
+            .gallery-intro {
+                margin-bottom: 70px;
+            }
+
+            .gallery-showcase-list {
+                gap: 90px;
+            }
+
+            .gallery-showcase-item,
+            .gallery-showcase-item:nth-child(even) {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .gallery-showcase-item:nth-child(even) .gallery-showcase-image,
+            .gallery-showcase-item:nth-child(even) .gallery-showcase-content {
+                order: initial;
+            }
+
+            .gallery-showcase-image {
+                aspect-ratio: 16 / 10;
+            }
+
+            .gallery-showcase-content {
+                max-width: 100%;
+                min-height: auto;
+            }
+
+            .gallery-showcase-content p {
+                max-width: 100%;
             }
         }
 
-        /* =========================================
-           MOBILE
-           ========================================= */
 
-        @media (max-width: 620px) {
-            .gallery-page {
-                padding-top: 34px;
-                padding-bottom: 65px;
+        @media (max-width: 600px) {
+
+            .gallery-intro {
+                margin-bottom: 55px;
             }
 
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 38px;
+            .gallery-intro h1 {
+                font-size: 2.2rem;
             }
 
-            .gallery-item {
+            .gallery-intro p {
+                font-size: 0.82rem;
+                line-height: 1.7;
+            }
+
+            .gallery-showcase-list {
+                gap: 75px;
+            }
+
+            .gallery-showcase-image {
+                aspect-ratio: 16 / 10;
                 border-radius: 12px;
             }
 
-            .gallery-card h3 {
-                margin-top: 15px;
-                font-size: 0.94rem;
+            .gallery-showcase-content {
+                padding: 0 4px;
             }
 
-            .gallery-card p {
-                min-height: auto;
+            .gallery-number {
+                margin-bottom: 16px;
+            }
+
+            .gallery-accent {
+                margin-bottom: 18px;
+            }
+
+            .gallery-showcase-content h2 {
+                font-size: 1.25rem;
+                margin-bottom: 14px;
+            }
+
+            .gallery-showcase-content p {
                 font-size: 0.82rem;
-                line-height: 1.65;
+                line-height: 1.7;
             }
         }
 
+
         /* =========================================
-           REDUCED MOTION
+           REDUCED MOTION ACCESSIBILITY
            ========================================= */
 
         @media (prefers-reduced-motion: reduce) {
-            .gallery-item img {
+
+            .gallery-showcase-item {
+                opacity: 1;
+                transform: none;
                 transition: none;
             }
 
-            .gallery-item:hover img {
+            .gallery-showcase-image img {
+                transition: none;
+            }
+
+            .gallery-showcase-image:hover img {
                 transform: none;
             }
         }
+
     </style>
 </head>
 
+
 <body>
 
+<!-- ========================================= -->
 <!-- CUSTOM CURSOR -->
+<!-- ========================================= -->
+
 <div class="cursor-dot"></div>
 <div class="cursor-outline"></div>
 
+
+<!-- ========================================= -->
 <!-- HEADER -->
+<!-- ========================================= -->
+
 <div id="site-header"></div>
 
-<!-- =========================================
-     GALLERY
-     ========================================= -->
-<section class="container gallery-page">
 
-    <div class="gallery-grid">
+<!-- ========================================= -->
+<!-- GALLERY -->
+<!-- ========================================= -->
 
+<section class="container gallery-showcase">
+
+
+    <!-- ========================================= -->
+    <!-- GALLERY INTRO -->
+    <!-- ========================================= -->
+
+    <div class="gallery-intro">
+
+        <span class="gallery-kicker">
+            Selected Work
+        </span>
+
+        <h1>
+            Our Gallery
+        </h1>
+
+        <p>
+            A curated collection of digital, architectural, and creative
+            work crafted with purpose, clarity, and a distinctive visual
+            approach.
+        </p>
+
+    </div>
+
+
+    <!-- ========================================= -->
+    <!-- GALLERY SHOWCASE LIST -->
+    <!-- ========================================= -->
+
+    <div class="gallery-showcase-list">
+
+
+        <!-- ===================================== -->
         <!-- 01 — SOFTWARE & APPLICATIONS -->
-        <article class="gallery-card">
-            <div class="gallery-item">
+        <!-- ===================================== -->
+
+        <article class="gallery-showcase-item">
+
+            <div class="gallery-showcase-image">
+
                 <img
                     src="/assets/photos/1.webp"
                     alt="Software and Applications"
-                    loading="eager"
-                    decoding="async">
+                    loading="lazy"
+                >
+
             </div>
-            <h3>Software &amp; Applications</h3>
-            <p>
-                Creative digital solutions and application-focused experiences
-                designed for modern software environments and evolving user needs.
-            </p>
+
+
+            <div class="gallery-showcase-content">
+
+                <span class="gallery-number">
+                    01 / 06
+                </span>
+
+                <div class="gallery-accent"></div>
+
+                <h2>
+                    SOFTWARE &amp; APPLICATIONS
+                </h2>
+
+                <p>
+                    Creative digital solutions and application-focused
+                    experiences designed for modern software environments
+                    and evolving user needs.
+                </p>
+
+            </div>
+
         </article>
 
+
+
+        <!-- ===================================== -->
         <!-- 02 — WEBSITE DESIGN & DEVELOPMENT -->
-        <article class="gallery-card">
-            <div class="gallery-item">
+        <!-- ===================================== -->
+
+        <article class="gallery-showcase-item">
+
+            <div class="gallery-showcase-image">
+
                 <img
                     src="/assets/photos/2.webp"
                     alt="Website Design and Development"
                     loading="lazy"
-                    decoding="async">
+                >
+
             </div>
-            <h3>Website Design &amp; Development</h3>
-            <p>
-                Modern, responsive websites combining purposeful visual design,
-                clear structure, and seamless experiences across devices.
-            </p>
+
+
+            <div class="gallery-showcase-content">
+
+                <span class="gallery-number">
+                    02 / 06
+                </span>
+
+                <div class="gallery-accent"></div>
+
+                <h2>
+                    WEBSITE DESIGN &amp; DEVELOPMENT
+                </h2>
+
+                <p>
+                    Modern, responsive websites combining purposeful
+                    visual design, clear structure, and seamless
+                    experiences across desktop, tablet, and mobile.
+                </p>
+
+            </div>
+
         </article>
 
+
+
+        <!-- ===================================== -->
         <!-- 03 — UI/UX DESIGN -->
-        <article class="gallery-card">
-            <div class="gallery-item">
+        <!-- ===================================== -->
+
+        <article class="gallery-showcase-item">
+
+            <div class="gallery-showcase-image">
+
                 <img
                     src="/assets/photos/3.webp"
                     alt="UI UX Design"
                     loading="lazy"
-                    decoding="async">
+                >
+
             </div>
-            <h3>UI/UX Design</h3>
-            <p>
-                User-focused interface concepts bringing together visual
-                hierarchy, interaction, usability, and engaging digital experiences.
-            </p>
+
+
+            <div class="gallery-showcase-content">
+
+                <span class="gallery-number">
+                    03 / 06
+                </span>
+
+                <div class="gallery-accent"></div>
+
+                <h2>
+                    UI/UX DESIGN
+                </h2>
+
+                <p>
+                    User-focused interface concepts bringing together
+                    visual hierarchy, interaction, usability, and
+                    engaging digital experiences.
+                </p>
+
+            </div>
+
         </article>
 
+
+
+        <!-- ===================================== -->
         <!-- 04 — FLOOR PLANS -->
-        <article class="gallery-card">
-            <div class="gallery-item">
+        <!-- ===================================== -->
+
+        <article class="gallery-showcase-item">
+
+            <div class="gallery-showcase-image">
+
                 <img
                     src="/assets/photos/4.webp"
                     alt="Architectural Floor Plans"
                     loading="lazy"
-                    decoding="async">
+                >
+
             </div>
-            <h3>Floor Plans</h3>
-            <p>
-                Detailed architectural floor plan concepts presenting space
-                planning, room layouts, dimensions, and functional organization.
-            </p>
+
+
+            <div class="gallery-showcase-content">
+
+                <span class="gallery-number">
+                    04 / 06
+                </span>
+
+                <div class="gallery-accent"></div>
+
+                <h2>
+                    FLOOR PLANS
+                </h2>
+
+                <p>
+                    Detailed architectural floor plan concepts presenting
+                    space planning, room layouts, dimensions, and
+                    functional organization.
+                </p>
+
+            </div>
+
         </article>
 
+
+
+        <!-- ===================================== -->
         <!-- 05 — ARCHITECTURE & INTERIORS -->
-        <article class="gallery-card">
-            <div class="gallery-item">
+        <!-- ===================================== -->
+
+        <article class="gallery-showcase-item">
+
+            <div class="gallery-showcase-image">
+
                 <img
                     src="/assets/photos/5.webp"
                     alt="Architecture and Interiors"
                     loading="lazy"
-                    decoding="async">
+                >
+
             </div>
-            <h3>Architecture &amp; Interiors</h3>
-            <p>
-                Contemporary architectural and interior concepts combining
-                distinctive forms, materials, lighting, and refined spatial design.
-            </p>
+
+
+            <div class="gallery-showcase-content">
+
+                <span class="gallery-number">
+                    05 / 06
+                </span>
+
+                <div class="gallery-accent"></div>
+
+                <h2>
+                    ARCHITECTURE &amp; INTERIORS
+                </h2>
+
+                <p>
+                    Contemporary architectural and interior concepts
+                    combining distinctive forms, materials, lighting,
+                    and refined spatial design.
+                </p>
+
+            </div>
+
         </article>
 
+
+
+        <!-- ===================================== -->
         <!-- 06 — BRANDING & IDENTITY -->
-        <article class="gallery-card">
-            <div class="gallery-item">
+        <!-- ===================================== -->
+
+        <article class="gallery-showcase-item">
+
+            <div class="gallery-showcase-image">
+
                 <img
                     src="/assets/photos/6.webp"
                     alt="Branding and Identity Design"
                     loading="lazy"
-                    decoding="async">
+                >
+
             </div>
-            <h3>Branding &amp; Identity</h3>
-            <p>
-                Complete visual identity concepts built through logos, stationery,
-                packaging, layouts, and consistent brand communication.
-            </p>
+
+
+            <div class="gallery-showcase-content">
+
+                <span class="gallery-number">
+                    06 / 06
+                </span>
+
+                <div class="gallery-accent"></div>
+
+                <h2>
+                    BRANDING &amp; IDENTITY
+                </h2>
+
+                <p>
+                    Complete visual identity concepts built through logos,
+                    stationery, packaging, layouts, and consistent
+                    brand communication.
+                </p>
+
+            </div>
+
         </article>
+
 
     </div>
 
 </section>
 
+
+<!-- ========================================= -->
 <!-- FOOTER -->
+<!-- ========================================= -->
+
 <div id="site-footer"></div>
 
-<!-- GLOBAL SCRIPT — LOAD ONCE -->
+
+<!-- ========================================= -->
+<!-- GLOBAL SCRIPT -->
+<!-- ========================================= -->
+
 <script src="/script.js"></script>
 
-<!-- =========================================
-     ZOHO SALESIQ LIVE CHAT
-     ========================================= -->
+
+<!-- ========================================= -->
+<!-- SCROLL REVEAL -->
+<!-- GALLERY ONLY -->
+<!-- ========================================= -->
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const galleryItems =
+            document.querySelectorAll(".gallery-showcase-item");
+
+        if (!galleryItems.length) return;
+
+
+        /* Respect reduced-motion preference */
+
+        const reduceMotion =
+            window.matchMedia &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+
+        if (reduceMotion) {
+
+            galleryItems.forEach(function (item) {
+                item.classList.add("is-visible");
+            });
+
+            return;
+        }
+
+
+        /* Intersection Observer */
+
+        const observer =
+            new IntersectionObserver(
+                function (entries, observer) {
+
+                    entries.forEach(function (entry) {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add("is-visible");
+
+                            observer.unobserve(entry.target);
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12,
+                    rootMargin: "0px 0px -60px 0px"
+                }
+            );
+
+
+        galleryItems.forEach(function (item) {
+            observer.observe(item);
+        });
+
+    });
+
+</script>
+
+
+<!-- ========================================= -->
+<!-- ZOHO SALESIQ LIVE CHAT (GLOBAL WIDGET) -->
+<!-- MUST BE IN MAIN PAGE -->
+<!-- MUST BE JUST BEFORE </body> -->
+<!-- ========================================= -->
+
 <script>
     window.$zoho = window.$zoho || {};
-    window.$zoho.salesiq = window.$zoho.salesiq || {
-        ready: function () {
-            console.log("Zoho SalesIQ Loaded ✅");
-        }
-    };
+
+    window.$zoho.salesiq =
+        window.$zoho.salesiq || {
+
+            ready: function () {
+                console.log("Zoho SalesIQ Loaded ✅");
+            }
+
+        };
 </script>
+
 
 <script
     id="zsiqscript"
     src="https://salesiq.zohopublic.in/widget?wc=siq4eeed742bf6206b825f62fd2636a33aaf45f7afa471f2e973240f1e459d9034e">
 </script>
+
+
+<!-- ========================================= -->
+<!-- END ZOHO LIVE CHAT -->
+<!-- ========================================= -->
+
 
 </body>
 </html>
