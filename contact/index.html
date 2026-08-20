@@ -21,11 +21,10 @@
             color: var(--primary-orange) !important;
             text-decoration: none;
             display: inline-block;
-            margin-left: 6px; /* Overlap ഒഴിവാക്കാൻ നൽകിയ കൃത്യമായ സ്പേസ് */
+            margin-left: 6px;
             transition: transform 0.2s ease-in-out;
         }
 
-        /* മാൗസ് കൊണ്ടുവരുമ്പോൾ മാത്രം ലൈറ്റ് Zoom */
         .contact-whatsapp:hover {
             transform: scale(1.08);
         }
@@ -55,11 +54,7 @@
             cursor: none !important;
             position: relative;
             flex: 0 0 14px;
-        }
-
-        .privacy-consent input[type="checkbox"]:hover,
-        .privacy-consent input[type="checkbox"]:focus {
-            cursor: none !important;
+            z-index: 1;
         }
 
         .privacy-consent input[type="checkbox"]:checked {
@@ -92,6 +87,13 @@
 
         .privacy-consent a:hover {
             text-decoration: underline;
+        }
+
+        /* Keep the custom cursor visible over the consent checkbox */
+        .cursor-dot,
+        .cursor-outline {
+            pointer-events: none !important;
+            z-index: 99999 !important;
         }
     </style>
 </head>
