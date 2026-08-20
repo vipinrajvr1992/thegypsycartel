@@ -15,6 +15,73 @@
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="/style.css">
 
+    <!-- Privacy Consent — same as Contact page -->
+    <style>
+        .privacy-consent {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 18px 0 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .privacy-consent input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            min-width: 14px;
+            padding: 0;
+            margin: 0;
+            border: 1px solid var(--primary-orange);
+            border-radius: 2px;
+            background: transparent;
+            cursor: none !important;
+            position: relative;
+            flex: 0 0 14px;
+        }
+
+        .privacy-consent input[type="checkbox"]:checked {
+            background: var(--primary-orange);
+        }
+
+        .privacy-consent input[type="checkbox"]:checked::after {
+            content: "";
+            position: absolute;
+            left: 4px;
+            top: 1px;
+            width: 4px;
+            height: 8px;
+            border: solid #111;
+            border-width: 0 1.5px 1.5px 0;
+            transform: rotate(45deg);
+        }
+
+        .privacy-consent label {
+            margin: 0;
+            cursor: none !important;
+        }
+
+        .privacy-consent a {
+            color: var(--primary-orange);
+            text-decoration: none;
+            font-weight: 600;
+            cursor: none !important;
+        }
+
+        .privacy-consent a:hover {
+            text-decoration: underline;
+        }
+
+        .cursor-dot,
+        .cursor-outline {
+            pointer-events: none !important;
+            z-index: 99999 !important;
+        }
+    </style>
+
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-92193J0YS6"></script>
     <script>
@@ -26,6 +93,10 @@
 </head>
 
 <body class="design-page">
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
 
 <!-- HEADER -->
 <div id="site-header"></div>
@@ -101,6 +172,15 @@
 
                 <textarea name="message" rows="5" placeholder="I have a project" required></textarea>
 
+                <div class="privacy-consent">
+                    <input type="checkbox" id="studioPrivacyConsent" name="privacy_consent" value="accepted" required>
+                    <label for="studioPrivacyConsent">
+                        I agree to the processing of my personal data for responding to this enquiry,
+                        as described in the
+                        <a href="/privacy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+                    </label>
+                </div>
+
                 <button type="submit" class="btn btn-primary" style="width:100%;">
                     INITIALIZE REQUEST
                 </button>
@@ -122,6 +202,19 @@
 
 <!-- MAIN SCRIPT (ONLY ONCE) -->
 <script src="/script.js"></script>
+
+<!-- STUDIO FORM CONSENT VALIDATION -->
+<script>
+const designForm = document.getElementById("designForm");
+const studioPrivacyConsent = document.getElementById("studioPrivacyConsent");
+
+designForm.addEventListener("submit", (e) => {
+    if (!studioPrivacyConsent.checked) {
+        e.preventDefault();
+        studioPrivacyConsent.reportValidity();
+    }
+});
+</script>
 
 <!-- ZOHO SALESIQ -->
 <script>
