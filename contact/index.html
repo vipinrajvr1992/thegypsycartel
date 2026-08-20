@@ -29,7 +29,10 @@
             transform: scale(1.08);
         }
 
-        /* Privacy consent — same site theme */
+        /* =====================================================
+           PRIVACY CONSENT
+        ===================================================== */
+
         .privacy-consent {
             display: flex;
             align-items: center;
@@ -43,17 +46,29 @@
         .privacy-consent input[type="checkbox"] {
             appearance: none;
             -webkit-appearance: none;
+
             width: 14px;
             height: 14px;
             min-width: 14px;
+
             padding: 0;
             margin: 0;
+
             border: 1px solid var(--primary-orange);
             border-radius: 2px;
             background: transparent;
+
+            /* IMPORTANT:
+               Do not allow browser cursor to appear.
+               Custom cursor is rendered separately above it. */
             cursor: none !important;
+
             position: relative;
             flex: 0 0 14px;
+
+            /* Keep checkbox itself clickable */
+            pointer-events: auto;
+
             z-index: 1;
         }
 
@@ -63,13 +78,17 @@
 
         .privacy-consent input[type="checkbox"]:checked::after {
             content: "";
+
             position: absolute;
             left: 4px;
             top: 1px;
+
             width: 4px;
             height: 8px;
+
             border: solid #111;
             border-width: 0 1.5px 1.5px 0;
+
             transform: rotate(45deg);
         }
 
@@ -89,11 +108,136 @@
             text-decoration: underline;
         }
 
-        /* Keep the custom cursor visible over the consent checkbox */
-        .cursor-dot,
-        .cursor-outline {
-            pointer-events: none !important;
-            z-index: 99999 !important;
+
+        /* =====================================================
+           CUSTOM CURSOR — CONTACT PAGE FIX
+        ===================================================== */
+
+        @media (hover: hover) and (pointer: fine) {
+
+            body.contact-page {
+                cursor: none !important;
+            }
+
+            body.contact-page *,
+            body.contact-page input,
+            body.contact-page textarea,
+            body.contact-page button,
+            body.contact-page label,
+            body.contact-page a {
+                cursor: none !important;
+            }
+
+            .cursor-dot,
+            .cursor-outline {
+                position: fixed !important;
+
+                top: 0;
+                left: 0;
+
+                pointer-events: none !important;
+
+                display: block !important;
+                visibility: visible !important;
+
+                z-index: 2147483647 !important;
+
+                will-change: transform;
+
+                opacity: 1;
+            }
+
+            .cursor-dot {
+                width: 7px;
+                height: 7px;
+
+                margin-left: -3.5px;
+                margin-top: -3.5px;
+
+                border-radius: 50%;
+
+                background: var(--primary-orange);
+
+                box-shadow:
+                    0 0 8px rgba(255, 106, 26, 0.55);
+
+                transform: translate3d(-100px, -100px, 0);
+            }
+
+            .cursor-outline {
+                width: 32px;
+                height: 32px;
+
+                margin-left: -16px;
+                margin-top: -16px;
+
+                border: 1px solid rgba(255, 106, 26, 0.75);
+                border-radius: 50%;
+
+                background: transparent;
+
+                transform: translate3d(-100px, -100px, 0);
+
+                transition:
+                    width 0.18s ease,
+                    height 0.18s ease,
+                    margin 0.18s ease,
+                    border-color 0.18s ease,
+                    background-color 0.18s ease;
+            }
+
+            /* Hover state for clickable elements */
+            body.contact-page.cursor-hover .cursor-outline {
+                width: 42px;
+                height: 42px;
+
+                margin-left: -21px;
+                margin-top: -21px;
+
+                border-color: var(--primary-orange);
+
+                background: rgba(255, 106, 26, 0.06);
+            }
+
+            /* Checkbox hover — custom cursor remains visible */
+            body.contact-page.cursor-checkbox .cursor-outline {
+                width: 28px;
+                height: 28px;
+
+                margin-left: -14px;
+                margin-top: -14px;
+
+                border-color: var(--primary-orange);
+
+                background: rgba(255, 106, 26, 0.08);
+            }
+        }
+
+
+        /* =====================================================
+           MOBILE / TOUCH
+           Keep normal touch behaviour.
+        ===================================================== */
+
+        @media (hover: none), (pointer: coarse) {
+
+            body.contact-page {
+                cursor: auto !important;
+            }
+
+            .cursor-dot,
+            .cursor-outline {
+                display: none !important;
+            }
+
+            .privacy-consent input[type="checkbox"] {
+                cursor: pointer !important;
+            }
+
+            .privacy-consent label,
+            .privacy-consent a {
+                cursor: pointer !important;
+            }
         }
     </style>
 </head>
@@ -116,6 +260,7 @@
 
     <!-- CONTACT INFO -->
     <div class="grid-3" style="text-align:center; margin-top:1rem; margin-bottom:2rem;">
+
         <div>
             <h4>SUPPORT &amp; BUSINESS</h4>
             <p>
@@ -138,6 +283,7 @@
             <h4>LOCATION</h4>
             <p>India | UAE</p>
         </div>
+
     </div>
 
     <!-- CONTACT FORM -->
@@ -152,8 +298,23 @@
         </h3>
 
         <div style="display:flex; gap:20px;">
-            <input type="text" name="name" placeholder="Your Name" autocomplete="name" required>
-            <input type="email" name="email" placeholder="Email Address" autocomplete="email" required>
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Your Name"
+                autocomplete="name"
+                required
+            >
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                autocomplete="email"
+                required
+            >
+
         </div>
 
         <input
@@ -165,41 +326,80 @@
             required
         >
 
-        <textarea name="message"
-                  rows="6"
-                  placeholder="Your Message / Business Inquiry..."
-                  required></textarea>
+        <textarea
+            name="message"
+            rows="6"
+            placeholder="Your Message / Business Inquiry..."
+            required
+        ></textarea>
 
         <!-- Hidden metadata -->
-        <input type="hidden" name="_subject" value="New Contact Inquiry - Gypsy Cartel">
-        <input type="hidden" name="_template" value="table">
+        <input
+            type="hidden"
+            name="_subject"
+            value="New Contact Inquiry - Gypsy Cartel"
+        >
 
+        <input
+            type="hidden"
+            name="_template"
+            value="table"
+        >
+
+        <!-- PRIVACY CONSENT -->
         <div class="privacy-consent">
-            <input type="checkbox" id="privacyConsent" name="privacy_consent" value="accepted" required>
+
+            <input
+                type="checkbox"
+                id="privacyConsent"
+                name="privacy_consent"
+                value="accepted"
+                required
+            >
+
             <label for="privacyConsent">
                 I agree to the processing of my personal data for responding to this enquiry,
                 as described in the
-                <a href="/privacy/" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
+                <a
+                    href="/privacy/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Privacy Policy
+                </a>.
             </label>
+
         </div>
 
-        <button type="submit" class="btn btn-primary" style="width:100%;">
+        <button
+            type="submit"
+            class="btn btn-primary"
+            style="width:100%;"
+        >
             SUBMIT INQUIRY
         </button>
 
-        <p id="successMsg"
-           style="display:none; margin-top:20px; color:#00ff9c;">
+        <p
+            id="successMsg"
+            style="display:none; margin-top:20px; color:#00ff9c;"
+        >
             ✔ Message sent successfully. We’ll contact you shortly.
         </p>
 
         <p style="margin-top:15px; font-size:0.9rem; color:var(--text-muted);">
+
             Didn’t get a response?
-            <a href="https://wa.me/918086604808?text=Hello%20Gypsy%20Cartel,%20I%20sent%20an%20inquiry%20via%20your%20website."
-               target="_blank"
-               class="contact-whatsapp">
+
+            <a
+                href="https://wa.me/918086604808?text=Hello%20Gypsy%20Cartel,%20I%20sent%20an%20inquiry%20via%20your%20website."
+                target="_blank"
+                class="contact-whatsapp"
+            >
                 Contact via WhatsApp
             </a>
+
         </p>
+
     </form>
 </div>
 
@@ -209,6 +409,132 @@
 <!-- GLOBAL SCRIPT -->
 <script src="/script.js"></script>
 
+
+<!-- =====================================================
+     CUSTOM CURSOR ENGINE
+     Contact-page fallback/fix
+===================================================== -->
+<script>
+(function () {
+
+    const dot = document.querySelector(".cursor-dot");
+    const outline = document.querySelector(".cursor-outline");
+
+    if (!dot || !outline) return;
+
+    const finePointer =
+        window.matchMedia("(hover: hover) and (pointer: fine)");
+
+    if (!finePointer.matches) return;
+
+    let mouseX = -100;
+    let mouseY = -100;
+
+    let outlineX = -100;
+    let outlineY = -100;
+
+    let rafId = null;
+
+    document.addEventListener("mousemove", function (event) {
+
+        mouseX = event.clientX;
+        mouseY = event.clientY;
+
+        dot.style.transform =
+            `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+
+        if (!rafId) {
+            rafId = requestAnimationFrame(updateOutline);
+        }
+    }, { passive: true });
+
+
+    function updateOutline() {
+
+        outlineX += (mouseX - outlineX) * 0.18;
+        outlineY += (mouseY - outlineY) * 0.18;
+
+        outline.style.transform =
+            `translate3d(${outlineX}px, ${outlineY}px, 0)`;
+
+        if (
+            Math.abs(mouseX - outlineX) > 0.1 ||
+            Math.abs(mouseY - outlineY) > 0.1
+        ) {
+            rafId = requestAnimationFrame(updateOutline);
+        } else {
+            rafId = null;
+        }
+    }
+
+
+    /* =====================================================
+       INTERACTIVE ELEMENT HOVER
+    ===================================================== */
+
+    const interactiveElements = document.querySelectorAll(
+        "a, button, input:not([type='hidden']), textarea, select, label"
+    );
+
+    interactiveElements.forEach(function (element) {
+
+        element.addEventListener("mouseenter", function () {
+            document.body.classList.add("cursor-hover");
+        });
+
+        element.addEventListener("mouseleave", function () {
+            document.body.classList.remove("cursor-hover");
+        });
+
+    });
+
+
+    /* =====================================================
+       CHECKBOX-SPECIFIC CURSOR
+    ===================================================== */
+
+    const privacyCheckbox =
+        document.getElementById("privacyConsent");
+
+    if (privacyCheckbox) {
+
+        privacyCheckbox.addEventListener("mouseenter", function () {
+
+            document.body.classList.add("cursor-checkbox");
+
+        });
+
+        privacyCheckbox.addEventListener("mouseleave", function () {
+
+            document.body.classList.remove("cursor-checkbox");
+
+        });
+
+    }
+
+
+    /* =====================================================
+       WINDOW / TAB SAFETY
+    ===================================================== */
+
+    document.addEventListener("mouseleave", function () {
+
+        dot.style.opacity = "0";
+        outline.style.opacity = "0";
+
+    });
+
+    document.addEventListener("mouseenter", function () {
+
+        dot.style.opacity = "1";
+        outline.style.opacity = "1";
+
+    });
+
+})();
+</script>
+
+
 <!-- CONTACT FORM AJAX -->
 <script>
 const form = document.getElementById("contactForm");
@@ -216,6 +542,7 @@ const successMsg = document.getElementById("successMsg");
 const privacyConsent = document.getElementById("privacyConsent");
 
 form.addEventListener("submit", async (e) => {
+
     e.preventDefault();
 
     if (!privacyConsent.checked) {
@@ -224,37 +551,51 @@ form.addEventListener("submit", async (e) => {
     }
 
     const formData = new FormData(form);
+
     const response = await fetch(form.action, {
         method: "POST",
         body: formData,
-        headers: { "Accept": "application/json" }
+        headers: {
+            "Accept": "application/json"
+        }
     });
 
     if (response.ok) {
+
         form.reset();
         successMsg.style.display = "block";
+
     } else {
-        alert("Something went wrong. Please try again or contact via WhatsApp.");
+
+        alert(
+            "Something went wrong. Please try again or contact via WhatsApp."
+        );
+
     }
+
 });
 </script>
+
 
 <!-- ========================================= -->
 <!-- ✅ ZOHO SALESIQ LIVE CHAT (GLOBAL WIDGET) -->
 <!-- ========================================= -->
+
 <script>
-  window.$zoho = window.$zoho || {};
-  window.$zoho.salesiq = window.$zoho.salesiq || {
+window.$zoho = window.$zoho || {};
+
+window.$zoho.salesiq = window.$zoho.salesiq || {
     ready: function () {
-      console.log("Zoho SalesIQ Loaded ✅");
+        console.log("Zoho SalesIQ Loaded ✅");
     }
-  };
+};
 </script>
 
 <script
-  id="zsiqscript"
-  src="https://salesiq.zohopublic.in/widget?wc=siq4eeed742bf6206b825f62fd2636a33aaf45f7afa471f2e973240f1e459d9034e">
+    id="zsiqscript"
+    src="https://salesiq.zohopublic.in/widget?wc=siq4eeed742bf6206b825f62fd2636a33aaf45f7afa471f2e973240f1e459d9034e">
 </script>
+
 <!-- ========================================= -->
 <!-- ✅ END ZOHO LIVE CHAT -->
 <!-- ========================================= -->
