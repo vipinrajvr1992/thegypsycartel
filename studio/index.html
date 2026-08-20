@@ -38,7 +38,7 @@
             border: 1px solid var(--primary-orange);
             border-radius: 2px;
             background: transparent;
-            cursor: none !important;
+            cursor: pointer !important;
             position: relative;
             flex: 0 0 14px;
             pointer-events: auto;
@@ -63,123 +63,20 @@
 
         .privacy-consent label {
             margin: 0;
-            cursor: none !important;
+            cursor: pointer !important;
         }
 
         .privacy-consent a {
             color: var(--primary-orange);
             text-decoration: none;
             font-weight: 600;
-            cursor: none !important;
+            cursor: pointer !important;
         }
 
         .privacy-consent a:hover {
             text-decoration: underline;
         }
 
-        /* =====================================================
-           CUSTOM CURSOR — STUDIO PAGE
-        ===================================================== */
-
-        @media (hover: hover) and (pointer: fine) {
-
-            body.design-page {
-                cursor: none !important;
-            }
-
-            body.design-page *,
-            body.design-page input,
-            body.design-page textarea,
-            body.design-page button,
-            body.design-page label,
-            body.design-page a {
-                cursor: none !important;
-            }
-
-            .cursor-dot,
-            .cursor-outline {
-                position: fixed !important;
-                top: 0;
-                left: 0;
-                pointer-events: none !important;
-                display: block !important;
-                visibility: visible !important;
-                z-index: 2147483647 !important;
-                will-change: transform;
-                opacity: 1;
-            }
-
-            .cursor-dot {
-                width: 7px;
-                height: 7px;
-                margin-left: -3.5px;
-                margin-top: -3.5px;
-                border-radius: 50%;
-                background: var(--primary-orange);
-                box-shadow: 0 0 8px rgba(255, 106, 26, 0.55);
-                transform: translate3d(-100px, -100px, 0);
-            }
-
-            .cursor-outline {
-                width: 32px;
-                height: 32px;
-                margin-left: -16px;
-                margin-top: -16px;
-                border: 1px solid rgba(255, 106, 26, 0.75);
-                border-radius: 50%;
-                background: transparent;
-                transform: translate3d(-100px, -100px, 0);
-                transition:
-                    width 0.18s ease,
-                    height 0.18s ease,
-                    margin 0.18s ease,
-                    border-color 0.18s ease,
-                    background-color 0.18s ease;
-            }
-
-            body.design-page.cursor-hover .cursor-outline {
-                width: 42px;
-                height: 42px;
-                margin-left: -21px;
-                margin-top: -21px;
-                border-color: var(--primary-orange);
-                background: rgba(255, 106, 26, 0.06);
-            }
-
-            body.design-page.cursor-checkbox .cursor-outline {
-                width: 28px;
-                height: 28px;
-                margin-left: -14px;
-                margin-top: -14px;
-                border-color: var(--primary-orange);
-                background: rgba(255, 106, 26, 0.08);
-            }
-        }
-
-        /* =====================================================
-           MOBILE / TOUCH
-        ===================================================== */
-
-        @media (hover: none), (pointer: coarse) {
-
-            body.design-page {
-                cursor: auto !important;
-            }
-
-            .cursor-dot,
-            .cursor-outline {
-                display: none !important;
-            }
-
-            .privacy-consent input[type="checkbox"] {
-                cursor: pointer !important;
-            }
-
-            .privacy-consent label,
-            .privacy-consent a {
-                cursor: pointer !important;
-            }
-        }
     </style>
 
     <!-- Google Analytics -->
@@ -193,10 +90,6 @@
 </head>
 
 <body class="design-page">
-
-<!-- CUSTOM CURSOR -->
-<div class="cursor-dot"></div>
-<div class="cursor-outline"></div>
 
 <!-- HEADER -->
 <div id="site-header"></div>
@@ -314,115 +207,6 @@ designForm.addEventListener("submit", (e) => {
         studioPrivacyConsent.reportValidity();
     }
 });
-</script>
-
-<!-- STUDIO CUSTOM CURSOR ENGINE -->
-<script>
-(function () {
-
-    const dot = document.querySelector(".cursor-dot");
-    const outline = document.querySelector(".cursor-outline");
-
-    if (!dot || !outline) return;
-
-    const finePointer =
-        window.matchMedia("(hover: hover) and (pointer: fine)");
-
-    if (!finePointer.matches) return;
-
-    let mouseX = -100;
-    let mouseY = -100;
-
-    let outlineX = -100;
-    let outlineY = -100;
-
-    let rafId = null;
-
-    document.addEventListener("mousemove", function (event) {
-
-        mouseX = event.clientX;
-        mouseY = event.clientY;
-
-        dot.style.transform =
-            `translate3d(${mouseX}px, ${mouseY}px, 0)`;
-
-        if (!rafId) {
-            rafId = requestAnimationFrame(updateOutline);
-        }
-
-    }, { passive: true });
-
-
-    function updateOutline() {
-
-        outlineX += (mouseX - outlineX) * 0.18;
-        outlineY += (mouseY - outlineY) * 0.18;
-
-        outline.style.transform =
-            `translate3d(${outlineX}px, ${outlineY}px, 0)`;
-
-        if (
-            Math.abs(mouseX - outlineX) > 0.1 ||
-            Math.abs(mouseY - outlineY) > 0.1
-        ) {
-            rafId = requestAnimationFrame(updateOutline);
-        } else {
-            rafId = null;
-        }
-    }
-
-
-    /* Interactive elements */
-    const interactiveElements = document.querySelectorAll(
-        "a, button, input:not([type='hidden']), textarea, select, label, .gc-dropdown-selected, .gc-dropdown-list li"
-    );
-
-    interactiveElements.forEach(function (element) {
-
-        element.addEventListener("mouseenter", function () {
-            document.body.classList.add("cursor-hover");
-        });
-
-        element.addEventListener("mouseleave", function () {
-            document.body.classList.remove("cursor-hover");
-        });
-
-    });
-
-
-    /* Checkbox-specific cursor */
-    const privacyCheckbox =
-        document.getElementById("studioPrivacyConsent");
-
-    if (privacyCheckbox) {
-
-        privacyCheckbox.addEventListener("mouseenter", function () {
-            document.body.classList.add("cursor-checkbox");
-        });
-
-        privacyCheckbox.addEventListener("mouseleave", function () {
-            document.body.classList.remove("cursor-checkbox");
-        });
-
-    }
-
-
-    /* Keep cursor hidden only when pointer leaves browser window */
-    document.addEventListener("mouseleave", function () {
-
-        dot.style.opacity = "0";
-        outline.style.opacity = "0";
-
-    });
-
-    document.addEventListener("mouseenter", function () {
-
-        dot.style.opacity = "1";
-        outline.style.opacity = "1";
-
-    });
-
-})();
 </script>
 
 <!-- ZOHO SALESIQ -->
