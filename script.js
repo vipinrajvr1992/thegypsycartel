@@ -83,12 +83,15 @@ document.addEventListener("DOMContentLoaded", () => {
         // Arrow Buttons (Desktop)
         const leftArrow = document.querySelector('.apps-modal-arrow.left');
         const rightArrow = document.querySelector('.apps-modal-arrow.right');
-        
+
         if (leftArrow) leftArrow.addEventListener('click', (e) => {
-            e.stopPropagation(); prevImage();
+            e.stopPropagation();
+            prevImage();
         });
+
         if (rightArrow) rightArrow.addEventListener('click', (e) => {
-            e.stopPropagation(); nextImage();
+            e.stopPropagation();
+            nextImage();
         });
 
         // Keyboard Nav
@@ -100,10 +103,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
     /* =========================================================
        6. HEADER + FOOTER LOADER (ABSOLUTE PATH FIX)
     ========================================================= */
-    
+
     /* ✅ FIX 4: Use Absolute Path for Production Domain */
     const partialsPath = "/partials/";
 
@@ -119,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 .replace(/\/$/, "") // remove trailing slash
                 .split("/")
                 .pop();
-            
+
             if (currentPath === "" || currentPath === "index") currentPath = "home";
 
             document.querySelectorAll("header nav a").forEach(link => {
@@ -166,7 +170,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (response.ok) {
                     designForm.reset();
                     submitBtn.innerText = "SENT ✅";
-                    
+
                     /* Show Success Message */
                     if (successMsg) {
                         successMsg.style.display = "block";
@@ -189,6 +193,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
+
 /* =========================================================
    GYPSY CARTEL — GLOBAL PREMIUM ANIMATION ENGINE
    Paste this at the BOTTOM of script.js
@@ -196,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-/* =========================================
+    /* =========================================
        2. GLOBAL SCROLL REVEAL SYSTEM
        Works for Text, Cards, Sections, Forms, Images
     ========================================= */
@@ -284,6 +290,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+
 /* =========================================================
    ✅ GYPSY CARTEL — FINAL MOBILE NAVBAR ENGINE (PURE)
    Auto Center + Indicator + Hamburger Drawer
@@ -292,124 +300,127 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initMobileNavbar() {
 
-  /* ✅ Run ONLY on Mobile */
-  if (window.innerWidth > 768) return;
+    /* ✅ Run ONLY on Mobile */
+    if (window.innerWidth > 768) return;
 
-  const headerNav = document.querySelector("header nav");
-  const menu = document.querySelector("header nav ul");
-  const links = document.querySelectorAll("header nav a");
-  const indicator = document.querySelector(".nav-indicator");
-  const menuBtn = document.querySelector(".mobile-menu-btn");
+    const headerNav = document.querySelector("header nav");
+    const menu = document.querySelector("header nav ul");
+    const links = document.querySelectorAll("header nav a");
+    const indicator = document.querySelector(".nav-indicator");
+    const menuBtn = document.querySelector(".mobile-menu-btn");
 
-  if (!headerNav || !menu || !links.length) return;
+    if (!headerNav || !menu || !links.length) return;
 
-  /* =========================================
-     ✅ MOVE INDICATOR PERFECT POSITION
-  ========================================= */
-  function moveIndicator(activeLink) {
-    if (!indicator || !activeLink) return;
+    /* =========================================
+       ✅ MOVE INDICATOR PERFECT POSITION
+    ========================================= */
+    function moveIndicator(activeLink) {
+        if (!indicator || !activeLink) return;
 
-    const rect = activeLink.getBoundingClientRect();
-    const navRect = headerNav.getBoundingClientRect();
+        const rect = activeLink.getBoundingClientRect();
+        const navRect = headerNav.getBoundingClientRect();
 
-    indicator.style.width = rect.width + "px";
-    indicator.style.left = rect.left - navRect.left + "px";
-  }
-
-  /* =========================================
-     ✅ AUTO CENTER ACTIVE TAB
-  ========================================= */
-  function centerActive(activeLink) {
-    if (!activeLink) return;
-
-    activeLink.scrollIntoView({
-      behavior: "smooth",
-      inline: "center",
-      block: "nearest"
-    });
-  }
-
-  /* =========================================
-     ✅ INITIAL ACTIVE LINK ON LOAD
-  ========================================= */
-  const active = document.querySelector("header nav a.active");
-
-  if (active) {
-    setTimeout(() => {
-      moveIndicator(active);
-      centerActive(active);
-    }, 150);
-  }
-
-  /* =========================================
-     ✅ CLICK UPDATE ACTIVE LINK
-  ========================================= */
-  links.forEach(link => {
-    link.addEventListener("click", () => {
-
-      links.forEach(l => l.classList.remove("active"));
-      link.classList.add("active");
-
-      moveIndicator(link);
-      centerActive(link);
-
-      /* Close Drawer After Click */
-      menu.classList.remove("open");
-    });
-  });
-
-  /* =========================================
-     ✅ HAMBURGER TOGGLE
-  ========================================= */
-  if (menuBtn) {
-    menuBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      menu.classList.toggle("open");
-    });
-  }
-
-  /* =========================================
-     ✅ CLOSE DRAWER OUTSIDE CLICK
-  ========================================= */
-  document.addEventListener("click", (e) => {
-    if (!headerNav.contains(e.target)) {
-      menu.classList.remove("open");
+        indicator.style.width = rect.width + "px";
+        indicator.style.left = rect.left - navRect.left + "px";
     }
-  });
 
-  /* =========================================
-     ✅ UPDATE INDICATOR ON RESIZE
-  ========================================= */
-  window.addEventListener("resize", () => {
-    const activeNow = document.querySelector("header nav a.active");
-    if (activeNow) moveIndicator(activeNow);
-  });
+    /* =========================================
+       ✅ AUTO CENTER ACTIVE TAB
+    ========================================= */
+    function centerActive(activeLink) {
+        if (!activeLink) return;
+
+        activeLink.scrollIntoView({
+            behavior: "smooth",
+            inline: "center",
+            block: "nearest"
+        });
+    }
+
+    /* =========================================
+       ✅ INITIAL ACTIVE LINK ON LOAD
+    ========================================= */
+    const active = document.querySelector("header nav a.active");
+
+    if (active) {
+        setTimeout(() => {
+            moveIndicator(active);
+            centerActive(active);
+        }, 150);
+    }
+
+    /* =========================================
+       ✅ CLICK UPDATE ACTIVE LINK
+    ========================================= */
+    links.forEach(link => {
+        link.addEventListener("click", () => {
+
+            links.forEach(l => l.classList.remove("active"));
+            link.classList.add("active");
+
+            moveIndicator(link);
+            centerActive(link);
+
+            /* Close Drawer After Click */
+            menu.classList.remove("open");
+        });
+    });
+
+    /* =========================================
+       ✅ HAMBURGER TOGGLE
+    ========================================= */
+    if (menuBtn) {
+        menuBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            menu.classList.toggle("open");
+        });
+    }
+
+    /* =========================================
+       ✅ CLOSE DRAWER OUTSIDE CLICK
+    ========================================= */
+    document.addEventListener("click", (e) => {
+        if (!headerNav.contains(e.target)) {
+            menu.classList.remove("open");
+        }
+    });
+
+    /* =========================================
+       ✅ UPDATE INDICATOR ON RESIZE
+    ========================================= */
+    window.addEventListener("resize", () => {
+        const activeNow = document.querySelector("header nav a.active");
+        if (activeNow) moveIndicator(activeNow);
+    });
 }
 
 
 /* =========================================================
    ✅ RUN NAVBAR AFTER HEADER LOADS (INJECT SAFE)
 ========================================================= */
+
 document.addEventListener("DOMContentLoaded", () => {
 
-  const headerMount = document.getElementById("site-header");
-  if (!headerMount) return;
+    const headerMount = document.getElementById("site-header");
+    if (!headerMount) return;
 
-  const observer = new MutationObserver(() => {
+    const observer = new MutationObserver(() => {
 
-    if (headerMount.querySelector("nav")) {
-      initMobileNavbar();
-      observer.disconnect();
-    }
+        if (headerMount.querySelector("nav")) {
+            initMobileNavbar();
+            observer.disconnect();
+        }
 
-  });
+    });
 
-  observer.observe(headerMount, {
-    childList: true,
-    subtree: true
-  });
+    observer.observe(headerMount, {
+        childList: true,
+        subtree: true
+    });
 
 });
+
+
 /* =========================================================
    GYPSY CARTEL — GLOBAL SCRIPT (FINAL MASTER)
    Includes:
@@ -447,6 +458,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentIndex = 0;
 
     if (modal && modalImg && galleryImages.length) {
+
         function toggleScroll(lock) {
             document.body.style.overflow = lock ? "hidden" : "";
         }
@@ -485,9 +497,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const leftArrow = document.querySelector('.apps-modal-arrow.left');
         const rightArrow = document.querySelector('.apps-modal-arrow.right');
-        
-        if (leftArrow) leftArrow.addEventListener('click', (e) => { e.stopPropagation(); prevImage(); });
-        if (rightArrow) rightArrow.addEventListener('click', (e) => { e.stopPropagation(); nextImage(); });
+
+        if (leftArrow) leftArrow.addEventListener('click', (e) => {
+            e.stopPropagation();
+            prevImage();
+        });
+
+        if (rightArrow) rightArrow.addEventListener('click', (e) => {
+            e.stopPropagation();
+            nextImage();
+        });
 
         document.addEventListener("keydown", (e) => {
             if (modal.style.display !== "flex") return;
@@ -497,10 +516,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+
     /* =========================================================
        4. STUDIO CUSTOM DROPDOWN (Grey Active)
     ========================================================= */
     document.querySelectorAll(".gc-dropdown").forEach(dropdown => {
+
         const selectedBox = dropdown.querySelector(".gc-dropdown-selected");
         const items = dropdown.querySelectorAll("li");
         const hiddenInput = dropdown.querySelector("input[type='hidden']");
@@ -513,13 +534,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         items.forEach(item => {
+
             item.addEventListener("click", () => {
+
                 selectedBox.textContent = item.textContent;
                 hiddenInput.value = item.dataset.value;
+
                 items.forEach(li => li.classList.remove("active"));
                 item.classList.add("active");
+
                 dropdown.classList.remove("open");
             });
+
         });
 
         document.addEventListener("click", (e) => {
@@ -527,7 +553,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 dropdown.classList.remove("open");
             }
         });
+
     });
+
 
     /* =========================================================
        5. DESIGN FORM AJAX SUBMIT
@@ -535,8 +563,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const designForm = document.getElementById("designForm");
 
     if (designForm) {
+
         designForm.addEventListener("submit", async (e) => {
+
             e.preventDefault();
+
             const successMsg = document.getElementById("design-success");
             const submitBtn = designForm.querySelector("button");
             const originalText = submitBtn.innerText;
@@ -545,6 +576,7 @@ document.addEventListener("DOMContentLoaded", () => {
             submitBtn.innerText = "SENDING...";
 
             try {
+
                 const response = await fetch(designForm.action, {
                     method: "POST",
                     body: formData,
@@ -552,163 +584,296 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 if (response.ok) {
+
                     designForm.reset();
                     submitBtn.innerText = "SENT ✅";
+
                     if (successMsg) {
                         successMsg.style.display = "block";
                         successMsg.style.color = "#00ff88";
                     }
+
                     setTimeout(() => {
                         submitBtn.innerText = originalText;
-                        if (successMsg) successMsg.style.display = "none";
+
+                        if (successMsg) {
+                            successMsg.style.display = "none";
+                        }
+
                     }, 4000);
+
                 } else {
+
                     alert("Submission failed. Try again.");
                     submitBtn.innerText = originalText;
+
                 }
+
             } catch {
+
                 alert("Network error. Please try again.");
                 submitBtn.innerText = originalText;
+
             }
+
         });
+
     }
+
 });
+
 
 /* =========================================================
    ANIMATION ENGINE (Scroll Reveal & Interactions)
 ========================================================= */
+
 document.addEventListener("DOMContentLoaded", () => {
-    
+
     // 1. SCROLL REVEAL
-    const revealElements = document.querySelectorAll(".reveal, .reveal-img, .reveal-form");
+    const revealElements = document.querySelectorAll(
+        ".reveal, .reveal-img, .reveal-form"
+    );
+
     const revealObserver = new IntersectionObserver((entries) => {
+
         entries.forEach((entry) => {
+
             if (entry.isIntersecting) {
                 entry.target.classList.add("active");
             }
+
         });
+
     }, { threshold: 0.15 });
 
     revealElements.forEach((el) => revealObserver.observe(el));
 
+
     // 2. STAGGER DELAYS
-    document.querySelectorAll(".delay-1").forEach(el => el.style.transitionDelay = "0.15s");
-    document.querySelectorAll(".delay-2").forEach(el => el.style.transitionDelay = "0.3s");
-    document.querySelectorAll(".delay-3").forEach(el => el.style.transitionDelay = "0.45s");
-    document.querySelectorAll(".delay-4").forEach(el => el.style.transitionDelay = "0.6s");
+    document.querySelectorAll(".delay-1").forEach(el =>
+        el.style.transitionDelay = "0.15s"
+    );
+
+    document.querySelectorAll(".delay-2").forEach(el =>
+        el.style.transitionDelay = "0.3s"
+    );
+
+    document.querySelectorAll(".delay-3").forEach(el =>
+        el.style.transitionDelay = "0.45s"
+    );
+
+    document.querySelectorAll(".delay-4").forEach(el =>
+        el.style.transitionDelay = "0.6s"
+    );
+
 
     // 3. IMAGE LOAD FADE-IN
     document.querySelectorAll("img").forEach((img) => {
+
         img.style.opacity = "0";
         img.style.transition = "opacity 0.8s ease";
-        img.addEventListener("load", () => { img.style.opacity = "1"; });
-        if (img.complete) img.style.opacity = "1";
+
+        img.addEventListener("load", () => {
+            img.style.opacity = "1";
+        });
+
+        if (img.complete) {
+            img.style.opacity = "1";
+        }
+
     });
+
 
     // 4. BUTTON MICRO INTERACTION
     document.querySelectorAll(".btn").forEach((btn) => {
-        btn.addEventListener("mousedown", () => { btn.style.transform = "scale(0.96)"; });
-        btn.addEventListener("mouseup", () => { btn.style.transform = ""; });
-        btn.addEventListener("mouseleave", () => { btn.style.transform = ""; });
+
+        btn.addEventListener("mousedown", () => {
+            btn.style.transform = "scale(0.96)";
+        });
+
+        btn.addEventListener("mouseup", () => {
+            btn.style.transform = "";
+        });
+
+        btn.addEventListener("mouseleave", () => {
+            btn.style.transform = "";
+        });
+
     });
+
 });
+
 
 /* =========================================================
    MOBILE NAVBAR ENGINE & HEADER LOADER
 ========================================================= */
 
 function initMobileNavbar() {
-  if (window.innerWidth > 768) return;
 
-  const headerNav = document.querySelector("header nav");
-  const menu = document.querySelector("header nav ul");
-  const links = document.querySelectorAll("header nav a");
-  const indicator = document.querySelector(".nav-indicator");
-  const menuBtn = document.querySelector(".mobile-menu-btn");
+    if (window.innerWidth > 768) return;
 
-  if (!headerNav || !menu || !links.length) return;
+    const headerNav = document.querySelector("header nav");
+    const menu = document.querySelector("header nav ul");
+    const links = document.querySelectorAll("header nav a");
+    const indicator = document.querySelector(".nav-indicator");
+    const menuBtn = document.querySelector(".mobile-menu-btn");
 
-  function moveIndicator(activeLink) {
-    if (!indicator || !activeLink) return;
-    const rect = activeLink.getBoundingClientRect();
-    const navRect = headerNav.getBoundingClientRect();
-    indicator.style.width = rect.width + "px";
-    indicator.style.left = rect.left - navRect.left + "px";
-  }
+    if (!headerNav || !menu || !links.length) return;
 
-  function centerActive(activeLink) {
-    if (!activeLink) return;
-    activeLink.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-  }
+    function moveIndicator(activeLink) {
 
-  const active = document.querySelector("header nav a.active");
-  if (active) {
-    setTimeout(() => { moveIndicator(active); centerActive(active); }, 150);
-  }
+        if (!indicator || !activeLink) return;
 
-  links.forEach(link => {
-    link.addEventListener("click", () => {
-      links.forEach(l => l.classList.remove("active"));
-      link.classList.add("active");
-      moveIndicator(link);
-      centerActive(link);
-      menu.classList.remove("open");
-    });
-  });
+        const rect = activeLink.getBoundingClientRect();
+        const navRect = headerNav.getBoundingClientRect();
 
-  if (menuBtn) {
-    menuBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      menu.classList.toggle("open");
-    });
-  }
+        indicator.style.width = rect.width + "px";
+        indicator.style.left = rect.left - navRect.left + "px";
 
-  document.addEventListener("click", (e) => {
-    if (!headerNav.contains(e.target)) {
-      menu.classList.remove("open");
     }
-  });
 
-  window.addEventListener("resize", () => {
-    const activeNow = document.querySelector("header nav a.active");
-    if (activeNow) moveIndicator(activeNow);
-  });
+    function centerActive(activeLink) {
+
+        if (!activeLink) return;
+
+        activeLink.scrollIntoView({
+            behavior: "smooth",
+            inline: "center",
+            block: "nearest"
+        });
+
+    }
+
+    const active = document.querySelector("header nav a.active");
+
+    if (active) {
+
+        setTimeout(() => {
+            moveIndicator(active);
+            centerActive(active);
+        }, 150);
+
+    }
+
+    links.forEach(link => {
+
+        link.addEventListener("click", () => {
+
+            links.forEach(l => l.classList.remove("active"));
+
+            link.classList.add("active");
+
+            moveIndicator(link);
+            centerActive(link);
+
+            menu.classList.remove("open");
+
+        });
+
+    });
+
+    if (menuBtn) {
+
+        menuBtn.addEventListener("click", (e) => {
+
+            e.stopPropagation();
+
+            menu.classList.toggle("open");
+
+        });
+
+    }
+
+    document.addEventListener("click", (e) => {
+
+        if (!headerNav.contains(e.target)) {
+            menu.classList.remove("open");
+        }
+
+    });
+
+    window.addEventListener("resize", () => {
+
+        const activeNow =
+            document.querySelector("header nav a.active");
+
+        if (activeNow) {
+            moveIndicator(activeNow);
+        }
+
+    });
+
 }
 
-// HEADER & FOOTER INJECTOR
+
+/* =========================================================
+   HEADER & FOOTER INJECTOR
+========================================================= */
+
 document.addEventListener("DOMContentLoaded", () => {
+
     const partialsPath = "/partials/";
 
     /* Load Header */
     fetch(partialsPath + "header.html")
         .then(res => res.text())
         .then(html => {
+
             const mount = document.getElementById("site-header");
+
             if (mount) {
+
                 mount.innerHTML = html;
-                
+
                 // Active Link Logic
-                let currentPath = window.location.pathname.replace(/\/$/, "").split("/").pop();
-                if (currentPath === "" || currentPath === "index") currentPath = "home";
+                let currentPath =
+                    window.location.pathname
+                        .replace(/\/$/, "")
+                        .split("/")
+                        .pop();
+
+                if (currentPath === "" || currentPath === "index") {
+                    currentPath = "home";
+                }
+
                 document.querySelectorAll("header nav a").forEach(link => {
-                    if (link.dataset.nav === currentPath) link.classList.add("active");
+
+                    if (link.dataset.nav === currentPath) {
+                        link.classList.add("active");
+                    }
+
                 });
 
                 // Init Navbar
                 initMobileNavbar();
+
             }
+
         });
+
 
     /* Load Footer */
     fetch(partialsPath + "footer.html")
         .then(res => res.text())
         .then(html => {
+
             const mount = document.getElementById("site-footer");
-            if (mount) mount.innerHTML = html;
+
+            if (mount) {
+                mount.innerHTML = html;
+            }
+
             const year = document.getElementById("year");
-            if (year) year.textContent = new Date().getFullYear();
+
+            if (year) {
+                year.textContent = new Date().getFullYear();
+            }
+
         });
+
 });
+
+
 /* =========================================================
    ✅ GYPSY CARTEL — FLOATING CHAT ENGINE (SMART POSITIONING)
 
@@ -722,20 +887,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    const isDeviceMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    const isDeviceMobile =
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+        .test(navigator.userAgent);
+
 
     /* =========================================
         ✅ 1. WHATSAPP FLOAT BUTTON
     ========================================= */
+
     if (!document.querySelector(".whatsapp-float")) {
+
         const phoneNumber = "918086604808";
         const message = "Hi Gypsy Cartel Support 👋";
-        
+
         const waLink = isDeviceMobile
             ? `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`
             : `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
         const waBtn = document.createElement("a");
+
         waBtn.className = "whatsapp-float";
         waBtn.href = waLink;
         waBtn.target = "_blank";
@@ -744,26 +915,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
         waBtn.style.width = "58px";
         waBtn.style.height = "58px";
-        
+
         waBtn.innerHTML = `
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="35" height="35" fill="white" style="display:block; margin: auto; padding-top: 0px;">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 16 16"
+             width="35"
+             height="35"
+             fill="white"
+             style="display:block; margin: auto; padding-top: 0px;">
+
           <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+
         </svg>`;
+
         document.body.appendChild(waBtn);
+
     }
+
 
     /* =========================================
         ✅ 2. CREATE CONTROL DOCK (DESKTOP ONLY)
     ========================================= */
-    if (!isDeviceMobile && !document.querySelector(".zoho-control-dock")) {
-        const style = document.createElement('style');
+
+    if (!isDeviceMobile &&
+        !document.querySelector(".zoho-control-dock")) {
+
+        const style = document.createElement("style");
+
         style.innerHTML = `
+
           .zoho-control-dock {
               position: fixed !important;
               z-index: 2147483647 !important;
               background: #000 !important;
               border-radius: 50px !important;
-              display: none; 
+              display: none;
               align-items: center !important;
               padding: 6px 16px !important;
               gap: 15px !important;
@@ -771,6 +957,7 @@ document.addEventListener("DOMContentLoaded", () => {
               pointer-events: auto !important;
               transition: bottom 0.3s ease, right 0.3s ease;
           }
+
           .zoho-control-btn {
               color: white !important;
               font-size: 20px !important;
@@ -783,133 +970,328 @@ document.addEventListener("DOMContentLoaded", () => {
               align-items: center;
               justify-content: center;
           }
-          .zoho-control-btn:hover { opacity: 0.7; }
+
+          .zoho-control-btn:hover {
+              opacity: 0.7;
+          }
+
         `;
+
         document.head.appendChild(style);
 
         const dock = document.createElement("div");
+
         dock.className = "zoho-control-dock";
+
         dock.innerHTML = `
-          <div class="zoho-control-btn" data-action="minimize" title="Minimize">−</div>
-          <div class="zoho-control-btn" data-action="full" title="Full Screen">⛶</div>
-          <div class="zoho-control-btn" data-action="close" title="Close">✕</div>
+          <div class="zoho-control-btn"
+               data-action="minimize"
+               title="Minimize">−</div>
+
+          <div class="zoho-control-btn"
+               data-action="full"
+               title="Full Screen">⛶</div>
+
+          <div class="zoho-control-btn"
+               data-action="close"
+               title="Close">✕</div>
         `;
+
         document.body.appendChild(dock);
+
     }
+
 
     /* =========================================
         ✅ 3. RESPONSIVE POSITIONING (PC ONLY)
     ========================================= */
+
     function applyResponsiveStyles(iframe, dock) {
+
         if (!iframe || isDeviceMobile) return;
-        if (!dock) dock = document.querySelector(".zoho-control-dock");
+
+        if (!dock) {
+            dock = document.querySelector(".zoho-control-dock");
+        }
 
         /* --- DESKTOP (Phone Size Box) --- */
-        iframe.style.setProperty("width", "340px", "important");
-        iframe.style.setProperty("height", "480px", "important");
-        iframe.style.setProperty("bottom", "110px", "important");
-        iframe.style.setProperty("right", "18px", "important");
-        iframe.style.setProperty("top", "auto", "important");
-        iframe.style.setProperty("left", "auto", "important");
-        iframe.style.setProperty("border-radius", "18px", "important");
 
-        if(dock) {
+        iframe.style.setProperty(
+            "width",
+            "340px",
+            "important"
+        );
+
+        iframe.style.setProperty(
+            "height",
+            "480px",
+            "important"
+        );
+
+        iframe.style.setProperty(
+            "bottom",
+            "110px",
+            "important"
+        );
+
+        iframe.style.setProperty(
+            "right",
+            "18px",
+            "important"
+        );
+
+        iframe.style.setProperty(
+            "top",
+            "auto",
+            "important"
+        );
+
+        iframe.style.setProperty(
+            "left",
+            "auto",
+            "important"
+        );
+
+        iframe.style.setProperty(
+            "border-radius",
+            "18px",
+            "important"
+        );
+
+        if (dock) {
+
             dock.style.top = "auto";
-            dock.style.bottom = "545px"; 
+            dock.style.bottom = "545px";
             dock.style.right = "25px";
+
         }
+
     }
+
 
     /* =========================================
         ✅ 4. CLICK HANDLER (Event Delegation)
     ========================================= */
+
     let isFull = false;
+
     document.body.addEventListener("click", function(e) {
-        if (isDeviceMobile) return; // Ignore for mobile
+
+        if (isDeviceMobile) return;
 
         if (e.target.classList.contains("zoho-control-btn")) {
-            const action = e.target.getAttribute("data-action");
-            const iframe = document.getElementById("siqiframe");
-            const dock = document.querySelector(".zoho-control-dock");
+
+            const action =
+                e.target.getAttribute("data-action");
+
+            const iframe =
+                document.getElementById("siqiframe");
+
+            const dock =
+                document.querySelector(".zoho-control-dock");
 
             if (!iframe) return;
 
-            if (action === "minimize" || action === "close") {
+
+            if (
+                action === "minimize" ||
+                action === "close"
+            ) {
+
                 iframe.style.display = "none";
+
                 dock.style.display = "none";
+
                 document.body.classList.remove("siq-open");
+
                 isFull = false;
-                applyResponsiveStyles(iframe, dock);
-            } 
+
+                applyResponsiveStyles(
+                    iframe,
+                    dock
+                );
+
+            }
+
             else if (action === "full") {
+
                 isFull = !isFull;
+
                 if (isFull) {
-                    iframe.style.setProperty("width", "100%", "important");
-                    iframe.style.setProperty("height", "100%", "important");
-                    iframe.style.setProperty("top", "0", "important");
-                    iframe.style.setProperty("left", "0", "important");
-                    iframe.style.setProperty("right", "0", "important");
-                    iframe.style.setProperty("bottom", "0", "important");
-                    iframe.style.setProperty("border-radius", "0", "important");
-                    
+
+                    iframe.style.setProperty(
+                        "width",
+                        "100%",
+                        "important"
+                    );
+
+                    iframe.style.setProperty(
+                        "height",
+                        "100%",
+                        "important"
+                    );
+
+                    iframe.style.setProperty(
+                        "top",
+                        "0",
+                        "important"
+                    );
+
+                    iframe.style.setProperty(
+                        "left",
+                        "0",
+                        "important"
+                    );
+
+                    iframe.style.setProperty(
+                        "right",
+                        "0",
+                        "important"
+                    );
+
+                    iframe.style.setProperty(
+                        "bottom",
+                        "0",
+                        "important"
+                    );
+
+                    iframe.style.setProperty(
+                        "border-radius",
+                        "0",
+                        "important"
+                    );
+
                     dock.style.top = "15px";
                     dock.style.right = "15px";
                     dock.style.bottom = "auto";
-                } else {
-                    applyResponsiveStyles(iframe, dock);
+
                 }
+
+                else {
+
+                    applyResponsiveStyles(
+                        iframe,
+                        dock
+                    );
+
+                }
+
             }
+
         }
+
     });
+
 
     /* =========================================
         ✅ 5. ZOHO INIT (KILL IF MOBILE)
     ========================================= */
+
     function setupZohoFinal() {
+
         if (isDeviceMobile) {
+
             // Force hide Zoho elements on mobile if they try to spawn
-            const zohoBtn = document.getElementById("zsiq_float");
-            const iframe = document.getElementById("siqiframe");
-            if (zohoBtn) zohoBtn.style.display = "none";
-            if (iframe) iframe.style.display = "none";
-            return; 
+
+            const zohoBtn =
+                document.getElementById("zsiq_float");
+
+            const iframe =
+                document.getElementById("siqiframe");
+
+            if (zohoBtn) {
+                zohoBtn.style.display = "none";
+            }
+
+            if (iframe) {
+                iframe.style.display = "none";
+            }
+
+            return;
         }
 
-        const zohoBtn = document.getElementById("zsiq_float");
-        const iframe = document.getElementById("siqiframe");
+
+        const zohoBtn =
+            document.getElementById("zsiq_float");
+
+        const iframe =
+            document.getElementById("siqiframe");
 
         if (!zohoBtn || !iframe) return;
+
         if (zohoBtn.dataset.locked === "true") return;
 
         zohoBtn.dataset.locked = "true";
 
-        const hideStyle = document.createElement('style');
-        hideStyle.innerHTML = `.win_close, .siqico-close { display: none !important; }`;
+        const hideStyle =
+            document.createElement("style");
+
+        hideStyle.innerHTML =
+            `.win_close, .siqico-close {
+                display: none !important;
+            }`;
+
         document.head.appendChild(hideStyle);
 
-        const dock = document.querySelector(".zoho-control-dock");
-        applyResponsiveStyles(iframe, dock);
+        const dock =
+            document.querySelector(".zoho-control-dock");
+
+        applyResponsiveStyles(
+            iframe,
+            dock
+        );
 
         zohoBtn.addEventListener("click", () => {
+
             iframe.style.display = "block";
-            if(dock) dock.style.display = "flex"; 
+
+            if (dock) {
+                dock.style.display = "flex";
+            }
+
             document.body.classList.add("siq-open");
-            applyResponsiveStyles(iframe, dock);
+
+            applyResponsiveStyles(
+                iframe,
+                dock
+            );
+
         });
+
     }
 
-    const observer = new MutationObserver(() => {
-        setupZohoFinal();
-        if (isDeviceMobile || document.getElementById("zsiq_float")?.dataset.locked === "true") {
-            // Keep observing on mobile to catch Zoho if it loads late, then hide it
-            if(!isDeviceMobile) observer.disconnect();
-        }
+
+    const observer =
+        new MutationObserver(() => {
+
+            setupZohoFinal();
+
+            if (
+                isDeviceMobile ||
+                document.getElementById("zsiq_float")
+                    ?.dataset.locked === "true"
+            ) {
+
+                // Keep observing on mobile to catch Zoho if it loads late, then hide it
+
+                if (!isDeviceMobile) {
+                    observer.disconnect();
+                }
+
+            }
+
+        });
+
+
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
     });
 
-    observer.observe(document.body, { childList: true, subtree: true });
 });
 
-  /* =========================================================
+
+/* =========================================================
    ✅ GYPSY CARTEL — FINAL DROPDOWN ENGINE (DELEGATED)
    FIXES:
    ✔ Works with injected content
@@ -920,53 +1302,306 @@ document.addEventListener("DOMContentLoaded", () => {
 
 document.addEventListener("click", function (e) {
 
-  /* ==============================
-     OPEN / CLOSE DROPDOWN
-  ============================== */
-  const selected = e.target.closest(".gc-dropdown-selected");
+    /* ==============================
+       OPEN / CLOSE DROPDOWN
+    ============================== */
 
-  if (selected) {
-    e.stopPropagation();
+    const selected =
+        e.target.closest(".gc-dropdown-selected");
 
-    const dropdown = selected.closest(".gc-dropdown");
+    if (selected) {
 
-    // Close others
-    document.querySelectorAll(".gc-dropdown.open").forEach(d => {
-      if (d !== dropdown) d.classList.remove("open");
-    });
+        e.stopPropagation();
 
-    dropdown.classList.toggle("open");
-    return;
-  }
+        const dropdown =
+            selected.closest(".gc-dropdown");
 
-  /* ==============================
-     SELECT ITEM
-  ============================== */
-  const item = e.target.closest(".gc-dropdown-list li");
+        // Close others
+        document
+            .querySelectorAll(".gc-dropdown.open")
+            .forEach(d => {
 
-  if (item) {
-    const dropdown = item.closest(".gc-dropdown");
-    const selectedBox = dropdown.querySelector(".gc-dropdown-selected");
-    const hiddenInput = dropdown.querySelector("input[type='hidden']");
+                if (d !== dropdown) {
+                    d.classList.remove("open");
+                }
 
-    selectedBox.textContent = item.textContent;
+            });
 
-    if (hiddenInput) {
-      hiddenInput.value = item.dataset.value || item.textContent;
+        dropdown.classList.toggle("open");
+
+        return;
     }
 
-    dropdown.querySelectorAll("li").forEach(li => li.classList.remove("active"));
-    item.classList.add("active");
 
-    dropdown.classList.remove("open");
-    return;
-  }
+    /* ==============================
+       SELECT ITEM
+    ============================== */
 
-  /* ==============================
-     CLICK OUTSIDE → CLOSE
-  ============================== */
-  document.querySelectorAll(".gc-dropdown.open").forEach(d => {
-    d.classList.remove("open");
-  });
+    const item =
+        e.target.closest(".gc-dropdown-list li");
+
+    if (item) {
+
+        const dropdown =
+            item.closest(".gc-dropdown");
+
+        const selectedBox =
+            dropdown.querySelector(
+                ".gc-dropdown-selected"
+            );
+
+        const hiddenInput =
+            dropdown.querySelector(
+                "input[type='hidden']"
+            );
+
+        selectedBox.textContent =
+            item.textContent;
+
+        if (hiddenInput) {
+            hiddenInput.value =
+                item.dataset.value ||
+                item.textContent;
+        }
+
+        dropdown
+            .querySelectorAll("li")
+            .forEach(li =>
+                li.classList.remove("active")
+            );
+
+        item.classList.add("active");
+
+        dropdown.classList.remove("open");
+
+        return;
+    }
+
+
+    /* ==============================
+       CLICK OUTSIDE → CLOSE
+    ============================== */
+
+    document
+        .querySelectorAll(".gc-dropdown.open")
+        .forEach(d => {
+            d.classList.remove("open");
+        });
 
 });
+
+
+/* =========================================================
+   🔐 GYPSY CARTEL — CLIENT-SIDE SECURITY LAYER
+   Added without changing existing functionality
+========================================================= */
+
+(() => {
+
+    /* =====================================================
+       1. CLICKJACKING PROTECTION
+       Prevent the website from being embedded in iframes
+    ===================================================== */
+
+    if (window.top !== window.self) {
+
+        try {
+
+            window.top.location = window.self.location;
+
+        } catch (e) {
+
+            document.documentElement.style.display = "none";
+
+        }
+
+    }
+
+
+    /* =====================================================
+       2. DISABLE RIGHT CLICK
+       Casual protection against context-menu access
+    ===================================================== */
+
+    document.addEventListener("contextmenu", (e) => {
+
+        e.preventDefault();
+
+    });
+
+
+    /* =====================================================
+       3. DISABLE COMMON SOURCE / DEVTOOLS SHORTCUTS
+    ===================================================== */
+
+    document.addEventListener("keydown", (e) => {
+
+        /* F12 */
+        if (e.key === "F12") {
+
+            e.preventDefault();
+
+            return false;
+
+        }
+
+
+        /* Ctrl + Shift + I */
+        if (
+            e.ctrlKey &&
+            e.shiftKey &&
+            e.key.toLowerCase() === "i"
+        ) {
+
+            e.preventDefault();
+
+            return false;
+
+        }
+
+
+        /* Ctrl + Shift + J */
+        if (
+            e.ctrlKey &&
+            e.shiftKey &&
+            e.key.toLowerCase() === "j"
+        ) {
+
+            e.preventDefault();
+
+            return false;
+
+        }
+
+
+        /* Ctrl + Shift + C */
+        if (
+            e.ctrlKey &&
+            e.shiftKey &&
+            e.key.toLowerCase() === "c"
+        ) {
+
+            e.preventDefault();
+
+            return false;
+
+        }
+
+
+        /* Ctrl + U */
+        if (
+            e.ctrlKey &&
+            e.key.toLowerCase() === "u"
+        ) {
+
+            e.preventDefault();
+
+            return false;
+
+        }
+
+    });
+
+
+    /* =====================================================
+       4. PREVENT IMAGE DRAGGING
+    ===================================================== */
+
+    document.addEventListener("dragstart", (e) => {
+
+        if (
+            e.target &&
+            e.target.tagName === "IMG"
+        ) {
+
+            e.preventDefault();
+
+        }
+
+    });
+
+
+    /* =====================================================
+       5. PREVENT IMAGE SELECTION
+    ===================================================== */
+
+    document.addEventListener("selectstart", (e) => {
+
+        if (
+            e.target &&
+            (
+                e.target.tagName === "IMG" ||
+                e.target.closest("img")
+            )
+        ) {
+
+            e.preventDefault();
+
+        }
+
+    });
+
+
+    /* =====================================================
+       6. PROTECT ALL CURRENT IMAGES
+    ===================================================== */
+
+    const protectImages = () => {
+
+        document.querySelectorAll("img").forEach((img) => {
+
+            img.setAttribute(
+                "draggable",
+                "false"
+            );
+
+        });
+
+    };
+
+
+    protectImages();
+
+
+    /* =====================================================
+       7. PROTECT DYNAMICALLY INSERTED IMAGES
+    ===================================================== */
+
+    const securityObserver =
+        new MutationObserver(() => {
+
+            protectImages();
+
+        });
+
+
+    securityObserver.observe(
+        document.documentElement,
+        {
+            childList: true,
+            subtree: true
+        }
+    );
+
+
+    /* =====================================================
+       8. CONSOLE WARNING
+    ===================================================== */
+
+    try {
+
+        console.log(
+            "%cGypsy Cartel",
+            "font-size:28px;font-weight:bold;"
+        );
+
+        console.log(
+            "%cThis browser console is intended for developers. " +
+            "Unauthorized modification or misuse of this website " +
+            "is not permitted.",
+            "font-size:13px;"
+        );
+
+    } catch (e) {}
+
+})();
