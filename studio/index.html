@@ -6,7 +6,25 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-          content="Gypsy Cartel Studio delivers architectural visualization, interiors, exteriors, 3D graphics, and high-impact digital design solutions.">
+          content="Gypsy Cartel Studio delivers software and app development, web design and brand identity, architecture and interiors, 3D visualization, and graphic and digital design across India, the UAE, and worldwide.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="The Gypsy Cartel">
+    <meta name="theme-color" content="#000000">
+    <link rel="canonical" href="https://thegypsycartel.com/studio/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thegypsycartel.com/studio/">
+    <meta property="og:title" content="Studio | Gypsy Cartel">
+    <meta property="og:description" content="Explore Gypsy Cartel Studio for software, web, architecture, 3D visualization, graphic and digital design services.">
+    <meta property="og:image" content="https://thegypsycartel.com/assets/banner.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://thegypsycartel.com/studio/">
+    <meta name="twitter:title" content="Studio | Gypsy Cartel">
+    <meta name="twitter:description" content="Software, web, architecture, 3D visualization, graphic and digital design by Gypsy Cartel Studio.">
+    <meta name="twitter:image" content="https://thegypsycartel.com/assets/banner.png">
 
     <!-- SECURITY: Limit referrer information sent to other origins -->
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -79,7 +97,6 @@
         .privacy-consent a:hover {
             text-decoration: underline;
         }
-
     </style>
 
     <!-- Google Analytics -->
@@ -89,6 +106,53 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-92193J0YS6');
+    </script>
+
+    <!-- AEO / GEO / VEO structured data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": ["Organization", "ProfessionalService"],
+          "@id": "https://thegypsycartel.com/#organization",
+          "name": "The Gypsy Cartel",
+          "url": "https://thegypsycartel.com/",
+          "logo": "https://thegypsycartel.com/assets/logos/gypsy-cartel-icon.webp",
+          "areaServed": [
+            {"@type": "Country", "name": "India"},
+            {"@type": "Country", "name": "United Arab Emirates"},
+            {"@type": "AdministrativeArea", "name": "Worldwide"}
+          ]
+        },
+        {
+          "@type": "WebPage",
+          "@id": "https://thegypsycartel.com/studio/#webpage",
+          "url": "https://thegypsycartel.com/studio/",
+          "name": "Studio | Gypsy Cartel",
+          "isPartOf": {"@id": "https://thegypsycartel.com/#website"},
+          "about": {"@id": "https://thegypsycartel.com/#organization"}
+        },
+        {
+          "@type": "Service",
+          "@id": "https://thegypsycartel.com/studio/#service",
+          "name": "Gypsy Cartel Studio Services",
+          "provider": {"@id": "https://thegypsycartel.com/#organization"},
+          "serviceType": [
+            "Software & App Development",
+            "Web Design & Brand Identity",
+            "Architecture & Interiors",
+            "3D Visualization",
+            "Graphic & Digital Design"
+          ],
+          "areaServed": [
+            {"@type": "Country", "name": "India"},
+            {"@type": "Country", "name": "United Arab Emirates"},
+            {"@type": "AdministrativeArea", "name": "Worldwide"}
+          ]
+        }
+      ]
+    }
     </script>
 </head>
 
@@ -121,7 +185,7 @@
             <p class="studio-desc"
                style="max-width:520px;margin:0 auto;text-align:center;line-height:1.65;">
                 Our studio blends technical precision with artistic execution,<br>
-                delivering architectural visualization, interiors, exteriors,<br>
+                delivering architecture & interiors, 3D visualization,<br>
                 and high-impact digital graphics worldwide.
             </p>
 
@@ -140,33 +204,35 @@
                 method="POST"
                 autocomplete="on">
 
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <input type="tel" name="tel" placeholder="Phone Number" required>
+                <input type="text" name="name" placeholder="Your Name" autocomplete="name" required>
+                <input type="email" name="email" placeholder="Email" autocomplete="email" required>
+                <input type="tel" name="tel" placeholder="Phone Number" autocomplete="tel" required>
 
-                <!-- ✅ FIXED SERVICES DROPDOWN -->
+                <!-- SERVICES -->
                 <div class="gc-dropdown" data-name="service">
-
                     <div class="gc-dropdown-selected">
                         Select Service
                     </div>
 
                     <ul class="gc-dropdown-list">
-    <li data-value="software-applications">Software &amp; Applications</li>
-    <li data-value="website-design-development">Website Design &amp; Development</li>
-    <li data-value="ui-ux-design">UI / UX Design</li>
-    <li data-value="floor-plans">Floor Plans</li>
-    <li data-value="architecture-interiors">Architecture &amp; Interiors</li>
-    <li data-value="branding-identity">Branding &amp; Identity</li>
-</ul>
-                    <!-- Hidden Input (Formspree) -->
+                        <li data-value="software-app-development">Software &amp; App Development</li>
+                        <li data-value="web-design-brand-identity">Web Design &amp; Brand Identity</li>
+                        <li data-value="architecture-interiors">Architecture &amp; Interiors</li>
+                        <li data-value="3d-visualization">3D Visualization</li>
+                        <li data-value="graphic-digital-design">Graphic &amp; Digital Design</li>
+                    </ul>
+
                     <input type="hidden" name="service" required>
                 </div>
 
                 <textarea name="message" rows="5" placeholder="I have a project" required></textarea>
 
                 <div class="privacy-consent">
-                    <input type="checkbox" id="studioPrivacyConsent" name="privacy_consent" value="accepted" required>
+                    <input type="checkbox"
+                           id="studioPrivacyConsent"
+                           name="privacy_consent"
+                           value="accepted"
+                           required>
                     <label for="studioPrivacyConsent">
                         I agree to the processing of my personal data for responding to this enquiry,
                         as described in the
@@ -201,12 +267,14 @@
 const designForm = document.getElementById("designForm");
 const studioPrivacyConsent = document.getElementById("studioPrivacyConsent");
 
-designForm.addEventListener("submit", (e) => {
-    if (!studioPrivacyConsent.checked) {
-        e.preventDefault();
-        studioPrivacyConsent.reportValidity();
-    }
-});
+if (designForm && studioPrivacyConsent) {
+    designForm.addEventListener("submit", (e) => {
+        if (!studioPrivacyConsent.checked) {
+            e.preventDefault();
+            studioPrivacyConsent.reportValidity();
+        }
+    });
+}
 </script>
 
 <!-- ZOHO SALESIQ -->
