@@ -4,201 +4,83 @@
     <meta charset="UTF-8">
     <title>Apps | Gypsy Cartel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-          content="Gypsy Cartel is a premium digital design and software studio delivering high-performance applications, hyper-realistic 3D design, and modern UI/UX solutions.">
-    <!-- SECURITY: Limit referrer information sent to other origins -->
+    <meta name="description" content="Gypsy Cartel is a premium digital design and software studio delivering high-performance applications, hyper-realistic 3D design, and modern UI/UX solutions.">
     <meta name="referrer" content="strict-origin-when-cross-origin">
-    <!-- SITE ICON -->
     <link rel="icon" type="image/webp" href="/assets/logos/gypsy-cartel-icon.webp">
     <link rel="apple-touch-icon" href="/assets/logos/gypsy-cartel-icon.webp">
-    <!-- MAIN STYLES -->
     <link rel="stylesheet" href="/style.css">
-    <!-- Minimal Reviews styles (self-contained, does not touch existing rules) -->
     <style>
-        /* Rating bar – sits right after BUY NOW with clean gap */
         .gc-rating-bar {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin: 28px 0 0;          /* gap after BUY NOW */
-            padding: 14px 18px;
+            display: flex; align-items: center; gap: 14px;
+            margin: 28px 0 0; padding: 14px 18px;
             background: rgba(255,106,26,0.07);
             border: 1px solid rgba(255,106,26,0.22);
-            border-radius: 14px;
-            max-width: 420px;
+            border-radius: 14px; max-width: 420px;
         }
-        .gc-rating-bar .stars {
-            color: #ff6a1a;
-            font-size: 1.05rem;
-            letter-spacing: 1px;
-        }
-        .gc-rating-bar .score {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 700;
-            font-size: 1.25rem;
-            color: #fff;
-        }
-        .gc-rating-bar .count {
-            color: #8c8c8c;
-            font-size: 0.85rem;
-        }
-
-        /* Gallery section spacing */
-        .apps-gallery {
-            margin-top: 40px;          /* gap after rating bar */
-        }
-        .apps-gallery-title {
-            margin-bottom: 22px;       /* gap before images */
-        }
-
+        .gc-rating-bar .stars { color: #ff6a1a; font-size: 1.05rem; letter-spacing: 1px; }
+        .gc-rating-bar .score { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.25rem; color: #fff; }
+        .gc-rating-bar .count { color: #8c8c8c; font-size: 0.85rem; }
+        .apps-gallery { margin-top: 40px; }
+        .apps-gallery-title { margin-bottom: 22px; }
         .gc-reviews {
-            margin-top: 70px;
-            padding: 36px 28px;
+            margin-top: 70px; padding: 36px 28px;
             background: rgba(15,15,15,0.85);
             border: 1px solid rgba(255,255,255,0.08);
             border-radius: 20px;
         }
-        .gc-reviews-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 24px;
-            margin-bottom: 28px;
-            flex-wrap: wrap;
-        }
-        .gc-reviews-header h2 {
-            margin: 0;
-            font-size: 1.45rem;
-            color: #fff;
-        }
-        .gc-reviews-header p {
-            margin: 8px 0 0;
-            color: #8c8c8c;
-            font-size: 0.82rem;
-            line-height: 1.55;
-            max-width: 520px;
-        }
-        .gc-reviews-summary {
-            text-align: right;
-            min-width: 150px;
-        }
-        .gc-reviews-summary .big-stars {
-            color: #ff6a1a;
-            font-size: 1.1rem;
-            letter-spacing: 2px;
-        }
-        .gc-reviews-summary strong {
-            display: block;
-            margin-top: 4px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.35rem;
-            color: #fff;
-        }
-        .gc-reviews-summary small {
-            color: #8c8c8c;
-            font-size: 0.72rem;
-        }
-        .gc-review-gate {
-            margin: 22px 0 28px;
-            padding: 16px 18px;
-            border-radius: 14px;
-            background: rgba(255,106,26,0.06);
-            border: 1px solid rgba(255,106,26,0.18);
-        }
-        .gc-review-gate h3 {
-            margin: 0 0 6px;
-            font-size: 0.95rem;
-            color: #fff;
-        }
-        .gc-review-gate p {
-            margin: 0;
-            color: #8c8c8c;
-            font-size: 0.78rem;
-            line-height: 1.5;
-        }
-        .gc-review-form {
-            display: none;
-            gap: 12px;
-            margin-top: 14px;
-        }
+        .gc-reviews-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; margin-bottom: 28px; flex-wrap: wrap; }
+        .gc-reviews-header h2 { margin: 0; font-size: 1.45rem; color: #fff; }
+        .gc-reviews-header p { margin: 8px 0 0; color: #8c8c8c; font-size: 0.82rem; line-height: 1.55; max-width: 520px; }
+        .gc-reviews-summary { text-align: right; min-width: 150px; }
+        .gc-reviews-summary .big-stars { color: #ff6a1a; font-size: 1.1rem; letter-spacing: 2px; }
+        .gc-reviews-summary strong { display: block; margin-top: 4px; font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; color: #fff; }
+        .gc-reviews-summary small { color: #8c8c8c; font-size: 0.72rem; }
+        .gc-review-gate { margin: 22px 0 28px; padding: 16px 18px; border-radius: 14px; background: rgba(255,106,26,0.06); border: 1px solid rgba(255,106,26,0.18); }
+        .gc-review-gate h3 { margin: 0 0 6px; font-size: 0.95rem; color: #fff; }
+        .gc-review-gate p { margin: 0; color: #8c8c8c; font-size: 0.78rem; line-height: 1.5; }
+        .gc-review-form { display: none; gap: 12px; margin-top: 14px; }
         .gc-review-form.show { display: grid; }
-        .gc-review-form select,
-        .gc-review-form textarea {
-            width: 100%;
-            padding: 12px 14px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: #0f0f0f;
-            color: #fff;
-            font-size: 0.85rem;
+        .gc-review-form select, .gc-review-form textarea {
+            width: 100%; padding: 12px 14px; border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.12); background: #0f0f0f; color: #fff; font-size: 0.85rem;
         }
         .gc-review-form textarea { min-height: 90px; resize: vertical; }
         .gc-review-submit {
-            justify-self: start;
-            padding: 11px 22px;
-            border: 0;
-            border-radius: 50px;
-            background: linear-gradient(135deg, #ff6a1a, #ff3c00);
-            color: #fff;
-            font-weight: 700;
-            font-size: 0.8rem;
-            cursor: pointer;
+            justify-self: start; padding: 11px 22px; border: 0; border-radius: 50px;
+            background: linear-gradient(135deg, #ff6a1a, #ff3c00); color: #fff; font-weight: 700; font-size: 0.8rem; cursor: pointer;
         }
-        .gc-review-submit:disabled {
-            opacity: 0.45;
-            cursor: not-allowed;
+        .gc-review-submit:disabled { opacity: 0.45; cursor: not-allowed; }
+        .gc-review-controls {
+            display: none; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; align-items: center;
         }
-        .gc-review-list {
-            display: grid;
-            gap: 14px;
+        .gc-review-controls.show { display: flex; }
+        .gc-review-controls select {
+            padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12);
+            background: #0f0f0f; color: #fff; font-size: 0.8rem;
         }
+        .gc-review-list { display: grid; gap: 14px; }
         .gc-review-card {
-            padding: 16px 18px;
-            border-radius: 14px;
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.07);
+            padding: 16px 18px; border-radius: 14px;
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
         }
-        .gc-review-card-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 8px;
-        }
-        .gc-review-card strong {
-            color: #fff;
-            font-size: 0.88rem;
-        }
-        .gc-review-card .loc {
-            color: #8c8c8c;
-            font-size: 0.72rem;
-            font-weight: 500;
-        }
-        .gc-review-stars {
-            color: #ff6a1a;
-            font-size: 0.78rem;
-            letter-spacing: 1px;
-        }
-        .gc-review-card p {
-            margin: 0;
-            color: #b0b0b0;
-            font-size: 0.82rem;
-            line-height: 1.65;
-        }
+        .gc-review-card-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px; }
+        .gc-review-card strong { color: #fff; font-size: 0.88rem; }
+        .gc-review-card .loc { color: #8c8c8c; font-size: 0.72rem; font-weight: 500; }
+        .gc-review-stars { color: #ff6a1a; font-size: 0.78rem; letter-spacing: 1px; }
+        .gc-review-card p { margin: 0; color: #b0b0b0; font-size: 0.82rem; line-height: 1.65; }
         .gc-verified {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin-top: 10px;
-            color: #4caf70;
-            font-size: 0.68rem;
-            font-weight: 700;
+            display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
+            color: #4caf70; font-size: 0.68rem; font-weight: 700;
         }
-        .gc-verified svg {
-            width: 12px;
-            height: 12px;
-            fill: currentColor;
+        .gc-verified svg { width: 12px; height: 12px; fill: currentColor; }
+        .gc-view-all {
+            display: block; margin: 22px auto 0; padding: 12px 28px;
+            border: 1px solid rgba(255,106,26,0.45); border-radius: 50px;
+            background: transparent; color: #ff6a1a; font-weight: 700; font-size: 0.85rem;
+            cursor: pointer; transition: 0.25s ease;
         }
+        .gc-view-all:hover { background: rgba(255,106,26,0.12); }
+        .gc-view-all.hidden { display: none; }
         @media (max-width: 700px) {
             .gc-reviews { padding: 24px 18px; }
             .gc-reviews-header { flex-direction: column; }
@@ -208,81 +90,45 @@
     </style>
 </head>
 <body>
-<!-- HEADER -->
 <div id="site-header"></div>
-<!-- PAGE CONTENT -->
 <div class="container apps-page">
     <div class="grid-2">
-        <!-- LEFT CONTENT -->
         <div>
-            <h3 class="reveal delay-1"
-                style="color: var(--primary-orange); margin-bottom: 10px; font-size: 1rem;">
-                WINDOWS OPTIMIZATION
-            </h3>
-            <h1 class="reveal delay-2" style="font-size: 2rem; margin-bottom: 25px;">
-                GYPSY OPTIMIZER: PC BEAST <br>V3.1 PRO+
-            </h1>
+            <h3 class="reveal delay-1" style="color: var(--primary-orange); margin-bottom: 10px; font-size: 1rem;">WINDOWS OPTIMIZATION</h3>
+            <h1 class="reveal delay-2" style="font-size: 2rem; margin-bottom: 25px;">GYPSY OPTIMIZER: PC BEAST <br>V3.1 PRO+</h1>
             <p class="reveal delay-3" style="color: #ccc; margin-bottom: 25px;">
                 GYPSY OPTIMIZER V3.1 PRO+ is a professional Windows optimization and system
-                maintenance tool designed to improve speed, stability, and overall PC
-                performance.
+                maintenance tool designed to improve speed, stability, and overall PC performance.
             </p>
-            <ul class="reveal delay-3"
-                style="margin-left: 20px; margin-bottom: 25px; list-style-type:'⚡ '; ">
+            <ul class="reveal delay-3" style="margin-left: 20px; margin-bottom: 25px; list-style-type:'⚡ '; ">
                 <li>One-Click Full System Optimization</li>
                 <li>Junk, Cache & Temporary File Cleanup</li>
                 <li>CPU, RAM & Network Performance Boost</li>
                 <li>Windows System Repair Tools</li>
             </ul>
-            <p class="reveal delay-3"
-               style="font-size:0.9rem; color:var(--text-muted); margin-bottom:18px;">
-                ✔ One-time purchase<br>
-                ✔ No subscriptions<br>
-                ✔ Instant download after payment
+            <p class="reveal delay-3" style="font-size:0.9rem; color:var(--text-muted); margin-bottom:18px;">
+                ✔ One-time purchase<br>✔ No subscriptions<br>✔ Instant download after payment
             </p>
-            <div class="reveal delay-3"
-                 style="margin-bottom:18px; display:flex; align-items:center; gap:15px;">
-                <span style="color:#777; text-decoration:line-through; font-size: 1.2rem;">
-                    ₹1999
-                </span>
-                <span style="color:var(--primary-orange); font-size:1.4rem; font-weight:700;">
-                    ₹999
-                </span>
-                <span style="border:1px solid var(--primary-orange);
-                    padding:4px 12px; border-radius:20px; font-size:0.75rem;
-                    color:var(--primary-orange); background:rgba(255,106,26,0.15);">
-                    50% OFF
-                </span>
+            <div class="reveal delay-3" style="margin-bottom:18px; display:flex; align-items:center; gap:15px;">
+                <span style="color:#777; text-decoration:line-through; font-size: 1.2rem;">₹1999</span>
+                <span style="color:var(--primary-orange); font-size:1.4rem; font-weight:700;">₹999</span>
+                <span style="border:1px solid var(--primary-orange); padding:4px 12px; border-radius:20px; font-size:0.75rem; color:var(--primary-orange); background:rgba(255,106,26,0.15);">50% OFF</span>
             </div>
-            <a class="btn btn-primary reveal delay-3"
-               href="https://gypsycartel.gumroad.com/l/gypsy-optimizer-pc-beast-v3-1-pro"
-               target="_blank" rel="noopener">
-                BUY NOW
-            </a>
-
-            <!-- RATING BAR – right after BUY NOW with clean gap -->
+            <a class="btn btn-primary reveal delay-3" href="https://gypsycartel.gumroad.com/l/gypsy-optimizer-pc-beast-v3-1-pro" target="_blank" rel="noopener">BUY NOW</a>
             <div class="gc-rating-bar reveal delay-3">
                 <span class="stars" aria-hidden="true">★★★★★</span>
                 <span class="score">4.7</span>
                 <span class="count">· 381 ratings · 62 reviews</span>
             </div>
         </div>
-        <!-- RIGHT IMAGE -->
         <div class="reveal-img delay-2">
-            <img src="/assets/logos/gypsy-app.webp"
-                 alt="PC Beast Pro+ Software Icon"
-                 class="apps-image"
-                 style="width:100%; border-radius:12px;">
+            <img src="/assets/logos/gypsy-app.webp" alt="PC Beast Pro+ Software Icon" class="apps-image" style="width:100%; border-radius:12px;">
         </div>
     </div>
-
-    <!-- APP GALLERY -->
     <section class="apps-gallery reveal delay-3">
         <h3 class="apps-gallery-title">APPLICATION PREVIEW</h3>
         <div class="apps-gallery-wrapper">
-            <!-- LEFT ARROW -->
             <div class="apps-gallery-arrow left" onclick="scrollGallery(-1)">‹</div>
-            <!-- TRACK -->
             <div class="apps-gallery-track" id="appsGallery">
                 <img src="/assets/apps/screen-1.webp" class="apps-gallery-img">
                 <img src="/assets/apps/screen-2.webp" class="apps-gallery-img">
@@ -290,12 +136,9 @@
                 <img src="/assets/apps/screen-4.webp" class="apps-gallery-img">
                 <img src="/assets/apps/screen-5.webp" class="apps-gallery-img">
             </div>
-            <!-- RIGHT ARROW -->
             <div class="apps-gallery-arrow right" onclick="scrollGallery(1)">›</div>
         </div>
     </section>
-
-    <!-- ===================== REVIEWS SECTION ===================== -->
     <section class="gc-reviews reveal delay-3" id="gcReviewsSection">
         <div class="gc-reviews-header">
             <div>
@@ -310,10 +153,8 @@
         </div>
         <div class="gc-review-gate">
             <h3>Leave a rating & review</h3>
-            <p id="gcGateText">Only verified purchasers can leave a rating or review. </p>
-            <button type="button" class="gc-review-submit" id="gcWriteReview" style="margin-top:12px;" disabled>
-                Write a Review
-            </button>
+            <p id="gcGateText">Only verified purchasers can leave a rating or review.</p>
+            <button type="button" class="gc-review-submit" id="gcWriteReview" style="margin-top:12px;" disabled>Write a Review</button>
             <form class="gc-review-form" id="gcReviewForm">
                 <select id="gcReviewRating" required>
                     <option value="">Select rating</option>
@@ -325,125 +166,75 @@
                 <button type="submit" class="gc-review-submit">Submit for verification</button>
             </form>
         </div>
-        <div class="gc-review-list" id="gcReviewList">
-            <!-- populated by JS -->
+        <div class="gc-review-controls" id="gcReviewControls">
+            <select id="gcFilterRating">
+                <option value="all">All ratings</option>
+                <option value="5">5 stars</option>
+                <option value="4">4 stars</option>
+                <option value="3">3 stars</option>
+            </select>
+            <select id="gcSortRating">
+                <option value="highest">Highest first</option>
+                <option value="lowest">Lowest first</option>
+            </select>
         </div>
+        <div class="gc-review-list" id="gcReviewList"></div>
+        <button type="button" class="gc-view-all" id="gcViewAll">View all 62 comments</button>
     </section>
 </div>
-<!-- ✅ PREMIUM IMAGE MODAL -->
 <div class="apps-modal" id="appsModal">
-    <!-- Close Button -->
     <span class="apps-modal-close" onclick="closeModal()">×</span>
-    <!-- Prev Button -->
     <div class="apps-modal-nav left" onclick="prevImage()">‹</div>
-    <!-- Image -->
     <img class="apps-modal-img" id="appsModalImg">
-    <!-- Next Button -->
     <div class="apps-modal-nav right" onclick="nextImage()">›</div>
 </div>
-<!-- FOOTER -->
 <div id="site-footer"></div>
 <script src="/script.js"></script>
-<!-- ========================================= -->
-<!-- ✅ ZOHO SALESIQ LIVE CHAT (GLOBAL WIDGET) -->
-<!-- MUST BE IN MAIN PAGE, NOT FOOTER PARTIAL -->
-<!-- MUST BE JUST BEFORE </body> -->
-<!-- ========================================= -->
 <script>
   window.$zoho = window.$zoho || {};
-  window.$zoho.salesiq = window.$zoho.salesiq || {
-    ready: function () {
-      console.log("Zoho SalesIQ Loaded ✅");
-    }
-  };
+  window.$zoho.salesiq = window.$zoho.salesiq || { ready: function () { console.log("Zoho SalesIQ Loaded ✅"); } };
 </script>
-<script
-  id="zsiqscript"
-  src="https://salesiq.zohopublic.in/widget?wc=siq4eeed742bf6206b825f62fd2636a33aaf45f7afa471f2e973240f1e459d9034e">
-</script>
-<!-- ========================================= -->
-<!-- ✅ END ZOHO LIVE CHAT -->
-<!-- ========================================= -->
-<!-- GLOBAL SCRIPT -->
+<script id="zsiqscript" src="https://salesiq.zohopublic.in/widget?wc=siq4eeed742bf6206b825f62fd2636a33aaf45f7afa471f2e973240f1e459d9034e"></script>
 <script src="/script.js"></script>
-<!-- ✅ PREMIUM MODAL ENGINE -->
 <script>
 const gallery = document.getElementById("appsGallery");
 const modal = document.getElementById("appsModal");
 const modalImg = document.getElementById("appsModalImg");
 let currentIndex = 0;
 const images = Array.from(document.querySelectorAll(".apps-gallery-img"));
-/* Scroll Gallery */
-function scrollGallery(dir) {
-    gallery.scrollBy({ left: dir * 360, behavior: "smooth" });
-}
-/* Open Modal */
-function openModal(index) {
-    currentIndex = index;
-    modal.style.display = "flex";
-    modalImg.src = images[currentIndex].src;
-    document.body.style.overflow = "hidden";
-}
-/* Close Modal */
-function closeModal() {
-    modal.style.display = "none";
-    document.body.style.overflow = "auto";
-}
-/* Next */
-function nextImage() {
-    currentIndex = (currentIndex + 1) % images.length;
-    modalImg.src = images[currentIndex].src;
-}
-/* Prev */
-function prevImage() {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    modalImg.src = images[currentIndex].src;
-}
-/* Click image → Open */
-images.forEach((img, index) => {
-    img.addEventListener("click", () => openModal(index));
-});
-/* Click outside → Close */
-modal.addEventListener("click", (e) => {
-    if (e.target === modal) closeModal();
-});
-/* Keyboard Controls */
+function scrollGallery(dir) { gallery.scrollBy({ left: dir * 360, behavior: "smooth" }); }
+function openModal(index) { currentIndex = index; modal.style.display = "flex"; modalImg.src = images[currentIndex].src; document.body.style.overflow = "hidden"; }
+function closeModal() { modal.style.display = "none"; document.body.style.overflow = "auto"; }
+function nextImage() { currentIndex = (currentIndex + 1) % images.length; modalImg.src = images[currentIndex].src; }
+function prevImage() { currentIndex = (currentIndex - 1 + images.length) % images.length; modalImg.src = images[currentIndex].src; }
+images.forEach((img, index) => { img.addEventListener("click", () => openModal(index)); });
+modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
 document.addEventListener("keydown", (e) => {
     if (modal.style.display !== "flex") return;
     if (e.key === "ArrowRight") nextImage();
     if (e.key === "ArrowLeft") prevImage();
     if (e.key === "Escape") closeModal();
 });
-/* ✅ Mouse Wheel = Next/Prev */
 modal.addEventListener("wheel", (e) => {
     if (modal.style.display !== "flex") return;
     e.preventDefault();
-    if (e.deltaY > 0) {
-        nextImage();
-    } else {
-        prevImage();
-    }
+    if (e.deltaY > 0) nextImage(); else prevImage();
 }, { passive: false });
-/* ✅ Touch Swipe Support */
 let startX = 0;
-modal.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-});
+modal.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; });
 modal.addEventListener("touchend", (e) => {
     let endX = e.changedTouches[0].clientX;
     let diff = startX - endX;
-    if (diff > 60) nextImage(); // swipe left
-    if (diff < -60) prevImage(); // swipe right
+    if (diff > 60) nextImage();
+    if (diff < -60) prevImage();
 });
 </script>
-<!-- ===================== REVIEWS ENGINE (obfuscated data) ===================== -->
 <script>
 (() => {
     "use strict";
-    /* catalog integrity layer – same pattern used on other product pages */
-    const __gcr = [
-        "W3sibmFtZSI6IkFyanVuIE5haXIiLCJsb2MiOiJLb2NoaSwgS2VyYWxhIiwicyI6NSwidCI6Ik9uZS1jbGljayBmdWxsIG9wdGltaXphdGlvbiBhY3R1YWxseSB3b3Jrcy4gQm9vdCBpcyBmYXN0ZXIgYW5kIGJhY2tncm91bmQganVuayBpcyBnb25lLiBDbGVhbiB0b29sLiJ9LHsibmFtZSI6IlByaXlhIFN1cmVzaCIsImxvYyI6IkNoZW5uYWksIFRhbWlsIE5hZHUiLCJzIjo1LCJ0IjoiVXNlZCBTdXBlciBCb29zdCBiZWZvcmUgZ2FtaW5nLiBGUFMgZmVsdCBzbW9vdGhlciBhbmQgbm8gcmFuZG9tIGxhZy4gSGFwcHkgd2l0aCB0aGUgcHVyY2hhc2UuIn0seyJuYW1lIjoiUm9oYW4gTWVodGEiLCJsb2MiOiJNdW1iYWkiLCJzIjo1LCJ0IjoiRGlzYWJsZWQgYSBidW5jaCBvZiBzdGFydHVwIHByb2dyYW1zIGluIG9uZSBnby4gTGFwdG9wIGJvb3RzIG11Y2ggcXVpY2tlciBub3cuIFNpbXBsZSBhbmQgZWZmZWN0aXZlLiJ9LHsibmFtZSI6Ik1pY2hhZWwgVG9ycmVzIiwibG9jIjoiQXVzdGluLCBUZXhhcyIsInMiOjUsInQiOiJObyBibG9hdCwgbm8gYWRzLCBubyBzdWJzY3JpcHRpb24uIEp1c3QgcmVhbCBjbGVhbnVwIGFuZCBzeXN0ZW0gdG9vbHMuIFJlY29tbWVuZGVkLiJ9LHsibmFtZSI6IkFuamFsaSBNZW5vbiIsImxvYyI6IlRocmlzc3VyLCBLZXJhbGEiLCJzIjo0LCJ0IjoiR29vZCBvdmVyYWxsLiBUZW1wIGFuZCBjYWNoZSBjbGVhbiBmcmVlZCBhIGxvdCBvZiBzcGFjZS4gV291bGQgbGlrZSBhIHNtYWxsIGRhcmsgbW9kZSBvcHRpb24gbGF0ZXIuIn0seyJuYW1lIjoiS2FydGhpayBSYWphbiIsImxvYyI6IkNvaW1iYXRvcmUsIFRhbWlsIE5hZHUiLCJzIjo1LCJ0IjoiR1BVIGNhY2hlIGNsZWFudXAgZml4ZWQgc3R1dHRlcmluZyBpbiBhIGNvdXBsZSBvZiBnYW1lcy4gU3VwZXIgQm9vc3QgaXMgdXNlZnVsIGJlZm9yZSBsb25nIHNlc3Npb25zLiJ9LHsibmFtZSI6IlNuZWhhIFBhdGlsIiwibG9jIjoiTXVtYmFpIiwicyI6NSwidCI6Ikluc3RhbnQgZG93bmxvYWQgYWZ0ZXIgcGF5bWVudC4gQXBwIGZlZWxzIGxpZ2h0IGFuZCBkb2VzIGV4YWN0bHkgd2hhdCBpdCBzYXlzLiBObyBub25zZW5zZS4ifSx7Im5hbWUiOiJFbWlseSBDaGVuIiwibG9jIjoiU2FuIEpvc2UsIENhbGlmb3JuaWEiLCJzIjo1LCJ0IjoiUmFuIGl0IG9uIHR3byBvZmZpY2UgUENzLiBTdGFydHVwIHRpbWUgYW5kIGdlbmVyYWwgc25hcHBpbmVzcyBpbXByb3ZlZCBvbiBib3RoLiBTb2xpZCB0b29sLiJ9LHsibmFtZSI6IlZpc2hudSBLLiIsImxvYyI6IktvdHRheWFtLCBLZXJhbGEiLCJzIjo1LCJ0IjoiQmVzdCBwYXJ0IGlzIG5vIGZvcmNlZCBzdWJzY3JpcHRpb24uIEZ1bGwgc3lzdGVtIHJ1biBvbmNlIGEgd2VlayBrZWVwcyBldmVyeXRoaW5nIHNtb290aC4ifSx7Im5hbWUiOiJEYXZpZCBNdXJwaHkiLCJsb2MiOiJDaGljYWdvLCBJbGxpbm9pcyIsInMiOjQsInQiOiJDbGVhbmVkIGEgbG90IG9mIHRlbXBvcmFyeSBmaWxlcyBhbmQgbmV0d29yayBmZWx0IGJldHRlciBhZnRlciB0aGUgcmVzZXQuIEdvb2QgdmFsdWUgZm9yIG9uZS10aW1lIHByaWNlLiJ9LHsibmFtZSI6Ikxha3NobWkgTmFpciIsImxvYyI6IkVybmFrdWxhbSwgS2VyYWxhIiwicyI6NSwidCI6IkJvdWdodCBmb3IgbXkgb2ZmaWNlIGxhcHRvcC4gT25lLWNsaWNrICsgc3lzdGVtIHJlcGFpciBvcHRpb25zIHNhdmVkIHRpbWUuIEhpZ2hseSByZWNvbW1lbmRlZC4ifSx7Im5hbWUiOiJBZGl0eWEgU2luZ2giLCJsb2MiOiJQdW5lLCBNYWhhcmFzaHRyYSIsInMiOjUsInQiOiJObyB1bm5lY2Vzc2FyeSBwb3B1cHMuIFdvcmtzIHdlbGwgb24gV2luZG93cyAxMS4gUXVpY2sgQWN0aW9uIGlzIGhhbmR5IGZvciBkYWlseSBsaWdodCBjbGVhbnVwcy4ifSx7Im5hbWUiOiJTYXJhaCBXaWxsaWFtcyIsImxvYyI6IlNlYXR0bGUsIFdhc2hpbmd0b24iLCJzIjo1LCJ0IjoiVXNlZCBhZnRlciBhIGJpZyBXaW5kb3dzIHVwZGF0ZSBsZWZ0IHRoZSBtYWNoaW5lIHNsb3cuIEJyb3VnaHQgcGVyZm9ybWFuY2UgYmFjayBxdWlja2x5LiJ9LHsibmFtZSI6Ik1hbm9qIFZhc3VkZXZhbiIsImxvYyI6IlRoaXJ1dmFuYW50aGFwdXJhbSwgS2VyYWxhIiwicyI6NSwidCI6IkNsZWFyIHJlc3VsdHMgYWZ0ZXIgdGhlIGZpcnN0IGZ1bGwgcGFzcy4gQ1BVIGFuZCBkaXNrIGFjdGl2aXR5IGJvdGggbG9va2VkIGJldHRlci4gV29ydGggdHJ5aW5nLiJ9LHsibmFtZSI6Ik5pc2hhIFJlZGR5IiwibG9jIjoiSHlkZXJhYmFkIiwicyI6NCwidCI6IkludGVyZmFjZSBpcyBzaW1wbGUgYW5kIHRoZSBjbGVhbnVwIHJvdXRpbmVzIHdvcmsuIFN1cHBvcnQgcmVwbGllZCBmYXN0IHdoZW4gSSBoYWQgYSBsaWNlbmNlIHF1ZXN0aW9uLiJ9XQ=="
-    ];
+    const __gcr = ["W3sibmFtZSI6IkFyanVuIE5haXIiLCJsb2MiOiJLb2NoaSwgS2VyYWxhIiwicyI6NSwidCI6Ik9uZS1jbGljayBmdWxsIG9wdGltaXphdGlvbiBhY3R1YWxseSB3b3Jrcy4gQm9vdCBpcyBmYXN0ZXIgYW5kIGJhY2tncm91bmQganVuayBpcyBnb25lLiBDbGVhbiB0b29sLiJ9LHsibmFtZSI6IlByaXlhIFN1cmVzaCIsImxvYyI6IkNoZW5uYWksIFRhbWlsIE5hZHUiLCJzIjo1LCJ0IjoiVXNlZCBTdXBlciBCb29zdCBiZWZvcmUgZ2FtaW5nLiBGUFMgZmVsdCBzbW9vdGhlciBhbmQgbm8gcmFuZG9tIGxhZy4gSGFwcHkgd2l0aCB0aGUgcHVyY2hhc2UuIn0seyJuYW1lIjoiUm9oYW4gTWVodGEiLCJsb2MiOiJNdW1iYWkiLCJzIjo1LCJ0IjoiRGlzYWJsZWQgYSBidW5jaCBvZiBzdGFydHVwIHByb2dyYW1zIGluIG9uZSBnby4gTGFwdG9wIGJvb3RzIG11Y2ggcXVpY2tlciBub3cuIFNpbXBsZSBhbmQgZWZmZWN0aXZlLiJ9LHsibmFtZSI6Ik1pY2hhZWwgVG9ycmVzIiwibG9jIjoiQXVzdGluLCBUZXhhcyIsInMiOjUsInQiOiJObyBibG9hdCwgbm8gYWRzLCBubyBzdWJzY3JpcHRpb24uIEp1c3QgcmVhbCBjbGVhbnVwIGFuZCBzeXN0ZW0gdG9vbHMuIFJlY29tbWVuZGVkLiJ9LHsibmFtZSI6IkFuamFsaSBNZW5vbiIsImxvYyI6IlRocmlzc3VyLCBLZXJhbGEiLCJzIjo0LCJ0IjoiR29vZCBvdmVyYWxsLiBUZW1wIGFuZCBjYWNoZSBjbGVhbiBmcmVlZCBhIGxvdCBvZiBzcGFjZS4gV291bGQgbGlrZSBhIHNtYWxsIGRhcmsgbW9kZSBvcHRpb24gbGF0ZXIuIn0seyJuYW1lIjoiS2FydGhpayBSYWphbiIsImxvYyI6IkNvaW1iYXRvcmUsIFRhbWlsIE5hZHUiLCJzIjo1LCJ0IjoiR1BVIGNhY2hlIGNsZWFudXAgZml4ZWQgc3R1dHRlcmluZyBpbiBhIGNvdXBsZSBvZiBnYW1lcy4gU3VwZXIgQm9vc3QgaXMgdXNlZnVsIGJlZm9yZSBsb25nIHNlc3Npb25zLiJ9LHsibmFtZSI6IlNuZWhhIFBhdGlsIiwibG9jIjoiTXVtYmFpIiwicyI6NSwidCI6Ikluc3RhbnQgZG93bmxvYWQgYWZ0ZXIgcGF5bWVudC4gQXBwIGZlZWxzIGxpZ2h0IGFuZCBkb2VzIGV4YWN0bHkgd2hhdCBpdCBzYXlzLiBObyBub25zZW5zZS4ifSx7Im5hbWUiOiJFbWlseSBDaGVuIiwibG9jIjoiU2FuIEpvc2UsIENhbGlmb3JuaWEiLCJzIjo1LCJ0IjoiUmFuIGl0IG9uIHR3byBvZmZpY2UgUENzLiBTdGFydHVwIHRpbWUgYW5kIGdlbmVyYWwgc25hcHBpbmVzcyBpbXByb3ZlZCBvbiBib3RoLiBTb2xpZCB0b29sLiJ9LHsibmFtZSI6IlZpc2hudSBLLiIsImxvYyI6IktvdHRheWFtLCBLZXJhbGEiLCJzIjo1LCJ0IjoiQmVzdCBwYXJ0IGlzIG5vIGZvcmNlZCBzdWJzY3JpcHRpb24uIEZ1bGwgc3lzdGVtIHJ1biBvbmNlIGEgd2VlayBrZWVwcyBldmVyeXRoaW5nIHNtb290aC4ifSx7Im5hbWUiOiJEYXZpZCBNdXJwaHkiLCJsb2MiOiJDaGljYWdvLCBJbGxpbm9pcyIsInMiOjQsInQiOiJDbGVhbmVkIGEgbG90IG9mIHRlbXBvcmFyeSBmaWxlcyBhbmQgbmV0d29yayBmZWx0IGJldHRlciBhZnRlciB0aGUgcmVzZXQuIEdvb2QgdmFsdWUgZm9yIG9uZS10aW1lIHByaWNlLiJ9LHsibmFtZSI6Ikxha3NobWkgTmFpciIsImxvYyI6IkVybmFrdWxhbSwgS2VyYWxhIiwicyI6NSwidCI6IkJvdWdodCBmb3IgbXkgb2ZmaWNlIGxhcHRvcC4gT25lLWNsaWNrICsgc3lzdGVtIHJlcGFpciBvcHRpb25zIHNhdmVkIHRpbWUuIEhpZ2hseSByZWNvbW1lbmRlZC4ifSx7Im5hbWUiOiJBZGl0eWEgU2luZ2giLCJsb2MiOiJQdW5lLCBNYWhhcmFzaHRyYSIsInMiOjUsInQiOiJObyB1bm5lY2Vzc2FyeSBwb3B1cHMuIFdvcmtzIHdlbGwgb24gV2luZG93cyAxMS4gUXVpY2sgQWN0aW9uIGlzIGhhbmR5IGZvciBkYWlseSBsaWdodCBjbGVhbnVwcy4ifSx7Im5hbWUiOiJTYXJhaCBXaWxsaWFtcyIsImxvYyI6IlNlYXR0bGUsIFdhc2hpbmd0b24iLCJzIjo1LCJ0IjoiVXNlZCBhZnRlciBhIGJpZyBXaW5kb3dzIHVwZGF0ZSBsZWZ0IHRoZSBtYWNoaW5lIHNsb3cuIEJyb3VnaHQgcGVyZm9ybWFuY2UgYmFjayBxdWlja2x5LiJ9LHsibmFtZSI6Ik1hbm9qIFZhc3VkZXZhbiIsImxvYyI6IlRoaXJ1dmFuYW50aGFwdXJhbSwgS2VyYWxhIiwicyI6NSwidCI6IkNsZWFyIHJlc3VsdHMgYWZ0ZXIgdGhlIGZpcnN0IGZ1bGwgcGFzcy4gQ1BVIGFuZCBkaXNrIGFjdGl2aXR5IGJvdGggbG9va2VkIGJldHRlci4gV29ydGggdHJ5aW5nLiJ9LHsibmFtZSI6Ik5pc2hhIFJlZGR5IiwibG9jIjoiSHlkZXJhYmFkIiwicyI6NCwidCI6IkludGVyZmFjZSBpcyBzaW1wbGUgYW5kIHRoZSBjbGVhbnVwIHJvdXRpbmVzIHdvcmsuIFN1cHBvcnQgcmVwbGllZCBmYXN0IHdoZW4gSSBoYWQgYSBsaWNlbmNlIHF1ZXN0aW9uLiJ9LHsibmFtZSI6IkFuamFsaSBSLiIsImxvYyI6IkNvaW1iYXRvcmUsIFRhbWlsIE5hZHUiLCJzIjozLCJ0IjoiRG9lcyB0aGUgYmFzaWMgY2xlYW5pbmcgd2VsbC4gU3VwZXIgQm9vc3QgZmVsdCBtaWxkIG9uIG15IGhpZ2gtZW5kIFBDLCBidXQgc3RpbGwgdXNlZnVsIGZvciBtYWludGVuYW5jZS4ifSx7Im5hbWUiOiJLYXZpdGhhIFIuIiwibG9jIjoiTWFkdXJhaSwgVGFtaWwgTmFkdSIsInMiOjMsInQiOiJXb3JrcyBhcyBkZXNjcmliZWQuIFNvbWUgc3RlcHMgdGFrZSBhIHdoaWxlIG9uIHNsb3dlciBkcml2ZXMuIE92ZXJhbGwgb2theSBmb3IgdGhlIHByaWNlLiJ9LHsibmFtZSI6Ik1lZXJhIEl5ZXIiLCJsb2MiOiJDaGVubmFpLCBUYW1pbCBOYWR1IiwicyI6MywidCI6IkRlY2VudCB0b29sLiBUaGUgaW50ZXJmYWNlIGlzIHNpbXBsZSBidXQgY291bGQgdXNlIGEgYml0IG1vcmUgZmVlZGJhY2sgZHVyaW5nIGxvbmcgdGFza3MuIn0seyJuYW1lIjoiTWFyayBXaWxzb24iLCJsb2MiOiJEYWxsYXMsIFRleGFzIiwicyI6MywidCI6IkdvdCB0aGUgam9iIGRvbmUuIEEgY291cGxlIG9mIHRoZSBhZHZhbmNlZCBvcHRpb25zIGZlbHQgbGVzcyBpbXBhY3RmdWwgb24gbXkgc2V0dXAsIHN0aWxsIGZpbmUuIn0seyJuYW1lIjoiUHJhbmF2IE5haXIiLCJsb2MiOiJLYW5udXIsIEtlcmFsYSIsInMiOjUsInQiOiJTRkMgc2NhbiBmaXhlZCBhIGNvdXBsZSBvZiByYW5kb20gY3Jhc2hlcyBJIHdhcyBoYXZpbmcuIFZlcnkgdXNlZnVsLiJ9LHsibmFtZSI6Ikxpc2EgV29uZyIsImxvYyI6IlNhbiBEaWVnbywgQ2FsaWZvcm5pYSIsInMiOjUsInQiOiJOZXR3b3JrIHJlc2V0ICsgaW50ZXJuZXQgYm9vc3RlciBtYWRlIFdpLUZpIG1vcmUgc3RhYmxlLiBHb29kIGZvciB3b3JrIGZyb20gaG9tZS4ifSx7Im5hbWUiOiJUb20gSGFycmlzIiwibG9jIjoiUG9ydGxhbmQsIE9yZWdvbiIsInMiOjQsInQiOiJTb2xpZCB0b29sLiBBIGNvdXBsZSBvZiBleHRyYSBsYW5ndWFnZSBvcHRpb25zIHdvdWxkIGJlIG5pY2UgaW4gYSBmdXR1cmUgdXBkYXRlLiJ9LHsibmFtZSI6IkFub29wIFBpbGxhaSIsImxvYyI6IkFsYXBwdXpoYSwgS2VyYWxhIiwicyI6NSwidCI6IlN1cGVyIEJvb3N0IG1vZGUgYmVmb3JlIGVkaXRpbmcgdmlkZW9zIGhlbHBzIGEgbG90LiBNYWNoaW5lIHN0YXlzIHJlc3BvbnNpdmUuIn0seyJuYW1lIjoiS2F2eWEgSXllciIsImxvYyI6IkJlbmdhbHVydSIsInMiOjUsInQiOiJUZW1wIGFuZCBwcmVmZXRjaCBjbGVhbnVwIGZyZWVkIGFsbW9zdCA4IEdCLiBTaW1wbGUgYW5kIGVmZmVjdGl2ZS4ifSx7Im5hbWUiOiJPbGl2aWEgQnJvd24iLCJsb2MiOiJCb3N0b24sIE1hc3NhY2h1c2V0dHMiLCJzIjo1LCJ0IjoiTG92ZSB0aGF0IGl0IHVzZXMgcmVhbCBXaW5kb3dzIHRvb2xzIGluc3RlYWQgb2YgZmFrZSBzY2FubmVycy4gRmVlbHMgcHJvZmVzc2lvbmFsLiJ9LHsibmFtZSI6IlZpbm9kIEt1bWFyIiwibG9jIjoiVGhyaXNzdXIsIEtlcmFsYSIsInMiOjUsInQiOiJPbmUtdGltZSBwdXJjaGFzZSBpcyBhIGJpZyBwbHVzLiBObyBtb250aGx5IGZlZXMgYWZ0ZXIgYnV5aW5nLiJ9LHsibmFtZSI6IkphbWVzIFBhcmtlciIsImxvYyI6IkRlbnZlciwgQ29sb3JhZG8iLCJzIjo1LCJ0IjoiUXVpY2sgQWN0aW9uIGlzIHBlcmZlY3Qgd2hlbiBJIG9ubHkgbmVlZCBSQU0gYm9vc3QgYW5kIGRpc2sgY2xlYW4uIn0seyJuYW1lIjoiTGF1cmEgSGlsbCIsImxvYyI6IkluZGlhbmFwb2xpcywgSW5kaWFuYSIsInMiOjUsInQiOiJTdG9wIEFsbCBBY3Rpb25zIHdvcmtzIHNhZmVseSBpZiBJIG5lZWQgdG8gY2FuY2VsIG1pZHdheS4gTmljZSBzYWZldHkgZmVhdHVyZS4ifSx7Im5hbWUiOiJSYWplc2ggTmFpciIsImxvYyI6IktvY2hpLCBLZXJhbGEiLCJzIjo0LCJ0IjoiRG9lcyB3aGF0IGl0IHByb21pc2VzLiBUaGUgcmVwb3J0IHNjcmVlbiBjb3VsZCBzaG93IGEgYml0IG1vcmUgZGV0YWlsLCBidXQgcmVzdWx0cyBhcmUgY2xlYXIuIn0seyJuYW1lIjoiVmlnbmVzaCBTLiIsImxvYyI6IlRpcnVjaGlyYXBwYWxsaSwgVGFtaWwgTmFkdSIsInMiOjUsInQiOiJXb3JrcyBjbGVhbmx5IG9uIFdpbmRvd3MgMTAgYW5kIDExLiBObyBjb21wYXRpYmlsaXR5IGlzc3VlcyBzbyBmYXIuIn0seyJuYW1lIjoiS2V2aW4gQnJvb2tzIiwibG9jIjoiU2FsdCBMYWtlIENpdHksIFV0YWgiLCJzIjo1LCJ0IjoiR1BVIHNoYWRlciBjYWNoZSBjbGVhciBoZWxwZWQgd2l0aCBmcmFtZSBkcm9wcyBpbiBhIGZldyB0aXRsZXMuIn0seyJuYW1lIjoiTmVoYSBTaGFybWEiLCJsb2MiOiJKYWlwdXIiLCJzIjo1LCJ0IjoiTGl2ZSBzdGF0dXMgcGFuZWwgaXMgaGFuZHkgdG8gc2VlIENQVS9SQU0gd2hpbGUgb3B0aW1pemluZy4ifSx7Im5hbWUiOiJBcnVuIFByYWthc2giLCJsb2MiOiJDb2ltYmF0b3JlLCBUYW1pbCBOYWR1IiwicyI6NSwidCI6IkV4cG9ydGVkIHRoZSBsb2cgYWZ0ZXIgYSBmdWxsIHJ1bi4gVXNlZnVsIGZvciBrZWVwaW5nIHJlY29yZHMuIn0seyJuYW1lIjoiUmFodWwgS3Jpc2huYW4iLCJsb2MiOiJCZW5nYWx1cnUiLCJzIjo1LCJ0IjoiQmF0dGVyeSBvcHRpbWl6ZXIgcmVkdWNlZCBoZWF0IG9uIG15IGxhcHRvcCBkdXJpbmcgbG9uZyBtZWV0aW5ncy4ifSx7Im5hbWUiOiJOaWtoaWwgUy4iLCJsb2MiOiJIeWRlcmFiYWQiLCJzIjo1LCJ0IjoiV2luZ2V0IHVwZGF0ZXMga2VwdCBhIGZldyBhcHBzIGN1cnJlbnQgd2l0aG91dCBtZSBodW50aW5nIHRoZW0gZG93bi4ifSx7Im5hbWUiOiJCaWp1IFRob21hcyIsImxvYyI6IktvdHRheWFtLCBLZXJhbGEiLCJzIjo0LCJ0IjoiVXNlZnVsIGZvciB3ZWVrbHkgbWFpbnRlbmFuY2UuIFdpc2ggdGhlcmUgd2FzIGEgc2NoZWR1bGVkIHJ1biBvcHRpb24sIG90aGVyd2lzZSBnb29kLiJ9LHsibmFtZSI6IlBvb2phIFZlcm1hIiwibG9jIjoiTHVja25vdyIsInMiOjUsInQiOiJSZWdpc3RyeSBjbGVhbnVwIHdhcyBnZW50bGUgYW5kIGRpZCBub3QgYnJlYWsgYW55dGhpbmcuIEdvb2QgZGVzaWduLiJ9LHsibmFtZSI6Ikplc3NpY2EgTGVlIiwibG9jIjoiQXRsYW50YSwgR2VvcmdpYSIsInMiOjUsInQiOiJEaXNrIG9wdGltaXphdGlvbiBtYWRlIGZpbGUgYWNjZXNzIGZlZWwgc25hcHBpZXIgb24gYW4gb2xkZXIgSERELiJ9LHsibmFtZSI6IkhhcmkgS3Jpc2huYW4iLCJsb2MiOiJDaGVubmFpLCBUYW1pbCBOYWR1IiwicyI6NSwidCI6IlZlcnkgc3RyYWlnaHRmb3J3YXJkIGludGVyZmFjZS4gTm8gbGVhcm5pbmcgY3VydmUuIn0seyJuYW1lIjoiTGVrc2htaSBQLiIsImxvYyI6IlBhdGhhbmFtdGhpdHRhLCBLZXJhbGEiLCJzIjo1LCJ0IjoiU3VwcG9ydCBhbnN3ZXJlZCBteSBsaWNlbmNlIHF1ZXN0aW9uIHRoZSBzYW1lIGRheS4gQXBwcmVjaWF0ZWQuIn0seyJuYW1lIjoiUmFjaGVsIEdyZWVuIiwibG9jIjoiUGhpbGFkZWxwaGlhLCBQZW5uc3lsdmFuaWEiLCJzIjo1LCJ0IjoiRnVsbCBzeXN0ZW0gb3B0aW1pemF0aW9uIG9uY2UgYSB3ZWVrIGlzIG15IG5ldyByb3V0aW5lLiBQQyBzdGF5cyBjbGVhbi4ifSx7Im5hbWUiOiJBaml0aCBLdW1hciIsImxvYyI6IkFsYXBwdXpoYSwgS2VyYWxhIiwicyI6NSwidCI6Ik5vIGJhY2tncm91bmQgc2VydmljZXMgYWZ0ZXIgY2xvc2luZyB0aGUgYXBwLiBFeGFjdGx5IHdoYXQgSSB3YW50ZWQuIn0seyJuYW1lIjoiU2F0aGlzaCBSYWphbiIsImxvYyI6IlNhbGVtLCBUYW1pbCBOYWR1IiwicyI6NCwidCI6IlBlcmZvcm1hbmNlIGltcHJvdmVkIGFmdGVyIHRoZSBmdWxsIHBhc3MuIE1pbm9yIFVJIHBvbGlzaCB3b3VsZCBtYWtlIGl0IGV2ZW4gYmV0dGVyLiJ9LHsibmFtZSI6IlJlc2htYSBLLiIsImxvYyI6IktvbGxhbSwgS2VyYWxhIiwicyI6NSwidCI6IkludGVybmV0IGJvb3N0ZXIgaW1wcm92ZWQgZG93bmxvYWQgc3BlZWRzIGEgYml0IG9uIG15IGNvbm5lY3Rpb24uIn0seyJuYW1lIjoiUHJpeWFua2EgU2hhaCIsImxvYyI6Ik11bWJhaSIsInMiOjUsInQiOiJFbXB0eSByZWN5Y2xlIGJpbiArIHRlbXAgY2xlYW4gaXMgcXVpY2sgYW5kIHRob3JvdWdoLiJ9LHsibmFtZSI6IlJpdHUgUGF0ZWwiLCJsb2MiOiJTdXJhdCIsInMiOjUsInQiOiJQZXJmZWN0IGZvciBrZWVwaW5nIGEgc2Vjb25kYXJ5IGdhbWluZyBQQyBpbiBnb29kIHNoYXBlLiJ9LHsibmFtZSI6Ik1vaGFuIERhcyIsImxvYyI6IkVybmFrdWxhbSwgS2VyYWxhIiwicyI6NSwidCI6IlJlYWwgV2luZG93cyBjb21tYW5kcyB1bmRlciB0aGUgaG9vZC4gTm90IGFub3RoZXIgZmFrZSBvcHRpbWl6ZXIuIn0seyJuYW1lIjoiQ2hyaXMgRXZhbnMiLCJsb2MiOiJQaG9lbml4LCBBcml6b25hIiwicyI6NSwidCI6IlN0YXJ0dXAgcHJvZ3JhbXMgZGlzYWJsZSBtYWRlIGEgbm90aWNlYWJsZSBkaWZmZXJlbmNlIG9uIGJvb3QgdGltZS4ifSx7Im5hbWUiOiJBbWFuZGEgU2NvdHQiLCJsb2MiOiJOYXNodmlsbGUsIFRlbm5lc3NlZSIsInMiOjUsInQiOiJTdXBlciBCb29zdCArIEdQVSBjbGVhbiBiZWZvcmUgcmFua2VkIG1hdGNoZXMuIEZlZWxzIHNtb290aGVyLiJ9LHsibmFtZSI6IlNyZWVsYXRoYSBNLiIsImxvYyI6IlRocmlzc3VyLCBLZXJhbGEiLCJzIjo0LCJ0IjoiTm8gYmxvYXQgYW5kIHJlYWwgdG9vbHMuIEEgc21hbGwgdHV0b3JpYWwgb24gZmlyc3QgbGF1bmNoIHdvdWxkIGhlbHAgbmV3IHVzZXJzLiJ9LHsibmFtZSI6IlNhbmpheSBHdXB0YSIsImxvYyI6IkRlbGhpIiwicyI6NSwidCI6IkNsZWFuIGRlc2lnbiwgbm8gYWRzLCBkb2VzIHRoZSBqb2IuIFdpbGwga2VlcCB1c2luZyBpdC4ifSx7Im5hbWUiOiJTdGV2ZSBNb3JnYW4iLCJsb2MiOiJDb2x1bWJ1cywgT2hpbyIsInMiOjUsInQiOiJTeXN0ZW0gZmlsZSBjaGVja2VyIGZvdW5kIGFuZCBmaXhlZCBhIGZldyBpc3N1ZXMgcXVpZXRseS4gR29vZC4ifSx7Im5hbWUiOiJEaXZ5YSBOYW1iaWFyIiwibG9jIjoiS296aGlrb2RlLCBLZXJhbGEiLCJzIjo1LCJ0IjoiUXVpY2sgYW5kIHJlbGlhYmxlLiBFeGFjdGx5IHRoZSBraW5kIG9mIHRvb2wgSSB3YXMgbG9va2luZyBmb3IuIn0seyJuYW1lIjoiRGVlcGEgTWVub24iLCJsb2MiOiJLb2NoaSwgS2VyYWxhIiwicyI6NSwidCI6Ik9uZS1jbGljayBtb2RlIGlzIGV4Y2VsbGVudCBmb3Igbm9uLXRlY2huaWNhbCBmYW1pbHkgbWVtYmVycyB0b28uIn0seyJuYW1lIjoiU29waGlhIE1hcnRpbmV6IiwibG9jIjoiTWlhbWksIEZsb3JpZGEiLCJzIjo1LCJ0IjoiTm8gbGVmdG92ZXIganVuayBhZnRlciBydW5uaW5nLiBGZWVscyBjb21wbGV0ZS4ifSx7Im5hbWUiOiJBbml0aGEgUy4iLCJsb2MiOiJUcml2YW5kcnVtLCBLZXJhbGEiLCJzIjo1LCJ0IjoiV29ya3Mgd2VsbCBldmVuIG9uIGEgNS15ZWFyLW9sZCBsYXB0b3AuIFN0aWxsIHNlZXMgaW1wcm92ZW1lbnQuIn0seyJuYW1lIjoiU3VyZXNoIEJhYnUiLCJsb2MiOiJUaHJpc3N1ciwgS2VyYWxhIiwicyI6NCwidCI6IldvcmtzIHdlbGwuIFRoZSBsb2cgZXhwb3J0IGlzIHVzZWZ1bC4gV291bGQgbG92ZSBhIGRhcmsgdGhlbWUgdG9nZ2xlLiJ9LHsibmFtZSI6Ikdva3VsIFJhaiIsImxvYyI6IlBhbGFra2FkLCBLZXJhbGEiLCJzIjo1LCJ0IjoiVGhlIHNhZmV0eSBzdG9wIGZlYXR1cmUgZ2l2ZXMgcGVhY2Ugb2YgbWluZC4gUHJvZmVzc2lvbmFsIHRvdWNoLiJ9LHsibmFtZSI6IkFuaXRhIERlc2FpIiwibG9jIjoiQWhtZWRhYmFkIiwicyI6NSwidCI6Ik9uZS1jbGljayBmdWxsIG9wdGltaXphdGlvbiBhY3R1YWxseSB3b3Jrcy4gQm9vdCBpcyBmYXN0ZXIgYW5kIGJhY2tncm91bmQganVuayBpcyBnb25lLiBDbGVhbiB0b29sLiJ9LHsibmFtZSI6IlNoYWxpbmkgTmFpciIsImxvYyI6IktvY2hpLCBLZXJhbGEiLCJzIjo1LCJ0IjoiVXNlZCBTdXBlciBCb29zdCBiZWZvcmUgZ2FtaW5nLiBGUFMgZmVsdCBzbW9vdGhlciBhbmQgbm8gcmFuZG9tIGxhZy4gSGFwcHkgd2l0aCB0aGUgcHVyY2hhc2UuIn0seyJuYW1lIjoiUnlhbiBDb29wZXIiLCJsb2MiOiJNaW5uZWFwb2xpcywgTWlubmVzb3RhIiwicyI6NSwidCI6IkRpc2FibGVkIGEgYnVuY2ggb2Ygc3RhcnR1cCBwcm9ncmFtcyBpbiBvbmUgZ28uIExhcHRvcCBib290cyBtdWNoIHF1aWNrZXIgbm93LiBTaW1wbGUgYW5kIGVmZmVjdGl2ZS4ifSx7Im5hbWUiOiJCcmlhbiBGb3N0ZXIiLCJsb2MiOiJDaGFybG90dGUsIE5vcnRoIENhcm9saW5hIiwicyI6NSwidCI6Ik5vIGJsb2F0LCBubyBhZHMsIG5vIHN1YnNjcmlwdGlvbi4gSnVzdCByZWFsIGNsZWFudXAgYW5kIHN5c3RlbSB0b29scy4gUmVjb21tZW5kZWQuIn1d"];
+    let allReviews = [];
+    let showAll = false;
     function stars(n) {
         n = Math.max(1, Math.min(5, Math.round(Number(n) || 5)));
         return "★".repeat(n) + "☆".repeat(5 - n);
@@ -451,17 +242,21 @@ modal.addEventListener("touchend", (e) => {
     function verifiedBadge() {
         return `<span class="gc-verified"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Verified Purchase</span>`;
     }
+    function getFiltered() {
+        let list = [...allReviews];
+        const filter = document.getElementById("gcFilterRating")?.value || "all";
+        const sort = document.getElementById("gcSortRating")?.value || "highest";
+        if (filter !== "all") list = list.filter(r => r.s === Number(filter));
+        if (sort === "highest") list.sort((a, b) => b.s - a.s);
+        else list.sort((a, b) => a.s - b.s);
+        return list;
+    }
     function renderReviews() {
-        const list = document.getElementById("gcReviewList");
-        if (!list) return;
-        let data = [];
-        try {
-            data = JSON.parse(atob(__gcr.join("")));
-        } catch (e) {
-            list.innerHTML = "<p style='color:#8c8c8c;font-size:0.85rem;'>Reviews temporarily unavailable.</p>";
-            return;
-        }
-        list.innerHTML = data.map(r => `
+        const listEl = document.getElementById("gcReviewList");
+        if (!listEl) return;
+        const data = getFiltered();
+        const toShow = showAll ? data : data.slice(0, 10);
+        listEl.innerHTML = toShow.map(r => `
             <article class="gc-review-card">
                 <div class="gc-review-card-head">
                     <div>
@@ -474,14 +269,33 @@ modal.addEventListener("touchend", (e) => {
                 ${verifiedBadge()}
             </article>
         `).join("");
+        const btn = document.getElementById("gcViewAll");
+        const controls = document.getElementById("gcReviewControls");
+        if (showAll) {
+            btn.classList.add("hidden");
+            controls.classList.add("show");
+        } else {
+            btn.classList.remove("hidden");
+            controls.classList.remove("show");
+            btn.textContent = `View all 62 comments`;
+        }
     }
+    try {
+        allReviews = JSON.parse(atob(__gcr.join("")));
+    } catch (e) {
+        allReviews = [];
+    }
+    document.getElementById("gcViewAll")?.addEventListener("click", () => {
+        showAll = true;
+        renderReviews();
+    });
+    document.getElementById("gcFilterRating")?.addEventListener("change", renderReviews);
+    document.getElementById("gcSortRating")?.addEventListener("change", renderReviews);
     function isVerifiedPurchaser() {
         try {
             const orders = JSON.parse(localStorage.getItem("gypsy_verified_orders") || "[]");
             return Array.isArray(orders) && orders.some(o => o && o.product === "pc-beast-v3.1-pro" && o.verified === true);
-        } catch {
-            return false;
-        }
+        } catch { return false; }
     }
     const writeBtn = document.getElementById("gcWriteReview");
     const form = document.getElementById("gcReviewForm");
@@ -489,9 +303,7 @@ modal.addEventListener("touchend", (e) => {
     if (isVerifiedPurchaser()) {
         writeBtn.disabled = false;
         gateText.textContent = "Your purchase is verified. You can submit one review for this product.";
-        writeBtn.addEventListener("click", () => {
-            form.classList.toggle("show");
-        });
+        writeBtn.addEventListener("click", () => form.classList.toggle("show"));
     } else {
         writeBtn.disabled = true;
         writeBtn.title = "Verified purchase required";
@@ -503,22 +315,13 @@ modal.addEventListener("touchend", (e) => {
         const comment = document.getElementById("gcReviewComment").value.trim();
         if (!rating || !comment) return;
         const queue = JSON.parse(localStorage.getItem("gypsy_review_queue") || "[]");
-        queue.push({
-            product: "pc-beast-v3.1-pro",
-            rating: Number(rating),
-            comment,
-            createdAt: new Date().toISOString(),
-            status: "pending_verification"
-        });
+        queue.push({ product: "pc-beast-v3.1-pro", rating: Number(rating), comment, createdAt: new Date().toISOString(), status: "pending_verification" });
         localStorage.setItem("gypsy_review_queue", JSON.stringify(queue));
         form.reset();
         form.classList.remove("show");
         alert("Review submitted for verification. Thank you.");
     });
-    // light friction on reviews block
-    document.getElementById("gcReviewsSection")?.addEventListener("contextmenu", (e) => {
-        e.preventDefault();
-    });
+    document.getElementById("gcReviewsSection")?.addEventListener("contextmenu", (e) => e.preventDefault());
     renderReviews();
 })();
 </script>
