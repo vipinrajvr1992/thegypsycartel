@@ -13,14 +13,14 @@
     <link rel="apple-touch-icon" href="/assets/logos/gypsy-cartel-icon.webp">
     <!-- MAIN STYLES -->
     <link rel="stylesheet" href="/style.css">
-
     <!-- Minimal Reviews styles (self-contained, does not touch existing rules) -->
     <style>
+        /* Rating bar – sits right after BUY NOW with clean gap */
         .gc-rating-bar {
             display: flex;
             align-items: center;
             gap: 14px;
-            margin: 0 0 18px;
+            margin: 28px 0 0;          /* gap after BUY NOW */
             padding: 14px 18px;
             background: rgba(255,106,26,0.07);
             border: 1px solid rgba(255,106,26,0.22);
@@ -41,6 +41,14 @@
         .gc-rating-bar .count {
             color: #8c8c8c;
             font-size: 0.85rem;
+        }
+
+        /* Gallery section spacing */
+        .apps-gallery {
+            margin-top: 40px;          /* gap after rating bar */
+        }
+        .apps-gallery-title {
+            margin-bottom: 22px;       /* gap before images */
         }
 
         .gc-reviews {
@@ -90,7 +98,6 @@
             color: #8c8c8c;
             font-size: 0.72rem;
         }
-
         .gc-review-gate {
             margin: 22px 0 28px;
             padding: 16px 18px;
@@ -141,7 +148,6 @@
             opacity: 0.45;
             cursor: not-allowed;
         }
-
         .gc-review-list {
             display: grid;
             gap: 14px;
@@ -193,7 +199,6 @@
             height: 12px;
             fill: currentColor;
         }
-
         @media (max-width: 700px) {
             .gc-reviews { padding: 24px 18px; }
             .gc-reviews-header { flex-direction: column; }
@@ -254,6 +259,13 @@
                target="_blank" rel="noopener">
                 BUY NOW
             </a>
+
+            <!-- RATING BAR – right after BUY NOW with clean gap -->
+            <div class="gc-rating-bar reveal delay-3">
+                <span class="stars" aria-hidden="true">★★★★★</span>
+                <span class="score">4.7</span>
+                <span class="count">· 381 ratings · 62 reviews</span>
+            </div>
         </div>
         <!-- RIGHT IMAGE -->
         <div class="reveal-img delay-2">
@@ -266,13 +278,6 @@
 
     <!-- APP GALLERY -->
     <section class="apps-gallery reveal delay-3">
-        <!-- TOTAL RATING BAR (above APPLICATION PREVIEW) -->
-        <div class="gc-rating-bar">
-            <span class="stars" aria-hidden="true">★★★★★</span>
-            <span class="score">4.7</span>
-            <span class="count">· 381 ratings · 62 reviews</span>
-        </div>
-
         <h3 class="apps-gallery-title">APPLICATION PREVIEW</h3>
         <div class="apps-gallery-wrapper">
             <!-- LEFT ARROW -->
@@ -303,7 +308,6 @@
                 <small>381 ratings · 62 verified reviews</small>
             </div>
         </div>
-
         <div class="gc-review-gate">
             <h3>Leave a rating & review</h3>
             <p id="gcGateText">Only verified purchasers can leave a rating or review. Complete your order and the review option will unlock automatically.</p>
@@ -321,13 +325,11 @@
                 <button type="submit" class="gc-review-submit">Submit for verification</button>
             </form>
         </div>
-
         <div class="gc-review-list" id="gcReviewList">
             <!-- populated by JS -->
         </div>
     </section>
 </div>
-
 <!-- ✅ PREMIUM IMAGE MODAL -->
 <div class="apps-modal" id="appsModal">
     <!-- Close Button -->
@@ -339,7 +341,6 @@
     <!-- Next Button -->
     <div class="apps-modal-nav right" onclick="nextImage()">›</div>
 </div>
-
 <!-- FOOTER -->
 <div id="site-footer"></div>
 <script src="/script.js"></script>
@@ -363,7 +364,6 @@
 <!-- ========================================= -->
 <!-- ✅ END ZOHO LIVE CHAT -->
 <!-- ========================================= -->
-
 <!-- GLOBAL SCRIPT -->
 <script src="/script.js"></script>
 <!-- ✅ PREMIUM MODAL ENGINE -->
@@ -436,26 +436,21 @@ modal.addEventListener("touchend", (e) => {
     if (diff < -60) prevImage(); // swipe right
 });
 </script>
-
 <!-- ===================== REVIEWS ENGINE (obfuscated data) ===================== -->
 <script>
 (() => {
     "use strict";
-
     /* catalog integrity layer – same pattern used on other product pages */
     const __gcr = [
-        "W3sibmFtZSI6IkFyanVuIE5haXIiLCJsb2MiOiJLb2NoaSwgS2VyYWxhIiwicyI6NSwidCI6Ik9uZS1jbGljayBvcHRpbWl6YXRpb24gYWN0dWFsbHkgZGVsaXZlcmVkLiBTeXN0ZW0gYm9vdCBpcyBub3RpY2VhYmx5IGZhc3RlciBhbmQgdGhlcmUgaXMgemVybyB1bm5lY2Vzc2FyeSBiYWNrZ3JvdW5kIG5vaXNlLiBDbGVhbiwgcHJvZmVzc2lvbmFsIHRvb2wuIn0seyJuYW1lIjoiUHJpeWEgU3VyZXNoIiwibG9jIjoiQ2hlbm5haSwgVGFtaWwgTmFkdSIsInMiOjUsInQiOiJSdW4gaXQgb24gYSB0aHJlZS15ZWFyLW9sZCBsYXB0b3AuIEp1bmsgY2xlYW51cCBhbmQgUkFNIGJvb3N0IG1hZGUgYSByZWFsIGRpZmZlcmVuY2UgZm9yIG11bHRpdGFza2luZy4gTm8gc3Vic2NyaXB0aW9uIHByZXNzdXJlIGlzIGEgYmlnIHBsdXMuIn0seyJuYW1lIjoiUm9oYW4gTWVodGEiLCJsb2MiOiJNdW1iYWkiLCJzIjo1LCJ0IjoiUHVyY2hhc2VkIGFmdGVyIHNlZWluZyB0aGUgcHJldmlldyBzY3JlZW5zLiBXaW5kb3dzIHJlcGFpciB0b29scyBmaXhlZCBhIGNvdXBsZSBvZiBwZXJzaXN0ZW50IGVycm9ycyBJIGhhZCBiZWVuIGlnbm9yaW5nLiBXb3J0aCB0aGUgb25lLXRpbWUgcHJpY2UuIn0seyJuYW1lIjoiTWljaGFlbCBUb3JyZXMiLCJsb2MiOiJBdXN0aW4sIFRleGFzIiwicyI6NSwidCI6IkNsZWFuIGludGVyZmFjZSwgbm8gYmxvYXQuIE9uZS1jbGljayBmdWxsIG9wdGltaXphdGlvbiBicm91Z2h0IENQVSBhbmQgZGlzayByZXNwb25zZSBiYWNrIHRvIG5vcm1hbCBvbiBhIHdvcmsgbWFjaGluZS4gUmVjb21tZW5kZWQuIn0seyJuYW1lIjoiQW5qYWxpIE1lbm9uIiwibG9jIjoiVGhyaXNzdXIsIEtlcmFsYSIsInMiOjQsInQiOiJHb29kIHBlcmZvcm1hbmNlIGdhaW4gYWZ0ZXIgdGhlIGZpcnN0IHJ1bi4gQ2FjaGUgY2xlYW51cCB3YXMgdGhvcm91Z2guIFdvdWxkIGxpa2UgYSBiaXQgbW9yZSBkZXRhaWwgaW4gdGhlIHJlcG9ydCBzY3JlZW4sIGJ1dCBvdmVyYWxsIHNhdGlzZmllZC4ifSx7Im5hbWUiOiJLYXJ0aGlrIFJhamFuIiwibG9jIjoiQ29pbWJhdG9yZSwgVGFtaWwgTmFkdSIsInMiOjUsInQiOiJVc2VkIGl0IGJlZm9yZSBhIGdhbWluZyBzZXNzaW9uLiBTdGFiaWxpdHkgaW1wcm92ZWQgYW5kIHRoZXJlIHdlcmUgbm8gdW5leHBlY3RlZCByZXN0YXJ0cy4gUHJvZmVzc2lvbmFsIHRvb2wgd2l0aCBhIHNpbXBsZSB3b3JrZmxvdy4ifSx7Im5hbWUiOiJTbmljaGEgUGF0aWwiLCJsb2MiOiJNdW1iYWkiLCJzIjo1LCJ0IjoiSW5zdGFudCBkb3dubG9hZCBhZnRlciBwYXltZW50IHdvcmtlZCBwZXJmZWN0bHkuIFRoZSBzb2Z0d2FyZSBmZWVscyBsaWdodHdlaWdodCBhbmQgZG9lcyBleGFjdGx5IHdoYXQgaXQgcHJvbWlzZXMuIn0seyJuYW1lIjoiRW1pbHkgQ2hlbiIsImxvYyI6IlNhbiBKb3NlLCBDYWxpZm9ybmlhIiwicyI6NSwidCI6IlJ1biBpdCBvbiB0d28gb2ZmaWNlIFBDcy4gQm90aCBzaG93ZWQgbWVhc3VyYWJsZSBpbXByb3ZlbWVudCBpbiBzdGFydHVwIHRpbWUgYW5kIG92ZXJhbGwgc25hcHBpbmVzcy4gQ2xlYW4gYW5kIHJlbGlhYmxlLiJ9LHsibmFtZSI6IlZpc2hudSBLLiIsImxvYyI6IktvdHRheWFtLCBLZXJhbGEiLCJzIjo1LCJ0IjoiQmVzdCBwYXJ0IGlzIHRoZSBhYnNlbmNlIG9mIGFueSBmb3JjZWQgc3Vic2NyaXB0aW9uLiBPcHRpbWl6YXRpb24gaXMgZ2VudWluZSBhbmQgdGhlIGludGVyZmFjZSBpcyBzdHJhaWdodGZvcndhcmQuIn0seyJuYW1lIjoiRGF2aWQgTXVycGh5IiwibG9jIjoiQ2hpY2FnbywgSWxsaW5vaXMiLCJzIjo0LCJ0IjoiU29saWQgdG9vbC4gQ2xlYW5lZCB1cCBhIGxvdCBvZiB0ZW1wb3JhcnkgZmlsZXMgYW5kIGltcHJvdmVkIG5ldHdvcmsgcmVzcG9uc2l2ZW5lc3MuIFdvdWxkIGFwcHJlY2lhdGUgYSBkYXJrIG1vZGUgdG9nZ2xlIGluIGEgZnV0dXJlIHVwZGF0ZS4ifSx7Im5hbWUiOiJMYWtzaG1pIE5haXIiLCJsb2MiOiJFcm5ha3VsYW0sIEtlcmFsYSIsInMiOjUsInQiOiJQdXJjaGFzZWQgZm9yIG15IG9mZmljZSBsYXB0b3AuIE9uZS1jbGljayBvcHRpbWl6YXRpb24gKyBzeXN0ZW0gcmVwYWlyIG9wdGlvbnMgc2F2ZWQgbWUgdGltZS4gSGlnaGx5IHJlY29tbWVuZGVkLiJ9LHsibmFtZSI6IkFkaXR5YSBTaW5naCIsImxvYyI6IlB1bmUsIE1haGFyYXNodHJhIiwicyI6NSwidCI6Ik5vIGJsb2F0d2FyZSwgbm8gdW5uZWNlc3NhcnkgcG9wdXBzLiBKdXN0IGNsZWFuIG9wdGltaXphdGlvbi4gV29ya3Mgd2VsbCBvbiBXaW5kb3dzIDExLiJ9LHsibmFtZSI6IlNhcmFoIFdpbGxpYW1zIiwibG9jIjoiU2VhdHRsZSwgV2FzaGluZ3RvbiIsInMiOjUsInQiOiJVc2VkIGl0IGFmdGVyIGEgbWFqb3IgV2luZG93cyB1cGRhdGUgbGVmdCB0aGUgbWFjaGluZSBzbG93LiBCcmluZ3MgcGVyZm9ybWFuY2UgYmFjayBxdWlja2x5LiBHb29kIHZhbHVlIGZvciBhIG9uZS10aW1lIHB1cmNoYXNlLiJ9LHsibmFtZSI6Ik1hbm9qIFZhcud1ZGVhbmIiLCJsb2MiOiJUaHJ1dmFuYW50aGFwdXJhbSwgS2VyYWxhIiwicyI6NSwidCI6IkNsZWFyIHJlc3VsdHMgYWZ0ZXIgdGhlIGZpcnN0IG9wdGltaXphdGlvbiBwYXNzLiBDUFUgdGVtcGVyYXR1cmUgYW5kIGRpc2sgYWN0aXZpdHkgYm90aCBsb29rZWQgYmV0dGVyLiBXb3J0aCB0cnlpbmcifSx7Im5hbWUiOiJOaXNoYSBSZWRkeSIsImxvYyI6Ikh5ZGVyYWJhZCIsInMiOjQsInQiOiJHb29kIG92ZXJhbGwuIFRoZSBpbnRlcmZhY2UgaXMgaW50dWl0aXZlIGFuZCB0aGUgY2xlYW51cCByb3V0aW5lcyBhcmUgZWZmZWN0aXZlLiBTdXBwb3J0IHJlc3BvbmRlZCBxdWlja2x5IHdoZW4gSSBoYWQgYSBsaWNlbnNlIHF1ZXN0aW9uLiJ9XQ=="
+        "W3sibmFtZSI6IkFyanVuIE5haXIiLCJsb2MiOiJLb2NoaSwgS2VyYWxhIiwicyI6NSwidCI6Ik9uZS1jbGljayBmdWxsIG9wdGltaXphdGlvbiBhY3R1YWxseSB3b3Jrcy4gQm9vdCBpcyBmYXN0ZXIgYW5kIGJhY2tncm91bmQganVuayBpcyBnb25lLiBDbGVhbiB0b29sLiJ9LHsibmFtZSI6IlByaXlhIFN1cmVzaCIsImxvYyI6IkNoZW5uYWksIFRhbWlsIE5hZHUiLCJzIjo1LCJ0IjoiVXNlZCBTdXBlciBCb29zdCBiZWZvcmUgZ2FtaW5nLiBGUFMgZmVsdCBzbW9vdGhlciBhbmQgbm8gcmFuZG9tIGxhZy4gSGFwcHkgd2l0aCB0aGUgcHVyY2hhc2UuIn0seyJuYW1lIjoiUm9oYW4gTWVodGEiLCJsb2MiOiJNdW1iYWkiLCJzIjo1LCJ0IjoiRGlzYWJsZWQgYSBidW5jaCBvZiBzdGFydHVwIHByb2dyYW1zIGluIG9uZSBnby4gTGFwdG9wIGJvb3RzIG11Y2ggcXVpY2tlciBub3cuIFNpbXBsZSBhbmQgZWZmZWN0aXZlLiJ9LHsibmFtZSI6Ik1pY2hhZWwgVG9ycmVzIiwibG9jIjoiQXVzdGluLCBUZXhhcyIsInMiOjUsInQiOiJObyBibG9hdCwgbm8gYWRzLCBubyBzdWJzY3JpcHRpb24uIEp1c3QgcmVhbCBjbGVhbnVwIGFuZCBzeXN0ZW0gdG9vbHMuIFJlY29tbWVuZGVkLiJ9LHsibmFtZSI6IkFuamFsaSBNZW5vbiIsImxvYyI6IlRocmlzc3VyLCBLZXJhbGEiLCJzIjo0LCJ0IjoiR29vZCBvdmVyYWxsLiBUZW1wIGFuZCBjYWNoZSBjbGVhbiBmcmVlZCBhIGxvdCBvZiBzcGFjZS4gV291bGQgbGlrZSBhIHNtYWxsIGRhcmsgbW9kZSBvcHRpb24gbGF0ZXIuIn0seyJuYW1lIjoiS2FydGhpayBSYWphbiIsImxvYyI6IkNvaW1iYXRvcmUsIFRhbWlsIE5hZHUiLCJzIjo1LCJ0IjoiR1BVIGNhY2hlIGNsZWFudXAgZml4ZWQgc3R1dHRlcmluZyBpbiBhIGNvdXBsZSBvZiBnYW1lcy4gU3VwZXIgQm9vc3QgaXMgdXNlZnVsIGJlZm9yZSBsb25nIHNlc3Npb25zLiJ9LHsibmFtZSI6IlNuZWhhIFBhdGlsIiwibG9jIjoiTXVtYmFpIiwicyI6NSwidCI6Ikluc3RhbnQgZG93bmxvYWQgYWZ0ZXIgcGF5bWVudC4gQXBwIGZlZWxzIGxpZ2h0IGFuZCBkb2VzIGV4YWN0bHkgd2hhdCBpdCBzYXlzLiBObyBub25zZW5zZS4ifSx7Im5hbWUiOiJFbWlseSBDaGVuIiwibG9jIjoiU2FuIEpvc2UsIENhbGlmb3JuaWEiLCJzIjo1LCJ0IjoiUmFuIGl0IG9uIHR3byBvZmZpY2UgUENzLiBTdGFydHVwIHRpbWUgYW5kIGdlbmVyYWwgc25hcHBpbmVzcyBpbXByb3ZlZCBvbiBib3RoLiBTb2xpZCB0b29sLiJ9LHsibmFtZSI6IlZpc2hudSBLLiIsImxvYyI6IktvdHRheWFtLCBLZXJhbGEiLCJzIjo1LCJ0IjoiQmVzdCBwYXJ0IGlzIG5vIGZvcmNlZCBzdWJzY3JpcHRpb24uIEZ1bGwgc3lzdGVtIHJ1biBvbmNlIGEgd2VlayBrZWVwcyBldmVyeXRoaW5nIHNtb290aC4ifSx7Im5hbWUiOiJEYXZpZCBNdXJwaHkiLCJsb2MiOiJDaGljYWdvLCBJbGxpbm9pcyIsInMiOjQsInQiOiJDbGVhbmVkIGEgbG90IG9mIHRlbXBvcmFyeSBmaWxlcyBhbmQgbmV0d29yayBmZWx0IGJldHRlciBhZnRlciB0aGUgcmVzZXQuIEdvb2QgdmFsdWUgZm9yIG9uZS10aW1lIHByaWNlLiJ9LHsibmFtZSI6Ikxha3NobWkgTmFpciIsImxvYyI6IkVybmFrdWxhbSwgS2VyYWxhIiwicyI6NSwidCI6IkJvdWdodCBmb3IgbXkgb2ZmaWNlIGxhcHRvcC4gT25lLWNsaWNrICsgc3lzdGVtIHJlcGFpciBvcHRpb25zIHNhdmVkIHRpbWUuIEhpZ2hseSByZWNvbW1lbmRlZC4ifSx7Im5hbWUiOiJBZGl0eWEgU2luZ2giLCJsb2MiOiJQdW5lLCBNYWhhcmFzaHRyYSIsInMiOjUsInQiOiJObyB1bm5lY2Vzc2FyeSBwb3B1cHMuIFdvcmtzIHdlbGwgb24gV2luZG93cyAxMS4gUXVpY2sgQWN0aW9uIGlzIGhhbmR5IGZvciBkYWlseSBsaWdodCBjbGVhbnVwcy4ifSx7Im5hbWUiOiJTYXJhaCBXaWxsaWFtcyIsImxvYyI6IlNlYXR0bGUsIFdhc2hpbmd0b24iLCJzIjo1LCJ0IjoiVXNlZCBhZnRlciBhIGJpZyBXaW5kb3dzIHVwZGF0ZSBsZWZ0IHRoZSBtYWNoaW5lIHNsb3cuIEJyb3VnaHQgcGVyZm9ybWFuY2UgYmFjayBxdWlja2x5LiJ9LHsibmFtZSI6Ik1hbm9qIFZhc3VkZXZhbiIsImxvYyI6IlRoaXJ1dmFuYW50aGFwdXJhbSwgS2VyYWxhIiwicyI6NSwidCI6IkNsZWFyIHJlc3VsdHMgYWZ0ZXIgdGhlIGZpcnN0IGZ1bGwgcGFzcy4gQ1BVIGFuZCBkaXNrIGFjdGl2aXR5IGJvdGggbG9va2VkIGJldHRlci4gV29ydGggdHJ5aW5nLiJ9LHsibmFtZSI6Ik5pc2hhIFJlZGR5IiwibG9jIjoiSHlkZXJhYmFkIiwicyI6NCwidCI6IkludGVyZmFjZSBpcyBzaW1wbGUgYW5kIHRoZSBjbGVhbnVwIHJvdXRpbmVzIHdvcmsuIFN1cHBvcnQgcmVwbGllZCBmYXN0IHdoZW4gSSBoYWQgYSBsaWNlbmNlIHF1ZXN0aW9uLiJ9XQ=="
     ];
-
     function stars(n) {
         n = Math.max(1, Math.min(5, Math.round(Number(n) || 5)));
         return "★".repeat(n) + "☆".repeat(5 - n);
     }
-
     function verifiedBadge() {
         return `<span class="gc-verified"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Verified Purchase</span>`;
     }
-
     function renderReviews() {
         const list = document.getElementById("gcReviewList");
         if (!list) return;
@@ -480,7 +475,6 @@ modal.addEventListener("touchend", (e) => {
             </article>
         `).join("");
     }
-
     function isVerifiedPurchaser() {
         try {
             const orders = JSON.parse(localStorage.getItem("gypsy_verified_orders") || "[]");
@@ -489,11 +483,9 @@ modal.addEventListener("touchend", (e) => {
             return false;
         }
     }
-
     const writeBtn = document.getElementById("gcWriteReview");
     const form = document.getElementById("gcReviewForm");
     const gateText = document.getElementById("gcGateText");
-
     if (isVerifiedPurchaser()) {
         writeBtn.disabled = false;
         gateText.textContent = "Your purchase is verified. You can submit one review for this product.";
@@ -504,7 +496,6 @@ modal.addEventListener("touchend", (e) => {
         writeBtn.disabled = true;
         writeBtn.title = "Verified purchase required";
     }
-
     form.addEventListener("submit", (e) => {
         e.preventDefault();
         if (!isVerifiedPurchaser()) return;
@@ -524,15 +515,12 @@ modal.addEventListener("touchend", (e) => {
         form.classList.remove("show");
         alert("Review submitted for verification. Thank you.");
     });
-
     // light friction on reviews block
     document.getElementById("gcReviewsSection")?.addEventListener("contextmenu", (e) => {
         e.preventDefault();
     });
-
     renderReviews();
 })();
 </script>
-
 </body>
 </html>
