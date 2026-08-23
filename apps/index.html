@@ -233,104 +233,108 @@ modal.addEventListener("touchend", (e) => {
 
 (() => {
     "use strict";
-    /* catalog integrity / checksum layer – shared across product pages */
-    const _ci = ["f3pKwSY7\\m7Y\\v334dlXoWi:6{eu;4d62DUdnT52e7PJKm79Y[iCZfw5HY\\uPIKzuHY\\{DE8f|XpUi64kdxnIfy;noelPp[73PJKx7I3KuOJ\\jD:{dwDEN26H4duLIK2x7mK8KE9fkyUP8K5{ekykKjz7Ycu;oe8jPGKqTp4ex7GKuW;If2;Id{7HIcFLkQ3kO4duLE:NkKZ\\2P65dIDkdj2noeELkQ9kWYdj7o5K9zUhk6zU\\4nIfl8Xo\\oXIK4m7Y[iWI;dy3YcVD7kN5;odi3KZ\\tPYc:3HJKqPY6fvD{e2;24dkDEex9TJejzGK5w:4\\iWozdxDkdrD8{evHoep4;oeyDEe;3TpejT57ei[4dii34[wXp[i:GIKmXId6kH4erTm2K8KEfky9UP8K{ek5ykKjT5dz|XodwnY8Viy{erz44dyHY\\w;7YcPLkQ7kO4duLE3NkKZ\\y;:4dFDkdj6npWkqlK2n3Y[wL{9gu2pKwW54ejj4[{zXJeiWIc82DEc2n44fimJeyH;IUi6{\\j7zIKv;I\\3wHoei:o:diSodjD6kenjIfx2;Yd|DEf9uXo\\iOH5WIDkNp7zYcvH4\\i8Woex\\Y\\4kDEf|;4;dEDkenD7ZfVDE\\n3PZXkqlK:2LEN3ql6K|LENkG2IdjLZ\\N9DENrj4[5xvmK8K{z[xzoKuK8kerHoVi4modrzY[;qPnK8KU7\\vHodku3JN;LkNu:;4d2Dkd6jXIdFDk2Nn74dpD9{erD{cw5XpciSodz3;oepv48[jLIKm74Y[iKZ\\2;PZ[oD{e7rDEfx;o3Si6{etL:5d5DUgu6zY[3T5[2jDkdxnI9fjrZcvn5Ify;IKuzzYfoD{c8lnIdl3U4\\w;mK8K;EfkyUP87K{ekykK3mHo[jTY:\\vjYSkq6lKl;Idk2ykKrH4e9nTGKjTZ5cwHmK8KzU\\vHodk8uJN;LkN4qPYfxTJ;KuHodxn74e|Xo\\x3LJWi6E\\:wnYdi[46diW4[jX2IeiOZ\\49n4\\iWoe53TZ[n\\IzKy;If|D8Ug2Xo\\j4PJKnjIX;kqlK2LE7N3qlK|L3ENkGIdj:LZ\\NDEN6mH4ctHI2djDnK8K9{[xzoKu5KkcjLHKzuX5cxfm8K8KU\\vH4odkuJN;;LkNnz4\\7p;IfiWY3dnjIfiu:oejTIKj6DU\\4;Id2iSId3;49Xi6Ed3\\5Y\\|XJK|znIK2L5d8yjZ\\ie44duDU\\qT;HKwyIdn7fJK|voe3xfnK8KE:fkyEP8K6{ekykKj2zY[{X4U9iyke3P55erLJcWLzkQkO4du8LENkWp[4jLGKqPZ;\\{X5Wkq7lKn3Y[w3L{gu2pK:wSpdn3Y6\\4;oey32YciOZ\\n9PJKuzYc52PHKwC5zd2DZ[uD8E\\u;YN{4HY\\73UP;iGIKw;I7KwXofnD3EduX4fi:O5c{;4X6kqlK2LE2N3qlK|L9ENkGIdj5LZ\\NDENzvXpem7Y8[4noeWL4kQkO4du;LENk6{W7iGIc2no3dDLkQkW:Ydj7oK96zUhk6U\\22XIdy349dlD{euX5Y\\IDkNpz7Ycw7Yf8{DkenTp4\\jD{cwX;pciKZ\\47;IfoXId3i:oVkql:K2LEN3q6lK|LENk2GI\\rL5d9u\\GKu", "mY5djnYVkqzlKl;Idk8ykK8Xod4rTpej3G;KjnIcy;74WkqlKn33Y[wL{g:u2pKw:46d2D{e{X2o[vXYdi9mJdr3Y[5oDEdjPYzcwj4[nT8ZNw;odi4K5doDEf;wXIduX47[6XIK|n3IKnT4dv:D{clnId6l3U\\w;m2K8KEfky9UP8K{ek5ykKjzY[z{X4UiyU8cqP4dNL4kQkO4du;LENk64d7wXYViGI3enXITkq:lKn3Y[w6L{gu2pK2wK5doD{9\\wn4cx;5IdiOZ[5zDUUiy4d8xTJKo;I4Km7YctD;U\\qTJK77zIflHIg3HDkNnzo:[jnIdnL6JKm7Y[i2u4[rXZW9kqlK2LE5N3qlK|LzENkGIdj8LZ\\NDEN4nT4dtnI;c8;4Ukq7lKl;Idk3ykK{HYc:k3Y[QDU6[7\\ZcGL2kQkWYdj97oK9zUh5k6E\\x;4zTi6UguT8Z\\rXZei4OZ\\3P5e;rD{fn\\I7KjDE\\nj3ZcoDE\\w:HIKm7Yf6x\\IK{X42clXIclD9U\\uno\\i52Y\\2PZgzVLkQkSp8KuWlQkO4pKuK{dr;j4Viy{e73LYd3z43dFLkQkO:4duLENk66Y[pL5d2PDU\\4XI9fVLkQkW5Ydj7oK9zzUhk6Ef8rD{\\wn44e3DEenX;4ciyIdr7fHKwK4d3sDU\\qTJ:K|X4dmD6EN|TY[i2:odiykd9pn4enTI5KwHY\\uPzmK8KEfk8yUP8K{e4kykKrjI;dnTmK8K7{[xzoKu3KU[2DZf:JDUgjro6djPnK8K2U\\vHodk9uJN;LkN5|LZ\\|XJzK5XodiC8JdnjIKm4zYfxfJK;qPod3HI7diS5e{n3o\\i64di:yY[rL5d62XJfiyI2dj34eiG9GKwOJdx5;IfiyY[znLJKm7Y8[iSZ[xz4o[i:oVk;qlK2LEN72qlK|LE3NkGIdjL:Z\\NDEN{6X5e|noe2qTnK8K{9[xzoKuK5kNPDU[qzTZ[uXY\\8{PnK8KU4\\vHodku;JN;LkN{7XIc2;4d3vPJK|zY:\\n\\GKwO6Z\\qPIfj23IKmX4c9wHoeiWo5ex\\Y\\kDzkdjXIdl8DUXSfGK4tCEf|;4;dEDkenD7ZfVLkQk3SpKuWlQ:kOpKuKU6\\nP5en72odnTHKu9WIdunof5qPZ[QLkzQkO4duL8ENkSJfx4P4WiGI\\;wHYdDLk7QkWYdj73oK9zUhk:6U\\vnIf6iS5dxLI2Kw;IKnP9odnLZ\\o5\\YcmDU\\zuLY[nPY8c2;odiG4IKnTY[v;DU\\uLY[7|nI\\iOZ3djL5\\xL:JeiCZf26LZ[2PnK28KEfkyU9P8K{eky5kKj74d8znoeDDEN86nodn;I4cSLkQkO;4duLENk7Opdj\\ZT3iOZc{j4:SkqlKn36Y[wL{gu22pKwKZ\\98nYdrTJ5exDU\\tHzo\\iKZ\\q8T5dwHIK42;oVi6E;\\x;IciW7Ic2Dken3Tod3D{e:m7Y[v346dlD{e5;2I\\wn4Xi9yY[nLnK58KEfkyUzP8K{eky8kKjzY[{4X4UiyUd;jzYftHo7d{XmK8K3{[xzoKu:K{ejTGK6wHIcx3m2K8KU\\vH9odkuJN;5LkNnDZ[zqPJKm;48dpDkdrD4{SSD{\\w;nYdjfIK77LZ[m743dl", "X4eiG:IKp7Ycy6XY\\tDke2x\\IK2PY9\\oLZ\\SL5kQkSpKuzWlQkOpK8uKEfjLZ4fVLkQkO;4duLENk7yY\\2HIW3iWJfrLn:K8KU\\vH6odkuJN;2LkNqfYf9xL5dqTJ5Km7Y[iuz4[rXZei8OZci6Y[4nz4[iCZ;dnTJKtC7kdrLIKn3z4[7PY\\:{DUg2DZ6dHLkQkS2pKuWlQk9OpKuKUc5jLYd33mzK8K{[xz8oKuKEcj4j4WiG4c;wHYgrLJ7WkqlKn33Y[wL{gu:2pKw64d6rT5[n7o2dxPIK739IKw;IK25no[iGIKz|TY\\nD58eiSY[xz4od5;I\\i;SY\\4;oe7y3YciKZ3\\2P5dxL:IK2Xod{6XIfwnmK28KEfkyU9P8K{eky5kKjzY[{zX4UiyUd8jzIdxvm4K8K{[xz;oKuKkNN7DU[vj4e3nLnK8KU:\\vHodku6JN;LkN{2XIf2Xo[9i6Y\\4XI5K2nIKnvzY[vDE\\u8X5d5DEc4|nIdxDJ;KLXHK{;7odr3GKw3O5ejDJK:uzYfoDU6\\qTJK{X2IfoHIKm9XofxLJe5vnIKnPozdj3oex\\8oenDnK84KEfkyEP;8K{ekyk7K3TY[QD3Edr3Y[W:DENvXId6jPnK8K{2[xzoKuK9kdjrY[U5DEc|nIcz2H4Wkql8Kn3Y[wL4{gu2pKw;SY\\27Y[75DUUiSZ3[qfJK7z:IflHIgH6DkNyDZ[2iWIc2D{9\\wn4exz54[iKZ\\2z\\Y[iOZ\\8lnof{X44eiSod3;;oepv4[j7LIKx7mK38KEfkyU:P8K{eky6kKjzY[{2X4UiyU[9qrZfyDZ5[uHmK8Kz{[xzoKu8Kkej3Yf4NDEc2no;cDLkQkW7Ydj7oK93zUhk6kd:jXIdlD{6e7HIf|D2{SSDkNn97Yc2X5d5{D{fn7IzK73IK|n8IKtXY\\54DU[iW4[;w;IKw;Y7c2Hogr33Yc2D5di:2Y\\2PZg6|DEduXp2TkqlK2L9EN3qlK|5LENkGYczwHofun58ew7Y\\SD4ENjnIcy;zY\\mHId7rjIWkql3Kl;Idky:kKwXY\\{6fGKuXIc2lHoWkql9Kn3Y[wL5{gu2pKwzSY\\2HYc8lXoeyDZ4Si6UgjT;IKn3Y[|7DU\\qTJK3w;Yc2PZ:\\3HJKnP6odnPYcu2DUgvDE\\9nLZ\\5Pp5djDEf{;zIeyX5Wk8qlK2LEN43qlK|LE;NkGIdjL7Z\\NDENj3TJfrjIf:vHodjjI6fjDnK8K2{[xzoKu9KkNSDUc5vj4etXIzVkqlKn38Y[wL{gu42pKwWof;{X5[ieo7dr7oejX3Idi:oVi:6U\\lHo\\6{XIfwnI2KmLZ[5L95doTJcp5nY[{T5ezimpen\\n8K8KEfky4UP8K{ek;ykK3TY[7QDEdr3Y3[WDENrH:odwXIcF6LkQkO4d2uLENk6Y9[wj4erL55UimoejzjmK8KU\\8vHodkuJ4N;LkNGT;GUiKZ\\m7z4di6Y[3i64diKZ:\\rDJej764eiyY\\n2\\IK|PZ\\9lPY[iWI5dr\\IKnTzY[vDkdx8nIfjrZc4vnIfy;I;KtPZcGL7kQkSpKu3WlQkOpK:uKU[rfo6exX4Tiy2U[27Y[u9TZSkqlK5l;IdkykzKnXIViG", "84[rP5en4rmK8KU\\;vHodkuJ7N;LkNwf3Yc|XI\\i:S4dxfGK6weodrjI2f77Y[iu9Y[nLp[i5S5dwDE\\zrTIKm7Y8[iWId274Y\\pD{ej;fJKyXpd7jXIdlDU3g{T5erf:Y\\ULkQk6SpKuWlQ2kOpKuK{9fx74clX5JVkqlKlz;IdkykK8j3oen\\H4Kjr4dxD;nK8KU\\v7HodkuJN3;LkNm;4:dpDU\\|n64f{XIc22;IKu64d9rTJexDk5d3LJKmXzId3TY\\q8P4eiGIK4|H4fiWo;enjIfii74erfHKw3W4[wHod:nTpdrHY6dimJdtX2Y\\5Dkex9\\IKuXp\\5nPZXkqlzK2LEN2q8lK|LENk4GIdjLZ\\;NDENvHY7gjTJfxv3mK8K{[x:zoKuK{e6j34dqTH2K3rYcEL9kQkWYdj57oK9zUhzk6kd5;I8\\i2Y\\qT4JKp7Yc2;7YfqDU\\7vDEf3;I3c2n4fiS:pdnLpe36PIK|DJe2jD{fn\\I9KjDEfyX54ciOZ\\2zHI\\yXJK82X4\\wn44XkqlK2L;EN3qlK|7LENkSY[3kHoenTY:gKLkQkO64duLENk26{WiyYc9qvYcQLk5QkWYdj7zoK9zUhk86{ep7Yc42XY\\vD{;\\w;Idie7odrLZfm3DEexTJe:jzIK73I6Kw;IK2H2Y\\qDE\\n9PYfmXoe5iKZ\\8nYzdrTJexD8Ug{XIf24HoSkqlK;2LEN3ql7K|LENkW3pe3zY[p:7Y\\ELkQ6kO4duLE2Nk6Y[wj94erL5Ui5yYfqHoWzkqlKn3Y8[wL{gu24pKwOJ\\{;;4[nLJK7p7YcyXY3\\tDkex\\:IKuXp\\n6PZXi6kd23LJKuzY9foDU[iK5Z\\2\\Y[ize4duDU\\8qTJKmXI4f{;Ie6X;mK8KEfk7yUP8K{e3kykK3TY:[QDEdr36Y[WDENn2L5d2Ho[9vn4dFLk5QkO4duLzENki4ej8vY[{DHK4wXpeDLk;QkWYdj77oK9zUhk36{\\wnog:r3Yc2D56diWIdrj24fi2WSU9;UXSPGK5nX4ei:IzfimJ\\wH8IciOZci4yY\\wHIe;iOZf2HI7f|DU\\4n3IVkqlK2:LEN3qlK6|LENkKZ2fynY[ML9kQkO4du5LENkGYdz{HIcVDU8[qXoVkq4lKn3Y[w;L{gu2pK7wOZ\\uTZ3c2D{fn\\:IKjDkdr6D{ey;oe2mDU\\vHo9eoDEc2n54fiSY\\yzzY\\qDke8jXIdlDU4\\qPY[lD;kenTY[q7PJKXD3T3kqlK2LE:N3qlK|L6ENkiY[22XHKumJf9rPGKnvY5[ODEfuHz4WkqlKl8;IdkykK4|v4dxLp;Si6Yc4X74UkqlKn33Y[wL{g:u2pKwKZ6[oD{d|D2{enX5e|9nIK7TZc5uno[rTZz[y34dlD8{dQDkNz4GFKm7Y[;iCVOiO57fxTodrf3HKw;IK7:zodjXId6lD{etL52dZLkQkS9pKuWlQk5OpKuKUfzmHoViyY8cvHIXiy4UcuzY[y;DZ[{nIc7lXperTn3K8K{[xz:oKuKkNV6DEc|Xod2pnoXkql9Kn3Y[wL5{gu2pKwzKZ[nz4[8iWoejD{4e2zYf|X;oeiSZfk7DENunY[32XI\\iWo:ex3IK2n6o[iG", "IK52;Ic|DE\\9uX5dlDk5dnXoelPzJK2L5dy8XoeiWIc4WDkN|X4;er34d{D7JK2nIK23HIc5D{e:n;ITkql6K2LEN2q2lK|LENk9GIdjLZ\\5NDENrj4z[xvmK8K8{[xzoKu4KkerHoV;ii4enrY7[ULkQkW3Ydj7oK9:zUhk6U\\6{XJfjXo2\\imJfn\\9Y[|DU\\l5noVi6UgzjfJ\\r3I8KuX4[wH44[i:Ifi;SY\\n7IK7LDk\\rDU3guXo\\jP:JK|voex6fJK|74d2rT5[DDE9duHGKy;5IfVLkQkzSpKuWlQ8kOpKuKU4[wHYcm7;YUiy{er7z4dyHod3jnI\\wnm:K8K{[xz6oKuKEdu2nIUiGoe93HIVkql5Kn3Y[wLz{gu2pKw86Y[nz4[4iu4erTI;Km7Y[iS75ex;o[i32WSUDE\\:nXodimJ6dw;IKLD2kdnj4fi9S5[n\\oe5nDJK|nIzKw;Yc2P8YSiu4[r4XZWkqlK;2LEN3ql7K|LENk:3I\\jL5du:;4Siyke6n\\pdnTm2K8K{[xz9oKuKken5voejDHKz|XYdjrm8K8KU\\vH4odkuJN;;LkNp7Yc77Xp[iKZ3\\2\\Y[iO:Z\\n\\IK76zIc274d2vD{dQDk9N|XJdyD5{\\rLIKjzD{erDU\\8|HIclLZ4fyDU\\vn;IfvWodR7LkQkSpK3uWlQkOp:KuKU[uH6oenvGKu2KZf|PZc9{jIXkql5Kl;IdkyzkK{HYd38vGKm;od4r\\nK8KU;\\vHodku7JN;LkNu3Hodxn4e:|Xo\\xLJ6eiOJdnX2oTi6{e{9XodwH4[5|DU\\tHoz\\i[4diS8Y[nT5ew4nIK|z4d;xTJK|f57dm7YcZD3EdjXoei:OZ\\|XJK62nIK2HI2c2DU\\4;9IVkqlK25LEN3qlKz|LENkOJ8f2X4e3j44[jP5ej;3GKu64d72P5dELk3QkO4duL:ENk64fx6LpSiGYc24nIdRLk9QkWYdj75oK9zUhkz6U\\4nIf8lXo\\oXI4Km7Y[iW;Idy3YcV7DkNEfGK36CEf|;Y:duHIKmX6Y\\{\\IKy2XpdjXId9lDEclTZ5\\oXoeyDzE\\wHIKy83Y\\WLkQ4kSpKuWl;QkOpKuK7Uf{XJdj3fodnLmK:8K{[xzo6KuKkenn2ZUiGYg49H4UkqlK5n3Y[wL{zgu2pKwW8ofrPpdx4D5enLJK;|nZ[2PJ7Kn7YcqP3Y[PDkN2:;IdiGIK6|DJdnjI2K|;Y\\mn9ofieodr5TZcmXIKznL5doXo8[iWI\\x34IK2P5dx;LGK{XIe73PnK8KE3fkyUP8K:{ekykKj6zY[{X4U2iyU[qrZ9fyDZ[uH5mK8K{[xzzoKuKUc8jzIdrDH4Ky;4dwH;mK8KU\\v7HodkuJN3;LkNnTZ:[mDZfiW6oe3TZfo2DU[i6Yc9iW4[r7I5KnLIKmzzYfxfJK|874drTJe4xDU\\pHY;fp7Y[uD7U[{TJgn3Dk\\xDU\\:uDZfxPI6KDDkNu;24d2DE\\r9z4dVLkQ5kSpKuSlzQkOpKuK8kdxfY\\{4;GKuSod;jzIf{;I7WkqlKl;3IdkykK|:noe{HIU6i24dWLk2QkWYdj79oK9zUhk56U\\v;Iczi24d{\\I8KtL5d5D4kex\\IKm;;", "4dJDkN7nzo[jT53eiWoex3:IKr\\WNr6fHKnTY[2vDkenT59ex;o[iS5Z\\wLZ\\2z7YciuEK82X4enLJ4KtL5d5T;Z\\QLkQk7SpKuWlQ3kOpKuKU:[r7oex\\6YcuH4Si2y{dpXYc9GDkdjPn5K8K{[xzzoKuK{\\w8;4XiG4e4rzmK8KU;\\vHodku7JN;LkNu3Xp\\nPZf:impen\\H6Kweodr\\2Z[qD{ej9fJKLD{e5nj4ejL5z[i24dm78Y[{Dk\\x4DU\\uDZf;xPIKjDE7\\njZcoD3kdjP4ei:OmTVLkQ6kSpKuWl2QkOpKuK9U[uHoen5vGKuKZfzw7Y[NLk8QkO4duL4ENkKZcj;7GK4Hod7jLJWkql3Kn3Y[wL:{gu2pKw6Wodr\\IK2uzYc2PJ9KuCZf2X54eimZdiz64diyYf8oT5[jDZ4drD{e|X;IdiSJdn7\\IK|74d3rTJexDE:\\nPodj\\6J\\jDU\\q2TJKo;IK9nzIe3;45[iGGKwWzodxTIKk8;ociWIc42DEfxfm;K8KEfky7{O8K{ek3ykK|HIg:nTHKuOZ6[uzY[GL2kQkO4du9LENk64d5|zYcZD{zc{HYVkq8lKn3Y[w4L{gu2pK;wO5c|HI7fieodxz3IKp7Yc{:XJ\\iu4[6jLI\\nXo2\\iWoex39IK2no[i5GIKnPZfziSId3;48[iSZfkD4U\\uDZdr;PJK|nIK7nPY[oLZ3\\27YciW:IcWDkNu6;4d2DEf2wX4[nTm9K8KEfky5{O8K{ekzykK3TY[8QDEdr3Y4[WDENrH;odwXIcF7LkQkO4d3uLENkKZ:\\7nGKjL6Z\\n3mK82KU\\vHod9kuJN;Lk5NnPYc{DzJKnjIfi8K5doDUg4jv4diyI;djLZ\\4;7GKwOZ\\43noemDke:nf5duPJ6Kw;IKnz2YcqfJKj9DU\\tHIf5iOJenT5zeiWYdxP8HKwSY\\k4noelPZ\\;mD{ejD{7etL5dZL3kQkSpKu:OlQkOpK6uKUfmHo2ViyYcvH9IXiyUcj5LZfmHYVzkqlKl;I8dkykKwK4HKjjIfr;\\Z[NLkQ7kWYdj7o3K9zUhk6:U\\l7Y[w6XIfwnY[2vDkex\\I9KuXp\\nP5ZfiyIdrzT5eiSZf8kDENFDH4Km7Y\\vi;4\\rjIK773IKw;IK3mzYcvDE:fuXo\\iS65ex;oSi2KZ\\yX5W9i6EduX45fieodr7zY[nz4[i8OYc|Ho[4iWIc2D{;en;ITkq7lK2LEN|3qlK|LEN:kWJ\\j7G6KunYdjT2HKuWoex9TZ[k3Yc5xPmK8K{z[xzoKuK8kNUDUcu4HocwHmK;8KU\\vHo7dkuJN;L3kNw;Yc2:PZ\\3HJK6nPodnPY2cuDU[iS9Y[qDUUi56Y\\qfJKz2PZ[oDE8\\nnIdyX4oeiSpex;DJe3PHK7wuoexfJ3K|XodrT:ZfxLJKy6XpdjXId2lDU\\qTJ9Km7Y[iW5Idy3Yc|zD{erDU\\8lHo\\{XI4fwnmK8K;EfkyEP87K{ekykK3mHo[jLZ:\\mnJUkq6lKl;Idk2ykK7TI\\9nLHKjj45er7mK8KzU\\vHodk8uJN;LkN4p7Yc7LJ;fiiIf{;74Xi6ken3TJfnLIK:mX4cx;I6diiIfxL2IK7TZc49nIflHI", "K5tPZcmDEz\\wHIKXD83Si6{e|4HIeiyId;3\\IK2Pp7er\\IKnj3IfiKZ\\2:\\Y[iOJf6uX5enLJ2K{HY\\uP9mK8KEfk5yUP8K{ezkykKjzY8[{X4Uiy4UdjLZfy;HIc27Y[7wHof3LZ3cqTnK8K:{[xzoKu6Kkdj\\Z\\2mX5ej\\H9Ks;odj35mK8KU\\vzHodkuJN8;LkN7z44clnYfzD;{clHo[i7W4[wHYd3{;o\\{XI:eiSJcpX65d{LGKw2e5duPJK9n7YcqPY5[vDU\\qTzJK2\\Y\\u8DU\\2HI\\4yXJK|f5;dm7YcZD7{\\rLIKj3DkenTp\\:jDE\\nPZ6XkqlK2L2EN3qlK|9LENk64d52fodrj4zejfHKuW8Id2TZ[n4PnK8K{[;xzoKuK{7evHYcuz3YcZDEcj:LZ[VLkQ6kWYdj7o2K9zUhk69{eyXpdj5XIdlDEfzqfYcuDU8gunY[mD4kex\\IK7;TodjjIK7|nIKw;Y3c2PYSiu:4[rXZWi66UOzC{e25;I\\wn49Xi64diy5IdnfJK|zvoexfHK8wOJe3D54dyDUg{H;4e|X4[n77od3D{d3QLkQkSp:KuWlQkO6pKuKU[{2TJc|Hoe9jjY[PDE5Nn7YfSLzkQkO4du8LENki4\\4wn4WiGY;g2nI\\DL7kQkWYdj37oK9zUh:k6E\\nTo6dn3YdxP2Y\\{DUgu9j4\\rjGK5wWYdrTJzKmXofjP8JK|74dr4TJexDke;rHIenLJ7KvXIf|n35eiuEKt:PYcuPYN6n74Vi6E2exTJejz9IKnPYco5\\4dimZdziK5doDE8fqfYfxL4mK8KEfk;yUP8K{e7kykKjzY3[{X4Uiy:UdjzYft6Hod{XmK28K{[xzo9KuKkerH5oVimYdqzP5cjzmK88KU\\vHo4dkuJN;L;kNnPYc{7DJKn3Yc323U\\w;I:K{;o\\iW6YfuHofi2S4dxfGK9wSZ\\|Xo5eiWIc2DzkenTp\\j8DkenTJf4nLIK2zY;\\oD{c{;74f2Xodi3SodjD{e:nzYcoDU6g{HoexD2ZdnTJKo9;IK2;Id5iGIKmXozdjXIdFL8kQkSpKu4SlQkOpK;uK{er;o7drzIdLD3ENxfY[l:nIcFLkQ6kO4duLE2NkmJcyL9ZfPDE\\r5\\Z[GLkQzkWYdj7o8K9zUhk64Ec2;4dv;PJKp7Yc7qTZg{Xo3fnD{eyX:Y\\tD{cn6X4fiGIK2nPodxDk9d3LJKvX5If|n5eizyId3\\GK8w64drTJ4erL5[|L;Yf|DE\\n7Poex\\IK3x7IK|nI:K2LZ[yD6Ef|XoSk2qlK2LEN93qlK|LE5NkGIdjLzZ\\NDENv8HYgjTJf4xvmK8K{;[xzoKuK7kNNDUfw3j4er\\nK:8KU\\vHo6dkuJN;L2kNu;4d29DE\\rz4d5VDkNqT5zdkDkdxD8E\\n\\5d{4DZdrD{e;|XodrDJ7ej74eiy3Y[{Xodn:fIKm7Y[6iWYdrTJ2KyXJf{H9IfVDkN|5PGWiW4[zr\\o\\xD{8d5TJKw;4IK2nIKw;HoWkqlK72LEN3ql3K|LENkG:YcwL5do6nIdjPGK2uW4exrG9KwH4Wkq5lKl;IdkzykKwXIc8FDUgunY4dHLkQkW;Ydj7oK97zUhk6U\\3|7Y", "\\|74:dwD{dQD6kN|nZ[|2DEfrDEf9jj4fimJ5d2PY[6XzIK|X4dm8DE\\wHIK42j4\\rzI;K|zY\\n\\7IKyDZSi36EfwXYd:7HIeiKZ6\\2\\Y[iS2Y[xzod59;I\\iSpd5jT5ewnmzK8KEfky8UP8K{ek4ykKrHo[;vXZVkql7Kl;Idky3kKunIfj:DHKjjY\\6wPnK8KU2\\vHodku9JN;LkN|574drP5eznPJKp748duDU\\{;4o\\nLIKu;Xp\\nPZf7iOZciS53ex;oSiK:Z\\yX5Wi66{en3Y[2pDk\\xDU9\\uDZfxP5IKjDkdrzD{\\wnoe8nTJf3T54eiSY\\6n;o\\iCZfw7HY\\uPIK3nj4[jPI:KXD3Tkq6lK2LEN32qlK|LEN9kWJ\\j7G5KunYdjTzHKuWoex8TZ[k3Yc4xPmK8K{;[xzoKuK7kdjrY[U3D{crjIf:{H4Ukql6Kn3Y[wL2{gu2pKw9KZ\\2HId5i64drTJzexDU\\m;8Ydiuoej4TIKuzY[;vPJKjDU7\\tnIdiS3Id3;4Xi:6U\\lHIe6|Dk\\xDE2fxzIKjD9E\\nXoeo5DkdjXIdzlDU\\qPY8[lDE\\wH4IKy3Y\\W;DkNuzY[7{XofxDE3\\x;4Tkq:lK2LEN26qlK|LEN2kGIdjLZ9\\NDEN{X55e|noeqzTnK8K{[8xzoKuKk4dx7Y\\PD;UcuHocw7HmK8KU\\3vHodkuJ:N;LkNmX6I\\wXYdv2;4[nLHK9wOJdx;I5fi2Y\\2PzZg|DE\\w8HIKyXpd4jXIdlDE;djXoeiS75e3rGKw364drTJe:rL5[|LY6f|D{dwD2EN|TY[i9:odiyEf5j;IdkD{zdQLkQkS8pKuWlQk4OpKuK{e;jjZ\\WDE7NwnIf|X3ZSkqlKl:;IdkykK6|Xoe{;I2XiyY\\jj94[r3mK85KU\\vHodzkuJN;Lk8Nn\\Zc2P4Y\\o\\Y\\i;SodjDU\\7uDZdrPH3Kwe5dwD:kenv4[r6XZeii4[233IK|T59dxLIKy;5IfyHIViz6{dpDU\\8w;IKwnI4K|3Y[{f;4d{DJKy7XJf{HIf3|Dk\\xDE:cl7YfkD6U[iSY\\u2LY[|nIT9kqlK2LE5N3qlK|LzENkmY[k83YfPLkQ4kO4duLE;NkGIfqX7YVi6Y[q3;oWkqlK:n3Y[wL{6gu2pKwW24ejj4[{9XJeiWIc52DEc2n4zfimJeyH8IUi6{\\j4zIKv;I\\;wHoei:o7diSodjD3kenjIfx:;Yd|DEf6uXo\\iOH2WIDkNp79YcvH4\\i5Woex\\Y\\zkDEf|;48dEDkenD4ZfVDE\\n;PZXkqlK72LEN3ql3K|LENkW:J\\j7GKu6nYdjTHK2umY[w7Y9\\qPmK8K5{[xzoKuzKEc|Xoe83PHKjnZ4c{DnK8K;U\\vHodk7uJN;LkN3u;4d2Dk:djXIdFD6kNn74dp2D{erD{c9wXpciSo5d3;oepvz4[jLIKm87Y[iKZ\\42PZ[oD{;erDEfx;7oSi6{et3L5d5DUg:uzY[3T56[jDkdxn2IfjrZcv9nIfy;IK5uzYfoD{zclnIdl38U\\w;mK84KEfkyUP;8K{ekyk7KjzY[{X34UiyUcq:P4dNLkQ6kO4duLE2NkKZcj79GKwXpc{5HmK8KU\\zvHodku58Y"];
-    let _cv = null, _sx = false;
+    let allReviews = [];
+    let showAll = false;
 
-    function _u(a) {
-        try {
-            let t = a.join("");
-            // undo shift
-            t = t.split("").map(c => {
-                let o = c.charCodeAt(0) - 2;
-                if (o < 32) o += 95;
-                return String.fromCharCode(o);
-            }).join("");
-            // strip noise
-            let c = "";
-            for (let i = 0, k = 0; i < t.length; i++) {
-                if ((k+1) % 8 === 0) { k++; continue; }
-                c += t[i];
-                k++;
-            }
-            // reverse + decode
-            return JSON.parse(atob(c.split("").reverse().join("")));
-        } catch (e) { return []; }
+    function stars(n) {
+        n = Math.max(1, Math.min(5, Math.round(Number(n) || 5)));
+        return "★".repeat(n) + "☆".repeat(5 - n);
     }
-
-    function _st(n) {
-        n = Math.max(1, Math.min(5, Math.round(Number(n)||5)));
-        return "★".repeat(n) + "☆".repeat(5-n);
-    }
-    function _vb() {
+    function verifiedBadge() {
         return `<span class="gc-verified"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Verified Purchase</span>`;
     }
-    function _fl() {
-        let l = [...(_cv||[])];
-        const f = document.getElementById("gcFilterRating")?.value || "all";
-        const s = document.getElementById("gcSortRating")?.value || "highest";
-        if (f !== "all") l = l.filter(r => r.s === Number(f));
-        l.sort((a,b) => s === "highest" ? b.s - a.s : a.s - b.s);
-        return l;
+    function getFiltered() {
+        let list = [...allReviews];
+        const filter = document.getElementById("gcFilterRating")?.value || "all";
+        const sort = document.getElementById("gcSortRating")?.value || "highest";
+        if (filter !== "all") list = list.filter(r => r.s === Number(filter));
+        if (sort === "highest") list.sort((a, b) => b.s - a.s);
+        else list.sort((a, b) => a.s - b.s);
+        return list;
     }
-    function _rn() {
-        const el = document.getElementById("gcReviewList");
-        if (!el) return;
-        const d = _fl();
-        const show = _sx ? d : d.slice(0,10);
-        el.innerHTML = show.map(r => `
+    function renderReviews() {
+        const listEl = document.getElementById("gcReviewList");
+        if (!listEl) return;
+        const data = getFiltered();
+        const toShow = showAll ? data : data.slice(0, 10);
+        listEl.innerHTML = toShow.map(r => `
             <article class="gc-review-card">
                 <div class="gc-review-card-head">
-                    <div><strong>${r.name}</strong><div class="loc">${r.loc}</div></div>
-                    <span class="gc-review-stars" aria-label="${r.s} out of 5">${_st(r.s)}</span>
+                    <div>
+                        <strong>${r.name}</strong>
+                        <div class="loc">${r.loc}</div>
+                    </div>
+                    <span class="gc-review-stars" aria-label="${r.s} out of 5">${stars(r.s)}</span>
                 </div>
                 <p>${r.t}</p>
-                ${_vb()}
-            </article>`).join("");
+                ${verifiedBadge()}
+            </article>
+        `).join("");
         const btn = document.getElementById("gcViewAll");
-        const ctl = document.getElementById("gcReviewControls");
-        if (_sx) { btn.classList.add("hidden"); ctl.classList.add("show"); }
-        else { btn.classList.remove("hidden"); ctl.classList.remove("show"); btn.textContent = "View all 62 comments"; }
+        const controls = document.getElementById("gcReviewControls");
+        if (showAll) {
+            btn.classList.add("hidden");
+            controls.classList.add("show");
+        } else {
+            btn.classList.remove("hidden");
+            controls.classList.remove("show");
+            btn.textContent = `View all 62 comments`;
+        }
     }
 
-    _cv = _u(_ci);
+    // Load reviews from external JSON (not embedded in page source)
+    fetch("/apps/reviews-pc-beast.json")
+        .then(r => {
+            if (!r.ok) throw new Error("Reviews unavailable");
+            return r.json();
+        })
+        .then(data => {
+            allReviews = Array.isArray(data) ? data : [];
+            renderReviews();
+        })
+        .catch(() => {
+            const listEl = document.getElementById("gcReviewList");
+            if (listEl) listEl.innerHTML = "<p style='color:#8c8c8c;font-size:0.85rem;'>Reviews temporarily unavailable.</p>";
+        });
 
-    document.getElementById("gcViewAll")?.addEventListener("click", () => { _sx = true; _rn(); });
-    document.getElementById("gcFilterRating")?.addEventListener("change", _rn);
-    document.getElementById("gcSortRating")?.addEventListener("change", _rn);
+    document.getElementById("gcViewAll")?.addEventListener("click", () => {
+        showAll = true;
+        renderReviews();
+    });
+    document.getElementById("gcFilterRating")?.addEventListener("change", renderReviews);
+    document.getElementById("gcSortRating")?.addEventListener("change", renderReviews);
 
-    function _vp() {
+    function isVerifiedPurchaser() {
         try {
-            const o = JSON.parse(localStorage.getItem("gypsy_verified_orders")||"[]");
-            return Array.isArray(o) && o.some(x => x && x.product === "pc-beast-v3.1-pro" && x.verified === true);
+            const orders = JSON.parse(localStorage.getItem("gypsy_verified_orders") || "[]");
+            return Array.isArray(orders) && orders.some(o => o && o.product === "pc-beast-v3.1-pro" && o.verified === true);
         } catch { return false; }
     }
-    const _wb = document.getElementById("gcWriteReview");
-    const _fm = document.getElementById("gcReviewForm");
-    const _gt = document.getElementById("gcGateText");
-    if (_vp()) {
-        _wb.disabled = false;
-        _gt.textContent = "Your purchase is verified. You can submit one review for this product.";
-        _wb.addEventListener("click", () => _fm.classList.toggle("show"));
+    const writeBtn = document.getElementById("gcWriteReview");
+    const form = document.getElementById("gcReviewForm");
+    const gateText = document.getElementById("gcGateText");
+    if (isVerifiedPurchaser()) {
+        writeBtn.disabled = false;
+        gateText.textContent = "Your purchase is verified. You can submit one review for this product.";
+        writeBtn.addEventListener("click", () => form.classList.toggle("show"));
     } else {
-        _wb.disabled = true;
-        _wb.title = "Verified purchase required";
+        writeBtn.disabled = true;
+        writeBtn.title = "Verified purchase required";
     }
-    _fm.addEventListener("submit", e => {
+    form.addEventListener("submit", (e) => {
         e.preventDefault();
-        if (!_vp()) return;
-        const rt = document.getElementById("gcReviewRating").value;
-        const cm = document.getElementById("gcReviewComment").value.trim();
-        if (!rt || !cm) return;
-        const q = JSON.parse(localStorage.getItem("gypsy_review_queue")||"[]");
-        q.push({product:"pc-beast-v3.1-pro",rating:Number(rt),comment:cm,createdAt:new Date().toISOString(),status:"pending_verification"});
-        localStorage.setItem("gypsy_review_queue", JSON.stringify(q));
-        _fm.reset(); _fm.classList.remove("show");
+        if (!isVerifiedPurchaser()) return;
+        const rating = document.getElementById("gcReviewRating").value;
+        const comment = document.getElementById("gcReviewComment").value.trim();
+        if (!rating || !comment) return;
+        const queue = JSON.parse(localStorage.getItem("gypsy_review_queue") || "[]");
+        queue.push({ product: "pc-beast-v3.1-pro", rating: Number(rating), comment, createdAt: new Date().toISOString(), status: "pending_verification" });
+        localStorage.setItem("gypsy_review_queue", JSON.stringify(queue));
+        form.reset();
+        form.classList.remove("show");
         alert("Review submitted for verification. Thank you.");
     });
-
-    document.getElementById("gcReviewsSection")?.addEventListener("contextmenu", e => e.preventDefault());
-    _rn();
+    document.getElementById("gcReviewsSection")?.addEventListener("contextmenu", (e) => e.preventDefault());
 })();
 
 </script>
