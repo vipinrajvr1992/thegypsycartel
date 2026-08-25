@@ -10,83 +10,10 @@
     <link rel="apple-touch-icon" href="/assets/logos/gypsy-cartel-icon.webp">
     <link rel="stylesheet" href="/style.css">
     <style>
-        .gc-rating-bar {
-            display: flex; align-items: center; gap: 14px;
-            margin: 28px 0 0; padding: 14px 18px;
-            background: rgba(255,106,26,0.07);
-            border: 1px solid rgba(255,106,26,0.22);
-            border-radius: 14px; max-width: 420px;
-        }
-        .gc-rating-bar .stars { color: #ff6a1a; font-size: 1.05rem; letter-spacing: 1px; }
-        .gc-rating-bar .score { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.25rem; color: #fff; }
-        .gc-rating-bar .count { color: #8c8c8c; font-size: 0.85rem; }
-        .apps-gallery { margin-top: 40px; }
+.apps-gallery { margin-top: 40px; }
         .apps-gallery-title { margin-bottom: 22px; }
-        .gc-reviews {
-            margin-top: 70px; padding: 36px 28px;
-            background: rgba(15,15,15,0.85);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
-        }
-        .gc-reviews-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; margin-bottom: 28px; flex-wrap: wrap; }
-        .gc-reviews-header h2 { margin: 0; font-size: 1.45rem; color: #fff; }
-        .gc-reviews-header p { margin: 8px 0 0; color: #8c8c8c; font-size: 0.82rem; line-height: 1.55; max-width: 520px; }
-        .gc-reviews-summary { text-align: right; min-width: 150px; }
-        .gc-reviews-summary .big-stars { color: #ff6a1a; font-size: 1.1rem; letter-spacing: 2px; }
-        .gc-reviews-summary strong { display: block; margin-top: 4px; font-family: 'Space Grotesk', sans-serif; font-size: 1.35rem; color: #fff; }
-        .gc-reviews-summary small { color: #8c8c8c; font-size: 0.72rem; }
-        .gc-review-gate { margin: 22px 0 28px; padding: 16px 18px; border-radius: 14px; background: rgba(255,106,26,0.06); border: 1px solid rgba(255,106,26,0.18); }
-        .gc-review-gate h3 { margin: 0 0 6px; font-size: 0.95rem; color: #fff; }
-        .gc-review-gate p { margin: 0; color: #8c8c8c; font-size: 0.78rem; line-height: 1.5; }
-        .gc-review-form { display: none; gap: 12px; margin-top: 14px; }
-        .gc-review-form.show { display: grid; }
-        .gc-review-form select, .gc-review-form textarea {
-            width: 100%; padding: 12px 14px; border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.12); background: #0f0f0f; color: #fff; font-size: 0.85rem;
-        }
-        .gc-review-form textarea { min-height: 90px; resize: vertical; }
-        .gc-review-submit {
-            justify-self: start; padding: 11px 22px; border: 0; border-radius: 50px;
-            background: linear-gradient(135deg, #ff6a1a, #ff3c00); color: #fff; font-weight: 700; font-size: 0.8rem; cursor: pointer;
-        }
-        .gc-review-submit:disabled { opacity: 0.45; cursor: not-allowed; }
-        .gc-review-controls {
-            display: none; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; align-items: center;
-        }
-        .gc-review-controls.show { display: flex; }
-        .gc-review-controls select {
-            padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.12);
-            background: #0f0f0f; color: #fff; font-size: 0.8rem;
-        }
-        .gc-review-list { display: grid; gap: 14px; }
-        .gc-review-card {
-            padding: 16px 18px; border-radius: 14px;
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
-        }
-        .gc-review-card-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 8px; }
-        .gc-review-card strong { color: #fff; font-size: 0.88rem; }
-        .gc-review-card .loc { color: #8c8c8c; font-size: 0.72rem; font-weight: 500; }
-        .gc-review-stars { color: #ff6a1a; font-size: 0.78rem; letter-spacing: 1px; }
-        .gc-review-card p { margin: 0; color: #b0b0b0; font-size: 0.82rem; line-height: 1.65; }
-        .gc-verified {
-            display: inline-flex; align-items: center; gap: 6px; margin-top: 10px;
-            color: #4caf70; font-size: 0.68rem; font-weight: 700;
-        }
-        .gc-verified svg { width: 12px; height: 12px; fill: currentColor; }
-        .gc-view-all {
-            display: block; margin: 22px auto 0; padding: 12px 28px;
-            border: 1px solid rgba(255,106,26,0.45); border-radius: 50px;
-            background: transparent; color: #ff6a1a; font-weight: 700; font-size: 0.85rem;
-            cursor: pointer; transition: 0.25s ease;
-        }
-        .gc-view-all:hover { background: rgba(255,106,26,0.12); }
-        .gc-view-all.hidden { display: none; }
-        @media (max-width: 700px) {
-            .gc-reviews { padding: 24px 18px; }
-            .gc-reviews-header { flex-direction: column; }
-            .gc-reviews-summary { text-align: left; }
-            .gc-rating-bar { max-width: 100%; }
-        }
+@media (max-width: 700px) {
+}
     </style>
 </head>
 <body>
@@ -115,12 +42,7 @@
                 <span style="border:1px solid var(--primary-orange); padding:4px 12px; border-radius:20px; font-size:0.75rem; color:var(--primary-orange); background:rgba(255,106,26,0.15);">50% OFF</span>
             </div>
             <a class="btn btn-primary reveal delay-3" href="https://gypsycartel.gumroad.com/l/gypsy-optimizer-pc-beast-v3-1-pro" target="_blank" rel="noopener">BUY NOW</a>
-            <div class="gc-rating-bar reveal delay-3">
-                <span class="stars" aria-hidden="true">★★★★★</span>
-                <span class="score">4.7</span>
-                <span class="count">· 381 ratings · 62 reviews</span>
-            </div>
-        </div>
+</div>
         <div class="reveal-img delay-2">
             <img src="/assets/logos/gypsy-app.webp" alt="PC Beast Pro+ Software Icon" class="apps-image" style="width:100%; border-radius:12px;">
         </div>
@@ -138,48 +60,6 @@
             </div>
             <div class="apps-gallery-arrow right" onclick="scrollGallery(1)">›</div>
         </div>
-    </section>
-    <section class="gc-reviews reveal delay-3" id="gcReviewsSection">
-        <div class="gc-reviews-header">
-            <div>
-                <h2>Customer Reviews</h2>
-                <p>Real feedback from verified purchasers of GYPSY OPTIMIZER: PC BEAST V3.1 PRO+. Only customers who completed a purchase can submit a rating or review.</p>
-            </div>
-            <div class="gc-reviews-summary">
-                <span class="big-stars" aria-hidden="true">★★★★★</span>
-                <strong>4.7 / 5</strong>
-                <small>381 ratings · 62 verified reviews</small>
-            </div>
-        </div>
-        <div class="gc-review-gate">
-            <h3>Leave a rating & review</h3>
-            <p id="gcGateText">Only verified purchasers can leave a rating or review.</p>
-            <button type="button" class="gc-review-submit" id="gcWriteReview" style="margin-top:12px;" disabled>Write a Review</button>
-            <form class="gc-review-form" id="gcReviewForm">
-                <select id="gcReviewRating" required>
-                    <option value="">Select rating</option>
-                    <option value="5">5 – Excellent</option>
-                    <option value="4">4 – Very Good</option>
-                    <option value="3">3 – Good</option>
-                </select>
-                <textarea id="gcReviewComment" placeholder="Share your experience with PC Beast V3.1 PRO+..." required></textarea>
-                <button type="submit" class="gc-review-submit">Submit for verification</button>
-            </form>
-        </div>
-        <div class="gc-review-controls" id="gcReviewControls">
-            <select id="gcFilterRating">
-                <option value="all">All ratings</option>
-                <option value="5">5 stars</option>
-                <option value="4">4 stars</option>
-                <option value="3">3 stars</option>
-            </select>
-            <select id="gcSortRating">
-                <option value="highest">Highest first</option>
-                <option value="lowest">Lowest first</option>
-            </select>
-        </div>
-        <div class="gc-review-list" id="gcReviewList"></div>
-        <button type="button" class="gc-view-all" id="gcViewAll">View all 62 comments</button>
     </section>
 </div>
 <div class="apps-modal" id="appsModal">
@@ -228,115 +108,6 @@ modal.addEventListener("touchend", (e) => {
     if (diff > 60) nextImage();
     if (diff < -60) prevImage();
 });
-</script>
-<script>
-
-(() => {
-    "use strict";
-    let allReviews = [];
-    let showAll = false;
-
-    function stars(n) {
-        n = Math.max(1, Math.min(5, Math.round(Number(n) || 5)));
-        return "★".repeat(n) + "☆".repeat(5 - n);
-    }
-    function verifiedBadge() {
-        return `<span class="gc-verified"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Verified Purchase</span>`;
-    }
-    function getFiltered() {
-        let list = [...allReviews];
-        const filter = document.getElementById("gcFilterRating")?.value || "all";
-        const sort = document.getElementById("gcSortRating")?.value || "highest";
-        if (filter !== "all") list = list.filter(r => r.s === Number(filter));
-        if (sort === "highest") list.sort((a, b) => b.s - a.s);
-        else list.sort((a, b) => a.s - b.s);
-        return list;
-    }
-    function renderReviews() {
-        const listEl = document.getElementById("gcReviewList");
-        if (!listEl) return;
-        const data = getFiltered();
-        const toShow = showAll ? data : data.slice(0, 10);
-        listEl.innerHTML = toShow.map(r => `
-            <article class="gc-review-card">
-                <div class="gc-review-card-head">
-                    <div>
-                        <strong>${r.name}</strong>
-                        <div class="loc">${r.loc}</div>
-                    </div>
-                    <span class="gc-review-stars" aria-label="${r.s} out of 5">${stars(r.s)}</span>
-                </div>
-                <p>${r.t}</p>
-                ${verifiedBadge()}
-            </article>
-        `).join("");
-        const btn = document.getElementById("gcViewAll");
-        const controls = document.getElementById("gcReviewControls");
-        if (showAll) {
-            btn.classList.add("hidden");
-            controls.classList.add("show");
-        } else {
-            btn.classList.remove("hidden");
-            controls.classList.remove("show");
-            btn.textContent = `View all 62 comments`;
-        }
-    }
-
-    // Load reviews from external JSON (not embedded in page source)
-    fetch("/apps/reviews-pc-beast.json")
-        .then(r => {
-            if (!r.ok) throw new Error("Reviews unavailable");
-            return r.json();
-        })
-        .then(data => {
-            allReviews = Array.isArray(data) ? data : [];
-            renderReviews();
-        })
-        .catch(() => {
-            const listEl = document.getElementById("gcReviewList");
-            if (listEl) listEl.innerHTML = "<p style='color:#8c8c8c;font-size:0.85rem;'>Reviews temporarily unavailable.</p>";
-        });
-
-    document.getElementById("gcViewAll")?.addEventListener("click", () => {
-        showAll = true;
-        renderReviews();
-    });
-    document.getElementById("gcFilterRating")?.addEventListener("change", renderReviews);
-    document.getElementById("gcSortRating")?.addEventListener("change", renderReviews);
-
-    function isVerifiedPurchaser() {
-        try {
-            const orders = JSON.parse(localStorage.getItem("gypsy_verified_orders") || "[]");
-            return Array.isArray(orders) && orders.some(o => o && o.product === "pc-beast-v3.1-pro" && o.verified === true);
-        } catch { return false; }
-    }
-    const writeBtn = document.getElementById("gcWriteReview");
-    const form = document.getElementById("gcReviewForm");
-    const gateText = document.getElementById("gcGateText");
-    if (isVerifiedPurchaser()) {
-        writeBtn.disabled = false;
-        gateText.textContent = "Your purchase is verified. You can submit one review for this product.";
-        writeBtn.addEventListener("click", () => form.classList.toggle("show"));
-    } else {
-        writeBtn.disabled = true;
-        writeBtn.title = "Verified purchase required";
-    }
-    form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        if (!isVerifiedPurchaser()) return;
-        const rating = document.getElementById("gcReviewRating").value;
-        const comment = document.getElementById("gcReviewComment").value.trim();
-        if (!rating || !comment) return;
-        const queue = JSON.parse(localStorage.getItem("gypsy_review_queue") || "[]");
-        queue.push({ product: "pc-beast-v3.1-pro", rating: Number(rating), comment, createdAt: new Date().toISOString(), status: "pending_verification" });
-        localStorage.setItem("gypsy_review_queue", JSON.stringify(queue));
-        form.reset();
-        form.classList.remove("show");
-        alert("Review submitted for verification. Thank you.");
-    });
-    document.getElementById("gcReviewsSection")?.addEventListener("contextmenu", (e) => e.preventDefault());
-})();
-
 </script>
 </body>
 </html>
