@@ -17,7 +17,6 @@
             --glass: rgba(15, 15, 25, 0.95);
             --glass-border: rgba(168, 85, 247, 0.35);
             
-            /* Accurate Touch Typing Colors */
             --z-pinky: #ff6b6b;   
             --z-ring: #feca57;    
             --z-mid: #1dd1a1;     
@@ -37,9 +36,7 @@
         ::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); }
         ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
-        /* =========================================
-           VIRTUAL KEYBOARD & FINGER MAPPING
-        ========================================= */
+        /* Virtual Keyboard */
         .key-row { display: flex; justify-content: center; gap: 6px; margin-bottom: 6px; }
         .key { 
             background: rgba(25, 25, 35, 0.95); border: 1px solid #333; border-radius: 8px; 
@@ -66,9 +63,7 @@
         .keymap-on .fir.active-key { background: var(--z-ind-r); border-color: #fff; box-shadow: 0 0 20px var(--z-ind-r); }
         .keymap-on .ft.active-key { background: var(--z-thmb); border-color: #fff; box-shadow: 0 0 20px var(--z-thmb); }
 
-        /* =========================================
-           TYPING AREA ENGINE
-        ========================================= */
+        /* Typing Area Engine */
         #typing-area { 
             line-height: 1.8; letter-spacing: 2px; font-size: 1.8rem; 
             user-select: none; word-wrap: break-word; white-space: pre-wrap; 
@@ -101,16 +96,12 @@
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* =========================================
-           LEVEL LOCK STYLES & AUTH UI
-        ========================================= */
         .level-btn { position: relative; overflow: hidden; }
         .level-locked { opacity: 0.4; cursor: not-allowed; border-color: #222 !important; color: #444 !important; background: #0a0a0a !important; }
         .level-locked::after { content: '🔒'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.2rem; opacity: 0.4; }
         
         .auth-input { width: 100%; background: #0a0a0f; border: 1px solid #333; padding: 14px; border-radius: 8px; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; outline: none; transition: border 0.3s; margin-bottom: 15px;}
         .auth-input:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(236, 72, 153, 0.2); }
-
     </style>
 </head>
 <body>
@@ -173,8 +164,7 @@
             <p class="text-xs text-zinc-500 mb-8 font-mono">Complete the current level to unlock the next.</p>
             
             <div class="w-full max-w-5xl p-8 glass-panel rounded-2xl max-h-[65vh] overflow-y-auto">
-                <div class="grid grid-cols-5 md:grid-cols-10 gap-4" id="level-grid">
-                </div>
+                <div class="grid grid-cols-5 md:grid-cols-10 gap-4" id="level-grid"></div>
             </div>
             <button onclick="document.getElementById('level-selector').classList.add('hidden-ui'); document.getElementById('start-screen').classList.remove('hidden-ui');" class="mt-8 px-8 py-3 bg-zinc-800 font-bold rounded-lg hover:bg-zinc-700 transition">BACK TO MAIN</button>
         </div>
@@ -196,9 +186,9 @@
                     <p class="text-[10px] text-zinc-500 font-bold mb-2 tracking-widest">RAW WPM</p>
                     <p id="res-raw" class="text-6xl font-black text-purple-400">00</p>
                 </div>
-                <div class="glass-panel p-6 rounded-2xl text-center border-b-4 border-red-500">
+                <div class="glass-panel p-6 rounded-2xl text-center border-b-4 border-green-500">
                     <p class="text-[10px] text-zinc-500 font-bold mb-2 tracking-widest">ERRORS</p>
-                    <p id="res-err" class="text-6xl font-black text-red-500">0</p>
+                    <p id="res-err" class="text-6xl font-black text-green-400">0</p>
                 </div>
             </div>
 
@@ -218,8 +208,6 @@
 
         <div id="typing-container" class="w-full max-w-[1100px] opacity-0 transition-opacity duration-300 hidden-ui flex-col items-center">
             
-            <input type="text" id="hidden-input" class="absolute opacity-0 top-0 left-0 w-1 h-1 z-[-1]" autocomplete="off" autocorrect="off" spellcheck="false">
-
             <div class="w-full flex justify-between items-center mb-6 glass-panel px-6 py-4 rounded-xl border border-zinc-800">
                 <div class="flex flex-col">
                     <span id="task-diff" class="text-xs text-pink-400 font-black tracking-widest uppercase mb-1">EASY MODE</span>
@@ -236,14 +224,14 @@
                 </div>
             </div>
 
-            <div id="typing-area" class="w-full bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
+            <div id="typing-area" class="w-full bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]" tabindex="0">
             </div>
             
-            <div id="virtual-keyboard" class="mt-8 w-full max-w-[900px] mx-auto pointer-events-none keymap-on">
-            </div>
+            <div id="virtual-keyboard" class="mt-8 w-full max-w-[900px] mx-auto pointer-events-none keymap-on"></div>
         </div>
     </main>
 
+    <!-- Settings Modal -->
     <div id="settings-modal" class="hidden-ui fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
         <div class="glass-panel p-8 rounded-2xl w-full max-w-sm border-cyan-500/50">
             <h3 class="text-2xl font-black mb-6 text-cyan-400 text-center uppercase tracking-widest">Settings</h3>
@@ -267,6 +255,7 @@
         </div>
     </div>
 
+    <!-- Security & Auth Modal -->
     <div id="auth-modal" class="hidden-ui fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 backdrop-blur-md">
         <div class="glass-panel p-10 rounded-2xl w-full max-w-md border-pink-500/30 shadow-[0_0_40px_rgba(236,72,153,0.15)]">
             <div class="text-center mb-8">
@@ -280,7 +269,7 @@
             </div>
 
             <div id="form-login">
-                <input type="text" id="login-email" class="auth-input" placeholder="Phone (+919745499444) or Email">
+                <input type="text" id="login-email" class="auth-input" placeholder="Phone or Email">
                 <input type="password" id="login-pass" class="auth-input" placeholder="Password or OTP">
                 <div id="login-error" class="text-[10px] text-red-500 hidden-ui font-bold text-center mb-4"></div>
                 <button onclick="handleAuth('login')" class="w-full py-4 bg-pink-600 text-white text-sm font-black tracking-widest rounded-xl hover:bg-pink-500 transition shadow-lg shadow-pink-900/50 uppercase">AUTHENTICATE</button>
@@ -298,6 +287,9 @@
         </div>
     </div>
 
+    <!-- =========================================
+         MAIN JAVASCRIPT ENGINE (GLOBAL KEYDOWN)
+    ========================================= -->
     <script>
         const baseEasy = ["the", "quick", "brown", "fox", "jumps", "over", "lazy", "dog", "cat", "mat", "hello", "world", "good", "morning", "day", "night", "sun", "moon", "star", "light", "dark", "fast", "slow", "run", "walk", "stop", "go", "yes", "no", "is", "a", "it", "to", "in", "on", "of", "and"];
         const baseMed = ["JavaScript", "developer", "function", "variable", "interface", "application", "system", "beautiful", "keyboard", "practice", "Velocity", "Cyberpunk", "Network", "Database", "Security", "Protocol", "Algorithm", "Framework", "Software", "Hardware"];
@@ -311,7 +303,6 @@
             let words = [];
             
             let pool = difficulty === 'EASY' ? baseEasy : (difficulty === 'MEDIUM' ? [...baseEasy, ...baseMed] : [...baseMed, ...baseHard]);
-            
             for(let w=0; w<wordCount; w++) {
                 words.push(pool[Math.floor(Math.random() * pool.length)]);
             }
@@ -359,7 +350,6 @@
         const els = {
             container: document.getElementById('typing-container'),
             area: document.getElementById('typing-area'),
-            input: document.getElementById('hidden-input'),
             vkb: document.getElementById('virtual-keyboard'),
             wpm: document.getElementById('ui-wpm'),
             acc: document.getElementById('ui-acc'),
@@ -379,6 +369,7 @@
                 return aCtx;
             } catch (e) { return null; }
         }
+
         function thock(isErr = false) {
             const ctx = ensureAudio();
             if (!ctx) return;
@@ -510,22 +501,18 @@
             els.area.appendChild(frag);
             
             readText(`Level ${lvl.id}. Target is ${lvl.goalWpm} words per minute. Begin.`);
-            els.input.value = ''; els.input.focus();
+            els.area.focus();
         }
 
-        els.input.addEventListener('input', () => {
-            // Keep the hidden input empty. Actual keystrokes are handled by keydown below.
-            els.input.value = '';
-        });
-
-        els.input.addEventListener('keydown', (e) => {
-            if (e.ctrlKey || e.altKey || e.metaKey) return;
+        // GLOBAL WINDOW KEYDOWN EVENT (Eliminates all hidden input focus bugs)
+        window.addEventListener('keydown', (e) => {
+            if (els.container.classList.contains('hidden-ui')) return;
+            if (e.ctrlKey || e.altKey || e.metaKey || e.key === 'F12') return;
 
             if (e.key === 'Backspace') {
                 e.preventDefault();
                 if (charIdx > 0) {
-                    const current = els.area.childNodes[charIdx];
-                    if (current) current.className = 'c-pend';
+                    els.area.childNodes[charIdx].className = 'c-pend';
                     charIdx--;
                     els.area.childNodes[charIdx].className = 'c-curr';
                     els.prog.style.width = `${(charIdx / textData.length) * 100}%`;
@@ -533,7 +520,6 @@
                 return;
             }
 
-            // Only printable characters and Space should enter the test.
             if (e.key.length !== 1 && e.key !== ' ') return;
             e.preventDefault();
 
@@ -682,23 +668,12 @@
             let btn = document.getElementById('btn-keymap');
             if(prefs.keymap) { els.vkb.classList.add('keymap-on'); btn.innerText = "KEYMAP: ON"; btn.className = "text-xs font-bold text-yellow-400 bg-yellow-900/30 px-4 py-2 rounded-lg border border-yellow-500/50 shadow-md"; } 
             else { els.vkb.classList.remove('keymap-on'); btn.innerText = "KEYMAP: OFF"; btn.className = "text-xs font-bold text-zinc-500 bg-zinc-900/50 px-4 py-2 rounded-lg border border-zinc-700 shadow-md"; }
-            els.input.focus();
+            els.area.focus();
         }
         
         function toggleSettings() { document.getElementById('settings-modal').classList.toggle('hidden-ui'); }
         document.getElementById('toggle-sound').addEventListener('change', e => prefs.sound = e.target.checked);
         document.getElementById('toggle-reader').addEventListener('change', e => { prefs.reader = e.target.checked; if(prefs.reader) readText("Reading assistant enabled"); else window.speechSynthesis.cancel(); });
-        document.addEventListener('click', (e) => {
-            if (!els.container.classList.contains('hidden-ui') && !e.target.closest('button,input')) {
-                els.input.focus();
-            }
-        });
-        window.addEventListener('keydown', (e) => {
-            if (!els.container.classList.contains('hidden-ui') &&
-                !e.ctrlKey && !e.altKey && !e.metaKey) {
-                els.input.focus();
-            }
-        });
 
         function openAuthModal() { document.getElementById('auth-modal').classList.remove('hidden-ui'); switchAuthTab('login'); }
         function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden-ui'); }
