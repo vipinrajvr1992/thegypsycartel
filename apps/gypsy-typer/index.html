@@ -10,25 +10,25 @@
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;500;700;900&display=swap');
         
         :root {
-            --bg-color: #030305;
+            --bg-color: #05050a;
             --primary: #ec4899;
             --secondary: #a855f7;
-            --glass-bg: rgba(13, 13, 25, 0.7);
-            --glass-border: rgba(168, 85, 247, 0.25);
+            --glass-bg: rgba(13, 13, 25, 0.8);
+            --glass-border: rgba(168, 85, 247, 0.3);
             /* Finger Map Colors for Touch Typing */
-            --finger-pinky: rgba(236, 72, 153, 0.2);
-            --finger-ring: rgba(245, 158, 11, 0.2);
-            --finger-middle: rgba(16, 185, 129, 0.2);
-            --finger-index: rgba(6, 182, 212, 0.2);
-            --finger-thumb: rgba(139, 92, 246, 0.2);
+            --finger-pinky: rgba(236, 72, 153, 0.3);
+            --finger-ring: rgba(245, 158, 11, 0.3);
+            --finger-middle: rgba(16, 185, 129, 0.3);
+            --finger-index: rgba(6, 182, 212, 0.3);
+            --finger-thumb: rgba(139, 92, 246, 0.3);
         }
 
-        body { background-color: var(--bg-color); color: #fff; font-family: 'Orbitron', sans-serif; overflow: hidden; user-select: none; }
+        body { background-color: var(--bg-color); color: #fff; font-family: 'Orbitron', sans-serif; overflow: hidden; margin: 0; padding: 0; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
         
         /* Premium Cyber Aesthetics */
-        .neon-glow { text-shadow: 0 0 15px var(--primary), 0 0 30px var(--secondary); }
-        .glass-panel { background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--glass-border); box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); }
+        .neon-glow { text-shadow: 0 0 10px var(--primary), 0 0 20px var(--secondary); }
+        .glass-panel { background: var(--glass-bg); backdrop-filter: blur(15px); border: 1px solid var(--glass-border); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); }
         
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
@@ -37,10 +37,10 @@
         /* Virtual Keyboard & Touch Typing Zones */
         .keyboard-row { display: flex; justify-content: center; gap: 6px; margin-bottom: 6px; }
         .key { 
-            background: rgba(30, 30, 45, 0.8); border: 1px solid #333; border-radius: 8px; 
-            min-width: 48px; height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: bold; color: #888;
-            transition: all 0.05s ease-out; box-shadow: 0 4px 6px rgba(0,0,0,0.4); position: relative; overflow: hidden;
+            background: rgba(30, 30, 45, 0.8); border: 1px solid #333; border-radius: 6px; 
+            min-width: 48px; height: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: bold; color: #aaa;
+            transition: all 0.05s ease-out; position: relative; overflow: hidden;
         }
         
         /* Touch Typing Color Indicators */
@@ -52,157 +52,149 @@
 
         .key.active-key { 
             background: var(--primary); color: #fff; border-color: #fbcfe8; 
-            transform: translateY(4px) scale(0.95); box-shadow: 0 0 20px var(--primary); 
+            transform: translateY(2px) scale(0.95); box-shadow: 0 0 15px var(--primary); 
         }
         .key.spacebar { width: 350px; }
-        .key-hint { font-size: 0.5rem; opacity: 0.5; margin-top: 2px; font-family: 'Orbitron', sans-serif; }
+        .key-hint { font-size: 0.45rem; opacity: 0.6; margin-top: 2px; font-family: 'Orbitron', sans-serif; letter-spacing: 1px; }
 
-        /* --- FIXED TYPING AREA ENGINE --- */
+        /* --- TYPING AREA ENGINE --- */
+        #typing-container {
+            width: 100%; max-width: 1000px;
+            opacity: 0; transition: opacity 0.3s;
+            pointer-events: none; /* Let focus go to the hidden input */
+            display: none; /* Hidden initially */
+        }
+        
         #typing-area { 
-            line-height: 1.8; 
-            letter-spacing: 2px; 
-            /* Prevent text selection highlighting that ruins readability */
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-        #typing-area span { 
-            transition: color 0.1s, background-color 0.1s; 
-            font-size: 1.8rem; 
-            position: relative; 
-            padding: 0 2px; /* Slight padding to prevent background colors from overlapping tightly */
+            line-height: 1.6; letter-spacing: 1px; 
+            user-select: none; -webkit-user-select: none;
+            word-wrap: break-word; white-space: pre-wrap;
         }
         
-        /* The upcoming text you need to type (Made brighter so it's readable) */
-        .char-pending { color: #888; } 
+        #typing-area span { transition: color 0.1s; font-size: 1.8rem; padding: 0 1px; }
         
-        /* Correctly typed text */
-        .char-correct { color: #a855f7; text-shadow: 0 0 8px rgba(168, 85, 247, 0.6); } 
+        .char-pending { color: #555; } 
+        .char-correct { color: #d8b4fe; text-shadow: 0 0 5px rgba(168, 85, 247, 0.5); } 
+        .char-wrong { color: #fff; background-color: #ef4444; border-radius: 3px; } 
         
-        /* Wrongly typed text */
-        .char-wrong { color: #fff; background-color: #ef4444; border-radius: 4px; text-shadow: none; box-shadow: 0 0 10px #ef4444; } 
-        
-        /* The exact character you are currently on */
-        .char-current { color: #fff; text-shadow: 0 0 10px #fff; background-color: rgba(255,255,255,0.1); border-radius: 4px;}
+        .char-current { color: #fff; background-color: rgba(255,255,255,0.1); border-radius: 3px; }
         .char-current::after {
-            content: ''; position: absolute; left: 0; bottom: -4px; width: 100%; height: 3px; 
-            background: var(--primary); animation: blink 1s infinite; box-shadow: 0 0 10px var(--primary);
+            content: ''; position: absolute; left: 0; bottom: -2px; width: 100%; height: 3px; 
+            background: var(--primary); animation: blink 1s infinite;
         }
         
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         
         /* Input Glitch effect on error */
-        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
-        .shake-error { animation: shake 0.2s ease-in-out; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-4px); } 75% { transform: translateX(4px); } }
+        .shake-error { animation: shake 0.15s ease-in-out; }
     </style>
 </head>
 <body>
 
     <!-- TOP NAVIGATION & LIVE HUD -->
-    <header class="flex justify-between items-center px-8 py-4 glass-panel border-b border-zinc-800 z-20 relative">
+    <header class="flex justify-between items-center px-6 py-3 glass-panel border-b border-zinc-800 z-20 relative h-[70px]">
         <div class="flex items-center gap-4">
             <div>
-                <h1 class="text-2xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-cyan-400 neon-glow">
+                <h1 class="text-xl md:text-2xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-cyan-400 neon-glow">
                     GYPSY TYPEX
                 </h1>
-                <span class="text-[9px] text-zinc-400 tracking-widest uppercase">Pro Cyber Training</span>
+                <span class="text-[9px] text-zinc-400 tracking-widest uppercase">Elite Training</span>
             </div>
         </div>
         
-        <div class="flex items-center gap-8">
-            <div class="text-center"><p class="text-[10px] text-zinc-500 tracking-widest">MISSION</p><p id="ui-level" class="text-xl font-bold text-cyan-400">1/10</p></div>
-            <div class="text-center"><p class="text-[10px] text-zinc-500 tracking-widest">WPM</p><p id="ui-wpm" class="text-2xl font-black text-white">00</p></div>
-            <div class="text-center"><p class="text-[10px] text-zinc-500 tracking-widest">ACCURACY</p><p id="ui-acc" class="text-xl font-bold text-pink-400">100%</p></div>
+        <div class="flex items-center gap-6">
+            <div class="text-center"><p class="text-[9px] text-zinc-500 tracking-widest uppercase">Level</p><p id="ui-level" class="text-lg font-bold text-cyan-400">1</p></div>
+            <div class="text-center"><p class="text-[9px] text-zinc-500 tracking-widest uppercase">WPM</p><p id="ui-wpm" class="text-xl font-black text-white">00</p></div>
+            <div class="text-center"><p class="text-[9px] text-zinc-500 tracking-widest uppercase">Accuracy</p><p id="ui-acc" class="text-lg font-bold text-pink-400">100%</p></div>
             
-            <div class="flex gap-3 border-l border-zinc-700 pl-6 ml-2">
-                <button onclick="toggleSettings()" class="p-2 bg-zinc-900 rounded-lg border border-zinc-700 hover:border-cyan-400 transition" title="Settings">⚙️</button>
-                <button onclick="openAuthModal()" id="profile-btn" class="px-4 py-2 bg-zinc-900 rounded-lg border border-zinc-700 hover:border-pink-500 text-sm font-bold text-pink-400 transition">LOGIN</button>
+            <div class="flex gap-2 border-l border-zinc-700 pl-4 ml-2">
+                <button onclick="toggleSettings()" class="p-2 bg-zinc-900 rounded border border-zinc-700 hover:border-cyan-400 transition" title="Settings">⚙️</button>
+                <button onclick="openAuthModal()" id="profile-btn" class="px-3 py-1.5 bg-zinc-900 rounded border border-zinc-700 hover:border-pink-500 text-xs font-bold text-pink-400 transition">LOGIN</button>
             </div>
         </div>
     </header>
 
     <!-- MAIN GAME ARENA -->
-    <main class="flex-1 flex flex-col items-center justify-center relative p-8 h-[calc(100vh-80px)]">
+    <main class="relative w-full h-[calc(100vh-70px)] flex flex-col items-center justify-center p-4">
         
         <!-- 1. DASHBOARD / START SCREEN -->
         <div id="start-screen" class="absolute inset-0 flex flex-col items-center justify-center z-30 bg-black/95">
-            <h2 class="text-5xl md:text-7xl font-black mb-4 neon-glow text-white tracking-widest text-center">SYSTEM SECURED</h2>
-            <p class="text-zinc-400 mb-8 max-w-2xl text-center leading-relaxed text-sm md:text-base">
-                Welcome to the ultimate typing challenge. 10 Levels of increasing difficulty. <br>
-                Use the <span class="text-cyan-400">colored touch-typing zones</span> to build muscle memory. Only the elite survive.
+            <!-- Professional Header instead of System Secured -->
+            <h2 class="text-4xl md:text-5xl font-black mb-3 neon-glow text-white tracking-widest text-center uppercase">Cyber Velocity</h2>
+            <p class="text-zinc-400 mb-8 max-w-lg text-center leading-relaxed text-sm">
+                Advanced Touch Typing Training. 10 stages of escalating difficulty.<br>
+                Rely on the colored key zones to develop blind muscle memory.
             </p>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl mb-8">
-                <div class="glass-panel p-6 rounded-xl text-center border-t-2 border-cyan-400">
-                    <h3 class="text-cyan-400 font-bold mb-2">GUEST PROTOCOL</h3>
-                    <p class="text-xs text-zinc-500 mb-4">Play instantly. Progress will be lost upon exit. Ideal for quick practice.</p>
-                    <button onclick="startGame(false)" class="w-full py-3 bg-zinc-800 font-bold rounded-lg hover:bg-zinc-700 transition">INITIALIZE GUEST</button>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-xl">
+                <div class="glass-panel p-5 rounded-lg border-t-2 border-cyan-400">
+                    <h3 class="text-cyan-400 font-bold mb-1 text-sm uppercase">Quick Practice</h3>
+                    <p class="text-[10px] text-zinc-500 mb-4 h-6">Play as guest. No data saved.</p>
+                    <button onclick="startGame(false)" class="w-full py-2 bg-zinc-800 text-sm font-bold rounded hover:bg-zinc-700 transition">INITIALIZE GUEST</button>
                 </div>
-                <div class="glass-panel p-6 rounded-xl text-center border-t-2 border-pink-500">
-                    <h3 class="text-pink-400 font-bold mb-2">ELITE OPERATIVE</h3>
-                    <p class="text-xs text-zinc-500 mb-4">Create an account. Save progress, access leaderboards, and track improvement.</p>
-                    <button onclick="openAuthModal()" class="w-full py-3 bg-gradient-to-r from-pink-600 to-purple-600 font-bold rounded-lg hover:scale-105 transition shadow-lg shadow-pink-900/50">SECURE LOGIN</button>
+                <div class="glass-panel p-5 rounded-lg border-t-2 border-pink-500">
+                    <h3 class="text-pink-400 font-bold mb-1 text-sm uppercase">Registered Agent</h3>
+                    <p class="text-[10px] text-zinc-500 mb-4 h-6">Track progress & global ranks.</p>
+                    <button onclick="openAuthModal()" class="w-full py-2 bg-gradient-to-r from-pink-600 to-purple-600 text-sm font-bold rounded hover:scale-105 transition shadow-lg shadow-pink-900/30">SECURE LOGIN</button>
                 </div>
             </div>
         </div>
 
         <!-- 2. MISSION REPORT (RESULT SCREEN) -->
-        <div id="result-screen" class="hidden absolute inset-0 flex flex-col items-center justify-center z-30 bg-black/95 backdrop-blur-md">
-            <h2 id="result-title" class="text-5xl md:text-6xl font-black mb-2 text-white tracking-widest uppercase">MISSION REPORT</h2>
-            <p id="result-msg" class="text-lg text-zinc-400 mb-8 tracking-wide">Analyzing your keystroke dynamics...</p>
+        <div id="result-screen" class="hidden absolute inset-0 flex flex-col items-center justify-center z-30 bg-black/95">
+            <h2 id="result-title" class="text-4xl md:text-5xl font-black mb-2 text-white tracking-widest uppercase">Report</h2>
+            <p id="result-msg" class="text-sm text-zinc-400 mb-8">Analysis complete.</p>
             
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-10 w-full max-w-4xl">
-                <div class="glass-panel p-6 rounded-2xl text-center border-b-4 border-cyan-400">
-                    <p class="text-xs text-zinc-500 font-bold mb-1">NET SPEED</p>
-                    <p id="res-wpm" class="text-5xl font-black text-cyan-400">00</p>
-                    <p class="text-[10px] text-zinc-500 mt-1">WPM</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 w-full max-w-3xl">
+                <div class="glass-panel p-4 rounded-xl text-center border-b-2 border-cyan-400">
+                    <p class="text-[10px] text-zinc-500 font-bold mb-1">NET WPM</p>
+                    <p id="res-wpm" class="text-4xl font-black text-cyan-400">00</p>
                 </div>
-                <div class="glass-panel p-6 rounded-2xl text-center border-b-4 border-pink-500">
-                    <p class="text-xs text-zinc-500 font-bold mb-1">ACCURACY</p>
-                    <p id="res-acc" class="text-5xl font-black text-pink-400">0%</p>
-                    <p class="text-[10px] text-zinc-500 mt-1">PRECISION</p>
+                <div class="glass-panel p-4 rounded-xl text-center border-b-2 border-pink-500">
+                    <p class="text-[10px] text-zinc-500 font-bold mb-1">ACCURACY</p>
+                    <p id="res-acc" class="text-4xl font-black text-pink-400">0%</p>
                 </div>
-                <div class="glass-panel p-6 rounded-2xl text-center border-b-4 border-purple-500">
-                    <p class="text-xs text-zinc-500 font-bold mb-1">RAW SPEED</p>
-                    <p id="res-raw" class="text-5xl font-black text-purple-400">00</p>
-                    <p class="text-[10px] text-zinc-500 mt-1">WPM (No Penalty)</p>
+                <div class="glass-panel p-4 rounded-xl text-center border-b-2 border-purple-500">
+                    <p class="text-[10px] text-zinc-500 font-bold mb-1">RAW WPM</p>
+                    <p id="res-raw" class="text-4xl font-black text-purple-400">00</p>
                 </div>
-                <div class="glass-panel p-6 rounded-2xl text-center border-b-4 border-green-500">
-                    <p class="text-xs text-zinc-500 font-bold mb-1">CONSISTENCY</p>
-                    <p id="res-cons" class="text-5xl font-black text-green-400">0%</p>
-                    <p class="text-[10px] text-zinc-500 mt-1">RHYTHM</p>
+                <div class="glass-panel p-4 rounded-xl text-center border-b-2 border-green-500">
+                    <p class="text-[10px] text-zinc-500 font-bold mb-1">CONSISTENCY</p>
+                    <p id="res-cons" class="text-4xl font-black text-green-400">0%</p>
                 </div>
             </div>
             
             <div class="flex gap-4">
-                <button onclick="retryLevel()" class="px-8 py-4 bg-zinc-800 font-bold rounded-xl hover:bg-zinc-700 transition flex items-center gap-2">🔄 RETRY MISSION</button>
-                <button id="btn-next-level" onclick="nextLevel()" class="hidden px-8 py-4 bg-cyan-600 text-black font-black rounded-xl hover:bg-cyan-500 hover:scale-105 transition shadow-lg shadow-cyan-900/50">PROCEED TO NEXT ➔</button>
+                <button onclick="retryLevel()" class="px-6 py-3 bg-zinc-800 text-sm font-bold rounded-lg hover:bg-zinc-700 transition">🔄 RETRY</button>
+                <button id="btn-next-level" onclick="nextLevel()" class="hidden px-6 py-3 bg-cyan-600 text-black text-sm font-black rounded-lg hover:bg-cyan-500 transition shadow-lg shadow-cyan-900/50">PROCEED ➔</button>
             </div>
         </div>
 
         <!-- 3. ACTIVE TYPING ARENA -->
-        <div id="typing-container" class="w-full max-w-5xl opacity-0 transition-opacity duration-500 flex flex-col items-center">
-            
+        <div id="typing-container">
+            <!-- Hidden input is the REAL target for keystrokes, ensuring mobile and desktop compatibility -->
+            <input type="text" id="hidden-input" class="absolute opacity-0 top-0 left-0 w-1 h-1 z-[-1]" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+
             <!-- Task Info HUD -->
-            <div class="w-full flex justify-between items-end mb-6 border-b border-zinc-800 pb-2">
+            <div class="w-full flex justify-between items-end mb-4 border-b border-zinc-800 pb-2">
                 <div>
-                    <h3 id="task-name" class="text-xl font-bold text-pink-400 tracking-wider uppercase">TASK: INITIALIZING</h3>
-                    <p id="task-desc" class="text-xs text-zinc-500">Focus on accuracy before speed.</p>
+                    <h3 id="task-name" class="text-lg font-bold text-pink-400 uppercase">TASK: INITIALIZING</h3>
+                    <p id="task-desc" class="text-[10px] text-zinc-500">Focus on accuracy before speed.</p>
                 </div>
                 <div class="text-right">
-                    <p class="text-[10px] text-zinc-500 tracking-widest">REQUIREMENTS</p>
-                    <p id="task-goal" class="text-sm font-bold text-cyan-400">0 WPM | 0% ACC</p>
+                    <p class="text-[9px] text-zinc-500 uppercase">Requirements</p>
+                    <p id="task-goal" class="text-xs font-bold text-cyan-400">0 WPM | 0% ACC</p>
                 </div>
             </div>
 
-            <!-- The Text Engine -->
-            <div id="typing-area" class="font-mono w-full text-left bg-zinc-900/40 p-8 rounded-xl border border-zinc-800 shadow-inner outline-none focus:border-pink-500/50 transition-colors" tabindex="0">
+            <!-- The Text Engine Display -->
+            <div id="typing-area" class="font-mono w-full bg-zinc-900/30 p-6 rounded-lg border border-zinc-800 shadow-inner">
                 <!-- Spans injected via JS -->
             </div>
             
             <!-- Virtual Touch Keyboard -->
-            <div id="virtual-keyboard" class="mt-10 pointer-events-none w-full max-w-4xl"></div>
+            <div id="virtual-keyboard" class="mt-8 w-full max-w-4xl mx-auto pointer-events-none"></div>
         </div>
     </main>
 
@@ -210,73 +202,53 @@
 
     <!-- Settings Modal -->
     <div id="settings-modal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-        <div class="glass-panel p-8 rounded-2xl w-full max-w-sm border-cyan-500/50">
-            <h3 class="text-2xl font-bold mb-6 text-cyan-400 text-center tracking-wider">SYSTEM CONFIG</h3>
-            <div class="space-y-6 mb-8">
-                <div class="flex justify-between items-center bg-zinc-900/50 p-3 rounded-lg border border-zinc-800">
-                    <span class="text-sm font-bold">ASMR Thock Sounds</span>
-                    <input type="checkbox" id="toggle-sound" checked class="w-5 h-5 accent-cyan-500">
+        <div class="glass-panel p-6 rounded-xl w-full max-w-sm border-cyan-500/50">
+            <h3 class="text-xl font-bold mb-4 text-cyan-400 text-center uppercase">Settings</h3>
+            <div class="space-y-3 mb-6">
+                <div class="flex justify-between items-center bg-zinc-900/50 p-3 rounded border border-zinc-800">
+                    <span class="text-xs font-bold text-zinc-300">ASMR Keyboard Sounds</span>
+                    <input type="checkbox" id="toggle-sound" checked class="w-4 h-4 accent-cyan-500">
                 </div>
-                <div class="flex justify-between items-center bg-zinc-900/50 p-3 rounded-lg border border-zinc-800">
-                    <span class="text-sm font-bold">Virtual Keyboard Overlay</span>
-                    <input type="checkbox" id="toggle-vkb" checked class="w-5 h-5 accent-cyan-500">
-                </div>
-                <div class="flex justify-between items-center bg-zinc-900/50 p-3 rounded-lg border border-zinc-800">
-                    <span class="text-sm font-bold">Strict Case Sensitivity</span>
-                    <input type="checkbox" id="toggle-case" checked class="w-5 h-5 accent-pink-500" disabled title="Forced ON for Pro Training">
+                <div class="flex justify-between items-center bg-zinc-900/50 p-3 rounded border border-zinc-800">
+                    <span class="text-xs font-bold text-zinc-300">Virtual Keyboard Display</span>
+                    <input type="checkbox" id="toggle-vkb" checked class="w-4 h-4 accent-cyan-500">
                 </div>
             </div>
-            <button onclick="toggleSettings()" class="w-full py-3 bg-zinc-800 font-bold rounded-xl hover:bg-zinc-700">SAVE & CLOSE</button>
+            <button onclick="toggleSettings()" class="w-full py-2 bg-zinc-800 text-sm font-bold rounded hover:bg-zinc-700">CLOSE</button>
         </div>
     </div>
 
     <!-- Security & Auth Modal -->
-    <div id="auth-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 backdrop-blur-md">
-        <div class="glass-panel p-8 rounded-2xl w-full max-w-md border-pink-500/50 shadow-2xl shadow-pink-900/20">
-            <div class="text-center mb-6">
-                <h2 class="text-2xl font-black text-white tracking-widest neon-glow">SECURE ACCESS</h2>
-                <p class="text-xs text-zinc-400 mt-1">Encrypted Frontend Gateway</p>
+    <div id="auth-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+        <div class="glass-panel p-6 rounded-xl w-full max-w-sm border-pink-500/50 shadow-2xl shadow-pink-900/20">
+            <div class="text-center mb-5">
+                <h2 class="text-xl font-black text-white uppercase neon-glow">Terminal Access</h2>
             </div>
 
             <!-- Tab Nav -->
-            <div class="flex mb-6 border-b border-zinc-800">
-                <button id="tab-login" onclick="switchTab('login')" class="flex-1 pb-3 text-sm font-bold border-b-2 border-pink-500 text-pink-400">LOGIN</button>
-                <button id="tab-register" onclick="switchTab('register')" class="flex-1 pb-3 text-sm font-bold border-b-2 border-transparent text-zinc-500 hover:text-white">REGISTER</button>
+            <div class="flex mb-4 border-b border-zinc-800">
+                <button id="tab-login" onclick="switchTab('login')" class="flex-1 pb-2 text-xs font-bold border-b-2 border-pink-500 text-pink-400">LOGIN</button>
+                <button id="tab-register" onclick="switchTab('register')" class="flex-1 pb-2 text-xs font-bold border-b-2 border-transparent text-zinc-500 hover:text-white">REGISTER</button>
             </div>
 
             <!-- Login Form -->
-            <div id="form-login" class="space-y-4">
-                <div>
-                    <label class="text-[10px] text-zinc-500 uppercase tracking-widest">Email Address</label>
-                    <input type="email" id="login-email" class="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-lg text-white font-mono text-sm outline-none focus:border-pink-500 transition" placeholder="operative@gypsy.com">
-                </div>
-                <div>
-                    <label class="text-[10px] text-zinc-500 uppercase tracking-widest">Password</label>
-                    <input type="password" id="login-pass" class="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-lg text-white font-mono text-sm outline-none focus:border-pink-500 transition" placeholder="••••••••">
-                </div>
-                <div id="login-error" class="text-xs text-red-500 hidden font-bold"></div>
-                <button onclick="handleLogin()" class="w-full py-3 bg-pink-600 text-white font-bold rounded-lg hover:bg-pink-500 transition shadow-lg shadow-pink-900/50">AUTHENTICATE</button>
+            <div id="form-login" class="space-y-3">
+                <input type="email" id="login-email" class="w-full bg-zinc-900 border border-zinc-700 p-2.5 rounded text-white text-xs outline-none focus:border-pink-500" placeholder="Email Address">
+                <input type="password" id="login-pass" class="w-full bg-zinc-900 border border-zinc-700 p-2.5 rounded text-white text-xs outline-none focus:border-pink-500" placeholder="Password">
+                <div id="login-error" class="text-[10px] text-red-500 hidden font-bold"></div>
+                <button onclick="handleLogin()" class="w-full py-2.5 bg-pink-600 text-white text-xs font-bold rounded hover:bg-pink-500 transition">AUTHENTICATE</button>
             </div>
 
             <!-- Register Form -->
-            <div id="form-register" class="hidden space-y-4">
-                <div>
-                    <label class="text-[10px] text-zinc-500 uppercase tracking-widest">Gamer Tag (Username)</label>
-                    <input type="text" id="reg-name" class="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-lg text-white font-mono text-sm outline-none focus:border-cyan-400 transition" placeholder="CyberNinja99">
-                </div>
-                <div>
-                    <label class="text-[10px] text-zinc-500 uppercase tracking-widest">Email Address</label>
-                    <input type="email" id="reg-email" class="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-lg text-white font-mono text-sm outline-none focus:border-cyan-400 transition" placeholder="operative@gypsy.com">
-                </div>
-                <div>
-                    <label class="text-[10px] text-zinc-500 uppercase tracking-widest">Secure Password</label>
-                    <input type="password" id="reg-pass" class="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-lg text-white font-mono text-sm outline-none focus:border-cyan-400 transition" placeholder="Min 6 characters">
-                </div>
-                <div id="reg-error" class="text-xs text-red-500 hidden font-bold"></div>
-                <button onclick="handleRegister()" class="w-full py-3 bg-cyan-600 text-black font-black rounded-lg hover:bg-cyan-500 transition shadow-lg shadow-cyan-900/50">CREATE ELITE ACCOUNT</button>
+            <div id="form-register" class="hidden space-y-3">
+                <input type="text" id="reg-name" class="w-full bg-zinc-900 border border-zinc-700 p-2.5 rounded text-white text-xs outline-none focus:border-cyan-400" placeholder="Gamer Tag">
+                <input type="email" id="reg-email" class="w-full bg-zinc-900 border border-zinc-700 p-2.5 rounded text-white text-xs outline-none focus:border-cyan-400" placeholder="Email Address">
+                <input type="password" id="reg-pass" class="w-full bg-zinc-900 border border-zinc-700 p-2.5 rounded text-white text-xs outline-none focus:border-cyan-400" placeholder="Password (Min 6 chars)">
+                <div id="reg-error" class="text-[10px] text-red-500 hidden font-bold"></div>
+                <button onclick="handleRegister()" class="w-full py-2.5 bg-cyan-600 text-black text-xs font-black rounded hover:bg-cyan-500 transition">CREATE ACCOUNT</button>
             </div>
 
-            <button onclick="closeAuthModal()" class="w-full mt-4 py-2 text-zinc-500 text-xs hover:text-white transition">Cancel / Close</button>
+            <button onclick="closeAuthModal()" class="w-full mt-4 py-1 text-zinc-500 text-[10px] hover:text-white transition">Cancel</button>
         </div>
     </div>
 
@@ -286,27 +258,27 @@
            1. CORE DATA & LEVEL CONFIGURATION
         ========================================= */
         const levels = [
-            { id: 1, name: "Home Row Basics", desc: "Index and middle fingers only. Master the core.", goalWpm: 15, goalAcc: 90, text: "asdf jkl; asdf jkl; sad flask dash fall jaks all adds asks falls flash salad flaks" },
+            { id: 1, name: "Home Row Basics", desc: "Index and middle fingers. Master the core.", goalWpm: 15, goalAcc: 90, text: "asdf jkl; asdf jkl; sad flask dash fall jaks all adds asks falls flash salad flaks" },
             { id: 2, name: "Top Row Extensions", desc: "Reach up. Engage ring and pinky.", goalWpm: 25, goalAcc: 92, text: "qwer poiu quiet power upper route require tower rope out put top pot your equip" },
-            { id: 3, name: "Bottom Row Dips", desc: "The hardest reach. Keep wrists steady.", goalWpm: 30, goalAcc: 93, text: "zxcv mnbv exact mix voice zero map camp zoom x-ray van man box zip back cab" },
+            { id: 3, name: "Bottom Row Dips", desc: "Keep wrists steady.", goalWpm: 30, goalAcc: 93, text: "zxcv mnbv exact mix voice zero map camp zoom x-ray van man box zip back cab" },
             { id: 4, name: "Shift & Capitalization", desc: "Use the opposite pinky for shift keys.", goalWpm: 35, goalAcc: 94, text: "The Quick Brown Fox Jumps Over The Lazy Dog. Gypsy Cartel creates Modern Software." },
             { id: 5, name: "Numbers & Symbols", desc: "The programmer's warm-up.", goalWpm: 40, goalAcc: 94, text: "Price: $1,999.00! Contact: email@gypsycartel.com. Phone: +91-98765-43210 (Code 100%)." },
             { id: 6, name: "Speed Burst Quotes", desc: "Fluidity testing. Do not stop typing.", goalWpm: 48, goalAcc: 95, text: "Success is not final, failure is not fatal: it is the courage to continue that counts. Believe you can and you're halfway there." },
-            { id: 7, name: "Endurance Paragraph", desc: "Maintain stamina over a longer text block.", goalWpm: 55, goalAcc: 96, text: "Gypsy TypeX pushes the boundaries of web engineering. It calculates words per minute in real time without lag, providing a seamless arcade experience designed for elite performers." },
-            { id: 8, name: "Coding Syntax Basics", desc: "Punctuation heavy. Extreme precision required.", goalWpm: 60, goalAcc: 97, text: "const wpm = (chars / 5) / (time / 60); if (wpm > goal) { console.log('Passed'); } else { retry(); }" },
-            { id: 9, name: "Advanced Algorithms", desc: "JavaScript Arrow functions and methods.", goalWpm: 65, goalAcc: 97, text: "function sortData(arr) { return arr.sort((a, b) => b.score - a.score).filter(u => u.isActive); }" },
+            { id: 7, name: "Endurance Paragraph", desc: "Maintain stamina.", goalWpm: 55, goalAcc: 96, text: "Gypsy TypeX pushes the boundaries of web engineering. It calculates words per minute in real time without lag, providing a seamless arcade experience designed for elite performers." },
+            { id: 8, name: "Coding Syntax Basics", desc: "Extreme precision required.", goalWpm: 60, goalAcc: 97, text: "const wpm = (chars / 5) / (time / 60); if (wpm > goal) { console.log('Passed'); } else { retry(); }" },
+            { id: 9, name: "Advanced Algorithms", desc: "JavaScript logic structures.", goalWpm: 65, goalAcc: 97, text: "function sortData(arr) { return arr.sort((a, b) => b.score - a.score).filter(u => u.isActive); }" },
             { id: 10, name: "CYBER VELOCITY BOSS", desc: "Blind Mode Enabled. Virtual Keyboard Offline.", goalWpm: 75, goalAcc: 98, text: "<!DOCTYPE html> <html lang='en'> <head><title>Hack</title></head> <body> <script> sys.bypass(0xFA81); </script> </body> </html>" }
         ];
 
         /* =========================================
-           2. TOUCH TYPING FINGER MAP (Color Logic)
+           2. TOUCH TYPING FINGER MAP
         ========================================= */
         const fingerMap = {
             'finger-pinky': ['q','a','z','1','p',';','/','0','-','=','[',']',"'"],
             'finger-ring': ['w','s','x','2','o','l','.','9'],
             'finger-middle': ['e','d','c','3','i','k',',','8'],
             'finger-index': ['r','f','v','t','g','b','4','5','y','h','n','u','j','m','6','7'],
-            'finger-thumb': [' '] // Space
+            'finger-thumb': [' '] 
         };
 
         function getFingerClass(key) {
@@ -323,17 +295,18 @@
         let animationFrameId = null;
         let currentText = "", charIndex = 0, mistakes = 0, totalTyped = 0;
         let keystrokeTimes = []; 
-        
         let settings = { sound: true, vkb: true };
         let userSession = { loggedIn: false, name: "GUEST" };
 
+        const elTypingContainer = document.getElementById('typing-container');
         const elTypingArea = document.getElementById('typing-area');
+        const elHiddenInput = document.getElementById('hidden-input');
         const elVkb = document.getElementById('virtual-keyboard');
         const elHudWpm = document.getElementById('ui-wpm');
         const elHudAcc = document.getElementById('ui-acc');
         
         /* =========================================
-           4. AUDIO ENGINE (Synthesized ASMR)
+           4. AUDIO ENGINE
         ========================================= */
         const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
         function playThock(isError = false) {
@@ -370,13 +343,11 @@
                     let k = document.createElement('div');
                     k.className = `key ${getFingerClass(keyObj.k)}`; 
                     k.id = 'key-' + (keyObj.k === "'" ? "quote" : keyObj.k); 
-                    
                     k.innerHTML = `<span>${keyObj.k.toUpperCase()}</span><span class="key-hint">${keyObj.h}</span>`;
                     rowDiv.appendChild(k);
                 });
                 elVkb.appendChild(rowDiv);
             });
-            // Spacebar
             let spaceRow = document.createElement('div'); spaceRow.className = 'keyboard-row';
             let spaceKey = document.createElement('div'); 
             spaceKey.className = `key spacebar ${getFingerClass(' ')}`; spaceKey.id = 'key-space'; 
@@ -385,15 +356,20 @@
         }
 
         /* =========================================
-           6. CORE TYPING LOGIC & RENDERER
+           6. CORE TYPING LOGIC
         ========================================= */
         function startGame(requireLogin = false) {
             if(requireLogin && !userSession.loggedIn) { openAuthModal(); return; }
             document.getElementById('start-screen').style.display = 'none';
             document.getElementById('result-screen').style.display = 'none';
-            document.getElementById('typing-container').style.opacity = '1';
-            generateKeyboard();
-            loadLevel(currentLevel);
+            elTypingContainer.style.display = 'flex';
+            
+            // Small delay to allow display to apply before opacity transition
+            setTimeout(() => {
+                elTypingContainer.style.opacity = '1';
+                generateKeyboard();
+                loadLevel(currentLevel);
+            }, 50);
         }
 
         function loadLevel(lvlId) {
@@ -410,6 +386,7 @@
 
             elVkb.style.display = (lvlId === 10 || !settings.vkb) ? 'none' : 'block';
 
+            // Generate spans
             elTypingArea.innerHTML = '';
             const fragment = document.createDocumentFragment();
             currentText.split('').forEach((char, index) => {
@@ -419,20 +396,45 @@
                 fragment.appendChild(span);
             });
             elTypingArea.appendChild(fragment);
-            elTypingArea.focus();
+            
+            // Reset and focus hidden input to capture ALL keyboard events correctly
+            elHiddenInput.value = '';
+            elHiddenInput.focus();
         }
 
-        elTypingArea.addEventListener('keydown', (e) => {
-            if(["Shift", "Control", "Alt", "Meta", "Tab", "Enter", "Escape"].includes(e.key)) return;
-            e.preventDefault();
+        // The hidden input event handles exact character typed (Fixes missing spacebars and symbols)
+        elHiddenInput.addEventListener('input', (e) => {
+            const typedVal = elHiddenInput.value;
+            if(typedVal.length === 0) return; // Handled by keydown backspace
+            
+            const typedChar = typedVal.slice(-1); // Get the last typed character
+            elHiddenInput.value = ''; // Reset immediately
+            
+            processKeystroke(typedChar);
+        });
 
-            if (!isPlaying) {
+        // Keydown handles Backspace and Game Start
+        elHiddenInput.addEventListener('keydown', (e) => {
+            if(!isPlaying && e.key.length === 1) {
                 isPlaying = true; startTime = performance.now();
                 animationFrameId = requestAnimationFrame(gameLoop);
             }
 
+            // Handle Backspace directly
+            if (e.key === "Backspace") {
+                const spans = elTypingArea.childNodes;
+                if (charIndex > 0) {
+                    spans[charIndex].className = 'char-pending';
+                    charIndex--;
+                    spans[charIndex].className = 'char-current';
+                }
+            }
+        });
+
+        function processKeystroke(typedChar) {
+            if(charIndex >= currentText.length) return;
+
             const expectedChar = currentText[charIndex];
-            const typedChar = e.key;
             const spans = elTypingArea.childNodes; 
 
             // Virtual Keyboard Animation
@@ -443,16 +445,6 @@
             if(keyEl) {
                 keyEl.classList.add('active-key');
                 setTimeout(() => keyEl.classList.remove('active-key'), 100);
-            }
-
-            // Backspace
-            if (typedChar === "Backspace") {
-                if (charIndex > 0) {
-                    spans[charIndex].className = 'char-pending';
-                    charIndex--;
-                    spans[charIndex].className = 'char-current';
-                }
-                return;
             }
 
             // Validation
@@ -467,7 +459,7 @@
                 mistakes++;
                 playThock(true);
                 elTypingArea.classList.add('shake-error');
-                setTimeout(() => elTypingArea.classList.remove('shake-error'), 200);
+                setTimeout(() => elTypingArea.classList.remove('shake-error'), 150);
             }
 
             charIndex++;
@@ -478,7 +470,7 @@
             }
 
             spans[charIndex].className = 'char-current';
-        });
+        }
 
         /* =========================================
            7. GAME LOOP & MATHEMATICS
@@ -523,9 +515,10 @@
             const accuracy = Math.round(((totalTyped - mistakes) / totalTyped) * 100);
             const consistency = calculateConsistency();
             
-            document.getElementById('typing-container').style.opacity = '0';
+            elTypingContainer.style.opacity = '0';
             
             setTimeout(() => {
+                elTypingContainer.style.display = 'none';
                 document.getElementById('result-screen').style.display = 'flex';
                 document.getElementById('res-wpm').innerText = netWpm;
                 document.getElementById('res-acc').innerText = accuracy + '%';
@@ -538,24 +531,27 @@
                 const nextBtn = document.getElementById('btn-next-level');
 
                 if (pass) {
-                    titleEl.innerText = "MISSION ACCOMPLISHED";
-                    titleEl.className = "text-5xl md:text-6xl font-black mb-2 text-cyan-400 neon-glow tracking-widest uppercase";
-                    msgEl.innerText = "Targets breached successfully. Ready for escalation.";
+                    titleEl.innerText = "MISSION SUCCESS";
+                    titleEl.className = "text-4xl md:text-5xl font-black mb-2 text-cyan-400 neon-glow tracking-widest uppercase";
+                    msgEl.innerText = "Goals achieved. Proceed to the next phase.";
                     if(currentLevel < 10) { nextBtn.style.display = 'block'; } 
-                    else { msgEl.innerText = "YOU HAVE MASTERED CYBER VELOCITY."; nextBtn.style.display = 'none'; }
+                    else { msgEl.innerText = "YOU ARE AN ELITE OPERATIVE."; nextBtn.style.display = 'none'; }
                 } else {
                     titleEl.innerText = "MISSION FAILED";
-                    titleEl.className = "text-5xl md:text-6xl font-black mb-2 text-red-500 tracking-widest uppercase";
-                    msgEl.innerText = `Required: ${levelData.goalWpm} WPM & ${levelData.goalAcc}% ACC. Your Net WPM: ${netWpm}, ACC: ${accuracy}%.`;
+                    titleEl.className = "text-4xl md:text-5xl font-black mb-2 text-red-500 tracking-widest uppercase";
+                    msgEl.innerText = `Target: ${levelData.goalWpm} WPM & ${levelData.goalAcc}% ACC. You got ${netWpm} WPM, ${accuracy}%.`;
                     nextBtn.style.display = 'none';
                 }
-            }, 600);
+            }, 300);
         }
 
         function retryLevel() {
             document.getElementById('result-screen').style.display = 'none';
-            document.getElementById('typing-container').style.opacity = '1';
-            loadLevel(currentLevel);
+            elTypingContainer.style.display = 'flex';
+            setTimeout(() => {
+                elTypingContainer.style.opacity = '1';
+                loadLevel(currentLevel);
+            }, 50);
         }
 
         function nextLevel() {
@@ -573,7 +569,12 @@
             if(currentLevel !== 10) elVkb.style.display = settings.vkb ? 'block' : 'none';
         });
 
-        document.getElementById('typing-container').addEventListener('click', () => elTypingArea.focus());
+        // Ensure clicking anywhere in the container refocuses the hidden input
+        document.addEventListener('click', (e) => {
+            if (elTypingContainer.style.display === 'flex') {
+                elHiddenInput.focus();
+            }
+        });
 
         /* =========================================
            9. SECURITY & AUTHENTICATION 
@@ -589,12 +590,12 @@
 
             if(tab === 'login') {
                 lForm.classList.remove('hidden'); rForm.classList.add('hidden');
-                lTab.className = "flex-1 pb-3 text-sm font-bold border-b-2 border-pink-500 text-pink-400";
-                rTab.className = "flex-1 pb-3 text-sm font-bold border-b-2 border-transparent text-zinc-500 hover:text-white";
+                lTab.className = "flex-1 pb-2 text-xs font-bold border-b-2 border-pink-500 text-pink-400";
+                rTab.className = "flex-1 pb-2 text-xs font-bold border-b-2 border-transparent text-zinc-500 hover:text-white";
             } else {
                 rForm.classList.remove('hidden'); lForm.classList.add('hidden');
-                rTab.className = "flex-1 pb-3 text-sm font-bold border-b-2 border-cyan-400 text-cyan-400";
-                lTab.className = "flex-1 pb-3 text-sm font-bold border-b-2 border-transparent text-zinc-500 hover:text-white";
+                rTab.className = "flex-1 pb-2 text-xs font-bold border-b-2 border-cyan-400 text-cyan-400";
+                lTab.className = "flex-1 pb-2 text-xs font-bold border-b-2 border-transparent text-zinc-500 hover:text-white";
             }
         }
 
@@ -616,7 +617,7 @@
             userSession = { loggedIn: true, name: safeEmail.split('@')[0].toUpperCase() };
             
             document.getElementById('profile-btn').innerText = userSession.name;
-            document.getElementById('profile-btn').className = "px-4 py-2 bg-pink-900/30 rounded-lg border border-pink-500 text-sm font-bold text-pink-400";
+            document.getElementById('profile-btn').className = "px-3 py-1.5 bg-pink-900/30 rounded border border-pink-500 text-xs font-bold text-pink-400";
             
             closeAuthModal();
             startGame(false);
@@ -638,6 +639,8 @@
             userSession = { loggedIn: true, name: safeName.toUpperCase() };
             
             document.getElementById('profile-btn').innerText = userSession.name;
+            document.getElementById('profile-btn').className = "px-3 py-1.5 bg-cyan-900/30 rounded border border-cyan-500 text-xs font-bold text-cyan-400";
+
             closeAuthModal();
             startGame(false);
         }
