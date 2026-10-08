@@ -1,714 +1,1173 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gypsy TypeX | Elite Cyber Velocity Training</title>
-    <meta name="description" content="Master your typing speed with Gypsy TypeX. 100 progressive levels, real-time WPM tracking, and touch typing finger maps.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;500;700;900&display=swap');
-        
-        :root {
-            --bg-dark: #030305;
-            --primary: #ec4899;
-            --secondary: #a855f7;
-            --glass: rgba(15, 15, 25, 0.95);
-            --glass-border: rgba(168, 85, 247, 0.35);
-            
-            --z-pinky: #ff6b6b;   
-            --z-ring: #feca57;    
-            --z-mid: #1dd1a1;     
-            --z-ind-l: #48dbfb;   
-            --z-ind-r: #54a0ff;   
-            --z-thmb: #c8d6e5;    
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Gypsy TypeX | Elite Cyber Velocity Training</title>
+<meta name="description" content="Gypsy TypeX — a high-performance cyberpunk typing arcade with 100 progressive levels, live WPM, accuracy, consistency and touch-typing guidance.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@400;500;700;900&display=swap');
 
-        body { background-color: var(--bg-dark); color: #ffffff; font-family: 'Orbitron', sans-serif; overflow-x: hidden; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
-        .neon-text { text-shadow: 0 0 15px var(--primary), 0 0 30px var(--secondary); }
-        .neon-cyan { text-shadow: 0 0 12px #22d3ee; }
-        
-        .glass-panel { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8); }
-        
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); }
-        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
+:root{
+  --bg:#030305;
+  --panel:rgba(15,15,25,.96);
+  --border:rgba(168,85,247,.35);
+  --pink:#ec4899;
+  --purple:#a855f7;
+  --cyan:#22d3ee;
+  --danger:#ef4444;
+  --muted:#737783;
+  --pinky:#ff6b6b;
+  --ring:#feca57;
+  --middle:#1dd1a1;
+  --indexL:#48dbfb;
+  --indexR:#54a0ff;
+  --thumb:#c8d6e5;
+}
 
-        /* Virtual Keyboard */
-        .key-row { display: flex; justify-content: center; gap: 6px; margin-bottom: 6px; }
-        .key { 
-            background: rgba(25, 25, 35, 0.95); border: 1px solid #333; border-radius: 8px; 
-            min-width: 52px; height: 55px; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: bold; color: #777;
-            transition: all 0.08s ease-out; position: relative; box-shadow: 0 5px 10px rgba(0,0,0,0.6);
-        }
-        
-        .key.active-key { transform: translateY(4px) scale(0.95); color: #fff; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
-        .key.spacebar { width: 350px; }
-        .key-hint { font-size: 0.45rem; opacity: 0.8; margin-top: 3px; font-family: 'Orbitron', sans-serif; letter-spacing: 1px; }
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:#fff;font-family:Orbitron,sans-serif}
+body{overflow-x:hidden;-webkit-font-smoothing:antialiased}
+button,input{font:inherit}
+button{touch-action:manipulation}
+::selection{background:rgba(236,72,153,.3)}
+::-webkit-scrollbar{width:7px}
+::-webkit-scrollbar-track{background:#09090d}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--pink),var(--purple));border-radius:999px}
 
-        .keymap-on .fp { border-bottom: 4px solid var(--z-pinky); color: #ffcccc; }
-        .keymap-on .fr { border-bottom: 4px solid var(--z-ring); color: #fff4cc; }
-        .keymap-on .fm { border-bottom: 4px solid var(--z-mid); color: #ccffcc; }
-        .keymap-on .fil { border-bottom: 4px solid var(--z-ind-l); color: #cceeff; }
-        .keymap-on .fir { border-bottom: 4px solid var(--z-ind-r); color: #cceeff; }
-        .keymap-on .ft { border-bottom: 4px solid var(--z-thmb); color: #f1f5f9; }
+.font-mono,.typing-text,.auth-input{font-family:"JetBrains Mono",monospace}
+.neon{ text-shadow:0 0 14px rgba(236,72,153,.7),0 0 30px rgba(168,85,247,.35)}
+.cyan-glow{text-shadow:0 0 14px rgba(34,211,238,.75)}
+.glass{
+  background:var(--panel);
+  border:1px solid var(--border);
+  box-shadow:0 18px 60px rgba(0,0,0,.72);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px)
+}
+.hidden-ui{display:none!important}
+.modal-backdrop{background:rgba(0,0,0,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.fade-in{animation:fadeIn .28s ease}
+.slide-up{animation:slideUp .42s cubic-bezier(.16,1,.3,1)}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+@keyframes blink{0%,45%{opacity:1}50%,100%{opacity:.1}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+.shake-err{animation:shake .16s ease-in-out}
+.pointer-none{pointer-events:none}
 
-        .keymap-on .fp.active-key { background: var(--z-pinky); border-color: #fff; box-shadow: 0 0 20px var(--z-pinky); }
-        .keymap-on .fr.active-key { background: var(--z-ring); border-color: #fff; box-shadow: 0 0 20px var(--z-ring); }
-        .keymap-on .fm.active-key { background: var(--z-mid); border-color: #fff; box-shadow: 0 0 20px var(--z-mid); }
-        .keymap-on .fil.active-key { background: var(--z-ind-l); border-color: #fff; box-shadow: 0 0 20px var(--z-ind-l); }
-        .keymap-on .fir.active-key { background: var(--z-ind-r); border-color: #fff; box-shadow: 0 0 20px var(--z-ind-r); }
-        .keymap-on .ft.active-key { background: var(--z-thmb); border-color: #fff; box-shadow: 0 0 20px var(--z-thmb); }
+/* Typing area */
+#typing-area{
+  min-height:190px;
+  line-height:1.85;
+  letter-spacing:1.5px;
+  font-size:clamp(1.08rem,2.2vw,1.7rem);
+  user-select:none;
+  overflow:hidden;
+  display:flex;
+  flex-wrap:wrap;
+  align-content:flex-start
+}
+#typing-area span{
+  display:inline-block;
+  padding:0 2px;
+  border-radius:4px;
+  white-space:pre
+}
+.c-pend{color:#626774}
+.c-corr{color:#d8b4fe;text-shadow:0 0 12px rgba(168,85,247,.78)}
+.c-wrong{color:#fff;background:#ef4444;box-shadow:0 0 9px rgba(239,68,68,.9)}
+.c-curr{color:#fff;background:rgba(255,255,255,.13);position:relative;text-shadow:0 0 10px #fff}
+.c-curr::after{
+  content:"";position:absolute;left:0;right:0;bottom:-2px;height:3px;
+  background:var(--pink);box-shadow:0 0 12px var(--pink);animation:blink 1s infinite
+}
 
-        /* Typing Area Engine */
-        #typing-area { 
-            line-height: 1.8; letter-spacing: 2px; font-size: 1.8rem; 
-            user-select: none; word-wrap: break-word; white-space: pre-wrap; 
-            position: relative; overflow-y: hidden;
-            display: flex; flex-wrap: wrap; align-content: flex-start;
-        }
-        #typing-area span { 
-            padding: 0 2px; transition: color 0.1s ease, background-color 0.1s ease; border-radius: 4px; 
-            display: inline-block; 
-        }
-        
-        .c-pend { color: #6b7280; } 
-        .c-corr { color: #d8b4fe; text-shadow: 0 0 12px rgba(168, 85, 247, 0.8); } 
-        .c-wrong { color: #fff; background-color: #ef4444; box-shadow: 0 0 8px #ef4444; } 
-        
-        .c-curr { color: #fff; background-color: rgba(255,255,255,0.15); text-shadow: 0 0 10px #fff; position: relative; }
-        .c-curr::after { 
-            content: ''; position: absolute; left: 0; bottom: -2px; width: 100%; height: 3px; 
-            background: var(--primary); animation: blink 1s infinite; box-shadow: 0 0 12px var(--primary); 
-        }
-        
-        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
-        .shake-err { animation: shake 0.2s ease-in-out; }
-        
-        .hidden-ui { display: none !important; }
-        .fade-in { animation: fadeIn 0.4s ease-in; }
-        .slide-up { animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-        
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+/* Virtual keyboard */
+.key-row{display:flex;justify-content:center;gap:clamp(3px,.5vw,6px);margin-bottom:6px}
+.key{
+  flex:0 0 auto;
+  width:clamp(28px,5vw,54px);
+  height:clamp(42px,5.5vw,56px);
+  border:1px solid #30313a;
+  border-radius:8px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  background:rgba(24,24,33,.97);
+  box-shadow:0 7px 14px rgba(0,0,0,.55);
+  color:#777;
+  font:700 clamp(.75rem,1.4vw,1rem)/1 "JetBrains Mono",monospace;
+  transition:transform .07s ease,background .07s ease,box-shadow .07s ease,color .07s ease
+}
+.key-hint{font:700 .38rem/1 Orbitron,sans-serif;letter-spacing:.7px;margin-top:4px;opacity:.82}
+.key.active-key{transform:translateY(4px) scale(.95);color:#fff;box-shadow:inset 0 0 13px rgba(0,0,0,.48)}
+.keymap-on .fp{border-bottom:4px solid var(--pinky);color:#ffcaca}
+.keymap-on .fr{border-bottom:4px solid var(--ring);color:#fff1bd}
+.keymap-on .fm{border-bottom:4px solid var(--middle);color:#c9ffe9}
+.keymap-on .fil{border-bottom:4px solid var(--indexL);color:#ccefff}
+.keymap-on .fir{border-bottom:4px solid var(--indexR);color:#d3e7ff}
+.keymap-on .ft{border-bottom:4px solid var(--thumb);color:#eff4fa}
+.keymap-on .fp.active-key{background:var(--pinky);box-shadow:0 0 20px var(--pinky)}
+.keymap-on .fr.active-key{background:var(--ring);box-shadow:0 0 20px var(--ring)}
+.keymap-on .fm.active-key{background:var(--middle);box-shadow:0 0 20px var(--middle)}
+.keymap-on .fil.active-key{background:var(--indexL);box-shadow:0 0 20px var(--indexL)}
+.keymap-on .fir.active-key{background:var(--indexR);box-shadow:0 0 20px var(--indexR)}
+.keymap-on .ft.active-key{background:var(--thumb);box-shadow:0 0 20px var(--thumb)}
+.spacebar{width:clamp(180px,38vw,360px)!important}
 
-        .level-btn { position: relative; overflow: hidden; }
-        .level-locked { opacity: 0.4; cursor: not-allowed; border-color: #222 !important; color: #444 !important; background: #0a0a0a !important; }
-        .level-locked::after { content: '🔒'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.2rem; opacity: 0.4; }
-        
-        .auth-input { width: 100%; background: #0a0a0f; border: 1px solid #333; padding: 14px; border-radius: 8px; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; outline: none; transition: border 0.3s; margin-bottom: 15px;}
-        .auth-input:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(236, 72, 153, 0.2); }
-    </style>
+/* Accessible/fallback controls */
+.action-btn{transition:transform .15s ease,border-color .15s ease,background .15s ease,box-shadow .15s ease}
+.action-btn:hover{transform:translateY(-1px)}
+.action-btn:active{transform:translateY(1px)}
+.action-btn:focus-visible,.auth-input:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.auth-input{
+  width:100%;margin-bottom:13px;padding:13px 14px;border-radius:9px;
+  border:1px solid #34353f;background:#09090d;color:#fff;outline:none
+}
+.auth-input:focus{border-color:var(--pink);box-shadow:0 0 13px rgba(236,72,153,.18)}
+
+@media(max-width:720px){
+  #typing-area{min-height:210px;padding:18px!important}
+  .desktop-only{display:none!important}
+}
+</style>
 </head>
 <body>
 
-    <header class="flex justify-between items-center px-8 py-4 glass-panel border-b border-zinc-800 z-20 relative h-[80px]">
-        <div>
-            <h1 class="text-2xl md:text-3xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-cyan-400 neon-glow uppercase">
-                GYPSY TYPEX
-            </h1>
-            <span class="text-[10px] text-zinc-400 tracking-widest uppercase font-bold">Elite Rocket Engine</span>
-        </div>
-        
-        <div class="flex items-center gap-8">
-            <div class="text-center hidden md:block">
-                <p class="text-[10px] text-zinc-500 uppercase tracking-widest">Level</p>
-                <p id="ui-level" class="text-xl font-bold text-cyan-400 neon-cyan">1/100</p>
-            </div>
-            <div class="text-center">
-                <p class="text-[10px] text-zinc-500 uppercase tracking-widest">Live WPM</p>
-                <p id="ui-wpm" class="text-3xl font-black text-white">00</p>
-            </div>
-            <div class="text-center hidden sm:block">
-                <p class="text-[10px] text-zinc-500 uppercase tracking-widest">Accuracy</p>
-                <p id="ui-acc" class="text-xl font-bold text-pink-400">100%</p>
-            </div>
-            
-            <div class="flex gap-3 border-l border-zinc-700 pl-6 ml-2">
-                <button onclick="toggleReader()" id="btn-reader" class="p-2.5 bg-zinc-900 rounded-lg border border-zinc-700 hover:border-cyan-400 transition" title="Reading Assistant">🔈</button>
-                <button onclick="toggleSettings()" class="p-2.5 bg-zinc-900 rounded-lg border border-zinc-700 hover:border-cyan-400 transition" title="Settings">⚙️</button>
-                <button onclick="openAuthModal()" id="profile-btn" class="px-6 py-2.5 bg-zinc-900 rounded-lg border border-zinc-700 hover:border-pink-500 text-xs font-bold text-pink-400 transition uppercase tracking-wider">LOGIN</button>
-            </div>
-        </div>
-    </header>
+<header class="glass border-x-0 border-t-0 h-[78px] px-4 sm:px-7 flex items-center justify-between sticky top-0 z-40">
+  <div>
+    <h1 class="text-2xl sm:text-3xl font-black tracking-[.16em] text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 uppercase neon">GYPSY TYPEX</h1>
+    <p class="text-[9px] sm:text-[10px] text-zinc-500 tracking-[.22em] uppercase font-bold mt-1">Elite Cyber Velocity Training</p>
+  </div>
 
-    <main class="relative w-full h-[calc(100vh-80px)] flex flex-col items-center justify-center p-6">
-        
-        <div id="start-screen" class="absolute inset-0 flex flex-col items-center justify-center z-30 bg-black/95 fade-in">
-            <h2 class="text-5xl md:text-7xl font-black mb-4 neon-glow text-white tracking-widest text-center uppercase">GYPSY TYPEX</h2>
-            <p class="text-zinc-400 mb-10 max-w-2xl text-center leading-relaxed text-sm md:text-base">
-                Advanced Touch Typing Arcade. 100 Levels of Progression.<br>
-                Build muscle memory. Prove your velocity.
-            </p>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-2xl">
-                <div class="glass-panel p-8 rounded-2xl border-t-4 border-cyan-400 text-center transition hover:-translate-y-2 hover:shadow-cyan-900/50 cursor-pointer" onclick="showLevelSelector(false)">
-                    <h3 class="text-cyan-400 font-black mb-2 text-xl uppercase tracking-wider">Quick Practice</h3>
-                    <p class="text-xs text-zinc-500 mb-6">Play as Guest. No data stored.</p>
-                    <button class="w-full py-3 bg-zinc-800 text-cyan-400 text-sm font-bold rounded-lg border border-cyan-500/30 transition">INITIALIZE GUEST</button>
-                </div>
-                <div class="glass-panel p-8 rounded-2xl border-t-4 border-pink-500 text-center transition hover:-translate-y-2 hover:shadow-pink-900/50 cursor-pointer" onclick="openAuthModal()">
-                    <h3 class="text-pink-400 font-black mb-2 text-xl uppercase tracking-wider">Registered Agent</h3>
-                    <p class="text-xs text-zinc-500 mb-6">Save progress across 100 levels & view analytics.</p>
-                    <button class="w-full py-3 bg-gradient-to-r from-pink-600 to-purple-600 text-white text-sm font-bold rounded-lg shadow-lg shadow-pink-900/50 transition">SECURE LOGIN</button>
-                </div>
-            </div>
+  <div class="flex items-center gap-3 sm:gap-7">
+    <div class="text-center desktop-only">
+      <div class="text-[9px] text-zinc-500 uppercase tracking-widest">Level</div>
+      <div id="ui-level" class="text-lg font-bold text-cyan-400 cyan-glow">1/100</div>
+    </div>
+    <div class="text-center">
+      <div class="text-[9px] text-zinc-500 uppercase tracking-widest">Live WPM</div>
+      <div id="ui-wpm" class="text-2xl sm:text-3xl font-black">00</div>
+    </div>
+    <div class="text-center desktop-only">
+      <div class="text-[9px] text-zinc-500 uppercase tracking-widest">Accuracy</div>
+      <div id="ui-acc" class="text-lg font-bold text-pink-400">100%</div>
+    </div>
+    <div class="flex gap-2 border-l border-zinc-800 pl-3 sm:pl-5">
+      <button id="btn-reader" class="action-btn px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-sm" title="Reading Assistant" type="button">🔈</button>
+      <button id="btn-settings" class="action-btn px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-sm" title="Settings" type="button">⚙️</button>
+      <button id="profile-btn" class="action-btn hidden sm:block px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-[10px] font-bold tracking-widest text-pink-400 uppercase" type="button">LOGIN</button>
+    </div>
+  </div>
+</header>
+
+<main class="min-h-[calc(100vh-78px)] relative flex items-center justify-center p-4 sm:p-6">
+
+  <!-- Start -->
+  <section id="start-screen" class="absolute inset-0 z-30 bg-black/95 flex items-center justify-center p-5 fade-in">
+    <div class="w-full max-w-4xl text-center">
+      <div class="text-[10px] text-cyan-400 tracking-[.3em] font-bold mb-4">GYPSY CARTEL • PERFORMANCE LAB</div>
+      <h2 class="text-5xl sm:text-7xl font-black tracking-[.15em] mb-4 neon">GYPSY TYPEX</h2>
+      <p class="text-zinc-400 max-w-2xl mx-auto text-xs sm:text-sm leading-7 mb-10">
+        Advanced touch-typing arcade designed for speed, precision, consistency and muscle memory.
+        100 progressive levels with real-time analytics.
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
+        <button id="guest-btn" class="action-btn glass rounded-2xl p-7 text-left border-t-4 border-cyan-400">
+          <div class="text-cyan-400 font-black tracking-wider text-xl">QUICK PRACTICE</div>
+          <div class="text-xs text-zinc-500 mt-2 mb-6">Play instantly as a guest. No progression data is stored.</div>
+          <span class="block text-center py-3 rounded-lg bg-zinc-900 border border-cyan-500/25 text-cyan-300 text-xs font-bold tracking-widest">INITIALIZE GUEST</span>
+        </button>
+
+        <button id="register-btn" class="action-btn glass rounded-2xl p-7 text-left border-t-4 border-pink-500">
+          <div class="text-pink-400 font-black tracking-wider text-xl">REGISTERED AGENT</div>
+          <div class="text-xs text-zinc-500 mt-2 mb-6">Use the mock account flow to save level progression locally.</div>
+          <span class="block text-center py-3 rounded-lg bg-gradient-to-r from-pink-600 to-purple-600 text-white text-xs font-bold tracking-widest">SECURED ACCESS</span>
+        </button>
+      </div>
+
+      <div class="mt-8 flex flex-wrap justify-center gap-2 text-[9px] tracking-widest text-zinc-600 uppercase">
+        <span>100 Levels</span><span>•</span><span>Live WPM</span><span>•</span><span>Consistency</span><span>•</span><span>Touch Typing Map</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Level selector -->
+  <section id="level-selector" class="absolute inset-0 z-30 hidden-ui bg-black/95 flex flex-col items-center justify-center p-4 fade-in">
+    <div class="w-full max-w-6xl">
+      <div class="text-center mb-6">
+        <div class="text-cyan-400 text-3xl sm:text-4xl font-black tracking-[.12em] uppercase cyan-glow">Select Level</div>
+        <div id="progress-note" class="text-xs text-zinc-500 font-mono mt-2">Complete the current level to unlock the next.</div>
+      </div>
+      <div class="glass rounded-2xl p-4 sm:p-7 max-h-[64vh] overflow-y-auto">
+        <div id="level-grid" class="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-2 sm:gap-3"></div>
+      </div>
+      <div class="text-center mt-6">
+        <button id="back-main-btn" type="button" class="action-btn px-7 py-3 bg-zinc-900 rounded-lg border border-zinc-700 text-xs font-bold">BACK TO MAIN</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Result -->
+  <section id="result-screen" class="absolute inset-0 z-30 hidden-ui bg-black/95 overflow-y-auto p-5 fade-in">
+    <div class="w-full max-w-6xl mx-auto py-4 sm:py-8">
+      <div class="text-center mb-8">
+        <div id="result-title" class="text-4xl sm:text-6xl font-black tracking-[.12em] uppercase neon">TEST COMPLETE</div>
+        <div id="result-msg" class="text-xs text-zinc-500 font-mono mt-2">Performance data recorded locally for this session.</div>
+      </div>
+
+      <div class="grid grid-cols-2 lg:grid-cols-5 gap-4 mb-7 slide-up">
+        <div class="glass rounded-2xl p-5 text-center border-b-4 border-cyan-400">
+          <div class="text-[9px] text-zinc-500 tracking-widest">NET WPM</div><div id="res-wpm" class="text-4xl sm:text-5xl font-black text-cyan-400 cyan-glow mt-2">0</div>
         </div>
-
-        <div id="level-selector" class="hidden-ui absolute inset-0 flex flex-col items-center justify-center z-30 bg-black/95 fade-in">
-            <h3 class="text-4xl font-black text-cyan-400 mb-2 uppercase tracking-widest neon-cyan">Select Level</h3>
-            <p class="text-xs text-zinc-500 mb-8 font-mono">Complete the current level to unlock the next.</p>
-            
-            <div class="w-full max-w-5xl p-8 glass-panel rounded-2xl max-h-[65vh] overflow-y-auto">
-                <div class="grid grid-cols-5 md:grid-cols-10 gap-4" id="level-grid"></div>
-            </div>
-            <button onclick="document.getElementById('level-selector').classList.add('hidden-ui'); document.getElementById('start-screen').classList.remove('hidden-ui');" class="mt-8 px-8 py-3 bg-zinc-800 font-bold rounded-lg hover:bg-zinc-700 transition">BACK TO MAIN</button>
+        <div class="glass rounded-2xl p-5 text-center border-b-4 border-pink-500">
+          <div class="text-[9px] text-zinc-500 tracking-widest">ACCURACY</div><div id="res-acc" class="text-4xl sm:text-5xl font-black text-pink-400 mt-2">0%</div>
         </div>
-
-        <div id="result-screen" class="hidden-ui absolute inset-0 flex flex-col items-center justify-center z-30 bg-black/95 backdrop-blur-md overflow-y-auto py-10 fade-in">
-            <h2 id="result-title" class="text-5xl md:text-6xl font-black mb-2 text-white uppercase tracking-widest">TEST COMPLETE</h2>
-            <p id="result-msg" class="text-sm text-zinc-400 mb-8 tracking-wider font-mono">Data Logged.</p>
-            
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 w-full max-w-5xl slide-up">
-                <div class="glass-panel p-6 rounded-2xl text-center border-b-4 border-cyan-400">
-                    <p class="text-[10px] text-zinc-500 font-bold mb-2 tracking-widest">NET WPM</p>
-                    <p id="res-wpm" class="text-6xl font-black text-cyan-400 neon-cyan">00</p>
-                </div>
-                <div class="glass-panel p-6 rounded-2xl text-center border-b-4 border-pink-500">
-                    <p class="text-[10px] text-zinc-500 font-bold mb-2 tracking-widest">ACCURACY</p>
-                    <p id="res-acc" class="text-6xl font-black text-pink-400">0%</p>
-                </div>
-                <div class="glass-panel p-6 rounded-2xl text-center border-b-4 border-purple-500">
-                    <p class="text-[10px] text-zinc-500 font-bold mb-2 tracking-widest">RAW WPM</p>
-                    <p id="res-raw" class="text-6xl font-black text-purple-400">00</p>
-                </div>
-                <div class="glass-panel p-6 rounded-2xl text-center border-b-4 border-green-500">
-                    <p class="text-[10px] text-zinc-500 font-bold mb-2 tracking-widest">ERRORS</p>
-                    <p id="res-err" class="text-6xl font-black text-green-400">0</p>
-                </div>
-            </div>
-
-            <div class="w-full max-w-5xl glass-panel p-6 rounded-2xl mb-10 slide-up" style="animation-delay: 0.1s;">
-                <p class="text-xs text-zinc-400 mb-4 font-bold uppercase tracking-widest text-center">WPM vs Errors Over Time</p>
-                <div style="position: relative; height: 250px; width: 100%;">
-                    <canvas id="perfChart"></canvas>
-                </div>
-            </div>
-            
-            <div class="flex gap-4 slide-up" style="animation-delay: 0.2s;">
-                <button onclick="resetGameToMenu()" class="px-6 py-3 bg-zinc-800 text-sm font-bold rounded-xl hover:bg-zinc-700 transition">⌂ MAIN MENU</button>
-                <button onclick="retryLevel()" class="px-6 py-3 bg-zinc-800 text-sm font-bold rounded-xl hover:bg-zinc-700 transition flex items-center gap-2">🔄 RETAKE TEST</button>
-                <button id="btn-next-level" onclick="playNextLevel()" class="hidden-ui px-10 py-3 bg-cyan-600 text-black text-sm font-black rounded-xl hover:bg-cyan-500 transition shadow-lg shadow-cyan-900/50">PROCEED TO NEXT ➔</button>
-            </div>
+        <div class="glass rounded-2xl p-5 text-center border-b-4 border-purple-500">
+          <div class="text-[9px] text-zinc-500 tracking-widest">RAW WPM</div><div id="res-raw" class="text-4xl sm:text-5xl font-black text-purple-400 mt-2">0</div>
         </div>
-
-        <div id="typing-container" class="w-full max-w-[1100px] opacity-0 transition-opacity duration-300 hidden-ui flex-col items-center">
-            
-            <div class="w-full flex justify-between items-center mb-6 glass-panel px-6 py-4 rounded-xl border border-zinc-800">
-                <div class="flex flex-col">
-                    <span id="task-diff" class="text-xs text-pink-400 font-black tracking-widest uppercase mb-1">EASY MODE</span>
-                    <span id="task-goal" class="text-sm text-zinc-400 font-mono">Target: 20 WPM</span>
-                </div>
-                
-                <div class="flex-1 mx-10 bg-zinc-900 rounded-full h-3 overflow-hidden border border-zinc-700 hidden sm:block">
-                    <div id="progress-bar" class="bg-gradient-to-r from-pink-500 to-cyan-400 h-full w-0 transition-all duration-300 shadow-[0_0_10px_#ec4899]"></div>
-                </div>
-                
-                <div class="flex gap-4 items-center">
-                    <button onclick="toggleKeymap()" id="btn-keymap" class="text-xs font-bold text-yellow-400 bg-yellow-900/30 px-4 py-2 rounded-lg border border-yellow-500/50 transition shadow-md">KEYMAP: ON</button>
-                    <button onclick="resetGameToMenu()" class="text-xs font-bold text-zinc-500 hover:text-white transition px-2">EXIT</button>
-                </div>
-            </div>
-
-            <div id="typing-area" class="w-full bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]" tabindex="0">
-            </div>
-            
-            <div id="virtual-keyboard" class="mt-8 w-full max-w-[900px] mx-auto pointer-events-none keymap-on"></div>
+        <div class="glass rounded-2xl p-5 text-center border-b-4 border-red-500">
+          <div class="text-[9px] text-zinc-500 tracking-widest">ERRORS</div><div id="res-err" class="text-4xl sm:text-5xl font-black text-red-500 mt-2">0</div>
         </div>
-    </main>
-
-    <!-- Settings Modal -->
-    <div id="settings-modal" class="hidden-ui fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
-        <div class="glass-panel p-8 rounded-2xl w-full max-w-sm border-cyan-500/50">
-            <h3 class="text-2xl font-black mb-6 text-cyan-400 text-center uppercase tracking-widest">Settings</h3>
-            <div class="space-y-4 mb-8">
-                <div class="flex justify-between items-center bg-zinc-900/60 p-4 rounded-xl border border-zinc-800">
-                    <div>
-                        <p class="text-sm font-bold text-white">ASMR Sounds</p>
-                        <p class="text-[10px] text-zinc-500">Keyboard clicks & tones</p>
-                    </div>
-                    <input type="checkbox" id="toggle-sound" checked class="w-5 h-5 accent-cyan-500 cursor-pointer">
-                </div>
-                <div class="flex justify-between items-center bg-zinc-900/60 p-4 rounded-xl border border-zinc-800">
-                    <div>
-                        <p class="text-sm font-bold text-white">Reading Assistant</p>
-                        <p class="text-[10px] text-zinc-500">Speech synthesis helper</p>
-                    </div>
-                    <input type="checkbox" id="toggle-reader" class="w-5 h-5 accent-cyan-500 cursor-pointer">
-                </div>
-            </div>
-            <button onclick="toggleSettings()" class="w-full py-3 bg-zinc-800 text-sm font-bold rounded-xl hover:bg-zinc-700 transition">SAVE & CLOSE</button>
+        <div class="glass rounded-2xl p-5 text-center border-b-4 border-emerald-400 col-span-2 lg:col-span-1">
+          <div class="text-[9px] text-zinc-500 tracking-widest">CONSISTENCY</div><div id="res-consistency" class="text-4xl sm:text-5xl font-black text-emerald-400 mt-2">0%</div>
         </div>
+      </div>
+
+      <div class="glass rounded-2xl p-4 sm:p-6 mb-8 slide-up">
+        <div class="text-center text-[10px] text-zinc-400 font-bold tracking-widest mb-4 uppercase">WPM vs Errors Over Time</div>
+        <div class="relative h-[240px] sm:h-[300px]"><canvas id="perfChart"></canvas></div>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3">
+        <button id="main-menu-btn" class="action-btn px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-700 text-xs font-bold">⌂ MAIN MENU</button>
+        <button id="retry-btn" class="action-btn px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-700 text-xs font-bold">↻ RETAKE TEST</button>
+        <button id="next-level-btn" class="action-btn hidden-ui px-7 py-3 rounded-xl bg-cyan-600 text-black text-xs font-black shadow-lg shadow-cyan-900/30">PROCEED TO NEXT →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Typing -->
+  <section id="typing-container" class="w-full max-w-[1120px] hidden-ui">
+    <!-- The input remains focusable for mobile IME/mobile keyboards. Desktop keystrokes are captured at document level. -->
+    <input
+      id="hidden-input"
+      type="text"
+      inputmode="text"
+      autocomplete="off"
+      autocorrect="off"
+      autocapitalize="none"
+      spellcheck="false"
+      aria-label="Typing input"
+      style="position:fixed;left:50%;top:8px;width:2px;height:2px;opacity:0;pointer-events:none;border:0;padding:0;margin:0;background:transparent;z-index:1;"
+    />
+
+    <div class="glass rounded-xl px-4 sm:px-6 py-4 mb-5 flex flex-wrap gap-4 items-center justify-between">
+      <div>
+        <div id="task-diff" class="text-xs text-pink-400 font-black tracking-widest uppercase">EASY MODE</div>
+        <div id="task-goal" class="text-xs text-zinc-500 font-mono mt-1">Target: 10 WPM</div>
+      </div>
+      <div class="flex-1 min-w-[180px] mx-0 sm:mx-5">
+        <div class="h-2.5 bg-zinc-900 rounded-full border border-zinc-800 overflow-hidden">
+          <div id="progress-bar" class="h-full w-0 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-400 transition-[width] duration-100" style="box-shadow:0 0 10px rgba(236,72,153,.75)"></div>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button id="blind-mode-btn" class="action-btn text-[10px] font-bold px-3 py-2 rounded-lg border border-zinc-700 bg-zinc-900 text-zinc-300" type="button">BLIND MODE</button>
+        <button id="keymap-btn" class="action-btn text-[10px] font-bold px-3 py-2 rounded-lg border border-yellow-500/50 bg-yellow-900/20 text-yellow-300" type="button">KEYMAP: ON</button>
+        <button id="exit-btn" class="action-btn text-[10px] font-bold px-3 py-2 rounded-lg text-zinc-500 hover:text-white" type="button">EXIT</button>
+      </div>
     </div>
 
-    <!-- Security & Auth Modal -->
-    <div id="auth-modal" class="hidden-ui fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 backdrop-blur-md">
-        <div class="glass-panel p-10 rounded-2xl w-full max-w-md border-pink-500/30 shadow-[0_0_40px_rgba(236,72,153,0.15)]">
-            <div class="text-center mb-8">
-                <h2 class="text-3xl font-black text-white uppercase tracking-widest neon-glow">Secured Access</h2>
-                <p class="text-xs text-zinc-500 mt-2 font-mono">Authenticate to save data to the cloud.</p>
-            </div>
+    <div id="typing-area" class="typing-text glass rounded-2xl p-6 sm:p-8"></div>
+    <div id="virtual-keyboard" class="mt-6 keymap-on pointer-none"></div>
+    <div id="mobile-hint" class="text-center text-[9px] tracking-widest text-zinc-600 uppercase mt-4">Tap this screen to focus the typing engine</div>
+  </section>
+</main>
 
-            <div class="flex mb-8 border-b border-zinc-800">
-                <button id="tab-login" onclick="switchAuthTab('login')" class="flex-1 pb-3 text-sm font-bold border-b-2 border-pink-500 text-pink-400 transition tracking-widest uppercase">LOGIN</button>
-                <button id="tab-register" onclick="switchAuthTab('register')" class="flex-1 pb-3 text-sm font-bold border-b-2 border-transparent text-zinc-500 hover:text-white transition tracking-widest uppercase">REGISTER</button>
-            </div>
+<!-- Settings -->
+<div id="settings-modal" class="fixed inset-0 z-50 hidden-ui modal-backdrop items-center justify-center p-4">
+  <div class="glass rounded-2xl p-7 w-full max-w-md">
+    <div class="text-cyan-400 text-xl font-black text-center tracking-widest uppercase mb-6">Settings</div>
+    <label class="flex items-center justify-between p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 mb-3">
+      <div><div class="text-sm font-bold">ASMR Sounds</div><div class="text-[10px] text-zinc-500 mt-1">Keyboard clicks and result tones</div></div>
+      <input id="toggle-sound" type="checkbox" class="w-5 h-5 accent-cyan-400" checked>
+    </label>
+    <label class="flex items-center justify-between p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 mb-3">
+      <div><div class="text-sm font-bold">Reading Assistant</div><div class="text-[10px] text-zinc-500 mt-1">Reads instructions and results</div></div>
+      <input id="toggle-reader" type="checkbox" class="w-5 h-5 accent-cyan-400">
+    </label>
+    <label class="flex items-center justify-between p-4 rounded-xl bg-zinc-900/60 border border-zinc-800 mb-6">
+      <div><div class="text-sm font-bold">Auto Keymap</div><div class="text-[10px] text-zinc-500 mt-1">Show finger-color guidance</div></div>
+      <input id="toggle-keymap" type="checkbox" class="w-5 h-5 accent-cyan-400" checked>
+    </label>
+    <button id="settings-close" class="action-btn w-full py-3 rounded-xl bg-zinc-800 border border-zinc-700 text-xs font-bold">SAVE & CLOSE</button>
+  </div>
+</div>
 
-            <div id="form-login">
-                <input type="text" id="login-email" class="auth-input" placeholder="Phone or Email">
-                <input type="password" id="login-pass" class="auth-input" placeholder="Password or OTP">
-                <div id="login-error" class="text-[10px] text-red-500 hidden-ui font-bold text-center mb-4"></div>
-                <button onclick="handleAuth('login')" class="w-full py-4 bg-pink-600 text-white text-sm font-black tracking-widest rounded-xl hover:bg-pink-500 transition shadow-lg shadow-pink-900/50 uppercase">AUTHENTICATE</button>
-            </div>
-
-            <div id="form-register" class="hidden-ui">
-                <input type="text" id="reg-name" class="auth-input focus:border-cyan-400" placeholder="Gamer Tag">
-                <input type="text" id="reg-email" class="auth-input focus:border-cyan-400" placeholder="Mobile Number or Email">
-                <input type="password" id="reg-pass" class="auth-input focus:border-cyan-400" placeholder="Password (Min 6 chars)">
-                <div id="reg-error" class="text-[10px] text-red-500 hidden-ui font-bold text-center mb-4"></div>
-                <button onclick="handleAuth('register')" class="w-full py-4 bg-cyan-600 text-black text-sm font-black tracking-widest rounded-xl hover:bg-cyan-500 transition shadow-lg shadow-cyan-900/50 uppercase">CREATE ACCOUNT</button>
-            </div>
-
-            <button onclick="closeAuthModal()" class="w-full mt-6 text-zinc-500 text-xs hover:text-white transition uppercase font-bold tracking-widest">Cancel</button>
-        </div>
+<!-- Auth -->
+<div id="auth-modal" class="fixed inset-0 z-50 hidden-ui modal-backdrop items-center justify-center p-4">
+  <div class="glass rounded-2xl p-7 sm:p-9 w-full max-w-md">
+    <div class="text-center mb-7">
+      <div class="text-2xl font-black tracking-widest uppercase neon">SECURED ACCESS</div>
+      <div class="text-[10px] text-zinc-500 font-mono mt-2">Mock account flow • no external authentication server</div>
+    </div>
+    <div class="flex border-b border-zinc-800 mb-7">
+      <button id="tab-login" class="flex-1 pb-3 text-xs font-bold tracking-widest border-b-2 border-pink-500 text-pink-400" type="button">LOGIN</button>
+      <button id="tab-register" class="flex-1 pb-3 text-xs font-bold tracking-widest border-b-2 border-transparent text-zinc-500" type="button">REGISTER</button>
     </div>
 
-    <!-- =========================================
-         MAIN JAVASCRIPT ENGINE (GLOBAL KEYDOWN)
-    ========================================= -->
-    <script>
-        const baseEasy = ["the", "quick", "brown", "fox", "jumps", "over", "lazy", "dog", "cat", "mat", "hello", "world", "good", "morning", "day", "night", "sun", "moon", "star", "light", "dark", "fast", "slow", "run", "walk", "stop", "go", "yes", "no", "is", "a", "it", "to", "in", "on", "of", "and"];
-        const baseMed = ["JavaScript", "developer", "function", "variable", "interface", "application", "system", "beautiful", "keyboard", "practice", "Velocity", "Cyberpunk", "Network", "Database", "Security", "Protocol", "Algorithm", "Framework", "Software", "Hardware"];
-        const baseHard = ["const", "let", "return", "Math.max()", "document.getElementById()", "=>", "{", "}", "[", "]", "console.log();", "function()", "=== true;", "arr.filter(x => x>0)", "sys.override(0x9A);", "margin-top: 10px;", "</div>", "</script>", "window.onload", "flex-direction: column;"];
-        
-        let allLevels = [];
-        for(let i=1; i<=100; i++) {
-            let difficulty = i <= 30 ? 'EASY' : (i <= 70 ? 'MEDIUM' : 'HARD');
-            let wordCount = 15 + Math.floor(i * 0.4);
-            let goalWpm = 10 + Math.floor(i * 0.6);   
-            let words = [];
-            
-            let pool = difficulty === 'EASY' ? baseEasy : (difficulty === 'MEDIUM' ? [...baseEasy, ...baseMed] : [...baseMed, ...baseHard]);
-            for(let w=0; w<wordCount; w++) {
-                words.push(pool[Math.floor(Math.random() * pool.length)]);
-            }
-            
-            let textStr = words.join(" ");
-            if(difficulty === 'MEDIUM' || difficulty === 'EASY') textStr += ".";
-            
-            allLevels.push({
-                id: i,
-                difficulty: difficulty,
-                goalWpm: goalWpm,
-                text: textStr
-            });
+    <div id="form-login">
+      <input id="login-id" class="auth-input" type="text" placeholder="Email or phone">
+      <input id="login-pass" class="auth-input" type="password" placeholder="Password (min 6 chars)">
+      <div id="login-error" class="hidden-ui text-[10px] text-red-400 font-bold text-center mb-4"></div>
+      <button id="login-submit" class="action-btn w-full py-4 rounded-xl bg-pink-600 text-white text-xs font-black tracking-widest" type="button">AUTHENTICATE</button>
+    </div>
+
+    <div id="form-register" class="hidden-ui">
+      <input id="reg-name" class="auth-input" type="text" maxlength="24" placeholder="Gamer Tag">
+      <input id="reg-id" class="auth-input" type="text" placeholder="Email or phone">
+      <input id="reg-pass" class="auth-input" type="password" placeholder="Password (min 6 chars)">
+      <div id="reg-error" class="hidden-ui text-[10px] text-red-400 font-bold text-center mb-4"></div>
+      <button id="register-submit" class="action-btn w-full py-4 rounded-xl bg-cyan-500 text-black text-xs font-black tracking-widest" type="button">CREATE ACCOUNT</button>
+    </div>
+
+    <button id="auth-close" class="w-full mt-5 text-zinc-500 text-[10px] font-bold tracking-widest uppercase" type="button">CANCEL</button>
+  </div>
+</div>
+
+<script>
+(() => {
+  "use strict";
+
+  /* ============================================================
+     GYPSY TYPEX — STABLE SINGLE-FILE GAME ENGINE
+     ============================================================ */
+
+  const WORDS_EASY = [
+    "the","quick","brown","fox","jumps","over","lazy","dog","cat","mat",
+    "hello","world","good","morning","day","night","sun","moon","star","light",
+    "dark","fast","slow","run","walk","stop","go","yes","no","is","a","it",
+    "to","in","on","of","and","work","learn","focus","practice","skill"
+  ];
+
+  const WORDS_MED = [
+    "JavaScript","developer","function","variable","interface","application",
+    "system","beautiful","keyboard","practice","Velocity","Cyberpunk","Network",
+    "Database","Security","Protocol","Algorithm","Framework","Software","Hardware",
+    "browser","frontend","backend","performance","analytics","precision","creative"
+  ];
+
+  const WORDS_HARD = [
+    "const","let","return","Math.max()","document.getElementById()","=>","{","}",
+    "[","]","console.log();","function()","=== true;","arr.filter(x => x>0)",
+    "sys.override(0x9A);","margin-top: 10px;","</div>","<\/script>","window.onload",
+    "flex-direction: column;","JSON.stringify(data);","async function() { }",
+    "fetch('/api');","for(let i=0;i<10;i++)","if(response.ok) return true;"
+  ];
+
+  const FINGERS = {
+    fp:["q","a","z","p",";","/","[","]","'","-","=","0"],
+    fr:["w","s","x","o","l",".","2","9"],
+    fm:["e","d","c","i","k",",","3","8"],
+    fil:["r","f","v","t","g","b","4","5"],
+    fir:["y","h","n","u","j","m","6","7"],
+    ft:[" "]
+  };
+
+  const els = {
+    start:document.getElementById("start-screen"),
+    selector:document.getElementById("level-selector"),
+    result:document.getElementById("result-screen"),
+    typing:document.getElementById("typing-container"),
+    area:document.getElementById("typing-area"),
+    input:document.getElementById("hidden-input"),
+    keyboard:document.getElementById("virtual-keyboard"),
+    levelGrid:document.getElementById("level-grid"),
+    uiLevel:document.getElementById("ui-level"),
+    uiWpm:document.getElementById("ui-wpm"),
+    uiAcc:document.getElementById("ui-acc"),
+    taskDiff:document.getElementById("task-diff"),
+    taskGoal:document.getElementById("task-goal"),
+    progress:document.getElementById("progress-bar"),
+    resultTitle:document.getElementById("result-title"),
+    resultMsg:document.getElementById("result-msg"),
+    resWpm:document.getElementById("res-wpm"),
+    resAcc:document.getElementById("res-acc"),
+    resRaw:document.getElementById("res-raw"),
+    resErr:document.getElementById("res-err"),
+    resConsistency:document.getElementById("res-consistency"),
+    chart:document.getElementById("perfChart"),
+    settings:document.getElementById("settings-modal"),
+    auth:document.getElementById("auth-modal"),
+    profile:document.getElementById("profile-btn"),
+    readerBtn:document.getElementById("btn-reader"),
+    keymapBtn:document.getElementById("keymap-btn")
+  };
+
+  const state = {
+    levels:[],
+    level:1,
+    text:"",
+    index:0,
+    errors:0,
+    typed:0,
+    started:false,
+    finished:false,
+    startTime:0,
+    anim:null,
+    graphTimer:null,
+    perfChart:null,
+    graph:{labels:[],wpm:[],errors:[]},
+    keystrokes:[],
+    unlocked:1,
+    guest:true,
+    session:{loggedIn:false,name:"GUEST"},
+    prefs:{sound:true,reader:false,keymap:true},
+    blindMode:false,
+    audio:null,
+    inputBufferLock:false,
+    lastKeyChar:"",
+    lastKeyTime:0
+  };
+
+  function safeStorageGet(key, fallback=null){
+    try { return localStorage.getItem(key) ?? fallback; } catch { return fallback; }
+  }
+  function safeStorageSet(key,value){
+    try { localStorage.setItem(key,value); } catch {}
+  }
+  function safeSessionSet(key,value){
+    try { sessionStorage.setItem(key,value); } catch {}
+  }
+
+  function buildLevels(){
+    state.levels = [];
+    for(let i=1;i<=100;i++){
+      const difficulty = i<=30 ? "EASY" : (i<=70 ? "MEDIUM" : "HARD");
+      const count = 18 + Math.floor(i*0.55);
+      const goalWpm = Math.min(80, 10 + Math.round((i-1)*(70/99)));
+      const pool = difficulty==="EASY" ? WORDS_EASY :
+                   difficulty==="MEDIUM" ? WORDS_EASY.concat(WORDS_MED) :
+                   WORDS_MED.concat(WORDS_HARD);
+      const words=[];
+      for(let w=0;w<count;w++) words.push(pool[Math.floor(Math.random()*pool.length)]);
+      let text=words.join(" ");
+      if(difficulty!=="HARD") text += ".";
+      state.levels.push({id:i,difficulty,goalWpm,text});
+    }
+  }
+
+  function loadProgress(){
+    const value=parseInt(safeStorageGet("gx_unlocked","1"),10);
+    state.unlocked=Number.isFinite(value) ? Math.max(1,Math.min(100,value)) : 1;
+  }
+
+  function saveProgress(){
+    if(state.session.loggedIn && !state.guest) safeStorageSet("gx_unlocked", String(state.unlocked));
+  }
+
+  function renderKeyboard(){
+    const rows=[
+      [{k:"q",h:"L-P"},{k:"w",h:"L-R"},{k:"e",h:"L-M"},{k:"r",h:"L-I"},{k:"t",h:"L-I"},{k:"y",h:"R-I"},{k:"u",h:"R-I"},{k:"i",h:"R-M"},{k:"o",h:"R-R"},{k:"p",h:"R-P"},{k:"[",h:"R-P"},{k:"]",h:"R-P"}],
+      [{k:"a",h:"L-P"},{k:"s",h:"L-R"},{k:"d",h:"L-M"},{k:"f",h:"L-I"},{k:"g",h:"L-I"},{k:"h",h:"R-I"},{k:"j",h:"R-I"},{k:"k",h:"R-M"},{k:"l",h:"R-R"},{k:";",h:"R-P"},{k:"'",h:"R-P"}],
+      [{k:"z",h:"L-P"},{k:"x",h:"L-R"},{k:"c",h:"L-M"},{k:"v",h:"L-I"},{k:"b",h:"L-I"},{k:"n",h:"R-I"},{k:"m",h:"R-I"},{k:",",h:"R-M"},{k:".",h:"R-R"},{k:"/",h:"R-P"}]
+    ];
+    els.keyboard.innerHTML="";
+    rows.forEach(row=>{
+      const rowEl=document.createElement("div");
+      rowEl.className="key-row";
+      row.forEach(item=>{
+        const el=document.createElement("div");
+        const finger=getFinger(item.k);
+        el.className=`key ${finger}`;
+        el.id=`key-${keyId(item.k)}`;
+        el.innerHTML=`<span>${escapeHtml(item.k.toUpperCase())}</span><span class="key-hint">${item.h}</span>`;
+        rowEl.appendChild(el);
+      });
+      els.keyboard.appendChild(rowEl);
+    });
+    const spaceRow=document.createElement("div");
+    spaceRow.className="key-row";
+    const space=document.createElement("div");
+    space.className="key spacebar ft";
+    space.id="key-space";
+    space.innerHTML="<span>SPACE</span><span class='key-hint'>THUMB</span>";
+    spaceRow.appendChild(space);
+    els.keyboard.appendChild(spaceRow);
+    applyKeymap();
+  }
+
+  function escapeHtml(value){
+    return value.replace(/[&<>"']/g, ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+  }
+
+  function keyId(key){
+    if(key===" ") return "space";
+    if(key==="'") return "quote";
+    if(key==="/") return "slash";
+    return key.toLowerCase();
+  }
+
+  function getFinger(key){
+    const k=key.toLowerCase();
+    for(const [finger,keys] of Object.entries(FINGERS)) if(keys.includes(k)) return finger;
+    return "";
+  }
+
+  function setScreen(name){
+    [els.start,els.selector,els.result,els.typing].forEach(el=>el.classList.add("hidden-ui"));
+    if(name==="start") els.start.classList.remove("hidden-ui");
+    if(name==="selector") els.selector.classList.remove("hidden-ui");
+    if(name==="result") els.result.classList.remove("hidden-ui");
+    if(name==="typing") els.typing.classList.remove("hidden-ui");
+  }
+
+  function renderLevelSelector(){
+    els.levelGrid.innerHTML="";
+    state.levels.forEach(level=>{
+      const unlocked=level.id<=state.unlocked || (!state.session.loggedIn && level.id===1);
+      const btn=document.createElement("button");
+      btn.type="button";
+      btn.textContent=unlocked ? level.id : "🔒";
+      const color=level.difficulty==="EASY" ? "cyan" : level.difficulty==="MEDIUM" ? "pink" : "red";
+      btn.className=`level-btn rounded-lg p-3 sm:p-4 text-xs font-bold border transition ${unlocked ?
+        `border-${color}-500/40 text-${color}-400 hover:bg-${color}-900/20` :
+        "opacity-35 border-zinc-800 text-zinc-700 cursor-not-allowed"} bg-zinc-900`;
+      if(unlocked) btn.addEventListener("click",()=>startGame(level.id));
+      els.levelGrid.appendChild(btn);
+    });
+    const note=document.getElementById("progress-note");
+    note.textContent=state.guest ? "Guest mode: only Level 1 is available." : `Unlocked: ${state.unlocked}/100`;
+  }
+
+  function startGame(levelId){
+    if(levelId<1 || levelId>100) return;
+    if(state.guest && levelId!==1){ return; }
+    if(!state.guest && levelId>state.unlocked) return;
+
+    state.level=levelId;
+    state.text=state.levels[levelId-1].text;
+    state.index=0;
+    state.errors=0;
+    state.typed=0;
+    state.started=false;
+    state.finished=false;
+    state.startTime=0;
+    state.keystrokes=[];
+    state.graph={labels:[],wpm:[],errors:[]};
+    clearInterval(state.graphTimer);
+    cancelAnimationFrame(state.anim);
+
+    const lvl=state.levels[levelId-1];
+    els.uiLevel.textContent=`${lvl.id}/100`;
+    els.uiWpm.textContent="00";
+    els.uiAcc.textContent="100%";
+    els.taskDiff.textContent=`${lvl.difficulty} MODE`;
+    els.taskGoal.textContent=`Target: ${lvl.goalWpm} WPM`;
+    els.progress.style.width="0%";
+
+    setScreen("typing");
+    renderTypingText();
+    renderKeyboard();
+    setKeyboardVisibility(levelId===100 ? true : state.blindMode);
+    requestInputFocus();
+    readText(`Level ${lvl.id}. Target is ${lvl.goalWpm} words per minute. Begin.`);
+  }
+
+  function renderTypingText(){
+    els.area.innerHTML="";
+    const fragment=document.createDocumentFragment();
+    for(let i=0;i<state.text.length;i++){
+      const span=document.createElement("span");
+      span.textContent=state.text[i];
+      span.className=i===0 ? "c-curr" : "c-pend";
+      fragment.appendChild(span);
+    }
+    els.area.appendChild(fragment);
+  }
+
+  function requestInputFocus(){
+    if(state.finished) return;
+    try {
+      els.input.focus({preventScroll:true});
+      const len=els.input.value.length;
+      if(len>0) els.input.setSelectionRange(len,len);
+    } catch {
+      try { els.input.focus(); } catch {}
+    }
+  }
+
+  function beginTimerIfNeeded(){
+    if(state.started || state.finished) return;
+    state.started=true;
+    state.startTime=performance.now();
+    state.keystrokes=[{t:state.startTime}];
+    state.anim=requestAnimationFrame(gameLoop);
+    state.graphTimer=setInterval(logGraphData,1500);
+  }
+
+  function handleCharacter(char){
+    if(state.finished || !char || char.length!==1) return;
+    if(state.index>=state.text.length) return;
+    beginTimerIfNeeded();
+
+    const expected=state.text[state.index];
+    state.typed++;
+    const keyNow=performance.now();
+    state.keystrokes.push({t:keyNow});
+    state.lastKeyChar=char;
+    state.lastKeyTime=keyNow;
+
+    highlightKey(char);
+
+    if(char===expected){
+      const current=els.area.childNodes[state.index];
+      if(current) current.className="c-corr";
+      playThock(false);
+    } else {
+      const current=els.area.childNodes[state.index];
+      if(current) current.className="c-wrong";
+      state.errors++;
+      playThock(true);
+      els.area.classList.remove("shake-err");
+      void els.area.offsetWidth;
+      els.area.classList.add("shake-err");
+    }
+
+    state.index++;
+    els.progress.style.width=`${Math.min(100,(state.index/state.text.length)*100)}%`;
+
+    updateLiveHUD();
+
+    if(state.index>=state.text.length){
+      finishTest();
+    } else {
+      const next=els.area.childNodes[state.index];
+      if(next) next.className="c-curr";
+    }
+  }
+
+  function handleBackspace(){
+    if(state.finished || state.index<=0) return;
+    const current=els.area.childNodes[state.index];
+    if(current && current.classList.contains("c-curr")) current.className="c-pend";
+    state.index--;
+    const target=els.area.childNodes[state.index];
+    if(target) target.className="c-curr";
+    els.progress.style.width=`${(state.index/state.text.length)*100}%`;
+    updateLiveHUD();
+  }
+
+  function updateLiveHUD(){
+    if(!state.started){
+      els.uiWpm.textContent="00";
+      els.uiAcc.textContent="100%";
+      return;
+    }
+    const mins=Math.max((performance.now()-state.startTime)/60000,0.000001);
+    const net=Math.max(0,Math.round(((state.typed-state.errors)/5)/mins));
+    const acc=state.typed>0 ? Math.round(((state.typed-state.errors)/state.typed)*100) : 100;
+    els.uiWpm.textContent=String(net).padStart(2,"0");
+    els.uiAcc.textContent=`${Math.max(0,acc)}%`;
+  }
+
+  function gameLoop(){
+    if(!state.started || state.finished) return;
+    updateLiveHUD();
+    state.anim=requestAnimationFrame(gameLoop);
+  }
+
+  function logGraphData(){
+    if(!state.started || state.finished || !state.startTime) return;
+    const mins=(performance.now()-state.startTime)/60000;
+    const safe=mins>0 ? mins : 0.000001;
+    const wpm=Math.max(0,Math.round(((state.typed-state.errors)/5)/safe));
+    state.graph.labels.push(`${Math.round(mins*60)}s`);
+    state.graph.wpm.push(wpm);
+    state.graph.errors.push(state.errors);
+  }
+
+  function calculateConsistency(){
+    if(state.keystrokes.length<3) return 100;
+    const gaps=[];
+    for(let i=2;i<state.keystrokes.length;i++){
+      gaps.push(state.keystrokes[i].t-state.keystrokes[i-1].t);
+    }
+    const mean=gaps.reduce((a,b)=>a+b,0)/gaps.length;
+    if(mean<=0) return 100;
+    const variance=gaps.reduce((a,b)=>a+Math.pow(b-mean,2),0)/gaps.length;
+    const sd=Math.sqrt(variance);
+    return Math.max(0,Math.min(100,Math.round(100*(1-Math.min(sd/(mean*1.75),1)))));
+  }
+
+  function finishTest(){
+    if(state.finished) return;
+    state.finished=true;
+    state.started=false;
+    clearInterval(state.graphTimer);
+    cancelAnimationFrame(state.anim);
+
+    // If the test is very fast, ensure at least one graph sample exists.
+    if(state.graph.labels.length===0) logGraphData();
+
+    const elapsed=Math.max(performance.now()-state.startTime,10);
+    const mins=elapsed/60000;
+    const net=Math.max(0,Math.round(((state.typed-state.errors)/5)/mins));
+    const raw=Math.max(0,Math.round((state.typed/5)/mins));
+    const acc=state.typed>0 ? Math.max(0,Math.round(((state.typed-state.errors)/state.typed)*100)) : 0;
+    const consistency=calculateConsistency();
+    const lvl=state.levels[state.level-1];
+    const pass=net>=lvl.goalWpm;
+
+    if(pass && !state.guest && state.level===state.unlocked && state.level<100){
+      state.unlocked++;
+      saveProgress();
+    }
+
+    els.resWpm.textContent=String(net);
+    els.resRaw.textContent=String(raw);
+    els.resAcc.textContent=`${acc}%`;
+    els.resErr.textContent=String(state.errors);
+    els.resConsistency.textContent=`${consistency}%`;
+
+    if(pass){
+      els.resultTitle.textContent="TEST PASSED";
+      els.resultTitle.className="text-4xl sm:text-6xl font-black tracking-[.12em] uppercase text-cyan-400 cyan-glow";
+      els.resultMsg.textContent=`Goal ${lvl.goalWpm} WPM • You achieved ${net} WPM • Consistency ${consistency}%`;
+      document.getElementById("next-level-btn").classList.toggle("hidden-ui",state.level>=100);
+      playTone("win");
+      readText("Target achieved. Level cleared.");
+    }else{
+      els.resultTitle.textContent="TEST FAILED";
+      els.resultTitle.className="text-4xl sm:text-6xl font-black tracking-[.12em] uppercase text-red-500";
+      els.resultMsg.textContent=`Goal ${lvl.goalWpm} WPM • You achieved ${net} WPM • Consistency ${consistency}%`;
+      document.getElementById("next-level-btn").classList.add("hidden-ui");
+      playTone("loss");
+      readText("Target missed. Retake the level to improve your result.");
+    }
+
+    setScreen("result");
+    setTimeout(drawChart,40);
+  }
+
+  function drawChart(){
+    if(typeof Chart==="undefined"){
+      els.chart.replaceWith(Object.assign(document.createElement("div"),{
+        className:"h-full flex items-center justify-center text-xs text-zinc-600 font-mono",
+        textContent:"Analytics chart unavailable — Chart.js could not be loaded."
+      }));
+      return;
+    }
+    if(state.perfChart){
+      try{state.perfChart.destroy();}catch{}
+      state.perfChart=null;
+    }
+    const ctx=els.chart.getContext("2d");
+    state.perfChart=new Chart(ctx,{
+      type:"line",
+      data:{
+        labels:state.graph.labels,
+        datasets:[
+          {
+            label:"WPM",data:state.graph.wpm,borderColor:"#22d3ee",
+            backgroundColor:"rgba(34,211,238,.10)",borderWidth:2,tension:.25,fill:true,pointRadius:2
+          },
+          {
+            label:"Errors",data:state.graph.errors,borderColor:"#ef4444",
+            backgroundColor:"rgba(239,68,68,.08)",borderWidth:2,tension:.25,fill:true,pointRadius:2
+          }
+        ]
+      },
+      options:{
+        responsive:true,maintainAspectRatio:false,
+        interaction:{mode:"index",intersect:false},
+        plugins:{
+          legend:{labels:{color:"#fff",font:{family:"Orbitron",size:10}}},
+          tooltip:{bodyFont:{family:"JetBrains Mono"}}
+        },
+        scales:{
+          x:{ticks:{color:"#777"},grid:{color:"rgba(255,255,255,.05)"}},
+          y:{beginAtZero:true,ticks:{color:"#777"},grid:{color:"rgba(255,255,255,.07)"}}
         }
+      }
+    });
+  }
 
-        const fMap = {
-            'fp':  ['q','a','z','p',';','/','[',']',"'",'-','=','0'], 
-            'fr':  ['w','s','x','o','l','.','2','9'],                      
-            'fm':  ['e','d','c','i','k',',','3','8'],                      
-            'fil': ['r','f','v','t','g','b','4','5'], 
-            'fir': ['y','h','n','u','j','m','6','7'], 
-            'ft':  [' ']                              
-        };
+  /* ---------- keyboard input ---------- */
 
-        function getFClass(k) {
-            let lowK = k.toLowerCase();
-            for(let [f, keys] of Object.entries(fMap)) {
-                if(keys.includes(lowK)) return f;
-            }
-            return ''; 
-        }
+  function shouldCaptureKeyboard(){
+    return !els.typing.classList.contains("hidden-ui") && !state.finished;
+  }
 
-        let currentLevelId = 1, isPlaying = false, startTime = 0, endTime = 0;
-        let animFrameId = null, perfChart = null;
-        let textData = "", charIdx = 0, errs = 0, typedCount = 0;
-        
-        let graphData = { timeLabel: [], wpmLog: [], errLog: [] };
-        let graphInterval = null;
+  document.addEventListener("keydown",(e)=>{
+    if(!shouldCaptureKeyboard()) return;
 
-        let prefs = { sound: true, keymap: true, reader: false };
-        let session = { loggedIn: false, name: "GUEST" };
-        
-        let unlockedLevels = parseInt(localStorage.getItem('gx_unlocked')) || 1;
+    // Never steal shortcuts that users commonly need.
+    if(e.ctrlKey || e.altKey || e.metaKey) return;
 
-        const els = {
-            container: document.getElementById('typing-container'),
-            area: document.getElementById('typing-area'),
-            vkb: document.getElementById('virtual-keyboard'),
-            wpm: document.getElementById('ui-wpm'),
-            acc: document.getElementById('ui-acc'),
-            prog: document.getElementById('progress-bar')
-        };
+    if(e.key==="Backspace"){
+      e.preventDefault();
+      handleBackspace();
+      return;
+    }
 
-        let aCtx = null;
-        function ensureAudio() {
-            if (!prefs.sound) return null;
-            try {
-                if (!aCtx) {
-                    const AC = window.AudioContext || window.webkitAudioContext;
-                    if (!AC) return null;
-                    aCtx = new AC();
-                }
-                if (aCtx.state === 'suspended') aCtx.resume().catch(() => {});
-                return aCtx;
-            } catch (e) { return null; }
-        }
+    // Ignore Tab/Escape/Enter/Arrows/etc. Only actual printable keys are game input.
+    if(e.key.length===1 || e.key===" "){
+      e.preventDefault();
+      handleCharacter(e.key);
+      requestInputFocus();
+    }
+  },{passive:false});
 
-        function thock(isErr = false) {
-            const ctx = ensureAudio();
-            if (!ctx) return;
-            const osc = ctx.createOscillator(), gain = ctx.createGain();
-            osc.type = isErr ? 'sawtooth' : 'sine';
-            osc.frequency.setValueAtTime(isErr ? 120 : 200, ctx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(50, ctx.currentTime + 0.05);
-            gain.gain.setValueAtTime(0.3, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
-            osc.connect(gain); gain.connect(ctx.destination);
-            osc.start(); osc.stop(ctx.currentTime + 0.1);
-        }
+  // Mobile/IME/paste path: browsers may deliver text through input without keydown.
+  els.input.addEventListener("input",()=>{
+    if(!shouldCaptureKeyboard()) return;
+    if(state.inputBufferLock) return;
 
-        function playTone(type) {
-            const ctx = ensureAudio();
-            if (!ctx) return;
-            const osc = ctx.createOscillator(), gain = ctx.createGain();
-            osc.type = 'triangle';
-            if(type === 'win') {
-                osc.frequency.setValueAtTime(400, ctx.currentTime);
-                osc.frequency.setValueAtTime(600, ctx.currentTime + 0.1);
-                osc.frequency.setValueAtTime(800, ctx.currentTime + 0.2);
-            } else {
-                osc.frequency.setValueAtTime(300, ctx.currentTime);
-                osc.frequency.setValueAtTime(200, ctx.currentTime + 0.2);
-            }
-            gain.gain.setValueAtTime(0.2, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
-            osc.connect(gain); gain.connect(ctx.destination);
-            osc.start(); osc.stop(ctx.currentTime + 0.5);
-        }
+    const value=els.input.value;
+    if(!value) return;
 
-        function readText(txt) {
-            if(!prefs.reader || !window.speechSynthesis) return;
-            window.speechSynthesis.cancel();
-            let msg = new SpeechSynthesisUtterance(txt);
-            msg.rate = 1.0; msg.pitch = 1.1;
-            window.speechSynthesis.speak(msg);
-        }
+    state.inputBufferLock=true;
+    try{
+      for(const ch of value){
+        if(ch==="\\n" || ch==="\\r") continue;
 
-        function toggleReader() {
-            prefs.reader = !prefs.reader;
-            document.getElementById('btn-reader').className = prefs.reader ? "p-2.5 bg-cyan-900 rounded-lg border border-cyan-500 transition" : "p-2.5 bg-zinc-900 rounded-lg border border-zinc-700 hover:border-cyan-400 transition";
-            if(prefs.reader) readText("Reading assistant online.");
-            else window.speechSynthesis.cancel();
-        }
+        // Some mobile browsers fire keydown and input for the same character.
+        const now=performance.now();
+        if(ch===state.lastKeyChar && (now-state.lastKeyTime)<80) continue;
 
-        function renderKeyboard() {
-            const lay = [
-                [{k:'q', h:'L-P'}, {k:'w', h:'L-R'}, {k:'e', h:'L-M'}, {k:'r', h:'L-I'}, {k:'t', h:'L-I'}, {k:'y', h:'R-I'}, {k:'u', h:'R-I'}, {k:'i', h:'R-M'}, {k:'o', h:'R-R'}, {k:'p', h:'R-P'}, {k:'[', h:'R-P'}, {k:']', h:'R-P'}],
-                [{k:'a', h:'L-P'}, {k:'s', h:'L-R'}, {k:'d', h:'L-M'}, {k:'f', h:'L-I'}, {k:'g', h:'L-I'}, {k:'h', h:'R-I'}, {k:'j', h:'R-I'}, {k:'k', h:'R-M'}, {k:'l', h:'R-R'}, {k:';', h:'R-P'}, {k:"'", h:'R-P'}],
-                [{k:'z', h:'L-P'}, {k:'x', h:'L-R'}, {k:'c', h:'L-M'}, {k:'v', h:'L-I'}, {k:'b', h:'L-I'}, {k:'n', h:'R-I'}, {k:'m', h:'R-I'}, {k:',', h:'R-M'}, {k:'.', h:'R-R'}, {k:'/', h:'R-P'}]
-            ];
-            els.vkb.innerHTML = '';
-            lay.forEach(row => {
-                let rDiv = document.createElement('div'); rDiv.className = 'key-row';
-                row.forEach(obj => {
-                    let kDiv = document.createElement('div');
-                    let fClass = getFClass(obj.k);
-                    if(fClass === 'fi') fClass = ['r','f','v','t','g','b','4','5'].includes(obj.k.toLowerCase()) ? 'fil' : 'fir';
-                    
-                    kDiv.className = `key ${fClass}`; 
-                    kDiv.id = `key-${obj.k === "'" ? "quote" : obj.k}`;
-                    kDiv.innerHTML = `<span>${obj.k.toUpperCase()}</span><span class="key-hint">${obj.h}</span>`;
-                    rDiv.appendChild(kDiv);
-                });
-                els.vkb.appendChild(rDiv);
-            });
-            let sRow = document.createElement('div'); sRow.className = 'key-row';
-            let sKey = document.createElement('div'); 
-            sKey.className = `key spacebar ft`; sKey.id = 'key-space'; 
-            sKey.innerHTML = `<span>SPACE</span><span class="key-hint">THUMB</span>`;
-            sRow.appendChild(sKey); els.vkb.appendChild(sRow);
-        }
+        if(ch.length===1) handleCharacter(ch);
+        if(state.finished) break;
+      }
+    }finally{
+      els.input.value="";
+      state.inputBufferLock=false;
+    }
+  });
 
-        function showLevelSelector(requireLogin = false) {
-            if(requireLogin && !session.loggedIn) { openAuthModal(); return; }
-            document.getElementById('start-screen').classList.add('hidden-ui');
-            
-            let grid = document.getElementById('level-grid');
-            grid.innerHTML = '';
-            
-            allLevels.forEach(l => {
-                let btn = document.createElement('button');
-                let isUnlocked = l.id <= unlockedLevels;
-                
-                btn.className = `level-btn p-4 text-sm font-bold rounded-lg border transition shadow-lg ${isUnlocked ? (l.difficulty === 'EASY' ? 'border-cyan-500/30 text-cyan-400 hover:bg-cyan-900/30 hover:-translate-y-1 hover:shadow-cyan-900/50' : (l.difficulty === 'MEDIUM' ? 'border-pink-500/30 text-pink-400 hover:bg-pink-900/30 hover:-translate-y-1 hover:shadow-pink-900/50' : 'border-red-500/30 text-red-500 hover:bg-red-900/30 hover:-translate-y-1 hover:shadow-red-900/50')) : 'level-locked'} bg-zinc-900`;
-                btn.innerText = l.id;
-                
-                if(isUnlocked) {
-                    btn.onclick = () => { document.getElementById('level-selector').classList.add('hidden-ui'); startGame(l.id); };
-                }
-                grid.appendChild(btn);
-            });
-            document.getElementById('level-selector').classList.remove('hidden-ui');
-        }
+  els.input.addEventListener("keydown",(e)=>{
+    // The document-level handler owns game keystrokes. This listener only stops
+    // normal browser editing for navigation keys when the event wasn't already handled.
+    if(e.defaultPrevented) return;
+    if(!shouldCaptureKeyboard()) return;
+    if(e.key==="Enter" || e.key==="Tab") e.preventDefault();
+  });
 
-        function startGame(lvlId) {
-            currentLevelId = lvlId;
-            document.getElementById('start-screen').classList.add('hidden-ui');
-            document.getElementById('level-selector').classList.add('hidden-ui');
-            document.getElementById('result-screen').classList.add('hidden-ui');
-            els.container.classList.remove('hidden-ui');
-            setTimeout(() => {
-                els.container.style.opacity = '1';
-                renderKeyboard(); 
-                initTest();
-            }, 50);
-        }
+  els.input.addEventListener("focus",()=>{});
+  els.input.addEventListener("blur",()=>{
+    if(shouldCaptureKeyboard()) setTimeout(requestInputFocus,0);
+  });
 
-        function initTest() {
-            let lvl = allLevels[currentLevelId - 1];
-            textData = lvl.text;
-            charIdx = 0; errs = 0; typedCount = 0; isPlaying = false; 
-            graphData = { timeLabel: [], wpmLog: [], errLog: [] };
-            clearInterval(graphInterval);
-            
-            document.getElementById('ui-level').innerText = `${lvl.id}/100`;
-            document.getElementById('task-diff').innerText = `${lvl.difficulty} MODE`;
-            document.getElementById('task-goal').innerText = `Target: ${lvl.goalWpm} WPM`;
-            els.wpm.innerText = '00'; els.acc.innerText = '100%'; els.prog.style.width = '0%';
-            
-            els.area.innerHTML = '';
-            const frag = document.createDocumentFragment();
-            textData.split('').forEach((c, i) => {
-                let s = document.createElement('span'); s.innerText = c; s.className = i === 0 ? 'c-curr' : 'c-pend';
-                frag.appendChild(s);
-            });
-            els.area.appendChild(frag);
-            
-            readText(`Level ${lvl.id}. Target is ${lvl.goalWpm} words per minute. Begin.`);
-            els.area.focus();
-        }
+  // Clicking anywhere in the active game returns focus to the mobile/IME input.
+  els.typing.addEventListener("pointerdown",(e)=>{
+    if(e.target.closest("button")) return;
+    if(shouldCaptureKeyboard()) requestInputFocus();
+  });
 
-        // GLOBAL WINDOW KEYDOWN EVENT (Eliminates all hidden input focus bugs)
-        window.addEventListener('keydown', (e) => {
-            if (els.container.classList.contains('hidden-ui')) return;
-            if (e.ctrlKey || e.altKey || e.metaKey || e.key === 'F12') return;
+  /* ---------- visual helpers ---------- */
 
-            if (e.key === 'Backspace') {
-                e.preventDefault();
-                if (charIdx > 0) {
-                    els.area.childNodes[charIdx].className = 'c-pend';
-                    charIdx--;
-                    els.area.childNodes[charIdx].className = 'c-curr';
-                    els.prog.style.width = `${(charIdx / textData.length) * 100}%`;
-                }
-                return;
-            }
+  function highlightKey(char){
+    const el=document.getElementById(`key-${keyId(char)}`);
+    if(!el) return;
+    el.classList.add("active-key");
+    clearTimeout(el._keyTimer);
+    el._keyTimer=setTimeout(()=>el.classList.remove("active-key"),85);
+  }
 
-            if (e.key.length !== 1 && e.key !== ' ') return;
-            e.preventDefault();
+  function applyKeymap(){
+    els.keyboard.classList.toggle("keymap-on",state.prefs.keymap);
+    els.keymapBtn.textContent=`KEYMAP: ${state.prefs.keymap ? "ON":"OFF"}`;
+    els.keymapBtn.className=state.prefs.keymap ?
+      "action-btn text-[10px] font-bold px-3 py-2 rounded-lg border border-yellow-500/50 bg-yellow-900/20 text-yellow-300" :
+      "action-btn text-[10px] font-bold px-3 py-2 rounded-lg border border-zinc-700 bg-zinc-900 text-zinc-500";
+  }
 
-            if (!isPlaying) {
-                isPlaying = true;
-                startTime = performance.now();
-                animFrameId = requestAnimationFrame(gameLoop);
-                graphInterval = setInterval(logGraphData, 1500);
-            }
+  function setKeyboardVisibility(hidden){
+    els.keyboard.classList.toggle("hidden-ui",hidden);
+  }
 
-            processStroke(e.key);
-        });
+  /* ---------- audio ---------- */
 
-        function processStroke(char) {
-            if(charIdx >= textData.length) return;
-            const expected = textData[charIdx];
-            
-            let kId = char.toLowerCase();
-            if(kId === ' ') kId = 'space'; if(kId === "'") kId = 'quote';
-            const kEl = document.getElementById('key-' + kId);
-            if(kEl) { kEl.classList.add('active-key'); setTimeout(() => kEl.classList.remove('active-key'), 100); }
+  function ensureAudio(){
+    if(!state.prefs.sound) return null;
+    try{
+      if(!state.audio){
+        const AC=window.AudioContext || window.webkitAudioContext;
+        if(!AC) return null;
+        state.audio=new AC();
+      }
+      if(state.audio.state==="suspended") state.audio.resume().catch(()=>{});
+      return state.audio;
+    }catch{return null}
+  }
 
-            typedCount++;
+  function playThock(error=false){
+    const ctx=ensureAudio();
+    if(!ctx) return;
+    try{
+      const osc=ctx.createOscillator();
+      const gain=ctx.createGain();
+      osc.type=error ? "sawtooth":"sine";
+      osc.frequency.setValueAtTime(error?125:190,ctx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(error?70:55,ctx.currentTime+.05);
+      gain.gain.setValueAtTime(.18,ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(.01,ctx.currentTime+.06);
+      osc.connect(gain);gain.connect(ctx.destination);
+      osc.start();osc.stop(ctx.currentTime+.075);
+    }catch{}
+  }
 
-            if(char === expected) {
-                els.area.childNodes[charIdx].className = 'c-corr'; thock(false);
-            } else {
-                els.area.childNodes[charIdx].className = 'c-wrong'; errs++; thock(true);
-                els.area.classList.add('shake-err'); setTimeout(() => els.area.classList.remove('shake-err'), 150);
-            }
+  function playTone(type){
+    const ctx=ensureAudio();
+    if(!ctx) return;
+    try{
+      const osc=ctx.createOscillator();
+      const gain=ctx.createGain();
+      osc.type="triangle";
+      const now=ctx.currentTime;
+      if(type==="win"){
+        osc.frequency.setValueAtTime(420,now);
+        osc.frequency.setValueAtTime(620,now+.10);
+        osc.frequency.setValueAtTime(820,now+.20);
+      }else{
+        osc.frequency.setValueAtTime(320,now);
+        osc.frequency.setValueAtTime(210,now+.20);
+      }
+      gain.gain.setValueAtTime(.16,now);
+      gain.gain.exponentialRampToValueAtTime(.01,now+.45);
+      osc.connect(gain);gain.connect(ctx.destination);
+      osc.start();osc.stop(now+.46);
+    }catch{}
+  }
 
-            charIdx++;
-            els.prog.style.width = `${(charIdx / textData.length) * 100}%`; 
-            
-            if(charIdx >= textData.length) { finishTest(); return; }
-            els.area.childNodes[charIdx].className = 'c-curr';
-        }
+  /* ---------- speech ---------- */
 
-        function gameLoop() {
-            if(!isPlaying) return;
-            let timeElapsedMin = (performance.now() - startTime) / 60000;
+  function readText(text){
+    if(!state.prefs.reader || !("speechSynthesis" in window)) return;
+    try{
+      speechSynthesis.cancel();
+      const msg=new SpeechSynthesisUtterance(text);
+      msg.rate=1;
+      msg.pitch=1.05;
+      speechSynthesis.speak(msg);
+    }catch{}
+  }
 
-            if(timeElapsedMin > 0 && typedCount > 0) {
-                let wpm = Math.max(0, Math.round(((typedCount - errs) / 5) / timeElapsedMin));
-                let acc = Math.round(((typedCount - errs) / typedCount) * 100);
-                els.wpm.innerText = wpm.toString().padStart(2,'0'); els.acc.innerText = acc + '%';
-            }
-            animFrameId = requestAnimationFrame(gameLoop);
-        }
+  /* ---------- auth ---------- */
 
-        function logGraphData() {
-            let timeElapsedMin = (performance.now() - startTime) / 60000;
-            let wpm = Math.max(0, Math.round(((typedCount - errs) / 5) / timeElapsedMin));
-            graphData.timeLabel.push(Math.round(timeElapsedMin * 60) + "s");
-            graphData.wpmLog.push(wpm);
-            graphData.errLog.push(errs);
-        }
+  function validIdentity(value){
+    const trimmed=value.trim();
+    const email=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+    const phone=/^\+?[0-9][0-9\s-]{7,14}$/.test(trimmed);
+    return email || phone;
+  }
 
-        function finishTest() {
-            isPlaying = false; clearInterval(graphInterval); cancelAnimationFrame(animFrameId);
-            endTime = performance.now();
-            let minElapsed = (endTime - startTime) / 60000; if(minElapsed === 0) minElapsed = 0.01;
-            
-            let netWpm = Math.max(0, Math.round(((typedCount - errs) / 5) / minElapsed));
-            let rawWpm = Math.round((typedCount / 5) / minElapsed);
-            let acc = typedCount > 0 ? Math.round(((typedCount - errs) / typedCount) * 100) : 0;
-            let lvl = allLevels[currentLevelId - 1];
-            
-            let pass = netWpm >= lvl.goalWpm;
+  function base64(value){
+    try{return btoa(unescape(encodeURIComponent(value)));}
+    catch{return value;}
+  }
 
-            if(pass) {
-                playTone('win'); readText("Target achieved. Level cleared.");
-                if(session.loggedIn && currentLevelId === unlockedLevels && currentLevelId < 100) {
-                    unlockedLevels++;
-                    localStorage.setItem('gx_unlocked', unlockedLevels);
-                }
-            } else {
-                playTone('loss'); readText("Target missed. Velocity insufficient.");
-            }
+  function openModal(el){
+    el.classList.remove("hidden-ui");
+    el.classList.add("flex");
+  }
+  function closeModal(el){
+    el.classList.add("hidden-ui");
+    el.classList.remove("flex");
+  }
 
-            els.container.style.opacity = '0';
-            setTimeout(() => {
-                els.container.classList.add('hidden-ui');
-                document.getElementById('result-screen').classList.remove('hidden-ui');
-                
-                document.getElementById('res-wpm').innerText = netWpm;
-                document.getElementById('res-raw').innerText = rawWpm;
-                document.getElementById('res-acc').innerText = acc + '%';
-                document.getElementById('res-err').innerText = errs;
-                
-                const titleEl = document.getElementById('result-title');
-                const msgEl = document.getElementById('result-msg');
-                const nextBtn = document.getElementById('btn-next-level');
+  function switchAuthTab(tab){
+    const login=tab==="login";
+    document.getElementById("form-login").classList.toggle("hidden-ui",!login);
+    document.getElementById("form-register").classList.toggle("hidden-ui",login);
+    document.getElementById("tab-login").className=login
+      ? "flex-1 pb-3 text-xs font-bold tracking-widest border-b-2 border-pink-500 text-pink-400"
+      : "flex-1 pb-3 text-xs font-bold tracking-widest border-b-2 border-transparent text-zinc-500";
+    document.getElementById("tab-register").className=!login
+      ? "flex-1 pb-3 text-xs font-bold tracking-widest border-b-2 border-cyan-400 text-cyan-400"
+      : "flex-1 pb-3 text-xs font-bold tracking-widest border-b-2 border-transparent text-zinc-500";
+    document.getElementById("login-error").classList.add("hidden-ui");
+    document.getElementById("reg-error").classList.add("hidden-ui");
+  }
 
-                if (pass) {
-                    titleEl.innerText = "TEST PASSED"; titleEl.className = "text-5xl md:text-6xl font-black mb-2 text-cyan-400 neon-glow tracking-widest uppercase";
-                    msgEl.innerText = `Goal: ${lvl.goalWpm} WPM. You hit ${netWpm} WPM.`;
-                    if(currentLevelId < 100) nextBtn.classList.remove('hidden-ui'); else nextBtn.classList.add('hidden-ui');
-                } else {
-                    titleEl.innerText = "TEST FAILED"; titleEl.className = "text-5xl md:text-6xl font-black mb-2 text-red-500 tracking-widest uppercase";
-                    msgEl.innerText = `Goal: ${lvl.goalWpm} WPM. You hit ${netWpm} WPM.`;
-                    nextBtn.classList.add('hidden-ui');
-                }
+  function setSession(name){
+    const clean=name.replace(/[^\w-]/g,"").slice(0,18) || "PLAYER";
+    const token=base64(`${clean}|${Date.now()}|GYPSY-TYPEX`);
+    safeSessionSet("gypsy_typex_token",token);
+    state.guest=false;
+    state.session={loggedIn:true,name:clean.toUpperCase()};
+    els.profile.textContent=state.session.name;
+    els.profile.className="action-btn hidden sm:block px-4 py-2 rounded-lg bg-pink-900/20 border border-pink-500 text-[10px] font-bold tracking-widest text-pink-300 uppercase";
+  }
 
-                drawChart();
+  /* ---------- buttons / UI ---------- */
 
-            }, 300);
-        }
+  document.getElementById("guest-btn").addEventListener("click",()=>{
+    state.guest=true;
+    state.session={loggedIn:false,name:"GUEST"};
+    state.unlocked=1;
+    renderLevelSelector();
+    setScreen("selector");
+  });
 
-        function drawChart() {
-            const ctx = document.getElementById('perfChart').getContext('2d');
-            if(perfChart) perfChart.destroy();
-            perfChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: graphData.timeLabel,
-                    datasets: [
-                        { label: 'WPM', data: graphData.wpmLog, borderColor: '#22d3ee', backgroundColor: 'rgba(34, 211, 238, 0.1)', borderWidth: 2, tension: 0.3, fill: true },
-                        { label: 'Errors', data: graphData.errLog, borderColor: '#ef4444', backgroundColor: 'rgba(239, 68, 68, 0.1)', borderWidth: 2, tension: 0.3, fill: true }
-                    ]
-                },
-                options: {
-                    responsive: true, maintainAspectRatio: false,
-                    scales: { y: { beginAtZero: true, grid: { color: '#333' } }, x: { grid: { color: '#333' } } },
-                    plugins: { legend: { labels: { color: '#fff' } } }
-                }
-            });
-        }
+  document.getElementById("register-btn").addEventListener("click",()=>{
+    openModal(els.auth);
+    switchAuthTab("register");
+  });
 
-        function retryLevel() {
-            document.getElementById('result-screen').classList.add('hidden-ui');
-            els.container.classList.remove('hidden-ui');
-            setTimeout(() => { els.container.style.opacity = '1'; initTest(); }, 50);
-        }
-        function playNextLevel() { currentLevelId++; retryLevel(); }
-        
-        function resetGameToMenu() {
-            document.getElementById('result-screen').classList.add('hidden-ui');
-            els.container.classList.add('hidden-ui'); els.container.style.opacity = '0';
-            showLevelSelector(false);
-            isPlaying = false; clearInterval(graphInterval); cancelAnimationFrame(animFrameId);
-        }
-        
-        function toggleKeymap() {
-            prefs.keymap = !prefs.keymap;
-            let btn = document.getElementById('btn-keymap');
-            if(prefs.keymap) { els.vkb.classList.add('keymap-on'); btn.innerText = "KEYMAP: ON"; btn.className = "text-xs font-bold text-yellow-400 bg-yellow-900/30 px-4 py-2 rounded-lg border border-yellow-500/50 shadow-md"; } 
-            else { els.vkb.classList.remove('keymap-on'); btn.innerText = "KEYMAP: OFF"; btn.className = "text-xs font-bold text-zinc-500 bg-zinc-900/50 px-4 py-2 rounded-lg border border-zinc-700 shadow-md"; }
-            els.area.focus();
-        }
-        
-        function toggleSettings() { document.getElementById('settings-modal').classList.toggle('hidden-ui'); }
-        document.getElementById('toggle-sound').addEventListener('change', e => prefs.sound = e.target.checked);
-        document.getElementById('toggle-reader').addEventListener('change', e => { prefs.reader = e.target.checked; if(prefs.reader) readText("Reading assistant enabled"); else window.speechSynthesis.cancel(); });
+  els.profile.addEventListener("click",()=>openModal(els.auth));
+  document.getElementById("auth-close").addEventListener("click",()=>closeModal(els.auth));
+  document.getElementById("tab-login").addEventListener("click",()=>switchAuthTab("login"));
+  document.getElementById("tab-register").addEventListener("click",()=>switchAuthTab("register"));
 
-        function openAuthModal() { document.getElementById('auth-modal').classList.remove('hidden-ui'); switchAuthTab('login'); }
-        function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden-ui'); }
-        
-        function switchAuthTab(t) {
-            document.getElementById('form-login').classList.toggle('hidden-ui', t !== 'login');
-            document.getElementById('form-register').classList.toggle('hidden-ui', t !== 'register');
-            document.getElementById('tab-login').className = `flex-1 pb-3 text-sm font-bold border-b-2 transition uppercase tracking-widest ${t==='login' ? 'border-pink-500 text-pink-400' : 'border-transparent text-zinc-500 hover:text-white'}`;
-            document.getElementById('tab-register').className = `flex-1 pb-3 text-sm font-bold border-b-2 transition uppercase tracking-widest ${t==='register' ? 'border-cyan-400 text-cyan-400' : 'border-transparent text-zinc-500 hover:text-white'}`;
-            document.querySelectorAll('.text-red-500').forEach(el => el.classList.add('hidden-ui'));
-        }
+  document.getElementById("login-submit").addEventListener("click",()=>{
+    const id=document.getElementById("login-id").value.trim();
+    const pass=document.getElementById("login-pass").value;
+    const err=document.getElementById("login-error");
+    err.classList.add("hidden-ui");
+    if(!validIdentity(id)){err.textContent="Enter a valid email address or phone number.";err.classList.remove("hidden-ui");return}
+    if(pass.length<6){err.textContent="Password must contain at least 6 characters.";err.classList.remove("hidden-ui");return}
+    setSession(id.split("@")[0] || id.replace(/\D/g,"").slice(-8) || "PLAYER");
+    closeModal(els.auth);
+    state.unlocked=Math.max(state.unlocked,parseInt(safeStorageGet("gx_unlocked","1"),10)||1);
+    renderLevelSelector();setScreen("selector");
+  });
 
-        function handleAuth(type) {
-            let e = document.getElementById(type === 'login' ? 'login-email' : 'reg-email').value.trim();
-            let p = document.getElementById(type === 'login' ? 'login-pass' : 'reg-pass').value;
-            let err = document.getElementById(type === 'login' ? 'login-error' : 'reg-error');
-            
-            if(!e || !p) { err.innerText = "Fields required."; err.classList.remove('hidden-ui'); return; }
-            if(p.length < 6) { err.innerText = "Password min 6 chars."; err.classList.remove('hidden-ui'); return; }
-            
-            let uName = e.split('@')[0].toUpperCase();
-            if(type === 'register') {
-                let n = document.getElementById('reg-name').value.trim();
-                if(!n) { err.innerText = "Gamer Tag required."; err.classList.remove('hidden-ui'); return; }
-                uName = n.toUpperCase();
-            }
+  document.getElementById("register-submit").addEventListener("click",()=>{
+    const name=document.getElementById("reg-name").value.trim();
+    const id=document.getElementById("reg-id").value.trim();
+    const pass=document.getElementById("reg-pass").value;
+    const err=document.getElementById("reg-error");
+    err.classList.add("hidden-ui");
+    if(name.length<2){err.textContent="Gamer Tag is required.";err.classList.remove("hidden-ui");return}
+    if(!validIdentity(id)){err.textContent="Enter a valid email address or phone number.";err.classList.remove("hidden-ui");return}
+    if(pass.length<6){err.textContent="Password must contain at least 6 characters.";err.classList.remove("hidden-ui");return}
+    setSession(name);
+    safeStorageSet("gx_user",JSON.stringify({name,id}));
+    closeModal(els.auth);
+    renderLevelSelector();setScreen("selector");
+  });
 
-            session = { loggedIn: true, name: uName.replace(/[^\w]/gi, '') }; 
-            let pb = document.getElementById('profile-btn');
-            pb.innerText = session.name;
-            pb.className = "px-6 py-2.5 bg-pink-900/30 rounded-lg border border-pink-500 text-xs font-bold text-pink-400 uppercase tracking-wider shadow-lg shadow-pink-900/40";
-            
-            closeAuthModal(); 
-            showLevelSelector(false); 
-        }
-    </script>
+  document.getElementById("back-main-btn").addEventListener("click",()=>{
+    stopGame();
+    setScreen("start");
+  });
+
+  document.getElementById("retry-btn").addEventListener("click",()=>{
+    startGame(state.level);
+  });
+
+  document.getElementById("main-menu-btn").addEventListener("click",()=>{
+    stopGame();
+    setScreen("start");
+  });
+
+  document.getElementById("next-level-btn").addEventListener("click",()=>{
+    if(state.level<100) startGame(state.level+1);
+  });
+
+  document.getElementById("exit-btn").addEventListener("click",()=>{
+    stopGame();
+    renderLevelSelector();
+    setScreen("selector");
+  });
+
+  document.getElementById("blind-mode-btn").addEventListener("click",()=>{
+    state.blindMode=!state.blindMode;
+    setKeyboardVisibility(state.blindMode || state.level===100);
+    document.getElementById("blind-mode-btn").textContent=state.blindMode ? "BLIND MODE: ON" : "BLIND MODE";
+    requestInputFocus();
+  });
+
+  els.keymapBtn.addEventListener("click",()=>{
+    state.prefs.keymap=!state.prefs.keymap;
+    applyKeymap();
+    requestInputFocus();
+  });
+
+  els.readerBtn.addEventListener("click",()=>{
+    state.prefs.reader=!state.prefs.reader;
+    els.readerBtn.className=state.prefs.reader ?
+      "action-btn px-3 py-2 rounded-lg bg-cyan-900 border border-cyan-500 text-sm" :
+      "action-btn px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-sm";
+    if(state.prefs.reader) readText("Reading assistant online.");
+    else if("speechSynthesis" in window) speechSynthesis.cancel();
+    document.getElementById("toggle-reader").checked=state.prefs.reader;
+  });
+
+  document.getElementById("btn-settings").addEventListener("click",()=>{
+    document.getElementById("toggle-sound").checked=state.prefs.sound;
+    document.getElementById("toggle-reader").checked=state.prefs.reader;
+    document.getElementById("toggle-keymap").checked=state.prefs.keymap;
+    openModal(els.settings);
+  });
+
+  document.getElementById("settings-close").addEventListener("click",()=>{
+    state.prefs.sound=document.getElementById("toggle-sound").checked;
+    state.prefs.reader=document.getElementById("toggle-reader").checked;
+    state.prefs.keymap=document.getElementById("toggle-keymap").checked;
+    applyKeymap();
+    closeModal(els.settings);
+    requestInputFocus();
+  });
+
+  function stopGame(){
+    state.finished=true;
+    state.started=false;
+    clearInterval(state.graphTimer);
+    cancelAnimationFrame(state.anim);
+    if("speechSynthesis" in window) speechSynthesis.cancel();
+  }
+
+  // Close modals when clicking backdrop, but not inner card.
+  [els.settings,els.auth].forEach(modal=>{
+    modal.addEventListener("pointerdown",e=>{
+      if(e.target===modal) closeModal(modal);
+    });
+  });
+
+  // Escape only closes modals. It should not interrupt an active typing test.
+  document.addEventListener("keydown",e=>{
+    if(e.key==="Escape"){
+      if(!els.auth.classList.contains("hidden-ui")) closeModal(els.auth);
+      else if(!els.settings.classList.contains("hidden-ui")) closeModal(els.settings);
+    }
+  });
+
+  /* ---------- startup ---------- */
+
+  buildLevels();
+  loadProgress();
+
+  // Restore last registered mock session if it exists in this browser tab.
+  try{
+    const token=sessionStorage.getItem("gypsy_typex_token");
+    const user=sessionStorage.getItem("gx_user");
+    if(token && user){
+      const parsed=JSON.parse(user);
+      if(parsed && parsed.name) setSession(parsed.name);
+    }else{
+      // Don't silently log into a previous browser session; guest is the safe default.
+      state.guest=true;
+      state.session={loggedIn:false,name:"GUEST"};
+    }
+  }catch{}
+
+  if(!state.guest) state.unlocked=Math.max(1,Math.min(100,parseInt(safeStorageGet("gx_unlocked","1"),10)||1));
+
+  document.getElementById("toggle-keymap").checked=true;
+  applyKeymap();
+  renderKeyboard();
+  setScreen("start");
+
+  // Prevent accidental browser drag/drop or paste from injecting text into the game.
+  els.area.addEventListener("dragstart",e=>e.preventDefault());
+  els.area.addEventListener("contextmenu",e=>e.preventDefault());
+
+})();
+</script>
 </body>
 </html>
