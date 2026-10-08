@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gypsy TypeX | Advanced Typing Training</title>
+    <title>Gypsy TypeX | Elite Cyber Velocity Training</title>
     <meta name="description" content="Master your typing speed with Gypsy TypeX. 100 progressive levels, real-time WPM tracking, and touch typing finger maps.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js for Result Graph -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;500;700;900&display=swap');
@@ -15,77 +14,111 @@
             --bg-dark: #030305;
             --primary: #ec4899;
             --secondary: #a855f7;
-            --glass: rgba(15, 15, 25, 0.85);
-            --glass-border: rgba(168, 85, 247, 0.3);
+            --glass: rgba(15, 15, 25, 0.95);
+            --glass-border: rgba(168, 85, 247, 0.35);
             
-            /* Finger Map Colors */
-            --z-pinky: #ec4899;
-            --z-ring: #f59e0b;
-            --z-mid: #10b981;
-            --z-ind: #06b6d4;
-            --z-thmb: #8b5cf6;
+            /* Accurate Touch Typing Colors based on reference */
+            --z-pinky: #ff6b6b;   /* Pinky: q,a,z, p,;,/ */
+            --z-ring: #feca57;    /* Ring: w,s,x, o,l,. */
+            --z-mid: #1dd1a1;     /* Middle: e,d,c, i,k,, */
+            --z-ind-l: #48dbfb;   /* Index Left: r,f,v, t,g,b */
+            --z-ind-r: #54a0ff;   /* Index Right: y,h,n, u,j,m */
+            --z-thmb: #c8d6e5;    /* Thumb: Space */
         }
 
         body { background-color: var(--bg-dark); color: #ffffff; font-family: 'Orbitron', sans-serif; overflow-x: hidden; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
-        .neon-text { text-shadow: 0 0 10px var(--primary), 0 0 20px var(--secondary); }
-        .neon-cyan { text-shadow: 0 0 10px #22d3ee; }
+        .neon-text { text-shadow: 0 0 15px var(--primary), 0 0 30px var(--secondary); }
+        .neon-cyan { text-shadow: 0 0 12px #22d3ee; }
         
-        .glass-panel { background: var(--glass); backdrop-filter: blur(12px); border: 1px solid var(--glass-border); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6); }
+        .glass-panel { background: var(--glass); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8); }
         
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); }
         ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 10px; }
 
         /* =========================================
-           VIRTUAL KEYBOARD STYLES
+           VIRTUAL KEYBOARD & FINGER MAPPING
         ========================================= */
         .key-row { display: flex; justify-content: center; gap: 6px; margin-bottom: 6px; }
         .key { 
-            background: rgba(30, 30, 40, 0.9); border: 1px solid #333; border-radius: 8px; 
-            min-width: 50px; height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: bold; color: #888;
-            transition: all 0.05s ease-out; position: relative; box-shadow: 0 4px 6px rgba(0,0,0,0.4);
+            background: rgba(25, 25, 35, 0.95); border: 1px solid #333; border-radius: 8px; 
+            min-width: 52px; height: 55px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: bold; color: #777;
+            transition: all 0.08s ease-out; position: relative; box-shadow: 0 5px 10px rgba(0,0,0,0.6);
         }
-        .key.active-key { 
-            background: var(--primary); color: #fff; transform: translateY(3px) scale(0.95); 
-            box-shadow: 0 0 20px var(--primary); border-color: #fbcfe8;
-        }
+        
+        .key.active-key { transform: translateY(4px) scale(0.95); color: #fff; box-shadow: inset 0 0 10px rgba(0,0,0,0.5); }
         .key.spacebar { width: 350px; }
-        .key-hint { font-size: 0.45rem; opacity: 0.7; margin-top: 3px; font-family: 'Orbitron', sans-serif; letter-spacing: 1px; }
+        .key-hint { font-size: 0.45rem; opacity: 0.8; margin-top: 3px; font-family: 'Orbitron', sans-serif; letter-spacing: 1px; }
 
-        /* Keymap Color Zones */
-        .keymap-on .fp { border-bottom: 3px solid var(--z-pinky); color: #fbcfe8; }
-        .keymap-on .fr { border-bottom: 3px solid var(--z-ring); color: #fef3c7; }
-        .keymap-on .fm { border-bottom: 3px solid var(--z-mid); color: #d1fae5; }
-        .keymap-on .fi { border-bottom: 3px solid var(--z-ind); color: #cffafe; }
-        .keymap-on .ft { border-bottom: 3px solid var(--z-thmb); color: #ede9fe; }
+        /* Colored Zones mapping to reference image */
+        .keymap-on .fp { border-bottom: 4px solid var(--z-pinky); color: #ffcccc; }
+        .keymap-on .fr { border-bottom: 4px solid var(--z-ring); color: #fff4cc; }
+        .keymap-on .fm { border-bottom: 4px solid var(--z-mid); color: #ccffcc; }
+        .keymap-on .fil { border-bottom: 4px solid var(--z-ind-l); color: #cceeff; }
+        .keymap-on .fir { border-bottom: 4px solid var(--z-ind-r); color: #cceeff; }
+        .keymap-on .ft { border-bottom: 4px solid var(--z-thmb); color: #f1f5f9; }
+
+        .keymap-on .fp.active-key { background: var(--z-pinky); border-color: #fff; box-shadow: 0 0 20px var(--z-pinky); }
+        .keymap-on .fr.active-key { background: var(--z-ring); border-color: #fff; box-shadow: 0 0 20px var(--z-ring); }
+        .keymap-on .fm.active-key { background: var(--z-mid); border-color: #fff; box-shadow: 0 0 20px var(--z-mid); }
+        .keymap-on .fil.active-key { background: var(--z-ind-l); border-color: #fff; box-shadow: 0 0 20px var(--z-ind-l); }
+        .keymap-on .fir.active-key { background: var(--z-ind-r); border-color: #fff; box-shadow: 0 0 20px var(--z-ind-r); }
+        .keymap-on .ft.active-key { background: var(--z-thmb); border-color: #fff; box-shadow: 0 0 20px var(--z-thmb); }
 
         /* =========================================
-           TYPING AREA
+           TYPING AREA ENGINE (Fixed Overlap & Readability)
         ========================================= */
-        #typing-area { line-height: 1.7; letter-spacing: 1px; font-size: 1.8rem; user-select: none; word-wrap: break-word; white-space: pre-wrap; position: relative; }
-        #typing-area span { padding: 0 1px; transition: color 0.1s ease, background-color 0.1s ease; border-radius: 2px; }
+        #typing-area { 
+            line-height: 1.9; letter-spacing: 2px; font-size: 1.8rem; 
+            user-select: none; word-wrap: break-word; white-space: pre-wrap; 
+            position: relative; overflow-y: hidden;
+            display: flex; flex-wrap: wrap; align-content: flex-start;
+        }
+        #typing-area span { 
+            padding: 0 2px; transition: color 0.1s ease, background-color 0.1s ease; border-radius: 4px; 
+            display: inline-block; 
+        }
+        
         .c-pend { color: #6b7280; } 
-        .c-corr { color: #d8b4fe; text-shadow: 0 0 10px rgba(168, 85, 247, 0.7); } 
-        .c-wrong { color: #ffffff; background-color: #ef4444; box-shadow: 0 0 8px #ef4444; } 
-        .c-curr { color: #ffffff; background-color: rgba(255,255,255,0.15); text-shadow: 0 0 8px #ffffff; }
-        .c-curr::after { content: ''; position: absolute; left: 0; bottom: -2px; width: 100%; height: 3px; background: var(--primary); animation: blink 1s infinite; box-shadow: 0 0 10px var(--primary); }
+        .c-corr { color: #d8b4fe; text-shadow: 0 0 12px rgba(168, 85, 247, 0.8); } 
+        .c-wrong { color: #fff; background-color: #ef4444; box-shadow: 0 0 8px #ef4444; } 
+        
+        .c-curr { color: #fff; background-color: rgba(255,255,255,0.15); text-shadow: 0 0 10px #fff; position: relative; }
+        .c-curr::after { 
+            content: ''; position: absolute; left: 0; bottom: -2px; width: 100%; height: 3px; 
+            background: var(--primary); animation: blink 1s infinite; box-shadow: 0 0 12px var(--primary); 
+        }
         
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
-        .shake-err { animation: shake 0.15s ease-in-out; }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+        .shake-err { animation: shake 0.2s ease-in-out; }
+        
         .hidden-ui { display: none !important; }
-        .fade-in { animation: fadeIn 0.3s ease-in; }
+        .fade-in { animation: fadeIn 0.4s ease-in; }
+        .slide-up { animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* Graph container */
-        .chart-container { position: relative; height: 250px; width: 100%; margin-top: 20px; }
+        /* =========================================
+           LEVEL LOCK STYLES & AUTH UI
+        ========================================= */
+        .level-btn { position: relative; overflow: hidden; }
+        .level-locked { opacity: 0.4; cursor: not-allowed; border-color: #222 !important; color: #444 !important; background: #0a0a0a !important; }
+        .level-locked::after { content: '🔒'; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.2rem; opacity: 0.4; }
+        
+        .auth-input { width: 100%; background: #0a0a0f; border: 1px solid #333; padding: 14px; border-radius: 8px; color: #fff; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; outline: none; transition: border 0.3s; margin-bottom: 15px;}
+        .auth-input:focus { border-color: var(--primary); box-shadow: 0 0 10px rgba(236, 72, 153, 0.2); }
+
     </style>
 </head>
 <body>
 
-    <!-- HEADER & LIVE HUD -->
+    <!-- =========================================
+         HEADER & LIVE HUD 
+    ========================================= -->
     <header class="flex justify-between items-center px-8 py-4 glass-panel border-b border-zinc-800 z-20 relative h-[80px]">
         <div>
             <h1 class="text-2xl md:text-3xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-cyan-400 neon-glow uppercase">
@@ -103,7 +136,7 @@
                 <p class="text-[10px] text-zinc-500 uppercase tracking-widest">Live WPM</p>
                 <p id="ui-wpm" class="text-3xl font-black text-white">00</p>
             </div>
-            <div class="text-center">
+            <div class="text-center hidden sm:block">
                 <p class="text-[10px] text-zinc-500 uppercase tracking-widest">Accuracy</p>
                 <p id="ui-acc" class="text-xl font-bold text-pink-400">100%</p>
             </div>
@@ -111,113 +144,121 @@
             <div class="flex gap-3 border-l border-zinc-700 pl-6 ml-2">
                 <button onclick="toggleReader()" id="btn-reader" class="p-2.5 bg-zinc-900 rounded-lg border border-zinc-700 hover:border-cyan-400 transition" title="Reading Assistant">🔈</button>
                 <button onclick="toggleSettings()" class="p-2.5 bg-zinc-900 rounded-lg border border-zinc-700 hover:border-cyan-400 transition" title="Settings">⚙️</button>
-                <button onclick="openAuthModal()" id="profile-btn" class="px-5 py-2.5 bg-zinc-900 rounded-lg border border-zinc-700 hover:border-pink-500 text-xs font-bold text-pink-400 transition uppercase tracking-wider">LOGIN</button>
+                <button onclick="openAuthModal()" id="profile-btn" class="px-6 py-2.5 bg-zinc-900 rounded-lg border border-zinc-700 hover:border-pink-500 text-xs font-bold text-pink-400 transition uppercase tracking-wider">LOGIN</button>
             </div>
         </div>
     </header>
 
     <main class="relative w-full h-[calc(100vh-80px)] flex flex-col items-center justify-center p-6">
         
-        <!-- 1. START SCREEN (Level Selection) -->
+        <!-- 1. DASHBOARD / START SCREEN -->
         <div id="start-screen" class="absolute inset-0 flex flex-col items-center justify-center z-30 bg-black/95 fade-in">
             <h2 class="text-5xl md:text-7xl font-black mb-4 neon-glow text-white tracking-widest text-center uppercase">GYPSY TYPEX</h2>
-            <p class="text-zinc-400 mb-10 max-w-xl text-center leading-relaxed text-sm">
+            <p class="text-zinc-400 mb-10 max-w-2xl text-center leading-relaxed text-sm md:text-base">
                 Advanced Touch Typing Arcade. 100 Levels of Progression.<br>
-                Initialize your session.
+                Build muscle memory. Prove your velocity.
             </p>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-2xl">
                 <!-- Guest Mode -->
-                <div class="glass-panel p-6 rounded-xl border-t-4 border-cyan-400 text-center transition hover:-translate-y-2 hover:shadow-cyan-900/50">
+                <div class="glass-panel p-8 rounded-2xl border-t-4 border-cyan-400 text-center transition hover:-translate-y-2 hover:shadow-cyan-900/50 cursor-pointer" onclick="showLevelSelector(false)">
                     <h3 class="text-cyan-400 font-black mb-2 text-xl uppercase tracking-wider">Quick Practice</h3>
-                    <p class="text-xs text-zinc-500 mb-6 h-8">Play as Guest. No data stored.</p>
-                    <button onclick="showLevelSelector(false)" class="w-full py-3 bg-zinc-800 text-cyan-400 text-sm font-bold rounded-lg border border-cyan-500/30 hover:bg-zinc-700 transition">INITIALIZE GUEST</button>
+                    <p class="text-xs text-zinc-500 mb-6">Play as Guest. No data stored.</p>
+                    <button class="w-full py-3 bg-zinc-800 text-cyan-400 text-sm font-bold rounded-lg border border-cyan-500/30 transition">INITIALIZE GUEST</button>
                 </div>
                 <!-- Auth Mode -->
-                <div class="glass-panel p-6 rounded-xl border-t-4 border-pink-500 text-center transition hover:-translate-y-2 hover:shadow-pink-900/50">
+                <div class="glass-panel p-8 rounded-2xl border-t-4 border-pink-500 text-center transition hover:-translate-y-2 hover:shadow-pink-900/50 cursor-pointer" onclick="openAuthModal()">
                     <h3 class="text-pink-400 font-black mb-2 text-xl uppercase tracking-wider">Registered Agent</h3>
-                    <p class="text-xs text-zinc-500 mb-6 h-8">Save progress across 100 levels & view analytics.</p>
-                    <button onclick="openAuthModal()" class="w-full py-3 bg-gradient-to-r from-pink-600 to-purple-600 text-white text-sm font-bold rounded-lg hover:scale-105 transition shadow-lg shadow-pink-900/50">SECURE LOGIN</button>
+                    <p class="text-xs text-zinc-500 mb-6">Save progress across 100 levels & view analytics.</p>
+                    <button class="w-full py-3 bg-gradient-to-r from-pink-600 to-purple-600 text-white text-sm font-bold rounded-lg shadow-lg shadow-pink-900/50 transition">SECURE LOGIN</button>
                 </div>
             </div>
         </div>
 
-        <!-- LEVEL SELECTOR OVERLAY -->
+        <!-- 2. LEVEL SELECTOR OVERLAY (1-100 Logic) -->
         <div id="level-selector" class="hidden-ui absolute inset-0 flex flex-col items-center justify-center z-30 bg-black/95 fade-in">
-            <h3 class="text-3xl font-black text-cyan-400 mb-6 uppercase tracking-widest">Select Level</h3>
-            <div class="w-full max-w-4xl p-6 glass-panel rounded-xl max-h-[60vh] overflow-y-auto">
-                <div class="grid grid-cols-5 md:grid-cols-10 gap-3" id="level-grid">
+            <h3 class="text-4xl font-black text-cyan-400 mb-2 uppercase tracking-widest neon-cyan">Select Level</h3>
+            <p class="text-xs text-zinc-500 mb-8 font-mono">Complete the current level to unlock the next.</p>
+            
+            <div class="w-full max-w-5xl p-8 glass-panel rounded-2xl max-h-[65vh] overflow-y-auto">
+                <div class="grid grid-cols-5 md:grid-cols-10 gap-4" id="level-grid">
                     <!-- Levels generated via JS -->
                 </div>
             </div>
-            <button onclick="document.getElementById('level-selector').classList.add('hidden-ui'); document.getElementById('start-screen').classList.remove('hidden-ui');" class="mt-6 px-6 py-2 text-zinc-400 hover:text-white text-sm">Cancel</button>
+            <button onclick="document.getElementById('level-selector').classList.add('hidden-ui'); document.getElementById('start-screen').classList.remove('hidden-ui');" class="mt-8 px-8 py-3 bg-zinc-800 font-bold rounded-lg hover:bg-zinc-700 transition">BACK TO MAIN</button>
         </div>
 
-        <!-- 2. MISSION REPORT (Results Screen) -->
-        <div id="result-screen" class="hidden-ui absolute inset-0 flex flex-col items-center justify-center z-30 bg-black/95 backdrop-blur-md overflow-y-auto py-10">
-            <h2 id="result-title" class="text-5xl md:text-6xl font-black mb-2 text-white uppercase tracking-widest">Test Complete</h2>
-            <p id="result-msg" class="text-sm text-zinc-400 mb-6 tracking-wider">Performance Data Logged Successfully.</p>
+        <!-- 3. MISSION REPORT (Results Screen) -->
+        <div id="result-screen" class="hidden-ui absolute inset-0 flex flex-col items-center justify-center z-30 bg-black/95 backdrop-blur-md overflow-y-auto py-10 fade-in">
+            <h2 id="result-title" class="text-5xl md:text-6xl font-black mb-2 text-white uppercase tracking-widest">TEST COMPLETE</h2>
+            <p id="result-msg" class="text-sm text-zinc-400 mb-8 tracking-wider font-mono">Data Logged.</p>
             
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-6 w-full max-w-4xl">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 w-full max-w-5xl slide-up">
                 <div class="glass-panel p-6 rounded-2xl text-center border-b-4 border-cyan-400">
-                    <p class="text-xs text-zinc-500 font-bold mb-2 tracking-widest">NET WPM</p>
+                    <p class="text-[10px] text-zinc-500 font-bold mb-2 tracking-widest">NET WPM</p>
                     <p id="res-wpm" class="text-6xl font-black text-cyan-400 neon-cyan">00</p>
                 </div>
                 <div class="glass-panel p-6 rounded-2xl text-center border-b-4 border-pink-500">
-                    <p class="text-xs text-zinc-500 font-bold mb-2 tracking-widest">ACCURACY</p>
+                    <p class="text-[10px] text-zinc-500 font-bold mb-2 tracking-widest">ACCURACY</p>
                     <p id="res-acc" class="text-6xl font-black text-pink-400">0%</p>
                 </div>
                 <div class="glass-panel p-6 rounded-2xl text-center border-b-4 border-purple-500">
-                    <p class="text-xs text-zinc-500 font-bold mb-2 tracking-widest">RAW WPM</p>
+                    <p class="text-[10px] text-zinc-500 font-bold mb-2 tracking-widest">RAW WPM</p>
                     <p id="res-raw" class="text-6xl font-black text-purple-400">00</p>
                 </div>
-                <div class="glass-panel p-6 rounded-2xl text-center border-b-4 border-red-500">
-                    <p class="text-xs text-zinc-500 font-bold mb-2 tracking-widest">ERRORS</p>
-                    <p id="res-err" class="text-6xl font-black text-red-500">0</p>
+                <div class="glass-panel p-6 rounded-2xl text-center border-b-4 border-green-500">
+                    <p class="text-[10px] text-zinc-500 font-bold mb-2 tracking-widest">ERRORS</p>
+                    <p id="res-err" class="text-6xl font-black text-green-400">0</p>
                 </div>
             </div>
 
-            <!-- Performance Graph (Chart.js) -->
-            <div class="w-full max-w-4xl glass-panel p-4 rounded-xl mb-8">
-                <p class="text-xs text-zinc-400 mb-2 font-bold uppercase tracking-widest text-center">WPM vs Errors Over Time</p>
-                <div class="chart-container">
+            <!-- Performance Graph -->
+            <div class="w-full max-w-5xl glass-panel p-6 rounded-2xl mb-10 slide-up" style="animation-delay: 0.1s;">
+                <p class="text-xs text-zinc-400 mb-4 font-bold uppercase tracking-widest text-center">WPM vs Errors Over Time</p>
+                <div style="position: relative; height: 250px; width: 100%;">
                     <canvas id="perfChart"></canvas>
                 </div>
             </div>
             
-            <div class="flex gap-4">
+            <div class="flex gap-4 slide-up" style="animation-delay: 0.2s;">
                 <button onclick="resetGameToMenu()" class="px-6 py-3 bg-zinc-800 text-sm font-bold rounded-xl hover:bg-zinc-700 transition">⌂ MAIN MENU</button>
-                <button onclick="retryLevel()" class="px-6 py-3 bg-zinc-800 text-sm font-bold rounded-xl hover:bg-zinc-700 transition">🔄 RETRY</button>
-                <button id="btn-next-level" onclick="playNextLevel()" class="px-8 py-3 bg-cyan-600 text-black text-sm font-black rounded-xl hover:bg-cyan-500 transition shadow-lg shadow-cyan-900/50">PROCEED TO NEXT ➔</button>
+                <button onclick="retryLevel()" class="px-6 py-3 bg-zinc-800 text-sm font-bold rounded-xl hover:bg-zinc-700 transition flex items-center gap-2">🔄 RETAKE TEST</button>
+                <button id="btn-next-level" onclick="playNextLevel()" class="hidden-ui px-10 py-3 bg-cyan-600 text-black text-sm font-black rounded-xl hover:bg-cyan-500 transition shadow-lg shadow-cyan-900/50">PROCEED TO NEXT ➔</button>
             </div>
         </div>
 
-        <!-- 3. ACTIVE TYPING ARENA -->
-        <div id="typing-container" class="w-full max-w-5xl opacity-0 transition-opacity duration-300 hidden-ui flex-col items-center">
+        <!-- 4. ACTIVE TYPING ARENA -->
+        <div id="typing-container" class="w-full max-w-[1100px] opacity-0 transition-opacity duration-300 hidden-ui flex-col items-center">
             
+            <!-- Hidden Input for mobile & logic capture -->
             <input type="text" id="hidden-input" class="absolute opacity-0 top-0 left-0 w-1 h-1 z-[-1]" autocomplete="off" autocorrect="off" spellcheck="false">
 
             <!-- HUD Control Bar -->
-            <div class="w-full flex justify-between items-center mb-6 glass-panel px-6 py-3 rounded-xl border border-zinc-800">
+            <div class="w-full flex justify-between items-center mb-6 glass-panel px-6 py-4 rounded-xl border border-zinc-800">
                 <div class="flex flex-col">
-                    <span id="task-diff" class="text-[10px] text-cyan-400 font-bold tracking-widest uppercase">EASY MODE</span>
-                    <span id="task-goal" class="text-xs text-zinc-400">Target: 20 WPM</span>
+                    <span id="task-diff" class="text-xs text-pink-400 font-black tracking-widest uppercase mb-1">EASY MODE</span>
+                    <span id="task-goal" class="text-sm text-zinc-400 font-mono">Target: 20 WPM</span>
                 </div>
                 
-                <div id="countdown" class="text-3xl font-black text-cyan-400 neon-cyan tracking-widest w-20 text-center">--:--</div>
+                <!-- Live progress bar representation -->
+                <div class="flex-1 mx-10 bg-zinc-900 rounded-full h-3 overflow-hidden border border-zinc-700 hidden sm:block">
+                    <div id="progress-bar" class="bg-gradient-to-r from-pink-500 to-cyan-400 h-full w-0 transition-all duration-300 shadow-[0_0_10px_#ec4899]"></div>
+                </div>
                 
-                <div class="flex gap-3 items-center">
-                    <button onclick="toggleKeymap()" id="btn-keymap" class="text-xs font-bold text-yellow-400 bg-yellow-900/30 px-4 py-1.5 rounded border border-yellow-500/50 transition">KEYMAP: ON</button>
+                <div class="flex gap-4 items-center">
+                    <button onclick="toggleKeymap()" id="btn-keymap" class="text-xs font-bold text-yellow-400 bg-yellow-900/30 px-4 py-2 rounded-lg border border-yellow-500/50 transition shadow-md">KEYMAP: ON</button>
                     <button onclick="resetGameToMenu()" class="text-xs font-bold text-zinc-500 hover:text-white transition px-2">EXIT</button>
                 </div>
             </div>
 
             <!-- The Text Engine Display -->
-            <div id="typing-area" class="font-mono w-full bg-zinc-900/40 p-8 rounded-2xl border border-zinc-800 shadow-inner">
+            <div id="typing-area" class="w-full bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
+                <!-- Spans injected via JS -->
             </div>
             
             <!-- Virtual Touch Keyboard -->
-            <div id="virtual-keyboard" class="mt-10 w-full max-w-4xl mx-auto pointer-events-none keymap-on">
+            <div id="virtual-keyboard" class="mt-8 w-full max-w-[900px] mx-auto pointer-events-none keymap-on">
+                <!-- Keys rendered via JS -->
             </div>
         </div>
     </main>
@@ -225,6 +266,7 @@
     <!-- =========================================
          MODALS (Settings, Auth)
     ========================================= -->
+
     <!-- Settings Modal -->
     <div id="settings-modal" class="hidden-ui fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
         <div class="glass-panel p-8 rounded-2xl w-full max-w-sm border-cyan-500/50">
@@ -249,38 +291,38 @@
         </div>
     </div>
 
-    <!-- Security & Auth Modal -->
+    <!-- Security & Auth Modal (Realistic UI) -->
     <div id="auth-modal" class="hidden-ui fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 backdrop-blur-md">
-        <div class="glass-panel p-8 rounded-2xl w-full max-w-md border-pink-500/50 shadow-2xl shadow-pink-900/30">
-            <div class="text-center mb-6">
-                <h2 class="text-2xl font-black text-white uppercase neon-glow tracking-widest">Secured Access</h2>
-                <p class="text-xs text-zinc-400 mt-1">Authenticate to save data</p>
+        <div class="glass-panel p-10 rounded-2xl w-full max-w-md border-pink-500/30 shadow-[0_0_40px_rgba(236,72,153,0.15)]">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-black text-white uppercase tracking-widest neon-glow">Secured Access</h2>
+                <p class="text-xs text-zinc-500 mt-2 font-mono">Authenticate to save data to the cloud.</p>
             </div>
 
             <!-- Tab Navigation -->
-            <div class="flex mb-6 border-b border-zinc-800">
-                <button id="tab-login" onclick="switchAuthTab('login')" class="flex-1 pb-3 text-sm font-bold border-b-2 border-pink-500 text-pink-400 transition">LOGIN</button>
-                <button id="tab-register" onclick="switchAuthTab('register')" class="flex-1 pb-3 text-sm font-bold border-b-2 border-transparent text-zinc-500 hover:text-white transition">REGISTER</button>
+            <div class="flex mb-8 border-b border-zinc-800">
+                <button id="tab-login" onclick="switchAuthTab('login')" class="flex-1 pb-3 text-sm font-bold border-b-2 border-pink-500 text-pink-400 transition tracking-widest uppercase">LOGIN</button>
+                <button id="tab-register" onclick="switchAuthTab('register')" class="flex-1 pb-3 text-sm font-bold border-b-2 border-transparent text-zinc-500 hover:text-white transition tracking-widest uppercase">REGISTER</button>
             </div>
 
             <!-- Login Form -->
-            <div id="form-login" class="space-y-4">
-                <input type="text" id="login-email" class="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-white text-sm outline-none focus:border-pink-500 transition" placeholder="Email or Mobile Number">
-                <input type="password" id="login-pass" class="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-white text-sm outline-none focus:border-pink-500 transition" placeholder="Password or OTP">
-                <div id="login-error" class="text-xs text-red-500 hidden-ui font-bold text-center"></div>
-                <button onclick="handleAuth('login')" class="w-full py-3 bg-pink-600 text-white text-sm font-black tracking-widest rounded-xl hover:bg-pink-500 transition shadow-lg shadow-pink-900/50">AUTHENTICATE</button>
+            <div id="form-login">
+                <input type="text" id="login-email" class="auth-input" placeholder="Phone (+919745499444) or Email">
+                <input type="password" id="login-pass" class="auth-input" placeholder="Password or OTP">
+                <div id="login-error" class="text-[10px] text-red-500 hidden-ui font-bold text-center mb-4"></div>
+                <button onclick="handleAuth('login')" class="w-full py-4 bg-pink-600 text-white text-sm font-black tracking-widest rounded-xl hover:bg-pink-500 transition shadow-lg shadow-pink-900/50 uppercase">AUTHENTICATE</button>
             </div>
 
             <!-- Register Form -->
-            <div id="form-register" class="hidden-ui space-y-4">
-                <input type="text" id="reg-name" class="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-white text-sm outline-none focus:border-cyan-400 transition" placeholder="Full Name / Gamer Tag">
-                <input type="text" id="reg-email" class="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-white text-sm outline-none focus:border-cyan-400 transition" placeholder="Mobile Number or Email">
-                <input type="password" id="reg-pass" class="w-full bg-zinc-900 border border-zinc-700 p-3 rounded-xl text-white text-sm outline-none focus:border-cyan-400 transition" placeholder="Create Password">
-                <div id="reg-error" class="text-xs text-red-500 hidden-ui font-bold text-center"></div>
-                <button onclick="handleAuth('register')" class="w-full py-3 bg-cyan-600 text-black text-sm font-black tracking-widest rounded-xl hover:bg-cyan-500 transition shadow-lg shadow-cyan-900/50">CREATE ACCOUNT</button>
+            <div id="form-register" class="hidden-ui">
+                <input type="text" id="reg-name" class="auth-input focus:border-cyan-400" placeholder="Gamer Tag">
+                <input type="text" id="reg-email" class="auth-input focus:border-cyan-400" placeholder="Mobile Number or Email">
+                <input type="password" id="reg-pass" class="auth-input focus:border-cyan-400" placeholder="Password (Min 6 chars)">
+                <div id="reg-error" class="text-[10px] text-red-500 hidden-ui font-bold text-center mb-4"></div>
+                <button onclick="handleAuth('register')" class="w-full py-4 bg-cyan-600 text-black text-sm font-black tracking-widest rounded-xl hover:bg-cyan-500 transition shadow-lg shadow-cyan-900/50 uppercase">CREATE ACCOUNT</button>
             </div>
 
-            <button onclick="closeAuthModal()" class="w-full mt-6 text-zinc-500 text-xs hover:text-white transition">Cancel</button>
+            <button onclick="closeAuthModal()" class="w-full mt-6 text-zinc-500 text-xs hover:text-white transition uppercase font-bold tracking-widest">Cancel</button>
         </div>
     </div>
 
@@ -288,51 +330,66 @@
          MAIN JAVASCRIPT ENGINE
     ========================================= -->
     <script>
-        /* --- 1. 100 LEVEL GENERATION --- */
-        const baseEasy = ["the", "quick", "brown", "fox", "jumps", "over", "lazy", "dog", "cat", "mat", "hello", "world", "good", "morning"];
-        const baseMed = ["JavaScript", "developer", "function", "variable", "interface", "application", "system", "beautiful", "keyboard", "practice"];
-        const baseHard = ["const", "let", "return", "Math.max()", "document.getElementById()", "=>", "{", "}", "[", "]", "console.log();", "function()"];
+        /* --- 1. 100 LEVEL GENERATION LOGIC --- */
+        const baseEasy = ["the", "quick", "brown", "fox", "jumps", "over", "lazy", "dog", "cat", "mat", "hello", "world", "good", "morning", "day", "night", "sun", "moon", "star", "light", "dark", "fast", "slow", "run", "walk", "stop", "go", "yes", "no", "is", "a", "it", "to", "in", "on", "of", "and"];
+        const baseMed = ["JavaScript", "developer", "function", "variable", "interface", "application", "system", "beautiful", "keyboard", "practice", "Velocity", "Cyberpunk", "Network", "Database", "Security", "Protocol", "Algorithm", "Framework", "Software", "Hardware"];
+        const baseHard = ["const", "let", "return", "Math.max()", "document.getElementById()", "=>", "{", "}", "[", "]", "console.log();", "function()", "=== true;", "arr.filter(x => x>0)", "sys.override(0x9A);", "margin-top: 10px;", "</div>", "</script>", "window.onload", "flex-direction: column;"];
         
         let allLevels = [];
         for(let i=1; i<=100; i++) {
             let difficulty = i <= 30 ? 'EASY' : (i <= 70 ? 'MEDIUM' : 'HARD');
-            let wordCount = 15 + Math.floor(i * 0.5); // Text length increases with level
-            let goalWpm = 10 + Math.floor(i * 0.6); // Goal WPM increases
+            let wordCount = 15 + Math.floor(i * 0.5); // Text length scales slowly
+            let goalWpm = 10 + Math.floor(i * 0.6);   // Goal WPM scales linearly (Level 100 = ~70 WPM)
             let words = [];
+            
             let pool = difficulty === 'EASY' ? baseEasy : (difficulty === 'MEDIUM' ? [...baseEasy, ...baseMed] : [...baseMed, ...baseHard]);
             
             for(let w=0; w<wordCount; w++) {
                 words.push(pool[Math.floor(Math.random() * pool.length)]);
             }
             
+            let textStr = words.join(" ");
+            if(difficulty === 'MEDIUM' || difficulty === 'EASY') textStr += ".";
+            
             allLevels.push({
                 id: i,
                 difficulty: difficulty,
                 goalWpm: goalWpm,
-                text: words.join(" ") + "."
+                text: textStr
             });
         }
 
-        // Touch Typing Color mapping
+        /* --- 2. TOUCH TYPING FINGER MAP (Matched to reference image precisely) --- */
         const fMap = {
-            'fp': ['q','a','z','1','p',';','/','0','-','=','[',']',"'"], 
-            'fr': ['w','s','x','2','o','l','.','9'],                      
-            'fm': ['e','d','c','3','i','k',',','8'],                      
-            'fi': ['r','f','v','t','g','b','4','5','y','h','n','u','j','m','6','7'], 
-            'ft': [' ']                                                   
+            'fp':  ['q','a','z','p',';','/','[',']',"'",'-','=','0'], 
+            'fr':  ['w','s','x','o','l','.','2','9'],                      
+            'fm':  ['e','d','c','i','k',',','3','8'],                      
+            'fil': ['r','f','v','t','g','b','4','5'], // Left Index
+            'fir': ['y','h','n','u','j','m','6','7'], // Right Index
+            'ft':  [' ']                              // Thumb (Spacebar)
         };
 
-        /* --- 2. GLOBAL STATE --- */
+        function getFClass(k) {
+            let lowK = k.toLowerCase();
+            for(let [f, keys] of Object.entries(fMap)) {
+                if(keys.includes(lowK)) return f;
+            }
+            return ''; 
+        }
+
+        /* --- 3. GLOBAL STATE & LOCAL STORAGE --- */
         let currentLevelId = 1, isPlaying = false, startTime = 0, endTime = 0;
         let animFrameId = null, perfChart = null;
         let textData = "", charIdx = 0, errs = 0, typedCount = 0;
         
-        // Data Logging for Graphs
         let graphData = { timeLabel: [], wpmLog: [], errLog: [] };
         let graphInterval = null;
 
         let prefs = { sound: true, keymap: true, reader: false };
         let session = { loggedIn: false, name: "GUEST" };
+        
+        // Track unlocked levels from localStorage
+        let unlockedLevels = parseInt(localStorage.getItem('gx_unlocked')) || 1;
 
         const els = {
             container: document.getElementById('typing-container'),
@@ -341,17 +398,17 @@
             vkb: document.getElementById('virtual-keyboard'),
             wpm: document.getElementById('ui-wpm'),
             acc: document.getElementById('ui-acc'),
-            timer: document.getElementById('countdown')
+            prog: document.getElementById('progress-bar')
         };
 
-        /* --- 3. AUDIO ENGINE & SYNTHESIS --- */
+        /* --- 4. AUDIO ENGINE (Web Audio API) --- */
         const aCtx = new (window.AudioContext || window.webkitAudioContext)();
         function thock(isErr = false) {
             if(!prefs.sound) return;
             if(aCtx.state === 'suspended') aCtx.resume();
             const osc = aCtx.createOscillator(), gain = aCtx.createGain();
             osc.type = isErr ? 'sawtooth' : 'sine';
-            osc.frequency.setValueAtTime(isErr ? 120 : 180, aCtx.currentTime);
+            osc.frequency.setValueAtTime(isErr ? 120 : 200, aCtx.currentTime);
             osc.frequency.exponentialRampToValueAtTime(50, aCtx.currentTime + 0.05);
             gain.gain.setValueAtTime(0.3, aCtx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.01, aCtx.currentTime + 0.05);
@@ -359,7 +416,6 @@
             osc.start(); osc.stop(aCtx.currentTime + 0.1);
         }
 
-        // Winning / Losing Tones
         function playTone(type) {
             if(!prefs.sound) return;
             if(aCtx.state === 'suspended') aCtx.resume();
@@ -371,36 +427,30 @@
                 osc.frequency.setValueAtTime(800, aCtx.currentTime + 0.2);
             } else {
                 osc.frequency.setValueAtTime(300, aCtx.currentTime);
-                osc.frequency.setValueAtTime(250, aCtx.currentTime + 0.2);
+                osc.frequency.setValueAtTime(200, aCtx.currentTime + 0.2);
             }
             gain.gain.setValueAtTime(0.2, aCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, aCtx.currentTime + 0.4);
+            gain.gain.exponentialRampToValueAtTime(0.01, aCtx.currentTime + 0.5);
             osc.connect(gain); gain.connect(aCtx.destination);
-            osc.start(); osc.stop(aCtx.currentTime + 0.4);
+            osc.start(); osc.stop(aCtx.currentTime + 0.5);
         }
 
-        // Reader Option (Speech Synthesis)
         function readText(txt) {
             if(!prefs.reader || !window.speechSynthesis) return;
             window.speechSynthesis.cancel();
             let msg = new SpeechSynthesisUtterance(txt);
-            msg.rate = 1.0; msg.pitch = 1.2;
+            msg.rate = 1.0; msg.pitch = 1.1;
             window.speechSynthesis.speak(msg);
         }
 
         function toggleReader() {
             prefs.reader = !prefs.reader;
             document.getElementById('btn-reader').className = prefs.reader ? "p-2.5 bg-cyan-900 rounded-lg border border-cyan-500 transition" : "p-2.5 bg-zinc-900 rounded-lg border border-zinc-700 hover:border-cyan-400 transition";
-            if(prefs.reader) readText("Reading assistant enabled.");
+            if(prefs.reader) readText("Reading assistant online.");
             else window.speechSynthesis.cancel();
         }
 
-        /* --- 4. KEYBOARD RENDERER --- */
-        function getFClass(k) {
-            for(let [f, keys] of Object.entries(fMap)) if(keys.includes(k.toLowerCase())) return f;
-            return '';
-        }
-
+        /* --- 5. KEYBOARD RENDERER --- */
         function renderKeyboard() {
             const lay = [
                 [{k:'q', h:'L-P'}, {k:'w', h:'L-R'}, {k:'e', h:'L-M'}, {k:'r', h:'L-I'}, {k:'t', h:'L-I'}, {k:'y', h:'R-I'}, {k:'u', h:'R-I'}, {k:'i', h:'R-M'}, {k:'o', h:'R-R'}, {k:'p', h:'R-P'}, {k:'[', h:'R-P'}, {k:']', h:'R-P'}],
@@ -412,7 +462,12 @@
                 let rDiv = document.createElement('div'); rDiv.className = 'key-row';
                 row.forEach(obj => {
                     let kDiv = document.createElement('div');
-                    kDiv.className = `key ${getFClass(obj.k)}`; kDiv.id = `key-${obj.k === "'" ? "quote" : obj.k}`;
+                    // Check Left vs Right Index finger
+                    let fClass = getFClass(obj.k);
+                    if(fClass === 'fi') fClass = ['r','f','v','t','g','b','4','5'].includes(obj.k.toLowerCase()) ? 'fil' : 'fir';
+                    
+                    kDiv.className = `key ${fClass}`; 
+                    kDiv.id = `key-${obj.k === "'" ? "quote" : obj.k}`;
                     kDiv.innerHTML = `<span>${obj.k.toUpperCase()}</span><span class="key-hint">${obj.h}</span>`;
                     rDiv.appendChild(kDiv);
                 });
@@ -420,27 +475,35 @@
             });
             let sRow = document.createElement('div'); sRow.className = 'key-row';
             let sKey = document.createElement('div'); 
-            sKey.className = `key spacebar ${getFClass(' ')}`; sKey.id = 'key-space';
-            sKey.innerHTML = `<span>SPACE</span><span class="key-hint">THUMB</span>`;
+            sKey.className = `key spacebar ft`; sKey.id = 'key-space'; 
+            sKey.innerHTML = `<span>SPACE</span><span class="key-hint">THUMBS</span>`;
             sRow.appendChild(sKey); els.vkb.appendChild(sRow);
         }
 
-        /* --- 5. LEVEL SELECTION & INIT --- */
+        /* --- 6. LEVEL LOCK / UNLOCK SYSTEM (1-100 Logic) --- */
         function showLevelSelector(requireLogin = false) {
             if(requireLogin && !session.loggedIn) { openAuthModal(); return; }
             document.getElementById('start-screen').classList.add('hidden-ui');
+            
             let grid = document.getElementById('level-grid');
             grid.innerHTML = '';
+            
             allLevels.forEach(l => {
                 let btn = document.createElement('button');
-                btn.className = `p-3 text-sm font-bold rounded border ${l.difficulty === 'EASY' ? 'border-cyan-500/30 text-cyan-400 hover:bg-cyan-900/30' : (l.difficulty === 'MEDIUM' ? 'border-pink-500/30 text-pink-400 hover:bg-pink-900/30' : 'border-red-500/30 text-red-500 hover:bg-red-900/30')} bg-zinc-900`;
+                let isUnlocked = l.id <= unlockedLevels;
+                
+                btn.className = `level-btn p-4 text-sm font-bold rounded-xl border transition shadow-lg ${isUnlocked ? (l.difficulty === 'EASY' ? 'border-cyan-500/30 text-cyan-400 hover:bg-cyan-900/30 hover:-translate-y-1 hover:shadow-cyan-900/50' : (l.difficulty === 'MEDIUM' ? 'border-pink-500/30 text-pink-400 hover:bg-pink-900/30 hover:-translate-y-1 hover:shadow-pink-900/50' : 'border-red-500/30 text-red-500 hover:bg-red-900/30 hover:-translate-y-1 hover:shadow-red-900/50')) : 'level-locked'} bg-zinc-900`;
                 btn.innerText = l.id;
-                btn.onclick = () => { document.getElementById('level-selector').classList.add('hidden-ui'); startGame(l.id); };
+                
+                if(isUnlocked) {
+                    btn.onclick = () => { document.getElementById('level-selector').classList.add('hidden-ui'); startGame(l.id); };
+                }
                 grid.appendChild(btn);
             });
             document.getElementById('level-selector').classList.remove('hidden-ui');
         }
 
+        /* --- 7. GAME INITIALIZATION --- */
         function startGame(lvlId) {
             currentLevelId = lvlId;
             els.container.classList.remove('hidden-ui');
@@ -461,7 +524,7 @@
             document.getElementById('ui-level').innerText = `${lvl.id}/100`;
             document.getElementById('task-diff').innerText = `${lvl.difficulty} MODE`;
             document.getElementById('task-goal').innerText = `Target: ${lvl.goalWpm} WPM`;
-            els.timer.innerText = "00:00"; els.wpm.innerText = '00'; els.acc.innerText = '100%';
+            els.wpm.innerText = '00'; els.acc.innerText = '100%'; els.prog.style.width = '0%';
             
             els.area.innerHTML = '';
             const frag = document.createDocumentFragment();
@@ -471,11 +534,11 @@
             });
             els.area.appendChild(frag);
             
-            readText("Ready. Start typing.");
+            readText(`Level ${lvl.id}. Target is ${lvl.goalWpm} words per minute. Begin.`);
             els.input.value = ''; els.input.focus();
         }
 
-        /* --- 6. INPUT HANDLING --- */
+        /* --- 8. INPUT HANDLING & ENGINE (Overlap Fixed) --- */
         els.input.addEventListener('input', () => {
             if(!els.input.value) return; 
             const char = els.input.value.slice(-1); els.input.value = '';
@@ -486,13 +549,13 @@
             if(!isPlaying && e.key.length === 1) {
                 isPlaying = true; startTime = performance.now();
                 animFrameId = requestAnimationFrame(gameLoop);
-                // Record graph data every 2 seconds
-                graphInterval = setInterval(logGraphData, 2000);
+                graphInterval = setInterval(logGraphData, 1500);
             }
             if(e.key === "Backspace" && charIdx > 0) {
                 els.area.childNodes[charIdx].className = 'c-pend';
                 charIdx--;
                 els.area.childNodes[charIdx].className = 'c-curr';
+                els.prog.style.width = `${(charIdx / textData.length) * 100}%`;
             }
         });
 
@@ -515,20 +578,16 @@
             }
 
             charIdx++;
+            els.prog.style.width = `${(charIdx / textData.length) * 100}%`; 
+            
             if(charIdx >= textData.length) { finishTest(); return; }
             els.area.childNodes[charIdx].className = 'c-curr';
         }
 
-        /* --- 7. GAME LOOP & GRAPHS --- */
+        /* --- 9. MATHEMATICS & GAME LOOP --- */
         function gameLoop() {
             if(!isPlaying) return;
             let timeElapsedMin = (performance.now() - startTime) / 60000;
-            let timeElapsedSec = (performance.now() - startTime) / 1000;
-            
-            // Format timer MM:SS
-            let m = Math.floor(timeElapsedSec / 60).toString().padStart(2, '0');
-            let s = Math.floor(timeElapsedSec % 60).toString().padStart(2, '0');
-            els.timer.innerText = `${m}:${s}`;
 
             if(timeElapsedMin > 0 && typedCount > 0) {
                 let wpm = Math.max(0, Math.round(((typedCount - errs) / 5) / timeElapsedMin));
@@ -555,10 +614,18 @@
             let rawWpm = Math.round((typedCount / 5) / minElapsed);
             let acc = typedCount > 0 ? Math.round(((typedCount - errs) / typedCount) * 100) : 0;
             let lvl = allLevels[currentLevelId - 1];
+            
             let pass = netWpm >= lvl.goalWpm;
 
-            if(pass) playTone('win'); else playTone('loss');
-            if(pass) readText("Mission Accomplished."); else readText("Target missed. Try again.");
+            if(pass) {
+                playTone('win'); readText("Target achieved. Level cleared.");
+                if(session.loggedIn && currentLevelId === unlockedLevels && currentLevelId < 100) {
+                    unlockedLevels++;
+                    localStorage.setItem('gx_unlocked', unlockedLevels);
+                }
+            } else {
+                playTone('loss'); readText("Target missed. Velocity insufficient.");
+            }
 
             els.container.style.opacity = '0';
             setTimeout(() => {
@@ -577,11 +644,11 @@
                 if (pass) {
                     titleEl.innerText = "TEST PASSED"; titleEl.className = "text-5xl md:text-6xl font-black mb-2 text-cyan-400 neon-glow tracking-widest uppercase";
                     msgEl.innerText = `Goal: ${lvl.goalWpm} WPM. You hit ${netWpm} WPM.`;
-                    if(currentLevelId < 100) nextBtn.style.display = 'block'; else nextBtn.style.display = 'none';
+                    if(currentLevelId < 100) nextBtn.classList.remove('hidden-ui'); else nextBtn.classList.add('hidden-ui');
                 } else {
                     titleEl.innerText = "TEST FAILED"; titleEl.className = "text-5xl md:text-6xl font-black mb-2 text-red-500 tracking-widest uppercase";
                     msgEl.innerText = `Goal: ${lvl.goalWpm} WPM. You hit ${netWpm} WPM.`;
-                    nextBtn.style.display = 'none';
+                    nextBtn.classList.add('hidden-ui');
                 }
 
                 drawChart();
@@ -589,7 +656,7 @@
             }, 300);
         }
 
-        /* --- 8. CHART.JS RENDERER --- */
+        /* --- 10. CHART.JS RENDERER --- */
         function drawChart() {
             const ctx = document.getElementById('perfChart').getContext('2d');
             if(perfChart) perfChart.destroy();
@@ -610,41 +677,46 @@
             });
         }
 
-        /* --- 9. UI ROUTING & BUTTON ACTIONS --- */
+        /* --- 11. UI ROUTING & ACTIONS --- */
         function retryLevel() {
             document.getElementById('result-screen').classList.add('hidden-ui');
             els.container.classList.remove('hidden-ui');
             setTimeout(() => { els.container.style.opacity = '1'; initTest(); }, 50);
         }
         function playNextLevel() { currentLevelId++; retryLevel(); }
+        
         function resetGameToMenu() {
             document.getElementById('result-screen').classList.add('hidden-ui');
             els.container.classList.add('hidden-ui'); els.container.style.opacity = '0';
-            document.getElementById('start-screen').classList.remove('hidden-ui');
+            showLevelSelector(false);
             isPlaying = false; clearInterval(graphInterval); cancelAnimationFrame(animFrameId);
         }
+        
         function toggleKeymap() {
             prefs.keymap = !prefs.keymap;
             let btn = document.getElementById('btn-keymap');
-            if(prefs.keymap) { els.vkb.classList.add('keymap-on'); btn.innerText = "KEYMAP: ON"; btn.className = "text-xs font-bold text-yellow-400 bg-yellow-900/30 px-4 py-1.5 rounded border border-yellow-500/50"; } 
-            else { els.vkb.classList.remove('keymap-on'); btn.innerText = "KEYMAP: OFF"; btn.className = "text-xs font-bold text-zinc-500 bg-zinc-900/50 px-4 py-1.5 rounded border border-zinc-700"; }
+            if(prefs.keymap) { els.vkb.classList.add('keymap-on'); btn.innerText = "KEYMAP: ON"; btn.className = "text-xs font-bold text-yellow-400 bg-yellow-900/30 px-4 py-2 rounded-lg border border-yellow-500/50 shadow-md"; } 
+            else { els.vkb.classList.remove('keymap-on'); btn.innerText = "KEYMAP: OFF"; btn.className = "text-xs font-bold text-zinc-500 bg-zinc-900/50 px-4 py-2 rounded-lg border border-zinc-700 shadow-md"; }
             els.input.focus();
         }
+        
         function toggleSettings() { document.getElementById('settings-modal').classList.toggle('hidden-ui'); }
         document.getElementById('toggle-sound').addEventListener('change', e => prefs.sound = e.target.checked);
         document.getElementById('toggle-reader').addEventListener('change', e => { prefs.reader = e.target.checked; if(prefs.reader) readText("Reading assistant enabled"); else window.speechSynthesis.cancel(); });
         document.addEventListener('click', (e) => { if(!e.target.closest('button') && !els.container.classList.contains('hidden-ui')) els.input.focus(); });
 
-        /* --- 10. AUTHENTICATION --- */
+        /* --- 12. REALISTIC AUTHENTICATION UI --- */
         function openAuthModal() { document.getElementById('auth-modal').classList.remove('hidden-ui'); switchAuthTab('login'); }
         function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden-ui'); }
+        
         function switchAuthTab(t) {
             document.getElementById('form-login').classList.toggle('hidden-ui', t !== 'login');
             document.getElementById('form-register').classList.toggle('hidden-ui', t !== 'register');
-            document.getElementById('tab-login').className = `flex-1 pb-3 text-sm font-bold border-b-2 ${t==='login' ? 'border-pink-500 text-pink-400' : 'border-transparent text-zinc-500'}`;
-            document.getElementById('tab-register').className = `flex-1 pb-3 text-sm font-bold border-b-2 ${t==='register' ? 'border-cyan-400 text-cyan-400' : 'border-transparent text-zinc-500'}`;
+            document.getElementById('tab-login').className = `flex-1 pb-3 text-sm font-bold border-b-2 transition uppercase tracking-widest ${t==='login' ? 'border-pink-500 text-pink-400' : 'border-transparent text-zinc-500 hover:text-white'}`;
+            document.getElementById('tab-register').className = `flex-1 pb-3 text-sm font-bold border-b-2 transition uppercase tracking-widest ${t==='register' ? 'border-cyan-400 text-cyan-400' : 'border-transparent text-zinc-500 hover:text-white'}`;
             document.querySelectorAll('.text-red-500').forEach(el => el.classList.add('hidden-ui'));
         }
+
         function handleAuth(type) {
             let e = document.getElementById(type === 'login' ? 'login-email' : 'reg-email').value.trim();
             let p = document.getElementById(type === 'login' ? 'login-pass' : 'reg-pass').value;
@@ -656,15 +728,18 @@
             let uName = e.split('@')[0].toUpperCase();
             if(type === 'register') {
                 let n = document.getElementById('reg-name').value.trim();
-                if(!n) { err.innerText = "Name required."; err.classList.remove('hidden-ui'); return; }
+                if(!n) { err.innerText = "Gamer Tag required."; err.classList.remove('hidden-ui'); return; }
                 uName = n.toUpperCase();
             }
 
+            // Set Session
             session = { loggedIn: true, name: uName.replace(/[^\w]/gi, '') }; 
             let pb = document.getElementById('profile-btn');
             pb.innerText = session.name;
-            pb.className = "px-5 py-2.5 bg-pink-900/30 rounded-lg border border-pink-500 text-xs font-bold text-pink-400 uppercase tracking-wider";
-            closeAuthModal(); showLevelSelector(true);
+            pb.className = "px-6 py-2.5 bg-pink-900/30 rounded-lg border border-pink-500 text-xs font-bold text-pink-400 uppercase tracking-wider shadow-lg shadow-pink-900/40";
+            
+            closeAuthModal(); 
+            showLevelSelector(false); // Open levels after login
         }
     </script>
 </body>
