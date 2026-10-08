@@ -366,37 +366,49 @@
             prog: document.getElementById('progress-bar')
         };
 
-        const aCtx = new (window.AudioContext || window.webkitAudioContext)();
+        let aCtx = null;
+        function ensureAudio() {
+            if (!prefs.sound) return null;
+            try {
+                if (!aCtx) {
+                    const AC = window.AudioContext || window.webkitAudioContext;
+                    if (!AC) return null;
+                    aCtx = new AC();
+                }
+                if (aCtx.state === 'suspended') aCtx.resume().catch(() => {});
+                return aCtx;
+            } catch (e) { return null; }
+        }
         function thock(isErr = false) {
-            if(!prefs.sound) return;
-            if(aCtx.state === 'suspended') aCtx.resume();
-            const osc = aCtx.createOscillator(), gain = aCtx.createGain();
+            const ctx = ensureAudio();
+            if (!ctx) return;
+            const osc = ctx.createOscillator(), gain = ctx.createGain();
             osc.type = isErr ? 'sawtooth' : 'sine';
-            osc.frequency.setValueAtTime(isErr ? 120 : 200, aCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(50, aCtx.currentTime + 0.05);
-            gain.gain.setValueAtTime(0.3, aCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, aCtx.currentTime + 0.05);
-            osc.connect(gain); gain.connect(aCtx.destination);
-            osc.start(); osc.stop(aCtx.currentTime + 0.1);
+            osc.frequency.setValueAtTime(isErr ? 120 : 200, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(50, ctx.currentTime + 0.05);
+            gain.gain.setValueAtTime(0.3, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.05);
+            osc.connect(gain); gain.connect(ctx.destination);
+            osc.start(); osc.stop(ctx.currentTime + 0.1);
         }
 
         function playTone(type) {
-            if(!prefs.sound) return;
-            if(aCtx.state === 'suspended') aCtx.resume();
-            const osc = aCtx.createOscillator(), gain = aCtx.createGain();
+            const ctx = ensureAudio();
+            if (!ctx) return;
+            const osc = ctx.createOscillator(), gain = ctx.createGain();
             osc.type = 'triangle';
             if(type === 'win') {
-                osc.frequency.setValueAtTime(400, aCtx.currentTime);
-                osc.frequency.setValueAtTime(600, aCtx.currentTime + 0.1);
-                osc.frequency.setValueAtTime(800, aCtx.currentTime + 0.2);
+                osc.frequency.setValueAtTime(400, ctx.currentTime);
+                osc.frequency.setValueAtTime(600, ctx.currentTime + 0.1);
+                osc.frequency.setValueAtTime(800, ctx.currentTime + 0.2);
             } else {
-                osc.frequency.setValueAtTime(300, aCtx.currentTime);
-                osc.frequency.setValueAtTime(200, aCtx.currentTime + 0.2);
+                osc.frequency.setValueAtTime(300, ctx.currentTime);
+                osc.frequency.setValueAtTime(200, ctx.currentTime + 0.2);
             }
-            gain.gain.setValueAtTime(0.2, aCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.01, aCtx.currentTime + 0.5);
-            osc.connect(gain); gain.connect(aCtx.destination);
-            osc.start(); osc.stop(aCtx.currentTime + 0.5);
+            gain.gain.setValueAtTime(0.2, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.5);
+            osc.connect(gain); gain.connect(ctx.destination);
+            osc.start(); osc.stop(ctx.currentTime + 0.5);
         }
 
         function readText(txt) {
@@ -466,6 +478,9 @@
 
         function startGame(lvlId) {
             currentLevelId = lvlId;
+            document.getElementById('start-screen').classList.add('hidden-ui');
+            document.getElementById('level-selector').classList.add('hidden-ui');
+            document.getElementById('result-screen').classList.add('hidden-ui');
             els.container.classList.remove('hidden-ui');
             setTimeout(() => {
                 els.container.style.opacity = '1';
@@ -499,23 +514,37 @@
         }
 
         els.input.addEventListener('input', () => {
-            if(!els.input.value) return; 
-            const char = els.input.value.slice(-1); els.input.value = '';
-            processStroke(char);
+            // Keep the hidden input empty. Actual keystrokes are handled by keydown below.
+            els.input.value = '';
         });
 
         els.input.addEventListener('keydown', (e) => {
-            if(!isPlaying && e.key.length === 1) {
-                isPlaying = true; startTime = performance.now();
+            if (e.ctrlKey || e.altKey || e.metaKey) return;
+
+            if (e.key === 'Backspace') {
+                e.preventDefault();
+                if (charIdx > 0) {
+                    const current = els.area.childNodes[charIdx];
+                    if (current) current.className = 'c-pend';
+                    charIdx--;
+                    els.area.childNodes[charIdx].className = 'c-curr';
+                    els.prog.style.width = `${(charIdx / textData.length) * 100}%`;
+                }
+                return;
+            }
+
+            // Only printable characters and Space should enter the test.
+            if (e.key.length !== 1 && e.key !== ' ') return;
+            e.preventDefault();
+
+            if (!isPlaying) {
+                isPlaying = true;
+                startTime = performance.now();
                 animFrameId = requestAnimationFrame(gameLoop);
-                graphInterval = setInterval(logGraphData, 1500); 
+                graphInterval = setInterval(logGraphData, 1500);
             }
-            if(e.key === "Backspace" && charIdx > 0) {
-                els.area.childNodes[charIdx].className = 'c-pend';
-                charIdx--;
-                els.area.childNodes[charIdx].className = 'c-curr';
-                els.prog.style.width = `${(charIdx / textData.length) * 100}%`;
-            }
+
+            processStroke(e.key);
         });
 
         function processStroke(char) {
@@ -659,7 +688,17 @@
         function toggleSettings() { document.getElementById('settings-modal').classList.toggle('hidden-ui'); }
         document.getElementById('toggle-sound').addEventListener('change', e => prefs.sound = e.target.checked);
         document.getElementById('toggle-reader').addEventListener('change', e => { prefs.reader = e.target.checked; if(prefs.reader) readText("Reading assistant enabled"); else window.speechSynthesis.cancel(); });
-        document.addEventListener('click', (e) => { if(!e.target.closest('button') && !els.container.classList.contains('hidden-ui')) els.input.focus(); });
+        document.addEventListener('click', (e) => {
+            if (!els.container.classList.contains('hidden-ui') && !e.target.closest('button,input')) {
+                els.input.focus();
+            }
+        });
+        window.addEventListener('keydown', (e) => {
+            if (!els.container.classList.contains('hidden-ui') &&
+                !e.ctrlKey && !e.altKey && !e.metaKey) {
+                els.input.focus();
+            }
+        });
 
         function openAuthModal() { document.getElementById('auth-modal').classList.remove('hidden-ui'); switchAuthTab('login'); }
         function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden-ui'); }
