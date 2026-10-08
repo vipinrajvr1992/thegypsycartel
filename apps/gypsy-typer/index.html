@@ -57,17 +57,38 @@
         .key.spacebar { width: 350px; }
         .key-hint { font-size: 0.5rem; opacity: 0.5; margin-top: 2px; font-family: 'Orbitron', sans-serif; }
 
-        /* Typing Area Engine */
-        #typing-area { line-height: 1.8; letter-spacing: 2px; }
-        #typing-area span { transition: color 0.1s; font-size: 1.7rem; position: relative; }
-        .char-correct { color: #d8b4fe; text-shadow: 0 0 10px rgba(168, 85, 247, 0.8); }
-        .char-wrong { color: #f87171; background: rgba(239, 68, 68, 0.2); border-radius: 4px; text-shadow: 0 0 10px #ef4444; }
-        .char-current { color: #fff; text-shadow: 0 0 10px #fff; }
+        /* --- FIXED TYPING AREA ENGINE --- */
+        #typing-area { 
+            line-height: 1.8; 
+            letter-spacing: 2px; 
+            /* Prevent text selection highlighting that ruins readability */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        #typing-area span { 
+            transition: color 0.1s, background-color 0.1s; 
+            font-size: 1.8rem; 
+            position: relative; 
+            padding: 0 2px; /* Slight padding to prevent background colors from overlapping tightly */
+        }
+        
+        /* The upcoming text you need to type (Made brighter so it's readable) */
+        .char-pending { color: #888; } 
+        
+        /* Correctly typed text */
+        .char-correct { color: #a855f7; text-shadow: 0 0 8px rgba(168, 85, 247, 0.6); } 
+        
+        /* Wrongly typed text */
+        .char-wrong { color: #fff; background-color: #ef4444; border-radius: 4px; text-shadow: none; box-shadow: 0 0 10px #ef4444; } 
+        
+        /* The exact character you are currently on */
+        .char-current { color: #fff; text-shadow: 0 0 10px #fff; background-color: rgba(255,255,255,0.1); border-radius: 4px;}
         .char-current::after {
             content: ''; position: absolute; left: 0; bottom: -4px; width: 100%; height: 3px; 
             background: var(--primary); animation: blink 1s infinite; box-shadow: 0 0 10px var(--primary);
         }
-        .char-pending { color: #555; }
         
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         
@@ -176,7 +197,7 @@
             </div>
 
             <!-- The Text Engine -->
-            <div id="typing-area" class="font-mono w-full text-left bg-zinc-900/40 p-6 rounded-xl border border-zinc-800 shadow-inner outline-none focus:border-pink-500/50 transition-colors" tabindex="0">
+            <div id="typing-area" class="font-mono w-full text-left bg-zinc-900/40 p-8 rounded-xl border border-zinc-800 shadow-inner outline-none focus:border-pink-500/50 transition-colors" tabindex="0">
                 <!-- Spans injected via JS -->
             </div>
             
@@ -209,7 +230,7 @@
         </div>
     </div>
 
-    <!-- Security & Auth Modal (Frontend Validation Built-in) -->
+    <!-- Security & Auth Modal -->
     <div id="auth-modal" class="hidden fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 backdrop-blur-md">
         <div class="glass-panel p-8 rounded-2xl w-full max-w-md border-pink-500/50 shadow-2xl shadow-pink-900/20">
             <div class="text-center mb-6">
@@ -263,7 +284,6 @@
     <script>
         /* =========================================
            1. CORE DATA & LEVEL CONFIGURATION
-           Progressive difficulty modeled for optimal skill growth.
         ========================================= */
         const levels = [
             { id: 1, name: "Home Row Basics", desc: "Index and middle fingers only. Master the core.", goalWpm: 15, goalAcc: 90, text: "asdf jkl; asdf jkl; sad flask dash fall jaks all adds asks falls flash salad flaks" },
@@ -302,15 +322,11 @@
         let currentLevel = 1, isPlaying = false, startTime = 0, endTime = 0;
         let animationFrameId = null;
         let currentText = "", charIndex = 0, mistakes = 0, totalTyped = 0;
-        let keystrokeTimes = []; // For consistency calculation
+        let keystrokeTimes = []; 
         
-        // System Settings
         let settings = { sound: true, vkb: true };
-        
-        // User Session
         let userSession = { loggedIn: false, name: "GUEST" };
 
-        // DOM Elements cache
         const elTypingArea = document.getElementById('typing-area');
         const elVkb = document.getElementById('virtual-keyboard');
         const elHudWpm = document.getElementById('ui-wpm');
@@ -392,10 +408,8 @@
             document.getElementById('task-desc').innerText = levelData.desc;
             document.getElementById('task-goal').innerText = `${levelData.goalWpm} WPM | ${levelData.goalAcc}% ACC`;
 
-            // Blind mode for Level 10
             elVkb.style.display = (lvlId === 10 || !settings.vkb) ? 'none' : 'block';
 
-            // High Performance DOM Setup (using DocumentFragment for zero lag load)
             elTypingArea.innerHTML = '';
             const fragment = document.createDocumentFragment();
             currentText.split('').forEach((char, index) => {
@@ -408,7 +422,6 @@
             elTypingArea.focus();
         }
 
-        // The Event Listener (Zero Lag Input)
         elTypingArea.addEventListener('keydown', (e) => {
             if(["Shift", "Control", "Alt", "Meta", "Tab", "Enter", "Escape"].includes(e.key)) return;
             e.preventDefault();
@@ -420,7 +433,7 @@
 
             const expectedChar = currentText[charIndex];
             const typedChar = e.key;
-            const spans = elTypingArea.childNodes; // Faster than querySelectorAll
+            const spans = elTypingArea.childNodes; 
 
             // Virtual Keyboard Animation
             let keyId = typedChar.toLowerCase();
@@ -432,7 +445,7 @@
                 setTimeout(() => keyEl.classList.remove('active-key'), 100);
             }
 
-            // Backspace Logic
+            // Backspace
             if (typedChar === "Backspace") {
                 if (charIndex > 0) {
                     spans[charIndex].className = 'char-pending';
@@ -444,7 +457,7 @@
 
             // Validation
             totalTyped++;
-            keystrokeTimes.push(performance.now()); // Record for consistency math
+            keystrokeTimes.push(performance.now());
 
             if (typedChar === expectedChar) {
                 spans[charIndex].className = 'char-correct';
@@ -453,14 +466,12 @@
                 spans[charIndex].className = 'char-wrong';
                 mistakes++;
                 playThock(true);
-                // Optional glitch effect
                 elTypingArea.classList.add('shake-error');
                 setTimeout(() => elTypingArea.classList.remove('shake-error'), 200);
             }
 
             charIndex++;
             
-            // Level Completion Check
             if (charIndex >= currentText.length) {
                 endLevel();
                 return;
@@ -494,10 +505,8 @@
                 gaps.push(keystrokeTimes[i] - keystrokeTimes[i-1]);
             }
             const mean = gaps.reduce((a,b)=>a+b) / gaps.length;
-            // Variance
             const variance = gaps.reduce((a,b)=>a + Math.pow(b - mean, 2), 0) / gaps.length;
             const stdDev = Math.sqrt(variance);
-            // Coefficient of variation to consistency percentage (custom formula)
             let consistency = 100 - (stdDev / mean) * 50; 
             return Math.min(Math.max(Math.round(consistency), 0), 100);
         }
@@ -523,7 +532,6 @@
                 document.getElementById('res-raw').innerText = rawWpm;
                 document.getElementById('res-cons').innerText = consistency + '%';
                 
-                // Pass/Fail Logic
                 const pass = (netWpm >= levelData.goalWpm && accuracy >= levelData.goalAcc);
                 const titleEl = document.getElementById('result-title');
                 const msgEl = document.getElementById('result-msg');
@@ -531,13 +539,13 @@
 
                 if (pass) {
                     titleEl.innerText = "MISSION ACCOMPLISHED";
-                    titleEl.className = "text-5xl md:text-6xl font-black mb-2 text-cyan-400 neon-glow tracking-widest";
+                    titleEl.className = "text-5xl md:text-6xl font-black mb-2 text-cyan-400 neon-glow tracking-widest uppercase";
                     msgEl.innerText = "Targets breached successfully. Ready for escalation.";
                     if(currentLevel < 10) { nextBtn.style.display = 'block'; } 
                     else { msgEl.innerText = "YOU HAVE MASTERED CYBER VELOCITY."; nextBtn.style.display = 'none'; }
                 } else {
                     titleEl.innerText = "MISSION FAILED";
-                    titleEl.className = "text-5xl md:text-6xl font-black mb-2 text-red-500 tracking-widest";
+                    titleEl.className = "text-5xl md:text-6xl font-black mb-2 text-red-500 tracking-widest uppercase";
                     msgEl.innerText = `Required: ${levelData.goalWpm} WPM & ${levelData.goalAcc}% ACC. Your Net WPM: ${netWpm}, ACC: ${accuracy}%.`;
                     nextBtn.style.display = 'none';
                 }
@@ -565,12 +573,10 @@
             if(currentLevel !== 10) elVkb.style.display = settings.vkb ? 'block' : 'none';
         });
 
-        // Ensure container click refocuses input
         document.getElementById('typing-container').addEventListener('click', () => elTypingArea.focus());
 
         /* =========================================
-           9. SECURITY & AUTHENTICATION (Frontend Simulation)
-           Validates inputs to prevent XSS and malformed data.
+           9. SECURITY & AUTHENTICATION 
         ========================================= */
         function openAuthModal() { document.getElementById('auth-modal').classList.remove('hidden'); switchTab('login'); }
         function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden'); }
@@ -592,9 +598,8 @@
             }
         }
 
-        // Basic Security / Sanitization Functions
         const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        const sanitizeHtml = (str) => str.replace(/[^\w. @-]/gi, ''); // Strips tags
+        const sanitizeHtml = (str) => str.replace(/[^\w. @-]/gi, ''); 
 
         function handleLogin() {
             const email = document.getElementById('login-email').value.trim();
@@ -604,9 +609,8 @@
             if(!email || !pass) { err.innerText = "All fields are required."; err.classList.remove('hidden'); return; }
             if(!isValidEmail(email)) { err.innerText = "Invalid Email Format."; err.classList.remove('hidden'); return; }
 
-            // Simulate DB Check & Secure Session storing
             const safeEmail = sanitizeHtml(email);
-            const mockToken = btoa(safeEmail + Date.now().toString()); // Mock JWT
+            const mockToken = btoa(safeEmail + Date.now().toString()); 
             
             sessionStorage.setItem('gx_session', mockToken);
             userSession = { loggedIn: true, name: safeEmail.split('@')[0].toUpperCase() };
@@ -628,10 +632,8 @@
             if(!isValidEmail(email)) { err.innerText = "Invalid Email Format."; err.classList.remove('hidden'); return; }
             if(pass.length < 6) { err.innerText = "Password too weak. Min 6 chars."; err.classList.remove('hidden'); return; }
 
-            // Clean data to prevent DOM injection
             const safeName = sanitizeHtml(name);
             
-            // Auto Login post register
             sessionStorage.setItem('gx_session', btoa(safeName));
             userSession = { loggedIn: true, name: safeName.toUpperCase() };
             
