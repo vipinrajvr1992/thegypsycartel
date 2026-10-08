@@ -145,6 +145,67 @@ button{touch-action:manipulation}
 @keyframes expectedPulse{from{box-shadow:0 0 6px rgba(34,211,238,.15)}to{box-shadow:0 0 20px rgba(34,211,238,.65)}}
 .word-active{background:rgba(34,211,238,.04);}
 
+
+
+/* === GYPSY TYPEX v3 — LIVE KEYBOARD + ANIMATED FINGER TRAINER === */
+.keyboard-shell{
+  position:relative;width:100%;max-width:1080px;margin:0 auto 22px;
+  padding:18px 14px 20px;border:1px solid rgba(34,211,238,.18);
+  background:linear-gradient(180deg,rgba(9,10,16,.97),rgba(4,5,9,.97));
+  border-radius:22px;box-shadow:0 18px 55px rgba(0,0,0,.62),inset 0 0 35px rgba(34,211,238,.025);
+  overflow:visible;
+}
+.keyboard-live-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 4px 12px;}
+.keyboard-live-title{font:900 10px/1 Orbitron,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:#67e8f9;}
+.keyboard-live-sub{font:500 8px/1.5 Orbitron,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#525866;text-align:right;}
+#keyboard-finger-layer{position:absolute;inset:0;pointer-events:none;overflow:visible;z-index:9;}
+.finger-pointer{
+  position:absolute;width:34px;height:88px;transform-origin:50% 92%;
+  border-radius:17px 17px 12px 12px;
+  background:linear-gradient(90deg,rgba(255,255,255,.12),rgba(255,255,255,.72),rgba(255,255,255,.10));
+  border:1px solid rgba(255,255,255,.78);
+  box-shadow:0 0 18px rgba(34,211,238,.25),inset 0 0 8px rgba(255,255,255,.3);
+  opacity:.96;
+  transform:rotate(var(--finger-rot,0deg));
+  transition:transform .22s cubic-bezier(.2,.85,.2,1),left .22s cubic-bezier(.2,.85,.2,1),top .22s cubic-bezier(.2,.85,.2,1);
+}
+.finger-pointer::before{
+  content:"";position:absolute;left:7px;top:7px;width:19px;height:25px;border-radius:50%;
+  background:rgba(255,255,255,.9);opacity:.72;box-shadow:0 1px 3px rgba(0,0,0,.35);
+}
+.finger-pointer::after{
+  content:"";position:absolute;left:50%;bottom:10px;width:4px;height:42px;transform:translateX(-50%);
+  border-radius:999px;background:rgba(255,255,255,.18);
+}
+.finger-pointer.fp{filter:drop-shadow(0 0 12px rgba(255,107,107,.55));}
+.finger-pointer.fr{filter:drop-shadow(0 0 12px rgba(254,202,87,.55));}
+.finger-pointer.fm{filter:drop-shadow(0 0 12px rgba(29,209,161,.55));}
+.finger-pointer.fil{filter:drop-shadow(0 0 12px rgba(72,219,251,.65));}
+.finger-pointer.fir{filter:drop-shadow(0 0 12px rgba(84,160,255,.65));}
+.finger-pointer.ft{width:45px;height:64px;border-radius:25px;filter:drop-shadow(0 0 12px rgba(200,214,229,.55));}
+.finger-pointer.is-pressing{animation:fingerPress .26s ease-out;}
+@keyframes fingerPress{0%{margin-top:0}45%{margin-top:25px;transform:scale(.96) rotate(var(--finger-rot,0deg))}100%{margin-top:0;transform:scale(1) rotate(var(--finger-rot,0deg))}}
+.finger-label{
+  position:absolute;min-width:118px;padding:7px 9px;border-radius:8px;
+  background:rgba(3,3,5,.94);border:1px solid rgba(34,211,238,.25);
+  color:#e5e7eb;font:800 8px/1.3 Orbitron,sans-serif;letter-spacing:.09em;text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+.finger-label b{display:block;color:#67e8f9;font-size:10px;margin-top:2px;}
+.keyboard-shell .key.expected-key{position:relative;z-index:7;outline:2px solid rgba(255,255,255,.92);outline-offset:2px;}
+.keyboard-shell .key.expected-key::after{
+  content:"";position:absolute;inset:-5px;border-radius:11px;border:1px solid rgba(34,211,238,.5);animation:targetPulse 1s infinite;pointer-events:none;
+}
+@keyframes targetPulse{0%,100%{opacity:.25;transform:scale(.98)}50%{opacity:1;transform:scale(1.03)}}
+.bottom-training{margin-top:22px;}
+.training-caption{font:800 9px/1.4 Orbitron,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#555b67;}
+
+@media(max-width:720px){
+  .keyboard-shell{padding:12px 7px 14px;border-radius:16px;}
+  .keyboard-live-sub{display:none;}
+  .finger-pointer{width:27px;height:70px;}
+  .finger-label{display:none;}
+}
 </style>
 </head>
 <body>
@@ -171,7 +232,7 @@ button{touch-action:manipulation}
     <div class="flex gap-2 border-l border-zinc-800 pl-3 sm:pl-5">
       <button id="btn-reader" class="action-btn px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-sm" title="Voice Coach — read the next word ahead" type="button">🔈</button>
       <button id="btn-settings" class="action-btn px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-sm" title="Settings" type="button">⚙️</button>
-      <button id="profile-btn" class="action-btn hidden sm:block px-4 py-2 rounded-lg bg-zinc-900 border border-zinc-700 text-[10px] font-bold tracking-widest text-pink-400 uppercase" type="button">LOGIN</button>
+      <button id="profile-btn" class="action-btn hidden sm:block px-4 py-2 rounded-lg bg-zinc-900 border border-cyan-500/30 text-[10px] font-bold tracking-widest text-cyan-300 uppercase" type="button">LOCAL PLAYER</button>
     </div>
   </div>
 </header>
@@ -264,19 +325,8 @@ button{touch-action:manipulation}
   </section>
 
   <!-- Typing -->
-  <section id="typing-container" class="w-full max-w-[1120px] hidden-ui">
-    <!-- The input remains focusable for mobile IME/mobile keyboards. Desktop keystrokes are captured at document level. -->
-    <input
-      id="hidden-input"
-      type="text"
-      inputmode="text"
-      autocomplete="off"
-      autocorrect="off"
-      autocapitalize="none"
-      spellcheck="false"
-      aria-label="Typing input"
-      style="position:fixed;left:50%;top:8px;width:2px;height:2px;opacity:0;pointer-events:none;border:0;padding:0;margin:0;background:transparent;z-index:1;"
-    />
+  <section id="typing-container" class="w-full max-w-[1180px] hidden-ui">
+    <input id="hidden-input" type="text" inputmode="text" autocomplete="off" autocorrect="off" autocapitalize="none" spellcheck="false" aria-label="Typing input" style="position:fixed;left:50%;top:8px;width:2px;height:2px;opacity:0;pointer-events:none;border:0;padding:0;margin:0;background:transparent;z-index:1;" />
 
     <div class="glass rounded-xl px-4 sm:px-6 py-4 mb-5 flex flex-wrap gap-4 items-center justify-between">
       <div>
@@ -295,14 +345,29 @@ button{touch-action:manipulation}
       </div>
     </div>
 
+    <!-- LIVE KEYBOARD FIRST -->
+    <div id="keyboard-shell" class="keyboard-shell">
+      <div class="keyboard-live-head">
+        <div class="keyboard-live-title">LIVE TOUCH-TYPING KEYBOARD</div>
+        <div class="keyboard-live-sub">Next key • Correct finger • Animated guidance</div>
+      </div>
+      <div id="virtual-keyboard" class="keymap-on pointer-none"></div>
+      <div id="keyboard-finger-layer">
+        <div id="finger-pointer" class="finger-pointer fil" style="left:0;top:0;--finger-rot:-10deg;"></div>
+        <div id="finger-pointer-label" class="finger-label" style="left:0;top:0;">USE FINGER<b id="finger-pointer-text">LEFT INDEX</b></div>
+      </div>
+    </div>
+
+    <!-- TYPING TEXT SECOND -->
     <div id="typing-area" class="typing-text glass rounded-2xl p-6 sm:p-8"></div>
 
-    <div class="mt-6 grid grid-cols-1 lg:grid-cols-[1.45fr_.75fr] gap-5 items-stretch">
+    <!-- TRAINING GUIDE BELOW -->
+    <div class="bottom-training mt-6 grid grid-cols-1 lg:grid-cols-[1.45fr_.75fr] gap-5 items-stretch">
       <div class="glass rounded-2xl p-4 sm:p-5 border border-cyan-500/20">
         <div class="flex items-center justify-between mb-3">
           <div>
             <div class="text-[10px] text-cyan-300 font-black tracking-[.22em] uppercase">Touch Typing Finger Guide</div>
-            <div class="text-[9px] text-zinc-500 mt-1">Keep your hands on the home row. Follow the highlighted finger mapping.</div>
+            <div class="text-[9px] text-zinc-500 mt-1">Static reference below the keyboard. The live finger above the keyboard shows the exact finger for the next key.</div>
           </div>
           <div id="home-row-badge" class="text-[8px] tracking-widest text-zinc-500 border border-zinc-800 px-2 py-1 rounded-md">HOME ROW: A S D F • J K L ;</div>
         </div>
@@ -317,24 +382,19 @@ button{touch-action:manipulation}
           <div class="text-[9px] text-zinc-500 uppercase tracking-widest">Next key</div>
           <div id="coach-key" class="text-5xl sm:text-6xl font-black text-cyan-300 cyan-glow mt-1">A</div>
           <div id="coach-finger" class="text-sm font-black text-white mt-2">LEFT PINKY</div>
-          <div id="coach-hand" class="text-[9px] tracking-widest text-zinc-500 mt-1">LEFT HAND • HOME ROW A</div>
+          <div id="coach-hand" class="text-[9px] tracking-widest text-zinc-500 mt-1">LEFT HAND • HOME: A</div>
           <div class="h-px bg-zinc-800 my-4"></div>
           <div class="text-[9px] text-zinc-500 uppercase tracking-widest">Audio read-ahead</div>
           <div id="next-word-display" class="text-lg sm:text-xl font-black text-pink-300 mt-2 break-words">—</div>
-          <div id="next-word-help" class="text-[9px] text-zinc-600 leading-5 mt-2">Voice Coach speaks the next word when you complete the current word. This trains read-ahead rhythm.</div>
+          <div id="next-word-help" class="text-[9px] text-zinc-600 leading-5 mt-2">Enable Voice Coach to hear the next word when you finish the current word. Skilled typing depends on reading ahead, steady rhythm and efficient finger movement.</div>
         </div>
         <div class="mt-5 flex flex-wrap gap-2">
-          <span class="coach-chip pink">PINKY</span>
-          <span class="coach-chip yellow">RING</span>
-          <span class="coach-chip green">MIDDLE</span>
-          <span class="coach-chip blue">INDEX</span>
-          <span class="coach-chip white">THUMB</span>
+          <span class="coach-chip pink">PINKY</span><span class="coach-chip yellow">RING</span><span class="coach-chip green">MIDDLE</span><span class="coach-chip blue">INDEX</span><span class="coach-chip white">THUMB</span>
         </div>
       </div>
     </div>
 
-    <div id="virtual-keyboard" class="mt-6 keymap-on pointer-none"></div>
-    <div class="text-center text-[9px] tracking-widest text-zinc-600 uppercase mt-4">Follow the finger guide • Keep your eyes on the text • Build muscle memory</div>
+    <div class="text-center text-[9px] tracking-widest text-zinc-600 uppercase mt-4">Look at the text • Let the live finger show the movement • Return to home row • Build clean muscle memory</div>
     <div id="mobile-hint" class="text-center text-[9px] tracking-widest text-zinc-600 uppercase mt-2">Tap this screen to focus the typing engine</div>
   </section>
 </main>
@@ -359,8 +419,24 @@ button{touch-action:manipulation}
   </div>
 </div>
 
-<!-- Auth -->
-<div id="auth-modal" class="fixed inset-0 z-50 hidden-ui modal-backdrop items-center justify-center p-4">
+
+<!-- Local Player Profile -->
+<div id="local-profile-modal" class="fixed inset-0 z-50 hidden-ui modal-backdrop items-center justify-center p-4">
+  <div class="glass rounded-2xl p-7 sm:p-9 w-full max-w-md">
+    <div class="text-center mb-7">
+      <div class="text-2xl font-black tracking-widest uppercase neon">LOCAL PLAYER</div>
+      <div class="text-[10px] text-zinc-500 font-mono mt-2">Your progress stays on this browser. No account required.</div>
+    </div>
+    <input id="local-player-name" class="auth-input" type="text" maxlength="24" placeholder="Player name / Gamer tag">
+    <div id="local-profile-status" class="text-[10px] text-cyan-300 font-mono mb-4 text-center"></div>
+    <button id="save-local-profile" class="action-btn w-full py-4 rounded-xl bg-cyan-500 text-black text-xs font-black tracking-widest" type="button">SAVE PLAYER</button>
+    <button id="reset-local-profile" class="action-btn w-full py-3 rounded-xl bg-zinc-900 border border-red-500/30 text-red-300 text-[10px] font-bold tracking-widest mt-3" type="button">RESET LOCAL DATA</button>
+    <button id="local-profile-close" class="w-full mt-5 text-zinc-500 text-[10px] font-bold tracking-widest uppercase" type="button">CLOSE</button>
+  </div>
+</div>
+
+<!-- Auth (legacy hidden compatibility) -->
+<div id="auth-modal" style="display:none!important" class="fixed inset-0 z-50 hidden-ui modal-backdrop items-center justify-center p-4">
   <div class="glass rounded-2xl p-7 sm:p-9 w-full max-w-md">
     <div class="text-center mb-7">
       <div class="text-2xl font-black tracking-widest uppercase neon">SECURED ACCESS</div>
@@ -437,6 +513,10 @@ button{touch-action:manipulation}
     area:document.getElementById("typing-area"),
     input:document.getElementById("hidden-input"),
     keyboard:document.getElementById("virtual-keyboard"),
+    keyboardShell:document.getElementById("keyboard-shell"),
+    fingerPointer:document.getElementById("finger-pointer"),
+    fingerPointerLabel:document.getElementById("finger-pointer-label"),
+    fingerPointerText:document.getElementById("finger-pointer-text"),
     levelGrid:document.getElementById("level-grid"),
     uiLevel:document.getElementById("ui-level"),
     uiWpm:document.getElementById("ui-wpm"),
@@ -455,6 +535,7 @@ button{touch-action:manipulation}
     settings:document.getElementById("settings-modal"),
     auth:document.getElementById("auth-modal"),
     profile:document.getElementById("profile-btn"),
+    localProfile:document.getElementById("local-profile-modal"),
     readerBtn:document.getElementById("btn-reader"),
     keymapBtn:document.getElementById("keymap-btn")
   };
@@ -523,7 +604,8 @@ button{touch-action:manipulation}
   }
 
   function saveProgress(){
-    if(state.session.loggedIn && !state.guest) safeStorageSet("gx_unlocked", String(state.unlocked));
+    safeStorageSet("gx_unlocked", String(state.unlocked));
+    safeStorageSet("gx_profile_name", state.session.name || "PLAYER");
   }
 
   function renderKeyboard(){
@@ -627,7 +709,8 @@ button{touch-action:manipulation}
       els.levelGrid.appendChild(btn);
     });
     const note=document.getElementById("progress-note");
-    note.textContent=state.guest ? `Guest session progression: ${state.unlocked}/100 • refresh resets guest progress.` : `Unlocked: ${state.unlocked}/100`;
+    const player=safeStorageGet("gx_profile_name","PLAYER");
+    note.textContent=`${player} • Local progress saved on this browser • Unlocked: ${state.unlocked}/100`;
   }
 
   function startGame(levelId){
@@ -710,6 +793,38 @@ button{touch-action:manipulation}
     document.querySelectorAll(".expected-key").forEach(el=>el.classList.remove("expected-key"));
     const expected=document.getElementById(`key-${keyId(nextChar)}`);
     if(expected) expected.classList.add("expected-key");
+    animateFingerToKey(nextChar,finger);
+  }
+
+  function animateFingerToKey(char,finger){
+    const keyEl=document.getElementById(`key-${keyId(char)}`);
+    const shell=els.keyboardShell;
+    const pointer=els.fingerPointer;
+    const label=els.fingerPointerLabel;
+    if(!keyEl || !shell || !pointer) return;
+    const kr=keyEl.getBoundingClientRect();
+    const sr=shell.getBoundingClientRect();
+    const rotations={fp:-18,fr:-12,fm:-7,fil:-4,fir:4,ft:0};
+    const left=kr.left-sr.left+(kr.width-pointer.offsetWidth)/2;
+    const top=kr.top-sr.top-Math.min(76,Math.max(52,pointer.offsetHeight-8));
+    pointer.style.left=`${left}px`;
+    pointer.style.top=`${top}px`;
+    pointer.style.setProperty("--finger-rot",`${rotations[finger]??0}deg`);
+    pointer.className=`finger-pointer ${finger}`;
+    void pointer.offsetWidth;
+    pointer.classList.add("is-pressing");
+    if(label){
+      const labelLeft=Math.max(4,Math.min(shell.clientWidth-126,left-42));
+      const labelTop=Math.max(2,top-42);
+      label.style.left=`${labelLeft}px`;
+      label.style.top=`${labelTop}px`;
+      label.style.borderColor=fingerColor(finger);
+    }
+    if(els.fingerPointerText) els.fingerPointerText.textContent=FINGER_LABELS[finger]||"THUMB";
+  }
+
+  function fingerColor(finger){
+    return ({fp:"rgba(255,107,107,.55)",fr:"rgba(254,202,87,.55)",fm:"rgba(29,209,161,.55)",fil:"rgba(72,219,251,.55)",fir:"rgba(84,160,255,.55)",ft:"rgba(200,214,229,.55)"})[finger]||"rgba(34,211,238,.4)";
   }
 
   function speakWordAhead(fromIndex){
@@ -893,7 +1008,7 @@ button{touch-action:manipulation}
       els.resultTitle.textContent="TEST PASSED";
       els.resultTitle.className="text-4xl sm:text-6xl font-black tracking-[.12em] uppercase text-cyan-400 cyan-glow";
       els.resultMsg.textContent=`Goal ${lvl.goalWpm} WPM • You achieved ${net} WPM • Accuracy ${acc}% • Consistency ${consistency}% • Weak finger: ${worstFinger()}`;
-      document.getElementById("next-level-btn").classList.toggle("hidden-ui",state.level>=100 || state.level>=state.unlocked);
+      document.getElementById("next-level-btn").classList.toggle("hidden-ui",state.level>=100);
       playTone("win");
       readText("Target achieved. Level cleared.");
     }else{
@@ -1041,6 +1156,10 @@ button{touch-action:manipulation}
       "action-btn text-[10px] font-bold px-3 py-2 rounded-lg border border-zinc-700 bg-zinc-900 text-zinc-500";
   }
 
+  window.addEventListener("resize",()=>{
+    if(shouldCaptureKeyboard()) updateCoach();
+  });
+
   /* ---------- audio ---------- */
 
   function ensureAudio(){
@@ -1165,13 +1284,40 @@ button{touch-action:manipulation}
     setScreen("selector");
   });
 
-  document.getElementById("register-btn").addEventListener("click",()=>{
-    openModal(els.auth);
-    switchAuthTab("register");
-  });
+  document.getElementById("register-btn").addEventListener("click",()=>openLocalProfile());
+  els.profile.addEventListener("click",()=>openLocalProfile());
 
-  els.profile.addEventListener("click",()=>openModal(els.auth));
-  document.getElementById("auth-close").addEventListener("click",()=>closeModal(els.auth));
+  function openLocalProfile(){
+    const input=document.getElementById("local-player-name");
+    const name=safeStorageGet("gx_profile_name",state.session.name||"PLAYER");
+    input.value=name==="PLAYER" ? "" : name;
+    document.getElementById("local-profile-status").textContent=`Unlocked: ${state.unlocked}/100 • Local browser profile`;
+    openModal(els.localProfile);
+    setTimeout(()=>input.focus(),40);
+  }
+
+  document.getElementById("local-profile-close").addEventListener("click",()=>closeModal(els.localProfile));
+  document.getElementById("save-local-profile").addEventListener("click",()=>{
+    const input=document.getElementById("local-player-name");
+    const name=input.value.trim().replace(/[^A-Za-z0-9 _-]/g,"").slice(0,24) || "PLAYER";
+    state.session={loggedIn:false,name:name.toUpperCase()};
+    state.guest=false;
+    els.profile.textContent=state.session.name;
+    saveProgress();
+    closeModal(els.localProfile);
+  });
+  document.getElementById("reset-local-profile").addEventListener("click",()=>{
+    if(confirm("Reset Gypsy TypeX local progress on this browser?")){
+      try{localStorage.removeItem("gx_unlocked");localStorage.removeItem("gx_profile_name");}catch{}
+      state.unlocked=1;
+      state.session={loggedIn:false,name:"PLAYER"};
+      els.profile.textContent="PLAYER";
+      closeModal(els.localProfile);
+      renderLevelSelector();
+    }
+  });
+  document.getElementById("tab-login").addEventListener("click",()=>switchAuthTab("login"));
+  document.getElementById("tab-register").addEventListener("click",()=>switchAuthTab("register"));
   document.getElementById("tab-login").addEventListener("click",()=>switchAuthTab("login"));
   document.getElementById("tab-register").addEventListener("click",()=>switchAuthTab("register"));
 
@@ -1286,7 +1432,7 @@ button{touch-action:manipulation}
   }
 
   // Close modals when clicking backdrop, but not inner card.
-  [els.settings,els.auth].forEach(modal=>{
+  [els.settings,els.auth,els.localProfile].forEach(modal=>{
     modal.addEventListener("pointerdown",e=>{
       if(e.target===modal) closeModal(modal);
     });
@@ -1297,6 +1443,7 @@ button{touch-action:manipulation}
     if(e.key==="Escape"){
       if(!els.auth.classList.contains("hidden-ui")) closeModal(els.auth);
       else if(!els.settings.classList.contains("hidden-ui")) closeModal(els.settings);
+      else if(!els.localProfile.classList.contains("hidden-ui")) closeModal(els.localProfile);
     }
   });
 
@@ -1306,21 +1453,11 @@ button{touch-action:manipulation}
   loadProgress();
   state.sessionUnlocked=state.unlocked;
 
-  // Restore last registered mock session if it exists in this browser tab.
-  try{
-    const token=sessionStorage.getItem("gypsy_typex_token");
-    const user=sessionStorage.getItem("gx_user");
-    if(token && user){
-      const parsed=JSON.parse(user);
-      if(parsed && parsed.name) setSession(parsed.name);
-    }else{
-      // Don't silently log into a previous browser session; guest is the safe default.
-      state.guest=true;
-      state.session={loggedIn:false,name:"GUEST"};
-    }
-  }catch{}
-
-  if(!state.guest) state.unlocked=Math.max(1,Math.min(100,parseInt(safeStorageGet("gx_unlocked","1"),10)||1));
+  // Local-first profile: no login, no OTP, no account required.
+  state.guest=false;
+  state.session={loggedIn:false,name:(safeStorageGet("gx_profile_name","PLAYER")||"PLAYER").toUpperCase()};
+  state.unlocked=Math.max(1,Math.min(100,parseInt(safeStorageGet("gx_unlocked","1"),10)||1));
+  els.profile.textContent=state.session.name;
 
   document.getElementById("toggle-keymap").checked=true;
   applyKeymap();
