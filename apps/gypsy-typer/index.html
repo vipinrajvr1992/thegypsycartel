@@ -17,13 +17,13 @@
             --glass: rgba(15, 15, 25, 0.95);
             --glass-border: rgba(168, 85, 247, 0.35);
             
-            /* Accurate Touch Typing Colors based on reference */
-            --z-pinky: #ff6b6b;   /* Pinky: q,a,z, p,;,/ */
-            --z-ring: #feca57;    /* Ring: w,s,x, o,l,. */
-            --z-mid: #1dd1a1;     /* Middle: e,d,c, i,k,, */
-            --z-ind-l: #48dbfb;   /* Index Left: r,f,v, t,g,b */
-            --z-ind-r: #54a0ff;   /* Index Right: y,h,n, u,j,m */
-            --z-thmb: #c8d6e5;    /* Thumb: Space */
+            /* Accurate Touch Typing Colors */
+            --z-pinky: #ff6b6b;   
+            --z-ring: #feca57;    
+            --z-mid: #1dd1a1;     
+            --z-ind-l: #48dbfb;   
+            --z-ind-r: #54a0ff;   
+            --z-thmb: #c8d6e5;    
         }
 
         body { background-color: var(--bg-dark); color: #ffffff; font-family: 'Orbitron', sans-serif; overflow-x: hidden; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
@@ -52,7 +52,6 @@
         .key.spacebar { width: 350px; }
         .key-hint { font-size: 0.45rem; opacity: 0.8; margin-top: 3px; font-family: 'Orbitron', sans-serif; letter-spacing: 1px; }
 
-        /* Colored Zones mapping to reference image */
         .keymap-on .fp { border-bottom: 4px solid var(--z-pinky); color: #ffcccc; }
         .keymap-on .fr { border-bottom: 4px solid var(--z-ring); color: #fff4cc; }
         .keymap-on .fm { border-bottom: 4px solid var(--z-mid); color: #ccffcc; }
@@ -68,10 +67,10 @@
         .keymap-on .ft.active-key { background: var(--z-thmb); border-color: #fff; box-shadow: 0 0 20px var(--z-thmb); }
 
         /* =========================================
-           TYPING AREA ENGINE (Fixed Overlap & Readability)
+           TYPING AREA ENGINE
         ========================================= */
         #typing-area { 
-            line-height: 1.9; letter-spacing: 2px; font-size: 1.8rem; 
+            line-height: 1.8; letter-spacing: 2px; font-size: 1.8rem; 
             user-select: none; word-wrap: break-word; white-space: pre-wrap; 
             position: relative; overflow-y: hidden;
             display: flex; flex-wrap: wrap; align-content: flex-start;
@@ -116,9 +115,6 @@
 </head>
 <body>
 
-    <!-- =========================================
-         HEADER & LIVE HUD 
-    ========================================= -->
     <header class="flex justify-between items-center px-8 py-4 glass-panel border-b border-zinc-800 z-20 relative h-[80px]">
         <div>
             <h1 class="text-2xl md:text-3xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-cyan-400 neon-glow uppercase">
@@ -151,7 +147,6 @@
 
     <main class="relative w-full h-[calc(100vh-80px)] flex flex-col items-center justify-center p-6">
         
-        <!-- 1. DASHBOARD / START SCREEN -->
         <div id="start-screen" class="absolute inset-0 flex flex-col items-center justify-center z-30 bg-black/95 fade-in">
             <h2 class="text-5xl md:text-7xl font-black mb-4 neon-glow text-white tracking-widest text-center uppercase">GYPSY TYPEX</h2>
             <p class="text-zinc-400 mb-10 max-w-2xl text-center leading-relaxed text-sm md:text-base">
@@ -160,13 +155,11 @@
             </p>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-2xl">
-                <!-- Guest Mode -->
                 <div class="glass-panel p-8 rounded-2xl border-t-4 border-cyan-400 text-center transition hover:-translate-y-2 hover:shadow-cyan-900/50 cursor-pointer" onclick="showLevelSelector(false)">
                     <h3 class="text-cyan-400 font-black mb-2 text-xl uppercase tracking-wider">Quick Practice</h3>
                     <p class="text-xs text-zinc-500 mb-6">Play as Guest. No data stored.</p>
                     <button class="w-full py-3 bg-zinc-800 text-cyan-400 text-sm font-bold rounded-lg border border-cyan-500/30 transition">INITIALIZE GUEST</button>
                 </div>
-                <!-- Auth Mode -->
                 <div class="glass-panel p-8 rounded-2xl border-t-4 border-pink-500 text-center transition hover:-translate-y-2 hover:shadow-pink-900/50 cursor-pointer" onclick="openAuthModal()">
                     <h3 class="text-pink-400 font-black mb-2 text-xl uppercase tracking-wider">Registered Agent</h3>
                     <p class="text-xs text-zinc-500 mb-6">Save progress across 100 levels & view analytics.</p>
@@ -175,20 +168,17 @@
             </div>
         </div>
 
-        <!-- 2. LEVEL SELECTOR OVERLAY (1-100 Logic) -->
         <div id="level-selector" class="hidden-ui absolute inset-0 flex flex-col items-center justify-center z-30 bg-black/95 fade-in">
             <h3 class="text-4xl font-black text-cyan-400 mb-2 uppercase tracking-widest neon-cyan">Select Level</h3>
             <p class="text-xs text-zinc-500 mb-8 font-mono">Complete the current level to unlock the next.</p>
             
             <div class="w-full max-w-5xl p-8 glass-panel rounded-2xl max-h-[65vh] overflow-y-auto">
                 <div class="grid grid-cols-5 md:grid-cols-10 gap-4" id="level-grid">
-                    <!-- Levels generated via JS -->
                 </div>
             </div>
             <button onclick="document.getElementById('level-selector').classList.add('hidden-ui'); document.getElementById('start-screen').classList.remove('hidden-ui');" class="mt-8 px-8 py-3 bg-zinc-800 font-bold rounded-lg hover:bg-zinc-700 transition">BACK TO MAIN</button>
         </div>
 
-        <!-- 3. MISSION REPORT (Results Screen) -->
         <div id="result-screen" class="hidden-ui absolute inset-0 flex flex-col items-center justify-center z-30 bg-black/95 backdrop-blur-md overflow-y-auto py-10 fade-in">
             <h2 id="result-title" class="text-5xl md:text-6xl font-black mb-2 text-white uppercase tracking-widest">TEST COMPLETE</h2>
             <p id="result-msg" class="text-sm text-zinc-400 mb-8 tracking-wider font-mono">Data Logged.</p>
@@ -206,13 +196,12 @@
                     <p class="text-[10px] text-zinc-500 font-bold mb-2 tracking-widest">RAW WPM</p>
                     <p id="res-raw" class="text-6xl font-black text-purple-400">00</p>
                 </div>
-                <div class="glass-panel p-6 rounded-2xl text-center border-b-4 border-green-500">
+                <div class="glass-panel p-6 rounded-2xl text-center border-b-4 border-red-500">
                     <p class="text-[10px] text-zinc-500 font-bold mb-2 tracking-widest">ERRORS</p>
-                    <p id="res-err" class="text-6xl font-black text-green-400">0</p>
+                    <p id="res-err" class="text-6xl font-black text-red-500">0</p>
                 </div>
             </div>
 
-            <!-- Performance Graph -->
             <div class="w-full max-w-5xl glass-panel p-6 rounded-2xl mb-10 slide-up" style="animation-delay: 0.1s;">
                 <p class="text-xs text-zinc-400 mb-4 font-bold uppercase tracking-widest text-center">WPM vs Errors Over Time</p>
                 <div style="position: relative; height: 250px; width: 100%;">
@@ -227,20 +216,16 @@
             </div>
         </div>
 
-        <!-- 4. ACTIVE TYPING ARENA -->
         <div id="typing-container" class="w-full max-w-[1100px] opacity-0 transition-opacity duration-300 hidden-ui flex-col items-center">
             
-            <!-- Hidden Input for mobile & logic capture -->
             <input type="text" id="hidden-input" class="absolute opacity-0 top-0 left-0 w-1 h-1 z-[-1]" autocomplete="off" autocorrect="off" spellcheck="false">
 
-            <!-- HUD Control Bar -->
             <div class="w-full flex justify-between items-center mb-6 glass-panel px-6 py-4 rounded-xl border border-zinc-800">
                 <div class="flex flex-col">
                     <span id="task-diff" class="text-xs text-pink-400 font-black tracking-widest uppercase mb-1">EASY MODE</span>
                     <span id="task-goal" class="text-sm text-zinc-400 font-mono">Target: 20 WPM</span>
                 </div>
                 
-                <!-- Live progress bar representation -->
                 <div class="flex-1 mx-10 bg-zinc-900 rounded-full h-3 overflow-hidden border border-zinc-700 hidden sm:block">
                     <div id="progress-bar" class="bg-gradient-to-r from-pink-500 to-cyan-400 h-full w-0 transition-all duration-300 shadow-[0_0_10px_#ec4899]"></div>
                 </div>
@@ -251,23 +236,14 @@
                 </div>
             </div>
 
-            <!-- The Text Engine Display -->
             <div id="typing-area" class="w-full bg-zinc-900/50 p-8 rounded-2xl border border-zinc-800 shadow-[inset_0_0_20px_rgba(0,0,0,0.8)]">
-                <!-- Spans injected via JS -->
             </div>
             
-            <!-- Virtual Touch Keyboard -->
             <div id="virtual-keyboard" class="mt-8 w-full max-w-[900px] mx-auto pointer-events-none keymap-on">
-                <!-- Keys rendered via JS -->
             </div>
         </div>
     </main>
 
-    <!-- =========================================
-         MODALS (Settings, Auth)
-    ========================================= -->
-
-    <!-- Settings Modal -->
     <div id="settings-modal" class="hidden-ui fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
         <div class="glass-panel p-8 rounded-2xl w-full max-w-sm border-cyan-500/50">
             <h3 class="text-2xl font-black mb-6 text-cyan-400 text-center uppercase tracking-widest">Settings</h3>
@@ -291,7 +267,6 @@
         </div>
     </div>
 
-    <!-- Security & Auth Modal (Realistic UI) -->
     <div id="auth-modal" class="hidden-ui fixed inset-0 bg-black/90 flex items-center justify-center z-50 p-4 backdrop-blur-md">
         <div class="glass-panel p-10 rounded-2xl w-full max-w-md border-pink-500/30 shadow-[0_0_40px_rgba(236,72,153,0.15)]">
             <div class="text-center mb-8">
@@ -299,13 +274,11 @@
                 <p class="text-xs text-zinc-500 mt-2 font-mono">Authenticate to save data to the cloud.</p>
             </div>
 
-            <!-- Tab Navigation -->
             <div class="flex mb-8 border-b border-zinc-800">
                 <button id="tab-login" onclick="switchAuthTab('login')" class="flex-1 pb-3 text-sm font-bold border-b-2 border-pink-500 text-pink-400 transition tracking-widest uppercase">LOGIN</button>
                 <button id="tab-register" onclick="switchAuthTab('register')" class="flex-1 pb-3 text-sm font-bold border-b-2 border-transparent text-zinc-500 hover:text-white transition tracking-widest uppercase">REGISTER</button>
             </div>
 
-            <!-- Login Form -->
             <div id="form-login">
                 <input type="text" id="login-email" class="auth-input" placeholder="Phone (+919745499444) or Email">
                 <input type="password" id="login-pass" class="auth-input" placeholder="Password or OTP">
@@ -313,7 +286,6 @@
                 <button onclick="handleAuth('login')" class="w-full py-4 bg-pink-600 text-white text-sm font-black tracking-widest rounded-xl hover:bg-pink-500 transition shadow-lg shadow-pink-900/50 uppercase">AUTHENTICATE</button>
             </div>
 
-            <!-- Register Form -->
             <div id="form-register" class="hidden-ui">
                 <input type="text" id="reg-name" class="auth-input focus:border-cyan-400" placeholder="Gamer Tag">
                 <input type="text" id="reg-email" class="auth-input focus:border-cyan-400" placeholder="Mobile Number or Email">
@@ -326,11 +298,7 @@
         </div>
     </div>
 
-    <!-- =========================================
-         MAIN JAVASCRIPT ENGINE
-    ========================================= -->
     <script>
-        /* --- 1. 100 LEVEL GENERATION LOGIC --- */
         const baseEasy = ["the", "quick", "brown", "fox", "jumps", "over", "lazy", "dog", "cat", "mat", "hello", "world", "good", "morning", "day", "night", "sun", "moon", "star", "light", "dark", "fast", "slow", "run", "walk", "stop", "go", "yes", "no", "is", "a", "it", "to", "in", "on", "of", "and"];
         const baseMed = ["JavaScript", "developer", "function", "variable", "interface", "application", "system", "beautiful", "keyboard", "practice", "Velocity", "Cyberpunk", "Network", "Database", "Security", "Protocol", "Algorithm", "Framework", "Software", "Hardware"];
         const baseHard = ["const", "let", "return", "Math.max()", "document.getElementById()", "=>", "{", "}", "[", "]", "console.log();", "function()", "=== true;", "arr.filter(x => x>0)", "sys.override(0x9A);", "margin-top: 10px;", "</div>", "</script>", "window.onload", "flex-direction: column;"];
@@ -338,8 +306,8 @@
         let allLevels = [];
         for(let i=1; i<=100; i++) {
             let difficulty = i <= 30 ? 'EASY' : (i <= 70 ? 'MEDIUM' : 'HARD');
-            let wordCount = 15 + Math.floor(i * 0.5); // Text length scales slowly
-            let goalWpm = 10 + Math.floor(i * 0.6);   // Goal WPM scales linearly (Level 100 = ~70 WPM)
+            let wordCount = 15 + Math.floor(i * 0.4);
+            let goalWpm = 10 + Math.floor(i * 0.6);   
             let words = [];
             
             let pool = difficulty === 'EASY' ? baseEasy : (difficulty === 'MEDIUM' ? [...baseEasy, ...baseMed] : [...baseMed, ...baseHard]);
@@ -359,14 +327,13 @@
             });
         }
 
-        /* --- 2. TOUCH TYPING FINGER MAP (Matched to reference image precisely) --- */
         const fMap = {
             'fp':  ['q','a','z','p',';','/','[',']',"'",'-','=','0'], 
             'fr':  ['w','s','x','o','l','.','2','9'],                      
             'fm':  ['e','d','c','i','k',',','3','8'],                      
-            'fil': ['r','f','v','t','g','b','4','5'], // Left Index
-            'fir': ['y','h','n','u','j','m','6','7'], // Right Index
-            'ft':  [' ']                              // Thumb (Spacebar)
+            'fil': ['r','f','v','t','g','b','4','5'], 
+            'fir': ['y','h','n','u','j','m','6','7'], 
+            'ft':  [' ']                              
         };
 
         function getFClass(k) {
@@ -377,7 +344,6 @@
             return ''; 
         }
 
-        /* --- 3. GLOBAL STATE & LOCAL STORAGE --- */
         let currentLevelId = 1, isPlaying = false, startTime = 0, endTime = 0;
         let animFrameId = null, perfChart = null;
         let textData = "", charIdx = 0, errs = 0, typedCount = 0;
@@ -388,7 +354,6 @@
         let prefs = { sound: true, keymap: true, reader: false };
         let session = { loggedIn: false, name: "GUEST" };
         
-        // Track unlocked levels from localStorage
         let unlockedLevels = parseInt(localStorage.getItem('gx_unlocked')) || 1;
 
         const els = {
@@ -401,7 +366,6 @@
             prog: document.getElementById('progress-bar')
         };
 
-        /* --- 4. AUDIO ENGINE (Web Audio API) --- */
         const aCtx = new (window.AudioContext || window.webkitAudioContext)();
         function thock(isErr = false) {
             if(!prefs.sound) return;
@@ -450,7 +414,6 @@
             else window.speechSynthesis.cancel();
         }
 
-        /* --- 5. KEYBOARD RENDERER --- */
         function renderKeyboard() {
             const lay = [
                 [{k:'q', h:'L-P'}, {k:'w', h:'L-R'}, {k:'e', h:'L-M'}, {k:'r', h:'L-I'}, {k:'t', h:'L-I'}, {k:'y', h:'R-I'}, {k:'u', h:'R-I'}, {k:'i', h:'R-M'}, {k:'o', h:'R-R'}, {k:'p', h:'R-P'}, {k:'[', h:'R-P'}, {k:']', h:'R-P'}],
@@ -462,7 +425,6 @@
                 let rDiv = document.createElement('div'); rDiv.className = 'key-row';
                 row.forEach(obj => {
                     let kDiv = document.createElement('div');
-                    // Check Left vs Right Index finger
                     let fClass = getFClass(obj.k);
                     if(fClass === 'fi') fClass = ['r','f','v','t','g','b','4','5'].includes(obj.k.toLowerCase()) ? 'fil' : 'fir';
                     
@@ -476,11 +438,10 @@
             let sRow = document.createElement('div'); sRow.className = 'key-row';
             let sKey = document.createElement('div'); 
             sKey.className = `key spacebar ft`; sKey.id = 'key-space'; 
-            sKey.innerHTML = `<span>SPACE</span><span class="key-hint">THUMBS</span>`;
+            sKey.innerHTML = `<span>SPACE</span><span class="key-hint">THUMB</span>`;
             sRow.appendChild(sKey); els.vkb.appendChild(sRow);
         }
 
-        /* --- 6. LEVEL LOCK / UNLOCK SYSTEM (1-100 Logic) --- */
         function showLevelSelector(requireLogin = false) {
             if(requireLogin && !session.loggedIn) { openAuthModal(); return; }
             document.getElementById('start-screen').classList.add('hidden-ui');
@@ -492,7 +453,7 @@
                 let btn = document.createElement('button');
                 let isUnlocked = l.id <= unlockedLevels;
                 
-                btn.className = `level-btn p-4 text-sm font-bold rounded-xl border transition shadow-lg ${isUnlocked ? (l.difficulty === 'EASY' ? 'border-cyan-500/30 text-cyan-400 hover:bg-cyan-900/30 hover:-translate-y-1 hover:shadow-cyan-900/50' : (l.difficulty === 'MEDIUM' ? 'border-pink-500/30 text-pink-400 hover:bg-pink-900/30 hover:-translate-y-1 hover:shadow-pink-900/50' : 'border-red-500/30 text-red-500 hover:bg-red-900/30 hover:-translate-y-1 hover:shadow-red-900/50')) : 'level-locked'} bg-zinc-900`;
+                btn.className = `level-btn p-4 text-sm font-bold rounded-lg border transition shadow-lg ${isUnlocked ? (l.difficulty === 'EASY' ? 'border-cyan-500/30 text-cyan-400 hover:bg-cyan-900/30 hover:-translate-y-1 hover:shadow-cyan-900/50' : (l.difficulty === 'MEDIUM' ? 'border-pink-500/30 text-pink-400 hover:bg-pink-900/30 hover:-translate-y-1 hover:shadow-pink-900/50' : 'border-red-500/30 text-red-500 hover:bg-red-900/30 hover:-translate-y-1 hover:shadow-red-900/50')) : 'level-locked'} bg-zinc-900`;
                 btn.innerText = l.id;
                 
                 if(isUnlocked) {
@@ -503,7 +464,6 @@
             document.getElementById('level-selector').classList.remove('hidden-ui');
         }
 
-        /* --- 7. GAME INITIALIZATION --- */
         function startGame(lvlId) {
             currentLevelId = lvlId;
             els.container.classList.remove('hidden-ui');
@@ -538,7 +498,6 @@
             els.input.value = ''; els.input.focus();
         }
 
-        /* --- 8. INPUT HANDLING & ENGINE (Overlap Fixed) --- */
         els.input.addEventListener('input', () => {
             if(!els.input.value) return; 
             const char = els.input.value.slice(-1); els.input.value = '';
@@ -549,7 +508,7 @@
             if(!isPlaying && e.key.length === 1) {
                 isPlaying = true; startTime = performance.now();
                 animFrameId = requestAnimationFrame(gameLoop);
-                graphInterval = setInterval(logGraphData, 1500);
+                graphInterval = setInterval(logGraphData, 1500); 
             }
             if(e.key === "Backspace" && charIdx > 0) {
                 els.area.childNodes[charIdx].className = 'c-pend';
@@ -584,7 +543,6 @@
             els.area.childNodes[charIdx].className = 'c-curr';
         }
 
-        /* --- 9. MATHEMATICS & GAME LOOP --- */
         function gameLoop() {
             if(!isPlaying) return;
             let timeElapsedMin = (performance.now() - startTime) / 60000;
@@ -656,7 +614,6 @@
             }, 300);
         }
 
-        /* --- 10. CHART.JS RENDERER --- */
         function drawChart() {
             const ctx = document.getElementById('perfChart').getContext('2d');
             if(perfChart) perfChart.destroy();
@@ -677,7 +634,6 @@
             });
         }
 
-        /* --- 11. UI ROUTING & ACTIONS --- */
         function retryLevel() {
             document.getElementById('result-screen').classList.add('hidden-ui');
             els.container.classList.remove('hidden-ui');
@@ -705,7 +661,6 @@
         document.getElementById('toggle-reader').addEventListener('change', e => { prefs.reader = e.target.checked; if(prefs.reader) readText("Reading assistant enabled"); else window.speechSynthesis.cancel(); });
         document.addEventListener('click', (e) => { if(!e.target.closest('button') && !els.container.classList.contains('hidden-ui')) els.input.focus(); });
 
-        /* --- 12. REALISTIC AUTHENTICATION UI --- */
         function openAuthModal() { document.getElementById('auth-modal').classList.remove('hidden-ui'); switchAuthTab('login'); }
         function closeAuthModal() { document.getElementById('auth-modal').classList.add('hidden-ui'); }
         
@@ -732,14 +687,13 @@
                 uName = n.toUpperCase();
             }
 
-            // Set Session
             session = { loggedIn: true, name: uName.replace(/[^\w]/gi, '') }; 
             let pb = document.getElementById('profile-btn');
             pb.innerText = session.name;
             pb.className = "px-6 py-2.5 bg-pink-900/30 rounded-lg border border-pink-500 text-xs font-bold text-pink-400 uppercase tracking-wider shadow-lg shadow-pink-900/40";
             
             closeAuthModal(); 
-            showLevelSelector(false); // Open levels after login
+            showLevelSelector(false); 
         }
     </script>
 </body>
