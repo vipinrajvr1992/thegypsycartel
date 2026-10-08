@@ -4,7 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Gypsy TypeX | Elite Cyber Velocity Training</title>
-<meta name="description" content="Gypsy TypeX — a high-performance cyberpunk typing arcade with 100 progressive levels, live WPM, accuracy, consistency, voice read-ahead coaching and touch-typing guidance.">
+<meta name="description" content="Gypsy TypeX — free cyberpunk touch-typing training with 100 progressive levels, live WPM, accuracy, consistency, animated finger guidance, voice read-ahead coaching, local progress and evidence-informed training guidance.">
+  <meta name="keywords" content="typing trainer, touch typing, typing practice, WPM test, typing accuracy, typing consistency, keyboard finger training, typing speed improvement, typing game, Gypsy TypeX">
+  <meta property="og:title" content="Gypsy TypeX | Elite Cyber Velocity Training">
+  <meta property="og:description" content="Build typing speed, accuracy and consistency with 100 progressive levels, live finger guidance and read-ahead coaching. No account required.">
+  <meta name="robots" content="index, follow">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
@@ -267,6 +271,179 @@ button{touch-action:manipulation}
 @media(max-width:980px){.typex-live-grid{grid-template-columns:1fr}.typex-coach{min-height:0}#typing-area{min-height:230px}.typex-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.typex-result-insights{grid-template-columns:1fr}}
 @media(max-width:720px){#keyboard-shell .keyboard-live-title{font-size:8px}#keyboard-shell .key{width:clamp(27px,7.5vw,39px);height:clamp(39px,11vw,47px);font-size:.78rem}#keyboard-shell .spacebar{width:clamp(175px,55vw,290px)!important}.typex-live-grid{gap:12px}#typing-area{min-height:235px;font-size:1.08rem;padding:18px!important}.typex-method-grid{grid-template-columns:1fr}.typex-reference-image{max-height:220px}#finger-pointer-label{display:none}}
 .word-active{background:rgba(34,211,238,.045);box-shadow:inset 0 -1px 0 rgba(34,211,238,.08)}
+
+/* =========================================================
+   GYPSY TYPEX V5 — TRAINING / SCIENCE / EDUCATION SECTION
+   ========================================================= */
+.typex-learn{
+  width:100%;
+  max-width:1180px;
+  margin:72px auto 44px;
+  padding:0 4px 60px;
+}
+.typex-learn *{box-sizing:border-box}
+.typex-learn-hero{
+  text-align:center;
+  max-width:920px;
+  margin:0 auto 44px;
+}
+.typex-learn-kicker{
+  color:#67e8f9;
+  font:900 9px/1 Orbitron,sans-serif;
+  letter-spacing:.28em;
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+.typex-learn-title{
+  margin:0;
+  font:900 clamp(1.55rem,3.5vw,2.7rem)/1.08 Orbitron,sans-serif;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  background:linear-gradient(90deg,#ec4899,#a855f7,#22d3ee);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  text-shadow:0 0 22px rgba(168,85,247,.18);
+}
+.typex-learn-lead{
+  max-width:820px;
+  margin:17px auto 0;
+  color:#858b99;
+  font:500 clamp(.75rem,1.25vw,.9rem)/1.9 "JetBrains Mono",monospace;
+}
+.typex-learn-section{margin-top:44px}
+.typex-learn-section-head{
+  display:flex;align-items:end;justify-content:space-between;gap:18px;
+  padding-bottom:11px;border-bottom:1px solid rgba(255,255,255,.08);
+  margin-bottom:17px;
+}
+.typex-learn-section-head h2{
+  margin:0;color:#ecf0f5;
+  font:900 12px/1.25 Orbitron,sans-serif;
+  letter-spacing:.16em;text-transform:uppercase;
+}
+.typex-learn-section-head p{
+  margin:0;max-width:610px;color:#5f6672;
+  font:500 8px/1.7 Orbitron,sans-serif;letter-spacing:.04em;
+  text-align:right;
+}
+.typex-learn-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.typex-learn-grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.typex-learn-grid-4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.typex-learn-card{
+  border:1px solid rgba(168,85,247,.2);
+  background:linear-gradient(180deg,rgba(15,15,25,.96),rgba(9,9,15,.88));
+  border-radius:15px;padding:17px 17px 16px;
+  box-shadow:0 13px 40px rgba(0,0,0,.28);
+}
+.typex-learn-card .tx-icon{font-size:18px;line-height:1;margin-bottom:10px}
+.typex-learn-card h3{
+  margin:0 0 8px;color:#efeff5;
+  font:900 10px/1.35 Orbitron,sans-serif;
+  letter-spacing:.08em;text-transform:uppercase;
+}
+.typex-learn-card p{
+  margin:0;color:#7e8591;
+  font:500 8px/1.8 "JetBrains Mono",monospace;
+}
+.typex-learn-card p+p{margin-top:9px}
+.typex-learn-card strong{color:#dfe3e9}
+.typex-learn-formula{
+  margin-top:10px;padding:10px;border-radius:9px;
+  border:1px solid rgba(34,211,238,.14);
+  background:rgba(34,211,238,.025);
+  color:#68dbe8;
+  font:700 8px/1.6 "JetBrains Mono",monospace;
+}
+.typex-learn-note{
+  padding:15px 16px;border-radius:13px;
+  border:1px solid rgba(34,211,238,.15);
+  background:linear-gradient(135deg,rgba(34,211,238,.035),rgba(168,85,247,.03));
+  color:#737a87;font:500 8px/1.8 "JetBrains Mono",monospace;
+}
+.typex-learn-note strong{color:#dfe4ea}
+.typex-learn-table{
+  width:100%;border-collapse:collapse;overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);border-radius:14px;
+  background:rgba(9,9,15,.78);
+}
+.typex-learn-table th,.typex-learn-table td{
+  padding:12px 13px;text-align:left;border-bottom:1px solid rgba(255,255,255,.065);
+  font:500 8px/1.55 "JetBrains Mono",monospace;
+}
+.typex-learn-table th{
+  color:#666d79;font:800 7px/1.3 Orbitron,sans-serif;
+  letter-spacing:.11em;text-transform:uppercase;background:rgba(255,255,255,.018)
+}
+.typex-learn-table td{color:#7d8491}
+.typex-learn-table td:first-child{color:#e0e4eb;font-weight:800}
+.typex-learn-table tr:last-child td{border-bottom:0}
+.typex-learn-pill-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.typex-learn-pill{
+  border:1px solid rgba(255,255,255,.09);background:#0b0b11;border-radius:999px;
+  padding:6px 8px;color:#777f8c;font:800 7px/1 Orbitron,sans-serif;letter-spacing:.07em;
+}
+.typex-learn-progress{
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;
+}
+.typex-learn-progress .node{
+  position:relative;padding:15px 12px 14px;border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);background:rgba(12,12,19,.76)
+}
+.typex-learn-progress .num{
+  display:flex;width:24px;height:24px;border-radius:50%;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#ec4899,#a855f7);color:#fff;
+  font:900 8px/1 Orbitron,sans-serif;margin-bottom:9px
+}
+.typex-learn-progress h3{margin:0 0 5px;color:#e9ebf0;font:900 8px/1.3 Orbitron,sans-serif;letter-spacing:.06em;text-transform:uppercase}
+.typex-learn-progress p{margin:0;color:#727985;font:500 7.5px/1.7 "JetBrains Mono",monospace}
+.typex-learn-routine{display:grid;grid-template-columns:1.08fr .92fr;gap:14px}
+.typex-learn-list{display:grid;gap:9px}
+.typex-learn-step{
+  display:grid;grid-template-columns:90px 1fr;gap:12px;align-items:start;
+  border:1px solid rgba(255,255,255,.07);background:rgba(10,10,16,.7);
+  border-radius:11px;padding:12px 13px;
+}
+.typex-learn-step b{color:#f1f3f7;font:900 7px/1.4 Orbitron,sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.typex-learn-step span{color:#737a86;font:500 7.5px/1.7 "JetBrains Mono",monospace}
+.typex-learn-source{
+  display:grid;grid-template-columns:1fr 1fr;gap:12px
+}
+.typex-learn-source a{color:#6edce8;text-decoration:none}
+.typex-learn-source a:hover{text-decoration:underline}
+.typex-learn-footnote{
+  margin-top:11px;color:#555c68;
+  font:500 7px/1.7 "JetBrains Mono",monospace
+}
+.typex-learn-faq{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.typex-learn-faq details{
+  border:1px solid rgba(255,255,255,.07);border-radius:11px;
+  padding:12px 13px;background:rgba(11,11,17,.74)
+}
+.typex-learn-faq summary{cursor:pointer;color:#dfe2e8;font:800 8px/1.45 Orbitron,sans-serif;letter-spacing:.04em;list-style:none}
+.typex-learn-faq summary::-webkit-details-marker{display:none}
+.typex-learn-faq p{margin:9px 0 0;color:#727984;font:500 7.5px/1.75 "JetBrains Mono",monospace}
+.typex-learn-bottom{
+  margin-top:36px;padding:20px;border-radius:16px;border:1px solid rgba(236,72,153,.2);
+  background:radial-gradient(circle at 15% 30%,rgba(236,72,153,.09),transparent 33%),radial-gradient(circle at 88% 65%,rgba(34,211,238,.08),transparent 33%),rgba(10,10,16,.75);
+  text-align:center
+}
+.typex-learn-bottom h2{margin:0 0 7px;font:900 18px/1.25 Orbitron,sans-serif;letter-spacing:.05em}
+.typex-learn-bottom p{max-width:760px;margin:0 auto;color:#757c87;font:500 8px/1.8 "JetBrains Mono",monospace}
+@media(max-width:980px){
+  .typex-learn-grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .typex-learn-progress{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .typex-learn-routine,.typex-learn-source{grid-template-columns:1fr}
+  .typex-learn-section-head{align-items:flex-start;flex-direction:column}
+  .typex-learn-section-head p{text-align:left}
+}
+@media(max-width:720px){
+  .typex-learn{margin-top:52px}
+  .typex-learn-grid-2,.typex-learn-grid-3,.typex-learn-grid-4,.typex-learn-faq{grid-template-columns:1fr}
+  .typex-learn-progress{grid-template-columns:1fr 1fr}
+  .typex-learn-table{display:block;overflow-x:auto}
+  .typex-learn-table{min-width:660px}
+  .typex-learn-step{grid-template-columns:78px 1fr}
+}
+
 </style>
 
 </head>
@@ -546,6 +723,256 @@ button{touch-action:manipulation}
   </section>
 
 </main>
+
+<!-- ============================================================
+     GYPSY TYPEX — PLAYER GUIDE / TRAINING SCIENCE / KNOWLEDGE BASE
+     This section intentionally sits below the playable engine so it
+     does not compete with the live keyboard and paragraph while playing.
+     ============================================================ -->
+<section class="typex-learn" aria-labelledby="typex-learn-title">
+  <div class="typex-learn-hero">
+    <div class="typex-learn-kicker">GYPSY CARTEL • TYPEX TRAINING LAB</div>
+    <h2 id="typex-learn-title" class="typex-learn-title">THIS IS MORE THAN A TYPING GAME.</h2>
+    <p class="typex-learn-lead">
+      Gypsy TypeX is designed as a game-shaped training system: you play levels, but the real objective is to improve
+      the way your fingers select keys, how accurately you type, how steadily you maintain rhythm, and how comfortably
+      you sustain speed. The numbers on the screen are feedback — the skill is what changes underneath them.
+    </p>
+  </div>
+
+  <section class="typex-learn-section">
+    <div class="typex-learn-section-head">
+      <h2>What you are actually training</h2>
+      <p>Every mechanic in TypeX has a training purpose. The game layer keeps repetition engaging; the training layer keeps it useful.</p>
+    </div>
+    <div class="typex-learn-grid-4">
+      <article class="typex-learn-card"><div class="tx-icon">⌨️</div><h3>Finger-to-key accuracy</h3><p>Learn a repeatable assignment between <strong>specific fingers and specific keys</strong> rather than searching for each letter independently.</p></article>
+      <article class="typex-learn-card"><div class="tx-icon">🧠</div><h3>Motor pattern stability</h3><p>Repeated correct movements give your nervous system repeated practice with the same action sequence. TypeX varies the text so the skill is not tied to one memorized paragraph.</p></article>
+      <article class="typex-learn-card"><div class="tx-icon">🎯</div><h3>Error awareness</h3><p>Wrong characters, error count and accuracy make mistakes visible immediately. That turns an error from a hidden annoyance into a <strong>training signal</strong>.</p></article>
+      <article class="typex-learn-card"><div class="tx-icon">⚡</div><h3>Controlled speed</h3><p>The goal is not to force the biggest WPM at any cost. The goal is to raise speed while keeping the movement accurate enough to repeat.</p></article>
+    </div>
+  </section>
+
+  <section class="typex-learn-section">
+    <div class="typex-learn-section-head">
+      <h2>WPM, accuracy, raw WPM & consistency — what do they mean?</h2>
+      <p>Do not judge a session from one number. Each metric answers a different question.</p>
+    </div>
+    <div class="typex-learn-grid-2">
+      <article class="typex-learn-card">
+        <div class="tx-icon">🚀</div>
+        <h3>WPM — Words Per Minute</h3>
+        <p>WPM is a normalized speed measure. TypeX uses the common <strong>5-character word model</strong>, allowing results to remain comparable even when the paragraph contains words of different lengths.</p>
+        <div class="typex-learn-formula">Net WPM ≈ (correct characters ÷ 5) ÷ elapsed minutes</div>
+        <p style="margin-top:9px">A WPM increase is useful only when your accuracy and rhythm remain acceptable.</p>
+      </article>
+      <article class="typex-learn-card">
+        <div class="tx-icon">⚙️</div>
+        <h3>Raw WPM</h3>
+        <p>Raw WPM represents your typing output before the error penalty is applied. It helps distinguish <strong>raw keystroke speed</strong> from cleaner, corrected performance.</p>
+        <div class="typex-learn-formula">Raw WPM ≈ total typed characters ÷ 5 ÷ elapsed minutes</div>
+        <p style="margin-top:9px">When raw WPM is much higher than net WPM, your speed may be outrunning your accuracy.</p>
+      </article>
+      <article class="typex-learn-card">
+        <div class="tx-icon">🎯</div>
+        <h3>Accuracy</h3>
+        <p>Accuracy tells you how much of the typed input is correct. It is one of the fastest ways to detect whether your current speed is <strong>clean or costly</strong>.</p>
+        <div class="typex-learn-formula">Accuracy = ((typed characters − errors) ÷ typed characters) × 100</div>
+      </article>
+      <article class="typex-learn-card">
+        <div class="tx-icon">〰️</div>
+        <h3>Consistency / rhythm</h3>
+        <p>TypeX estimates rhythm stability from the timing gaps between keystrokes. It is a performance indicator — not a medical measurement and not a guarantee of typing quality.</p>
+        <div class="typex-learn-formula">More stable timing gaps → higher estimated rhythm consistency</div>
+      </article>
+    </div>
+  </section>
+
+  <section class="typex-learn-section">
+    <div class="typex-learn-section-head">
+      <h2>What does “progress” mean?</h2>
+      <p>TypeX progression is a training ladder. Passing one level gives you access to the next challenge; the next challenge also increases the demand placed on your typing.</p>
+    </div>
+    <div class="typex-learn-progress">
+      <div class="node"><div class="num">01</div><h3>Baseline</h3><p>Your early runs reveal your starting WPM, accuracy, rhythm and common error patterns.</p></div>
+      <div class="node"><div class="num">02</div><h3>Technique</h3><p>Follow the finger coach and home-row mapping so the same keys are reached consistently.</p></div>
+      <div class="node"><div class="num">03</div><h3>Control</h3><p>Push speed without allowing the error rate to rise uncontrollably.</p></div>
+      <div class="node"><div class="num">04</div><h3>Complexity</h3><p>Later levels introduce capitalization, punctuation, numbers and technical syntax.</p></div>
+      <div class="node"><div class="num">05</div><h3>Transfer</h3><p>The final goal is usable typing skill outside the game: cleaner, faster and more repeatable work.</p></div>
+    </div>
+    <div class="typex-learn-note" style="margin-top:12px"><strong>Browser progress:</strong> the current TypeX release is local-first. Your player progress is stored in this browser for this site. Clearing browser storage, private browsing, or changing browser/device can separate or remove that local progress.</div>
+  </section>
+
+  <section class="typex-learn-section">
+    <div class="typex-learn-section-head">
+      <h2>The 100-level road</h2>
+      <p>The level system moves from low-complexity text to more demanding combinations so players can build the movement system before handling dense symbols.</p>
+    </div>
+    <div class="typex-learn-grid-3">
+      <article class="typex-learn-card"><div class="tx-icon" style="color:#22d3ee">01—30</div><h3>Easy • Foundation</h3><p>Common lowercase words, short combinations and simple sentences. Concentrate on finger assignment, home-row return and clean accuracy.</p><div class="typex-learn-pill-row"><span class="typex-learn-pill">LOW COMPLEXITY</span><span class="typex-learn-pill">FINGER MAP</span><span class="typex-learn-pill">RHYTHM</span></div></article>
+      <article class="typex-learn-card"><div class="tx-icon" style="color:#ec4899">31—70</div><h3>Medium • Control</h3><p>Capitalization, punctuation and broader vocabulary increase decision load without abandoning the basic finger system.</p><div class="typex-learn-pill-row"><span class="typex-learn-pill">CAPITALS</span><span class="typex-learn-pill">PUNCTUATION</span><span class="typex-learn-pill">SPEED CONTROL</span></div></article>
+      <article class="typex-learn-card"><div class="tx-icon" style="color:#a855f7">71—100</div><h3>Hard • Transfer</h3><p>Numbers, brackets, symbols and programming-style patterns challenge precision when the visual and motor demands are higher.</p><div class="typex-learn-pill-row"><span class="typex-learn-pill">SYMBOLS</span><span class="typex-learn-pill">NUMBERS</span><span class="typex-learn-pill">CODE-LIKE TEXT</span></div></article>
+    </div>
+  </section>
+
+  <section class="typex-learn-section">
+    <div class="typex-learn-section-head">
+      <h2>Why the finger coach matters</h2>
+      <p>The visual pointer is meant to teach movement, not to become a permanent crutch. Over time, the learner should need the visual cue less often.</p>
+    </div>
+    <div class="typex-learn-grid-3">
+      <article class="typex-learn-card"><div class="tx-icon">☝️</div><h3>Correct finger cue</h3><p>The animated finger identifies the intended finger for the next key so a learner can connect <strong>key → finger → movement</strong> in real time.</p></article>
+      <article class="typex-learn-card"><div class="tx-icon">🏠</div><h3>Home-row orientation</h3><p>ASDF and JKL; provide an orientation point. Repeatedly returning to a stable home position reduces unnecessary searching movements.</p></article>
+      <article class="typex-learn-card"><div class="tx-icon">🧭</div><h3>Move the cue away</h3><p>As your skill improves, try to rely on the finger guide less. The long-term target is internalized finger mapping rather than permanent on-screen dependence.</p></article>
+    </div>
+  </section>
+
+  <section class="typex-learn-section">
+    <div class="typex-learn-section-head">
+      <h2>Read-ahead voice coaching</h2>
+      <p>TypeX's voice assistant is designed around anticipation: hear the next word after completing the current one, then keep the hands moving.</p>
+    </div>
+    <div class="typex-learn-grid-2">
+      <article class="typex-learn-card"><div class="tx-icon">🔈</div><h3>What it does</h3><p>When Voice Coach is enabled, TypeX can speak the next word as the current word is completed. The visible read-ahead panel shows the same target so the audio and visual cues agree.</p></article>
+      <article class="typex-learn-card"><div class="tx-icon">👀</div><h3>Why anticipation matters</h3><p>Typing is easier to sustain when attention is not locked onto one character at a time. Read-ahead practice encourages the learner to prepare for the next unit while finishing the current unit.</p></article>
+    </div>
+  </section>
+
+  <section class="typex-learn-section">
+    <div class="typex-learn-section-head">
+      <h2>Typing-speed reference bands</h2>
+      <p>These are practical reference bands, not formal occupational standards. Keyboard layout, language, test text, device and accuracy all affect performance.</p>
+    </div>
+    <div style="overflow-x:auto">
+      <table class="typex-learn-table">
+        <thead><tr><th>WPM</th><th>Practical zone</th><th>What to train next</th><th>Do not forget</th></tr></thead>
+        <tbody>
+          <tr><td>Below 20</td><td>Early / hunt-and-peck</td><td>Finger map + home row + deliberate accuracy</td><td>Speed is not the priority yet</td></tr>
+          <tr><td>20–40</td><td>Beginner</td><td>Stable finger assignments + basic rhythm</td><td>Reduce repeated correction</td></tr>
+          <tr><td>40–60</td><td>Everyday / functional</td><td>Consistency + fewer unnecessary movements</td><td>Keep accuracy high</td></tr>
+          <tr><td>60–80</td><td>Fast typist</td><td>Economy + sustained accuracy + harder text</td><td>Do not trade precision for a peak score</td></tr>
+          <tr><td>80–100</td><td>Professional / advanced</td><td>Rhythm refinement + punctuation + symbols</td><td>Test repeatability, not one lucky run</td></tr>
+          <tr><td>100+</td><td>Elite competitive range</td><td>Extreme precision under high speed</td><td>Small errors become expensive</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="typex-learn-section">
+    <div class="typex-learn-section-head">
+      <h2>Psychology & motor-learning principles behind the design</h2>
+      <p>TypeX uses established learning concepts as design principles. It does not claim to be a clinically validated intervention.</p>
+    </div>
+    <div class="typex-learn-grid-4">
+      <article class="typex-learn-card"><div class="tx-icon">📡</div><h3>Immediate feedback</h3><p>Specific information about the result of an action can make correction easier than simply being told that a session was good or bad.</p></article>
+      <article class="typex-learn-card"><div class="tx-icon">🎯</div><h3>Task focus</h3><p>The next-key and finger cues keep attention attached to a concrete movement target rather than a vague command to “type faster.”</p></article>
+      <article class="typex-learn-card"><div class="tx-icon">🔁</div><h3>Repeated practice</h3><p>Skill improves through repeated attempts. TypeX varies text so the player practices the underlying mapping instead of memorizing a single string.</p></article>
+      <article class="typex-learn-card"><div class="tx-icon">🗓️</div><h3>Distributed sessions</h3><p>Motor-learning research shows that the effect of practice spacing depends on the task and schedule, so TypeX encourages repeatable sessions rather than claiming that one fixed interval is universally best.</p></article>
+    </div>
+    <div class="typex-learn-note" style="margin-top:12px"><strong>Important:</strong> evidence about motor learning is broader than typing alone. The TypeX design applies those principles to typing practice as an informed product design choice. It is not a substitute for formal research specifically testing Gypsy TypeX itself.</div>
+  </section>
+
+  <section class="typex-learn-section">
+    <div class="typex-learn-section-head">
+      <h2>Accuracy before speed — the TypeX rule</h2>
+      <p>When speed rises but error rate rises faster, the player may be practicing the wrong movement faster.</p>
+    </div>
+    <div class="typex-learn-grid-3">
+      <article class="typex-learn-card"><div class="tx-icon">1️⃣</div><h3>Wrong key</h3><p>An incorrect character interrupts the intended sequence and increases the error count.</p></article>
+      <article class="typex-learn-card"><div class="tx-icon">2️⃣</div><h3>Correction cost</h3><p>Backspace and re-entry add extra motor actions and can interrupt the flow of the next characters.</p></article>
+      <article class="typex-learn-card"><div class="tx-icon">3️⃣</div><h3>Rhythm disruption</h3><p>Clusters of errors can make timing less stable. Slow the target, restore clean movement, then build the pace again.</p></article>
+    </div>
+    <div class="typex-learn-note" style="margin-top:12px"><strong>Practical target:</strong> aim for roughly <strong>95%+ accuracy</strong> before deliberately pushing your target WPM much higher. This is a training guideline, not a universal scientific cutoff.</div>
+  </section>
+
+  <section class="typex-learn-section">
+    <div class="typex-learn-section-head">
+      <h2>A smart TypeX session</h2>
+      <p>Use the game as a short, focused training loop instead of chasing a single screenshot-worthy score.</p>
+    </div>
+    <div class="typex-learn-routine">
+      <div class="typex-learn-list">
+        <div class="typex-learn-step"><b>01 • Warm up</b><span>Use an easy level or repeat a familiar pattern. Settle your hands into the home row and avoid unnecessary tension.</span></div>
+        <div class="typex-learn-step"><b>02 • Precision</b><span>Run at a controlled pace. Watch the finger coach and identify repeated problem keys.</span></div>
+        <div class="typex-learn-step"><b>03 • Speed</b><span>Once accuracy is stable, increase effort for a shorter run. Try to keep the same finger technique under pressure.</span></div>
+        <div class="typex-learn-step"><b>04 • Review</b><span>Compare WPM, accuracy, consistency and errors. Choose one improvement target instead of trying to fix everything at once.</span></div>
+        <div class="typex-learn-step"><b>05 • Return later</b><span>Revisit the skill in another session. Improvement is easier to understand from a trend across sessions than from one test.</span></div>
+      </div>
+      <div class="typex-learn-note">
+        <strong>Example goal:</strong><br><br>
+        “I will not chase 70 WPM today. I will keep my accuracy above 96%, reduce errors on the right ring finger, and then test whether my WPM rises naturally.”<br><br>
+        That is a more useful training objective because it identifies a controllable behavior instead of only a final number.
+      </div>
+    </div>
+  </section>
+
+  <section class="typex-learn-section">
+    <div class="typex-learn-section-head">
+      <h2>Why it is a game</h2>
+      <p>The arcade layer is deliberate: motivation matters when a skill depends on repetition.</p>
+    </div>
+    <div class="typex-learn-grid-3">
+      <article class="typex-learn-card"><div class="tx-icon">🎮</div><h3>Game layer</h3><p>Levels, unlocks, neon feedback and mission-style progression make repeated practice more engaging.</p></article>
+      <article class="typex-learn-card"><div class="tx-icon">🧪</div><h3>Training layer</h3><p>Finger guidance, accuracy targets, read-ahead cues and progressively harder text give each run a skill purpose.</p></article>
+      <article class="typex-learn-card"><div class="tx-icon">📈</div><h3>Measurement layer</h3><p>WPM, accuracy, errors and consistency give you evidence about how the session went so the next session can be smarter.</p></article>
+    </div>
+  </section>
+
+  <section class="typex-learn-section">
+    <div class="typex-learn-section-head">
+      <h2>Frequently asked questions</h2>
+      <p>New players should understand the numbers and progression before they start chasing scores.</p>
+    </div>
+    <div class="typex-learn-faq">
+      <details open><summary>Is a higher WPM always better?</summary><p>No. If WPM rises while accuracy collapses, the speed may not represent usable typing skill. TypeX treats speed, precision and consistency as connected metrics.</p></details>
+      <details><summary>Why is the finger guide visible?</summary><p>It is a learning cue. The long-term objective is to internalize the correct key-to-finger mapping and need the visual pointer less.</p></details>
+      <details><summary>Why does TypeX show a next word?</summary><p>The read-ahead display supports anticipation. Voice Coach can speak the next word after the current word is completed.</p></details>
+      <details><summary>What does “completed” mean?</summary><p>A completed level is one that has been successfully cleared according to the level's progression rule. The following level then becomes the next training challenge.</p></details>
+      <details><summary>Does TypeX save my progress?</summary><p>The current release uses local browser storage. That means progress stays available in the same browser/site context without an account, but it is not cloud sync.</p></details>
+      <details><summary>Can beginners use it?</summary><p>Yes. Early levels use lower-complexity text and the finger coach provides a visible movement reference while the player learns the keyboard map.</p></details>
+      <details><summary>What is consistency?</summary><p>It is TypeX's estimate of timing stability between keystrokes. Treat it as a helpful rhythm indicator, not as a standardized scientific score.</p></details>
+      <details><summary>Is this scientifically validated?</summary><p>Gypsy TypeX itself is not being presented as a scientifically validated intervention. Its design is informed by general motor-learning and learning-science principles.</p></details>
+    </div>
+  </section>
+
+  <section class="typex-learn-section">
+    <div class="typex-learn-section-head">
+      <h2>Research notes & learning references</h2>
+      <p>These references support the general learning principles described on this page. They do not validate Gypsy TypeX itself.</p>
+    </div>
+    <div class="typex-learn-source">
+      <div class="typex-learn-card">
+        <h3>Feedback & motor learning</h3>
+        <p>Systematic review evidence reports strong support for feedback interventions in motor-skill learning contexts, while the exact effect varies by feedback format and task.</p>
+        <p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8296044/" target="_blank" rel="noopener">Read review: Effects of Feedback on Students' Motor Skill Learning</a></p>
+      </div>
+      <div class="typex-learn-card">
+        <h3>Practice spacing & skill acquisition</h3>
+        <p>Motor-learning literature shows that the effects of massed versus distributed practice are task- and schedule-dependent, so TypeX deliberately avoids claiming one universal practice interval.</p>
+        <p><a href="https://pubmed.ncbi.nlm.nih.gov/29684760/" target="_blank" rel="noopener">Read review: Practice schedules and motor learning</a></p>
+      </div>
+      <div class="typex-learn-card">
+        <h3>Recent feedback evidence</h3>
+        <p>A 2025 meta-analysis examined self-controlled feedback across motor-skill learning studies and reported benefits especially in retention and transfer phases, while also noting differences during acquisition.</p>
+        <p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12467369/" target="_blank" rel="noopener">Read meta-analysis: Self-Controlled Feedback</a></p>
+      </div>
+      <div class="typex-learn-card">
+        <h3>Typing benchmark reference</h3>
+        <p>Public typing-test benchmarks commonly use WPM bands to give users practical context. TypeX presents these only as reference zones, not formal job or certification standards.</p>
+        <p><a href="https://www.rockettyping.com/" target="_blank" rel="noopener">Reference: public typing benchmark structure</a></p>
+      </div>
+    </div>
+    <div class="typex-learn-footnote">
+      TypeX is an educational typing trainer. Learning science is broad and task-dependent; a general finding about motor learning, feedback or spacing should not be interpreted as proof that every TypeX mechanic produces a specific improvement for every player.
+    </div>
+  </section>
+
+  <div class="typex-learn-bottom">
+    <h2><span style="background:linear-gradient(90deg,#ec4899,#a855f7,#22d3ee);-webkit-background-clip:text;background-clip:text;color:transparent">PLAY. LEARN. ADAPT. IMPROVE.</span></h2>
+    <p>Start with clean finger technique. Keep accuracy high. Watch the trend across sessions. Let the numbers tell you what to train next.</p>
+  </div>
+</section>
+
 
 <!-- Settings -->
 <div id="settings-modal" class="fixed inset-0 z-50 hidden-ui modal-backdrop items-center justify-center p-4">
