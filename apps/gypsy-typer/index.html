@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Gypsy TypeX | Elite Cyber Velocity Training</title>
+<link rel="icon" type="image/webp" href="/assets/logos/gypsy-cartel-icon.webp">
+<link rel="apple-touch-icon" href="/assets/logos/gypsy-cartel-icon.webp">
 <meta name="description" content="Gypsy TypeX — free cyberpunk touch-typing training with 100 progressive levels, live WPM, accuracy, consistency, animated finger guidance, voice read-ahead coaching, local progress and evidence-informed training guidance.">
   <meta name="keywords" content="typing trainer, touch typing, typing practice, WPM test, typing accuracy, typing consistency, keyboard finger training, typing speed improvement, typing game, Gypsy TypeX">
   <meta property="og:title" content="Gypsy TypeX | Elite Cyber Velocity Training">
@@ -67,16 +69,25 @@ button{touch-action:manipulation}
   min-height:190px;
   line-height:1.85;
   letter-spacing:1.5px;
-  font-size:clamp(1.08rem,2.2vw,1.7rem);
+  font-size:clamp(1.08rem,1.8vw,1.52rem);
   user-select:none;
   overflow:hidden;
-  display:flex;
-  flex-wrap:wrap;
+  display:block;
+  overflow-wrap:normal;
+  word-break:normal;
+  white-space:normal;
   align-content:flex-start
 }
-#typing-area span{
+#typing-area .typing-word{
   display:inline-block;
-  padding:0 2px;
+  white-space:nowrap;
+  word-break:keep-all;
+  overflow-wrap:normal;
+  margin-right:.28em;
+}
+#typing-area .typing-char{
+  display:inline-block;
+  padding:0 1px;
   border-radius:4px;
   white-space:pre
 }
@@ -1459,15 +1470,37 @@ button{touch-action:manipulation}
     setTimeout(()=>speakWordAhead(0),520);
   }
 
+  function getCharacterSpans(){
+    return els.area ? els.area.querySelectorAll(".typing-char") : [];
+  }
+
   function renderTypingText(){
     els.area.innerHTML="";
     const fragment=document.createDocumentFragment();
+    let wordWrap=null;
     for(let i=0;i<state.text.length;i++){
+      const char=state.text[i];
+      if(char===" "){
+        if(wordWrap){ fragment.appendChild(wordWrap); wordWrap=null; }
+        const space=document.createElement("span");
+        space.className="typing-char "+(i===0 ? "c-curr" : "c-pend");
+        space.dataset.charIndex=String(i);
+        space.textContent=" ";
+        space.style.whiteSpace="pre";
+        fragment.appendChild(space);
+        continue;
+      }
+      if(!wordWrap){
+        wordWrap=document.createElement("span");
+        wordWrap.className="typing-word";
+      }
       const span=document.createElement("span");
-      span.textContent=state.text[i];
-      span.className=i===0 ? "c-curr" : "c-pend";
-      fragment.appendChild(span);
+      span.className="typing-char "+(i===0 ? "c-curr" : "c-pend");
+      span.dataset.charIndex=String(i);
+      span.textContent=char;
+      wordWrap.appendChild(span);
     }
+    if(wordWrap) fragment.appendChild(wordWrap);
     els.area.appendChild(fragment);
   }
 
@@ -1484,7 +1517,7 @@ button{touch-action:manipulation}
 
   function highlightCurrentWord(){
     const activeIndex=getWordIndexAt(state.index);
-    const spans=els.area ? els.area.childNodes : [];
+    const spans=getCharacterSpans();
     for(let i=0;i<spans.length;i++) spans[i].classList.remove("word-active");
     if(activeIndex<0 || !state.words[activeIndex]) return;
     const word=state.words[activeIndex];
@@ -1623,11 +1656,11 @@ button{touch-action:manipulation}
     highlightKey(char);
 
     if(char===expected){
-      const current=els.area.childNodes[state.index];
+      const current=getCharacterSpans()[state.index];
       if(current) current.className="c-corr";
       playThock(false);
     } else {
-      const current=els.area.childNodes[state.index];
+      const current=getCharacterSpans()[state.index];
       if(current) current.className="c-wrong";
       state.errors++;
       const errorKey=expected.toLowerCase();
@@ -1648,7 +1681,7 @@ button{touch-action:manipulation}
       updateCoach();
       finishTest();
     } else {
-      const next=els.area.childNodes[state.index];
+      const next=getCharacterSpans()[state.index];
       if(next) next.className="c-curr";
       updateWordCoachAfterStroke(prevIndex);
     }
@@ -1657,10 +1690,10 @@ button{touch-action:manipulation}
   function handleBackspace(){
     if(state.finished || state.index<=0) return;
     const prevIndex=state.index;
-    const current=els.area.childNodes[state.index];
+    const current=getCharacterSpans()[state.index];
     if(current && current.classList.contains("c-curr")) current.className="c-pend";
     state.index--;
-    const target=els.area.childNodes[state.index];
+    const target=getCharacterSpans()[state.index];
     if(target) target.className="c-curr";
     els.progress.style.width=`${(state.index/state.text.length)*100}%`;
     updateLiveHUD();
@@ -2243,5 +2276,13 @@ button{touch-action:manipulation}
 
 })();
 </script>
+
+<footer class="typex-site-footer" aria-label="Gypsy Cartel copyright">
+  <div>© 2026 Gypsy Cartel. All Rights Reserved.</div>
+</footer>
+<style>
+.typex-site-footer{width:100%;padding:22px 16px 28px;text-align:center;border-top:1px solid rgba(168,85,247,.2);background:rgba(3,3,5,.92);color:#777f8c;font:500 12px/1.7 "JetBrains Mono",monospace;letter-spacing:.025em}
+@media(max-width:720px){.typex-site-footer{font-size:11px;padding:18px 12px 24px}}
+</style>
 </body>
 </html>
