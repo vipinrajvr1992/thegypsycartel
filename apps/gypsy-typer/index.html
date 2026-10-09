@@ -158,7 +158,7 @@ button{touch-action:manipulation}
 .coach-chip.white{color:#f1f5f9;border-color:rgba(200,214,229,.35)}
 .key.expected-key{outline:2px solid rgba(255,255,255,.94);outline-offset:2px;animation:expectedPulse .9s infinite alternate;z-index:2}
 @keyframes expectedPulse{from{box-shadow:0 0 6px rgba(34,211,238,.15)}to{box-shadow:0 0 20px rgba(34,211,238,.65)}}
-.word-active{background:rgba(34,211,238,.04);}
+.word-active{background:rgba(34,211,238,.025);box-shadow:none;text-decoration:none;}
 
 
 
@@ -281,7 +281,7 @@ button{touch-action:manipulation}
 #finger-pointer-label b{font-size:9px!important}
 @media(max-width:980px){.typex-live-grid{grid-template-columns:1fr}.typex-coach{min-height:0}#typing-area{min-height:230px}.typex-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.typex-result-insights{grid-template-columns:1fr}}
 @media(max-width:720px){#keyboard-shell .keyboard-live-title{font-size:8px}#keyboard-shell .key{width:clamp(27px,7.5vw,39px);height:clamp(39px,11vw,47px);font-size:.78rem}#keyboard-shell .spacebar{width:clamp(175px,55vw,290px)!important}.typex-live-grid{gap:12px}#typing-area{min-height:235px;font-size:1.08rem;padding:18px!important}.typex-method-grid{grid-template-columns:1fr}.typex-reference-image{max-height:220px}#finger-pointer-label{display:none}}
-.word-active{background:rgba(34,211,238,.045);box-shadow:inset 0 -1px 0 rgba(34,211,238,.08)}
+.word-active{background:rgba(34,211,238,.025);box-shadow:none;text-decoration:none;}
 
 /* =========================================================
    GYPSY TYPEX V5 — TRAINING / SCIENCE / EDUCATION SECTION
@@ -501,6 +501,14 @@ button{touch-action:manipulation}
 }
 </style>
 
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2648804205147564" crossorigin="anonymous"></script>
+<style id="typex-result-ad-style">
+.typex-result-ad{width:100%;max-width:970px;min-height:90px;margin:28px auto 8px;padding:10px 0;text-align:center;overflow:hidden}
+.typex-result-ad ins.adsbygoogle{display:block;min-height:90px}
+@media(max-width:720px){.typex-result-ad{margin-top:22px;min-height:70px}.typex-result-ad ins.adsbygoogle{min-height:70px}}
+</style>
+
 </head>
 <body>
 
@@ -636,6 +644,16 @@ button{touch-action:manipulation}
         <button id="main-menu-btn" class="action-btn px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-700 text-xs font-bold">⌂ MAIN MENU</button>
         <button id="retry-btn" class="action-btn px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-700 text-xs font-bold">↻ RETAKE TEST</button>
         <button id="next-level-btn" class="action-btn hidden-ui px-7 py-3 rounded-xl bg-cyan-600 text-black text-xs font-black shadow-lg shadow-cyan-900/30">PROCEED TO NEXT →</button>
+      </div>
+
+      <!-- AdSense appears only after a typing test reaches the result screen. -->
+      <div id="typex-result-ad" class="typex-result-ad" aria-label="Advertisement">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2648804205147564"
+             data-ad-slot="7429683784"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
       </div>
     </div>
   </section>
@@ -1400,11 +1418,28 @@ button{touch-action:manipulation}
     return state.words[idx] || null;
   }
 
+  let typexResultAdQueued=false;
+  function queueTypeXResultAd(){
+    const slot=document.querySelector("#typex-result-ad ins.adsbygoogle");
+    if(!slot || typexResultAdQueued || slot.dataset.typexQueued==="1") return;
+    try{
+      // Queue using Google's supported pattern; it is safe when the async script is still loading.
+      (window.adsbygoogle=window.adsbygoogle||[]).push({});
+      slot.dataset.typexQueued="1";
+      typexResultAdQueued=true;
+    }catch(error){
+      console.warn("Gypsy TypeX result ad was not queued.",error);
+    }
+  }
+
   function setScreen(name){
     [els.start,els.selector,els.result,els.typing].forEach(el=>el.classList.add("hidden-ui"));
     if(name==="start") els.start.classList.remove("hidden-ui");
     if(name==="selector") els.selector.classList.remove("hidden-ui");
-    if(name==="result") els.result.classList.remove("hidden-ui");
+    if(name==="result"){
+      els.result.classList.remove("hidden-ui");
+      requestAnimationFrame(queueTypeXResultAd);
+    }
     if(name==="typing") els.typing.classList.remove("hidden-ui");
   }
 
