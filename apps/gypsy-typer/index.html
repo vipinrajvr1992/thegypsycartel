@@ -501,6 +501,34 @@ button{touch-action:manipulation}
 }
 </style>
 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2648804205147564" crossorigin="anonymous"></script>
+<style id="typex-result-ad-and-word-wrap-fix">
+/* Keep every word together; line breaks may happen only between words. */
+#typing-area .typing-word{
+  display:inline-block !important;
+  white-space:nowrap !important;
+  word-break:keep-all !important;
+  overflow-wrap:normal !important;
+  hyphens:none !important;
+  vertical-align:baseline;
+}
+#typing-area .typing-char{white-space:pre !important}
+.typex-result-ad{
+  width:100%;
+  max-width:970px;
+  min-height:90px;
+  margin:28px auto 8px;
+  padding:10px 0;
+  text-align:center;
+  overflow:hidden;
+  border-top:1px solid rgba(168,85,247,.12);
+}
+.typex-result-ad ins.adsbygoogle{display:block;min-height:90px}
+@media(max-width:720px){
+  .typex-result-ad{margin-top:22px;min-height:70px}
+  .typex-result-ad ins.adsbygoogle{min-height:70px}
+}
+</style>
 </head>
 <body>
 
@@ -636,6 +664,16 @@ button{touch-action:manipulation}
         <button id="main-menu-btn" class="action-btn px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-700 text-xs font-bold">⌂ MAIN MENU</button>
         <button id="retry-btn" class="action-btn px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-700 text-xs font-bold">↻ RETAKE TEST</button>
         <button id="next-level-btn" class="action-btn hidden-ui px-7 py-3 rounded-xl bg-cyan-600 text-black text-xs font-black shadow-lg shadow-cyan-900/30">PROCEED TO NEXT →</button>
+      </div>
+
+      <!-- AdSense: Gypsy TypeX result screen only -->
+      <div id="typex-result-ad" class="typex-result-ad" aria-label="Advertisement">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2648804205147564"
+             data-ad-slot="7429683784"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
       </div>
     </div>
   </section>
@@ -1400,11 +1438,27 @@ button{touch-action:manipulation}
     return state.words[idx] || null;
   }
 
+  let typexResultAdInitialized=false;
+  function initializeTypeXResultAd(){
+    const ad=document.querySelector("#typex-result-ad ins.adsbygoogle");
+    if(!ad || typexResultAdInitialized) return;
+    if(!window.adsbygoogle) return;
+    try{
+      (window.adsbygoogle=window.adsbygoogle||[]).push({});
+      typexResultAdInitialized=true;
+    }catch(error){
+      console.warn("Gypsy TypeX result ad could not initialize yet.",error);
+    }
+  }
+
   function setScreen(name){
     [els.start,els.selector,els.result,els.typing].forEach(el=>el.classList.add("hidden-ui"));
     if(name==="start") els.start.classList.remove("hidden-ui");
     if(name==="selector") els.selector.classList.remove("hidden-ui");
-    if(name==="result") els.result.classList.remove("hidden-ui");
+    if(name==="result"){
+      els.result.classList.remove("hidden-ui");
+      requestAnimationFrame(()=>initializeTypeXResultAd());
+    }
     if(name==="typing") els.typing.classList.remove("hidden-ui");
   }
 
