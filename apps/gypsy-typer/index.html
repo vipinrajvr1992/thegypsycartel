@@ -501,34 +501,14 @@ button{touch-action:manipulation}
 }
 </style>
 
+
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2648804205147564" crossorigin="anonymous"></script>
-<style id="typex-result-ad-and-word-wrap-fix">
-/* Keep every word together; line breaks may happen only between words. */
-#typing-area .typing-word{
-  display:inline-block !important;
-  white-space:nowrap !important;
-  word-break:keep-all !important;
-  overflow-wrap:normal !important;
-  hyphens:none !important;
-  vertical-align:baseline;
-}
-#typing-area .typing-char{white-space:pre !important}
-.typex-result-ad{
-  width:100%;
-  max-width:970px;
-  min-height:90px;
-  margin:28px auto 8px;
-  padding:10px 0;
-  text-align:center;
-  overflow:hidden;
-  border-top:1px solid rgba(168,85,247,.12);
-}
+<style id="typex-result-ad-style">
+.typex-result-ad{width:100%;max-width:970px;min-height:90px;margin:28px auto 8px;padding:10px 0;text-align:center;overflow:hidden}
 .typex-result-ad ins.adsbygoogle{display:block;min-height:90px}
-@media(max-width:720px){
-  .typex-result-ad{margin-top:22px;min-height:70px}
-  .typex-result-ad ins.adsbygoogle{min-height:70px}
-}
+@media(max-width:720px){.typex-result-ad{margin-top:22px;min-height:70px}.typex-result-ad ins.adsbygoogle{min-height:70px}}
 </style>
+
 </head>
 <body>
 
@@ -666,7 +646,7 @@ button{touch-action:manipulation}
         <button id="next-level-btn" class="action-btn hidden-ui px-7 py-3 rounded-xl bg-cyan-600 text-black text-xs font-black shadow-lg shadow-cyan-900/30">PROCEED TO NEXT →</button>
       </div>
 
-      <!-- AdSense: Gypsy TypeX result screen only -->
+      <!-- AdSense appears only after a typing test reaches the result screen. -->
       <div id="typex-result-ad" class="typex-result-ad" aria-label="Advertisement">
         <ins class="adsbygoogle"
              style="display:block"
@@ -1438,16 +1418,17 @@ button{touch-action:manipulation}
     return state.words[idx] || null;
   }
 
-  let typexResultAdInitialized=false;
-  function initializeTypeXResultAd(){
-    const ad=document.querySelector("#typex-result-ad ins.adsbygoogle");
-    if(!ad || typexResultAdInitialized) return;
-    if(!window.adsbygoogle) return;
+  let typexResultAdQueued=false;
+  function queueTypeXResultAd(){
+    const slot=document.querySelector("#typex-result-ad ins.adsbygoogle");
+    if(!slot || typexResultAdQueued || slot.dataset.typexQueued==="1") return;
     try{
+      // Queue using Google's supported pattern; it is safe when the async script is still loading.
       (window.adsbygoogle=window.adsbygoogle||[]).push({});
-      typexResultAdInitialized=true;
+      slot.dataset.typexQueued="1";
+      typexResultAdQueued=true;
     }catch(error){
-      console.warn("Gypsy TypeX result ad could not initialize yet.",error);
+      console.warn("Gypsy TypeX result ad was not queued.",error);
     }
   }
 
@@ -1457,7 +1438,7 @@ button{touch-action:manipulation}
     if(name==="selector") els.selector.classList.remove("hidden-ui");
     if(name==="result"){
       els.result.classList.remove("hidden-ui");
-      requestAnimationFrame(()=>initializeTypeXResultAd());
+      requestAnimationFrame(queueTypeXResultAd);
     }
     if(name==="typing") els.typing.classList.remove("hidden-ui");
   }
