@@ -9,10 +9,6 @@
   <meta property="og:title" content="Gypsy TypeX | Elite Cyber Velocity Training">
   <meta property="og:description" content="Build typing speed, accuracy and consistency with 100 progressive levels, live finger guidance and read-ahead coaching. No account required.">
   <meta name="robots" content="index, follow">
-<link rel="icon" type="image/webp" href="/assets/logos/gypsy-cartel-icon.webp">
-<link rel="shortcut icon" type="image/webp" href="/assets/logos/gypsy-cartel-icon.webp">
-<link rel="apple-touch-icon" href="/assets/logos/gypsy-cartel-icon.webp">
-<meta name="theme-color" content="#030305">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
@@ -494,32 +490,6 @@ button{touch-action:manipulation}
 }
 </style>
 
-<style id="typex-footer-and-error-fix">
-/* Keep the red error state attached to the one incorrect character only. */
-#typing-area > span.c-wrong,
-#typing-area > span.c-wrong.word-active {
-  color: #ffffff !important;
-  background: #ef4444 !important;
-  box-shadow: 0 0 9px rgba(239, 68, 68, .9) !important;
-}
-
-/* Gypsy Cartel footer — retains the TypeX neon theme. */
-#typex-footer {
-  width: 100%;
-  margin: 0;
-  padding: 20px 16px max(20px, env(safe-area-inset-bottom));
-  border-top: 1px solid rgba(168, 85, 247, .25);
-  background: linear-gradient(180deg, rgba(12, 10, 19, .98), #030305);
-  color: #9ca3af;
-  text-align: center;
-  font: 500 12px/1.7 "JetBrains Mono", monospace;
-  letter-spacing: .035em;
-}
-#typex-footer .footer-brand {
-  color: #d8b4fe;
-  font-weight: 700;
-}
-</style>
 </head>
 <body>
 
@@ -1047,9 +1017,6 @@ button{touch-action:manipulation}
   </div>
 </section>
 
-<footer id="typex-footer" role="contentinfo">
-  <span>© 2026 <span class="footer-brand">Gypsy Cartel</span>. All Rights Reserved.</span>
-</footer>
 
 <!-- Settings -->
 <div id="settings-modal" class="fixed inset-0 z-50 hidden-ui modal-backdrop items-center justify-center p-4">
@@ -1639,37 +1606,12 @@ button{touch-action:manipulation}
     state.graphTimer=setInterval(logGraphData,1500);
   }
 
-  // Set the visual state on one character span without replacing unrelated
-  // classes such as word-active. This prevents a word-level highlight from
-  // accidentally inheriting the red error appearance.
-  function setCharacterState(index, nextState){
-    const node=els.area.children[index];
-    if(!node) return null;
-    node.classList.remove("c-pend","c-corr","c-curr","c-wrong");
-    node.classList.add(nextState);
-    return node;
-  }
-
-  // The engine requires a correction before moving forward. If a stale red
-  // class is ever left by an older render/state, remove it everywhere except
-  // the character currently being corrected.
-  function clearStaleWrongHighlights(keepIndex=state.index){
-    Array.from(els.area.children).forEach((node,index)=>{
-      if(index===keepIndex || !node.classList.contains("c-wrong")) return;
-      node.classList.remove("c-wrong");
-      node.classList.add(index < state.index ? "c-corr" : "c-pend");
-    });
-  }
-
   function handleCharacter(char){
     if(state.finished || !char || char.length!==1) return;
     if(state.index>=state.text.length) return;
-
     const prevIndex=state.index;
     beginTimerIfNeeded();
 
-    // Only compare the key with the current target character. Wrong input
-    // marks this one span red and does not spill the error style across a word.
     const expected=state.text[state.index];
     const expectedFinger=getFinger(expected);
     state.typed++;
@@ -1679,10 +1621,14 @@ button{touch-action:manipulation}
     state.lastKeyTime=keyNow;
 
     highlightKey(char);
-    clearStaleWrongHighlights(state.index);
 
-    if(char!==expected){
-      setCharacterState(state.index,"c-wrong");
+    if(char===expected){
+      const current=els.area.childNodes[state.index];
+      if(current) current.className="c-corr";
+      playThock(false);
+    } else {
+      const current=els.area.childNodes[state.index];
+      if(current) current.className="c-wrong";
       state.errors++;
       const errorKey=expected.toLowerCase();
       state.keyErrors[errorKey]=(state.keyErrors[errorKey]||0)+1;
@@ -1691,49 +1637,31 @@ button{touch-action:manipulation}
       els.area.classList.remove("shake-err");
       void els.area.offsetWidth;
       els.area.classList.add("shake-err");
-      updateLiveHUD();
-      updateCoach();
-      return;
     }
-
-    // Correcting a red character removes c-wrong and restores the normal
-    // completed style for that character.
-    setCharacterState(state.index,"c-corr");
-    playThock(false);
 
     state.index++;
     els.progress.style.width=`${Math.min(100,(state.index/state.text.length)*100)}%`;
+
     updateLiveHUD();
 
     if(state.index>=state.text.length){
       updateCoach();
       finishTest();
     } else {
-      setCharacterState(state.index,"c-curr");
+      const next=els.area.childNodes[state.index];
+      if(next) next.className="c-curr";
       updateWordCoachAfterStroke(prevIndex);
     }
   }
 
   function handleBackspace(){
-    if(state.finished) return;
-
-    // Backspace on a red target clears its red marker and keeps the cursor on
-    // that target, ready for the player to enter the correct character.
-    const current=els.area.children[state.index];
-    if(current && current.classList.contains("c-wrong")){
-      setCharacterState(state.index,"c-curr");
-      updateLiveHUD();
-      updateCoach();
-      return;
-    }
-
-    if(state.index<=0) return;
+    if(state.finished || state.index<=0) return;
     const prevIndex=state.index;
-    setCharacterState(state.index,"c-pend");
+    const current=els.area.childNodes[state.index];
+    if(current && current.classList.contains("c-curr")) current.className="c-pend";
     state.index--;
-    clearStaleWrongHighlights(state.index);
-    setCharacterState(state.index,"c-curr");
-
+    const target=els.area.childNodes[state.index];
+    if(target) target.className="c-curr";
     els.progress.style.width=`${(state.index/state.text.length)*100}%`;
     updateLiveHUD();
     updateWordCoachAfterStroke(prevIndex);
