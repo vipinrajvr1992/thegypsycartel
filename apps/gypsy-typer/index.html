@@ -94,11 +94,27 @@ button{touch-action:manipulation}
 .c-pend{color:#626774}
 .c-corr{color:#d8b4fe;text-shadow:0 0 12px rgba(168,85,247,.78)}
 .c-wrong{color:#fff;background:#ef4444;box-shadow:0 0 9px rgba(239,68,68,.9)}
-.c-curr{color:#fff;background:rgba(255,255,255,.13);position:relative;text-shadow:0 0 10px #fff}
-.c-curr::after{
-  content:"";position:absolute;left:0;right:0;bottom:-2px;height:3px;
-  background:var(--pink);box-shadow:0 0 12px var(--pink);animation:blink 1s infinite
+/* Only the single next-to-type character gets this marker. */
+#typing-area .typing-char.c-curr{
+  color:#fff;
+  background:rgba(255,255,255,.13);
+  position:relative;
+  text-shadow:0 0 10px #fff;
 }
+#typing-area .typing-char.c-curr::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:-2px;
+  height:3px;
+  background:var(--pink);
+  box-shadow:0 0 12px var(--pink);
+  animation:blink 1s infinite;
+  pointer-events:none;
+}
+/* A space is a valid target, but must not draw a misleading line under a word. */
+#typing-area .typing-char.c-curr[data-char-space="true"]::after{display:none;}
 
 /* Virtual keyboard */
 .key-row{display:flex;justify-content:center;gap:clamp(3px,.5vw,6px);margin-bottom:6px}
@@ -158,7 +174,7 @@ button{touch-action:manipulation}
 .coach-chip.white{color:#f1f5f9;border-color:rgba(200,214,229,.35)}
 .key.expected-key{outline:2px solid rgba(255,255,255,.94);outline-offset:2px;animation:expectedPulse .9s infinite alternate;z-index:2}
 @keyframes expectedPulse{from{box-shadow:0 0 6px rgba(34,211,238,.15)}to{box-shadow:0 0 20px rgba(34,211,238,.65)}}
-.word-active{background:rgba(34,211,238,.025);box-shadow:none;text-decoration:none;}
+.word-active{background:transparent!important;box-shadow:none!important;text-decoration:none!important;}
 
 
 
@@ -281,7 +297,7 @@ button{touch-action:manipulation}
 #finger-pointer-label b{font-size:9px!important}
 @media(max-width:980px){.typex-live-grid{grid-template-columns:1fr}.typex-coach{min-height:0}#typing-area{min-height:230px}.typex-method-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.typex-result-insights{grid-template-columns:1fr}}
 @media(max-width:720px){#keyboard-shell .keyboard-live-title{font-size:8px}#keyboard-shell .key{width:clamp(27px,7.5vw,39px);height:clamp(39px,11vw,47px);font-size:.78rem}#keyboard-shell .spacebar{width:clamp(175px,55vw,290px)!important}.typex-live-grid{gap:12px}#typing-area{min-height:235px;font-size:1.08rem;padding:18px!important}.typex-method-grid{grid-template-columns:1fr}.typex-reference-image{max-height:220px}#finger-pointer-label{display:none}}
-.word-active{background:rgba(34,211,238,.025);box-shadow:none;text-decoration:none;}
+.word-active{background:transparent!important;box-shadow:none!important;text-decoration:none!important;}
 
 /* =========================================================
    GYPSY TYPEX V5 — TRAINING / SCIENCE / EDUCATION SECTION
@@ -1518,8 +1534,9 @@ button{touch-action:manipulation}
       if(char===" "){
         if(wordWrap){ fragment.appendChild(wordWrap); wordWrap=null; }
         const space=document.createElement("span");
-        space.className="typing-char "+(i===0 ? "c-curr" : "c-pend");
+        space.className="typing-char c-pend";
         space.dataset.charIndex=String(i);
+        space.dataset.charSpace="true";
         space.textContent=" ";
         space.style.whiteSpace="pre";
         fragment.appendChild(space);
@@ -1530,13 +1547,26 @@ button{touch-action:manipulation}
         wordWrap.className="typing-word";
       }
       const span=document.createElement("span");
-      span.className="typing-char "+(i===0 ? "c-curr" : "c-pend");
+      span.className="typing-char c-pend";
       span.dataset.charIndex=String(i);
       span.textContent=char;
       wordWrap.appendChild(span);
     }
     if(wordWrap) fragment.appendChild(wordWrap);
     els.area.appendChild(fragment);
+    syncCurrentCharacterHighlight();
+  }
+
+  /* Keep exactly one current-character marker in the entire typing paragraph.
+     This avoids stale c-curr classes surviving after moving across words/spaces. */
+  function syncCurrentCharacterHighlight(){
+    const spans=getCharacterSpans();
+    spans.forEach(span=>{
+      span.classList.remove("c-curr", "word-active");
+    });
+    if(state.finished || state.index<0 || state.index>=state.text.length) return;
+    const target=els.area.querySelector(`[data-char-index="${state.index}"]`);
+    if(target) target.classList.add("c-curr");
   }
 
   function requestInputFocus(){
@@ -1551,15 +1581,9 @@ button{touch-action:manipulation}
   }
 
   function highlightCurrentWord(){
-    const activeIndex=getWordIndexAt(state.index);
+    /* TypeX highlights the exact next character, not every character in its word. */
     const spans=getCharacterSpans();
-    for(let i=0;i<spans.length;i++) spans[i].classList.remove("word-active");
-    if(activeIndex<0 || !state.words[activeIndex]) return;
-    const word=state.words[activeIndex];
-    for(let i=word.start;i<word.end;i++){
-      const span=spans[i];
-      if(span) span.classList.add("word-active");
-    }
+    spans.forEach(span=>span.classList.remove("word-active"));
   }
 
   function updateCoach(){
@@ -1716,8 +1740,7 @@ button{touch-action:manipulation}
       updateCoach();
       finishTest();
     } else {
-      const next=getCharacterSpans()[state.index];
-      if(next) next.className="c-curr";
+      syncCurrentCharacterHighlight();
       updateWordCoachAfterStroke(prevIndex);
     }
   }
@@ -1725,11 +1748,13 @@ button{touch-action:manipulation}
   function handleBackspace(){
     if(state.finished || state.index<=0) return;
     const prevIndex=state.index;
-    const current=getCharacterSpans()[state.index];
-    if(current && current.classList.contains("c-curr")) current.className="c-pend";
     state.index--;
     const target=getCharacterSpans()[state.index];
-    if(target) target.className="c-curr";
+    if(target){
+      target.classList.remove("c-corr", "c-wrong", "c-curr", "word-active");
+      target.classList.add("c-pend");
+    }
+    syncCurrentCharacterHighlight();
     els.progress.style.width=`${(state.index/state.text.length)*100}%`;
     updateLiveHUD();
     updateWordCoachAfterStroke(prevIndex);
