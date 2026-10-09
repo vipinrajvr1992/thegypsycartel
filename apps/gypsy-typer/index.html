@@ -1609,9 +1609,12 @@ button{touch-action:manipulation}
   function handleCharacter(char){
     if(state.finished || !char || char.length!==1) return;
     if(state.index>=state.text.length) return;
+
     const prevIndex=state.index;
     beginTimerIfNeeded();
 
+    // Compare every key with the CURRENT target character. A mistake is shown
+    // on that one target only; it does not move the cursor or turn later text red.
     const expected=state.text[state.index];
     const expectedFinger=getFinger(expected);
     state.typed++;
@@ -1622,13 +1625,12 @@ button{touch-action:manipulation}
 
     highlightKey(char);
 
-    if(char===expected){
-      const current=els.area.childNodes[state.index];
-      if(current) current.className="c-corr";
-      playThock(false);
-    } else {
-      const current=els.area.childNodes[state.index];
-      if(current) current.className="c-wrong";
+    const current=els.area.childNodes[state.index];
+    if(char!==expected){
+      if(current){
+        current.classList.remove("c-pend","c-corr","c-curr");
+        current.classList.add("c-wrong");
+      }
       state.errors++;
       const errorKey=expected.toLowerCase();
       state.keyErrors[errorKey]=(state.keyErrors[errorKey]||0)+1;
@@ -1637,11 +1639,20 @@ button{touch-action:manipulation}
       els.area.classList.remove("shake-err");
       void els.area.offsetWidth;
       els.area.classList.add("shake-err");
+
+      // Stay on this character. The player must correct it before continuing.
+      // This keeps the red error highlight limited to the actual target error.
+      updateLiveHUD();
+      updateCoach();
+      return;
     }
+
+    // A correct retry replaces the red error styling with the normal correct style.
+    if(current) current.className="c-corr";
+    playThock(false);
 
     state.index++;
     els.progress.style.width=`${Math.min(100,(state.index/state.text.length)*100)}%`;
-
     updateLiveHUD();
 
     if(state.index>=state.text.length){
@@ -1655,13 +1666,26 @@ button{touch-action:manipulation}
   }
 
   function handleBackspace(){
-    if(state.finished || state.index<=0) return;
-    const prevIndex=state.index;
+    if(state.finished) return;
+
+    // If the current target is red, Backspace simply clears that error marker
+    // without moving the cursor to a different character.
     const current=els.area.childNodes[state.index];
+    if(current && current.classList.contains("c-wrong")){
+      current.className="c-curr";
+      updateLiveHUD();
+      updateCoach();
+      return;
+    }
+
+    if(state.index<=0) return;
+    const prevIndex=state.index;
     if(current && current.classList.contains("c-curr")) current.className="c-pend";
+
     state.index--;
     const target=els.area.childNodes[state.index];
     if(target) target.className="c-curr";
+
     els.progress.style.width=`${(state.index/state.text.length)*100}%`;
     updateLiveHUD();
     updateWordCoachAfterStroke(prevIndex);
