@@ -13,7 +13,42 @@
         .apps-gallery { margin-top: 40px; }
         .apps-gallery-title { margin-bottom: 22px; }
         .app-divider { border: 0; height: 1px; background: rgba(255,255,255,0.1); margin: 70px 0; }
+        
+        /* --- New Search Bar Styles --- */
+        .search-container {
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        .search-input {
+            width: 100%;
+            max-width: 500px;
+            padding: 16px 25px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(13, 13, 25, 0.8);
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        .search-input:focus {
+            border-color: var(--primary-orange, #ff6a1a);
+            box-shadow: 0 0 15px rgba(255, 106, 26, 0.2);
+        }
+        .search-input::placeholder {
+            color: #888;
+        }
+        .no-results {
+            text-align: center;
+            color: #888;
+            font-size: 1.2rem;
+            display: none;
+            margin-top: 30px;
+        }
+        
         @media (max-width: 700px) {
+            .search-input { padding: 12px 20px; font-size: 0.95rem; }
         }
     </style>
 </head>
@@ -21,88 +56,99 @@
 <div id="site-header"></div>
 <div class="container apps-page">
     
-    <!-- App 1: Gypsy Optimizer -->
-    <div class="grid-2">
-        <div>
-            <h3 class="reveal delay-1" style="color: var(--primary-orange); margin-bottom: 10px; font-size: 1rem;">WINDOWS OPTIMIZATION</h3>
-            <h1 class="reveal delay-2" style="font-size: 2rem; margin-bottom: 25px;">GYPSY OPTIMIZER: PC BEAST <br>V3.1 PRO+</h1>
-            <p class="reveal delay-3" style="color: #ccc; margin-bottom: 25px;">
-                GYPSY OPTIMIZER V3.1 PRO+ is a professional Windows optimization and system
-                maintenance tool designed to improve speed, stability, and overall PC performance.
-            </p>
-            <ul class="reveal delay-3" style="margin-left: 20px; margin-bottom: 25px; list-style-type:'⚡ '; ">
-                <li>One-Click Full System Optimization</li>
-                <li>Junk, Cache & Temporary File Cleanup</li>
-                <li>CPU, RAM & Network Performance Boost</li>
-                <li>Windows System Repair Tools</li>
-            </ul>
-            <p class="reveal delay-3" style="font-size:0.9rem; color:var(--text-muted); margin-bottom:18px;">
-                ✔ One-time purchase<br>✔ No subscriptions<br>✔ Instant download after payment
-            </p>
-            <div class="reveal delay-3" style="margin-bottom:18px; display:flex; align-items:center; gap:15px;">
-                <span style="color:#777; text-decoration:line-through; font-size: 1.2rem;">₹1999</span>
-                <span style="color:var(--primary-orange); font-size:1.4rem; font-weight:700;">₹999</span>
-                <span style="border:1px solid var(--primary-orange); padding:4px 12px; border-radius:20px; font-size:0.75rem; color:var(--primary-orange); background:rgba(255,106,26,0.15);">50% OFF</span>
+    <!-- Search Bar Section -->
+    <div class="search-container reveal">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search apps (e.g. Optimizer, TypeX)..." onkeyup="searchApps()">
+    </div>
+    
+    <div id="noResults" class="no-results">No apps found matching your search.</div>
+
+    <!-- App 1: Gypsy Optimizer (Wrapped in app-item) -->
+    <div class="app-item" data-app-name="gypsy optimizer pc beast windows optimization clean">
+        <div class="grid-2">
+            <div>
+                <h3 class="reveal delay-1" style="color: var(--primary-orange); margin-bottom: 10px; font-size: 1rem;">WINDOWS OPTIMIZATION</h3>
+                <h1 class="reveal delay-2" style="font-size: 2rem; margin-bottom: 25px;">GYPSY OPTIMIZER: PC BEAST <br>V3.1 PRO+</h1>
+                <p class="reveal delay-3" style="color: #ccc; margin-bottom: 25px;">
+                    GYPSY OPTIMIZER V3.1 PRO+ is a professional Windows optimization and system
+                    maintenance tool designed to improve speed, stability, and overall PC performance.
+                </p>
+                <ul class="reveal delay-3" style="margin-left: 20px; margin-bottom: 25px; list-style-type:'⚡ '; ">
+                    <li>One-Click Full System Optimization</li>
+                    <li>Junk, Cache & Temporary File Cleanup</li>
+                    <li>CPU, RAM & Network Performance Boost</li>
+                    <li>Windows System Repair Tools</li>
+                </ul>
+                <p class="reveal delay-3" style="font-size:0.9rem; color:var(--text-muted); margin-bottom:18px;">
+                    ✔ One-time purchase<br>✔ No subscriptions<br>✔ Instant download after payment
+                </p>
+                <div class="reveal delay-3" style="margin-bottom:18px; display:flex; align-items:center; gap:15px;">
+                    <span style="color:#777; text-decoration:line-through; font-size: 1.2rem;">₹1999</span>
+                    <span style="color:var(--primary-orange); font-size:1.4rem; font-weight:700;">₹999</span>
+                    <span style="border:1px solid var(--primary-orange); padding:4px 12px; border-radius:20px; font-size:0.75rem; color:var(--primary-orange); background:rgba(255,106,26,0.15);">50% OFF</span>
+                </div>
+                <a class="btn btn-primary reveal delay-3" href="https://gypsycartel.gumroad.com/l/gypsy-optimizer-pc-beast-v3-1-pro" target="_blank" rel="noopener">BUY NOW</a>
             </div>
-            <a class="btn btn-primary reveal delay-3" href="https://gypsycartel.gumroad.com/l/gypsy-optimizer-pc-beast-v3-1-pro" target="_blank" rel="noopener">BUY NOW</a>
+            <div class="reveal-img delay-2">
+                <img src="/assets/logos/gypsy-app.webp" alt="PC Beast Pro+ Software Icon" class="apps-image" style="width:100%; border-radius:12px;">
+            </div>
         </div>
-        <div class="reveal-img delay-2">
-            <img src="/assets/logos/gypsy-app.webp" alt="PC Beast Pro+ Software Icon" class="apps-image" style="width:100%; border-radius:12px;">
-        </div>
+
+        <!-- Gallery Section for App 1 -->
+        <section class="apps-gallery reveal delay-3">
+            <h3 class="apps-gallery-title">APPLICATION PREVIEW</h3>
+            <div class="apps-gallery-wrapper">
+                <div class="apps-gallery-arrow left" onclick="scrollGallery(-1)">‹</div>
+                <div class="apps-gallery-track" id="appsGallery">
+                    <img src="/assets/apps/screen-1.webp" class="apps-gallery-img">
+                    <img src="/assets/apps/screen-2.webp" class="apps-gallery-img">
+                    <img src="/assets/apps/screen-3.webp" class="apps-gallery-img">
+                    <img src="/assets/apps/screen-4.webp" class="apps-gallery-img">
+                    <img src="/assets/apps/screen-5.webp" class="apps-gallery-img">
+                </div>
+                <div class="apps-gallery-arrow right" onclick="scrollGallery(1)">›</div>
+            </div>
+        </section>
+
+        <!-- Divider to separate Apps -->
+        <hr class="app-divider">
     </div>
 
-    <!-- Gallery Section -->
-    <section class="apps-gallery reveal delay-3">
-        <h3 class="apps-gallery-title">APPLICATION PREVIEW</h3>
-        <div class="apps-gallery-wrapper">
-            <div class="apps-gallery-arrow left" onclick="scrollGallery(-1)">‹</div>
-            <div class="apps-gallery-track" id="appsGallery">
-                <img src="/assets/apps/screen-1.webp" class="apps-gallery-img">
-                <img src="/assets/apps/screen-2.webp" class="apps-gallery-img">
-                <img src="/assets/apps/screen-3.webp" class="apps-gallery-img">
-                <img src="/assets/apps/screen-4.webp" class="apps-gallery-img">
-                <img src="/assets/apps/screen-5.webp" class="apps-gallery-img">
+    <!-- App 2: Gypsy TypeX (Wrapped in app-item) -->
+    <div class="app-item" data-app-name="gypsy typex advanced typing trainer fast game free">
+        <div class="grid-2" style="align-items: center; margin-bottom: 50px;">
+            <div>
+                <h3 class="reveal delay-1" style="color: #ec4899; margin-bottom: 10px; font-size: 1rem;">ADVANCED TYPING TRAINER</h3>
+                <h1 class="reveal delay-2" style="font-size: 2rem; margin-bottom: 25px;">GYPSY TYPEX <br>Write Fast. Work Smarter.</h1>
+                <p class="reveal delay-3" style="color: #ccc; margin-bottom: 25px;">
+                    Master your keyboard with GYPSY TYPEX — a futuristic touch-typing training arcade built for speed, accuracy, consistency and real muscle memory. Train through 100 progressive levels with live WPM, accuracy, voice read-ahead coaching and animated finger guidance.
+                </p>
+                <ul class="reveal delay-3" style="margin-left: 20px; margin-bottom: 25px; list-style-type:'⚡ '; ">
+                    <li>Real-Time WPM & Accuracy Tracking Analytics</li>
+                    <li>Interactive Touch Typing Keymap & Guides</li>
+                    <li>3 Difficulty Modes (Easy, Medium, Hard)</li>
+                    <li>100 Progressive Levels & Skill Training</li>
+                </ul>
+                <p class="reveal delay-3" style="font-size:0.9rem; color:var(--text-muted); margin-bottom:18px;">
+                    ✔ 100% Free to Play<br>✔ No Login or Signup Required<br>✔ Your Progress Stays on This Browser
+                </p>
+                <div class="reveal delay-3" style="margin-bottom:18px; display:flex; align-items:center; gap:15px;">
+                    <span style="color:#ec4899; font-size:1.4rem; font-weight:700;">FREE PLAY</span>
+                    <span style="border:1px solid #ec4899; padding:4px 12px; border-radius:20px; font-size:0.75rem; color:#ec4899; background:rgba(236,72,153,0.15);">LIVE NOW</span>
+                </div>
+                
+                <!-- PERFECTLY FIXED LINK AND COLOR HERE -->
+                <a class="btn btn-primary reveal delay-3" href="/apps/gypsy-typer/" style="background: linear-gradient(to right, #ec4899, #a855f7); border: none; color: #ffffff !important; font-weight: bold;" target="_blank" rel="noopener">LAUNCH GYPSY TYPEX</a>
             </div>
-            <div class="apps-gallery-arrow right" onclick="scrollGallery(1)">›</div>
-        </div>
-    </section>
-
-    <!-- Divider to separate Apps and Game -->
-    <hr class="app-divider">
-
-    <!-- App 2: Gypsy TypeX -->
-    <div class="grid-2" style="align-items: center; margin-bottom: 50px;">
-        <div>
-            <h3 class="reveal delay-1" style="color: #ec4899; margin-bottom: 10px; font-size: 1rem;">ADVANCED TYPING TRAINER</h3>
-            <h1 class="reveal delay-2" style="font-size: 2rem; margin-bottom: 25px;">GYPSY TYPEX <br>Write Fast. Work Smarter.</h1>
-            <p class="reveal delay-3" style="color: #ccc; margin-bottom: 25px;">
-                Master your keyboard with GYPSY TYPEX — a futuristic touch-typing training arcade built for speed, accuracy, consistency and real muscle memory. Train through 100 progressive levels with live WPM, accuracy, voice read-ahead coaching and animated finger guidance.
-            </p>
-            <ul class="reveal delay-3" style="margin-left: 20px; margin-bottom: 25px; list-style-type:'⚡ '; ">
-                <li>Real-Time WPM & Accuracy Tracking Analytics</li>
-                <li>Interactive Touch Typing Keymap & Guides</li>
-                <li>3 Difficulty Modes (Easy, Medium, Hard)</li>
-                <li>100 Progressive Levels & Skill Training</li>
-            </ul>
-            <p class="reveal delay-3" style="font-size:0.9rem; color:var(--text-muted); margin-bottom:18px;">
-                ✔ 100% Free to Play<br>✔ No Login or Signup Required<br>✔ Your Progress Stays on This Browser
-            </p>
-            <div class="reveal delay-3" style="margin-bottom:18px; display:flex; align-items:center; gap:15px;">
-                <span style="color:#ec4899; font-size:1.4rem; font-weight:700;">FREE PLAY</span>
-                <span style="border:1px solid #ec4899; padding:4px 12px; border-radius:20px; font-size:0.75rem; color:#ec4899; background:rgba(236,72,153,0.15);">LIVE NOW</span>
-            </div>
-            
-            <!-- PERFECTLY FIXED LINK AND COLOR HERE -->
-            <a class="btn btn-primary reveal delay-3" href="/apps/gypsy-typer/" style="background: linear-gradient(to right, #ec4899, #a855f7); border: none; color: #ffffff !important; font-weight: bold;" target="_blank" rel="noopener">LAUNCH GYPSY TYPEX</a>
-        </div>
-        <div class="reveal-img delay-2">
-            <!-- Cyberpunk styled banner for the game -->
-            <div style="background: rgba(13,13,25,0.9); border: 1px solid rgba(236,72,153,0.3); padding: 50px 30px; border-radius: 12px; text-align: center; box-shadow: 0 0 25px rgba(168,85,247,0.2);">
-                <h2 style="font-size: 2.2rem; font-weight: 900; background: linear-gradient(to right, #ec4899, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 10px rgba(236, 72, 153, 0.3);">TYPE. SURGE. CONQUER.</h2>
-                <p style="color: #888; margin-top: 15px; font-size: 1rem;">Train your speed. Build accuracy. Master every key.</p>
-                <div style="margin-top: 25px; display: flex; justify-content: center; gap: 10px;">
-                    <span style="background: #111; padding: 8px 15px; border-radius: 6px; font-size: 0.8rem; color: #ec4899; border: 1px solid #333;">Live WPM</span>
-                    <span style="background: #111; padding: 8px 15px; border-radius: 6px; font-size: 0.8rem; color: #a855f7; border: 1px solid #333;">Finger Coaching</span>
+            <div class="reveal-img delay-2">
+                <!-- Cyberpunk styled banner for the game -->
+                <div style="background: rgba(13,13,25,0.9); border: 1px solid rgba(236,72,153,0.3); padding: 50px 30px; border-radius: 12px; text-align: center; box-shadow: 0 0 25px rgba(168,85,247,0.2);">
+                    <h2 style="font-size: 2.2rem; font-weight: 900; background: linear-gradient(to right, #ec4899, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 10px rgba(236, 72, 153, 0.3);">TYPE. SURGE. CONQUER.</h2>
+                    <p style="color: #888; margin-top: 15px; font-size: 1rem;">Train your speed. Build accuracy. Master every key.</p>
+                    <div style="margin-top: 25px; display: flex; justify-content: center; gap: 10px;">
+                        <span style="background: #111; padding: 8px 15px; border-radius: 6px; font-size: 0.8rem; color: #ec4899; border: 1px solid #333;">Live WPM</span>
+                        <span style="background: #111; padding: 8px 15px; border-radius: 6px; font-size: 0.8rem; color: #a855f7; border: 1px solid #333;">Finger Coaching</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -126,6 +172,34 @@
 </script>
 <script id="zsiqscript" src="https://salesiq.zohopublic.in/widget?wc=siq4eeed742bf6206b825f62fd2636a33aaf45f7afa471f2e973240f1e459d9034e"></script>
 <script>
+// --- Search Functionality ---
+function searchApps() {
+    let input = document.getElementById('searchInput').value.toLowerCase();
+    let appItems = document.querySelectorAll('.app-item');
+    let noResults = document.getElementById('noResults');
+    let hasVisibleApp = false;
+    
+    appItems.forEach(item => {
+        // Checking the custom data attribute which holds app keywords
+        let appName = item.getAttribute('data-app-name').toLowerCase();
+        
+        if (appName.includes(input)) {
+            item.style.display = "block"; // Show matched app
+            hasVisibleApp = true;
+        } else {
+            item.style.display = "none"; // Hide non-matching app
+        }
+    });
+
+    // Show 'No results' message if no apps match
+    if(hasVisibleApp) {
+        noResults.style.display = "none";
+    } else {
+        noResults.style.display = "block";
+    }
+}
+
+// --- Existing Gallery Functionality ---
 const gallery = document.getElementById("appsGallery");
 const modal = document.getElementById("appsModal");
 const modalImg = document.getElementById("appsModalImg");
