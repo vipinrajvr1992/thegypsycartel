@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Gypsy TypeMatrix">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ec4899"/><stop offset=".52" stop-color="#a855f7"/><stop offset="1" stop-color="#22d3ee"/></linearGradient>
-  </defs>
-  <rect x="2" y="2" width="60" height="60" rx="14" fill="#030305" stroke="url(#g)" stroke-width="3"/>
-  <path d="M13 18h13v5H18v6h8v5h-8v6h8v5H13z" fill="url(#g)"/>
-  <path d="M33 18h6v22h-6zM42 18h9v5h-9zM42 27h8v5h-8zM42 35h9v5h-9z" fill="#fff"/>
-  <circle cx="49" cy="49" r="3" fill="#22d3ee"/>
-</svg>
