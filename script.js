@@ -422,417 +422,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 /* =========================================================
-   GYPSY CARTEL — GLOBAL SCRIPT (FINAL MASTER)
-   Includes:
-   1. Page Logic (Modals, Forms, Dropdowns)
-   2. Animations (Scroll Reveal, Stagger)
-   3. Navigation (Mobile Drawer, Auto-Highlight)
-   4. Floating Widgets (WhatsApp + Zoho Premium Fixes)
-========================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    /* =========================================================
-       1. PREMIUM PAGE LOAD TRIGGER
-    ========================================================= */
-    setTimeout(() => {
-        document.body.classList.add("page-loaded");
-    }, 50);
-
-    /* =========================================================
-       2. DEVICE DETECTION
-    ========================================================= */
-    const isTouchDevice =
-        "ontouchstart" in window ||
-        navigator.maxTouchPoints > 0 ||
-        window.matchMedia("(hover: none)").matches;
-
-    /* =========================================================
-       3. APPS GALLERY MODAL + SCROLL LOCK
-    ========================================================= */
-    const modal = document.getElementById("appsModal");
-    const modalImg = document.getElementById("appsModalImg");
-    const closeBtn = document.querySelector(".apps-modal-close");
-    const galleryImages = document.querySelectorAll(".apps-gallery-img");
-
-    let currentIndex = 0;
-
-    if (modal && modalImg && galleryImages.length) {
-
-        function toggleScroll(lock) {
-            document.body.style.overflow = lock ? "hidden" : "";
-        }
-
-        function showImage(index) {
-            currentIndex = index;
-            modalImg.src = galleryImages[currentIndex].src;
-            modal.style.display = "flex";
-            toggleScroll(true);
-        }
-
-        function closeModal() {
-            modal.style.display = "none";
-            toggleScroll(false);
-        }
-
-        function nextImage() {
-            currentIndex = (currentIndex + 1) % galleryImages.length;
-            modalImg.src = galleryImages[currentIndex].src;
-        }
-
-        function prevImage() {
-            currentIndex = (currentIndex - 1 + galleryImages.length) % galleryImages.length;
-            modalImg.src = galleryImages[currentIndex].src;
-        }
-
-        galleryImages.forEach((img, index) => {
-            img.addEventListener("click", () => showImage(index));
-        });
-
-        if (closeBtn) closeBtn.addEventListener("click", closeModal);
-
-        modal.addEventListener("click", (e) => {
-            if (e.target === modal) closeModal();
-        });
-
-        const leftArrow = document.querySelector('.apps-modal-arrow.left');
-        const rightArrow = document.querySelector('.apps-modal-arrow.right');
-
-        if (leftArrow) leftArrow.addEventListener('click', (e) => {
-            e.stopPropagation();
-            prevImage();
-        });
-
-        if (rightArrow) rightArrow.addEventListener('click', (e) => {
-            e.stopPropagation();
-            nextImage();
-        });
-
-        document.addEventListener("keydown", (e) => {
-            if (modal.style.display !== "flex") return;
-            if (e.key === "Escape") closeModal();
-            if (e.key === "ArrowRight") nextImage();
-            if (e.key === "ArrowLeft") prevImage();
-        });
-    }
-
-
-    /* =========================================================
-       4. STUDIO CUSTOM DROPDOWN (Grey Active)
-    ========================================================= */
-    document.querySelectorAll(".gc-dropdown").forEach(dropdown => {
-
-        const selectedBox = dropdown.querySelector(".gc-dropdown-selected");
-        const items = dropdown.querySelectorAll("li");
-        const hiddenInput = dropdown.querySelector("input[type='hidden']");
-
-        if (!selectedBox || !hiddenInput) return;
-
-        selectedBox.addEventListener("click", (e) => {
-            e.stopPropagation();
-            dropdown.classList.toggle("open");
-        });
-
-        items.forEach(item => {
-
-            item.addEventListener("click", () => {
-
-                selectedBox.textContent = item.textContent;
-                hiddenInput.value = item.dataset.value;
-
-                items.forEach(li => li.classList.remove("active"));
-                item.classList.add("active");
-
-                dropdown.classList.remove("open");
-            });
-
-        });
-
-        document.addEventListener("click", (e) => {
-            if (!dropdown.contains(e.target)) {
-                dropdown.classList.remove("open");
-            }
-        });
-
-    });
-
-
-    /* =========================================================
-       5. DESIGN FORM AJAX SUBMIT
-    ========================================================= */
-    const designForm = document.getElementById("designForm");
-
-    if (designForm) {
-
-        designForm.addEventListener("submit", async (e) => {
-
-            e.preventDefault();
-
-            const successMsg = document.getElementById("design-success");
-            const submitBtn = designForm.querySelector("button");
-            const originalText = submitBtn.innerText;
-            const formData = new FormData(designForm);
-
-            submitBtn.innerText = "SENDING...";
-
-            try {
-
-                const response = await fetch(designForm.action, {
-                    method: "POST",
-                    body: formData,
-                    headers: { Accept: "application/json" }
-                });
-
-                if (response.ok) {
-
-                    designForm.reset();
-                    submitBtn.innerText = "SENT ✅";
-
-                    if (successMsg) {
-                        successMsg.style.display = "block";
-                        successMsg.style.color = "#00ff88";
-                    }
-
-                    setTimeout(() => {
-                        submitBtn.innerText = originalText;
-
-                        if (successMsg) {
-                            successMsg.style.display = "none";
-                        }
-
-                    }, 4000);
-
-                } else {
-
-                    alert("Submission failed. Try again.");
-                    submitBtn.innerText = originalText;
-
-                }
-
-            } catch {
-
-                alert("Network error. Please try again.");
-                submitBtn.innerText = originalText;
-
-            }
-
-        });
-
-    }
-
-});
-
-
-/* =========================================================
-   ANIMATION ENGINE (Scroll Reveal & Interactions)
-========================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    // 1. SCROLL REVEAL
-    const revealElements = document.querySelectorAll(
-        ".reveal, .reveal-img, .reveal-form"
-    );
-
-    const revealObserver = new IntersectionObserver((entries) => {
-
-        entries.forEach((entry) => {
-
-            if (entry.isIntersecting) {
-                entry.target.classList.add("active");
-            }
-
-        });
-
-    }, { threshold: 0.15 });
-
-    revealElements.forEach((el) => revealObserver.observe(el));
-
-
-    // 2. STAGGER DELAYS
-    document.querySelectorAll(".delay-1").forEach(el =>
-        el.style.transitionDelay = "0.15s"
-    );
-
-    document.querySelectorAll(".delay-2").forEach(el =>
-        el.style.transitionDelay = "0.3s"
-    );
-
-    document.querySelectorAll(".delay-3").forEach(el =>
-        el.style.transitionDelay = "0.45s"
-    );
-
-    document.querySelectorAll(".delay-4").forEach(el =>
-        el.style.transitionDelay = "0.6s"
-    );
-
-
-    // 3. IMAGE LOAD FADE-IN
-    document.querySelectorAll("img").forEach((img) => {
-
-        img.style.opacity = "0";
-        img.style.transition = "opacity 0.8s ease";
-
-        img.addEventListener("load", () => {
-            img.style.opacity = "1";
-        });
-
-        if (img.complete) {
-            img.style.opacity = "1";
-        }
-
-    });
-
-
-    // 4. BUTTON MICRO INTERACTION
-    document.querySelectorAll(".btn").forEach((btn) => {
-
-        btn.addEventListener("mousedown", () => {
-            btn.style.transform = "scale(0.96)";
-        });
-
-        btn.addEventListener("mouseup", () => {
-            btn.style.transform = "";
-        });
-
-        btn.addEventListener("mouseleave", () => {
-            btn.style.transform = "";
-        });
-
-    });
-
-});
-
-
-/* =========================================================
-   MOBILE NAVBAR ENGINE & HEADER LOADER
-========================================================= */
-
-function initMobileNavbar() {
-
-    if (window.innerWidth > 768) return;
-
-    const headerNav = document.querySelector("header nav");
-    const menu = document.querySelector("header nav ul");
-    const links = document.querySelectorAll("header nav a");
-    const indicator = document.querySelector(".nav-indicator");
-    const menuBtn = document.querySelector(".mobile-menu-btn");
-
-    if (!headerNav || !menu || !links.length) return;
-
-    function moveIndicator(activeLink) {
-
-        if (!indicator || !activeLink) return;
-
-        const rect = activeLink.getBoundingClientRect();
-        const navRect = headerNav.getBoundingClientRect();
-
-        indicator.style.width = rect.width + "px";
-        indicator.style.left = rect.left - navRect.left + "px";
-
-    }
-
-    function centerActive(activeLink) {
-
-        if (!activeLink) return;
-
-        activeLink.scrollIntoView({
-            behavior: "smooth",
-            inline: "center",
-            block: "nearest"
-        });
-
-    }
-
-    const active = document.querySelector("header nav a.active");
-
-    if (active) {
-
-        setTimeout(() => {
-            moveIndicator(active);
-            centerActive(active);
-        }, 150);
-
-    }
-
-    links.forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            links.forEach(l => l.classList.remove("active"));
-
-            link.classList.add("active");
-
-            moveIndicator(link);
-            centerActive(link);
-
-            menu.classList.remove("open");
-
-        });
-
-    });
-
-    if (menuBtn) {
-
-        menuBtn.addEventListener("click", (e) => {
-
-            e.stopPropagation();
-
-            menu.classList.toggle("open");
-
-        });
-
-    }
-
-    document.addEventListener("click", (e) => {
-
-        if (!headerNav.contains(e.target)) {
-            menu.classList.remove("open");
-        }
-
-    });
-
-    window.addEventListener("resize", () => {
-
-        const activeNow =
-            document.querySelector("header nav a.active");
-
-        if (activeNow) {
-            moveIndicator(activeNow);
-        }
-
-    });
-
-}
-
-
-/* =========================================================
-   ✅ RUN NAVBAR AFTER HEADER LOADS (INJECT SAFE)
-========================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    const headerMount = document.getElementById("site-header");
-    if (!headerMount) return;
-
-    const observer = new MutationObserver(() => {
-
-        if (headerMount.querySelector("nav")) {
-            initMobileNavbar();
-            observer.disconnect();
-        }
-
-    });
-
-    observer.observe(headerMount, {
-        childList: true,
-        subtree: true
-    });
-
-});
-
-
-/* =========================================================
    HEADER & FOOTER INJECTOR
 ========================================================= */
 
@@ -1286,33 +875,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
-
-    const observer =
-        new MutationObserver(() => {
-
-            setupZohoFinal();
-
-            if (
-                isDeviceMobile ||
-                document.getElementById("zsiq_float")
-                    ?.dataset.locked === "true"
-            ) {
-
-                // Keep observing on mobile to catch Zoho if it loads late, then hide it
-
-                if (!isDeviceMobile) {
-                    observer.disconnect();
-                }
-
-            }
-
-        });
-
-
-    observer.observe(document.body, {
-        childList: true,
-        subtree: true
-    });
+    /* 
+       ✅ FIX: Replaced continuous MutationObserver with lightweight setInterval 
+       to prevent main-thread locking and forced reflows on mobile 
+    */
+    let zohoCheckCount = 0;
+    const zohoInterval = setInterval(() => {
+        setupZohoFinal();
+        zohoCheckCount++;
+        if (
+            isDeviceMobile ||
+            document.getElementById("zsiq_float")?.dataset.locked === "true" || 
+            zohoCheckCount > 15
+        ) {
+            clearInterval(zohoInterval);
+        }
+    }, 500);
 
 });
 
@@ -1419,7 +997,7 @@ document.addEventListener("click", function (e) {
 
 /* =========================================================
    🔐 GYPSY CARTEL — CLIENT-SIDE SECURITY LAYER
-   Added without changing existing functionality
+   ✅ FIX: Removed heavy MutationObserver that caused performance issues
 ========================================================= */
 
 (() => {
@@ -1569,7 +1147,7 @@ document.addEventListener("click", function (e) {
 
 
     /* =====================================================
-       6. PROTECT ALL CURRENT IMAGES
+       6. PROTECT ALL CURRENT IMAGES (Runs once efficiently)
     ===================================================== */
 
     const protectImages = () => {
@@ -1585,29 +1163,7 @@ document.addEventListener("click", function (e) {
 
     };
 
-
     protectImages();
-
-
-    /* =====================================================
-       7. PROTECT DYNAMICALLY INSERTED IMAGES
-    ===================================================== */
-
-    const securityObserver =
-        new MutationObserver(() => {
-
-            protectImages();
-
-        });
-
-
-    securityObserver.observe(
-        document.documentElement,
-        {
-            childList: true,
-            subtree: true
-        }
-    );
 
 
     /* =====================================================
