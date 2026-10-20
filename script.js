@@ -807,6 +807,32 @@ function initMobileNavbar() {
 
 
 /* =========================================================
+   ✅ RUN NAVBAR AFTER HEADER LOADS (INJECT SAFE)
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const headerMount = document.getElementById("site-header");
+    if (!headerMount) return;
+
+    const observer = new MutationObserver(() => {
+
+        if (headerMount.querySelector("nav")) {
+            initMobileNavbar();
+            observer.disconnect();
+        }
+
+    });
+
+    observer.observe(headerMount, {
+        childList: true,
+        subtree: true
+    });
+
+});
+
+
+/* =========================================================
    HEADER & FOOTER INJECTOR
 ========================================================= */
 
