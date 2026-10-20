@@ -9,6 +9,10 @@
   <meta property="og:title" content="Gypsy TypeMatrix | Elite Cyber Velocity Training">
   <meta property="og:description" content="Build typing speed, accuracy and consistency with 100 progressive levels, live finger guidance and read-ahead coaching. No account required.">
   <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#030305">
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="./apple-touch-icon.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
@@ -32,6 +36,7 @@
 }
 
 *{box-sizing:border-box}
+body,p,li,td,th{word-break:normal;overflow-wrap:normal;hyphens:none}
 html,body{margin:0;min-height:100%;background:var(--bg);color:#fff;font-family:Orbitron,sans-serif}
 body{overflow-x:hidden;-webkit-font-smoothing:antialiased}
 button,input{font:inherit}
@@ -70,16 +75,16 @@ button{touch-action:manipulation}
   font-size:clamp(1.08rem,2.2vw,1.7rem);
   user-select:none;
   overflow:hidden;
-  display:flex;
-  flex-wrap:wrap;
-  align-content:flex-start
+  display:block;
+  white-space:normal;
+  overflow-wrap:normal;
+  word-break:normal;
+  hyphens:none;
+  overflow:auto;
 }
-#typing-area span{
-  display:inline-block;
-  padding:0 2px;
-  border-radius:4px;
-  white-space:pre
-}
+#typing-area .typing-word{display:inline-block;white-space:nowrap;vertical-align:top}
+#typing-area .typing-char{display:inline-block;padding:0 2px;border-radius:4px;white-space:pre;vertical-align:top}
+#typing-area span{border-radius:4px}
 .c-pend{color:#626774}
 .c-corr{color:#d8b4fe;text-shadow:0 0 12px rgba(168,85,247,.78)}
 .c-wrong{color:#fff;background:#ef4444;box-shadow:0 0 9px rgba(239,68,68,.9)}
@@ -233,7 +238,7 @@ button{touch-action:manipulation}
 #coach-hand{margin-top:4px}
 .TypeMatrix-coach-divider{height:1px;background:#23232d;margin:13px 0}
 .TypeMatrix-read-ahead{padding:11px 12px;border:1px solid rgba(236,72,153,.16);border-radius:11px;background:rgba(236,72,153,.035)}
-.TypeMatrix-read-ahead-value{margin-top:6px;color:#f9a8d4;font:900 1.15rem/1.25 "JetBrains Mono",monospace;word-break:break-word}
+.TypeMatrix-read-ahead-value{margin-top:6px;color:#f9a8d4;font:900 1.15rem/1.25 "JetBrains Mono",monospace;word-break:normal;overflow-wrap:normal;hyphens:none}
 .TypeMatrix-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
 .TypeMatrix-mini-stat{border:1px solid #21222b;background:rgba(8,8,13,.55);border-radius:9px;padding:9px}
 .TypeMatrix-mini-stat span{display:block;color:#5f6470;font:700 7px/1.2 Orbitron,sans-serif;letter-spacing:.12em;text-transform:uppercase}
@@ -490,6 +495,17 @@ button{touch-action:manipulation}
 }
 </style>
 
+  <style id="typematrix-wrap-footer-fixes">
+
+.typematrix-footer{width:100%;padding:22px 16px 28px;text-align:center;border-top:1px solid rgba(168,85,247,.18);background:rgba(3,3,5,.82);color:#737783;font:500 12px/1.7 "JetBrains Mono",monospace;letter-spacing:.02em}
+.typematrix-footer p{margin:0;white-space:normal;word-break:normal;overflow-wrap:normal;hyphens:none}
+#typing-area .typing-char.c-pend{color:#626774}
+#typing-area .typing-char.c-corr{color:#d8b4fe;text-shadow:0 0 12px rgba(168,85,247,.78)}
+#typing-area .typing-char.c-wrong{color:#fff;background:#ef4444;box-shadow:0 0 9px rgba(239,68,68,.9)}
+#typing-area .typing-char.c-curr{color:#fff;background:rgba(255,255,255,.13);position:relative;text-shadow:0 0 10px #fff}
+#typing-area{overflow:auto !important;word-break:normal !important;overflow-wrap:normal !important;hyphens:none !important}
+#typing-area .typing-word{white-space:nowrap !important}
+  </style>
 </head>
 <body>
 
@@ -775,7 +791,7 @@ button{touch-action:manipulation}
      ============================================================ -->
 <section class="TypeMatrix-learn" aria-labelledby="TypeMatrix-learn-title">
   <div class="TypeMatrix-learn-hero">
-    <div class="TypeMatrix-learn-kicker">GYPSY CARTEL • TypeMatrix TRAINING LAB</div>
+    <div class="TypeMatrix-learn-kicker">GYPSY CARTEL • TYPEMATRIX TRAINING LAB</div>
     <h2 id="TypeMatrix-learn-title" class="TypeMatrix-learn-title">THIS IS MORE THAN A TYPING GAME.</h2>
     <p class="TypeMatrix-learn-lead">
       Gypsy TypeMatrix is designed as a game-shaped training system: you play levels, but the real objective is to improve
@@ -1017,6 +1033,9 @@ button{touch-action:manipulation}
   </div>
 </section>
 
+<footer class="typematrix-footer" role="contentinfo">
+  <p>© 2026 Gypsy Cartel. All Rights Reserved.</p>
+</footer>
 
 <!-- Settings -->
 <div id="settings-modal" class="fixed inset-0 z-50 hidden-ui modal-backdrop items-center justify-center p-4">
@@ -1163,6 +1182,7 @@ button{touch-action:manipulation}
     levels:[],
     level:1,
     text:"",
+    charEls:[],
     index:0,
     errors:0,
     typed:0,
@@ -1188,6 +1208,7 @@ button{touch-action:manipulation}
     keyErrors:{},
     fingerErrors:{fp:0,fr:0,fm:0,fil:0,fir:0,ft:0},
     sessionUnlocked:1,
+    completedAll:false,
     stats:{
       tests:0,
       bestWpm:0,
@@ -1229,6 +1250,7 @@ button{touch-action:manipulation}
   function loadProgress(){
     const value=parseInt(safeStorageGet("gx_unlocked","1"),10);
     state.unlocked=Number.isFinite(value) ? Math.max(1,Math.min(100,value)) : 1;
+    state.completedAll=safeStorageGet("gx_completed_all","0")==="1";
     try{
       const raw=safeStorageGet("gx_stats",null);
       if(raw){
@@ -1240,6 +1262,7 @@ button{touch-action:manipulation}
 
   function saveProgress(){
     safeStorageSet("gx_unlocked", String(state.unlocked));
+    safeStorageSet("gx_completed_all", state.completedAll ? "1" : "0");
     safeStorageSet("gx_profile_name", state.session.name || "PLAYER");
     safeStorageSet("gx_stats", JSON.stringify(state.stats));
     updateStartSnapshot();
@@ -1288,23 +1311,23 @@ button{touch-action:manipulation}
     // "state.unlocked" is the next level the player is allowed to play.
     // Example: unlocked=3 means Levels 1-2 are completed and Level 3 is next.
     const nextLevel=Math.max(1,Math.min(100,state.unlocked||1));
-    const completed=Math.max(0,nextLevel-1);
+    const completed=state.completedAll ? 100 : Math.max(0,nextLevel-1);
 
     if(ids.unlocked) ids.unlocked.textContent=`${completed}/100`;
 
     if(ids.title && ids.desc && ids.button){
-      if(nextLevel<=1){
+      if(state.completedAll){
+        ids.title.textContent="TRAINING COMPLETE";
+        ids.desc.textContent="You have cleared all 100 levels. Replay the final level or revisit any challenge.";
+        ids.button.textContent="REPLAY LEVEL 100";
+      }else if(nextLevel<=1){
         ids.title.textContent="START TRAINING";
         ids.desc.textContent="Begin with Level 1. Your TypeMatrix progress stays on this browser.";
         ids.button.textContent="BEGIN LEVEL 1";
-      }else if(nextLevel<100){
+      }else{
         ids.title.textContent="CONTINUE TRAINING";
         ids.desc.textContent=`Resume your progression. Level ${nextLevel} is ready for your next challenge.`;
         ids.button.textContent=`CONTINUE LEVEL ${nextLevel}`;
-      }else{
-        ids.title.textContent="TRAINING COMPLETE";
-        ids.desc.textContent="All 100 levels are unlocked. Keep improving with Level 100 or revisit earlier levels.";
-        ids.button.textContent="REPLAY LEVEL 100";
       }
     }
   }
@@ -1413,8 +1436,8 @@ button{touch-action:manipulation}
     });
     const note=document.getElementById("progress-note");
     const player=safeStorageGet("gx_profile_name","PLAYER");
-    const completed = Math.max(0, state.unlocked - 1);
-    const next = state.unlocked < 100 ? `Next level: ${state.unlocked}` : "All levels complete";
+    const completed = state.completedAll ? 100 : Math.max(0, state.unlocked - 1);
+    const next = state.completedAll ? "All levels complete" : (state.unlocked < 100 ? `Next level: ${state.unlocked}` : "Final challenge: Level 100");
     note.textContent=`${player} • Local progress saved on this browser • Completed: ${completed}/100 • ${next}`;
   }
 
@@ -1462,11 +1485,30 @@ button{touch-action:manipulation}
   function renderTypingText(){
     els.area.innerHTML="";
     const fragment=document.createDocumentFragment();
-    for(let i=0;i<state.text.length;i++){
-      const span=document.createElement("span");
-      span.textContent=state.text[i];
-      span.className=i===0 ? "c-curr" : "c-pend";
-      fragment.appendChild(span);
+    state.charEls=new Array(state.text.length);
+
+    // Each word is an unbroken inline unit; characters remain individually styled.
+    // Spaces are included at the end of the preceding word so line breaks happen between words.
+    for(const word of state.words){
+      const wordWrap=document.createElement("span");
+      wordWrap.className="typing-word";
+      for(let i=word.start;i<word.end;i++){
+        const charEl=document.createElement("span");
+        charEl.className=i===0 ? "typing-char c-curr" : "typing-char c-pend";
+        charEl.textContent=state.text[i];
+        state.charEls[i]=charEl;
+        wordWrap.appendChild(charEl);
+      }
+      let cursor=word.end;
+      while(cursor<state.text.length && /\s/.test(state.text[cursor])){
+        const spaceEl=document.createElement("span");
+        spaceEl.className="typing-char c-pend";
+        spaceEl.textContent=state.text[cursor];
+        state.charEls[cursor]=spaceEl;
+        wordWrap.appendChild(spaceEl);
+        cursor++;
+      }
+      fragment.appendChild(wordWrap);
     }
     els.area.appendChild(fragment);
   }
@@ -1484,8 +1526,8 @@ button{touch-action:manipulation}
 
   function highlightCurrentWord(){
     const activeIndex=getWordIndexAt(state.index);
-    const spans=els.area ? els.area.childNodes : [];
-    for(let i=0;i<spans.length;i++) spans[i].classList.remove("word-active");
+    const spans=state.charEls || [];
+    for(let i=0;i<spans.length;i++) if(spans[i]) spans[i].classList.remove("word-active");
     if(activeIndex<0 || !state.words[activeIndex]) return;
     const word=state.words[activeIndex];
     for(let i=word.start;i<word.end;i++){
@@ -1623,12 +1665,12 @@ button{touch-action:manipulation}
     highlightKey(char);
 
     if(char===expected){
-      const current=els.area.childNodes[state.index];
-      if(current) current.className="c-corr";
+      const current=state.charEls[state.index];
+      if(current) current.className="typing-char c-corr";
       playThock(false);
     } else {
-      const current=els.area.childNodes[state.index];
-      if(current) current.className="c-wrong";
+      const current=state.charEls[state.index];
+      if(current) current.className="typing-char c-wrong";
       state.errors++;
       const errorKey=expected.toLowerCase();
       state.keyErrors[errorKey]=(state.keyErrors[errorKey]||0)+1;
@@ -1648,8 +1690,8 @@ button{touch-action:manipulation}
       updateCoach();
       finishTest();
     } else {
-      const next=els.area.childNodes[state.index];
-      if(next) next.className="c-curr";
+      const next=state.charEls[state.index];
+      if(next) next.className="typing-char c-curr";
       updateWordCoachAfterStroke(prevIndex);
     }
   }
@@ -1657,11 +1699,11 @@ button{touch-action:manipulation}
   function handleBackspace(){
     if(state.finished || state.index<=0) return;
     const prevIndex=state.index;
-    const current=els.area.childNodes[state.index];
-    if(current && current.classList.contains("c-curr")) current.className="c-pend";
+    const current=state.charEls[state.index];
+    if(current && current.classList.contains("c-curr")) current.className="typing-char c-pend";
     state.index--;
-    const target=els.area.childNodes[state.index];
-    if(target) target.className="c-curr";
+    const target=state.charEls[state.index];
+    if(target) target.className="typing-char c-curr";
     els.progress.style.width=`${(state.index/state.text.length)*100}%`;
     updateLiveHUD();
     updateWordCoachAfterStroke(prevIndex);
@@ -1742,6 +1784,9 @@ button{touch-action:manipulation}
     if(pass && state.level===state.unlocked && state.level<100){
       state.unlocked++;
       state.sessionUnlocked=state.unlocked;
+    }else if(pass && state.level===100){
+      state.completedAll=true;
+      state.sessionUnlocked=100;
     }
 
     // Always persist: TypeMatrix is intentionally local-first, with no login required.
@@ -1784,12 +1829,20 @@ button{touch-action:manipulation}
 
   function drawChart(){
     if(typeof Chart==="undefined"){
-      els.chart.replaceWith(Object.assign(document.createElement("div"),{
-        className:"h-full flex items-center justify-center text-xs text-zinc-600 font-mono",
-        textContent:"Analytics chart unavailable — Chart.js could not be loaded."
-      }));
+      const wrapper=els.chart.parentElement;
+      let note=wrapper.querySelector(".chart-unavailable");
+      if(!note){
+        note=document.createElement("div");
+        note.className="chart-unavailable h-full flex items-center justify-center text-xs text-zinc-600 font-mono";
+        note.textContent="Analytics chart unavailable — Chart.js could not be loaded.";
+        wrapper.appendChild(note);
+      }
+      els.chart.style.display="none";
       return;
     }
+    els.chart.style.display="block";
+    const oldNote=els.chart.parentElement.querySelector(".chart-unavailable");
+    if(oldNote) oldNote.remove();
     if(state.perfChart){
       try{state.perfChart.destroy();}catch{}
       state.perfChart=null;
@@ -2025,7 +2078,7 @@ button{touch-action:manipulation}
   function setSession(name){
     const clean=name.replace(/[^\w-]/g,"").slice(0,18) || "PLAYER";
     const token=base64(`${clean}|${Date.now()}|GYPSY-TypeMatrix`);
-    safeSessionSet("gypsy_TypeMatrix_token",token);
+    safeSessionSet("gypsy_Typer_token",token);
     state.guest=false;
     state.session={loggedIn:true,name:clean.toUpperCase()};
     els.profile.textContent=state.session.name;
@@ -2052,8 +2105,8 @@ button{touch-action:manipulation}
     const input=document.getElementById("local-player-name");
     const name=safeStorageGet("gx_profile_name",state.session.name||"PLAYER");
     input.value=name==="PLAYER" ? "" : name;
-    const completed=Math.max(0,state.unlocked-1);
-    const next=state.unlocked<100 ? `Next level ${state.unlocked}` : "All 100 levels complete";
+    const completed=state.completedAll ? 100 : Math.max(0,state.unlocked-1);
+    const next=state.completedAll ? "All 100 levels complete" : (state.unlocked<100 ? `Next level ${state.unlocked}` : "Final challenge: Level 100");
     document.getElementById("local-profile-status").textContent=
       `Completed ${completed}/100 • ${state.stats.tests||0} tests • Best ${Math.round(state.stats.bestWpm||0)} WPM • ${next} • Local browser profile`;
     openModal(els.localProfile);
@@ -2074,10 +2127,12 @@ button{touch-action:manipulation}
     if(confirm("Reset Gypsy TypeMatrix local progress on this browser?")){
       try{
         localStorage.removeItem("gx_unlocked");
+        localStorage.removeItem("gx_completed_all");
         localStorage.removeItem("gx_profile_name");
         localStorage.removeItem("gx_stats");
       }catch{}
       state.unlocked=1;
+      state.completedAll=false;
       state.sessionUnlocked=1;
       state.stats={tests:0,bestWpm:0,bestAccuracy:0,bestConsistency:0,totalErrors:0,totalTyped:0,totalSeconds:0};
       state.session={loggedIn:false,name:"PLAYER"};
