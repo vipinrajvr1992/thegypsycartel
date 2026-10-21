@@ -770,3 +770,120 @@ hr { border: 0; border-top: var(--border-subtle); margin: 1rem 0; }
 .checkbox-row { display: flex; align-items: center; gap: 10px; }
 .checkbox-row input[type="checkbox"] { accent-color: var(--clr-primary); width: 16px; height: 16px; }
 .checkbox-row label { margin-bottom: 0; cursor: pointer; }
+/* ==========================================================================
+   MOBILE RESPONSIVENESS (Media Queries)
+   ========================================================================== */
+
+@media (max-width: 992px) {
+    /* Stack panels vertically on tablets and mobiles */
+    .app-layout {
+        flex-direction: column;
+    }
+    
+    /* Convert left sidebar into a horizontal scrollable toolbar */
+    .sidebar-left {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+        border-right: none;
+        border-bottom: var(--border-subtle);
+        padding: 10px;
+    }
+    
+    .tool-menu {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        padding: 0;
+    }
+    
+    .tool-btn {
+        width: auto;
+        white-space: nowrap;
+        margin-bottom: 0;
+        padding: 8px 12px;
+    }
+    
+    .menu-section-title, .sidebar-footer {
+        display: none; /* Hide unnecessary titles on mobile */
+    }
+    
+    /* Adjust map and analysis panels to split the screen */
+    .workspace-center {
+        height: 50vh;
+        min-height: 300px;
+    }
+    
+    .sidebar-right {
+        width: 100%;
+        height: auto;
+        border-left: none;
+        border-top: var(--border-subtle);
+    }
+}
+
+@media (max-width: 768px) {
+    /* Compact Top Navbar */
+    .top-navbar {
+        padding: 0 10px;
+    }
+    .brand-wrapper h2 {
+        font-size: 1rem;
+    }
+    .parent-brand, .project-info, .nav-right .btn-text {
+        display: none; /* Hide extra elements to save space */
+    }
+    
+    /* Full width modals for mobile */
+    .modal-content, .modal-content.large {
+        width: 95%;
+        margin: 10px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+    
+    /* Form fields and grids adapt to single column */
+    .form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .setback-display-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Reposition Drawing Toolbar horizontally */
+    .drawing-toolbar {
+        flex-direction: row;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: max-content;
+        max-width: 90%;
+        overflow-x: auto;
+    }
+    .drawing-toolbar .divider-vertical {
+        width: 1px;
+        height: 20px;
+        margin: auto 5px;
+    }
+    
+    /* Compact Status Bar */
+    .workspace-status-bar {
+        bottom: 10px;
+        width: 90%;
+        flex-direction: column;
+        gap: 5px;
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 0.75rem;
+    }
+    
+    /* Converter Modal specific fixes */
+    .converter-layout {
+        flex-direction: column;
+    }
+    .conv-center-icon {
+        transform: rotate(90deg);
+        margin: 10px 0;
+    }
+}
