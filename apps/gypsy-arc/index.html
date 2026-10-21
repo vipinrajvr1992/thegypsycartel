@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GYPSYARC - Advanced Architecture & Drafting Utility Web Application by MG Creations">
+    <meta name="author" content="Vipinraj Vadakkoott Rajan - The Gypsy Cartel">
+    <title>GYPSYARC - Comprehensive Architecture Utility | The Gypsy Cartel</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons for UI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark app-body">
+
+    <!-- ==========================================
+         TOP NAVIGATION BAR
+    =========================================== -->
+    <header class="top-navbar">
+        <div class="nav-left">
+            <!-- App Branding -->
+            <div class="brand-wrapper">
+                <div class="app-logo">
+                    <i class="fa-solid fa-layer-group logo-icon"></i>
+                    <h2>GYPSYARC</h2>
+                </div>
+                <!-- Gypsy Cartel Specific Brand Typography -->
+                <div class="parent-brand" style="font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 800; letter-spacing: 1.5px; background: #0f0f0f; padding: 4px 8px; border-radius: 4px; border: 1px solid #333;">
+                    <span style="color: #FFFFFF;">GYPSY </span><span style="color: #FFA500;">CART</span><span style="color: #FFFFFF;">EL</span>
+                </div>
+            </div>
+
+            <!-- Project Context Menu -->
+            <div class="project-info">
+                <span class="project-name">Untitled Project - Ernakulam Plot</span>
+                <span class="save-status text-success"><i class="fa-solid fa-cloud-check"></i> Saved to cloud</span>
+            </div>
+        </div>
+        
+        <div class="nav-right">
+            <!-- Top Action Buttons -->
+            <button class="btn-icon" title="Undo (Ctrl+Z)"><i class="fa-solid fa-rotate-left"></i></button>
+            <button class="btn-icon" title="Redo (Ctrl+Y)"><i class="fa-solid fa-rotate-right"></i></button>
+            
+            <div class="divider-vertical"></div>
+
+            <!-- Tool Toggles -->
+            <button class="btn-text" onclick="openModal('exportModal')"><i class="fa-solid fa-file-export"></i> Export</button>
+            <button class="btn-text btn-primary"><i class="fa-solid fa-floppy-disk"></i> Save Project</button>
+            
+            <!-- Language Selector -->
+            <div class="language-selector custom-dropdown">
+                <i class="fa-solid fa-globe"></i>
+                <select id="languageSelect" class="lang-select-input" aria-label="Select Language">
+                    <option value="en" selected>English</option>
+                    <option value="ml">Malayalam</option>
+                    <option value="hi">Hindi</option>
+                    <option value="ar">Arabic</option>
+                    <option value="ta">Tamil</option>
+                    <option value="te">Telugu</option>
+                </select>
+            </div>
+
+            <!-- User Profile Dropdown -->
+            <div class="user-profile">
+                <img src="assets/default-avatar.png" alt="User" class="avatar-img" onerror="this.src='https://via.placeholder.com/35'">
+                <div class="user-dropdown-content">
+                    <a href="#profile"><i class="fa-solid fa-user"></i> My Profile</a>
+                    <a href="#projects"><i class="fa-solid fa-folder-open"></i> Saved Plans</a>
+                    <a href="#settings" onclick="openModal('settingsModal')"><i class="fa-solid fa-gear"></i> Settings</a>
+                    <hr>
+                    <a href="#logout" class="text-danger"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         MAIN APPLICATION GRID
+    =========================================== -->
+    <main class="app-layout">
+        
+        <!-- --------------------------------------
+             LEFT SIDEBAR (Main Tools Menu)
+        --------------------------------------- -->
+        <aside class="sidebar-left">
+            <nav class="tool-menu">
+                <div class="menu-section-title">Core Tools</div>
+                
+                <button class="tool-btn active" id="tool-map" data-target="panel-map">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <span>Map & Area</span>
+                </button>
+                
+                <button class="tool-btn" id="tool-vastu" data-target="panel-vastu">
+                    <i class="fa-solid fa-compass-drafting"></i>
+                    <span>Vastu Engine</span>
+                </button>
+                
+                <button class="tool-btn" id="tool-estimator" data-target="panel-estimator">
+                    <i class="fa-solid fa-calculator"></i>
+                    <span>Cost Estimator</span>
+                </button>
+                
+                <button class="tool-btn" id="tool-rules" data-target="panel-rules">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                    <span>Building Rules</span>
+                </button>
+
+                <div class="menu-section-title">Utilities</div>
+                
+                <button class="tool-btn" id="tool-converter" onclick="openModal('converterModal')">
+                    <i class="fa-solid fa-right-left"></i>
+                    <span>Unit Converter</span>
+                </button>
+
+                <button class="tool-btn" id="tool-sunpath">
+                    <i class="fa-regular fa-sun"></i>
+                    <span>Sun Path / Wind</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="btn-outline-small" onclick="openModal('settingsModal')">
+                    <i class="fa-solid fa-sliders"></i> App Settings
+                </button>
+            </div>
+        </aside>
+
+        <!-- --------------------------------------
+             CENTER WORKSPACE (Drawing & Maps)
+        --------------------------------------- -->
+        <section class="workspace-center">
+            
+            <!-- Drawing Toolbar (Floating above map) -->
+            <div class="drawing-toolbar">
+                <button class="draw-btn active" title="Select Pointer"><i class="fa-solid fa-arrow-pointer"></i></button>
+                <button class="draw-btn" title="Draw Plot Boundary (Polygon)"><i class="fa-solid fa-draw-polygon"></i></button>
+                <button class="draw-btn" title="Draw Rectangle"><i class="fa-regular fa-square"></i></button>
+                <button class="draw-btn" title="Draw Line (Setback)"><i class="fa-solid fa-minus"></i></button>
+                <button class="draw-btn" title="Add Marker / Pin"><i class="fa-solid fa-location-dot"></i></button>
+                <div class="divider-vertical"></div>
+                <button class="draw-btn" title="Measure Distance"><i class="fa-solid fa-ruler"></i></button>
+                <button class="draw-btn" title="Clear Map" class="text-danger"><i class="fa-solid fa-trash-can"></i></button>
+            </div>
+
+            <!-- Map Type Selector -->
+            <div class="map-controls-top-right">
+                <div class="map-type-toggle">
+                    <button class="map-type-btn active" data-type="roadmap">Map</button>
+                    <button class="map-type-btn" data-type="satellite">Satellite</button>
+                </div>
+            </div>
+
+            <!-- The Main Canvas Area (Google Maps integration point) -->
+            <div id="map-canvas-container">
+                <!-- Placeholder content before API load -->
+                <div class="canvas-placeholder">
+                    <div class="loader-ring"></div>
+                    <h3>Initializing Map Workspace...</h3>
+                    <p>Loading API & Rendering Engine</p>
+                </div>
+
+                <!-- Overlays that will be positioned via JS -->
+                <div id="vastu-overlay-container" class="hidden">
+                    <!-- SVG Compass will be injected here -->
+                </div>
+                
+                <div id="wind-overlay-container" class="hidden">
+                    <!-- Wind animation vectors -->
+                </div>
+            </div>
+
+            <!-- Bottom Floating Info Bar -->
+            <div class="workspace-status-bar">
+                <div class="status-item">
+                    <i class="fa-solid fa-location-crosshairs"></i> Lat: <span id="lbl-lat">11.2588</span>, Lng: <span id="lbl-lng">75.7804</span>
+                </div>
+                <div class="status-item highlight">
+                    <i class="fa-solid fa-draw-polygon"></i> Area: <strong id="lbl-area-cent">0.0 Cents</strong> (<span id="lbl-area-sqft">0</span> Sq.Ft)
+                </div>
+                <div class="status-item">
+                    <i class="fa-solid fa-road"></i> Access Road: <span id="lbl-road-width">Not Set</span>
+                </div>
+            </div>
+            
+            <!-- Zoom Controls -->
+            <div class="map-zoom-controls">
+                <button id="zoom-in"><i class="fa-solid fa-plus"></i></button>
+                <button id="zoom-out"><i class="fa-solid fa-minus"></i></button>
+                <button id="zoom-current"><i class="fa-solid fa-crosshairs"></i></button>
+            </div>
+        </section>
+
+        <!-- --------------------------------------
+             RIGHT SIDEBAR (Analysis & Output Panels)
+        --------------------------------------- -->
+        <aside class="sidebar-right">
+            
+            <!-- Contextual Header -->
+            <div class="panel-header">
+                <h3>Analysis & Results</h3>
+                <button class="btn-icon-small" title="Collapse Panel"><i class="fa-solid fa-angle-right"></i></button>
+            </div>
+
+            <div class="panel-scroll-area">
+                
+                <!-- 1. VASTU ANALYSIS PANEL -->
+                <div class="analysis-section" id="panel-vastu-content">
+                    <div class="section-title">
+                        <h4><i class="fa-solid fa-om"></i> Vastu Configuration</h4>
+                        <span class="badge badge-warning" id="vastu-overall-score">Score: Pending</span>
+                    </div>
+                    
+                    <div class="vastu-grid-controls form-group">
+                        <label>Align Grid to North</label>
+                        <input type="range" id="vastu-rotation" min="0" max="360" value="0" class="slider">
+                        <div class="slider-val">Rotation: <span id="rot-val">0°</span></div>
+                    </div>
+
+                    <div class="vastu-results-list">
+                        <div class="result-row">
+                            <span class="element-name">Kitchen (Agneya)</span>
+                            <select class="status-select">
+                                <option>Select Location</option>
+                                <option value="se">South-East (Ideal)</option>
+                                <option value="nw">North-West (Neutral)</option>
+                                <option value="ne">North-East (Avoid)</option>
+                            </select>
+                        </div>
+                        <div class="result-row">
+                            <span class="element-name">Master Bed (Nairutya)</span>
+                            <select class="status-select">
+                                <option>Select Location</option>
+                                <option value="sw">South-West (Ideal)</option>
+                                <option value="s">South</option>
+                                <option value="n">North (Avoid)</option>
+                            </select>
+                        </div>
+                        <div class="result-row">
+                            <span class="element-name">Pooja Room (Ishan)</span>
+                            <select class="status-select">
+                                <option>Select Location</option>
+                                <option value="ne">North-East (Ideal)</option>
+                                <option value="c">Center (Brahmasthan)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="btn-full btn-secondary mt-10">Generate Vastu Report PDF</button>
+                </div>
+
+                <hr class="panel-divider">
+
+                <!-- 2. BUILDING RULES & SETBACKS PANEL -->
+                <div class="analysis-section" id="panel-rules-content">
+                    <div class="section-title">
+                        <h4><i class="fa-solid fa-ruler-combined"></i> Statutory Setbacks</h4>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label>Authority / Code</label>
+                            <select id="rule-authority" class="input-field">
+                                <option value="kmbr">KMBR (Kerala)</option>
+                                <option value="kpsbr">KPBR (Kerala Panchayath)</option>
+                                <option value="uae_dubai">Dubai Municipality</option>
+                                <option value="nbc">NBC (India)</option>
+                            </select>
+                        </div>
+                        <div class="form-group half">
+                            <label>Building Type</label>
+                            <select id="rule-btype" class="input-field">
+                                <option value="res">Residential</option>
+                                <option value="com">Commercial</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Front Road Width (Meters)</label>
+                        <input type="number" id="road-width-input" class="input-field" placeholder="e.g., 5" value="5">
+                    </div>
+
+                    <div class="setback-display-grid">
+                        <div class="setback-box front">
+                            <span class="sb-label">Front Setback</span>
+                            <span class="sb-value" id="val-sb-front">3.0m</span>
+                        </div>
+                        <div class="setback-box rear">
+                            <span class="sb-label">Rear Setback</span>
+                            <span class="sb-value" id="val-sb-rear">1.5m</span>
+                        </div>
+                        <div class="setback-box side1">
+                            <span class="sb-label">Side 1</span>
+                            <span class="sb-value" id="val-sb-s1">1.2m</span>
+                        </div>
+                        <div class="setback-box side2">
+                            <span class="sb-label">Side 2</span>
+                            <span class="sb-value" id="val-sb-s2">1.0m</span>
+                        </div>
+                    </div>
+
+                    <div class="info-alert info-alert-warning mt-10">
+                        <i class="fa-solid fa-circle-info"></i> Note: Calculated FSI/FAR is 1.5 maximum for the selected zone.
+                    </div>
+                </div>
+
+                <hr class="panel-divider">
+
+                <!-- 3. MATERIAL ESTIMATOR PANEL -->
+                <div class="analysis-section" id="panel-estimate-content">
+                    <div class="section-title">
+                        <h4><i class="fa-solid fa-trowel-bricks"></i> Smart Cost Estimator</h4>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group half">
+                            <label>Stories</label>
+                            <select id="est-stories" class="input-field">
+                                <option value="1">Single Story (G)</option>
+                                <option value="2">Two Story (G+1)</option>
+                                <option value="3">Three Story (G+2)</option>
+                            </select>
+                        </div>
+                        <div class="form-group half">
+                            <label>Quality / Finish</label>
+                            <select id="est-quality" class="input-field">
+                                <option value="std">Standard</option>
+                                <option value="prm">Premium</option>
+                                <option value="lux">Luxury</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Plinth Area (Sq.Ft)</label>
+                        <input type="number" id="est-area-input" class="input-field" placeholder="e.g., 1500" value="1500">
+                    </div>
+
+                    <button class="btn-full btn-primary" onclick="calculateEstimate()">Calculate Materials</button>
+
+                    <div class="estimate-results mt-10">
+                        <div class="material-list">
+                            <!-- Material Items -->
+                            <div class="mat-item">
+                                <div class="mat-icon"><i class="fa-solid fa-sack-xmark"></i></div>
+                                <div class="mat-details">
+                                    <span class="mat-name">Cement (OPC 53)</span>
+                                    <span class="mat-qty" id="qty-cement">600 Bags</span>
+                                </div>
+                                <div class="mat-cost">₹2,40,000</div>
+                            </div>
+
+                            <div class="mat-item">
+                                <div class="mat-icon"><i class="fa-solid fa-bars-staggered"></i></div>
+                                <div class="mat-details">
+                                    <span class="mat-name">TMT Steel (Fe 500)</span>
+                                    <span class="mat-qty" id="qty-steel">4.5 Tons</span>
+                                </div>
+                                <div class="mat-cost">₹3,15,000</div>
+                            </div>
+
+                            <div class="mat-item">
+                                <div class="mat-icon"><i class="fa-solid fa-cubes-stacked"></i></div>
+                                <div class="mat-details">
+                                    <span class="mat-name">Sand / M-Sand</span>
+                                    <span class="mat-qty" id="qty-sand">2500 Cu.Ft</span>
+                                </div>
+                                <div class="mat-cost">₹1,50,000</div>
+                            </div>
+                            
+                            <div class="mat-item">
+                                <div class="mat-icon"><i class="fa-solid fa-border-all"></i></div>
+                                <div class="mat-details">
+                                    <span class="mat-name">Bricks / Blocks</span>
+                                    <span class="mat-qty" id="qty-bricks">20,000 Nos</span>
+                                </div>
+                                <div class="mat-cost">₹1,60,000</div>
+                            </div>
+                        </div>
+
+                        <div class="total-cost-box mt-10">
+                            <span>Estimated Total Cost</span>
+                            <h2 id="total-project-cost">₹ 32,50,000</h2>
+                            <small>Includes labor, electrical & plumbing approximations.</small>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- End Scroll Area -->
+        </aside>
+
+    </main>
+
+    <!-- ==========================================
+         MODAL WINDOWS (Hidden by default)
+    =========================================== -->
+
+    <!-- Unit Converter Modal -->
+    <div class="modal-overlay" id="converterModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-right-left"></i> Architecture Unit Converter</h2>
+                <button class="close-modal" onclick="closeModal('converterModal')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="tabs-header">
+                    <button class="tab-btn active">Area</button>
+                    <button class="tab-btn">Length</button>
+                    <button class="tab-btn">Volume</button>
+                </div>
+                
+                <div class="converter-layout">
+                    <div class="conv-col">
+                        <label>From</label>
+                        <input type="number" id="conv-input" class="input-field large-text" value="1">
+                        <select id="conv-from-unit" class="input-field mt-10">
+                            <option value="cent">Cent</option>
+                            <option value="sqm">Square Meters (sq.m)</option>
+                            <option value="sqft">Square Feet (sq.ft)</option>
+                            <option value="acre">Acre</option>
+                            <option value="hectare">Hectare</option>
+                        </select>
+                    </div>
+                    
+                    <div class="conv-center-icon">
+                        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                    </div>
+
+                    <div class="conv-col">
+                        <label>To</label>
+                        <input type="text" id="conv-output" class="input-field large-text" value="435.56" readonly>
+                        <select id="conv-to-unit" class="input-field mt-10">
+                            <option value="sqft">Square Feet (sq.ft)</option>
+                            <option value="cent">Cent</option>
+                            <option value="sqm">Square Meters (sq.m)</option>
+                            <option value="acre">Acre</option>
+                            <option value="hectare">Hectare</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="quick-conversions mt-20">
+                    <h4>Frequent Conversions</h4>
+                    <div class="tags-container">
+                        <span class="tag">1 Cent = 435.56 Sq.Ft</span>
+                        <span class="tag">1 Meter = 3.28 Feet</span>
+                        <span class="tag">1 Acre = 100 Cents</span>
+                        <span class="tag">1 Sq.M = 10.76 Sq.Ft</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Settings Modal -->
+    <div class="modal-overlay" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-gear"></i> Application Settings</h2>
+                <button class="close-modal" onclick="closeModal('settingsModal')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                
+                <div class="settings-group">
+                    <h4>Map Configuration</h4>
+                    <div class="form-group">
+                        <label>Google Maps API Key</label>
+                        <input type="password" class="input-field" placeholder="Enter API Key">
+                        <small>Required for drawing boundaries and satellite view.</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Default Map Center (Lat, Lng)</label>
+                        <input type="text" class="input-field" value="11.2588, 75.7804">
+                    </div>
+                </div>
+
+                <div class="settings-group mt-20">
+                    <h4>Preferences</h4>
+                    <div class="form-group checkbox-row">
+                        <input type="checkbox" id="pref-dark" checked>
+                        <label for="pref-dark">Enable Dark Mode UI</label>
+                    </div>
+                    <div class="form-group checkbox-row">
+                        <input type="checkbox" id="pref-autosave" checked>
+                        <label for="pref-autosave">Auto-save project to Supabase cloud</label>
+                    </div>
+                    <div class="form-group checkbox-row">
+                        <input type="checkbox" id="pref-metric">
+                        <label for="pref-metric">Use Metric System (Meters) by default</label>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button class="btn-text" onclick="closeModal('settingsModal')">Cancel</button>
+                <button class="btn-primary" onclick="closeModal('settingsModal')">Save Settings</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Export / Share Modal -->
+    <div class="modal-overlay" id="exportModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-share-nodes"></i> Export Project</h2>
+                <button class="close-modal" onclick="closeModal('exportModal')"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body export-options">
+                <button class="export-btn">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>Download PDF Report</span>
+                    <small>Map, Setbacks & Vastu Details</small>
+                </button>
+                <button class="export-btn">
+                    <i class="fa-solid fa-image"></i>
+                    <span>Export as Image (PNG)</span>
+                    <small>High-Res Canvas Snapshot</small>
+                </button>
+                <button class="export-btn">
+                    <i class="fa-solid fa-link"></i>
+                    <span>Copy Client Link</span>
+                    <small>Share web access to this plot</small>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT LINKS & INITIALIZATION
+    =========================================== -->
+    
+    <!-- (Optional) Load Google Maps API here via JS securely -->
+    <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=geometry,drawing,places"></script> -->
+    
+    <!-- Main Application Logic -->
+    <script src="script.js"></script>
+
+    <script>
+        // Basic Modal Handling script for demonstration purposes
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+        }
+        
+        // Tab switching logic dummy
+        document.querySelectorAll('.tool-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if(this.hasAttribute('data-target')) {
+                    // Remove active from all sidebar tools
+                    document.querySelectorAll('.sidebar-left .tool-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    // Simple animation effect logic can be handled in script.js
+                }
+            });
+        });
+    </script>
+</body>
+</html>
