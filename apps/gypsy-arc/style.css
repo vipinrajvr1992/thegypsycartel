@@ -252,7 +252,7 @@ hr {
     padding: 8px;
 }
 
-/* User Profile Dropdown - Click Toggle (No accidental hover close) */
+/* User Profile Dropdown - Click Toggle */
 .user-profile {
     position: relative;
     cursor: pointer;
@@ -318,7 +318,7 @@ hr {
    ========================================================================== */
 .btn-primary {
     background-color: var(--clr-primary);
-    color: #000000 !important;
+    color: #ffffff !important;
     border: none;
     padding: 8px 16px;
     border-radius: var(--border-radius-sm);
@@ -1358,7 +1358,6 @@ hr {
    MOBILE & TABLET RESPONSIVENESS (Media Queries)
    ========================================================================== */
 @media (max-width: 992px) {
-    /* Allow natural vertical page scrolling on tablets and phones */
     body.app-body {
         height: auto;
         min-height: 100vh;
@@ -1370,7 +1369,6 @@ hr {
         height: auto;
     }
     
-    /* Convert left sidebar into a horizontal touch-scrollable toolbar */
     .sidebar-left {
         width: 100%;
         min-width: 100%;
@@ -1409,7 +1407,6 @@ hr {
         display: none;
     }
     
-    /* Map Canvas takes 52vh on mobile so user can easily interact & scroll down */
     .workspace-center {
         height: 52vh;
         min-height: 340px;
@@ -1453,7 +1450,6 @@ hr {
         gap: 8px;
     }
     
-    /* Full width modals for mobile */
     .modal-content,
     .modal-content.large {
         width: 100%;
@@ -1461,7 +1457,6 @@ hr {
         max-height: 92vh;
     }
     
-    /* Form fields adapt comfortably */
     .form-row {
         flex-direction: column;
         gap: 0;
@@ -1476,7 +1471,6 @@ hr {
         grid-template-columns: repeat(3, 1fr);
     }
     
-    /* Reposition Drawing Toolbar horizontally at top of map */
     .drawing-toolbar {
         flex-direction: row;
         top: 10px;
@@ -1498,7 +1492,6 @@ hr {
         right: 10px;
     }
     
-    /* Compact Status Bar */
     .workspace-status-bar {
         bottom: 10px;
         left: 10px;
@@ -1511,7 +1504,6 @@ hr {
         gap: 12px;
     }
     
-    /* Converter Modal mobile layout */
     .converter-layout {
         flex-direction: column;
     }
