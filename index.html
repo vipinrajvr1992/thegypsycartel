@@ -98,6 +98,79 @@
             margin-bottom: 2rem;
         }
 
+        /* GYPSY DEFINITION SECTION */
+        .gypsy-def-section {
+            padding: 80px 20px;
+            background: #000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .gypsy-def-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 25px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gypsy-letter-box {
+            text-align: center;
+            padding: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .gypsy-letter-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .g-letter {
+            font-size: 5rem;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1;
+            margin-bottom: 12px;
+            font-family: Arial, sans-serif;
+        }
+
+        .g-word {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-orange, #ff6b00);
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            margin-bottom: 15px;
+        }
+
+        .g-def {
+            font-size: 0.85rem;
+            color: #999;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 900px) {
+            .gypsy-def-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .gypsy-letter-box:last-child {
+                grid-column: span 2;
+            }
+            .g-letter {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gypsy-def-container {
+                grid-template-columns: 1fr;
+            }
+            .gypsy-letter-box:last-child {
+                grid-column: span 1;
+            }
+            .g-letter {
+                font-size: 3.5rem;
+            }
+        }
+
         /* HOME SECTION */
         .home-section {
             padding: 90px 20px;
@@ -137,11 +210,11 @@
 
         .service-card:hover {
             transform: translateY(-6px);
-            border-color: var(--primary-orange);
+            border-color: var(--primary-orange, #ff6b00);
         }
 
         .service-card h3 {
-            color: var(--primary-orange);
+            color: var(--primary-orange, #ff6b00);
             margin-bottom: 12px;
             font-size: 1.2rem;
         }
@@ -173,7 +246,7 @@
 
         .guideline-list li::before {
             content: "•";
-            color: var(--primary-orange);
+            color: var(--primary-orange, #ff6b00);
             font-size: 1.4rem;
             line-height: 1;
             margin-top: 2px;
@@ -370,6 +443,43 @@
         <a href="/contact/" class="btn btn-outline contact-btn">START A PROJECT</a>
     </div>
 
+</section>
+
+<!-- BRAND DEFINITION SECTION -->
+<section class="gypsy-def-section">
+    <div class="gypsy-def-container">
+        
+        <div class="gypsy-letter-box">
+            <div class="g-letter">G</div>
+            <div class="g-word">Global</div>
+            <div class="g-def">Delivering world-class creative services and digital solutions to clients across the globe.</div>
+        </div>
+
+        <div class="gypsy-letter-box">
+            <div class="g-letter">Y</div>
+            <div class="g-word">Yield</div>
+            <div class="g-def">Producing high-quality results, premium value, and exceptional performance for every project.</div>
+        </div>
+
+        <div class="gypsy-letter-box">
+            <div class="g-letter">P</div>
+            <div class="g-word">Precision</div>
+            <div class="g-def">Executing with pixel-perfect accuracy, deep technical expertise, and strategic focus.</div>
+        </div>
+
+        <div class="gypsy-letter-box">
+            <div class="g-letter">S</div>
+            <div class="g-word">Style</div>
+            <div class="g-def">Crafting distinct, modern aesthetics that elevate your brand identity to international standards.</div>
+        </div>
+
+        <div class="gypsy-letter-box">
+            <div class="g-letter">Y</div>
+            <div class="g-word">Yonder</div>
+            <div class="g-def">Pushing boundaries to explore visionary ideas, futuristic designs, and boundless possibilities.</div>
+        </div>
+
+    </div>
 </section>
 
 <!-- PREMIUM HOMEPAGE CONTENT -->
