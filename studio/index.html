@@ -36,8 +36,52 @@
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="/style.css">
 
-    <!-- Privacy Consent — same as Contact page -->
+    <!-- STUDIO + GALLERY MERGED STYLES -->
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* =========================================
+           HERO & FORM SECTION REFINEMENTS
+           ========================================= */
+        .studio-hero-section {
+            padding-top: 40px;
+            padding-bottom: 70px;
+        }
+
+        .studio-form-card {
+            background: var(--bg-surface, rgba(255, 255, 255, 0.03));
+            padding: 40px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            transition: border-color 0.3s ease;
+        }
+
+        .studio-form-card:focus-within {
+            border-color: rgba(255, 255, 255, 0.16);
+        }
+
+        .studio-explore-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 28px;
+            color: var(--text-muted, #aaa);
+            font-size: 0.82rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: color 0.25s ease;
+        }
+
+        .studio-explore-link:hover {
+            color: var(--primary-orange, #ff6a00);
+        }
+
+        /* =========================================
+           PRIVACY CONSENT
+           ========================================= */
         .privacy-consent {
             display: flex;
             align-items: center;
@@ -96,6 +140,221 @@
 
         .privacy-consent a:hover {
             text-decoration: underline;
+        }
+
+        /* =========================================
+           STUDIO GALLERY SECTION (CLEAN & MINIMAL)
+           ========================================= */
+        .studio-showcase {
+            padding-top: 70px;
+            padding-bottom: 110px;
+            border-top: 1px solid rgba(255, 255, 255, 0.07);
+        }
+
+        .showcase-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 24px;
+            margin-bottom: 52px;
+            flex-wrap: wrap;
+        }
+
+        .showcase-eyebrow {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary-orange);
+            margin-bottom: 10px;
+        }
+
+        .showcase-title {
+            margin: 0;
+            font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .showcase-subtitle {
+            margin: 0;
+            max-width: 420px;
+            font-size: 0.9rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 44px 36px;
+            width: 100%;
+        }
+
+        /* =========================================
+           GALLERY CARD
+           ========================================= */
+        .gallery-card {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .gallery-item {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            border-radius: 14px;
+            background: rgba(255, 255, 255, 0.03);
+            isolation: isolate;
+        }
+
+        .gallery-item::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: 2;
+            transition: border-color 0.35s ease;
+        }
+
+        .gallery-card:hover .gallery-item::after {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: center;
+            transform: scale(1);
+            transition: transform 0.65s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .gallery-card:hover .gallery-item img {
+            transform: scale(1.05);
+        }
+
+        .gallery-meta {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 18px 0 8px;
+            gap: 12px;
+        }
+
+        .gallery-card h3 {
+            margin: 0;
+            font-size: 0.96rem;
+            line-height: 1.3;
+            font-weight: 600;
+            letter-spacing: 1.1px;
+            text-transform: uppercase;
+        }
+
+        .gallery-index {
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--primary-orange);
+            opacity: 0.85;
+            flex-shrink: 0;
+        }
+
+        .gallery-card p {
+            margin: 0 0 14px;
+            font-size: 0.84rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+            flex-grow: 1;
+        }
+
+        .card-enquire-btn {
+            align-self: flex-start;
+            background: none;
+            border: none;
+            padding: 0;
+            color: var(--text-muted);
+            font-size: 0.76rem;
+            font-weight: 600;
+            letter-spacing: 1.3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: color 0.25s ease, transform 0.25s ease;
+        }
+
+        .card-enquire-btn:hover {
+            color: var(--primary-orange);
+            transform: translateX(3px);
+        }
+
+        /* =========================================
+           RESPONSIVE BREAKPOINTS
+           ========================================= */
+        @media (max-width: 950px) {
+            .studio-showcase {
+                padding-top: 55px;
+                padding-bottom: 85px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 38px 28px;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .studio-form-card {
+                padding: 28px 22px;
+            }
+
+            .studio-showcase {
+                padding-top: 45px;
+                padding-bottom: 65px;
+            }
+
+            .showcase-header {
+                margin-bottom: 36px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .gallery-item {
+                border-radius: 12px;
+            }
+
+            .gallery-card h3 {
+                font-size: 0.92rem;
+            }
+
+            .gallery-card p {
+                font-size: 0.82rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .gallery-item img,
+            .card-enquire-btn {
+                transition: none;
+            }
+
+            .gallery-card:hover .gallery-item img {
+                transform: none;
+            }
         }
     </style>
 
@@ -158,13 +417,17 @@
 
 <body class="design-page">
 
+<!-- CUSTOM CURSOR -->
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
+
 <!-- HEADER -->
 <div id="site-header"></div>
 
-<!-- ======================
-     STUDIO PAGE CONTENT
-====================== -->
-<section class="container">
+<!-- =========================================
+     01. STUDIO HERO & PROJECT INQUIRY FORM
+     ========================================= -->
+<section class="container studio-hero-section" id="studio-top">
 
     <div class="grid-2">
 
@@ -179,20 +442,26 @@
 
             <h1>
                 <span class="studio-highlight">HYPER-REALISTIC</span><br>
-                <span class="studio-orange">ARCHITECTURE & GRAPHICS</span>
+                <span class="studio-orange">ARCHITECTURE &amp; GRAPHICS</span>
             </h1>
 
             <p class="studio-desc"
                style="max-width:520px;margin:0 auto;text-align:center;line-height:1.65;">
                 Our studio blends technical precision with artistic execution,<br>
-                delivering architecture & interiors, 3D visualization,<br>
+                delivering architecture &amp; interiors, 3D visualization,<br>
                 and high-impact digital graphics worldwide.
             </p>
+
+            <div style="text-align:center;">
+                <a href="#studio-works" class="studio-explore-link">
+                    Explore Capabilities &darr;
+                </a>
+            </div>
 
         </div>
 
         <!-- RIGHT FORM -->
-        <div style="background:var(--bg-surface); padding:40px; border-radius:12px;">
+        <div class="studio-form-card" id="project-form-box">
 
             <h3 style="color:var(--primary-orange); margin-bottom:25px;">
                 START A PROJECT
@@ -209,8 +478,8 @@
                 <input type="tel" name="phone" placeholder="Phone Number" autocomplete="tel" inputmode="tel" required>
 
                 <!-- SERVICES -->
-                <div class="gc-dropdown" data-name="service">
-                    <div class="gc-dropdown-selected">
+                <div class="gc-dropdown" data-name="service" id="serviceDropdown">
+                    <div class="gc-dropdown-selected" id="serviceDropdownSelected">
                         Select Service
                     </div>
 
@@ -222,7 +491,7 @@
                         <li data-value="graphic-digital-design">Graphic &amp; Digital Design</li>
                     </ul>
 
-                    <input type="hidden" name="service" required>
+                    <input type="hidden" name="service" id="serviceHiddenInput" required>
                 </div>
 
                 <textarea name="message" rows="5" placeholder="I have a project" required></textarea>
@@ -256,13 +525,178 @@
 
 </section>
 
+<!-- =========================================
+     02. MERGED STUDIO GALLERY & CAPABILITIES
+     ========================================= -->
+<section class="container studio-showcase" id="studio-works">
+
+    <div class="showcase-header">
+        <div>
+            <span class="showcase-eyebrow">Disciplines &amp; Portfolio</span>
+            <h2 class="showcase-title">Selected Capabilities</h2>
+        </div>
+        <p class="showcase-subtitle">
+            Explore our core creative and technical domains across software, digital interfaces, spatial architecture, and brand systems.
+        </p>
+    </div>
+
+    <div class="gallery-grid">
+
+        <!-- 01 — SOFTWARE & APPLICATIONS -->
+        <article class="gallery-card">
+            <div class="gallery-item">
+                <img
+                    src="/assets/photos/1.webp"
+                    alt="Software and Applications"
+                    loading="lazy"
+                    decoding="async">
+            </div>
+            <div class="gallery-meta">
+                <h3>Software &amp; Applications</h3>
+                <span class="gallery-index">01</span>
+            </div>
+            <p>
+                Creative digital solutions and application-focused experiences
+                designed for modern software environments and evolving user needs.
+            </p>
+            <button type="button" class="card-enquire-btn"
+                    data-service-value="software-app-development"
+                    data-service-label="Software & App Development">
+                Enquire &rarr;
+            </button>
+        </article>
+
+        <!-- 02 — WEBSITE DESIGN & DEVELOPMENT -->
+        <article class="gallery-card">
+            <div class="gallery-item">
+                <img
+                    src="/assets/photos/2.webp"
+                    alt="Website Design and Development"
+                    loading="lazy"
+                    decoding="async">
+            </div>
+            <div class="gallery-meta">
+                <h3>Website Design &amp; Development</h3>
+                <span class="gallery-index">02</span>
+            </div>
+            <p>
+                Modern, responsive websites combining purposeful visual design,
+                clear structure, and seamless experiences across devices.
+            </p>
+            <button type="button" class="card-enquire-btn"
+                    data-service-value="web-design-brand-identity"
+                    data-service-label="Web Design & Brand Identity">
+                Enquire &rarr;
+            </button>
+        </article>
+
+        <!-- 03 — UI/UX DESIGN -->
+        <article class="gallery-card">
+            <div class="gallery-item">
+                <img
+                    src="/assets/photos/3.webp"
+                    alt="UI UX Design"
+                    loading="lazy"
+                    decoding="async">
+            </div>
+            <div class="gallery-meta">
+                <h3>UI/UX Design</h3>
+                <span class="gallery-index">03</span>
+            </div>
+            <p>
+                User-focused interface concepts bringing together visual
+                hierarchy, interaction, usability, and engaging digital experiences.
+            </p>
+            <button type="button" class="card-enquire-btn"
+                    data-service-value="graphic-digital-design"
+                    data-service-label="Graphic & Digital Design">
+                Enquire &rarr;
+            </button>
+        </article>
+
+        <!-- 04 — FLOOR PLANS -->
+        <article class="gallery-card">
+            <div class="gallery-item">
+                <img
+                    src="/assets/photos/4.webp"
+                    alt="Architectural Floor Plans"
+                    loading="lazy"
+                    decoding="async">
+            </div>
+            <div class="gallery-meta">
+                <h3>Floor Plans &amp; 3D</h3>
+                <span class="gallery-index">04</span>
+            </div>
+            <p>
+                Detailed architectural floor plan concepts presenting space
+                planning, room layouts, dimensions, and functional organization.
+            </p>
+            <button type="button" class="card-enquire-btn"
+                    data-service-value="3d-visualization"
+                    data-service-label="3D Visualization">
+                Enquire &rarr;
+            </button>
+        </article>
+
+        <!-- 05 — ARCHITECTURE & INTERIORS -->
+        <article class="gallery-card">
+            <div class="gallery-item">
+                <img
+                    src="/assets/photos/5.webp"
+                    alt="Architecture and Interiors"
+                    loading="lazy"
+                    decoding="async">
+            </div>
+            <div class="gallery-meta">
+                <h3>Architecture &amp; Interiors</h3>
+                <span class="gallery-index">05</span>
+            </div>
+            <p>
+                Contemporary architectural and interior concepts combining
+                distinctive forms, materials, lighting, and refined spatial design.
+            </p>
+            <button type="button" class="card-enquire-btn"
+                    data-service-value="architecture-interiors"
+                    data-service-label="Architecture & Interiors">
+                Enquire &rarr;
+            </button>
+        </article>
+
+        <!-- 06 — BRANDING & IDENTITY -->
+        <article class="gallery-card">
+            <div class="gallery-item">
+                <img
+                    src="/assets/photos/6.webp"
+                    alt="Branding and Identity Design"
+                    loading="lazy"
+                    decoding="async">
+            </div>
+            <div class="gallery-meta">
+                <h3>Branding &amp; Identity</h3>
+                <span class="gallery-index">06</span>
+            </div>
+            <p>
+                Complete visual identity concepts built through logos, stationery,
+                packaging, layouts, and consistent brand communication.
+            </p>
+            <button type="button" class="card-enquire-btn"
+                    data-service-value="web-design-brand-identity"
+                    data-service-label="Web Design & Brand Identity">
+                Enquire &rarr;
+            </button>
+        </article>
+
+    </div>
+
+</section>
+
 <!-- FOOTER -->
 <div id="site-footer"></div>
 
 <!-- MAIN SCRIPT (ONLY ONCE) -->
 <script src="/script.js"></script>
 
-<!-- STUDIO FORM CONSENT VALIDATION -->
+<!-- STUDIO FORM CONSENT & GALLERY QUICK-SELECT -->
 <script>
 const designForm = document.getElementById("designForm");
 const studioPrivacyConsent = document.getElementById("studioPrivacyConsent");
@@ -275,17 +709,43 @@ if (designForm && studioPrivacyConsent) {
         }
     });
 }
+
+// Pre-select service in the form when clicking "Enquire ->" on any gallery card
+const enquireButtons = document.querySelectorAll(".card-enquire-btn");
+const dropdownSelected = document.getElementById("serviceDropdownSelected");
+const hiddenServiceInput = document.getElementById("serviceHiddenInput");
+const projectFormBox = document.getElementById("project-form-box");
+
+enquireButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        const val = btn.getAttribute("data-service-value");
+        const label = btn.getAttribute("data-service-label");
+
+        if (dropdownSelected && hiddenServiceInput && val && label) {
+            dropdownSelected.textContent = label;
+            hiddenServiceInput.value = val;
+        }
+
+        if (projectFormBox) {
+            projectFormBox.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+    });
+});
 </script>
 
 <!-- ZOHO SALESIQ -->
 <script>
-  window.$zoho = window.$zoho || {};
-  window.$zoho.salesiq = window.$zoho.salesiq || {};
+    window.$zoho = window.$zoho || {};
+    window.$zoho.salesiq = window.$zoho.salesiq || {
+        ready: function () {
+            console.log("Zoho SalesIQ Loaded ✅");
+        }
+    };
 </script>
 
 <script
-  id="zsiqscript"
-  src="https://salesiq.zohopublic.in/widget?wc=siq4eeed742bf6206b825f62fd2636a33aaf45f7afa471f2e973240f1e459d9034e">
+    id="zsiqscript"
+    src="https://salesiq.zohopublic.in/widget?wc=siq4eeed742bf6206b825f62fd2636a33aaf45f7afa471f2e973240f1e459d9034e">
 </script>
 
 </body>
