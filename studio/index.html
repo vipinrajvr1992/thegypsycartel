@@ -6,7 +6,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-          content="Gypsy Cartel Studio delivers software and app development, web design and brand identity, architecture and interiors, 3D visualization, and graphic and digital design across India, the UAE, and worldwide.">
+          content="Explore selected Gypsy Cartel Studio work across software and app development, web design, UI/UX, architecture, 3D visualization, and graphic and digital design.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="The Gypsy Cartel">
     <meta name="theme-color" content="#000000">
@@ -16,14 +16,14 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://thegypsycartel.com/studio/">
     <meta property="og:title" content="Studio | Gypsy Cartel">
-    <meta property="og:description" content="Explore Gypsy Cartel Studio for software, web, architecture, 3D visualization, graphic and digital design services.">
+    <meta property="og:description" content="Explore selected Gypsy Cartel Studio work in software, web design, UI/UX, architecture, 3D visualization, and graphic and digital design.">
     <meta property="og:image" content="https://thegypsycartel.com/assets/banner.png">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:url" content="https://thegypsycartel.com/studio/">
     <meta name="twitter:title" content="Studio | Gypsy Cartel">
-    <meta name="twitter:description" content="Software, web, architecture, 3D visualization, graphic and digital design by Gypsy Cartel Studio.">
+    <meta name="twitter:description" content="Selected Gypsy Cartel Studio work across software, web design, UI/UX, architecture, 3D visualization, and graphic and digital design.">
     <meta name="twitter:image" content="https://thegypsycartel.com/assets/banner.png">
 
     <!-- SECURITY: Limit referrer information sent to other origins -->
@@ -36,52 +36,8 @@
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="/style.css">
 
-    <!-- STUDIO + GALLERY MERGED STYLES -->
+    <!-- Privacy Consent — same as Contact page -->
     <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* =========================================
-           HERO & FORM SECTION REFINEMENTS
-           ========================================= */
-        .studio-hero-section {
-            padding-top: 40px;
-            padding-bottom: 70px;
-        }
-
-        .studio-form-card {
-            background: var(--bg-surface, rgba(255, 255, 255, 0.03));
-            padding: 40px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.07);
-            transition: border-color 0.3s ease;
-        }
-
-        .studio-form-card:focus-within {
-            border-color: rgba(255, 255, 255, 0.16);
-        }
-
-        .studio-explore-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 28px;
-            color: var(--text-muted, #aaa);
-            font-size: 0.82rem;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            transition: color 0.25s ease;
-        }
-
-        .studio-explore-link:hover {
-            color: var(--primary-orange, #ff6a00);
-        }
-
-        /* =========================================
-           PRIVACY CONSENT
-           ========================================= */
         .privacy-consent {
             display: flex;
             align-items: center;
@@ -141,221 +97,459 @@
         .privacy-consent a:hover {
             text-decoration: underline;
         }
+    
 
-        /* =========================================
-           STUDIO GALLERY SECTION (CLEAN & MINIMAL)
-           ========================================= */
-        .studio-showcase {
-            padding-top: 70px;
-            padding-bottom: 110px;
-            border-top: 1px solid rgba(255, 255, 255, 0.07);
+        /* STUDIO PAGE REDESIGN — all selectors are namespaced to avoid global CSS collisions */
+        .studio-main {
+            padding-top: clamp(92px, 10vw, 132px);
+            padding-bottom: clamp(48px, 6vw, 76px);
         }
-
-        .showcase-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            gap: 24px;
-            margin-bottom: 52px;
-            flex-wrap: wrap;
+        .studio-main .studio-main__grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.06fr) minmax(320px, 0.94fr);
+            align-items: center;
+            gap: clamp(30px, 5.2vw, 78px);
         }
-
-        .showcase-eyebrow {
+        .studio-main .studio-main__intro {
+            min-width: 0;
+            padding: clamp(8px, 2vw, 24px) 0;
+            text-align: center;
+        }
+        .studio-main .mg-logo-wrap {
+            margin: 0 auto 24px;
+        }
+        .studio-main .mg-logo-wrap img {
             display: block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--primary-orange);
-            margin-bottom: 10px;
+            width: min(100%, 220px);
+            height: auto;
+            margin: 0 auto;
+            object-fit: contain;
         }
-
-        .showcase-title {
-            margin: 0;
-            font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+        .studio-main__eyebrow,
+        .studio-form-panel__eyebrow,
+        .studio-portfolio__eyebrow {
+            margin: 0 0 14px;
+            color: var(--primary-orange, #ff6a00);
+            font-size: 0.72rem;
             font-weight: 700;
-            letter-spacing: 0.8px;
+            letter-spacing: 0.16em;
+            line-height: 1.6;
             text-transform: uppercase;
-            line-height: 1.2;
         }
-
-        .showcase-subtitle {
-            margin: 0;
-            max-width: 420px;
+        .studio-main .studio-main__intro h1 {
+            max-width: 760px;
+            margin: 0 auto 22px;
+            font-size: clamp(2.1rem, 4.25vw, 4.15rem);
+            font-weight: 800;
+            line-height: 1.03;
+            letter-spacing: -0.045em;
+            overflow-wrap: anywhere;
+        }
+        .studio-main .studio-desc {
+            max-width: 540px !important;
+            margin: 0 auto !important;
+            color: var(--text-muted, #a6a6a6);
+            font-size: clamp(0.95rem, 1.15vw, 1.06rem);
+            line-height: 1.8 !important;
+            text-align: center !important;
+        }
+        .studio-main__actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 18px 22px;
+            margin-top: 28px;
+        }
+        .studio-main__actions .btn {
+            text-decoration: none;
+        }
+        .studio-main__secondary-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-color, #f5f5f5);
             font-size: 0.9rem;
-            line-height: 1.65;
-            color: var(--text-muted);
+            font-weight: 650;
+            text-decoration: none;
+            transition: color 180ms ease;
+        }
+        .studio-main__secondary-link:hover,
+        .studio-main__secondary-link:focus-visible {
+            color: var(--primary-orange, #ff6a00);
+        }
+        .studio-main__specialties {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 30px;
+        }
+        .studio-main__specialties span {
+            padding: 7px 11px;
+            border: 1px solid rgba(255,255,255,0.11);
+            border-radius: 999px;
+            color: var(--text-muted, #b0b0b0);
+            font-size: 0.72rem;
+            line-height: 1.35;
+        }
+        .studio-form-panel {
+            scroll-margin-top: 110px;
+            position: relative;
+            min-width: 0;
+            overflow: hidden;
+            padding: clamp(24px, 3.6vw, 40px);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-radius: 18px;
+            background: var(--bg-surface, #111111);
+            box-shadow: 0 22px 70px rgba(0,0,0,0.23);
+        }
+        .studio-form-panel::before {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            height: 3px;
+            background: var(--primary-orange, #ff6a00);
+            content: "";
+        }
+        .studio-form-panel__heading {
+            margin-bottom: 25px;
+        }
+        .studio-form-panel__eyebrow {
+            margin-bottom: 7px;
+            font-size: 0.66rem;
+        }
+        .studio-form-panel__heading h2 {
+            margin: 0 0 10px;
+            color: var(--text-color, #f5f5f5);
+            font-size: clamp(1.55rem, 2.4vw, 2rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+        }
+        .studio-form-panel__heading h2 span {
+            color: var(--primary-orange, #ff6a00);
+        }
+        .studio-form-panel__heading > p:last-child {
+            margin: 0;
+            color: var(--text-muted, #a6a6a6);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+        .studio-form-panel #designForm {
+            margin: 0;
         }
 
-        .gallery-grid {
+        /* Former Gallery, now a dedicated Studio portfolio section */
+        .studio-portfolio {
+            padding-top: clamp(36px, 5vw, 68px);
+            padding-bottom: clamp(70px, 9vw, 112px);
+            scroll-margin-top: 105px;
+        }
+        .studio-portfolio__header {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(250px, 0.8fr);
+            align-items: end;
+            gap: 28px 60px;
+            margin-bottom: 30px;
+        }
+        .studio-portfolio__eyebrow {
+            margin-bottom: 12px;
+        }
+        .studio-portfolio__heading h2 {
+            margin: 0;
+            color: var(--text-color, #f5f5f5);
+            font-size: clamp(2rem, 4.4vw, 3.65rem);
+            font-weight: 800;
+            line-height: 1.06;
+            letter-spacing: -0.045em;
+        }
+        .studio-portfolio__heading h2 span {
+            color: var(--primary-orange, #ff6a00);
+        }
+        .studio-portfolio__intro {
+            max-width: 510px;
+            margin: 0 0 4px auto;
+            color: var(--text-muted, #a6a6a6);
+            font-size: 0.96rem;
+            line-height: 1.8;
+        }
+        .studio-portfolio__filters {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin: 30px 0 12px;
+        }
+        .studio-portfolio__filter {
+            appearance: none;
+            border: 1px solid rgba(255,255,255,0.13);
+            border-radius: 999px;
+            padding: 10px 15px;
+            background: rgba(255,255,255,0.025);
+            color: var(--text-muted, #bcbcbc);
+            font: inherit;
+            font-size: 0.76rem;
+            font-weight: 650;
+            line-height: 1.25;
+            cursor: pointer;
+            transition: color 180ms ease, background 180ms ease, border-color 180ms ease, transform 180ms ease;
+        }
+        .studio-portfolio__filter:hover {
+            color: var(--text-color, #ffffff);
+            border-color: rgba(255,106,0,0.62);
+        }
+        .studio-portfolio__filter.is-active {
+            border-color: var(--primary-orange, #ff6a00);
+            background: var(--primary-orange, #ff6a00);
+            color: #111111;
+        }
+        .studio-portfolio__filter:focus-visible,
+        .studio-portfolio__link:focus-visible,
+        .studio-main__secondary-link:focus-visible {
+            outline: 2px solid var(--primary-orange, #ff6a00);
+            outline-offset: 4px;
+        }
+        .studio-portfolio__status {
+            min-height: 1.25em;
+            margin: 0 0 20px;
+            color: var(--text-muted, #8f8f8f);
+            font-size: 0.74rem;
+        }
+        .studio-portfolio__grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 44px 36px;
-            width: 100%;
+            gap: clamp(18px, 2.6vw, 32px);
+            align-items: stretch;
         }
-
-        /* =========================================
-           GALLERY CARD
-           ========================================= */
-        .gallery-card {
-            min-width: 0;
+        .studio-portfolio__card {
             display: flex;
+            min-width: 0;
             flex-direction: column;
-        }
-
-        .gallery-item {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 10;
             overflow: hidden;
-            border-radius: 14px;
-            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255,255,255,0.085);
+            border-radius: 16px;
+            background: rgba(255,255,255,0.025);
+            transition: transform 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+        }
+        .studio-portfolio__card[hidden] {
+            display: none !important;
+        }
+        .studio-portfolio__card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(255,106,0,0.42);
+            box-shadow: 0 18px 42px rgba(0,0,0,0.2);
+        }
+        .studio-portfolio__media {
+            position: relative;
+            overflow: hidden;
             isolation: isolate;
+            aspect-ratio: 16 / 10;
+            background: rgba(255,255,255,0.045);
         }
-
-        .gallery-item::after {
-            content: "";
+        .studio-portfolio__media::after {
             position: absolute;
-            inset: 0;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: inherit;
+            z-index: 1;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            height: 50%;
+            background: linear-gradient(transparent, rgba(0,0,0,0.6));
+            content: "";
             pointer-events: none;
-            z-index: 2;
-            transition: border-color 0.35s ease;
         }
-
-        .gallery-card:hover .gallery-item::after {
-            border-color: rgba(255, 255, 255, 0.2);
-        }
-
-        .gallery-item img {
+        .studio-portfolio__media img {
+            display: block;
             width: 100%;
             height: 100%;
-            display: block;
             object-fit: cover;
             object-position: center;
-            transform: scale(1);
-            transition: transform 0.65s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: transform 550ms cubic-bezier(0.2,0.65,0.25,1);
         }
-
-        .gallery-card:hover .gallery-item img {
-            transform: scale(1.05);
+        .studio-portfolio__card:hover .studio-portfolio__media img {
+            transform: scale(1.045);
         }
-
-        .gallery-meta {
+        .studio-portfolio__category {
+            position: absolute;
+            z-index: 2;
+            bottom: 14px;
+            left: 14px;
+            max-width: calc(100% - 28px);
+            padding: 7px 10px;
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 7px;
+            background: rgba(8,8,8,0.76);
+            color: #ffffff;
+            font-size: 0.63rem;
+            font-weight: 700;
+            letter-spacing: 0.055em;
+            line-height: 1.35;
+            backdrop-filter: blur(8px);
+        }
+        .studio-portfolio__body {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: clamp(17px, 2vw, 23px);
+        }
+        .studio-portfolio__body h3 {
+            margin: 0 0 10px;
+            color: var(--text-color, #f5f5f5);
+            font-size: 1.02rem;
+            font-weight: 750;
+            line-height: 1.35;
+            letter-spacing: -0.01em;
+        }
+        .studio-portfolio__body p {
+            margin: 0 0 21px;
+            color: var(--text-muted, #a6a6a6);
+            font-size: 0.83rem;
+            line-height: 1.75;
+        }
+        .studio-portfolio__link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: auto;
+            color: var(--text-color, #eeeeee);
+            font-size: 0.77rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: color 180ms ease;
+        }
+        .studio-portfolio__link span {
+            color: var(--primary-orange, #ff6a00);
+            font-size: 1rem;
+        }
+        .studio-portfolio__link:hover {
+            color: var(--primary-orange, #ff6a00);
+        }
+        .studio-portfolio__closing {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin: 18px 0 8px;
-            gap: 12px;
+            gap: 24px;
+            margin-top: clamp(40px, 6vw, 72px);
+            padding: clamp(24px, 4vw, 38px);
+            border: 1px solid rgba(255,255,255,0.09);
+            border-left: 3px solid var(--primary-orange, #ff6a00);
+            border-radius: 14px;
+            background: linear-gradient(110deg, rgba(255,106,0,0.075), rgba(255,255,255,0.018) 48%);
         }
-
-        .gallery-card h3 {
+        .studio-portfolio__closing .studio-portfolio__eyebrow {
+            margin-bottom: 5px;
+            font-size: 0.65rem;
+        }
+        .studio-portfolio__closing h3 {
             margin: 0;
-            font-size: 0.96rem;
-            line-height: 1.3;
-            font-weight: 600;
-            letter-spacing: 1.1px;
-            text-transform: uppercase;
+            color: var(--text-color, #f5f5f5);
+            font-size: clamp(1.35rem, 2.4vw, 1.95rem);
+            font-weight: 800;
+            line-height: 1.2;
+        }
+        .studio-portfolio__closing .btn {
+            flex: 0 0 auto;
+            text-decoration: none;
         }
 
-        .gallery-index {
-            font-size: 0.75rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            color: var(--primary-orange);
-            opacity: 0.85;
-            flex-shrink: 0;
-        }
-
-        .gallery-card p {
-            margin: 0 0 14px;
-            font-size: 0.84rem;
-            line-height: 1.65;
-            color: var(--text-muted);
-            flex-grow: 1;
-        }
-
-        .card-enquire-btn {
-            align-self: flex-start;
-            background: none;
-            border: none;
-            padding: 0;
-            color: var(--text-muted);
-            font-size: 0.76rem;
-            font-weight: 600;
-            letter-spacing: 1.3px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: color 0.25s ease, transform 0.25s ease;
-        }
-
-        .card-enquire-btn:hover {
-            color: var(--primary-orange);
-            transform: translateX(3px);
-        }
-
-        /* =========================================
-           RESPONSIVE BREAKPOINTS
-           ========================================= */
         @media (max-width: 950px) {
-            .studio-showcase {
-                padding-top: 55px;
-                padding-bottom: 85px;
+            .studio-main .studio-main__grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 26px;
             }
-
-            .gallery-grid {
+            .studio-main .studio-main__intro {
+                padding-bottom: 12px;
+            }
+            .studio-main .studio-main__intro h1 {
+                max-width: 700px;
+            }
+            .studio-main .studio-desc {
+                max-width: 650px !important;
+            }
+            .studio-form-panel {
+                width: 100%;
+                max-width: 720px;
+                margin: 0 auto;
+            }
+            .studio-portfolio__header {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 18px;
+            }
+            .studio-portfolio__intro {
+                max-width: 680px;
+                margin-left: 0;
+            }
+            .studio-portfolio__grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 38px 28px;
+                gap: 22px;
             }
         }
-
         @media (max-width: 620px) {
-            .studio-form-card {
-                padding: 28px 22px;
+            .studio-main {
+                padding-top: 88px;
+                padding-bottom: 45px;
             }
-
-            .studio-showcase {
-                padding-top: 45px;
-                padding-bottom: 65px;
+            .studio-main .studio-main__intro h1 {
+                font-size: clamp(2rem, 9vw, 3rem);
+                letter-spacing: -0.04em;
             }
-
-            .showcase-header {
-                margin-bottom: 36px;
+            .studio-main__eyebrow {
+                max-width: 330px;
+                margin-right: auto;
+                margin-left: auto;
+                font-size: 0.62rem;
+                letter-spacing: 0.12em;
             }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 36px;
+            .studio-main__actions {
+                gap: 15px;
             }
-
-            .gallery-item {
-                border-radius: 12px;
+            .studio-form-panel {
+                padding: 24px 18px;
+                border-radius: 14px;
             }
-
-            .gallery-card h3 {
-                font-size: 0.92rem;
+            .studio-portfolio {
+                padding-top: 28px;
+                padding-bottom: 70px;
+                scroll-margin-top: 84px;
             }
-
-            .gallery-card p {
-                font-size: 0.82rem;
+            .studio-portfolio__heading h2 {
+                font-size: clamp(1.85rem, 8vw, 2.65rem);
+            }
+            .studio-portfolio__filters {
+                gap: 8px;
+                margin-top: 24px;
+            }
+            .studio-portfolio__filter {
+                padding: 9px 12px;
+                font-size: 0.7rem;
+            }
+            .studio-portfolio__grid {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 22px;
+            }
+            .studio-portfolio__media {
+                aspect-ratio: 16 / 10;
+            }
+            .studio-portfolio__closing {
+                align-items: flex-start;
+                flex-direction: column;
             }
         }
-
         @media (prefers-reduced-motion: reduce) {
-            html {
-                scroll-behavior: auto;
+            .studio-main__secondary-link,
+            .studio-portfolio__filter,
+            .studio-portfolio__card,
+            .studio-portfolio__media img,
+            .studio-portfolio__link {
+                transition: none !important;
             }
-
-            .gallery-item img,
-            .card-enquire-btn {
-                transition: none;
-            }
-
-            .gallery-card:hover .gallery-item img {
+            .studio-portfolio__card:hover {
                 transform: none;
             }
         }
+
     </style>
 
     <!-- Google Analytics -->
@@ -417,56 +611,48 @@
 
 <body class="design-page">
 
-<!-- CUSTOM CURSOR -->
-<div class="cursor-dot"></div>
-<div class="cursor-outline"></div>
-
 <!-- HEADER -->
 <div id="site-header"></div>
 
-<!-- =========================================
-     01. STUDIO HERO & PROJECT INQUIRY FORM
-     ========================================= -->
-<section class="container studio-hero-section" id="studio-top">
-
-    <div class="grid-2">
-
-        <!-- LEFT CONTENT -->
-        <div class="studio-left">
-
+<!-- STUDIO INTRO + PROJECT ENQUIRY -->
+<section class="container studio-main" aria-labelledby="studio-main-title">
+    <div class="grid-2 studio-main__grid">
+        <div class="studio-left studio-main__intro">
             <div class="mg-logo-wrap">
                 <img src="/assets/logos/mg-creations.webp"
                      alt="MG Creations Logo"
-                     style="max-width:260px;width:100%;height:auto;">
+                     width="520" height="260"
+                     fetchpriority="high">
             </div>
 
-            <h1>
-                <span class="studio-highlight">HYPER-REALISTIC</span><br>
-                <span class="studio-orange">ARCHITECTURE &amp; GRAPHICS</span>
+            <p class="studio-main__eyebrow">THE GYPSY CARTEL · CREATIVE &amp; TECHNOLOGY STUDIO</p>
+            <h1 id="studio-main-title">
+                <span class="studio-highlight">IDEAS INTO</span><br>
+                <span class="studio-orange">EXPERIENCES THAT MATTER</span>
             </h1>
-
-            <p class="studio-desc"
-               style="max-width:520px;margin:0 auto;text-align:center;line-height:1.65;">
-                Our studio blends technical precision with artistic execution,<br>
-                delivering architecture &amp; interiors, 3D visualization,<br>
-                and high-impact digital graphics worldwide.
+            <p class="studio-desc">
+                From digital products and websites to architectural visualization and visual identity,
+                we bring thoughtful ideas to life with technical precision and distinctive design.
             </p>
 
-            <div style="text-align:center;">
-                <a href="#studio-works" class="studio-explore-link">
-                    Explore Capabilities &darr;
-                </a>
+            <div class="studio-main__actions">
+                <a class="btn btn-primary" href="#selected-work">Explore Selected Work</a>
+                <a class="studio-main__secondary-link" href="#start-project">Start a Project <span aria-hidden="true">↗</span></a>
             </div>
 
+            <div class="studio-main__specialties" aria-label="Studio capabilities">
+                <span>Digital Experiences</span>
+                <span>Architecture &amp; 3D</span>
+                <span>Brand &amp; Graphic Design</span>
+            </div>
         </div>
 
-        <!-- RIGHT FORM -->
-        <div class="studio-form-card" id="project-form-box">
-
-            <h3 style="color:var(--primary-orange); margin-bottom:25px;">
-                START A PROJECT
-            </h3>
-
+        <div class="studio-form-panel" id="start-project">
+            <div class="studio-form-panel__heading">
+                <p class="studio-form-panel__eyebrow">HAVE SOMETHING IN MIND?</p>
+                <h2>START A PROJECT<span>.</span></h2>
+                <p>Tell us what you are building. We’ll get back to you about the next steps.</p>
+            </div>
             <form
                 id="designForm"
                 action="https://formspree.io/f/xjgkezzp"
@@ -478,8 +664,8 @@
                 <input type="tel" name="phone" placeholder="Phone Number" autocomplete="tel" inputmode="tel" required>
 
                 <!-- SERVICES -->
-                <div class="gc-dropdown" data-name="service" id="serviceDropdown">
-                    <div class="gc-dropdown-selected" id="serviceDropdownSelected">
+                <div class="gc-dropdown" data-name="service">
+                    <div class="gc-dropdown-selected">
                         Select Service
                     </div>
 
@@ -491,7 +677,7 @@
                         <li data-value="graphic-digital-design">Graphic &amp; Digital Design</li>
                     </ul>
 
-                    <input type="hidden" name="service" id="serviceHiddenInput" required>
+                    <input type="hidden" name="service" required>
                 </div>
 
                 <textarea name="message" rows="5" placeholder="I have a project" required></textarea>
@@ -518,176 +704,120 @@
                 </p>
 
             </form>
-
         </div>
-
     </div>
-
 </section>
 
-<!-- =========================================
-     02. MERGED STUDIO GALLERY & CAPABILITIES
-     ========================================= -->
-<section class="container studio-showcase" id="studio-works">
-
-    <div class="showcase-header">
-        <div>
-            <span class="showcase-eyebrow">Disciplines &amp; Portfolio</span>
-            <h2 class="showcase-title">Selected Capabilities</h2>
+<!-- SELECTED WORK — MERGED FROM THE FORMER GALLERY PAGE -->
+<section class="container studio-portfolio" id="selected-work" aria-labelledby="studio-portfolio-title" data-studio-portfolio>
+    <header class="studio-portfolio__header">
+        <div class="studio-portfolio__heading">
+            <p class="studio-portfolio__eyebrow">SELECTED WORK · OUR CREATIVE RANGE</p>
+            <h2 id="studio-portfolio-title">Made with <span>purpose.</span><br>Built to make an impact.</h2>
         </div>
-        <p class="showcase-subtitle">
-            Explore our core creative and technical domains across software, digital interfaces, spatial architecture, and brand systems.
+        <p class="studio-portfolio__intro">
+            Explore a selection of our creative and technical work across software, digital experiences,
+            architecture, visualization, and brand communication. Choose a service to browse relevant work.
         </p>
+    </header>
+
+    <div class="studio-portfolio__filters" role="group" aria-label="Filter selected work by service">
+        <button class="studio-portfolio__filter is-active" type="button" data-portfolio-filter="all" aria-pressed="true">All Work</button>
+        <button class="studio-portfolio__filter" type="button" data-portfolio-filter="software-app-development" aria-pressed="false">Software &amp; App Development</button>
+        <button class="studio-portfolio__filter" type="button" data-portfolio-filter="web-design-brand-identity" aria-pressed="false">Web Design &amp; Brand Identity</button>
+        <button class="studio-portfolio__filter" type="button" data-portfolio-filter="architecture-interiors" aria-pressed="false">Architecture &amp; Interiors</button>
+        <button class="studio-portfolio__filter" type="button" data-portfolio-filter="3d-visualization" aria-pressed="false">3D Visualization</button>
+        <button class="studio-portfolio__filter" type="button" data-portfolio-filter="graphic-digital-design" aria-pressed="false">Graphic &amp; Digital Design</button>
     </div>
+    <p class="studio-portfolio__status" data-portfolio-status aria-live="polite">Showing all 6 projects</p>
 
-    <div class="gallery-grid">
-
-        <!-- 01 — SOFTWARE & APPLICATIONS -->
-        <article class="gallery-card">
-            <div class="gallery-item">
-                <img
-                    src="/assets/photos/1.webp"
-                    alt="Software and Applications"
-                    loading="lazy"
-                    decoding="async">
+    <div class="studio-portfolio__grid">
+        <!-- 01 — SOFTWARE & APP DEVELOPMENT -->
+        <article class="studio-portfolio__card" data-portfolio-item data-service="software-app-development">
+            <div class="studio-portfolio__media">
+                <img src="/assets/photos/1.webp" alt="Software and application design work" loading="lazy" decoding="async" width="800" height="500">
+                <span class="studio-portfolio__category">Software &amp; App Development</span>
             </div>
-            <div class="gallery-meta">
+            <div class="studio-portfolio__body">
                 <h3>Software &amp; Applications</h3>
-                <span class="gallery-index">01</span>
+                <p>Creative digital solutions and application-focused experiences designed for modern software environments and evolving user needs.</p>
+                <a class="studio-portfolio__link" href="#start-project">Discuss a similar project <span aria-hidden="true">↗</span></a>
             </div>
-            <p>
-                Creative digital solutions and application-focused experiences
-                designed for modern software environments and evolving user needs.
-            </p>
-            <button type="button" class="card-enquire-btn"
-                    data-service-value="software-app-development"
-                    data-service-label="Software & App Development">
-                Enquire &rarr;
-            </button>
         </article>
 
-        <!-- 02 — WEBSITE DESIGN & DEVELOPMENT -->
-        <article class="gallery-card">
-            <div class="gallery-item">
-                <img
-                    src="/assets/photos/2.webp"
-                    alt="Website Design and Development"
-                    loading="lazy"
-                    decoding="async">
+        <!-- 02 — WEB DESIGN & BRAND IDENTITY -->
+        <article class="studio-portfolio__card" data-portfolio-item data-service="web-design-brand-identity">
+            <div class="studio-portfolio__media">
+                <img src="/assets/photos/2.webp" alt="Website design and development work" loading="lazy" decoding="async" width="800" height="500">
+                <span class="studio-portfolio__category">Web Design &amp; Brand Identity</span>
             </div>
-            <div class="gallery-meta">
+            <div class="studio-portfolio__body">
                 <h3>Website Design &amp; Development</h3>
-                <span class="gallery-index">02</span>
+                <p>Modern, responsive websites combining purposeful visual design, clear structure, and seamless experiences across devices.</p>
+                <a class="studio-portfolio__link" href="#start-project">Discuss a similar project <span aria-hidden="true">↗</span></a>
             </div>
-            <p>
-                Modern, responsive websites combining purposeful visual design,
-                clear structure, and seamless experiences across devices.
-            </p>
-            <button type="button" class="card-enquire-btn"
-                    data-service-value="web-design-brand-identity"
-                    data-service-label="Web Design & Brand Identity">
-                Enquire &rarr;
-            </button>
         </article>
 
-        <!-- 03 — UI/UX DESIGN -->
-        <article class="gallery-card">
-            <div class="gallery-item">
-                <img
-                    src="/assets/photos/3.webp"
-                    alt="UI UX Design"
-                    loading="lazy"
-                    decoding="async">
+        <!-- 03 — UI/UX, GROUPED UNDER THE MATCHING DROPDOWN SERVICE -->
+        <article class="studio-portfolio__card" data-portfolio-item data-service="web-design-brand-identity">
+            <div class="studio-portfolio__media">
+                <img src="/assets/photos/3.webp" alt="User interface and user experience design work" loading="lazy" decoding="async" width="800" height="500">
+                <span class="studio-portfolio__category">Web Design &amp; Brand Identity</span>
             </div>
-            <div class="gallery-meta">
+            <div class="studio-portfolio__body">
                 <h3>UI/UX Design</h3>
-                <span class="gallery-index">03</span>
+                <p>User-focused interface concepts bringing together visual hierarchy, interaction, usability, and engaging digital experiences.</p>
+                <a class="studio-portfolio__link" href="#start-project">Discuss a similar project <span aria-hidden="true">↗</span></a>
             </div>
-            <p>
-                User-focused interface concepts bringing together visual
-                hierarchy, interaction, usability, and engaging digital experiences.
-            </p>
-            <button type="button" class="card-enquire-btn"
-                    data-service-value="graphic-digital-design"
-                    data-service-label="Graphic & Digital Design">
-                Enquire &rarr;
-            </button>
         </article>
 
-        <!-- 04 — FLOOR PLANS -->
-        <article class="gallery-card">
-            <div class="gallery-item">
-                <img
-                    src="/assets/photos/4.webp"
-                    alt="Architectural Floor Plans"
-                    loading="lazy"
-                    decoding="async">
+        <!-- 04 — ARCHITECTURE & INTERIORS -->
+        <article class="studio-portfolio__card" data-portfolio-item data-service="architecture-interiors">
+            <div class="studio-portfolio__media">
+                <img src="/assets/photos/4.webp" alt="Architectural floor plan design work" loading="lazy" decoding="async" width="800" height="500">
+                <span class="studio-portfolio__category">Architecture &amp; Interiors</span>
             </div>
-            <div class="gallery-meta">
-                <h3>Floor Plans &amp; 3D</h3>
-                <span class="gallery-index">04</span>
+            <div class="studio-portfolio__body">
+                <h3>Architectural Floor Plans</h3>
+                <p>Detailed architectural layouts presenting space planning, room organization, dimensions, and functional flow.</p>
+                <a class="studio-portfolio__link" href="#start-project">Discuss a similar project <span aria-hidden="true">↗</span></a>
             </div>
-            <p>
-                Detailed architectural floor plan concepts presenting space
-                planning, room layouts, dimensions, and functional organization.
-            </p>
-            <button type="button" class="card-enquire-btn"
-                    data-service-value="3d-visualization"
-                    data-service-label="3D Visualization">
-                Enquire &rarr;
-            </button>
         </article>
 
-        <!-- 05 — ARCHITECTURE & INTERIORS -->
-        <article class="gallery-card">
-            <div class="gallery-item">
-                <img
-                    src="/assets/photos/5.webp"
-                    alt="Architecture and Interiors"
-                    loading="lazy"
-                    decoding="async">
+        <!-- 05 — 3D VISUALIZATION -->
+        <article class="studio-portfolio__card" data-portfolio-item data-service="3d-visualization">
+            <div class="studio-portfolio__media">
+                <img src="/assets/photos/5.webp" alt="Architectural and interior visualization work" loading="lazy" decoding="async" width="800" height="500">
+                <span class="studio-portfolio__category">3D Visualization</span>
             </div>
-            <div class="gallery-meta">
-                <h3>Architecture &amp; Interiors</h3>
-                <span class="gallery-index">05</span>
+            <div class="studio-portfolio__body">
+                <h3>Architecture &amp; Interior Visualization</h3>
+                <p>Visual concepts that bring architectural forms, material choices, lighting, and interior spaces into sharper focus.</p>
+                <a class="studio-portfolio__link" href="#start-project">Discuss a similar project <span aria-hidden="true">↗</span></a>
             </div>
-            <p>
-                Contemporary architectural and interior concepts combining
-                distinctive forms, materials, lighting, and refined spatial design.
-            </p>
-            <button type="button" class="card-enquire-btn"
-                    data-service-value="architecture-interiors"
-                    data-service-label="Architecture & Interiors">
-                Enquire &rarr;
-            </button>
         </article>
 
-        <!-- 06 — BRANDING & IDENTITY -->
-        <article class="gallery-card">
-            <div class="gallery-item">
-                <img
-                    src="/assets/photos/6.webp"
-                    alt="Branding and Identity Design"
-                    loading="lazy"
-                    decoding="async">
+        <!-- 06 — GRAPHIC & DIGITAL DESIGN -->
+        <article class="studio-portfolio__card" data-portfolio-item data-service="graphic-digital-design">
+            <div class="studio-portfolio__media">
+                <img src="/assets/photos/6.webp" alt="Branding and visual identity design work" loading="lazy" decoding="async" width="800" height="500">
+                <span class="studio-portfolio__category">Graphic &amp; Digital Design</span>
             </div>
-            <div class="gallery-meta">
+            <div class="studio-portfolio__body">
                 <h3>Branding &amp; Identity</h3>
-                <span class="gallery-index">06</span>
+                <p>Visual identity concepts shaped through logos, packaging, layouts, and consistent brand communication.</p>
+                <a class="studio-portfolio__link" href="#start-project">Discuss a similar project <span aria-hidden="true">↗</span></a>
             </div>
-            <p>
-                Complete visual identity concepts built through logos, stationery,
-                packaging, layouts, and consistent brand communication.
-            </p>
-            <button type="button" class="card-enquire-btn"
-                    data-service-value="web-design-brand-identity"
-                    data-service-label="Web Design & Brand Identity">
-                Enquire &rarr;
-            </button>
         </article>
-
     </div>
 
+    <div class="studio-portfolio__closing">
+        <div>
+            <p class="studio-portfolio__eyebrow">HAVE A PROJECT IN MIND?</p>
+            <h3>Let’s make it happen.</h3>
+        </div>
+        <a class="btn btn-primary" href="#start-project">Tell Us About It <span aria-hidden="true">↗</span></a>
+    </div>
 </section>
 
 <!-- FOOTER -->
@@ -696,7 +826,7 @@
 <!-- MAIN SCRIPT (ONLY ONCE) -->
 <script src="/script.js"></script>
 
-<!-- STUDIO FORM CONSENT & GALLERY QUICK-SELECT -->
+<!-- STUDIO FORM CONSENT VALIDATION -->
 <script>
 const designForm = document.getElementById("designForm");
 const studioPrivacyConsent = document.getElementById("studioPrivacyConsent");
@@ -709,43 +839,57 @@ if (designForm && studioPrivacyConsent) {
         }
     });
 }
+</script>
 
-// Pre-select service in the form when clicking "Enquire ->" on any gallery card
-const enquireButtons = document.querySelectorAll(".card-enquire-btn");
-const dropdownSelected = document.getElementById("serviceDropdownSelected");
-const hiddenServiceInput = document.getElementById("serviceHiddenInput");
-const projectFormBox = document.getElementById("project-form-box");
+<!-- STUDIO PORTFOLIO FILTERS — scoped to this portfolio only -->
+<script>
+(() => {
+    const portfolio = document.querySelector('[data-studio-portfolio]');
+    if (!portfolio) return;
 
-enquireButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-        const val = btn.getAttribute("data-service-value");
-        const label = btn.getAttribute("data-service-label");
+    const filterButtons = Array.from(portfolio.querySelectorAll('[data-portfolio-filter]'));
+    const cards = Array.from(portfolio.querySelectorAll('[data-portfolio-item]'));
+    const status = portfolio.querySelector('[data-portfolio-status]');
 
-        if (dropdownSelected && hiddenServiceInput && val && label) {
-            dropdownSelected.textContent = label;
-            hiddenServiceInput.value = val;
+    function applyPortfolioFilter(filter) {
+        let visibleCount = 0;
+
+        cards.forEach((card) => {
+            const visible = filter === 'all' || card.dataset.service === filter;
+            card.hidden = !visible;
+            if (visible) visibleCount += 1;
+        });
+
+        filterButtons.forEach((button) => {
+            const active = (button.dataset.portfolioFilter || 'all') === filter;
+            button.classList.toggle('is-active', active);
+            button.setAttribute('aria-pressed', String(active));
+        });
+
+        if (status) {
+            status.textContent = filter === 'all'
+                ? `Showing all ${visibleCount} projects`
+                : `Showing ${visibleCount} of ${cards.length} projects`;
         }
+    }
 
-        if (projectFormBox) {
-            projectFormBox.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
+    filterButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            applyPortfolioFilter(button.dataset.portfolioFilter || 'all');
+        });
     });
-});
+})();
 </script>
 
 <!-- ZOHO SALESIQ -->
 <script>
-    window.$zoho = window.$zoho || {};
-    window.$zoho.salesiq = window.$zoho.salesiq || {
-        ready: function () {
-            console.log("Zoho SalesIQ Loaded ✅");
-        }
-    };
+  window.$zoho = window.$zoho || {};
+  window.$zoho.salesiq = window.$zoho.salesiq || {};
 </script>
 
 <script
-    id="zsiqscript"
-    src="https://salesiq.zohopublic.in/widget?wc=siq4eeed742bf6206b825f62fd2636a33aaf45f7afa471f2e973240f1e459d9034e">
+  id="zsiqscript"
+  src="https://salesiq.zohopublic.in/widget?wc=siq4eeed742bf6206b825f62fd2636a33aaf45f7afa471f2e973240f1e459d9034e">
 </script>
 
 </body>
