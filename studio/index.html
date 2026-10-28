@@ -336,6 +336,83 @@
             letter-spacing: -.045em;
         }
         body.gc-studio-page .gc-studio-portfolio__heading h2 span { color: var(--primary-orange, #ff6a00); }
+
+        /* HARD RESET: prevent legacy/global h2 and paragraph rules from taking
+           these portfolio elements out of normal flow (the reported overlap). */
+        body.gc-studio-page .gc-studio-portfolio__header,
+        body.gc-studio-page .gc-studio-portfolio__heading,
+        body.gc-studio-page .gc-studio-portfolio__eyebrow,
+        body.gc-studio-page .gc-studio-portfolio__heading h2,
+        body.gc-studio-page .gc-studio-portfolio__intro {
+            inset: auto !important;
+            top: auto !important;
+            right: auto !important;
+            bottom: auto !important;
+            left: auto !important;
+            transform: none !important;
+            float: none !important;
+            clear: none !important;
+            height: auto !important;
+            min-height: 0 !important;
+            max-height: none !important;
+            overflow: visible !important;
+            white-space: normal !important;
+        }
+        body.gc-studio-page .gc-studio-portfolio__header {
+            display: grid !important;
+            position: relative !important;
+            align-items: end !important;
+            align-content: start !important;
+        }
+        body.gc-studio-page .gc-studio-portfolio__heading {
+            display: block !important;
+            position: relative !important;
+            min-width: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+        body.gc-studio-page .gc-studio-portfolio__eyebrow {
+            display: block !important;
+            position: relative !important;
+            margin: 0 0 12px !important;
+            padding: 0 !important;
+            line-height: 1.6 !important;
+        }
+        body.gc-studio-page .gc-studio-portfolio__heading h2 {
+            display: block !important;
+            position: relative !important;
+            width: 100% !important;
+            max-width: none !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            line-height: 1.08 !important;
+            text-align: left !important;
+        }
+        body.gc-studio-page .gc-studio-portfolio__intro {
+            display: block !important;
+            position: relative !important;
+            align-self: end !important;
+            min-width: 0 !important;
+            margin: 0 0 4px !important;
+            padding: 0 !important;
+            line-height: 1.8 !important;
+        }
+        body.gc-studio-page .gc-studio-portfolio__filters {
+            display: flex !important;
+            position: relative !important;
+            inset: auto !important;
+            clear: both !important;
+            transform: none !important;
+            margin: 28px 0 12px !important;
+        }
+        body.gc-studio-page .gc-studio-portfolio__status,
+        body.gc-studio-page .gc-studio-portfolio__grid {
+            position: relative !important;
+            inset: auto !important;
+            clear: both !important;
+            transform: none !important;
+        }
+
         body.gc-studio-page .gc-studio-portfolio__intro {
             max-width: 510px;
             margin: 0 0 4px auto;
@@ -535,8 +612,8 @@
             body.gc-studio-page .gc-studio-hero__intro h1 { max-width: 720px; }
             body.gc-studio-page .gc-studio-form-panel { width: 100%; max-width: 720px; margin: 0 auto; }
             body.gc-studio-page .gc-studio-portfolio { width: min(900px, calc(100% - 40px)); }
-            body.gc-studio-page .gc-studio-portfolio__header { grid-template-columns: minmax(0, 1fr); gap: 16px; }
-            body.gc-studio-page .gc-studio-portfolio__intro { max-width: 700px; margin: 0; }
+            body.gc-studio-page .gc-studio-portfolio__header { grid-template-columns: minmax(0, 1fr) !important; gap: 18px !important; }
+            body.gc-studio-page .gc-studio-portfolio__intro { max-width: 700px !important; margin: 0 !important; }
             body.gc-studio-page .gc-studio-portfolio__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px; }
         }
         @media (max-width: 620px) {
