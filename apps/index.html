@@ -10,6 +10,17 @@
     <link rel="apple-touch-icon" href="/assets/logos/gypsy-cartel-icon.webp">
     <link rel="stylesheet" href="/style.css">
     <style>
+        /* FIX: Added dark background to html and body to prevent white flashes on overscroll and enabled smooth scrolling */
+        html {
+            background-color: #000000;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: #000000;
+            -webkit-font-smoothing: antialiased;
+        }
+
         .apps-gallery { margin-top: 40px; }
         .apps-gallery-title { margin-bottom: 22px; }
         .app-divider { border: 0; height: 1px; background: rgba(255,255,255,0.1); margin: 70px 0; }
