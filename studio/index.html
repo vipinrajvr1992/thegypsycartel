@@ -38,10 +38,20 @@
 
     <!-- Privacy Consent — same as Contact page -->
     <style>
+        /* FIX: Added dark background to html and body to prevent white flashes on overscroll */
+        html {
+            background-color: #000000;
+            scroll-behavior: smooth;
+        }
+        
         /* All Studio-only styles are scoped to .gc-studio-page to avoid global collisions. */
         body.gc-studio-page {
+            background-color: #000000;
+            color: var(--text-color, #f5f5f5);
             overflow-x: clip;
+            -webkit-font-smoothing: antialiased;
         }
+        
         body.gc-studio-page .gc-studio-hero *,
         body.gc-studio-page .gc-studio-hero *::before,
         body.gc-studio-page .gc-studio-hero *::after,
