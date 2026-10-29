@@ -528,24 +528,6 @@
             transition: transform .55s cubic-bezier(.2,.65,.25,1);
         }
         body.gc-studio-page .gc-studio-portfolio__card:hover .gc-studio-portfolio__media img { transform: scale(1.045); }
-        body.gc-studio-page .gc-studio-portfolio__category {
-            display: inline-block;
-            position: absolute;
-            z-index: 2;
-            bottom: 14px;
-            left: 14px;
-            max-width: calc(100% - 28px);
-            padding: 7px 10px;
-            border: 1px solid rgba(255,255,255,.18);
-            border-radius: 7px;
-            background: rgba(8,8,8,.78);
-            color: #fff;
-            font-size: .62rem;
-            font-weight: 700;
-            letter-spacing: .035em;
-            line-height: 1.35;
-            backdrop-filter: blur(8px);
-        }
         body.gc-studio-page .gc-studio-portfolio__body {
             display: flex;
             position: relative;
@@ -682,11 +664,12 @@
           "name": "Gypsy Cartel Studio Services",
           "provider": {"@id": "https://thegypsycartel.com/#organization"},
           "serviceType": [
-            "Software & App Development",
-            "Web Design & Brand Identity",
-            "Architecture & Interiors",
-            "3D Visualization",
-            "Graphic & Digital Design"
+            "Software & Applications",
+            "Website Design & Development",
+            "UI/UX Design",
+            "Architectural Floor Plans",
+            "Architecture & Interior Visualization",
+            "Branding & Identity"
           ],
           "areaServed": [
             {"@type": "Country", "name": "India"},
@@ -760,11 +743,12 @@
                     </div>
 
                     <ul class="gc-dropdown-list">
-                        <li data-value="software-app-development">Software &amp; App Development</li>
-                        <li data-value="web-design-brand-identity">Web Design &amp; Brand Identity</li>
-                        <li data-value="architecture-interiors">Architecture &amp; Interiors</li>
-                        <li data-value="3d-visualization">3D Visualization</li>
-                        <li data-value="graphic-digital-design">Graphic &amp; Digital Design</li>
+                        <li data-value="software-applications">Software &amp; Applications</li>
+                        <li data-value="website-design-development">Website Design &amp; Development</li>
+                        <li data-value="ui-ux-design">UI/UX Design</li>
+                        <li data-value="architectural-floor-plans">Architectural Floor Plans</li>
+                        <li data-value="architecture-interior-visualization">Architecture &amp; Interior Visualization</li>
+                        <li data-value="branding-identity">Branding &amp; Identity</li>
                     </ul>
 
                     <input type="hidden" name="service" required>
@@ -813,20 +797,20 @@
 
     <div class="gc-studio-portfolio__filters" role="group" aria-label="Filter selected work by service">
         <button class="gc-studio-portfolio__filter is-active" type="button" data-portfolio-filter="all" aria-pressed="true">All Work</button>
-        <button class="gc-studio-portfolio__filter" type="button" data-portfolio-filter="software-app-development" aria-pressed="false">Software &amp; App Development</button>
-        <button class="gc-studio-portfolio__filter" type="button" data-portfolio-filter="web-design-brand-identity" aria-pressed="false">Web Design &amp; Brand Identity</button>
-        <button class="gc-studio-portfolio__filter" type="button" data-portfolio-filter="architecture-interiors" aria-pressed="false">Architecture &amp; Interiors</button>
-        <button class="gc-studio-portfolio__filter" type="button" data-portfolio-filter="3d-visualization" aria-pressed="false">3D Visualization</button>
-        <button class="gc-studio-portfolio__filter" type="button" data-portfolio-filter="graphic-digital-design" aria-pressed="false">Graphic &amp; Digital Design</button>
+        <button class="gc-studio-portfolio__filter" type="button" data-portfolio-filter="software-applications" aria-pressed="false">Software &amp; Applications</button>
+        <button class="gc-studio-portfolio__filter" type="button" data-portfolio-filter="website-design-development" aria-pressed="false">Website Design &amp; Development</button>
+        <button class="gc-studio-portfolio__filter" type="button" data-portfolio-filter="ui-ux-design" aria-pressed="false">UI/UX Design</button>
+        <button class="gc-studio-portfolio__filter" type="button" data-portfolio-filter="architectural-floor-plans" aria-pressed="false">Architectural Floor Plans</button>
+        <button class="gc-studio-portfolio__filter" type="button" data-portfolio-filter="architecture-interior-visualization" aria-pressed="false">Architecture &amp; Interior Visualization</button>
+        <button class="gc-studio-portfolio__filter" type="button" data-portfolio-filter="branding-identity" aria-pressed="false">Branding &amp; Identity</button>
     </div>
     <p class="gc-studio-portfolio__status" data-portfolio-status aria-live="polite">Showing all 6 projects</p>
 
     <div class="gc-studio-portfolio__grid">
-        <!-- 01 — SOFTWARE & APP DEVELOPMENT -->
-        <article class="gc-studio-portfolio__card" data-portfolio-item data-service="software-app-development">
+        <!-- 01 — SOFTWARE & APPLICATIONS -->
+        <article class="gc-studio-portfolio__card" data-portfolio-item data-service="software-applications">
             <div class="gc-studio-portfolio__media">
                 <img src="/assets/photos/1.webp" alt="Software and application design work" loading="lazy" decoding="async" width="800" height="500">
-                <span class="gc-studio-portfolio__category">Software &amp; App Development</span>
             </div>
             <div class="gc-studio-portfolio__body">
                 <h3>Software &amp; Applications</h3>
@@ -835,11 +819,10 @@
             </div>
         </article>
 
-        <!-- 02 — WEB DESIGN & BRAND IDENTITY -->
-        <article class="gc-studio-portfolio__card" data-portfolio-item data-service="web-design-brand-identity">
+        <!-- 02 — WEBSITE DESIGN & DEVELOPMENT -->
+        <article class="gc-studio-portfolio__card" data-portfolio-item data-service="website-design-development">
             <div class="gc-studio-portfolio__media">
                 <img src="/assets/photos/2.webp" alt="Website design and development work" loading="lazy" decoding="async" width="800" height="500">
-                <span class="gc-studio-portfolio__category">Web Design &amp; Brand Identity</span>
             </div>
             <div class="gc-studio-portfolio__body">
                 <h3>Website Design &amp; Development</h3>
@@ -848,11 +831,10 @@
             </div>
         </article>
 
-        <!-- 03 — UI/UX, GROUPED UNDER THE MATCHING DROPDOWN SERVICE -->
-        <article class="gc-studio-portfolio__card" data-portfolio-item data-service="web-design-brand-identity">
+        <!-- 03 — UI/UX DESIGN -->
+        <article class="gc-studio-portfolio__card" data-portfolio-item data-service="ui-ux-design">
             <div class="gc-studio-portfolio__media">
                 <img src="/assets/photos/3.webp" alt="User interface and user experience design work" loading="lazy" decoding="async" width="800" height="500">
-                <span class="gc-studio-portfolio__category">Web Design &amp; Brand Identity</span>
             </div>
             <div class="gc-studio-portfolio__body">
                 <h3>UI/UX Design</h3>
@@ -861,11 +843,10 @@
             </div>
         </article>
 
-        <!-- 04 — ARCHITECTURE & INTERIORS -->
-        <article class="gc-studio-portfolio__card" data-portfolio-item data-service="architecture-interiors">
+        <!-- 04 — ARCHITECTURAL FLOOR PLANS -->
+        <article class="gc-studio-portfolio__card" data-portfolio-item data-service="architectural-floor-plans">
             <div class="gc-studio-portfolio__media">
                 <img src="/assets/photos/4.webp" alt="Architectural floor plan design work" loading="lazy" decoding="async" width="800" height="500">
-                <span class="gc-studio-portfolio__category">Architecture &amp; Interiors</span>
             </div>
             <div class="gc-studio-portfolio__body">
                 <h3>Architectural Floor Plans</h3>
@@ -874,11 +855,10 @@
             </div>
         </article>
 
-        <!-- 05 — 3D VISUALIZATION -->
-        <article class="gc-studio-portfolio__card" data-portfolio-item data-service="3d-visualization">
+        <!-- 05 — ARCHITECTURE & INTERIOR VISUALIZATION -->
+        <article class="gc-studio-portfolio__card" data-portfolio-item data-service="architecture-interior-visualization">
             <div class="gc-studio-portfolio__media">
                 <img src="/assets/photos/5.webp" alt="Architectural and interior visualization work" loading="lazy" decoding="async" width="800" height="500">
-                <span class="gc-studio-portfolio__category">3D Visualization</span>
             </div>
             <div class="gc-studio-portfolio__body">
                 <h3>Architecture &amp; Interior Visualization</h3>
@@ -887,11 +867,10 @@
             </div>
         </article>
 
-        <!-- 06 — GRAPHIC & DIGITAL DESIGN -->
-        <article class="gc-studio-portfolio__card" data-portfolio-item data-service="graphic-digital-design">
+        <!-- 06 — BRANDING & IDENTITY -->
+        <article class="gc-studio-portfolio__card" data-portfolio-item data-service="branding-identity">
             <div class="gc-studio-portfolio__media">
                 <img src="/assets/photos/6.webp" alt="Branding and visual identity design work" loading="lazy" decoding="async" width="800" height="500">
-                <span class="gc-studio-portfolio__category">Graphic &amp; Digital Design</span>
             </div>
             <div class="gc-studio-portfolio__body">
                 <h3>Branding &amp; Identity</h3>
