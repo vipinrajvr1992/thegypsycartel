@@ -48,6 +48,17 @@
 
     <!-- HERO OVERRIDES & CUSTOM STYLES -->
     <style>
+        /* FIX: Added dark background to html and body to prevent white flashes on overscroll and enabled smooth scrolling */
+        html {
+            background-color: #000000;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: #000000;
+            -webkit-font-smoothing: antialiased;
+        }
+
         .hero {
             position: relative;
             min-height: 100vh;
